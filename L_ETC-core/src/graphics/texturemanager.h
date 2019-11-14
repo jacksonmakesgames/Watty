@@ -11,15 +11,14 @@ namespace letc {namespace graphics {
 	public:
 		TextureManager();
 		~TextureManager();
-		void addTexture(Texture* texture);
-		void addTexture(unsigned int tid);
+		void addTexture(const Texture* texture);
 		float getGLTextureID(unsigned int tid);
-
-		Texture* generateNewTexture(const std::string filename);
-		Texture* generateNewTexture();
+		inline std::vector<const Texture*> getTextures() { 
+			return m_textures;
+		}
 
 	private:
-		std::vector<Texture*> m_textures;
+		std::vector<const Texture*> m_textures;
 
 };
 

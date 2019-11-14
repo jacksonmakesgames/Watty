@@ -26,8 +26,8 @@ namespace letc {namespace graphics {
 		IndexBuffer* m_indexBuffer;
 		GLsizei m_indexCount;
 		VertexData* m_buffer;
-		std::vector<GLuint> m_textureSlots;
-		TextureManager m_textureManager;
+		//std::vector<GLuint> m_textureSlots;
+
 
 		//ftgl::texture_atlas_t* m_FTAtlas;
 		//ftgl::texture_font_t*  m_FTFont;

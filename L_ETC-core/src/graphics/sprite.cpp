@@ -8,4 +8,5 @@ namespace letc {namespace graphics {
 		: Renderable2D(math::Vector3(x, y, 0.0f), math::Vector2(width, height), 0xffffffff) {
 		m_texture = texture;
 	}
+	
 }}

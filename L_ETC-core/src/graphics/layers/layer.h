@@ -1,6 +1,6 @@
 #pragma once
 #include "../renderer2d.h"
-#include "../renderable2d.h"
+#include "group.h"
 #include "../shader.h"
 #include <vector>
 
@@ -16,7 +16,9 @@ namespace letc { namespace graphics{
 	public:
 		virtual ~Layer();
 
-		virtual void add(Renderable2D* renderable);
+		virtual void add(Renderable2D*	renderable);
+		virtual void add(Group*			group);
+		
 		virtual void draw();
 
 		inline const std::vector<Renderable2D*>& getRenderables() const { return m_renderables; }

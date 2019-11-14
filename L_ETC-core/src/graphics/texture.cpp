@@ -7,6 +7,25 @@ namespace letc {namespace graphics {
 		m_TID = load();
 	}
 
+	Texture::Texture(std::string fileName, unsigned int id, unsigned int width, unsigned int height, const void* data){
+		m_filename = std::string("{Font Texture} " + fileName);
+		m_TID = id;
+		m_width = width;
+		m_height = height;
+		// make GL texture
+		glGenTextures(1, &m_TID);
+		glBindTexture(GL_TEXTURE_2D, m_TID);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_width, m_height,
+			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
+
+	}
+
+
 	Texture::~Texture(){
 
 	}

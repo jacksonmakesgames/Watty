@@ -24,7 +24,7 @@ namespace letc {namespace graphics {
 		m_FTAtlas = ftglAtlas;
 
 		
-		//remakeOpenGLTextureAtlas();
+		remakeOpenGLTextureAtlas();
 
 	}
 	void Font::remakeOpenGLTextureAtlas(){
@@ -37,20 +37,9 @@ namespace letc {namespace graphics {
 			"`abcdefghijklmnopqrstuvwxyz{|}~";
 
 		texture_font_load_glyphs(m_FTFont, cache);
+		
 
-		//TODO: this will move
-		// make GL texture
-		glGenTextures(1, &m_FTAtlas->id);
-		glBindTexture(GL_TEXTURE_2D, m_FTAtlas->id);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_FTAtlas->width, m_FTAtlas->height,
-			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, m_FTAtlas->data);
-
-
+		 m_texture = new Texture(m_fileName, m_FTAtlas->id, m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);
 
 	}
 

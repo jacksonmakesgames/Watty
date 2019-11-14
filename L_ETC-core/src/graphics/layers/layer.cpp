@@ -19,13 +19,29 @@ namespace letc {namespace graphics {
 	}
 
 	void Layer::add(Renderable2D* renderable) {
-			m_renderables.push_back(renderable);
+		if (renderable->getTID() > 0) {
+			m_renderer->textureManager.addTexture(renderable->getTexture());
+
+		}
+		m_renderables.push_back(renderable);
 		}
 
+	void Layer::add(Group* group)
+	{
+		// get all the child textures:
+		Renderable2D* topRenderable = group;
+		for (size_t i = 0; i < group->getChildren().size(); i++) {
+			if (group->getChildren()[i]->getTID() > 0) {
+				m_renderer->textureManager.addTexture(group->getChildren()[i]->getTexture());
+			}
+		}
+
+		m_renderables.push_back(group);
+
+	}
+
 	void Layer::draw(){
-		
 		m_shader->enable();
-		
 		m_renderer->begin();
 		
 		for (const Renderable2D* renderable : m_renderables){

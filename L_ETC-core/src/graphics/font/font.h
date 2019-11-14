@@ -1,6 +1,7 @@
 #pragma once
 #include "../../ext/freetype-gl/freetype-gl.h"
 #include <string>
+#include "../texture.h"
 
 namespace letc {namespace graphics {
 	class Font{
@@ -10,6 +11,7 @@ namespace letc {namespace graphics {
 		std::string m_name;
 		std::string m_fileName;
 		unsigned int m_size;
+		Texture * m_texture;
 	private:
 	public:
 		void remakeOpenGLTextureAtlas();
@@ -21,7 +23,9 @@ namespace letc {namespace graphics {
 		inline const std::string& getFileName() const { return m_fileName; }
 		inline const unsigned int getSize() const { return m_size; }
 
-		inline const unsigned int getTexID() const { return m_FTAtlas->id; }
+		inline const unsigned int getTexID() const { return m_texture->getID(); }
 		inline ftgl::texture_font_t* getFTFont() const { return m_FTFont; }
+		inline ftgl::texture_atlas_t* getFTAtlas() const { return m_FTAtlas; }
+		inline Texture* getTexture() const { return m_texture; }
 	};
 }}

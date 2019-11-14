@@ -11,6 +11,7 @@ namespace letc {namespace graphics {
 	}
 	
 	void Group::add(Renderable2D* renderable){
+
 		m_childrenRenderables.push_back(renderable);
 	}
 
@@ -21,5 +22,6 @@ namespace letc {namespace graphics {
 		}
 		renderer->pop();
 	}
-		
+
+	
 }}

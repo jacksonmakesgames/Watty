@@ -13,6 +13,7 @@ namespace letc {namespace graphics {
 		GLsizei m_height;
 	public:
 		Texture(const std::string& filename);
+		Texture(std::string fileName, unsigned int id, unsigned int width,unsigned int height,const void* data);
 		~Texture();
 
 		void bind() const;

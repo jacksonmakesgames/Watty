@@ -5,6 +5,7 @@ namespace letc {namespace graphics {
 
 	void FontManager::add(Font* font) {
 		m_fonts.push_back(font);
+
 	}
 
 	Font* FontManager::get(const std::string& name){
@@ -27,11 +28,6 @@ namespace letc {namespace graphics {
 		}
 	}
 
-	void FontManager::remakeFonts(){
-		for (size_t i = 0; i < m_fonts.size(); i++) {
-			m_fonts[i]->remakeOpenGLTextureAtlas();
-		}
-	}
-
+	
 
 }}

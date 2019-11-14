@@ -10,7 +10,7 @@
 #include <limits.h>
 #include "texture-atlas.h"
 
-//#include <GL/glew.h> // TODO I ADDED THIS
+#include <GL/glew.h> // TODO I ADDED THIS
 
 // ------------------------------------------------------ texture_atlas_new ---
 texture_atlas_t *

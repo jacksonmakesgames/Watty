@@ -162,7 +162,6 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->m_Width = width;
 		win->m_Height = height;
-		FontManager::remakeFonts(); // for resizing the bitmap //TODO: doesnt work
 	}
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

@@ -17,6 +17,7 @@ namespace letc {namespace graphics {
 		Renderer2D() {
 			m_TransformationStack.push_back(math::Matrix4::identity());
 			m_tranformationStackBack = &m_TransformationStack.back();
+
 		}
 	public:
 		void push(const math::Matrix4& mat, bool override = false) {
@@ -49,8 +50,8 @@ namespace letc {namespace graphics {
 		virtual void end() {}
 		virtual void flush() = 0;
 
-	private:
-		TextureManager m_textureManager;
+	public:
+		TextureManager textureManager = TextureManager();
 		
 
 	};

@@ -29,6 +29,8 @@ namespace letc {namespace graphics {
 		unsigned int m_color;
 		std::vector<math::Vector2> m_UVs;
 		Texture* m_texture; 
+	private:
+		std::vector<Renderable2D*> m_childrenRenderables = std::vector<Renderable2D*>();
 
 	protected:
 		Renderable2D() {
@@ -61,6 +63,10 @@ namespace letc {namespace graphics {
 			m_color = a << 24 | b << 16 | g << 8 | r;
 		}
 
+		virtual const std::vector<Renderable2D*>& getChildren() const {
+			return m_childrenRenderables;
+		}
+
 
 		inline const math::Vector2& getSize()const{ return m_size; }
 		inline const math::Vector3& getPosition()const{ return m_position; }
@@ -68,6 +74,7 @@ namespace letc {namespace graphics {
 		inline const std::vector<math::Vector2>& getUVs()const{ return m_UVs; }
 
 		inline const GLuint getTID() const { return m_texture == nullptr ? 0 : m_texture->getID(); }
+		inline const Texture* getTexture() const { return m_texture == nullptr ? nullptr : m_texture; }
 
 	private:
 		void setUVDefaults() {

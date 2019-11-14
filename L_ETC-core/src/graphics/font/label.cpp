@@ -6,12 +6,17 @@ namespace letc {namespace graphics {
 		m_position = math::Vector3(x, y, 0);
 		m_color = color;
 		m_font = FontManager::get("default");
+		m_texture = m_font->getTexture();
+
 	}
 	Label::Label(std::string text, float x, float y, Font* font, unsigned int color):
 	Renderable2D(), text(text), position(m_position){
 		m_position = math::Vector3(x, y, 0);
 		m_color = color;
 		m_font = font;
+
+		m_texture = m_font->getTexture();
+
 	}
 
 	Label::Label(std::string text, float x, float y, const std::string& fontName, unsigned int color)
@@ -27,6 +32,8 @@ namespace letc {namespace graphics {
 		m_position = math::Vector3(x, y, 0);
 		m_color = color;
 		m_font = FontManager::get(fontName, size);
+		m_texture = m_font->getTexture();
+
 		validateFont(fontName, size);
 	}
 
@@ -45,6 +52,8 @@ namespace letc {namespace graphics {
 		
 		// use default font
 		m_font = FontManager::get("default");
+		m_texture = m_font->getTexture();
+
 	}
 
 

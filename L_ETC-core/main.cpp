@@ -22,7 +22,6 @@
 #include "gorilla/gau.h"
 
 
-#include "ext/freetype-gl/font-manager.h"
 
 #define LOG(x) std::cout << x << std::endl;
 #define BLUE 0xFFFF0000
@@ -32,7 +31,7 @@
 #define GREY 0xFF808080
 // NOTE: COLORS ARE ABGR
 
-#define __BUTTERFLY 1
+//#define __BUTTERFLY 1
 //#define __SOUND 1
 
 static void setFlagAndDestroyOnFinish(ga_Handle* in_handle, void* in_context)
@@ -101,29 +100,26 @@ int main() {
 
 	
 #else
-	// test colors
-	layer0.add(new Sprite(15, 8,1.0f,1.0f, PINK));
-	layer0.add(new Sprite(15, 7,1.0f,1.0f, BLUE));
-	layer0.add(new Sprite(15, 6,1.0f,1.0f, WHITE));
-	layer0.add(new Sprite(15, 5,1.0f,1.0f, GREY));
 
 	//test textures
 	Texture* texture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/test2.png");
 	layer0.add(new Sprite(-6, 0, 4, 4, texture));
-	
 	Texture* texture2 = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/Alien.png");
 	layer0.add(new Sprite(2, 0, 4, 4, texture2));
+	
 	shader0.enable();
-	GLint texIDs[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	shader0.setUniform1iv("textures", texIDs, 10);
-
+	
+	GLint texIDs[32];
+	for (size_t i = 0; i < 32; i++)
+		texIDs[i] = i;
+	
+	shader0.setUniform1iv("textures", texIDs, 32);
 #endif
 
 
 	//draw fps label
-	ftgl::font_manager_t* ftglFontManager = ftgl::font_manager_new(512, 512, 2);
-	ftgl::texture_font_t* ftFont = ftgl::font_manager_get_from_filename(ftglFontManager, "Fonts/Roboto-Regular.ttf", 22);
-	Font* font = new Font(ftFont, ftglFontManager->atlas);
+	
+	//Font* font = new Font(ftFont, ftglFontManager->atlas);
 
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 16));
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 14));
