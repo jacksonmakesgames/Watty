@@ -4,6 +4,14 @@ namespace letc {namespace graphics {
 
 	std::vector<Font*> FontManager::m_fonts;
 
+	void FontManager::remakeAllFonts(float scaleX, float scaleY){
+		for (size_t i = 0; i < m_fonts.size(); i++)
+		{
+			m_fonts[i]->remakeOpenGLTextureAtlas(scaleX, scaleY);
+		}
+	
+	}
+
 	void FontManager::add(Font* font) {
 		m_fonts.push_back(font);
 

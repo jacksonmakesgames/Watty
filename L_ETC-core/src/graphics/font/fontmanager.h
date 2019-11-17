@@ -9,6 +9,8 @@ namespace letc {namespace graphics {
 
 
 	public:
+		static void remakeAllFonts(float scaleX, float scaleY);
+
 		static void add(Font* font);
 		static Font* get(const std::string& name);
 		static Font* get(const std::string& name, unsigned int size);

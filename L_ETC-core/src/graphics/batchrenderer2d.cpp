@@ -225,11 +225,14 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::flush(){
+
+
 		//bind all the textures
 		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
 			glActiveTexture(GL_TEXTURE0 + glIndex);
 			float thisGlTID = m_glTIDsThisFlush[glIndex];
 			glBindTexture(GL_TEXTURE_2D, thisGlTID);
+		
 		}
 
 		glBindVertexArray(m_vertexArray);

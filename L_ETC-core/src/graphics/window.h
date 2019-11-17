@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "font/fontmanager.h"
+#include "texturemanager.h"
 #include "../audio/audiomanager.h"
 
 namespace letc {namespace graphics {

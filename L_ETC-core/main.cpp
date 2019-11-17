@@ -9,6 +9,7 @@
 #include "src/graphics/simple2drenderer.h"
 #include "src/graphics/batchrenderer2d.h"
 #include "src/graphics/sprite.h"
+#include "src/graphics/layers/layer.h"
 #include "src/graphics/layers/group.h"
 #include "src/graphics/texture.h"
 #include "src/graphics/font/label.h"
@@ -19,7 +20,6 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "tilelayer.h"
 
 #define LOG(x) std::cout << x << std::endl;
 
@@ -44,14 +44,13 @@ int main() {
 	//glClearColor(1.0f,1.0f,1.0f,1.0f);
 	//glClearColor(.5,.5,.5,1.0f);
 
-	Shader* s0 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
-	Shader& shader0 = *s0;
-	TileLayer layer0(&shader0);
+	math::Matrix4 ortho = math::Matrix4::orthographic(-16,16,-9,9,-10,10);
+
+	Shader* shader0 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
+	Layer layer0(new BatchRenderer2D(), shader0, ortho);
 	
-	Shader* s1 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
-	Shader& shader1 = *s1;
-	
-	TileLayer layer1(&shader1);
+	Shader* shader1= new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
+	Layer layer1(new BatchRenderer2D(), shader1, ortho);
 
 
 #ifdef __BUTTERFLY

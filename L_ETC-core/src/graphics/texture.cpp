@@ -26,6 +26,23 @@ namespace letc {namespace graphics {
 		glBindTexture(GL_TEXTURE_2D, NULL);
 
 	}
+	Texture* Texture::regenerate(unsigned int id, unsigned int width, unsigned int height, const void* data){
+		m_width = width;
+		m_height = height;
+		// remake GL texture
+		glBindTexture(GL_TEXTURE_2D, id);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_width, m_height,
+			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
+		glBindTexture(GL_TEXTURE_2D, NULL);
+
+		return this;
+
+	}
 
 
 	
@@ -41,6 +58,11 @@ namespace letc {namespace graphics {
 
 	GLuint Texture::load(){
 		BYTE* pixels = load_image(m_filename.c_str(), &m_width, &m_height);
+
+		if (pixels == nullptr) {
+			std::cout << "Error loading texture: " << m_filename << std::endl;
+			return 0;
+		}
 
 		GLuint output;
 		glGenTextures(1, &output); // generate unique glTID

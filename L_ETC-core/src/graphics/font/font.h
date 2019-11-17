@@ -6,6 +6,10 @@
 
 namespace letc {namespace graphics {
 	class Font{
+	const char* characters = " !\"#$%&'()*+,-./0123456789:;<=>?"
+			"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
+			"`abcdefghijklmnopqrstuvwxyz{|}~";
+
 	private:
 		ftgl::texture_atlas_t* m_FTAtlas;
 		ftgl::texture_font_t* m_FTFont;
@@ -16,7 +20,8 @@ namespace letc {namespace graphics {
 		Texture * m_texture;
 	private:
 	public:
-		void remakeOpenGLTextureAtlas();
+		void makeOpenGLTextureAtlas();
+		void remakeOpenGLTextureAtlas(float scaleX, float scaleY);
 		Font(unsigned int size);
 		Font(std::string name, std::string filename, unsigned int size);
 		Font(std::string name, std::string filename, unsigned int size, math::Vector2 scale);

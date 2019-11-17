@@ -16,6 +16,8 @@ namespace letc {namespace graphics {
 		Texture(std::string fileName, unsigned int id, unsigned int width,unsigned int height,const void* data);
 		//~Texture();
 
+		Texture* regenerate(unsigned int id, unsigned int width, unsigned int height, const void* data);
+
 		void bind() const;
 		void unbind() const;
 

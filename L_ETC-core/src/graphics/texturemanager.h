@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <iostream>
 
 #include "texture.h"
 
@@ -8,6 +9,8 @@ namespace letc {namespace graphics {
 	//each renderer should have one of these
 
 	class TextureManager{
+	public:
+		static Texture* errorTexture;
 
 	private:
 		std::vector<const Texture*> m_textures;
@@ -25,5 +28,6 @@ namespace letc {namespace graphics {
 
 
 };
+
 
 }}

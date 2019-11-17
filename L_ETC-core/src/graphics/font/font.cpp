@@ -5,14 +5,14 @@ namespace letc {namespace graphics {
 		m_size = size;
 		m_name = "default";
 		m_fileName = "fonts/Roboto-Regular.ttf";
-		remakeOpenGLTextureAtlas();
+		makeOpenGLTextureAtlas();
 	}
 
 	Font::Font(std::string name, std::string filename, unsigned int size){
 		m_name = name;
 		m_fileName = filename;
 		m_size = size;
-		remakeOpenGLTextureAtlas();
+		makeOpenGLTextureAtlas();
 
 	}
 	
@@ -21,7 +21,7 @@ namespace letc {namespace graphics {
 		m_fileName = filename;
 		m_size = size;
 		m_scale = scale;
-		remakeOpenGLTextureAtlas();
+		makeOpenGLTextureAtlas();
 
 	}
 
@@ -34,22 +34,30 @@ namespace letc {namespace graphics {
 		m_FTAtlas = ftglAtlas;
 
 		
-		remakeOpenGLTextureAtlas();
+		makeOpenGLTextureAtlas();
 
 	}
-	void Font::remakeOpenGLTextureAtlas(){
+	void Font::makeOpenGLTextureAtlas(){
 		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
 
 		m_FTFont = texture_font_new_from_file(m_FTAtlas, m_size, m_fileName.c_str());
 
-		const char* cache = " !\"#$%&'()*+,-./0123456789:;<=>?"
-			"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
-			"`abcdefghijklmnopqrstuvwxyz{|}~";
-
-		texture_font_load_glyphs(m_FTFont, cache);
-		
+		texture_font_load_glyphs(m_FTFont, characters);
 
 		 m_texture = new Texture(m_fileName, m_FTAtlas->id, m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);
+
+	}
+	void Font::remakeOpenGLTextureAtlas(float scaleX, float scaleY){
+		m_scale = math::Vector2(scaleX, scaleY);
+		
+		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
+
+		m_FTFont = texture_font_new_from_file(m_FTAtlas, m_size, m_fileName.c_str());
+
+		texture_font_load_glyphs(m_FTFont, characters);
+		
+
+		 m_texture = m_texture->regenerate(m_texture->getID(), m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);
 
 	}
 

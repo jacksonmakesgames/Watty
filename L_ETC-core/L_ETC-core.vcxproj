@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="tilelayer.cpp" />
     <ClCompile Include="ext\freetype-gl\distance-field.c" />
     <ClCompile Include="ext\freetype-gl\edtaa3func.c" />
     <ClCompile Include="ext\freetype-gl\font-manager.c" />
@@ -91,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\letc.h" />
-    <ClInclude Include="tilelayer.h" />
     <ClInclude Include="ext\freetype-gl\distance-field.h" />
     <ClInclude Include="ext\freetype-gl\edtaa3func.h" />
     <ClInclude Include="ext\freetype-gl\font-manager.h" />

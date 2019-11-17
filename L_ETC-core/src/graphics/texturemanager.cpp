@@ -1,10 +1,11 @@
 #include "texturemanager.h"
 namespace letc {namespace graphics {
 	
+	Texture* TextureManager::errorTexture = nullptr;
+
 	TextureManager::TextureManager(){
 		m_textures = std::vector<const Texture*>();
-
-		addTexture(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/error_texture.png"));
+		//addTexture(TextureManager::errorTexture);
 	}
 
 	TextureManager::~TextureManager(){
@@ -38,9 +39,9 @@ namespace letc {namespace graphics {
 		}
 
 		if (!found) {
+			std::cout << "Could not get glTID from id: " << std::to_string(tid) << std::endl;
 			return -1;
 		}
-
 
 		return output;
 	}
