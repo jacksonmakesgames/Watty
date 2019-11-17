@@ -64,9 +64,6 @@
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{b8fce024-06e6-4b4d-90c4-9aa74d341e7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\test">
-      <UniqueIdentifier>{6118df04-3acd-4686-a2d2-a4099d1bbd77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\renderables">
       <UniqueIdentifier>{fa7c90f1-6443-4e99-aac0-2056401c114f}</UniqueIdentifier>
     </Filter>
@@ -90,9 +87,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ext\freetype\src\base\ftbbox.c">
       <Filter>Source Files\ext\freetype\src\FT_MODULES</Filter>
     </ClCompile>
@@ -237,9 +231,6 @@
     <ClCompile Include="src\graphics\texture.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\layers\tilelayer.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\window.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
@@ -279,12 +270,6 @@
     <ClCompile Include="ext\freetype-gl\platform.c">
       <Filter>Source Files\ext\freetype-gl</Filter>
     </ClCompile>
-    <ClCompile Include="src\test\butterfly.cpp">
-      <Filter>Source Files\test</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\very_simple_game.cpp">
-      <Filter>Source Files\test</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\font\font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -301,6 +286,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\audio\audiomanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tilelayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1331,6 +1322,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\string_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tilelayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\letc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

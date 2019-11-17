@@ -1,3 +1,4 @@
+
 #include "src/math/math.h"
 #include "src/math/matrix4.h"
 
@@ -8,7 +9,6 @@
 #include "src/graphics/simple2drenderer.h"
 #include "src/graphics/batchrenderer2d.h"
 #include "src/graphics/sprite.h"
-#include "src/graphics/layers/tilelayer.h"
 #include "src/graphics/layers/group.h"
 #include "src/graphics/texture.h"
 #include "src/graphics/font/label.h"
@@ -19,14 +19,16 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "tilelayer.h"
 
 #define LOG(x) std::cout << x << std::endl;
+
+// NOTE: COLORS ARE ABGR
+#define WHITE 0xFFFFFFFF
 #define BLUE 0xFFFF0000
 #define PINK 0xFFFF80FF
-#define WHITE 0xFFFFFFFF
 #define BLACK 0xFF000000
 #define GREY 0xFF808080
-// NOTE: COLORS ARE ABGR
 
 //#define __BUTTERFLY 1
 #define __SOUND 1
@@ -93,14 +95,14 @@ int main() {
 		}
 	}
 
-	layer4.add(new Sprite(-12, -3, 6.0f, 6.0f, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/asterisk.png")));
+	layer4.add(new Sprite(-12, -3, 6.0f, 6.0f, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/asterisk.png")));
 
 #else
 
 	//test textures
-	Texture* texture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/test2.png");
+	Texture* texture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/test2.png");
 	layer0.add(new Sprite(-6, 0, 4, 4, texture));
-	Texture* texture2 = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/Alien.png");
+	Texture* texture2 = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/Alien.png");
 	layer0.add(new Sprite(2, 0, 4, 4, texture2));
 	
 #endif
@@ -119,7 +121,7 @@ int main() {
 
 
 #ifdef __SOUND
-	AudioClip* clip = new AudioClip("sci_fi", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/sci_fi.ogg");
+	AudioClip* clip = new AudioClip("sci_fi", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/sci_fi.ogg");
 	AudioManager::addClip(clip);
 	float gain = 0.5f;
 	AudioManager::getClip("sci_fi")->play(false);
@@ -234,7 +236,6 @@ int main() {
 
 	return 0;
 }
-
 
 
 

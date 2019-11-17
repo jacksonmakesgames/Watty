@@ -15,6 +15,16 @@ namespace letc {namespace graphics {
 		remakeOpenGLTextureAtlas();
 
 	}
+	
+	Font::Font(std::string name, std::string filename, unsigned int size, math::Vector2 scale){
+		m_name = name;
+		m_fileName = filename;
+		m_size = size;
+		m_scale = scale;
+		remakeOpenGLTextureAtlas();
+
+	}
+
 
 	Font::Font(ftgl::texture_font_t* ftglFont, ftgl::texture_atlas_t* ftglAtlas){
 		m_name = ftglFont->filename;

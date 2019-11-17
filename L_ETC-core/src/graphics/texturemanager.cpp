@@ -3,7 +3,6 @@ namespace letc {namespace graphics {
 	
 	TextureManager::TextureManager(){
 		m_textures = std::vector<const Texture*>();
-		m_counter = 0;
 
 		addTexture(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/error_texture.png"));
 	}
@@ -26,7 +25,6 @@ namespace letc {namespace graphics {
 			m_textures.push_back(texture);
 		}
 	}
-	
 
 	float TextureManager::getGLTextureID(unsigned int tid){
 		float output = 0.0;
@@ -41,10 +39,8 @@ namespace letc {namespace graphics {
 
 		if (!found) {
 			return -1;
-			//output = (float)(m_textures.size());
 		}
 
-		//m_counter++;
 
 		return output;
 	}

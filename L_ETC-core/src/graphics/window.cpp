@@ -13,7 +13,7 @@ namespace letc {namespace graphics {
 		if (!init())
 			glfwTerminate();
 		
-		//FontManager::add(new Font("default", "Fonts/Roboto-Regular.ttf", 15));
+		//FontManager::add(new Font("default", "Fonts/Roboto-Regular.ttf", 15)); // TODO: WE SHOULD DO THIS AT SOME POINT
 		audio::AudioManager::init();
 
 		for (int i = 0; i < MAX_KEYS; i++) {

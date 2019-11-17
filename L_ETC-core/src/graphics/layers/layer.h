@@ -11,9 +11,8 @@ namespace letc { namespace graphics{
 		std::vector<Renderable2D*> m_renderables;
 		Shader* m_shader;
 		math::Matrix4 m_prMatrix;
-	protected:
-		Layer(Renderer2D*, Shader* shader, math::Matrix4 prMatrix);
 	public:
+		Layer(Renderer2D*, Shader* shader, math::Matrix4 prMatrix);
 		virtual ~Layer();
 
 		virtual void add(Renderable2D*	renderable);

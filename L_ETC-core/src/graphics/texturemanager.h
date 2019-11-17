@@ -11,7 +11,6 @@ namespace letc {namespace graphics {
 
 	private:
 		std::vector<const Texture*> m_textures;
-		unsigned int m_counter;
 	public:
 		TextureManager();
 		~TextureManager();
@@ -23,8 +22,6 @@ namespace letc {namespace graphics {
 			return m_textures;
 		}
 
-		inline void resetCounter() { m_counter = 0; }
-		inline unsigned int getCounter() { return m_counter; }
 
 
 };

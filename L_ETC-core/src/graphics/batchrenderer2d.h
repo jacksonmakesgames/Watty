@@ -26,7 +26,6 @@ namespace letc {namespace graphics {
 		IndexBuffer* m_indexBuffer;
 		GLsizei m_indexCount;
 		VertexData* m_buffer;
-
 		std::vector<float> m_glTIDsThisFlush;
 
 	public:

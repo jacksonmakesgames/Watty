@@ -129,9 +129,7 @@ namespace letc {namespace graphics {
 	void BatchRenderer2D::drawString(const std::string& text, const math::Vector3& position, const Font& font, unsigned int color){
 		using namespace ftgl;
 		bool found = false;
-
 		texture_font_t* ftFont = font.getFTFont();
-
 		const GLuint tid = font.getTexID();
 
 		float glTID = 0.0f;
@@ -160,34 +158,27 @@ namespace letc {namespace graphics {
 				m_glTIDsThisFlush.push_back(tid);
 				glTID = (float)(m_glTIDsThisFlush.size());
 			}
-
 		}
 
-		float scaleX = 1280 / 32.0f;
-		float scaleY = 720 / 18.0f;
+		const math::Vector2 scale = font.getScale();
+
 		float x = position.x;
 
 		for (int i = 0; i < text.length(); i++){
 			
 			char c = text[i];
-			texture_glyph_t* glyph = texture_font_find_glyph(ftFont, &c); // right now, we preload all the possible characters, not sure we want to do that
+			texture_glyph_t* glyph = texture_font_find_glyph(ftFont, &c); 
 			
-			//texture_glyph_t* glyph = texture_font_get_glyph(m_FTFont, &c); // right now, we preload all the possible characters, not sure we want to do that
-			
-
-
 			if (glyph != NULL) {
 				if (i > 0) {
 					float kerning = texture_glyph_get_kerning(glyph, &text[i-1]);
-					x += kerning / scaleX;
+					x += kerning / scale.x;
 				}
 
-			
-
-				float x0 = x + glyph->offset_x / scaleX;
-				float y0 = position.y + glyph->offset_y / scaleY;
-				float x1 = x0 + glyph->width / scaleX;
-				float y1 = y0 - glyph->height / scaleY;
+				float x0 = x + glyph->offset_x / scale.y;
+				float y0 = position.y + glyph->offset_y / scale.y;
+				float x1 = x0 + glyph->width / scale.x;
+				float y1 = y0 - glyph->height / scale.y;
 				
 				float s0 = glyph->s0;
 				float t0 = glyph->t0;
@@ -220,9 +211,8 @@ namespace letc {namespace graphics {
 				m_buffer->color = color;
 				m_buffer++;
 
-
 				m_indexCount += 6;
-				x += glyph->advance_x/scaleX;
+				x += glyph->advance_x/scale.x;
 			}
 		}
 
@@ -235,22 +225,6 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::flush(){
-
-
-		//std::vector<const Texture*> textures = textureManager.getTextures();
-		//int textureManagerIndex = RENDERER_TEXTURES_PER_DRAW * m_flushesThisFrame;
-
-		////bind all the textures
-		//for (size_t glIndex = 0; glIndex < RENDERER_TEXTURES_PER_DRAW; glIndex++) {
-		//	
-		//	if(textureManagerIndex>=textures.size()) break;
-
-		//	glActiveTexture(GL_TEXTURE0 + glIndex);
-		//	float glTID = textures[textureManagerIndex]->getID(); // we need more than textures[31]
-		//	glBindTexture(GL_TEXTURE_2D, glTID);
-		//	textureManagerIndex++;
-		//}
-
 		//bind all the textures
 		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
 			glActiveTexture(GL_TEXTURE0 + glIndex);
@@ -259,16 +233,11 @@ namespace letc {namespace graphics {
 		}
 
 		glBindVertexArray(m_vertexArray);
-		
 		m_indexBuffer->bind();
-
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
-
 		m_indexCount = 0;
-		//textureManager.resetCounter(); // reset so that we don't flush for every texture above 31
-		m_flushesThisFrame++;
 		m_glTIDsThisFlush.clear();
 	}
 

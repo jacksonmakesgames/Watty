@@ -26,6 +26,7 @@ namespace letc {namespace graphics {
 	protected:
 		math::Vector2 m_size;
 		math::Vector3 m_position;
+		// WE SHOULD MAKE A PUBLIC POSITION REFERENCE 
 		unsigned int m_color;
 		std::vector<math::Vector2> m_UVs;
 		Texture* m_texture; 

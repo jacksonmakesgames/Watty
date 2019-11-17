@@ -14,7 +14,6 @@ namespace letc {namespace graphics {
 		m_position = math::Vector3(x, y, 0);
 		m_color = color;
 		m_font = font;
-
 		m_texture = m_font->getTexture();
 
 	}
@@ -24,6 +23,7 @@ namespace letc {namespace graphics {
 		m_position = math::Vector3(x, y, 0);
 		m_color = color;
 		m_font = FontManager::get(fontName);
+		m_texture = m_font->getTexture();
 		validateFont(fontName);
 	}
 
