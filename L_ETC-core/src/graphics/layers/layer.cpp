@@ -24,7 +24,7 @@ namespace letc {namespace graphics {
 
 		}
 		m_renderables.push_back(renderable);
-		}
+	}
 
 	void Layer::add(Group* group)
 	{
@@ -51,6 +51,8 @@ namespace letc {namespace graphics {
 
 		m_renderer->end();
 		m_renderer->flush();
+
+		m_renderer->nextFrame();
 		
 	}
 	

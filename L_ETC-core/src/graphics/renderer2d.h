@@ -13,12 +13,15 @@ namespace letc {namespace graphics {
 	protected:
 		std::vector<math::Matrix4> m_TransformationStack;
 		const math::Matrix4* m_tranformationStackBack;
+		unsigned short m_flushesPerFrame = 1;
+		unsigned short m_flushesThisFrame = 0;
 
 		Renderer2D() {
 			m_TransformationStack.push_back(math::Matrix4::identity());
 			m_tranformationStackBack = &m_TransformationStack.back();
-
 		}
+		
+			
 	public:
 		void push(const math::Matrix4& mat, bool override = false) {
 			if (override) {
@@ -43,6 +46,9 @@ namespace letc {namespace graphics {
 			m_tranformationStackBack = &m_TransformationStack.back();
 
 		}
+		~Renderer2D() {
+			textureManager.clean();
+		}
 
 		virtual void begin() {}
 		virtual void submit(const Renderable2D* renderable) = 0;
@@ -52,7 +58,7 @@ namespace letc {namespace graphics {
 
 	public:
 		TextureManager textureManager = TextureManager();
-		
+		inline void nextFrame() { m_flushesThisFrame=0; }
 
 	};
 

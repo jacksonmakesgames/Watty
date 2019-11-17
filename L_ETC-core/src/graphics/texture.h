@@ -14,7 +14,7 @@ namespace letc {namespace graphics {
 	public:
 		Texture(const std::string& filename);
 		Texture(std::string fileName, unsigned int id, unsigned int width,unsigned int height,const void* data);
-		~Texture();
+		//~Texture();
 
 		void bind() const;
 		void unbind() const;

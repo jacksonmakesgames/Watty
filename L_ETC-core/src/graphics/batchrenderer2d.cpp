@@ -9,8 +9,6 @@ namespace letc {namespace graphics {
 	BatchRenderer2D::~BatchRenderer2D() {
 		delete m_indexBuffer;
 		glDeleteBuffers(1, &m_vertexBuffer);
-		//ftgl::texture_font_delete(m_FTFont); // TODO THIS SHOULD BE IN DESTROY
-
 	}
 
 	void BatchRenderer2D::init(){
@@ -76,13 +74,29 @@ namespace letc {namespace graphics {
 		float glTID = 0.0f;
 		if (tid > 0) {
 			glTID = textureManager.getGLTextureID(tid);
-			// more than 32 TODO: HANDLE
-			if (glTID == -1) {
-				end();
-				flush();
-				begin();
-			}
 
+			if (glTID == -1) {
+				//TODO: log error
+				std::cout << "ERROR, INVALID TEXTURE" << std::endl;
+				glTID = 0;
+			}
+			bool found = false;
+			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
+			{
+				if (m_glTIDsThisFlush[i] == glTID) 
+					found = true;
+			}
+			// flush every 32 textures
+			//this is because we can only have 32 opengl textures active at one time GL_TEXTURE[0..31]
+			if (!found) {
+				if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
+					end();
+					flush();
+					begin();
+				}
+				m_glTIDsThisFlush.push_back(tid);
+				glTID = (float)(m_glTIDsThisFlush.size());
+			}
 		}
 
 		m_buffer->vertex = *m_tranformationStackBack * pos;
@@ -122,16 +136,33 @@ namespace letc {namespace graphics {
 
 		float glTID = 0.0f;
 		if (tid > 0) {
-			glTID = textureManager.getGLTextureID(tid);;
+			glTID = textureManager.getGLTextureID(tid);
 
-			// more than 32 TODO: HANDLE
 			if (glTID == -1) {
-				end();
-				flush();
-				begin();
+				//TODO: log error
+				std::cout << "ERROR, INVALID TEXTURE" << std::endl;
+				glTID = 0;
+			}
+			bool found = false;
+			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
+			{
+				if (m_glTIDsThisFlush[i] == glTID)
+					found = true;
+			}
+			// flush every 32 textures
+			//this is because we can only have 32 opengl textures active at one time GL_TEXTURE[0..31]
+			if (!found) {
+				if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
+					end();
+					flush();
+					begin();
+				}
+				m_glTIDsThisFlush.push_back(tid);
+				glTID = (float)(m_glTIDsThisFlush.size());
 			}
 
 		}
+
 		float scaleX = 1280 / 32.0f;
 		float scaleY = 720 / 18.0f;
 		float x = position.x;
@@ -204,13 +235,27 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::flush(){
-		std::vector<const Texture*> textures = textureManager.getTextures();
 
-		//bind all the textures 
-		for (size_t i = 0; i < textures.size(); i++){
-			glActiveTexture(GL_TEXTURE0 + i);
-			float glTID = textures[i]->getID();
-			glBindTexture(GL_TEXTURE_2D, glTID);
+
+		//std::vector<const Texture*> textures = textureManager.getTextures();
+		//int textureManagerIndex = RENDERER_TEXTURES_PER_DRAW * m_flushesThisFrame;
+
+		////bind all the textures
+		//for (size_t glIndex = 0; glIndex < RENDERER_TEXTURES_PER_DRAW; glIndex++) {
+		//	
+		//	if(textureManagerIndex>=textures.size()) break;
+
+		//	glActiveTexture(GL_TEXTURE0 + glIndex);
+		//	float glTID = textures[textureManagerIndex]->getID(); // we need more than textures[31]
+		//	glBindTexture(GL_TEXTURE_2D, glTID);
+		//	textureManagerIndex++;
+		//}
+
+		//bind all the textures
+		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
+			glActiveTexture(GL_TEXTURE0 + glIndex);
+			float thisGlTID = m_glTIDsThisFlush[glIndex];
+			glBindTexture(GL_TEXTURE_2D, thisGlTID);
 		}
 
 		glBindVertexArray(m_vertexArray);
@@ -218,12 +263,15 @@ namespace letc {namespace graphics {
 		m_indexBuffer->bind();
 
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
-
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
 
 		m_indexCount = 0;
-
+		//textureManager.resetCounter(); // reset so that we don't flush for every texture above 31
+		m_flushesThisFrame++;
+		m_glTIDsThisFlush.clear();
 	}
+
+
 
 }}

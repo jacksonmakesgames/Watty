@@ -1,6 +1,7 @@
 #include "fontmanager.h"
 
 namespace letc {namespace graphics {
+
 	std::vector<Font*> FontManager::m_fonts;
 
 	void FontManager::add(Font* font) {

@@ -6,6 +6,14 @@ namespace letc {namespace graphics {
 		m_vertPath = vertPath;
 		m_fragPath= fragPath;
 		m_shaderID = load();
+
+
+		GLint texIDs[32];
+		for (size_t i = 0; i < 32; i++)
+			texIDs[i] = i;
+		enable();
+		setUniform1iv("textures", texIDs, 32);
+
 	}
 
 	Shader::~Shader(){

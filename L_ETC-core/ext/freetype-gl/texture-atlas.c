@@ -10,7 +10,7 @@
 #include <limits.h>
 #include "texture-atlas.h"
 
-#include <GL/glew.h> // TODO I ADDED THIS
+
 
 // ------------------------------------------------------ texture_atlas_new ---
 texture_atlas_t *
@@ -49,18 +49,7 @@ texture_atlas_new( const size_t width,
         exit( EXIT_FAILURE );
     }
 
-	//TODO I ADDED THIS
-	// make GL texture
-	/*glGenTextures(1, &self->id);
-	glBindTexture(GL_TEXTURE_2D, &self->id);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, self->width, self->height,
-		0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, self->data);*/
-	//END MY STUFF
+	
 
     return self;
 }

@@ -18,29 +18,18 @@
 #include <vector>
 #include <stdio.h>
 #include <time.h>
-#include "gorilla/ga.h"
-#include "gorilla/gau.h"
-
 
 
 #define LOG(x) std::cout << x << std::endl;
 #define BLUE 0xFFFF0000
-#define PINK 0xFFFF00FF
+#define PINK 0xFFFF80FF
 #define WHITE 0xFFFFFFFF
 #define BLACK 0xFF000000
 #define GREY 0xFF808080
 // NOTE: COLORS ARE ABGR
 
 //#define __BUTTERFLY 1
-//#define __SOUND 1
-
-static void setFlagAndDestroyOnFinish(ga_Handle* in_handle, void* in_context)
-{
-	gc_int32* flag = (gc_int32*)(in_context);
-	*flag = 1;
-	ga_handle_destroy(in_handle);
-}
-
+#define __SOUND 1
 
 
 int main() {
@@ -48,18 +37,26 @@ int main() {
 	using namespace letc;
 	using namespace graphics;
 	using namespace math;
+	using namespace audio;
 	Window window("This little engine could", 1280, 720);
 	//glClearColor(1.0f,1.0f,1.0f,1.0f);
+	//glClearColor(.5,.5,.5,1.0f);
 
 	Shader* s0 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
 	Shader& shader0 = *s0;
 	TileLayer layer0(&shader0);
+	
+	Shader* s1 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
+	Shader& shader1 = *s1;
+	
+	TileLayer layer1(&shader1);
 
 
 #ifdef __BUTTERFLY
 	
 	Shader* s = new Shader("src/shaders/basic.vert", "src/shaders/basic_lit.frag");
 	Shader& litShader = *s;
+
 	TileLayer layer(&litShader);
 	
 	Shader* s2 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
@@ -98,7 +95,6 @@ int main() {
 
 	layer4.add(new Sprite(-12, -3, 6.0f, 6.0f, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/asterisk.png")));
 
-	
 #else
 
 	//test textures
@@ -107,23 +103,11 @@ int main() {
 	Texture* texture2 = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/Alien.png");
 	layer0.add(new Sprite(2, 0, 4, 4, texture2));
 	
-	shader0.enable();
-	
-	GLint texIDs[32];
-	for (size_t i = 0; i < 32; i++)
-		texIDs[i] = i;
-	
-	shader0.setUniform1iv("textures", texIDs, 32);
 #endif
 
-
 	//draw fps label
-	
-	//Font* font = new Font(ftFont, ftglFontManager->atlas);
-
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 16));
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 14));
-
 
 	Group* fpsGroup = new Group(Matrix4::translation(Vector3(-15.5,7.5,0)));
 	fpsGroup->add(new Sprite(0, 0, 2.8f, 1, 0x80808080));
@@ -135,31 +119,13 @@ int main() {
 
 
 #ifdef __SOUND
-	gau_Manager* mgr;
-	ga_Mixer* mixer;
-	ga_StreamManager* streamMgr;
-	ga_Handle* stream;
-	gau_SampleSourceLoop* loopSrc = 0;
-	gau_SampleSourceLoop** pLoopSrc = &loopSrc;
-	gc_int32 loop = 1;
-	gc_int32 quit = 0;
-
-	/* Initialize library + manager */
-	gc_initialize(0);
-	mgr = gau_manager_create_custom(GA_DEVICE_TYPE_DEFAULT, GAU_THREAD_POLICY_SINGLE, 4, 512);
-	mixer = gau_manager_mixer(mgr);
-	streamMgr = gau_manager_streamManager(mgr);
-
-	/* Create and play streaming audio */
-	if (!loop)
-		pLoopSrc = 0;
-	stream = gau_create_handle_buffered_file(mixer, streamMgr, "gummy.ogg", "ogg",
-		&setFlagAndDestroyOnFinish, &quit, pLoopSrc);
-	ga_handle_play(stream);
-
+	AudioClip* clip = new AudioClip("sci_fi", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/sci_fi.ogg");
+	AudioManager::addClip(clip);
+	float gain = 0.5f;
+	AudioManager::getClip("sci_fi")->play(false);
+	AudioManager::getClip("sci_fi")->setGain(gain);
 
 #endif
-
 
 	srand(time(NULL));
 	Timer time;
@@ -187,12 +153,10 @@ int main() {
 
 #ifdef __BUTTERFLY
 		Matrix4 mat = Matrix4::rotation(time.elapsed() * 30, Vector3(0.1f, -0.1f, 1));
-		
 		Matrix4 mat2 = Matrix4::scale(Vector3(30/time.elapsed(),30/time.elapsed(),30/time.elapsed()));
 		Matrix4 fallingMat = Matrix4::scale(Vector3(time.elapsed() / 300,time.elapsed() / 300,time.elapsed() / 300));
 		Matrix4 mat3 = Matrix4::rotation(time.elapsed() * 20, Vector3(0.1f, -0.1f, -1));
 		Matrix4 rotmat4 = Matrix4::rotation(sin(t) * 20, Vector3(0.1f, -0.1f, -1));
-
 		Matrix4 transmat4 = Matrix4::translation(Vector3(sin(t/t/t) * 16.0f, sin(t/t/t) * 9.0f, 0));
 
 		
@@ -208,7 +172,6 @@ int main() {
 			float c = sin(t) / 2 + .5f;
 			renderables4[i]->setColor(Vector4(c, .05f, 1-c, 1.0f));
 		}
-		
 
 		litShader.enable();
 		litShader.setUniform2f("light_pos", Vector2(xScreenMousePos, yScreenMousePos));
@@ -226,20 +189,36 @@ int main() {
 		layer.draw();
 		layer2.draw();
 		layer3.draw();
-
 		layer4.draw();
 #endif
 
-
 		layer0.draw();
-
 		window.update();
+		
 #ifdef __SOUND
-		gau_manager_update(mgr);
-		gc_thread_sleep(1);
+		if (window.keyPressed(GLFW_KEY_LEFT)) {
+			gain -= 0.005f;
+			AudioManager::getClip("sci_fi")->setGain(gain);
+
+		}
+		else if (window.keyPressed(GLFW_KEY_RIGHT)) {
+			gain += 0.005f;
+			AudioManager::getClip("sci_fi")->setGain(gain);
+		}
+		else if (window.keyDown(GLFW_KEY_P)) {
+			AudioManager::getClip("sci_fi")->pause();
+		}
+		else if (window.keyDown(GLFW_KEY_R)) {
+			AudioManager::getClip("sci_fi")->resume();
+			AudioManager::getClip("sci_fi")->setGain(gain);
+		}
+		else if (window.keyDown(GLFW_KEY_S)) {
+			AudioManager::getClip("sci_fi")->stop();
+		}
+
 #endif // __SOUND
 
-		
+
 		frames++;
 		if ((time.elapsed() - timer) > 1.0f) {
 			timer+=1.0f;
@@ -252,17 +231,6 @@ int main() {
 	/********************************************************************************************************************
 	*********GAME LOOP***************************************************************************************************
 	*********************************************************************************************************************/
-	//delete texture;
-
-#ifdef __SOUND
-
-	/* Clean up library + manager */
-	gau_manager_destroy(mgr);
-	gc_shutdown();
-
-	return 0;
-#endif // __SOUND
-
 
 	return 0;
 }

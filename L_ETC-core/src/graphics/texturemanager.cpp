@@ -1,13 +1,15 @@
 #include "texturemanager.h"
 namespace letc {namespace graphics {
+	
 	TextureManager::TextureManager(){
 		m_textures = std::vector<const Texture*>();
+		m_counter = 0;
+
+		addTexture(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/error_texture.png"));
 	}
 
 	TextureManager::~TextureManager(){
-		for (size_t i = 0; i < m_textures.size(); i++){
-			delete m_textures[i];
-		}
+		clean();
 	}
 
 	void TextureManager::addTexture(const Texture* texture){
@@ -21,12 +23,6 @@ namespace letc {namespace graphics {
 			}
 
 		if (!found) {
-			if (m_textures.size() >= 32) {
-				// DO SOMETHING
-				/*end();
-				flush();
-				begin();*/
-			}
 			m_textures.push_back(texture);
 		}
 	}
@@ -37,25 +33,28 @@ namespace letc {namespace graphics {
 		bool found = false;
 		for (size_t i = 0; i < m_textures.size(); i++) {
 			if (m_textures[i]->getID() == tid) {
-				output = (float)(i + 1);
+				output = (float)(m_textures[i]->getID());
 				found = true;
 				break;
 			}
 		}
 
 		if (!found) {
-			if (m_textures.size() >= 32) {
-				return -1;
-				/*m_renderer->end();
-				m_renderer->flush();
-				m_renderer->begin();*/
-			}
-
-			//m_textures.push_back(tid);
-			output = (float)(m_textures.size());
+			return -1;
+			//output = (float)(m_textures.size());
 		}
 
+		//m_counter++;
+
 		return output;
+	}
+
+	void TextureManager::clean(){
+		for (size_t i = 0; i < m_textures.size(); i++){
+			delete m_textures[i];
+		}
+		m_textures.clear();
+	
 	}
 
 

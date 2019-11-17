@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "font/fontmanager.h"
+#include "../audio/audiomanager.h"
 
 namespace letc {namespace graphics {
 #define MAX_KEYS 1024
@@ -46,9 +47,9 @@ namespace letc {namespace graphics {
 		
 	private:
 		bool init();
-		friend static void window_resize_callback(GLFWwindow* window, int width, int height);
-		friend static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+		friend void window_resize_callback(GLFWwindow* window, int width, int height);
+		friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		friend void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 		friend void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
 	};

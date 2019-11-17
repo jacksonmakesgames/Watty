@@ -13,7 +13,8 @@ namespace letc {namespace graphics {
 		if (!init())
 			glfwTerminate();
 		
-		FontManager::add(new Font("default", "Fonts/Roboto-Regular.ttf", 15));
+		//FontManager::add(new Font("default", "Fonts/Roboto-Regular.ttf", 15));
+		audio::AudioManager::init();
 
 		for (int i = 0; i < MAX_KEYS; i++) {
 			m_keysThisFrame[i]		=	false;
@@ -25,12 +26,12 @@ namespace letc {namespace graphics {
 			m_buttonsLastFrame[i]		=	 false;
 			m_buttonsDown[i]			=	 false;
 		}
-
 	}	
 
 	Window::~Window() {
-		FontManager::clean();
 		glfwTerminate();
+		FontManager::clean();
+		audio::AudioManager::clean();
 	}
 
 	bool Window::init() {
@@ -57,13 +58,12 @@ namespace letc {namespace graphics {
 
 		glfwMakeContextCurrent(m_Window);
 		
-		
 		glfwSetWindowUserPointer(m_Window, this);
 		glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
 		glfwSetKeyCallback(m_Window, key_callback);
 		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
-		glfwSwapInterval(0.0f);
+		glfwSwapInterval(0);
 
 
 		if (glewInit() != GLEW_OK) {
@@ -138,18 +138,16 @@ namespace letc {namespace graphics {
 		}
 		memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool)*MAX_KEYS);
 
-		
 		for (size_t i = 0; i < MAX_BUTTONS; i++){
 			m_buttonsDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
 		}
 		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool)*MAX_BUTTONS);
-	
-
-
-
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
+
+		//audio:
+		audio::AudioManager::update(); // TODO: TEST PERMORMANCE
 	}
 
 	bool Window::closed() const {

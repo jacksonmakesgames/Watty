@@ -7,6 +7,7 @@ namespace letc {namespace graphics {
 		m_TID = load();
 	}
 
+	// font textures
 	Texture::Texture(std::string fileName, unsigned int id, unsigned int width, unsigned int height, const void* data){
 		m_filename = std::string("{Font Texture} " + fileName);
 		m_TID = id;
@@ -22,13 +23,12 @@ namespace letc {namespace graphics {
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_width, m_height,
 			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
+		glBindTexture(GL_TEXTURE_2D, NULL);
 
 	}
 
 
-	Texture::~Texture(){
-
-	}
+	
 
 	void Texture::bind() const{
 		glBindTexture(GL_TEXTURE_2D, m_TID);
@@ -43,7 +43,7 @@ namespace letc {namespace graphics {
 		BYTE* pixels = load_image(m_filename.c_str(), &m_width, &m_height);
 
 		GLuint output;
-		glGenTextures(1, &output);
+		glGenTextures(1, &output); // generate unique glTID
 		glBindTexture(GL_TEXTURE_2D, output);
 		
 		//TODO this should be a setting

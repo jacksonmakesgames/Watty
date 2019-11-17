@@ -6,12 +6,12 @@
 #include "renderer2d.h"
 #include "renderable2d.h"
 
-
-#define RENDERER_MAX_SPRITES	60000
-#define RENDERER_VERTEX_SIZE	sizeof(VertexData)
-#define RENDERER_SPRITE_SIZE	RENDERER_VERTEX_SIZE * 4
-#define RENDERER_BUFFER_SIZE	RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
-#define RENDERER_INDICES_SIZE	RENDERER_MAX_SPRITES * 6
+#define RENDERER_MAX_SPRITES		60000
+#define RENDERER_VERTEX_SIZE		sizeof(VertexData)
+#define RENDERER_SPRITE_SIZE		RENDERER_VERTEX_SIZE * 4
+#define RENDERER_BUFFER_SIZE		RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
+#define RENDERER_INDICES_SIZE		RENDERER_MAX_SPRITES * 6
+#define RENDERER_TEXTURES_PER_DRAW	32 /*MAX: 32*/
 
 #define SHADER_VERTEX_INDEX		0
 #define SHADER_UV_INDEX		1
@@ -26,13 +26,10 @@ namespace letc {namespace graphics {
 		IndexBuffer* m_indexBuffer;
 		GLsizei m_indexCount;
 		VertexData* m_buffer;
-		//std::vector<GLuint> m_textureSlots;
 
+		std::vector<float> m_glTIDsThisFlush;
 
-		//ftgl::texture_atlas_t* m_FTAtlas;
-		//ftgl::texture_font_t*  m_FTFont;
-
-	public: 
+	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();
 		void begin() override;
