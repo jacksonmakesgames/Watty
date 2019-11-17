@@ -21,11 +21,11 @@ public:
 	void init() override {
 		m_window = createWindow("The First Game Made With the LETC!", 1600,900);
 		m_layer = new Layer(new BatchRenderer2D(), new Shader("res/shaders/basic.vert", "res/shaders/basic_unlit.frag"), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
-		glClearColor(1,1,1,1);
 
 		math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
-	
+		//TODO: WE'RE SWITCHING TO VULKAN!	
+
 		//TODO: ADDING MORE FONTS KILLS FRAME RATE!!
 		//FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 13, screenScale));
 		//FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 13, screenScale));
