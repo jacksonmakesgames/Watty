@@ -162,6 +162,7 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->m_Width = width;
 		win->m_Height = height;
+		FontManager::remakeAllFonts(width/32.0f, height/16.0f); // NOTE: huge performance hit when resizing.. we should rethink this
 	}
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
