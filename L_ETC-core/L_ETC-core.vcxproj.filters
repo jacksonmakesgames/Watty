@@ -243,6 +243,9 @@
     <ClCompile Include="src\graphics\Vulkan\VulkanBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\Vulkan\VulkanSwapChain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.vert">
@@ -1217,6 +1220,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\Vulkan\SwapChainSupportDetails.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\VulkanSwapChain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

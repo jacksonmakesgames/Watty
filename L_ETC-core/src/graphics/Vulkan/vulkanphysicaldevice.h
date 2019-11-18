@@ -6,6 +6,7 @@
 #include "queuefamilyindices.h"
 #include "SwapChainSupportDetails.h"
 
+
 namespace letc { namespace graphics {
 	
 	const static std::vector<const char*> desiredDeviceExtensions = {
@@ -13,7 +14,6 @@ namespace letc { namespace graphics {
 	};
 
 	class VulkanPhysicalDevice {
-	
 
 	private:
 		VulkanInstance* m_instance;
@@ -31,15 +31,12 @@ namespace letc { namespace graphics {
 		inline VkPhysicalDeviceMemoryProperties& GetPhysicalDeviceMemoryProperties() { return m_physicalDeviceMemoryProperties; }
 
 		static VulkanPhysicalDevice* GetPhysicalDevice(VulkanInstance* instance, VkSurfaceKHR& surface);
+		static SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice& device, VkSurfaceKHR& surface);
 
 	public:
 		~VulkanPhysicalDevice();
 
-		static SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR& surface);
 
-		static VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
-		static VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
-		static VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 
 	private:
 		VulkanPhysicalDevice(VulkanInstance* instance, VkPhysicalDevice device, QueueFamilyIndices indices);

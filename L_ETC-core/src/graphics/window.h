@@ -4,6 +4,7 @@
 #include "Vulkan/vulkaninstance.h"
 #include "Vulkan/vulkanphysicaldevice.h"
 #include "Vulkan/VulkanDevice.h"
+#include "Vulkan/VulkanSwapChain.h"
 #include <GLFW/glfw3.h>
 #include<set>
 //#include "font/fontmanager.h"

@@ -118,51 +118,9 @@ namespace letc {namespace graphics {
 
 		// init swapchain
 		// TODO:: THESE SHOULD NOT BE MEMBERS OF PHYSICAL DEVICE, WE SHOULD MAKE A SWAP CHAIN CLASS!!
-		SwapChainSupportDetails swapChainSupport = VulkanPhysicalDevice::querySwapChainSupport(physicalDevice->GetPhysicalDevice(), m_vkSurface);
+		
 
-		VkSurfaceFormatKHR surfaceFormat = VulkanPhysicalDevice::chooseSwapSurfaceFormat(swapChainSupport.formats);
-		VkPresentModeKHR presentMode = VulkanPhysicalDevice::chooseSwapPresentMode(swapChainSupport.presentModes);
-		VkExtent2D extent = VulkanPhysicalDevice::chooseSwapExtent(swapChainSupport.capabilities);
-
-		uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
-		if (swapChainSupport.capabilities.maxImageCount > 0 && imageCount > swapChainSupport.capabilities.maxImageCount) {
-			imageCount = swapChainSupport.capabilities.maxImageCount;
-		}
-
-		// SHOULD PUT THIS IN INITIALIZERS
-		VkSwapchainCreateInfoKHR createInfo = {};
-		createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-		createInfo.surface = m_vkSurface;
-		createInfo.minImageCount = imageCount;
-		createInfo.imageFormat = surfaceFormat.format;
-		createInfo.imageColorSpace = surfaceFormat.colorSpace;
-		createInfo.imageExtent = extent;
-		createInfo.imageArrayLayers = 1;
-		createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
-
-		QueueFamilyIndices indices = physicalDevice->GetQueueFamilyIndices();
-		uint32_t queueFamilyIndices[] = { indices.graphics_indices/*, indices.presentFamily*/};
-
-		//if (indices.graphicsFamily != indices.presentFamily) {
-			createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
-			createInfo.queueFamilyIndexCount = 2;
-			createInfo.pQueueFamilyIndices = queueFamilyIndices;
-		//}
-		//else {
-			//createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
-			//createInfo.queueFamilyIndexCount = 0; // Optional
-			//createInfo.pQueueFamilyIndices = nullptr; // Optional
-		//}
-		createInfo.preTransform = swapChainSupport.capabilities.currentTransform;
-		createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
-		createInfo.presentMode = presentMode;
-		createInfo.clipped = VK_TRUE;
-		createInfo.oldSwapchain = VK_NULL_HANDLE;
-		VkSwapchainKHR swapChain;
-		res = vkCreateSwapchainKHR(*(device->getDevice()), &createInfo, nullptr, &swapChain);
-		if (res != VK_SUCCESS) {
-			throw std::runtime_error("failed to create swap chain!");
-		}
+		VulkanSwapChain* vkSwapChain = new VulkanSwapChain(device, &m_vkSurface, physicalDevice);
 
 		// TODO: LEFT OFF RIGHT BEFORE "Retrieving the swap chain images"
 	}

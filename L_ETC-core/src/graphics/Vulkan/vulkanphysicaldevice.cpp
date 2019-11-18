@@ -138,7 +138,13 @@ namespace letc {namespace graphics {
 		return nullptr;
 	}
 
-	SwapChainSupportDetails VulkanPhysicalDevice::querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR& surface) {
+
+
+	VulkanPhysicalDevice::~VulkanPhysicalDevice() {
+	
+	}
+
+	SwapChainSupportDetails VulkanPhysicalDevice::querySwapChainSupport(VkPhysicalDevice& device, VkSurfaceKHR& surface){
 		SwapChainSupportDetails details;
 
 		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
@@ -161,46 +167,5 @@ namespace letc {namespace graphics {
 
 		return details;
 	}
-
-	VkSurfaceFormatKHR VulkanPhysicalDevice::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) {
-		for (const auto& availableFormat : availableFormats) {
-			if (availableFormat.format == VK_FORMAT_B8G8R8A8_UNORM && availableFormat.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
-				return availableFormat;
-			}
-		}
-
-		return availableFormats[0];
-	}
-
-	VkPresentModeKHR VulkanPhysicalDevice::chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes) {
-		for (const auto& availablePresentMode : availablePresentModes) {
-			if (availablePresentMode == VK_PRESENT_MODE_MAILBOX_KHR) {
-				return availablePresentMode;
-			}
-		}
-
-		return VK_PRESENT_MODE_FIFO_KHR;
-	}
-
-	VkExtent2D VulkanPhysicalDevice::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) {
-		if (capabilities.currentExtent.width != UINT32_MAX) {
-			return capabilities.currentExtent;
-		}
-		else {
-			//VkExtent2D actualExtent = { WIDTH, HEIGHT };
-			VkExtent2D actualExtent = { 1600, 900 };
-
-			actualExtent.width = std::max(capabilities.minImageExtent.width, std::min(capabilities.maxImageExtent.width, actualExtent.width));
-			actualExtent.height = std::max(capabilities.minImageExtent.height, std::min(capabilities.maxImageExtent.height, actualExtent.height));
-
-			return actualExtent;
-		}
-	}
-
-
-	VulkanPhysicalDevice::~VulkanPhysicalDevice() {
-	
-	}
-
 
 }}

@@ -65,6 +65,7 @@
     <ClCompile Include="src\graphics\Vulkan\VulkanDevice.cpp" />
     <ClCompile Include="src\graphics\Vulkan\vulkaninstance.cpp" />
     <ClCompile Include="src\graphics\Vulkan\vulkanphysicaldevice.cpp" />
+    <ClCompile Include="src\graphics\Vulkan\VulkanSwapChain.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\initializers.cpp" />
     <ClCompile Include="src\math\matrix4.cpp" />
@@ -81,6 +82,7 @@
     <ClInclude Include="src\graphics\Vulkan\VulkanError.h" />
     <ClInclude Include="src\graphics\Vulkan\vulkaninstance.h" />
     <ClInclude Include="src\graphics\Vulkan\vulkanphysicaldevice.h" />
+    <ClInclude Include="src\graphics\Vulkan\VulkanSwapChain.h" />
     <ClInclude Include="src\initializers.h" />
     <ClInclude Include="src\letc.h" />
     <ClInclude Include="ext\freetype\include\freetype\config\ftconfig.h" />

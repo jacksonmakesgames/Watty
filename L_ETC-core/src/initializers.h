@@ -2,6 +2,7 @@
 #include <vector>
 #include <vulkan/vulkan.h>
 #include "graphics/Vulkan/vulkanconfig.h"
+#include "graphics/Vulkan/SwapChainSupportDetails.h"
 
 
 namespace letc { namespace initializers {
@@ -20,6 +21,7 @@ namespace letc { namespace initializers {
 
 	VkMemoryAllocateInfo MemoryAllocateInfo(VkDeviceSize size,  uint32_t memoryTypeIndex);
 
-
+	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode);
+	
 
 } }
