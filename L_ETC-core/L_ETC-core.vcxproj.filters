@@ -1324,6 +1324,9 @@
     <ClInclude Include="src\letc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\graphics\buffers\buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ext\freetype\src\base\ftver.rc">

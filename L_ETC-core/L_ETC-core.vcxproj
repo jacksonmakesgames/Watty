@@ -89,6 +89,7 @@
     <ClCompile Include="src\math\vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\buffers\buffer.h" />
     <ClInclude Include="src\letc.h" />
     <ClInclude Include="ext\freetype-gl\distance-field.h" />
     <ClInclude Include="ext\freetype-gl\edtaa3func.h" />
