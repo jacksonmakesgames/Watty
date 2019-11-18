@@ -10,7 +10,7 @@ namespace letc { namespace initializers {
 	VkApplicationInfo ApplicationInfo(graphics::VulkanConfig& config);
 	VkInstanceCreateInfo InstanceCreateInfo(VkApplicationInfo& appInfo, std::vector<const char*>& layers, std::vector<const char*>& extensions);
 	
-	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features);
+	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features, std::vector<const char*>& layers, std::vector<const char*>& deviceExtensions);
 	
 	VkDeviceQueueCreateInfo DeviceQueueCreate(uint32_t queueFamilyIndex, float& priority);
 
@@ -21,7 +21,7 @@ namespace letc { namespace initializers {
 
 	VkMemoryAllocateInfo MemoryAllocateInfo(VkDeviceSize size,  uint32_t memoryTypeIndex);
 
-	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode);
+	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, VkExtent2D extent, uint32_t imageCount, VkSurfaceFormatKHR surfaceFormat, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode);
 	
 
 } }

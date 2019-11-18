@@ -37,8 +37,9 @@ namespace letc {namespace graphics {
 		//VULKAN:
 		VulkanInstance* m_vkInstance;
 		VulkanPhysicalDevice* physicalDevice;
-		VulkanDevice* device;
+		VulkanDevice* m_logicalDevice;
 		VkSurfaceKHR m_vkSurface;
+		VulkanSwapChain* m_vkSwapChain;
 
 
 

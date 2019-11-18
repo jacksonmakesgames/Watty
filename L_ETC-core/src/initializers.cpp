@@ -25,12 +25,18 @@ namespace letc {namespace initializers {
 
 		return info;
 	}
-	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features){
+	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features, std::vector<const char*>& layers, std::vector<const char*>& deviceExtensions){
 		VkDeviceCreateInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 		info.pQueueCreateInfos = queueCreateInfos.data();
 		info.queueCreateInfoCount = static_cast<uint32_t>( queueCreateInfos.size());
 		info.pEnabledFeatures = &features;
+
+		info.enabledLayerCount = static_cast<uint32_t>(layers.size());
+		info.ppEnabledLayerNames = layers.data();
+
+		info.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+		info.ppEnabledExtensionNames = deviceExtensions.data();
 		
 		return info;
 
@@ -80,9 +86,18 @@ namespace letc {namespace initializers {
 		return info;
 	}
 
-	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode)
+	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, VkExtent2D extent, uint32_t imageCount, VkSurfaceFormatKHR surfaceFormat, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode)
 	{
 		VkSwapchainCreateInfoKHR createInfo = {};
+		createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+		createInfo.surface = surface;
+		createInfo.pNext = nullptr;
+		createInfo.minImageCount = imageCount;
+		createInfo.imageFormat = surfaceFormat.format;
+		createInfo.imageColorSpace = surfaceFormat.colorSpace;
+		createInfo.imageExtent = extent;
+		createInfo.imageArrayLayers = 1;
+		createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
 		if (queueFamilyIndices[0] != queueFamilyIndices[1]) {
 			createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;

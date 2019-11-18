@@ -98,8 +98,6 @@ namespace letc {namespace graphics {
 	}
 
 	void Window::initVulkan(){
-		
-
 		VulkanConfig vulkanConfig;
 		vulkanConfig.applicationName = "LETC";
 		vulkanConfig.applicationVersion = VK_MAKE_VERSION(0, 0, 1);
@@ -108,19 +106,18 @@ namespace letc {namespace graphics {
 	
 
 		VkResult res = glfwCreateWindowSurface(m_vkInstance->getInstance(), m_Window, nullptr, &m_vkSurface);
-
 		if (res != VK_SUCCESS) {
 			throw std::runtime_error("failed to create window surface!");
 		}
 
+		// init physical device
 		physicalDevice = VulkanPhysicalDevice::GetPhysicalDevice(m_vkInstance, m_vkSurface);
-		device = new VulkanDevice(m_vkInstance, physicalDevice);
+		
+		// init logical device
+		m_logicalDevice = new VulkanDevice(m_vkInstance, physicalDevice, m_vkInstance->getLayers());
 
 		// init swapchain
-		// TODO:: THESE SHOULD NOT BE MEMBERS OF PHYSICAL DEVICE, WE SHOULD MAKE A SWAP CHAIN CLASS!!
-		
-
-		VulkanSwapChain* vkSwapChain = new VulkanSwapChain(device, &m_vkSurface, physicalDevice);
+		 m_vkSwapChain = new VulkanSwapChain(m_logicalDevice, &m_vkSurface, physicalDevice);
 
 		// TODO: LEFT OFF RIGHT BEFORE "Retrieving the swap chain images"
 	}
@@ -128,7 +125,7 @@ namespace letc {namespace graphics {
 	void Window::cleanupVulkan(){
 		vkDestroySurfaceKHR(m_vkInstance->getInstance(), m_vkSurface, nullptr);
 		vkDestroyInstance(m_vkInstance->getInstance(), nullptr);
-		// TODO destroy swapchain
+		vkDestroySwapchainKHR(*m_logicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
 	}
 
 	std::vector<const char*>  Window::getRequiredExtensions()

@@ -65,12 +65,16 @@ namespace letc { namespace graphics {
 		uint32_t queueFamilyIndices[] = {indices.graphics_indices, indices.compute_indices };
 
 
-		VkSwapchainCreateInfoKHR createInfo = initializers::SwapChainCreateInfo(*m_surface, m_physicalDevice->GetPhysicalDevice(), queueFamilyIndices, swapChainSupport, presentMode);
+		VkSwapchainCreateInfoKHR createInfo = initializers::SwapChainCreateInfo(*m_surface, m_physicalDevice->GetPhysicalDevice(), extent, imageCount, surfaceFormat, queueFamilyIndices, swapChainSupport, presentMode);
 
-		VkResult res = vkCreateSwapchainKHR(*(m_device->getDevice()), &createInfo, nullptr, m_swapChain);
+		VkDevice vkDevice = *m_device->getDevice();
+		VkResult res = vkCreateSwapchainKHR(vkDevice, &createInfo, nullptr, &m_swapChain);
 		if (res != VK_SUCCESS) {
 			throw std::runtime_error("failed to create swap chain!");
 		}
+
+
+
 	}
 
 } }

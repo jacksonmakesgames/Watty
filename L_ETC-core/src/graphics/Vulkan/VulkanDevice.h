@@ -14,7 +14,7 @@ namespace letc { namespace graphics {
 		VkCommandPool m_computeCommandPool;
 
 	public:
-		VulkanDevice(VulkanInstance* instance, VulkanPhysicalDevice* physical_device);
+		VulkanDevice(VulkanInstance* instance, VulkanPhysicalDevice* physical_device, std::vector<const char*>& layers);
 		~VulkanDevice();
 
 		inline VulkanInstance* getInstance() { return m_instance; }

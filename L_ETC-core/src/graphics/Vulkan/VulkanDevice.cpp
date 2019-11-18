@@ -1,7 +1,7 @@
 #include "VulkanDevice.h"
 namespace letc { namespace graphics {
 
-	VulkanDevice::VulkanDevice(VulkanInstance* instance, VulkanPhysicalDevice* physical_device){
+	VulkanDevice::VulkanDevice(VulkanInstance* instance, VulkanPhysicalDevice* physical_device, std::vector<const char*>& layers){
 		m_instance = instance;
 		m_physicalDevice = physical_device;
 
@@ -9,21 +9,24 @@ namespace letc { namespace graphics {
 
 		std::vector<VkDeviceQueueCreateInfo> queueCreateInfos = std::vector<VkDeviceQueueCreateInfo>();
 		float priority = 1.0f;
+	
 
 		//queueCreateInfos.push_back(initializers::DeviceQueueCreate(indices.compute_indices, priority));
 		queueCreateInfos.push_back(initializers::DeviceQueueCreate(indices.graphics_indices, priority));
 
-		VkDeviceCreateInfo createInfo = initializers::DeviceCreateInfo(queueCreateInfos, m_physicalDevice->GetPhysicalDeviceFeatures());
+		std::vector<const char*> extensions = desiredDeviceExtensions;
+
+		VkDeviceCreateInfo createInfo = initializers::DeviceCreateInfo(queueCreateInfos, m_physicalDevice->GetPhysicalDeviceFeatures(), layers, extensions);
 		
 		//TODO error checking
 		
-		VkResult result;
-		result = vkCreateDevice(
+		VkResult result = vkCreateDevice(
 			m_physicalDevice->GetPhysicalDevice(),
 			&createInfo,
 			nullptr,
 			&m_device
 		);
+
 		if (result != VK_SUCCESS) {
 			std::cout << "ERROR CREATING DEVICE: " << result << std::endl;
 			return;

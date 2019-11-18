@@ -18,6 +18,8 @@ namespace letc { namespace graphics {
 		VulkanInstance(VulkanConfig& config, std::vector<const char*> exts);
 		~VulkanInstance();
 		inline VkInstance& getInstance(){ return m_instance; }
+		inline std::vector<const char*>& getLayers(){ return m_layers; }
+
 
 	private:
 
