@@ -1,10 +1,13 @@
 ﻿#pragma once
 #include <iostream>
-#include <GL/glew.h>
+#include "../initializers.h"
+#include "Vulkan/vulkaninstance.h"
+#include "Vulkan/vulkanphysicaldevice.h"
+#include "Vulkan/VulkanDevice.h"
 #include <GLFW/glfw3.h>
-
-#include "font/fontmanager.h"
-#include "texturemanager.h"
+#include<set>
+//#include "font/fontmanager.h"
+//#include "texturemanager.h"
 #include "../audio/audiomanager.h"
 
 namespace letc {namespace graphics {
@@ -14,6 +17,8 @@ namespace letc {namespace graphics {
 	class Window {
 	public:
 	private:
+
+
 		friend struct GLFWwindow;
 		const char* m_Title;
 		int m_Width, m_Height;
@@ -27,6 +32,14 @@ namespace letc {namespace graphics {
 		bool m_buttonsLastFrame[MAX_BUTTONS];
 		bool m_buttonsDown[MAX_BUTTONS];
 		double mx, my;
+
+		//VULKAN:
+		VulkanInstance* m_vkInstance;
+		VulkanPhysicalDevice* physicalDevice;
+		VulkanDevice* device;
+		VkSurfaceKHR m_vkSurface;
+
+
 
 	public:
 		Window(const char *title, int width, int height);
@@ -53,16 +66,23 @@ namespace letc {namespace graphics {
 		friend void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 		friend void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
+		//TODO: VK
+		void initVulkan();
+		void cleanupVulkan();
+		std::vector<const char*> getRequiredExtensions();
+		VkQueue m_presentQueue;
+
+
 	};
 
 
-	static void GLAPIENTRY openglCallbackFunction(GLenum source,
-			GLenum type,
-			GLuint id,
-			GLenum severity,
-			GLsizei length,
-			const GLchar* message,
-			const void* userParam);
+	//static void GLAPIENTRY openglCallbackFunction(GLenum source,
+	//		GLenum type,
+	//		GLuint id,
+	//		GLenum severity,
+	//		GLsizei length,
+	//		const GLchar* message,
+	//		const void* userParam);
 
 
 }}

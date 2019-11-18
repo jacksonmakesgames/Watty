@@ -204,37 +204,7 @@
     <ClCompile Include="ext\freetype\src\gzip\ftgzip.c">
       <Filter>Source Files\ext\freetype\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\batchrenderer2d.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\buffers\buffer.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\layers\group.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\buffers\indexbuffer.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\layers\layer.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\font\label.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\shader.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\sprite.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\texture.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\window.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\buffers\vertexarray.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\math\matrix4.cpp">
@@ -249,39 +219,6 @@
     <ClCompile Include="src\math\vector4.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
-    <ClCompile Include="ext\freetype-gl\distance-field.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\edtaa3func.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\texture-atlas.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\texture-font.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\vector.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\utf8-utils.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\platform.c">
-      <Filter>Source Files\ext\freetype-gl</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\font\font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\font\fontmanager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ext\freetype-gl\font-manager.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\texturemanager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\audio\audioclip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -289,6 +226,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\initializers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Vulkan\vulkaninstance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Vulkan\vulkanphysicaldevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Vulkan\VulkanDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Vulkan\VulkanBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -340,86 +292,17 @@
     <ClInclude Include="src\math\math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="ext\freetype-gl\freetype-gl.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\opengl.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\platform.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\edtaa3func.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\shader.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\layers\group.h">
-      <Filter>Header Files\graphics\layers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\buffers\indexbuffer.h">
-      <Filter>Header Files\graphics\buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\utf8-utils.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\vec234.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\vector.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\distance-field.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\texture-font.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\texture-atlas.h">
-      <Filter>Header Files\ext\freetype-gl</Filter>
-    </ClInclude>
     <ClInclude Include="src\graphics\window.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="ext\freetype\include\freetype\internal\internal.h">
       <Filter>Header Files\ext\freetype-gl</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\buffers\vertexarray.h">
-      <Filter>Header Files\graphics\buffers</Filter>
-    </ClInclude>
     <ClInclude Include="src\graphics\layers\tilelayer.h">
       <Filter>Header Files\graphics\layers</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\font\label.h">
-      <Filter>Header Files\graphics\font</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils\timer.h">
       <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\file_utils.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\layers\layer.h">
-      <Filter>Header Files\graphics\layers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\renderable2d.h">
-      <Filter>Header Files\graphics\renderables</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\texture.h">
-      <Filter>Header Files\graphics\renderables</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\sprite.h">
-      <Filter>Header Files\graphics\renderables</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\batchrenderer2d.h">
-      <Filter>Header Files\graphics\renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\renderer2d.h">
-      <Filter>Header Files\graphics\renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\simple2drenderer.h">
-      <Filter>Header Files\graphics\renderers</Filter>
     </ClInclude>
     <ClInclude Include="ext\freetype\src\autofit\afangles.h">
       <Filter>Header Files\ext\gorilla-audio\ext</Filter>
@@ -593,12 +476,6 @@
       <Filter>Header Files\ext\gorilla-audio\ext</Filter>
     </ClInclude>
     <ClInclude Include="ext\freetype\src\winfonts\fnterrs.h">
-      <Filter>Header Files\ext\gorilla-audio\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\font\font.h">
-      <Filter>Header Files\ext\gorilla-audio\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\font\fontmanager.h">
       <Filter>Header Files\ext\gorilla-audio\ext</Filter>
     </ClInclude>
     <ClInclude Include="ext\freetype\include\freetype\freetype.h">
@@ -1303,15 +1180,6 @@
     <ClInclude Include="ext\freetype\src\gzip\zutil.h">
       <Filter>Header Files\ext\gorilla-audio\ext</Filter>
     </ClInclude>
-    <ClInclude Include="ext\freetype-gl\font-manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ext\freetype-gl\markup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\texturemanager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\audio\audioclip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1322,6 +1190,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\letc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\initializers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\vulkanconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\vulkaninstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\vulkanphysicaldevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\queuefamilyindices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\VulkanDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\VulkanBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\VulkanError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Vulkan\SwapChainSupportDetails.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,6 @@
 #pragma once
+
+#if 0
 #include "math/math.h"
 
 #include "graphics/window.h"
@@ -96,3 +98,4 @@ private:
 	};
 
 }
+#endif

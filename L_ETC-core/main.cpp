@@ -1,24 +1,21 @@
+#define GLFW_INCLUDE_VULKAN //not sure
 
-#include "src/math/math.h"
-#include "src/math/matrix4.h"
-
-#include "src/graphics/window.h"
-#include "src/graphics/shader.h"
-#include "src/graphics/buffers/indexbuffer.h"
-#include "src/graphics/buffers/vertexarray.h"
-#include "src/graphics/simple2drenderer.h"
-#include "src/graphics/batchrenderer2d.h"
-#include "src/graphics/sprite.h"
-#include "src/graphics/layers/layer.h"
-#include "src/graphics/layers/group.h"
-#include "src/graphics/texture.h"
-#include "src/graphics/font/label.h"
-#include "src/graphics/font/fontmanager.h"
-#include "src/utils/timer.h"
 
 #include <vector>
 #include <stdio.h>
 #include <time.h>
+
+#include "src/math/math.h"
+#include "src/math/matrix4.h"
+
+#include "src/graphics/Vulkan/vulkaninstance.h" // temp
+#include "src/graphics/Vulkan/vulkanphysicaldevice.h" // temp
+#include "src/graphics/Vulkan/vulkandevice.h" // temp
+#include "src/graphics/Vulkan/VulkanBuffer.h"
+
+#include "src/graphics/window.h"
+//#include "src/graphics/batchrenderer2d.h"
+#include "src/utils/timer.h"
 
 
 #define LOG(x) std::cout << x << std::endl;
@@ -32,32 +29,37 @@ int main() {
 	using namespace audio;
 	Window window("This little engine could", 1280, 720);
 
-	srand(time(NULL));
-	Timer time;
-	float timer = 0.0f;
-	unsigned int frames = 0;
-	float t = 0;
 
+	//VULKAN:
+	
+
+	//VkCommandBuffer* commands = new VkCommandBuffer[3];
+	//device->getComputeCommand(commands, 3);
+
+	//float* arr = new float[3];
+
+	//for (size_t i = 0; i < 3; i++){
+	//	arr[i] = i;
+	//}
+
+	//VulkanBuffer* buffer = new VulkanBuffer(device, arr, sizeof(float), 3);
+
+	//buffer->setData();
 
 	while (!window.closed()) {
-		t += 0.001f;
 		window.clear();
-		double x, y;
-		window.getMousePos(x, y);
-
-		if (window.keyPressed(GLFW_KEY_SPACE)) {
-			time.reset();
-			t = 0.0f;
-		};
-
-		float xScreenMousePos = x * 32.0f / window.getWidth() - 16.0f;
-		float yScreenMousePos = 9.0f - y * 18.0f / window.getHeight();
-
 		window.update();
 
 	}
 
 
+	//delete buffer;
+	//delete arr;
+
+	//device->freeComputeCommand(commands, 3);
+	//delete device;
+	//delete physicalDevice;
+	//delete vkInstance;
 	return 0;
 }
 

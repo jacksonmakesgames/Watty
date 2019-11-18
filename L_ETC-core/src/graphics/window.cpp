@@ -30,8 +30,10 @@ namespace letc {namespace graphics {
 
 	Window::~Window() {
 		glfwTerminate();
-		FontManager::clean();
+		//FontManager::clean();
 		audio::AudioManager::clean();
+
+
 	}
 
 	bool Window::init() {
@@ -39,8 +41,8 @@ namespace letc {namespace graphics {
 			std::cout << "Failed to initialize GLFW" << std::endl;
 			return false;
 		}
-
-		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+		// TELL GLFW that we aren't using opengl
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
 #if 0 // fullscreen
 		m_Width = 1920;
@@ -48,7 +50,7 @@ namespace letc {namespace graphics {
 		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, glfwGetPrimaryMonitor(), NULL); // fullscreen
 
 #else
-		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, nullptr, nullptr);
 #endif
 		if (!m_Window) {
 			glfwTerminate();
@@ -56,23 +58,25 @@ namespace letc {namespace graphics {
 			return false;
 		}
 
-		glfwMakeContextCurrent(m_Window);
+		//TODO: VK CODE
+		uint32_t extensionCount = 0;
+		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
+		initVulkan();
+
+	/*	glfwMakeContextCurrent(m_Window);
 		
 		glfwSetWindowUserPointer(m_Window, this);
 		glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
 		glfwSetKeyCallback(m_Window, key_callback);
 		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
-		glfwSwapInterval(0);
+		glfwSwapInterval(0);*/
 
 
-		if (glewInit() != GLEW_OK) {
-			std::cout << "Could not initialize GLEW" << std::endl;
-			return false;
-
-		}
-		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
-
+		
+#if 0
+		// TODO: OPENGL CODE
 		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
 		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
 		{
@@ -88,9 +92,99 @@ namespace letc {namespace graphics {
 		
 		// add error texture to TextureManager
 		//TextureManager::errorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/error_texture.png");
-
+#endif
 		return true;
 
+	}
+
+	void Window::initVulkan(){
+		
+
+		VulkanConfig vulkanConfig;
+		vulkanConfig.applicationName = "LETC";
+		vulkanConfig.applicationVersion = VK_MAKE_VERSION(0, 0, 1);
+
+		m_vkInstance = new VulkanInstance(vulkanConfig, getRequiredExtensions());
+	
+
+		VkResult res = glfwCreateWindowSurface(m_vkInstance->getInstance(), m_Window, nullptr, &m_vkSurface);
+
+		if (res != VK_SUCCESS) {
+			throw std::runtime_error("failed to create window surface!");
+		}
+
+		physicalDevice = VulkanPhysicalDevice::GetPhysicalDevice(m_vkInstance, m_vkSurface);
+		device = new VulkanDevice(m_vkInstance, physicalDevice);
+
+		// init swapchain
+		// TODO:: THESE SHOULD NOT BE MEMBERS OF PHYSICAL DEVICE, WE SHOULD MAKE A SWAP CHAIN CLASS!!
+		SwapChainSupportDetails swapChainSupport = VulkanPhysicalDevice::querySwapChainSupport(physicalDevice->GetPhysicalDevice(), m_vkSurface);
+
+		VkSurfaceFormatKHR surfaceFormat = VulkanPhysicalDevice::chooseSwapSurfaceFormat(swapChainSupport.formats);
+		VkPresentModeKHR presentMode = VulkanPhysicalDevice::chooseSwapPresentMode(swapChainSupport.presentModes);
+		VkExtent2D extent = VulkanPhysicalDevice::chooseSwapExtent(swapChainSupport.capabilities);
+
+		uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
+		if (swapChainSupport.capabilities.maxImageCount > 0 && imageCount > swapChainSupport.capabilities.maxImageCount) {
+			imageCount = swapChainSupport.capabilities.maxImageCount;
+		}
+
+		// SHOULD PUT THIS IN INITIALIZERS
+		VkSwapchainCreateInfoKHR createInfo = {};
+		createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+		createInfo.surface = m_vkSurface;
+		createInfo.minImageCount = imageCount;
+		createInfo.imageFormat = surfaceFormat.format;
+		createInfo.imageColorSpace = surfaceFormat.colorSpace;
+		createInfo.imageExtent = extent;
+		createInfo.imageArrayLayers = 1;
+		createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+
+		QueueFamilyIndices indices = physicalDevice->GetQueueFamilyIndices();
+		uint32_t queueFamilyIndices[] = { indices.graphics_indices/*, indices.presentFamily*/};
+
+		//if (indices.graphicsFamily != indices.presentFamily) {
+			createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
+			createInfo.queueFamilyIndexCount = 2;
+			createInfo.pQueueFamilyIndices = queueFamilyIndices;
+		//}
+		//else {
+			//createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
+			//createInfo.queueFamilyIndexCount = 0; // Optional
+			//createInfo.pQueueFamilyIndices = nullptr; // Optional
+		//}
+		createInfo.preTransform = swapChainSupport.capabilities.currentTransform;
+		createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
+		createInfo.presentMode = presentMode;
+		createInfo.clipped = VK_TRUE;
+		createInfo.oldSwapchain = VK_NULL_HANDLE;
+		VkSwapchainKHR swapChain;
+		res = vkCreateSwapchainKHR(*(device->getDevice()), &createInfo, nullptr, &swapChain);
+		if (res != VK_SUCCESS) {
+			throw std::runtime_error("failed to create swap chain!");
+		}
+
+		// TODO: LEFT OFF RIGHT BEFORE "Retrieving the swap chain images"
+	}
+
+	void Window::cleanupVulkan(){
+		vkDestroySurfaceKHR(m_vkInstance->getInstance(), m_vkSurface, nullptr);
+		vkDestroyInstance(m_vkInstance->getInstance(), nullptr);
+		// TODO destroy swapchain
+	}
+
+	std::vector<const char*>  Window::getRequiredExtensions()
+	{
+		uint32_t glfwExtensionCount = 0;
+		const char** glfwExtensions;
+		glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+		std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+
+		if (true) {
+			extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+		}
+		return extensions;
 	}
 
 	bool Window::keyPressed(unsigned int keycode) const {
@@ -130,7 +224,7 @@ namespace letc {namespace graphics {
 
 
 	void Window::clear() const {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // opengl
 	}
 
 	void Window::update() {
@@ -158,7 +252,7 @@ namespace letc {namespace graphics {
 
 
 	void window_resize_callback(GLFWwindow* window, int width, int height){
-		glViewport(0, 0, width, height);
+		//glViewport(0, 0, width, height);
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->m_Width = width;
 		win->m_Height = height;
@@ -181,6 +275,7 @@ namespace letc {namespace graphics {
 
 	}
 
+#if 0
 	static void GLAPIENTRY openglCallbackFunction(GLenum source,
 		GLenum type,
 		GLuint id,
@@ -231,7 +326,7 @@ namespace letc {namespace graphics {
 		std::cout << "---------------------opengl-callback-end--------------" << std::endl;
 	}
 
-
+#endif
 
 	
 }}
