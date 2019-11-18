@@ -45,11 +45,24 @@ int main() {
 	//VulkanBuffer* buffer = new VulkanBuffer(device, arr, sizeof(float), 3);
 
 	//buffer->setData();
-
+	Timer* time = new Timer();
+	int frames = 0;
+	float fps = 0.0f;
+	double mspf = 0.0f;
+	float timer = 0.0f;
 	while (!window.closed()) {
 		window.clear();
 		window.update();
 
+
+		frames++;
+
+		if ((time->elapsed() - timer) > 1.0f) {
+			timer += 1.0f;
+			mspf = 1000.0 / (double)frames;
+			printf("\r%d fps %4.3f mspf", frames, mspf);
+			frames = 0;
+		}
 	}
 
 

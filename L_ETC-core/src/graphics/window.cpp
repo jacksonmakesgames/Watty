@@ -198,7 +198,7 @@ namespace letc {namespace graphics {
 		glfwSwapBuffers(m_Window);
 
 		//audio:
-		audio::AudioManager::update(); // TODO: TEST PERMORMANCE
+		audio::AudioManager::update(); 
 	}
 
 	bool Window::closed() const {
