@@ -105,10 +105,10 @@ int main() {
 	layer0.add(new Sprite(2, 0, 4, 4, texture2));
 	
 #endif
-
+	Vector2 fontScale = Vector2(window.getWidth() / 32.0f, window.getHeight() / 18.0f);
 	//draw fps label
-	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 16));
-	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 14));
+	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 16, fontScale));
+	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 14, fontScale));
 
 	Group* fpsGroup = new Group(Matrix4::translation(Vector3(-15.5,7.5,0)));
 	fpsGroup->add(new Sprite(0, 0, 2.8f, 1, 0x80808080));
