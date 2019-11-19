@@ -20,10 +20,11 @@ namespace letc { namespace graphics {
 
 		VkFormat m_swapChainImageFormat;
 		VkExtent2D m_swapChainExtent;
-
+		float m_width;
+		float m_height;
 
 	public:
-		VulkanSwapChain(VulkanDevice* device, VkSurfaceKHR* surface, VulkanPhysicalDevice* physicalDevice);
+		VulkanSwapChain(VulkanDevice* device, VkSurfaceKHR* surface, VulkanPhysicalDevice* physicalDevice, float width, float height);
 		
 
 		inline VkSwapchainKHR* getSwapChain() { return &m_swapChain; }
@@ -34,7 +35,7 @@ namespace letc { namespace graphics {
 
 		static VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 		static VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
-		static VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+		static VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities, float width, float height);
 
 
 

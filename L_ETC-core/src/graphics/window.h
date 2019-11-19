@@ -28,10 +28,10 @@ namespace letc {namespace graphics {
 
 
 		friend struct GLFWwindow;
-		const char* m_Title;
-		int m_Width, m_Height;
-		GLFWwindow *m_Window;
-		bool m_Closed;
+		const char* m_title;
+		int m_width, m_height;
+		GLFWwindow *m_window;
+		bool m_closed;
 
 		bool m_keysThisFrame[MAX_KEYS];
 		bool m_keysLastFrame[MAX_KEYS];
@@ -65,10 +65,9 @@ namespace letc {namespace graphics {
 		~Window();
 		bool closed() const;
 		void update();
-		void clear() const;
 
-		inline int getWidth() const { return Window::m_Width; };
-		inline int getHeight() const { return Window::m_Height; };
+		inline int getWidth() const { return Window::m_width; };
+		inline int getHeight() const { return Window::m_height; };
 		inline VulkanDevice* getVulkanDevice() { return m_vkLogicalDevice; };
 
 		bool keyDown(unsigned int keycode) const;

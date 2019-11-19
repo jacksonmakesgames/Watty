@@ -2,8 +2,10 @@
 
 namespace letc {namespace graphics {
 	VulkanInstance::VulkanInstance(VulkanConfig& config, std::vector<const char*> exts) {
+#ifndef NDEBUG
+		m_layers.push_back("VK_LAYER_KHRONOS_validation");
+#endif // !NDEBUG
 
-		m_layers.push_back("VK_LAYER_LUNARG_standard_validation");
 		m_extensions.push_back("VK_EXT_debug_report");
 
 		for (size_t i = 0; i < exts.size(); i++)

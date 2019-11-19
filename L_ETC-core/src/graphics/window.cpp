@@ -7,9 +7,9 @@ namespace letc {namespace graphics {
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
 	Window::Window(const char* title, int width, int height) {
-		m_Title = title;
-		m_Width = width;
-		m_Height = height;
+		m_title = title;
+		m_width = width;
+		m_height = height;
 		if (!init())
 			glfwTerminate();
 		
@@ -50,51 +50,28 @@ namespace letc {namespace graphics {
 		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, glfwGetPrimaryMonitor(), NULL); // fullscreen
 
 #else
-		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, nullptr, nullptr);
+		m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
 #endif
-		if (!m_Window) {
+		if (!m_window) {
 			glfwTerminate();
 			std::cout << "Failed to create window" << std::endl;
 			return false;
 		}
 
-		//TODO: VK CODE
+		glfwMakeContextCurrent(m_window);
+
+		glfwSetWindowUserPointer(m_window, this);
+		glfwSetFramebufferSizeCallback(m_window, window_resize_callback);
+		glfwSetKeyCallback(m_window, key_callback);
+		glfwSetMouseButtonCallback(m_window, mouse_button_callback);
+		glfwSetCursorPosCallback(m_window, cursor_position_callback);
+
 		uint32_t extensionCount = 0;
 		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-
 		initVulkan();
-
-	/*	glfwMakeContextCurrent(m_Window);
 		
-		glfwSetWindowUserPointer(m_Window, this);
-		glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
-		glfwSetKeyCallback(m_Window, key_callback);
-		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
-		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
-		glfwSwapInterval(0);*/
 
-
-		
-#if 0
-		// TODO: OPENGL CODE
-		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
-		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
-		{
-			glEnable(GL_DEBUG_OUTPUT);
-			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-			glDebugMessageCallback(openglCallbackFunction, nullptr);
-			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
-		}
-
-		// choose how textures render on top of one another
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
-		// add error texture to TextureManager
-		//TextureManager::errorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/error_texture.png");
-#endif
 		return true;
-
 	}
 
 	void Window::initVulkan(){
@@ -105,7 +82,7 @@ namespace letc {namespace graphics {
 		m_vkInstance = new VulkanInstance(vulkanConfig, getRequiredExtensions());
 	
 
-		VkResult res = glfwCreateWindowSurface(m_vkInstance->getInstance(), m_Window, nullptr, &m_vkSurface);
+		VkResult res = glfwCreateWindowSurface(m_vkInstance->getInstance(), m_window, nullptr, &m_vkSurface);
 		if (res != VK_SUCCESS) {
 			throw std::runtime_error("failed to create window surface!");
 		}
@@ -119,7 +96,7 @@ namespace letc {namespace graphics {
 		m_vkLogicalDevice = new VulkanDevice(m_vkInstance, m_vkPhysicalDevice, m_vkInstance->getLayers());
 
 		// create swapchain/ swapchain images
-		 m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice);
+		 m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice, m_width, m_height);
 
 		 // create render pass
 		 m_vkRenderPass = new VulkanRenderPass(m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChainImageFormatExtent());
@@ -159,7 +136,6 @@ namespace letc {namespace graphics {
 				 throw std::runtime_error("failed to create synchronization objects for a frame!");
 			 }
 		 }
-
 	}
 
 	void Window::drawVulkanFrame() {
@@ -196,7 +172,6 @@ namespace letc {namespace graphics {
 		if (vkQueueSubmit(*m_vkLogicalDevice->getGraphicsQueue(), 1, &submitInfo, m_inFlightFences[m_currentFrame]) != VK_SUCCESS) {
 			throw std::runtime_error("failed to submit draw command buffer!");
 		}
-
 
 		// presentation
 		VkSwapchainKHR swapChains[] = {  *m_vkSwapChain->getSwapChain() };
@@ -277,11 +252,6 @@ namespace letc {namespace graphics {
 		y = my;
 	}
 
-
-	void Window::clear() const {
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // opengl
-	}
-
 	void Window::update() {
 		// handle input:
 		for (size_t i = 0; i < MAX_KEYS; i++){
@@ -295,8 +265,6 @@ namespace letc {namespace graphics {
 		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool)*MAX_BUTTONS);
 
 		glfwPollEvents();
-		//glfwSwapBuffers(m_Window); //OPENGL
-
 		drawVulkanFrame();
 
 		//audio:
@@ -304,15 +272,14 @@ namespace letc {namespace graphics {
 	}
 
 	bool Window::closed() const {
-		return glfwWindowShouldClose(m_Window) == 1;
+		return glfwWindowShouldClose(m_window) == 1;
 	}
 
 
 	void window_resize_callback(GLFWwindow* window, int width, int height){
-		//glViewport(0, 0, width, height);
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_Width = width;
-		win->m_Height = height;
+		win->m_width = width;
+		win->m_height = height;
 	}
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -331,59 +298,6 @@ namespace letc {namespace graphics {
 		win->my = ypos;
 
 	}
-
-#if 0
-	static void GLAPIENTRY openglCallbackFunction(GLenum source,
-		GLenum type,
-		GLuint id,
-		GLenum severity,
-		GLsizei length,
-		const GLchar* message,
-		const void* userParam){
-		return;
-		std::cout << "---------------------opengl-callback-start------------" << std::endl;
-		std::cout << "Message: " << message << std::endl;
-		std::cout << "Type: ";
-		switch (type) {
-		case GL_DEBUG_TYPE_ERROR:
-			std::cout << "ERROR";
-			break;
-		case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
-			std::cout << "DEPRECATED_BEHAVIOR";
-			break;
-		case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
-			std::cout << "UNDEFINED_BEHAVIOR";
-			break;
-		case GL_DEBUG_TYPE_PORTABILITY:
-			std::cout << "PORTABILITY";
-			break;
-		case GL_DEBUG_TYPE_PERFORMANCE:
-			std::cout << "PERFORMANCE";
-			break;
-		case GL_DEBUG_TYPE_OTHER:
-			std::cout << "OTHER";
-			break;
-		}
-		std::cout << std::endl;
-
-		std::cout << "id: " << id << std::endl;
-		std::cout << "severity: ";
-		switch (severity) {
-		case GL_DEBUG_SEVERITY_LOW:
-			std::cout << "LOW";
-			break;
-		case GL_DEBUG_SEVERITY_MEDIUM:
-			std::cout << "MEDIUM";
-			break;
-		case GL_DEBUG_SEVERITY_HIGH:
-			std::cout << "HIGH";
-			break;
-		}
-		std::cout << std::endl;
-		std::cout << "---------------------opengl-callback-end--------------" << std::endl;
-	}
-
-#endif
 
 	
 }}

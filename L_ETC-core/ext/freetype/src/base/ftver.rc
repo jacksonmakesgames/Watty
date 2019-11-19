@@ -40,8 +40,6 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
-      VALUE "CompanyName",      "The FreeType Project"
-      VALUE "FileDescription",  "Font Rendering Library"
       VALUE "FileVersion",      FT_VERSION_STR
       VALUE "ProductName",      "FreeType"
       VALUE "ProductVersion",   FT_VERSION_STR

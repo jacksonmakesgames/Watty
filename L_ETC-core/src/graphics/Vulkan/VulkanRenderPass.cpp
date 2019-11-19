@@ -52,7 +52,7 @@ namespace letc {namespace graphics {
 	void VulkanRenderPass::startRenderPass(VkExtent2D swapChainExtent, std::vector<VkFramebuffer>& frameBuffers, std::vector<VkCommandBuffer>& commandBuffers, VkPipeline& graphicsPipeline){
 
 		VkClearValue clearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
-		for (size_t i = 0; i < frameBuffers.size(); i++)
+		for (size_t i = 0; i < commandBuffers.size(); i++)
 		{
 
 			VkRenderPassBeginInfo renderPassInfo = {};
@@ -66,9 +66,9 @@ namespace letc {namespace graphics {
 
 			vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
-			vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
+				vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
 
-			vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+				vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
 
 			vkCmdEndRenderPass(commandBuffers[i]);
 

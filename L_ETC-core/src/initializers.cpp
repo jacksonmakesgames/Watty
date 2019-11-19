@@ -104,7 +104,8 @@ namespace letc {namespace initializers {
 		}
 		else {
 			createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
-			createInfo.queueFamilyIndexCount = 0; // Optional
+			createInfo.queueFamilyIndexCount = 0; // 
+
 			createInfo.pQueueFamilyIndices = nullptr; // Optional
 		}
 		createInfo.preTransform = swapChainSupport.capabilities.currentTransform;

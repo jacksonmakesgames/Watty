@@ -1,10 +1,12 @@
 #include "VulkanSwapChain.h"
 namespace letc { namespace graphics {
 
-	VulkanSwapChain::VulkanSwapChain(VulkanDevice* device, VkSurfaceKHR* surface, VulkanPhysicalDevice* physicalDevice){
+	VulkanSwapChain::VulkanSwapChain(VulkanDevice* device, VkSurfaceKHR* surface, VulkanPhysicalDevice* physicalDevice, float width, float height){
 		m_device = device;
 		m_surface = surface;
 		m_physicalDevice = physicalDevice;
+		m_width = width;
+		m_height = height;
 		init();
 		
 	}
@@ -32,13 +34,13 @@ namespace letc { namespace graphics {
 		return VK_PRESENT_MODE_FIFO_KHR;
 	}
 
-	VkExtent2D VulkanSwapChain::chooseSwapExtent(const VkSurfaceCapabilitiesKHR & capabilities) {
+	VkExtent2D VulkanSwapChain::chooseSwapExtent(const VkSurfaceCapabilitiesKHR & capabilities, float width, float height) {
 		if (capabilities.currentExtent.width != UINT32_MAX) {
 			return capabilities.currentExtent;
 		}
 		else {
 			//VkExtent2D actualExtent = { WIDTH, HEIGHT };
-			VkExtent2D actualExtent = { 1600, 900 };
+			VkExtent2D actualExtent = { width, height};
 
 			actualExtent.width = std::max(capabilities.minImageExtent.width, std::min(capabilities.maxImageExtent.width, actualExtent.width));
 			actualExtent.height = std::max(capabilities.minImageExtent.height, std::min(capabilities.maxImageExtent.height, actualExtent.height));
@@ -62,7 +64,7 @@ namespace letc { namespace graphics {
 		m_swapChainImageFormat = surfaceFormat.format;
 
 		VkPresentModeKHR presentMode = graphics::VulkanSwapChain::chooseSwapPresentMode(swapChainSupport.presentModes);
-		m_swapChainExtent = graphics::VulkanSwapChain::chooseSwapExtent(swapChainSupport.capabilities);
+		m_swapChainExtent = graphics::VulkanSwapChain::chooseSwapExtent(swapChainSupport.capabilities, m_width, m_height);
 
 		uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
 		if (swapChainSupport.capabilities.maxImageCount > 0 && imageCount > swapChainSupport.capabilities.maxImageCount) {
