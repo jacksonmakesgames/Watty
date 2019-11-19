@@ -140,4 +140,12 @@ namespace letc {namespace initializers {
 		createInfo.subresourceRange.layerCount = 1;
 		return createInfo;
 	}
+	VkShaderModuleCreateInfo ShaderCreateInfo(const std::vector<char>& code)
+	{
+		VkShaderModuleCreateInfo createInfo = {};
+		createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+		createInfo.codeSize = code.size();
+		createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+		return createInfo;
+	}
 }}

@@ -63,6 +63,7 @@
     <ClCompile Include="src\audio\audiomanager.cpp" />
     <ClCompile Include="src\graphics\Vulkan\VulkanBuffer.cpp" />
     <ClCompile Include="src\graphics\Vulkan\VulkanDevice.cpp" />
+    <ClCompile Include="src\graphics\Vulkan\VulkanGraphicsPipeline.cpp" />
     <ClCompile Include="src\graphics\Vulkan\vulkaninstance.cpp" />
     <ClCompile Include="src\graphics\Vulkan\vulkanphysicaldevice.cpp" />
     <ClCompile Include="src\graphics\Vulkan\VulkanSwapChain.cpp" />
@@ -80,8 +81,10 @@
     <ClInclude Include="src\graphics\Vulkan\vulkanconfig.h" />
     <ClInclude Include="src\graphics\Vulkan\VulkanDevice.h" />
     <ClInclude Include="src\graphics\Vulkan\VulkanError.h" />
+    <ClInclude Include="src\graphics\Vulkan\VulkanGraphicsPipeline.h" />
     <ClInclude Include="src\graphics\Vulkan\vulkaninstance.h" />
     <ClInclude Include="src\graphics\Vulkan\vulkanphysicaldevice.h" />
+    <ClInclude Include="src\graphics\Vulkan\VulkanShader.h" />
     <ClInclude Include="src\graphics\Vulkan\VulkanSwapChain.h" />
     <ClInclude Include="src\initializers.h" />
     <ClInclude Include="src\letc.h" />
@@ -394,6 +397,7 @@
     <ClInclude Include="src\math\vector2.h" />
     <ClInclude Include="src\math\vector3.h" />
     <ClInclude Include="src\math\vector4.h" />
+    <ClInclude Include="src\utils\file_utils.h" />
     <ClInclude Include="src\utils\string_utils.h" />
     <ClInclude Include="src\utils\timer.h" />
   </ItemGroup>
@@ -401,6 +405,8 @@
     <None Include="src\shaders\basic_lit.frag" />
     <None Include="src\shaders\basic_unlit.frag" />
     <None Include="src\shaders\basic.vert" />
+    <None Include="src\shaders\vulkan_basic.frag" />
+    <None Include="src\shaders\vulkan_basic.vert" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ext\freetype\src\base\ftver.rc" />

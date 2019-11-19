@@ -5,6 +5,7 @@
 #include "Vulkan/vulkanphysicaldevice.h"
 #include "Vulkan/VulkanDevice.h"
 #include "Vulkan/VulkanSwapChain.h"
+#include "Vulkan/VulkanGraphicsPipeline.h"
 #include <GLFW/glfw3.h>
 #include<set>
 //#include "font/fontmanager.h"
@@ -36,10 +37,11 @@ namespace letc {namespace graphics {
 
 		//VULKAN:
 		VulkanInstance* m_vkInstance;
-		VulkanPhysicalDevice* physicalDevice;
-		VulkanDevice* m_logicalDevice;
+		VulkanPhysicalDevice* m_vkPhysicalDevice;
+		VulkanDevice* m_vkLogicalDevice;
 		VkSurfaceKHR m_vkSurface;
 		VulkanSwapChain* m_vkSwapChain;
+		VulkanGraphicsPipeline* m_vkGraphicsPipeline;
 
 
 

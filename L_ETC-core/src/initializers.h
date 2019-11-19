@@ -24,4 +24,6 @@ namespace letc { namespace initializers {
 	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, VkExtent2D extent, uint32_t imageCount, VkSurfaceFormatKHR surfaceFormat, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode);
 	VkImageViewCreateInfo ImageViewCreateInfo(VkImage swapChainImage, VkFormat swapChainImageFormat);
 
+	VkShaderModuleCreateInfo ShaderCreateInfo(const std::vector<char>& code);
+	
 } }

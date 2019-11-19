@@ -111,21 +111,22 @@ namespace letc {namespace graphics {
 		}
 
 		// init physical device
-		physicalDevice = VulkanPhysicalDevice::GetPhysicalDevice(m_vkInstance, m_vkSurface);
+		m_vkPhysicalDevice = VulkanPhysicalDevice::GetPhysicalDevice(m_vkInstance, m_vkSurface);
 		
 		// init logical device
-		m_logicalDevice = new VulkanDevice(m_vkInstance, physicalDevice, m_vkInstance->getLayers());
+		m_vkLogicalDevice = new VulkanDevice(m_vkInstance, m_vkPhysicalDevice, m_vkInstance->getLayers());
 
 		// init swapchain
-		 m_vkSwapChain = new VulkanSwapChain(m_logicalDevice, &m_vkSurface, physicalDevice);
+		 m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice);
 
-		// TODO: LEFT OFF RIGHT BEFORE "Retrieving the swap chain images"
+		// init graphics pipeline
+		 m_vkGraphicsPipeline = new VulkanGraphicsPipeline(m_vkLogicalDevice);
 	}
 
 	void Window::cleanupVulkan(){
 		vkDestroySurfaceKHR(m_vkInstance->getInstance(), m_vkSurface, nullptr);
 		vkDestroyInstance(m_vkInstance->getInstance(), nullptr);
-		vkDestroySwapchainKHR(*m_logicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
+		vkDestroySwapchainKHR(*m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
 	}
 
 	std::vector<const char*>  Window::getRequiredExtensions()
