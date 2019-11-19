@@ -130,12 +130,102 @@ namespace letc {namespace graphics {
 		 // create frame buffers
 		 m_vkFrameBuffers = new VulkanFrameBuffer(m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews(), m_vkRenderPass->getRenderPass(), m_vkSwapChain->getSwapChainExtent());
 
+		 // allocate command buffers TODO: only three for now, we can make this more later
+		 m_vkCommandBuffers.resize(m_vkFrameBuffers->getswapChainFramebuffers().size());
+		 m_vkLogicalDevice->getGraphicsCommandBuffers(m_vkCommandBuffers);
+
+		// start the renderpass
+		 m_vkRenderPass->startRenderPass(m_vkSwapChain->getSwapChainExtent(), m_vkFrameBuffers->getswapChainFramebuffers(), m_vkCommandBuffers, m_vkGraphicsPipeline->getPipeline());
+
+		 // create semaphores
+		 //TODO: move these to initializers eventually
+		 m_imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+		 m_renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+		 m_inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
+		 m_imagesInFlight.resize(m_vkSwapChain->getSwapChainImages().size(), VK_NULL_HANDLE);
+
+		 VkSemaphoreCreateInfo semaphoreInfo = {};
+		 semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+		 VkFenceCreateInfo fenceInfo = {};
+		 fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+		 fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+		 for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+			 if (vkCreateSemaphore(*m_vkLogicalDevice->getDevice(), &semaphoreInfo, nullptr, &m_imageAvailableSemaphores[i]) != VK_SUCCESS ||
+				 vkCreateSemaphore(*m_vkLogicalDevice->getDevice(), &semaphoreInfo, nullptr, &m_renderFinishedSemaphores[i]) != VK_SUCCESS ||
+				 vkCreateFence(*m_vkLogicalDevice->getDevice(), &fenceInfo, nullptr, &m_inFlightFences[i]) != VK_SUCCESS) {
+
+				 throw std::runtime_error("failed to create synchronization objects for a frame!");
+			 }
+		 }
+
+	}
+
+	void Window::drawVulkanFrame() {
+		uint32_t imageIndex;
+
+		vkWaitForFences(*m_vkLogicalDevice->getDevice(), 1, &m_inFlightFences[m_currentFrame], VK_TRUE, UINT64_MAX);
+
+		vkAcquireNextImageKHR(*m_vkLogicalDevice->getDevice(),*m_vkSwapChain->getSwapChain(), UINT64_MAX, m_imageAvailableSemaphores[m_currentFrame], VK_NULL_HANDLE, &imageIndex);
+		// Check if a previous frame is using this image (i.e. there is its fence to wait on)
+		if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE) {
+			vkWaitForFences(*m_vkLogicalDevice->getDevice(), 1, &m_imagesInFlight[imageIndex], VK_TRUE, UINT64_MAX);
+		}
+		// Mark the image as now being in use by this frame
+		m_imagesInFlight[imageIndex] = m_inFlightFences[m_currentFrame];
+
+
+		VkSubmitInfo submitInfo = {};
+		submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+
+		VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphores[m_currentFrame] };
+		VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
+		submitInfo.waitSemaphoreCount = 1;
+		submitInfo.pWaitSemaphores = waitSemaphores;
+		submitInfo.pWaitDstStageMask = waitStages;
+		submitInfo.commandBufferCount = 1;
+		submitInfo.pCommandBuffers = &m_vkCommandBuffers[imageIndex];
+
+		VkSemaphore signalSemaphores[] = { m_renderFinishedSemaphores[m_currentFrame] };
+		submitInfo.signalSemaphoreCount = 1;
+		submitInfo.pSignalSemaphores = signalSemaphores;
+
+		vkResetFences(*m_vkLogicalDevice->getDevice(), 1, &m_inFlightFences[m_currentFrame]);
+
+		if (vkQueueSubmit(*m_vkLogicalDevice->getGraphicsQueue(), 1, &submitInfo, m_inFlightFences[m_currentFrame]) != VK_SUCCESS) {
+			throw std::runtime_error("failed to submit draw command buffer!");
+		}
+
+
+		// presentation
+		VkSwapchainKHR swapChains[] = {  *m_vkSwapChain->getSwapChain() };
+		VkPresentInfoKHR presentInfo = {};
+		presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+		presentInfo.waitSemaphoreCount = 1;
+		presentInfo.pWaitSemaphores = signalSemaphores;
+		presentInfo.swapchainCount = 1;
+		presentInfo.pSwapchains = swapChains;
+		presentInfo.pImageIndices = &imageIndex;
+		presentInfo.pResults = nullptr; // Optional
+
+		vkQueuePresentKHR(*m_vkLogicalDevice->getGraphicsQueue(), &presentInfo);
+
+		vkQueueWaitIdle(*m_vkLogicalDevice->getGraphicsQueue());
+
+		m_currentFrame = (m_currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 	}
 
 	void Window::cleanupVulkan(){
 		vkDestroySurfaceKHR(m_vkInstance->getInstance(), m_vkSurface, nullptr);
 		vkDestroyInstance(m_vkInstance->getInstance(), nullptr);
 		vkDestroySwapchainKHR(*m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
+		for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+			vkDestroySemaphore(*m_vkLogicalDevice->getDevice(), m_renderFinishedSemaphores[i], nullptr);
+			vkDestroySemaphore(*m_vkLogicalDevice->getDevice(), m_imageAvailableSemaphores[i], nullptr);
+			vkDestroyFence(*m_vkLogicalDevice->getDevice(), m_inFlightFences[i], nullptr);
+		}
+
 	}
 
 	std::vector<const char*>  Window::getRequiredExtensions()
@@ -205,7 +295,9 @@ namespace letc {namespace graphics {
 		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool)*MAX_BUTTONS);
 
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		//glfwSwapBuffers(m_Window); //OPENGL
+
+		drawVulkanFrame();
 
 		//audio:
 		audio::AudioManager::update(); 

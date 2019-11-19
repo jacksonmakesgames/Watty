@@ -71,7 +71,7 @@ namespace letc { namespace graphics {
 
 		QueueFamilyIndices indices = m_physicalDevice->GetQueueFamilyIndices();
 
-		uint32_t queueFamilyIndices[] = {indices.graphics_indices, indices.compute_indices };
+		uint32_t queueFamilyIndices[] = {indices.graphics_indices, indices.present_indices };
 
 
 		VkSwapchainCreateInfoKHR createInfo = initializers::SwapChainCreateInfo(*m_surface, m_physicalDevice->GetPhysicalDevice(), m_swapChainExtent, imageCount, surfaceFormat, queueFamilyIndices, swapChainSupport, presentMode);

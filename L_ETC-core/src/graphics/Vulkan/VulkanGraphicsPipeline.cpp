@@ -1,10 +1,10 @@
 #include "VulkanGraphicsPipeline.h"
 namespace letc { namespace graphics {
-	VulkanGraphicsPipeline::VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D* swapChainExtent, VkRenderPass* renderPass){
+	VulkanGraphicsPipeline::VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D& swapChainExtent, VkRenderPass* renderPass){
 		m_device = device;
 		createGraphicsPipeline(swapChainExtent, renderPass);
 	}
-	void VulkanGraphicsPipeline::createGraphicsPipeline(VkExtent2D* swapChainExtent, VkRenderPass* renderPass)
+	void VulkanGraphicsPipeline::createGraphicsPipeline(VkExtent2D& swapChainExtent, VkRenderPass* renderPass)
 	{
 		auto vertShaderCode = read_shader_file("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/src/shaders/vert.spv");
 		auto fragShaderCode = read_shader_file("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/src/shaders/frag.spv");
@@ -25,15 +25,15 @@ namespace letc { namespace graphics {
 		VkViewport viewport = {};
 		viewport.x = 0.0f;
 		viewport.y = 0.0f;
-		viewport.width = (float) swapChainExtent->width;
-		viewport.height = (float) swapChainExtent->height;
+		viewport.width = (float) swapChainExtent.width;
+		viewport.height = (float) swapChainExtent.height;
 		viewport.minDepth = 0.0f;
 		viewport.maxDepth = 1.0f;
 
 		//Scissor
 		VkRect2D scissor = {};
 		scissor.offset = { 0, 0 };
-		scissor.extent = *swapChainExtent;
+		scissor.extent = swapChainExtent;
 
 		VkPipelineViewportStateCreateInfo viewportState = initializers::PipelineViewportStateCreateInfo(&viewport, &scissor);
 

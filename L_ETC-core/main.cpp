@@ -62,6 +62,7 @@ int main() {
 		}
 	}
 
+	vkDeviceWaitIdle(*window.getVulkanDevice()->getDevice());
 
 	//delete buffer;
 	//delete arr;

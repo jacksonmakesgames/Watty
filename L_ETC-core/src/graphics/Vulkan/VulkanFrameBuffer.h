@@ -11,9 +11,9 @@ namespace letc { namespace graphics{
 		std::vector<VkFramebuffer> m_swapChainFramebuffers;
 		VkDevice* m_device;
 	public:
-		VulkanFrameBuffer(VkDevice* device, std::vector<VkImageView>* swapChainImageViews, VkRenderPass* renderPass, VkExtent2D* swapChainExtent);
+		VulkanFrameBuffer(VkDevice* device, std::vector<VkImageView>* swapChainImageViews, VkRenderPass* renderPass, VkExtent2D& swapChainExtent);
 
-
+		inline std::vector<VkFramebuffer>& getswapChainFramebuffers() { return m_swapChainFramebuffers; }
 
 		~VulkanFrameBuffer();
 	private:

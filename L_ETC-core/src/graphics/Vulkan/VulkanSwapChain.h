@@ -27,8 +27,9 @@ namespace letc { namespace graphics {
 		
 
 		inline VkSwapchainKHR* getSwapChain() { return &m_swapChain; }
-		inline VkExtent2D* getSwapChainExtent() { return &m_swapChainExtent; }
+		inline VkExtent2D& getSwapChainExtent() { return m_swapChainExtent; }
 		inline VkFormat* getSwapChainImageFormatExtent() { return &m_swapChainImageFormat; }
+		inline std::vector<VkImage>& getSwapChainImages(){ return m_swapChainImages; }
 		inline std::vector<VkImageView>* getSwapChainImageViews() { return &m_swapChainImageViews; }
 
 		static VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);

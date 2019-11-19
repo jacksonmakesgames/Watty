@@ -16,7 +16,7 @@ namespace letc { namespace initializers {
 
 	VkCommandPoolCreateInfo CommandPoolCreateInfo(uint32_t queueFamilyIndex, VkCommandPoolCreateFlags flags = 0);
 
-	VkCommandBufferAllocateInfo CommandBufferAllocateInfo(VkCommandPool pool, uint32_t count);
+	VkCommandBufferAllocateInfo CommandBufferAllocateInfo(VkCommandPool pool, std::vector<VkCommandBuffer>& buffers);
 	VkBufferCreateInfo BufferCreateInfo(VkDeviceSize size,  VkBufferUsageFlags usage);
 
 	VkMemoryAllocateInfo MemoryAllocateInfo(VkDeviceSize size,  uint32_t memoryTypeIndex);

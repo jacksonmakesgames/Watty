@@ -28,13 +28,11 @@ namespace letc {namespace initializers {
 	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features, std::vector<const char*>& layers, std::vector<const char*>& deviceExtensions){
 		VkDeviceCreateInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-		info.pQueueCreateInfos = queueCreateInfos.data();
 		info.queueCreateInfoCount = static_cast<uint32_t>( queueCreateInfos.size());
+		info.pQueueCreateInfos = queueCreateInfos.data();
 		info.pEnabledFeatures = &features;
-
 		info.enabledLayerCount = static_cast<uint32_t>(layers.size());
 		info.ppEnabledLayerNames = layers.data();
-
 		info.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
 		info.ppEnabledExtensionNames = deviceExtensions.data();
 		
@@ -57,14 +55,14 @@ namespace letc {namespace initializers {
 		info.flags = flags;
 		return info;
 	}
-	VkCommandBufferAllocateInfo CommandBufferAllocateInfo(VkCommandPool pool, uint32_t count)
+	VkCommandBufferAllocateInfo CommandBufferAllocateInfo(VkCommandPool pool, std::vector<VkCommandBuffer>& buffers)
 	{
-		VkCommandBufferAllocateInfo info = {};
-		info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-		info.commandPool = pool;
-		info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-		info.commandBufferCount = count;
-		return info;
+		VkCommandBufferAllocateInfo allocInfo = {};
+		allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+		allocInfo.commandPool = pool;
+		allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+		allocInfo.commandBufferCount = (uint32_t)buffers.size();
+		return allocInfo;
 	}
 
 	VkBufferCreateInfo BufferCreateInfo(VkDeviceSize size, VkBufferUsageFlags usage){

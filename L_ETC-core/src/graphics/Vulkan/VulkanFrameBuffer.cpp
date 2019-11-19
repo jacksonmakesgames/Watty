@@ -2,7 +2,7 @@
 
 namespace letc {namespace graphics {
 
-	VulkanFrameBuffer::VulkanFrameBuffer(VkDevice* device, std::vector<VkImageView>* swapChainImageViews, VkRenderPass* renderPass, VkExtent2D* swapChainExtent){
+	VulkanFrameBuffer::VulkanFrameBuffer(VkDevice* device, std::vector<VkImageView>* swapChainImageViews, VkRenderPass* renderPass, VkExtent2D& swapChainExtent){
 		m_swapChainFramebuffers.resize(swapChainImageViews->size());
 		m_device = device;
 
@@ -18,8 +18,8 @@ namespace letc {namespace graphics {
 			framebufferInfo.renderPass = *renderPass;
 			framebufferInfo.attachmentCount = 1;
 			framebufferInfo.pAttachments = attachments;
-			framebufferInfo.width = swapChainExtent->width;
-			framebufferInfo.height = swapChainExtent->height;
+			framebufferInfo.width = swapChainExtent.width;
+			framebufferInfo.height = swapChainExtent.height;
 			framebufferInfo.layers = 1;
 
 			if (vkCreateFramebuffer(*m_device, &framebufferInfo, nullptr, &m_swapChainFramebuffers[i]) != VK_SUCCESS) {

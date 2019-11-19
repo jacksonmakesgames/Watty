@@ -11,14 +11,14 @@ namespace letc { namespace graphics{
 		VulkanDevice* m_device;
 		VkPipelineLayout m_pipelineLayout;
 	public:
-		VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D* swapChainExtent, VkRenderPass* renderPass);
+		VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D& swapChainExtent, VkRenderPass* renderPass);
 		
-
+		inline VkPipeline& getPipeline() { return m_graphicsPipeline; }
 		
 		~VulkanGraphicsPipeline();
 
 	private:
-		void createGraphicsPipeline(VkExtent2D* swapChainExtent, VkRenderPass* renderPass);
+		void createGraphicsPipeline(VkExtent2D& swapChainExtent, VkRenderPass* renderPass);
 		VkShaderModule createShaderModule(const std::vector<char>& code);
 			
 	};

@@ -9,9 +9,9 @@ namespace letc { namespace graphics {
 		VulkanInstance* m_instance;
 		VkDevice m_device;
 		VulkanPhysicalDevice* m_physicalDevice;
-		VkQueue m_computeQueue;
+		VkQueue m_presentQueue;
 		VkQueue m_graphicsQueue;
-		VkCommandPool m_computeCommandPool;
+		VkCommandPool m_graphicsCommandPool;
 
 	public:
 		VulkanDevice(VulkanInstance* instance, VulkanPhysicalDevice* physical_device, std::vector<const char*>& layers);
@@ -19,12 +19,13 @@ namespace letc { namespace graphics {
 
 		inline VulkanInstance* getInstance() { return m_instance; }
 		inline VulkanPhysicalDevice* getPhysicalDevice() { return m_physicalDevice; }
-		inline VkQueue* getQueue() { return &m_computeQueue; }
+		inline VkQueue* getGraphicsQueue() { return &m_graphicsQueue; }
+		inline VkQueue* getPresentQueue() { return &m_presentQueue; }
 		inline VkDevice* getDevice() { return &m_device; }
-		inline VkCommandPool& getComputeCommndPool() { return m_computeCommandPool; }
+		inline VkCommandPool& getComputeCommndPool() { return m_graphicsCommandPool; }
 
-		void getComputeCommand(VkCommandBuffer* buffers, uint32_t count);
-		void freeComputeCommand(VkCommandBuffer* buffers, uint32_t count);
+		void getGraphicsCommandBuffers(std::vector<VkCommandBuffer>& buffers);
+		void freeGraphicsCommandPool(VkCommandBuffer* buffers, uint32_t count);
 
 
 	};

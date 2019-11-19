@@ -94,11 +94,11 @@ namespace letc {namespace graphics {
 				if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
 					familyIndices.graphics_indices = i;
 				if (queueFamily.queueFlags & VK_QUEUE_COMPUTE_BIT)
-					familyIndices.compute_indices = i;
+					familyIndices.present_indices = i;
 				vkGetPhysicalDeviceSurfaceSupportKHR(device, i, surface, &familyIndices.supports_surfaceKHR);
 
 			}
-			if (familyIndices.graphics_indices < UINT32_MAX && familyIndices.compute_indices < UINT32_MAX && familyIndices.supports_surfaceKHR == VK_TRUE)
+			if (familyIndices.graphics_indices < UINT32_MAX && familyIndices.present_indices < UINT32_MAX && familyIndices.supports_surfaceKHR == VK_TRUE)
 				return true;
 			i++;
 		}
