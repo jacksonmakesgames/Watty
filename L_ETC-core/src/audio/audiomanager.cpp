@@ -36,7 +36,6 @@ namespace letc {namespace audio {
 
 	void AudioManager::update(){
 		gau_manager_update(m_manager);
-		gc_thread_sleep(1);
 	}
 
 }}
