@@ -31,7 +31,6 @@ int main() {
 
 
 	//VULKAN:
-	
 
 	//VkCommandBuffer* commands = new VkCommandBuffer[3];
 	//device->getComputeCommand(commands, 3);
@@ -54,13 +53,11 @@ int main() {
 		window.clear();
 		window.update();
 
-
 		frames++;
-
 		if ((time->elapsed() - timer) > 1.0f) {
 			timer += 1.0f;
 			mspf = 1000.0 / (double)frames;
-			printf("\r%d fps %4.3f mspf", frames, mspf);
+			printf("\r%6d fps %4.3f mspf", frames, mspf);
 			frames = 0;
 		}
 	}

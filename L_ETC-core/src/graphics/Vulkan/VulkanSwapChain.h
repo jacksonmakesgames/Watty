@@ -27,10 +27,15 @@ namespace letc { namespace graphics {
 		
 
 		inline VkSwapchainKHR* getSwapChain() { return &m_swapChain; }
+		inline VkExtent2D* getSwapChainExtent() { return &m_swapChainExtent; }
+		inline VkFormat* getSwapChainImageFormatExtent() { return &m_swapChainImageFormat; }
+		inline std::vector<VkImageView>* getSwapChainImageViews() { return &m_swapChainImageViews; }
 
 		static VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 		static VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 		static VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+
+
 
 		
 		~VulkanSwapChain();

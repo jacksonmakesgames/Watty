@@ -7,16 +7,18 @@
 namespace letc { namespace graphics{
 	class VulkanGraphicsPipeline {
 	private:
+		VkPipeline m_graphicsPipeline;
 		VulkanDevice* m_device;
+		VkPipelineLayout m_pipelineLayout;
 	public:
-		VulkanGraphicsPipeline(VulkanDevice* device);
+		VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D* swapChainExtent, VkRenderPass* renderPass);
 		
 
 		
 		~VulkanGraphicsPipeline();
 
 	private:
-		void createGraphicsPipeline();
+		void createGraphicsPipeline(VkExtent2D* swapChainExtent, VkRenderPass* renderPass);
 		VkShaderModule createShaderModule(const std::vector<char>& code);
 			
 	};

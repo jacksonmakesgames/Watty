@@ -25,5 +25,11 @@ namespace letc { namespace initializers {
 	VkImageViewCreateInfo ImageViewCreateInfo(VkImage swapChainImage, VkFormat swapChainImageFormat);
 
 	VkShaderModuleCreateInfo ShaderCreateInfo(const std::vector<char>& code);
-	
+
+	VkPipelineShaderStageCreateInfo ShaderStageCreateInfo(VkShaderModule module, VkShaderStageFlagBits stage);
+	VkPipelineVertexInputStateCreateInfo PipelineVertexInputStateCreateInfo();
+	VkPipelineInputAssemblyStateCreateInfo PipelineInputAssemblyStateCreateInfo();
+
+	VkPipelineViewportStateCreateInfo PipelineViewportStateCreateInfo(VkViewport* viewport, VkRect2D* scissor);
+
 } }

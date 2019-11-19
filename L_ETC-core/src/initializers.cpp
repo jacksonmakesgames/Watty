@@ -148,4 +148,49 @@ namespace letc {namespace initializers {
 		createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
 		return createInfo;
 	}
+
+	VkPipelineShaderStageCreateInfo ShaderStageCreateInfo(VkShaderModule module, VkShaderStageFlagBits stage){
+		VkPipelineShaderStageCreateInfo createInfo = {};
+		createInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+		createInfo.stage = stage;
+		createInfo.module = module;
+		createInfo.pName = "main";
+		return createInfo;
+		
+	}
+
+	VkPipelineVertexInputStateCreateInfo PipelineVertexInputStateCreateInfo()
+	{
+
+		VkPipelineVertexInputStateCreateInfo vertexInputInfo = {};
+		vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+		vertexInputInfo.vertexBindingDescriptionCount = 0;
+		vertexInputInfo.pVertexBindingDescriptions = nullptr; // Optional
+		vertexInputInfo.vertexAttributeDescriptionCount = 0;
+		vertexInputInfo.pVertexAttributeDescriptions = nullptr; // Optional
+
+		return vertexInputInfo;
+
+	}
+
+	VkPipelineInputAssemblyStateCreateInfo PipelineInputAssemblyStateCreateInfo()
+	{
+		VkPipelineInputAssemblyStateCreateInfo inputAssembly = {};
+		inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+		inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+		inputAssembly.primitiveRestartEnable = VK_FALSE;
+		return inputAssembly;
+	}
+
+	VkPipelineViewportStateCreateInfo PipelineViewportStateCreateInfo(VkViewport* viewport, VkRect2D* scissor) {
+		VkPipelineViewportStateCreateInfo viewportState = {};
+		viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+		viewportState.viewportCount = 1;
+		viewportState.pViewports = viewport;
+		viewportState.scissorCount = 1;
+		viewportState.pScissors = scissor;
+		return viewportState;
+	}
+
+
 }}

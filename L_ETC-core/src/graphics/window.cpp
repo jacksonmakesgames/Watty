@@ -110,17 +110,26 @@ namespace letc {namespace graphics {
 			throw std::runtime_error("failed to create window surface!");
 		}
 
-		// init physical device
+		// TODO: WE SHOULD NOT BE PASSING POINTERS, THESE SHOULD JUST BE OBJS PASSED BY REFERENCE
+
+		// create physical device
 		m_vkPhysicalDevice = VulkanPhysicalDevice::GetPhysicalDevice(m_vkInstance, m_vkSurface);
 		
-		// init logical device
+		// create logical device
 		m_vkLogicalDevice = new VulkanDevice(m_vkInstance, m_vkPhysicalDevice, m_vkInstance->getLayers());
 
-		// init swapchain
+		// create swapchain/ swapchain images
 		 m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice);
 
-		// init graphics pipeline
-		 m_vkGraphicsPipeline = new VulkanGraphicsPipeline(m_vkLogicalDevice);
+		 // create render pass
+		 m_vkRenderPass = new VulkanRenderPass(m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChainImageFormatExtent());
+
+		// create graphics pipeline
+		 m_vkGraphicsPipeline = new VulkanGraphicsPipeline(m_vkLogicalDevice, m_vkSwapChain->getSwapChainExtent(), m_vkRenderPass->getRenderPass());
+
+		 // create frame buffers
+		 m_vkFrameBuffers = new VulkanFrameBuffer(m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews(), m_vkRenderPass->getRenderPass(), m_vkSwapChain->getSwapChainExtent());
+
 	}
 
 	void Window::cleanupVulkan(){
