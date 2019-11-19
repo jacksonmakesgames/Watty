@@ -1,12 +1,9 @@
 #include "texturemanager.h"
-namespace letc {namespace graphics {
-	
-	Texture* TextureManager::errorTexture = nullptr;
 
-	TextureManager::TextureManager(){
-		m_textures = std::vector<const Texture*>();
-		//addTexture(TextureManager::errorTexture);
-	}
+namespace letc {namespace graphics {
+
+	Texture* TextureManager::errorTexture = nullptr;
+	std::vector<Texture*> TextureManager::m_textures = std::vector<Texture*>();
 
 	TextureManager::~TextureManager(){
 		clean();
@@ -21,7 +18,6 @@ namespace letc {namespace graphics {
 					break;
 				}
 			}
-
 		if (!found) {
 			m_textures.push_back(texture);
 		}
@@ -53,6 +49,13 @@ namespace letc {namespace graphics {
 		m_textures.clear();
 	
 	}
+
+	void TextureManager::init()
+	{
+		m_textures = std::vector<const Texture*>();
+		//addTexture(TextureManager::errorTexture);
+	}
+
 
 
 

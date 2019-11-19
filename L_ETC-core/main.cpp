@@ -109,6 +109,7 @@ int main() {
 	//draw fps label
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 16, fontScale));
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 14, fontScale));
+	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 13, fontScale));
 
 	Group* fpsGroup = new Group(Matrix4::translation(Vector3(-15.5,7.5,0)));
 	fpsGroup->add(new Sprite(0, 0, 2.8f, 1, 0x80808080));
@@ -127,6 +128,7 @@ int main() {
 	AudioManager::getClip("sci_fi")->setGain(gain);
 
 #endif
+
 
 	srand(time(NULL));
 	Timer time;

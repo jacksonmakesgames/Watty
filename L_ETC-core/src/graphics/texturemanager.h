@@ -3,29 +3,33 @@
 #include <string>
 #include <iostream>
 
-#include "texture.h"
 
 namespace letc {namespace graphics {
-	//each renderer should have one of these
-
 	class TextureManager{
 	public:
 		static Texture* errorTexture;
 
 	private:
-		std::vector<const Texture*> m_textures;
+		friend class Texture;
+
+		static std::vector<Texture*> m_textures;
 	public:
-		TextureManager();
 		~TextureManager();
-		void addTexture(const Texture* texture);
-		float getGLTextureID(unsigned int tid);
-		void clean();
+		static void addTexture(const Texture* texture);
+		static float getGLTextureID(unsigned int tid);
+		static void clean();
+		static void init();
 		
-		inline std::vector<const Texture*> getTextures() { 
+		inline static std::vector<Texture*> getTextures() { 
 			return m_textures;
 		}
 
 
+
+
+
+	private:
+		TextureManager() {}
 
 };
 

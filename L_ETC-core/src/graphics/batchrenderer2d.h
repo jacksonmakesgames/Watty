@@ -11,7 +11,7 @@
 #define RENDERER_SPRITE_SIZE		RENDERER_VERTEX_SIZE * 4
 #define RENDERER_BUFFER_SIZE		RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
 #define RENDERER_INDICES_SIZE		RENDERER_MAX_SPRITES * 6
-#define RENDERER_TEXTURES_PER_DRAW	32 /*MAX: 32*/
+#define RENDERER_TEXTURES_PER_DRAW	32 -1 /*MAX: 32*/
 
 #define SHADER_VERTEX_INDEX		0
 #define SHADER_UV_INDEX		1
@@ -25,7 +25,7 @@ namespace letc {namespace graphics {
 		GLuint m_vertexBuffer;
 		IndexBuffer* m_indexBuffer;
 		GLsizei m_indexCount;
-		VertexData* m_buffer;
+		VertexData* m_currentBuffer;
 		std::vector<float> m_glTIDsThisFlush;
 
 	public:

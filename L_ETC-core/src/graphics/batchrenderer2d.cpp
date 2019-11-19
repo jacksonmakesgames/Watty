@@ -61,7 +61,7 @@ namespace letc {namespace graphics {
 
 	void BatchRenderer2D::begin(){
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-		m_buffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+		m_currentBuffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 	}
 
 	void BatchRenderer2D::submit(const Renderable2D* renderable){
@@ -70,58 +70,40 @@ namespace letc {namespace graphics {
 		const unsigned int color = renderable->getColor();
 		const std::vector<math::Vector2>& uvs = renderable->getUVs();
 		const GLuint tid = renderable->getTID();
+		float glTID = (float)tid;
 
-		float glTID = 0.0f;
-		if (tid > 0) {
-			glTID = textureManager.getGLTextureID(tid);
-
-			if (glTID == -1) {
-				//TODO: log error
-				std::cout << "ERROR, INVALID TEXTURE" << std::endl;
-				glTID = 0;
-			}
-			bool found = false;
-			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
-			{
-				if (m_glTIDsThisFlush[i] == glTID) 
-					found = true;
-			}
-			// flush every 32 textures
-			//this is because we can only have 32 opengl textures active at one time GL_TEXTURE[0..31]
-			if (!found) {
-				if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
-					end();
-					flush();
-					begin();
-				}
-				m_glTIDsThisFlush.push_back(tid);
-				glTID = (float)(m_glTIDsThisFlush.size());
-			}
+		if(glTID>0)
+			m_glTIDsThisFlush.push_back(glTID);
+		if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
+			end();
+			flush();
+			begin();
 		}
 
-		m_buffer->vertex = *m_tranformationStackBack * pos;
-		m_buffer->uv = uvs[0];
-		m_buffer->tid = glTID;
-		m_buffer->color = color;
-		m_buffer++;
 
-		m_buffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x, pos.y+size.y, pos.z);
-		m_buffer->uv = uvs[1];
-		m_buffer->tid = glTID;
-		m_buffer->color = color;
-		m_buffer++;
+		m_currentBuffer->vertex = *m_tranformationStackBack * pos;
+		m_currentBuffer->uv = uvs[0];
+		m_currentBuffer->tid = glTID;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
 
-		m_buffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y + size.y, pos.z);
-		m_buffer->uv = uvs[2];
-		m_buffer->tid = glTID;
-		m_buffer->color = color;
-		m_buffer++;
+		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x, pos.y+size.y, pos.z);
+		m_currentBuffer->uv = uvs[1];
+		m_currentBuffer->tid = glTID;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
 
-		m_buffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y, pos.z);
-		m_buffer->uv = uvs[3];
-		m_buffer->tid = glTID;
-		m_buffer->color = color;
-		m_buffer++;
+		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y + size.y, pos.z);
+		m_currentBuffer->uv = uvs[2];
+		m_currentBuffer->tid = glTID;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
+
+		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y, pos.z);
+		m_currentBuffer->uv = uvs[3];
+		m_currentBuffer->tid = glTID;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
 
 		m_indexCount += 6;
 	}
@@ -131,39 +113,20 @@ namespace letc {namespace graphics {
 		bool found = false;
 		texture_font_t* ftFont = font.getFTFont();
 		const GLuint tid = font.getTexID();
+		float glTID = (float)tid;
 
-		float glTID = 0.0f;
-		if (tid > 0) {
-			glTID = textureManager.getGLTextureID(tid);
+		if (glTID > 0)
+			m_glTIDsThisFlush.push_back(glTID);
 
-			if (glTID == -1) {
-				//TODO: log error
-				std::cout << "ERROR, INVALID TEXTURE" << std::endl;
-				glTID = 0;
-			}
-			bool found = false;
-			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
-			{
-				if (m_glTIDsThisFlush[i] == glTID)
-					found = true;
-			}
-			// flush every 32 textures
-			//this is because we can only have 32 opengl textures active at one time GL_TEXTURE[0..31]
-			if (!found) {
-				if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
-					end();
-					flush();
-					begin();
-				}
-				m_glTIDsThisFlush.push_back(tid);
-				glTID = (float)(m_glTIDsThisFlush.size());
-			}
+		if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
+			end();
+			flush();
+			begin();
 		}
 
+
 		const math::Vector2 scale = font.getScale();
-
 		float x = position.x;
-
 		for (int i = 0; i < text.length(); i++){
 			
 			char c = text[i];
@@ -185,31 +148,29 @@ namespace letc {namespace graphics {
 				float s1 = glyph->s1;
 				float t1 = glyph->t1;
 
-			
+				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y0,0.0f);
+				m_currentBuffer->uv = math::Vector2(s0, t0);
+				m_currentBuffer->tid = glTID;
+				m_currentBuffer->color = color;
+				m_currentBuffer++;
 
-				m_buffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y0,0.0f);
-				m_buffer->uv = math::Vector2(s0, t0);
-				m_buffer->tid = glTID;
-				m_buffer->color = color;
-				m_buffer++;
+				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y1,0.0f);
+				m_currentBuffer->uv = math::Vector2(s0, t1);
+				m_currentBuffer->tid = glTID;
+				m_currentBuffer->color = color;
+				m_currentBuffer++;
 
-				m_buffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y1,0.0f);
-				m_buffer->uv = math::Vector2(s0, t1);
-				m_buffer->tid = glTID;
-				m_buffer->color = color;
-				m_buffer++;
-
-				m_buffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y1,0.0f);
-				m_buffer->uv = math::Vector2(s1, t1);
-				m_buffer->tid = glTID;
-				m_buffer->color = color;
-				m_buffer++;
+				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y1,0.0f);
+				m_currentBuffer->uv = math::Vector2(s1, t1);
+				m_currentBuffer->tid = glTID;
+				m_currentBuffer->color = color;
+				m_currentBuffer++;
 				
-				m_buffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y0,0.0f);
-				m_buffer->uv = math::Vector2(s1, t0);
-				m_buffer->tid = glTID;
-				m_buffer->color = color;
-				m_buffer++;
+				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y0,0.0f);
+				m_currentBuffer->uv = math::Vector2(s1, t0);
+				m_currentBuffer->tid = glTID;
+				m_currentBuffer->color = color;
+				m_currentBuffer++;
 
 				m_indexCount += 6;
 				x += glyph->advance_x/scale.x;
@@ -225,22 +186,34 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::flush(){
-
-
 		//bind all the textures
 		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
-			glActiveTexture(GL_TEXTURE0 + glIndex);
 			float thisGlTID = m_glTIDsThisFlush[glIndex];
+			if (thisGlTID == 0) {
+				continue;
+			}
+			glActiveTexture(GL_TEXTURE0 + glIndex);
 			glBindTexture(GL_TEXTURE_2D, thisGlTID);
-		
-		}
 
+		}
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
+		
+		
+		for (size_t glIndex = 0; glIndex < RENDERER_TEXTURES_PER_DRAW; glIndex++) {
+			glActiveTexture(GL_TEXTURE0 + glIndex);
+			glBindTexture(GL_TEXTURE_2D, NULL);
+
+		}
+		
+		
 		m_indexCount = 0;
+
+
+
 		m_glTIDsThisFlush.clear();
 	}
 

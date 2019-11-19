@@ -27,13 +27,9 @@ public:
 
 	
 		//TODO: ADDING MORE FONTS KILLS FRAME RATE!!
-		//FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 13, screenScale));
-		//FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 13, screenScale));
-		//FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 11, screenScale));
-
-
-		//m_layer->add(new Sprite(-4,0,4,4, alien));
-		//m_layer->add(new Sprite(2,0,4,4, alien));
+		/*FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 13, screenScale));
+		FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 13, screenScale));
+		FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 11, screenScale));*/
 
 
 		Texture* alien = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/alien.png");
@@ -44,6 +40,10 @@ public:
 				m_layer->add(sprite);
 			}
 		}
+
+		//m_layer->add(new Sprite(-4,0,4,4, alien));
+		//m_layer->add(new Sprite(2,0,4,4, alien));
+
 
 		//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
 		FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Regular.ttf", 16, screenScale));
@@ -57,9 +57,8 @@ public:
 		profileGroup->add(fpsLabel);
 		profileGroup->add(upsLabel);
 		profileGroup->add(mpsLabel);
-
 		m_layer->add(profileGroup);
-
+	
 	}
 
 	void render() override {

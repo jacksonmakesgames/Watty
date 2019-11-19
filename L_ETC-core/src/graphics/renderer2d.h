@@ -4,7 +4,7 @@
 #include "../math/math.h"
 #include "font/font.h"
 
-#include "texturemanager.h"
+//#include "texturemanager.h"
 
 namespace letc {namespace graphics {
 	class Renderable2D;
@@ -47,7 +47,6 @@ namespace letc {namespace graphics {
 
 		}
 		~Renderer2D() {
-			textureManager.clean();
 		}
 
 		virtual void begin() {}
@@ -57,7 +56,6 @@ namespace letc {namespace graphics {
 		virtual void flush() = 0;
 
 	public:
-		TextureManager textureManager = TextureManager();
 		inline void nextFrame() { m_flushesThisFrame=0; }
 
 	};

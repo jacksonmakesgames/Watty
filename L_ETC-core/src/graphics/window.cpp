@@ -32,6 +32,7 @@ namespace letc {namespace graphics {
 		glfwTerminate();
 		FontManager::clean();
 		audio::AudioManager::clean();
+		graphics::Texture::clean();
 	}
 
 	bool Window::init() {

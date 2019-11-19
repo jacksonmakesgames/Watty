@@ -279,9 +279,6 @@
     <ClCompile Include="ext\freetype-gl\font-manager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\texturemanager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\audio\audioclip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1307,9 +1304,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ext\freetype-gl\markup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\texturemanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\audio\audioclip.h">
