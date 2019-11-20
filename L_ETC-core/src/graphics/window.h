@@ -58,7 +58,9 @@ namespace letc {namespace graphics {
 		std::vector<VkFence> m_imagesInFlight;
 		size_t m_currentFrame = 0;
 
-
+		void recreateSwapChain();
+		void cleanupSwapChain();
+		
 
 	public:
 		Window(const char *title, int width, int height);

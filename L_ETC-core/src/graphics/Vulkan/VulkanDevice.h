@@ -22,7 +22,7 @@ namespace letc { namespace graphics {
 		inline VkQueue* getGraphicsQueue() { return &m_graphicsQueue; }
 		inline VkQueue* getPresentQueue() { return &m_presentQueue; }
 		inline VkDevice* getDevice() { return &m_device; }
-		inline VkCommandPool& getComputeCommndPool() { return m_graphicsCommandPool; }
+		inline VkCommandPool& getCommandPool() { return m_graphicsCommandPool; }
 
 		void getGraphicsCommandBuffers(std::vector<VkCommandBuffer>& buffers);
 		void freeGraphicsCommandPool(VkCommandBuffer* buffers, uint32_t count);

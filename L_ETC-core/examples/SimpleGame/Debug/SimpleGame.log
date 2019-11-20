@@ -1,17 +1,92 @@
 ﻿  simplegame.cpp
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\math\math_functions.h(8,19): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(60,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(61,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(62,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(63,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\utils\timer.h(20,24): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\letc.h(68,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(26,94): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(26,66): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(52,1): warning C4305: 'argument': truncation from 'double' to 'const float'
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(53,1): warning C4305: 'argument': truncation from 'double' to 'float'
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(54,1): warning C4305: 'argument': truncation from 'double' to 'float'
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(56,1): warning C4305: 'argument': truncation from 'double' to 'float'
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(70,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(70,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SimpleGame.vcxproj -> J:\OneDrive\Projects\Game_Development\L_ETC\Debug\SimpleGame.exe
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(3,21): error C2871: 'letc': a namespace with this name does not exist
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(4,25): error C2871: 'graphics': a namespace with this name does not exist
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(5,21): error C2871: 'math': a namespace with this name does not exist
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(7,32): error C2504: 'LETC': base class undefined
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(9,8): error C2143: syntax error: missing ';' before '*'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(9,8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(9,18): error C2238: unexpected token(s) preceding ';'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(10,7): error C2143: syntax error: missing ';' before '*'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(10,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(10,16): error C2238: unexpected token(s) preceding ';'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(11,7): error C2143: syntax error: missing ';' before '*'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(11,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(11,17): error C2238: unexpected token(s) preceding ';'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(12,7): error C2143: syntax error: missing ';' before '*'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(12,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(12,17): error C2238: unexpected token(s) preceding ';'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(13,7): error C2143: syntax error: missing ';' before '*'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(13,7): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(13,17): error C2238: unexpected token(s) preceding ';'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(21,7): error C3668: 'SimpleGame::init': method with override specifier 'override' did not override any base class methods
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(65,7): error C3668: 'SimpleGame::render': method with override specifier 'override' did not override any base class methods
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(69,7): error C3668: 'SimpleGame::tick': method with override specifier 'override' did not override any base class methods
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(18,10): error C2065: 'm_layer': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(18,1): error C2541: 'delete': cannot delete objects that are not pointers
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(22,3): error C2065: 'm_window': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(22,14): error C3861: 'createWindow': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(23,3): error C2065: 'm_layer': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(23,1): error C2061: syntax error: identifier 'Layer'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(23,1): error C2653: 'math': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(25,1): error C2653: 'math': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(25,9): error C2065: 'Vector2': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(39,3): error C2065: 'Texture': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(39,12): error C2065: 'alien': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(39,1): error C2061: syntax error: identifier 'Texture'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(42,5): error C2065: 'Sprite': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(42,13): error C2065: 'sprite': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(42,1): error C2061: syntax error: identifier 'Sprite'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(43,5): error C2065: 'sprite': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(43,1): error C2653: 'math': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(43,56): error C3861: 'rand': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(43,28): error C3861: 'Vector4': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(44,5): error C2065: 'm_layer': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(44,18): error C2065: 'sprite': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(49,1): error C2653: 'FontManager': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(49,1): error C2061: syntax error: identifier 'Font'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(49,16): error C3861: 'add': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(50,1): error C2653: 'FontManager': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(50,1): error C2061: syntax error: identifier 'Font'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(50,16): error C3861: 'add': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(52,3): error C2065: 'Group': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(52,10): error C2065: 'profileGroup': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(52,1): error C2061: syntax error: identifier 'Group'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(52,1): error C2653: 'math': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(53,3): error C2065: 'profileGroup': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(53,1): error C2061: syntax error: identifier 'Sprite'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(54,3): error C2065: 'fpsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(54,1): error C2061: syntax error: identifier 'Label'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(55,3): error C2065: 'upsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(55,1): error C2061: syntax error: identifier 'Label'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(56,3): error C2065: 'mpsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(56,1): error C2061: syntax error: identifier 'Label'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(57,3): error C2065: 'profileGroup': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(57,21): error C2065: 'fpsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(58,3): error C2065: 'profileGroup': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(58,21): error C2065: 'upsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(59,3): error C2065: 'profileGroup': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(59,21): error C2065: 'mpsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(61,3): error C2065: 'm_layer': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(61,16): error C2065: 'profileGroup': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(66,3): error C2065: 'm_layer': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(70,1): error C2653: 'FontManager': is not a class or namespace name
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(70,31): error C2065: 'm_window': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(70,58): error C2065: 'm_window': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(70,16): error C3861: 'remakeAllFonts': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(72,3): error C2065: 'fpsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(72,25): error C2039: 'to_string': is not a member of 'std'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\predefined C++ types (compiler internal)(349): message : see declaration of 'std'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(72,35): error C3861: 'getFramesPerSecond': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(72,1): error C3861: 'to_string': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(73,3): error C2065: 'upsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(73,25): error C2039: 'to_string': is not a member of 'std'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\predefined C++ types (compiler internal)(349): message : see declaration of 'std'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(73,35): error C3861: 'getUpdatesPerSecond': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(73,1): error C3861: 'to_string': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(74,3): error C2065: 'mpsLabel': undeclared identifier
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(74,25): error C2039: 'to_string': is not a member of 'std'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\predefined C++ types (compiler internal)(349): message : see declaration of 'std'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(74,35): error C3861: 'getMSPerFrame': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(74,1): error C3861: 'to_string': identifier not found
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(84,12): error C2039: 'start': is not a member of 'SimpleGame'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(7): message : see declaration of 'SimpleGame'

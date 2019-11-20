@@ -95,7 +95,7 @@ namespace letc {namespace graphics {
 		// create logical device
 		m_vkLogicalDevice = new VulkanDevice(m_vkInstance, m_vkPhysicalDevice, m_vkInstance->getLayers());
 
-		// create swapchain/ swapchain images
+		// create swapchain / swapchain images
 		 m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice, m_width, m_height);
 
 		 // create render pass
@@ -107,7 +107,7 @@ namespace letc {namespace graphics {
 		 // create frame buffers
 		 m_vkFrameBuffers = new VulkanFrameBuffer(m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews(), m_vkRenderPass->getRenderPass(), m_vkSwapChain->getSwapChainExtent());
 
-		 // allocate command buffers TODO: only three for now, we can make this more later
+		 // allocate command buffers
 		 m_vkCommandBuffers.resize(m_vkFrameBuffers->getswapChainFramebuffers().size());
 		 m_vkLogicalDevice->getGraphicsCommandBuffers(m_vkCommandBuffers);
 
@@ -138,12 +138,73 @@ namespace letc {namespace graphics {
 		 }
 	}
 
+	void Window::recreateSwapChain() {
+		// TODO not sure everything is being cleaned up
+
+		vkDeviceWaitIdle(*m_vkLogicalDevice->getDevice());
+
+		cleanupSwapChain();
+
+		// create swapchain / swapchain images
+		m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice, m_width, m_height);
+
+		// create render pass
+		m_vkRenderPass = new VulkanRenderPass(m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChainImageFormatExtent());
+
+		// create graphics pipeline
+		m_vkGraphicsPipeline = new VulkanGraphicsPipeline(m_vkLogicalDevice, m_vkSwapChain->getSwapChainExtent(), m_vkRenderPass->getRenderPass());
+
+		// create frame buffers
+		m_vkFrameBuffers = new VulkanFrameBuffer(m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews(), m_vkRenderPass->getRenderPass(), m_vkSwapChain->getSwapChainExtent());
+		
+		// allocate command buffers 
+		m_vkCommandBuffers.resize(m_vkFrameBuffers->getswapChainFramebuffers().size());
+		m_vkLogicalDevice->getGraphicsCommandBuffers(m_vkCommandBuffers);
+		m_vkRenderPass->startRenderPass(m_vkSwapChain->getSwapChainExtent(), m_vkFrameBuffers->getswapChainFramebuffers(), m_vkCommandBuffers, m_vkGraphicsPipeline->getPipeline());
+
+		
+	}
+
+	void Window::cleanupSwapChain(){
+		while (m_width == 0 || m_height == 0) {
+			glfwGetFramebufferSize(m_window, &m_width, &m_height);
+			glfwWaitEvents();
+		}
+
+		vkDeviceWaitIdle(*m_vkLogicalDevice->getDevice());
+
+		for (size_t i = 0; i < m_vkFrameBuffers->getswapChainFramebuffers().size(); i++) {
+			vkDestroyFramebuffer(*m_vkLogicalDevice->getDevice(), m_vkFrameBuffers->getswapChainFramebuffers()[i], nullptr);
+		}
+
+		vkFreeCommandBuffers(*m_vkLogicalDevice->getDevice(), m_vkLogicalDevice->getCommandPool(), static_cast<uint32_t>(m_vkCommandBuffers.size()), m_vkCommandBuffers.data());
+
+		vkDestroyPipeline(*m_vkLogicalDevice->getDevice(), m_vkGraphicsPipeline->getPipeline(), nullptr);
+		vkDestroyPipelineLayout(*m_vkLogicalDevice->getDevice(), m_vkGraphicsPipeline->getPipelineLayout(), nullptr);
+		vkDestroyRenderPass(*m_vkLogicalDevice->getDevice(), *m_vkRenderPass->getRenderPass(), nullptr);
+
+		for (size_t i = 0; i < m_vkSwapChain->getSwapChainImageViews()->size(); i++) {
+			vkDestroyImageView(*m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews()->at(i), nullptr);
+		}
+
+		vkDestroySwapchainKHR(*m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
+	
+	}
+
 	void Window::drawVulkanFrame() {
 		uint32_t imageIndex;
 
 		vkWaitForFences(*m_vkLogicalDevice->getDevice(), 1, &m_inFlightFences[m_currentFrame], VK_TRUE, UINT64_MAX);
 
-		vkAcquireNextImageKHR(*m_vkLogicalDevice->getDevice(),*m_vkSwapChain->getSwapChain(), UINT64_MAX, m_imageAvailableSemaphores[m_currentFrame], VK_NULL_HANDLE, &imageIndex);
+		VkResult result = vkAcquireNextImageKHR(*m_vkLogicalDevice->getDevice(),*m_vkSwapChain->getSwapChain(), UINT64_MAX, m_imageAvailableSemaphores[m_currentFrame], VK_NULL_HANDLE, &imageIndex);
+		if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+			recreateSwapChain();
+			return;
+		}
+		else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
+			throw std::runtime_error("failed to acquire swap chain image!");
+		}
+		
 		// Check if a previous frame is using this image (i.e. there is its fence to wait on)
 		if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE) {
 			vkWaitForFences(*m_vkLogicalDevice->getDevice(), 1, &m_imagesInFlight[imageIndex], VK_TRUE, UINT64_MAX);
@@ -184,7 +245,15 @@ namespace letc {namespace graphics {
 		presentInfo.pImageIndices = &imageIndex;
 		presentInfo.pResults = nullptr; // Optional
 
-		vkQueuePresentKHR(*m_vkLogicalDevice->getGraphicsQueue(), &presentInfo);
+		result = vkQueuePresentKHR(*m_vkLogicalDevice->getGraphicsQueue(), &presentInfo);
+
+		if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
+			recreateSwapChain();
+		}
+		else if (result != VK_SUCCESS) {
+			throw std::runtime_error("failed to present swap chain image!");
+		}
+
 
 		vkQueueWaitIdle(*m_vkLogicalDevice->getGraphicsQueue());
 
@@ -192,8 +261,8 @@ namespace letc {namespace graphics {
 	}
 
 	void Window::cleanupVulkan(){
-		vkDestroySurfaceKHR(m_vkInstance->getInstance(), m_vkSurface, nullptr);
-		vkDestroyInstance(m_vkInstance->getInstance(), nullptr);
+		cleanupSwapChain();
+
 		vkDestroySwapchainKHR(*m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
 		for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
 			vkDestroySemaphore(*m_vkLogicalDevice->getDevice(), m_renderFinishedSemaphores[i], nullptr);
@@ -280,6 +349,8 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->m_width = width;
 		win->m_height = height;
+
+		//win->recreateSwapChain();
 	}
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

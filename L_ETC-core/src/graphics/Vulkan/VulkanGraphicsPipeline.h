@@ -14,6 +14,7 @@ namespace letc { namespace graphics{
 		VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D& swapChainExtent, VkRenderPass* renderPass);
 		
 		inline VkPipeline& getPipeline() { return m_graphicsPipeline; }
+		inline VkPipelineLayout& getPipelineLayout() { return m_pipelineLayout; }
 		
 		~VulkanGraphicsPipeline();
 
