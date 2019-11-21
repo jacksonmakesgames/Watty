@@ -1,32 +1,64 @@
 #include "vulkanphysicaldevice.h"
 namespace letc {namespace graphics {
 
-	VulkanPhysicalDevice::VulkanPhysicalDevice(VulkanInstance* instance, VkPhysicalDevice device, QueueFamilyIndices indices){
-		m_instance = instance;
-		m_device = device;
-		m_indices = indices;
+	VulkanPhysicalDevice::VulkanPhysicalDevice(VkInstance& instance, const VkSurfaceKHR& surface){
 		
+
+		std::vector<VkPhysicalDevice> devices = GetAvailablePhysicalDevices(instance);
+
+		VkPhysicalDevice secondaryDevice = VK_NULL_HANDLE;
+		QueueFamilyIndices secondaryQueue;
+		for (auto& device : devices) {
+			QueueFamilyIndices queueFamily;
+			if (PhysicalDeviceSupported(instance, device, queueFamily, surface)) {
+				VkPhysicalDeviceProperties physicalDeviceProperties;
+				vkGetPhysicalDeviceProperties(
+					device,
+					&physicalDeviceProperties
+				);
+				if (physicalDeviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
+					m_physicalDevice = device;
+					m_indices = queueFamily;
+				}
+				else {
+					secondaryDevice = device;
+					secondaryQueue = queueFamily;
+				}
+			}
+		}
+		if (secondaryDevice == VK_NULL_HANDLE)
+			return;
+		else if(m_physicalDevice == VK_NULL_HANDLE){
+			m_physicalDevice = secondaryDevice;
+			m_indices = secondaryQueue;
+
+		}
+		// we never found a suitable device, todo log error
+		if (m_physicalDevice == VK_NULL_HANDLE) 
+			return;
 		
 		vkGetPhysicalDeviceProperties(
-			m_device,
+			m_physicalDevice,
 			&m_physicalDeviceProperties
 		);
 		vkGetPhysicalDeviceMemoryProperties(
-			m_device,
+			m_physicalDevice,
 			&m_physicalDeviceMemoryProperties
 		);
 		vkGetPhysicalDeviceFeatures(
-			m_device,
+			m_physicalDevice,
 			&m_physicalDeviceFeatures
 		);
+
+
 	}
 
-	std::vector<VkPhysicalDevice> VulkanPhysicalDevice::GetAvailablePhysicalDevices(VulkanInstance* instance)
+	std::vector<VkPhysicalDevice> VulkanPhysicalDevice::GetAvailablePhysicalDevices(VkInstance& instance)
 	{
 		uint32_t deviceCount = 0;
 
 		vkEnumeratePhysicalDevices(
-			instance->getInstance(),
+			instance,
 			&deviceCount,
 			nullptr
 		);
@@ -34,7 +66,7 @@ namespace letc {namespace graphics {
 		std::vector<VkPhysicalDevice> devices(deviceCount);
 
 		vkEnumeratePhysicalDevices(
-			instance->getInstance(),
+			instance,
 			&deviceCount,
 			devices.data()
 		);
@@ -43,7 +75,7 @@ namespace letc {namespace graphics {
 		return devices;
 	}
 
-	bool VulkanPhysicalDevice::PhysicalDeviceSupported(VulkanInstance* instance, VkPhysicalDevice& device, QueueFamilyIndices& queueFamily, VkSurfaceKHR& surface){
+	bool VulkanPhysicalDevice::PhysicalDeviceSupported(const VkInstance& instance, const VkPhysicalDevice& device, QueueFamilyIndices& queueFamily, const VkSurfaceKHR& surface){
 		bool deviceSupported = IsDeviceSuitable(device, queueFamily, surface);
 
 		bool extensionsSupported = checkDeviceExtensionSupport(device);
@@ -55,7 +87,7 @@ namespace letc {namespace graphics {
 		return deviceSupported && extensionsSupported && swapChainAdequate;
 	}
 
-	bool VulkanPhysicalDevice::checkDeviceExtensionSupport(VkPhysicalDevice& device) {
+	bool VulkanPhysicalDevice::checkDeviceExtensionSupport(const VkPhysicalDevice& device) {
 		uint32_t extensionCount;
 
 		vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
@@ -71,7 +103,7 @@ namespace letc {namespace graphics {
 	}
 
 
-	bool VulkanPhysicalDevice::IsDeviceSuitable(VkPhysicalDevice& device, QueueFamilyIndices& familyIndices, VkSurfaceKHR& surface){
+	bool VulkanPhysicalDevice::IsDeviceSuitable(const VkPhysicalDevice& device, QueueFamilyIndices& familyIndices, const VkSurfaceKHR& surface){
 		uint32_t queueFamilyCount = 0;
 		vkGetPhysicalDeviceQueueFamilyProperties(
 			device,
@@ -105,46 +137,13 @@ namespace letc {namespace graphics {
 		return false;
 	}
 
-	VulkanPhysicalDevice* VulkanPhysicalDevice::GetPhysicalDevice(VulkanInstance* instance, VkSurfaceKHR& surface){
-		std::vector<VkPhysicalDevice> devices = GetAvailablePhysicalDevices(instance); 
-
-		VkPhysicalDevice secondaryDevice = VK_NULL_HANDLE;
-		QueueFamilyIndices secondaryQueue; 
-		for (auto& device : devices) {
-			QueueFamilyIndices queueFamily;
-			if (PhysicalDeviceSupported(instance, device, queueFamily, surface)) {
-				VkPhysicalDeviceProperties physicalDeviceProperties;
-				vkGetPhysicalDeviceProperties(
-					device,
-					&physicalDeviceProperties
-				);
-				if (physicalDeviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
-					return new VulkanPhysicalDevice(instance, device,  queueFamily);
-
-				}
-				else {
-					secondaryDevice = device;
-					secondaryQueue = queueFamily;
-				}
-			}
-		}
-		if (secondaryDevice == VK_NULL_HANDLE)
-			return nullptr;
-		else {
-			return new VulkanPhysicalDevice(instance, secondaryDevice, secondaryQueue);
-
-		}
-
-		return nullptr;
-	}
-
 
 
 	VulkanPhysicalDevice::~VulkanPhysicalDevice() {
 	
 	}
 
-	SwapChainSupportDetails VulkanPhysicalDevice::querySwapChainSupport(VkPhysicalDevice& device, VkSurfaceKHR& surface){
+	SwapChainSupportDetails VulkanPhysicalDevice::querySwapChainSupport(const VkPhysicalDevice& device, const VkSurfaceKHR& surface){
 		SwapChainSupportDetails details;
 
 		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);

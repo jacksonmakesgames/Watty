@@ -1,14 +1,14 @@
 #include "VulkanSwapChain.h"
 namespace letc { namespace graphics {
 
-	VulkanSwapChain::VulkanSwapChain(VulkanDevice* device, VkSurfaceKHR* surface, VulkanPhysicalDevice* physicalDevice, float width, float height){
+	VulkanSwapChain::VulkanSwapChain(const VulkanDevice & device, const VkSurfaceKHR & surface, const VulkanPhysicalDevice& physicalDevice, float width, float height){
 		m_device = device;
 		m_surface = surface;
-		m_physicalDevice = physicalDevice;
 		m_width = width;
 		m_height = height;
-		init();
-		
+
+		QueueFamilyIndices indices = physicalDevice.GetQueueFamilyIndices();
+		init(physicalDevice.GetThisPhysicalDevice(), indices);
 	}
 
 
@@ -54,13 +54,13 @@ namespace letc { namespace graphics {
 
 	VulkanSwapChain::~VulkanSwapChain(){
 		for (auto imageView : m_swapChainImageViews) {
-			vkDestroyImageView(*m_device->getDevice(), imageView, nullptr);
+			vkDestroyImageView(m_device.getDevice(), imageView, nullptr);
 		}
 	}
 
-	void VulkanSwapChain::init()
+	void VulkanSwapChain::init(const VkPhysicalDevice& physicalDevice, QueueFamilyIndices indices)
 	{
-		SwapChainSupportDetails swapChainSupport = VulkanPhysicalDevice::querySwapChainSupport(m_physicalDevice->GetPhysicalDevice(), *m_surface);
+		SwapChainSupportDetails swapChainSupport = VulkanPhysicalDevice::querySwapChainSupport(physicalDevice, m_surface);
 
 		VkSurfaceFormatKHR surfaceFormat = graphics::VulkanSwapChain::chooseSwapSurfaceFormat(swapChainSupport.formats);
 
@@ -74,23 +74,23 @@ namespace letc { namespace graphics {
 			imageCount = swapChainSupport.capabilities.maxImageCount;
 		}
 
-		QueueFamilyIndices indices = m_physicalDevice->GetQueueFamilyIndices();
+
 
 		uint32_t queueFamilyIndices[] = {indices.graphics_indices, indices.present_indices };
 
 
-		VkSwapchainCreateInfoKHR createInfo = initializers::SwapChainCreateInfo(*m_surface, m_physicalDevice->GetPhysicalDevice(), m_swapChainExtent, imageCount, surfaceFormat, queueFamilyIndices, swapChainSupport, presentMode);
+		VkSwapchainCreateInfoKHR createInfo = initializers::SwapChainCreateInfo(m_surface, physicalDevice, m_swapChainExtent, imageCount, surfaceFormat, queueFamilyIndices, swapChainSupport, presentMode);
 
-		VkDevice vkDevice = *m_device->getDevice();
+		VkDevice vkDevice = m_device.getDevice();
 		VkResult res = vkCreateSwapchainKHR(vkDevice, &createInfo, nullptr, &m_swapChain);
 		if (res != VK_SUCCESS) {
 			throw std::runtime_error("failed to create swap chain!");
 		}
 
 		//Swap chain Images:
-		vkGetSwapchainImagesKHR(*m_device->getDevice(), m_swapChain, &imageCount, nullptr);
+		vkGetSwapchainImagesKHR(m_device.getDevice(), m_swapChain, &imageCount, nullptr);
 		m_swapChainImages.resize(imageCount);
-		vkGetSwapchainImagesKHR(*m_device->getDevice(), m_swapChain, &imageCount, m_swapChainImages.data());
+		vkGetSwapchainImagesKHR(m_device.getDevice(), m_swapChain, &imageCount, m_swapChainImages.data());
 
 		// Image views:
 		createImageViews();
@@ -102,7 +102,7 @@ namespace letc { namespace graphics {
 		m_swapChainImageViews.resize(m_swapChainImages.size());
 		for (size_t i = 0; i < m_swapChainImages.size(); i++) {
 			VkImageViewCreateInfo createInfo = initializers::ImageViewCreateInfo(m_swapChainImages[i], m_swapChainImageFormat);
-			if (vkCreateImageView(*m_device->getDevice(), &createInfo, nullptr, &m_swapChainImageViews[i]) != VK_SUCCESS) {
+			if (vkCreateImageView(m_device.getDevice(), &createInfo, nullptr, &m_swapChainImageViews[i]) != VK_SUCCESS) {
 				throw std::runtime_error("failed to create image views!");
 			}
 		}

@@ -1,7 +1,8 @@
 #include "VulkanBuffer.h"
 namespace letc {namespace graphics {
 	
-	VulkanBuffer::VulkanBuffer(VulkanDevice* device, void* ptr, unsigned int elementSize, unsigned int count){
+	VulkanBuffer::VulkanBuffer(const VulkanDevice& device, void* ptr, unsigned int elementSize, unsigned int count)
+	{
 		m_device = device;
 		m_ptr = ptr;
 		m_elementSize = elementSize;
@@ -14,14 +15,14 @@ namespace letc {namespace graphics {
 		VkBufferCreateInfo bufferInfo = initializers::BufferCreateInfo(m_totalSize, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT);
 
 		CheckForVulkanError(vkCreateBuffer(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			&bufferInfo,
 			nullptr,
 			&m_buffer));
 
 		VkMemoryRequirements memRequirements;
 		vkGetBufferMemoryRequirements(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			m_buffer,
 			&memRequirements
 		);
@@ -30,21 +31,21 @@ namespace letc {namespace graphics {
 																								VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT,
 																								memRequirements.memoryTypeBits));
 		CheckForVulkanError(vkAllocateMemory(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			&allocInfo,
 			nullptr,
 			&m_deviceMemory
 		));
 
 		CheckForVulkanError(vkBindBufferMemory(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			m_buffer,
 			m_deviceMemory,
 			0
 		));
 
 		vkMapMemory(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			m_deviceMemory,
 			0,
 			memRequirements.size,
@@ -57,8 +58,8 @@ namespace letc {namespace graphics {
 
 	uint32_t VulkanBuffer::FindMemoryType(VkMemoryPropertyFlags props, uint32_t type_filter){
 
-		for (uint32_t i = 0; i < m_device->getPhysicalDevice()->GetPhysicalDeviceMemoryProperties().memoryTypeCount; i++){
-			if ((type_filter & (1 << i)) && (m_device->getPhysicalDevice()->GetPhysicalDeviceMemoryProperties().memoryTypes[i].propertyFlags & props) == props) {
+		for (uint32_t i = 0; i < m_device.getPhysicalDevice().GetPhysicalDeviceMemoryProperties().memoryTypeCount; i++){
+			if ((type_filter & (1 << i)) && (m_device.getPhysicalDevice().GetPhysicalDeviceMemoryProperties().memoryTypes[i].propertyFlags & props) == props) {
 				return i;
 			}
 
@@ -85,18 +86,18 @@ namespace letc {namespace graphics {
 
 	VulkanBuffer::~VulkanBuffer(){
 		vkUnmapMemory(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			m_deviceMemory	
 		);
 
 		vkDestroyBuffer(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			m_buffer,
 			nullptr
 		);
 
 		vkFreeMemory(
-			*m_device->getDevice(),
+			m_device.getDevice(),
 			m_deviceMemory,
 			nullptr
 		);

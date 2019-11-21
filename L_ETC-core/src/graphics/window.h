@@ -2,13 +2,6 @@
 #include <iostream>
 #include "../initializers.h"
 #include "Vulkan/vulkaninstance.h"
-#include "Vulkan/vulkanphysicaldevice.h"
-#include "Vulkan/VulkanDevice.h"
-#include "Vulkan/VulkanSwapChain.h"
-#include "Vulkan/VulkanGraphicsPipeline.h"
-#include "Vulkan/VulkanRenderPass.h"
-#include "Vulkan/VulkanBuffer.h"
-#include "Vulkan/VulkanFrameBuffer.h"
 
 #include <GLFW/glfw3.h>
 #include<set>
@@ -17,10 +10,9 @@
 #include "../audio/audiomanager.h"
 
 namespace letc {namespace graphics {
+
 #define MAX_KEYS 1024
 #define MAX_BUTTONS 32
-
-	const int MAX_FRAMES_IN_FLIGHT = 2;
 
 	class Window {
 	public:
@@ -42,24 +34,7 @@ namespace letc {namespace graphics {
 		double mx, my;
 
 		//VULKAN:
-		// THESE SHOULD NOT BE POINTERS (PROBABLY)
 		VulkanInstance* m_vkInstance;
-		VulkanPhysicalDevice* m_vkPhysicalDevice;
-		VulkanDevice* m_vkLogicalDevice;
-		VkSurfaceKHR m_vkSurface;
-		VulkanSwapChain* m_vkSwapChain;
-		VulkanRenderPass* m_vkRenderPass;
-		VulkanGraphicsPipeline* m_vkGraphicsPipeline;
-		VulkanFrameBuffer* m_vkFrameBuffers;
-		std::vector<VkCommandBuffer> m_vkCommandBuffers;
-		std::vector<VkSemaphore> m_imageAvailableSemaphores;
-		std::vector<VkSemaphore> m_renderFinishedSemaphores;
-		std::vector<VkFence> m_inFlightFences;
-		std::vector<VkFence> m_imagesInFlight;
-		size_t m_currentFrame = 0;
-
-		void recreateSwapChain();
-		void cleanupSwapChain();
 		
 
 	public:
@@ -70,13 +45,15 @@ namespace letc {namespace graphics {
 
 		inline int getWidth() const { return Window::m_width; };
 		inline int getHeight() const { return Window::m_height; };
-		inline VulkanDevice* getVulkanDevice() { return m_vkLogicalDevice; };
+		inline GLFWwindow* getGLFWWindow() { return m_window; };
 
 		bool keyDown(unsigned int keycode) const;
 		bool keyPressed(unsigned int keycode) const;
 		bool mouseButtonDown(unsigned int button) const;
 		bool mouseButtonPressed(unsigned int button) const;
 		void getMousePos(double& x, double& y) const;
+
+		void waitForNotMinimized();
 
 
 		
@@ -87,11 +64,7 @@ namespace letc {namespace graphics {
 		friend void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 		friend void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
-		//TODO: VK
-		void initVulkan();
-		void drawVulkanFrame();
-		void cleanupVulkan();
-		std::vector<const char*> getRequiredExtensions();
+
 
 
 	};

@@ -66,225 +66,12 @@ namespace letc {namespace graphics {
 		glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_window, cursor_position_callback);
 
-		uint32_t extensionCount = 0;
-		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-		initVulkan();
-		
+
+		m_vkInstance = new VulkanInstance(m_width, m_height, m_window);
 
 		return true;
 	}
 
-	void Window::initVulkan(){
-		VulkanConfig vulkanConfig;
-		vulkanConfig.applicationName = "LETC";
-		vulkanConfig.applicationVersion = VK_MAKE_VERSION(0, 0, 1);
-
-		m_vkInstance = new VulkanInstance(vulkanConfig, getRequiredExtensions());
-	
-
-		VkResult res = glfwCreateWindowSurface(m_vkInstance->getInstance(), m_window, nullptr, &m_vkSurface);
-		if (res != VK_SUCCESS) {
-			throw std::runtime_error("failed to create window surface!");
-		}
-
-		// TODO: WE SHOULD NOT BE PASSING POINTERS, THESE SHOULD JUST BE OBJS PASSED BY REFERENCE
-
-		// create physical device
-		m_vkPhysicalDevice = VulkanPhysicalDevice::GetPhysicalDevice(m_vkInstance, m_vkSurface);
-		
-		// create logical device
-		m_vkLogicalDevice = new VulkanDevice(m_vkInstance, m_vkPhysicalDevice, m_vkInstance->getLayers());
-
-		// create swapchain / swapchain images
-		 m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice, m_width, m_height);
-
-		 // create render pass
-		 m_vkRenderPass = new VulkanRenderPass(m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChainImageFormatExtent());
-
-		// create graphics pipeline
-		 m_vkGraphicsPipeline = new VulkanGraphicsPipeline(m_vkLogicalDevice, m_vkSwapChain->getSwapChainExtent(), m_vkRenderPass->getRenderPass());
-
-		 // create frame buffers
-		 m_vkFrameBuffers = new VulkanFrameBuffer(m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews(), m_vkRenderPass->getRenderPass(), m_vkSwapChain->getSwapChainExtent());
-
-		 // allocate command buffers
-		 m_vkCommandBuffers.resize(m_vkFrameBuffers->getswapChainFramebuffers().size());
-		 m_vkLogicalDevice->getGraphicsCommandBuffers(m_vkCommandBuffers);
-
-		// start the renderpass
-		 m_vkRenderPass->startRenderPass(m_vkSwapChain->getSwapChainExtent(), m_vkFrameBuffers->getswapChainFramebuffers(), m_vkCommandBuffers, m_vkGraphicsPipeline->getPipeline());
-
-		 // create semaphores
-		 //TODO: move these to initializers eventually
-		 m_imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
-		 m_renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
-		 m_inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
-		 m_imagesInFlight.resize(m_vkSwapChain->getSwapChainImages().size(), VK_NULL_HANDLE);
-
-		 VkSemaphoreCreateInfo semaphoreInfo = {};
-		 semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
-
-		 VkFenceCreateInfo fenceInfo = {};
-		 fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-		 fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
-
-		 for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
-			 if (vkCreateSemaphore(*m_vkLogicalDevice->getDevice(), &semaphoreInfo, nullptr, &m_imageAvailableSemaphores[i]) != VK_SUCCESS ||
-				 vkCreateSemaphore(*m_vkLogicalDevice->getDevice(), &semaphoreInfo, nullptr, &m_renderFinishedSemaphores[i]) != VK_SUCCESS ||
-				 vkCreateFence(*m_vkLogicalDevice->getDevice(), &fenceInfo, nullptr, &m_inFlightFences[i]) != VK_SUCCESS) {
-
-				 throw std::runtime_error("failed to create synchronization objects for a frame!");
-			 }
-		 }
-	}
-
-	void Window::recreateSwapChain() {
-		// TODO not sure everything is being cleaned up
-
-		vkDeviceWaitIdle(*m_vkLogicalDevice->getDevice());
-
-		cleanupSwapChain();
-
-		// create swapchain / swapchain images
-		m_vkSwapChain = new VulkanSwapChain(m_vkLogicalDevice, &m_vkSurface, m_vkPhysicalDevice, m_width, m_height);
-
-		// create render pass
-		m_vkRenderPass = new VulkanRenderPass(m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChainImageFormatExtent());
-
-		// create graphics pipeline
-		m_vkGraphicsPipeline = new VulkanGraphicsPipeline(m_vkLogicalDevice, m_vkSwapChain->getSwapChainExtent(), m_vkRenderPass->getRenderPass());
-
-		// create frame buffers
-		m_vkFrameBuffers = new VulkanFrameBuffer(m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews(), m_vkRenderPass->getRenderPass(), m_vkSwapChain->getSwapChainExtent());
-		
-		// allocate command buffers 
-		m_vkCommandBuffers.resize(m_vkFrameBuffers->getswapChainFramebuffers().size());
-		m_vkLogicalDevice->getGraphicsCommandBuffers(m_vkCommandBuffers);
-		m_vkRenderPass->startRenderPass(m_vkSwapChain->getSwapChainExtent(), m_vkFrameBuffers->getswapChainFramebuffers(), m_vkCommandBuffers, m_vkGraphicsPipeline->getPipeline());
-
-		
-	}
-
-	void Window::cleanupSwapChain(){
-		while (m_width == 0 || m_height == 0) {
-			glfwGetFramebufferSize(m_window, &m_width, &m_height);
-			glfwWaitEvents();
-		}
-
-		vkDeviceWaitIdle(*m_vkLogicalDevice->getDevice());
-
-		for (size_t i = 0; i < m_vkFrameBuffers->getswapChainFramebuffers().size(); i++) {
-			vkDestroyFramebuffer(*m_vkLogicalDevice->getDevice(), m_vkFrameBuffers->getswapChainFramebuffers()[i], nullptr);
-		}
-
-		vkFreeCommandBuffers(*m_vkLogicalDevice->getDevice(), m_vkLogicalDevice->getCommandPool(), static_cast<uint32_t>(m_vkCommandBuffers.size()), m_vkCommandBuffers.data());
-
-		vkDestroyPipeline(*m_vkLogicalDevice->getDevice(), m_vkGraphicsPipeline->getPipeline(), nullptr);
-		vkDestroyPipelineLayout(*m_vkLogicalDevice->getDevice(), m_vkGraphicsPipeline->getPipelineLayout(), nullptr);
-		vkDestroyRenderPass(*m_vkLogicalDevice->getDevice(), *m_vkRenderPass->getRenderPass(), nullptr);
-
-		for (size_t i = 0; i < m_vkSwapChain->getSwapChainImageViews()->size(); i++) {
-			vkDestroyImageView(*m_vkLogicalDevice->getDevice(), m_vkSwapChain->getSwapChainImageViews()->at(i), nullptr);
-		}
-
-		vkDestroySwapchainKHR(*m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
-	
-	}
-
-	void Window::drawVulkanFrame() {
-		uint32_t imageIndex;
-
-		vkWaitForFences(*m_vkLogicalDevice->getDevice(), 1, &m_inFlightFences[m_currentFrame], VK_TRUE, UINT64_MAX);
-
-		VkResult result = vkAcquireNextImageKHR(*m_vkLogicalDevice->getDevice(),*m_vkSwapChain->getSwapChain(), UINT64_MAX, m_imageAvailableSemaphores[m_currentFrame], VK_NULL_HANDLE, &imageIndex);
-		if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-			recreateSwapChain();
-			return;
-		}
-		else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
-			throw std::runtime_error("failed to acquire swap chain image!");
-		}
-		
-		// Check if a previous frame is using this image (i.e. there is its fence to wait on)
-		if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE) {
-			vkWaitForFences(*m_vkLogicalDevice->getDevice(), 1, &m_imagesInFlight[imageIndex], VK_TRUE, UINT64_MAX);
-		}
-		// Mark the image as now being in use by this frame
-		m_imagesInFlight[imageIndex] = m_inFlightFences[m_currentFrame];
-
-
-		VkSubmitInfo submitInfo = {};
-		submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-
-		VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphores[m_currentFrame] };
-		VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
-		submitInfo.waitSemaphoreCount = 1;
-		submitInfo.pWaitSemaphores = waitSemaphores;
-		submitInfo.pWaitDstStageMask = waitStages;
-		submitInfo.commandBufferCount = 1;
-		submitInfo.pCommandBuffers = &m_vkCommandBuffers[imageIndex];
-
-		VkSemaphore signalSemaphores[] = { m_renderFinishedSemaphores[m_currentFrame] };
-		submitInfo.signalSemaphoreCount = 1;
-		submitInfo.pSignalSemaphores = signalSemaphores;
-
-		vkResetFences(*m_vkLogicalDevice->getDevice(), 1, &m_inFlightFences[m_currentFrame]);
-
-		if (vkQueueSubmit(*m_vkLogicalDevice->getGraphicsQueue(), 1, &submitInfo, m_inFlightFences[m_currentFrame]) != VK_SUCCESS) {
-			throw std::runtime_error("failed to submit draw command buffer!");
-		}
-
-		// presentation
-		VkSwapchainKHR swapChains[] = {  *m_vkSwapChain->getSwapChain() };
-		VkPresentInfoKHR presentInfo = {};
-		presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
-		presentInfo.waitSemaphoreCount = 1;
-		presentInfo.pWaitSemaphores = signalSemaphores;
-		presentInfo.swapchainCount = 1;
-		presentInfo.pSwapchains = swapChains;
-		presentInfo.pImageIndices = &imageIndex;
-		presentInfo.pResults = nullptr; // Optional
-
-		result = vkQueuePresentKHR(*m_vkLogicalDevice->getGraphicsQueue(), &presentInfo);
-
-		if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
-			recreateSwapChain();
-		}
-		else if (result != VK_SUCCESS) {
-			throw std::runtime_error("failed to present swap chain image!");
-		}
-
-
-		vkQueueWaitIdle(*m_vkLogicalDevice->getGraphicsQueue());
-
-		m_currentFrame = (m_currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
-	}
-
-	void Window::cleanupVulkan(){
-		cleanupSwapChain();
-
-		vkDestroySwapchainKHR(*m_vkLogicalDevice->getDevice(), *m_vkSwapChain->getSwapChain(), nullptr);
-		for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
-			vkDestroySemaphore(*m_vkLogicalDevice->getDevice(), m_renderFinishedSemaphores[i], nullptr);
-			vkDestroySemaphore(*m_vkLogicalDevice->getDevice(), m_imageAvailableSemaphores[i], nullptr);
-			vkDestroyFence(*m_vkLogicalDevice->getDevice(), m_inFlightFences[i], nullptr);
-		}
-
-	}
-
-	std::vector<const char*>  Window::getRequiredExtensions()
-	{
-		uint32_t glfwExtensionCount = 0;
-		const char** glfwExtensions;
-		glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-
-		std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
-
-		if (true) {
-			extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-		}
-		return extensions;
-	}
 
 	bool Window::keyPressed(unsigned int keycode) const {
 		if (keycode >= MAX_KEYS) {
@@ -321,6 +108,11 @@ namespace letc {namespace graphics {
 		y = my;
 	}
 
+	void Window::waitForNotMinimized()
+	{
+		
+	}
+
 	void Window::update() {
 		// handle input:
 		for (size_t i = 0; i < MAX_KEYS; i++){
@@ -334,7 +126,8 @@ namespace letc {namespace graphics {
 		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool)*MAX_BUTTONS);
 
 		glfwPollEvents();
-		drawVulkanFrame();
+
+		m_vkInstance->drawVulkanFrame();
 
 		//audio:
 		audio::AudioManager::update(); 
@@ -349,8 +142,10 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->m_width = width;
 		win->m_height = height;
-
-		//win->recreateSwapChain();
+		while (win->m_height == 0 || win->m_width == 0) {
+			glfwGetFramebufferSize(win->getGLFWWindow(), &win->m_width, &win->m_height);
+			glfwWaitEvents();
+		}
 	}
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

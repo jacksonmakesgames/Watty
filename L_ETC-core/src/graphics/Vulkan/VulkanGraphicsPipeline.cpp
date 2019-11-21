@@ -1,10 +1,10 @@
 #include "VulkanGraphicsPipeline.h"
 namespace letc { namespace graphics {
-	VulkanGraphicsPipeline::VulkanGraphicsPipeline(VulkanDevice* device, VkExtent2D& swapChainExtent, VkRenderPass* renderPass){
+	VulkanGraphicsPipeline::VulkanGraphicsPipeline(VulkanDevice& device, VkExtent2D& swapChainExtent, VkRenderPass& renderPass){
 		m_device = device;
 		createGraphicsPipeline(swapChainExtent, renderPass);
 	}
-	void VulkanGraphicsPipeline::createGraphicsPipeline(VkExtent2D& swapChainExtent, VkRenderPass* renderPass)
+	void VulkanGraphicsPipeline::createGraphicsPipeline(VkExtent2D& swapChainExtent, VkRenderPass& renderPass)
 	{
 		auto vertShaderCode = read_shader_file("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/src/shaders/vert.spv");
 		auto fragShaderCode = read_shader_file("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/src/shaders/frag.spv");
@@ -43,11 +43,11 @@ namespace letc { namespace graphics {
 		rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 		rasterizer.depthClampEnable = VK_FALSE;
 		rasterizer.rasterizerDiscardEnable = VK_FALSE;
+		rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
 		/*	VK_POLYGON_MODE_FILL: fill the area of the polygon with fragments
 			VK_POLYGON_MODE_LINE: polygon edges are drawn as lines
 			VK_POLYGON_MODE_POINT: polygon vertices are drawn as points
 			NOTE: these require enabling a GPU feature*/
-		rasterizer.polygonMode = VK_POLYGON_MODE_FILL;
 		rasterizer.lineWidth = 1.0f;
 		rasterizer.cullMode = VK_CULL_MODE_BACK_BIT;
 		rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;
@@ -112,7 +112,7 @@ namespace letc { namespace graphics {
 		pipelineLayoutInfo.pushConstantRangeCount = 0; // Optional
 		pipelineLayoutInfo.pPushConstantRanges = nullptr; // Optional
 
-		if (vkCreatePipelineLayout(*m_device->getDevice(), &pipelineLayoutInfo, nullptr, &m_pipelineLayout) != VK_SUCCESS) {
+		if (vkCreatePipelineLayout(m_device.getDevice(), &pipelineLayoutInfo, nullptr, &m_pipelineLayout) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create pipeline layout!");
 		}
 
@@ -130,17 +130,17 @@ namespace letc { namespace graphics {
 		pipelineInfo.pColorBlendState = &colorBlending;
 		pipelineInfo.pDynamicState = nullptr; // Optional
 		pipelineInfo.layout = m_pipelineLayout;
-		pipelineInfo.renderPass = *renderPass;
+		pipelineInfo.renderPass = renderPass;
 		pipelineInfo.subpass = 0;
 		pipelineInfo.basePipelineHandle = VK_NULL_HANDLE; // Optional
 		pipelineInfo.basePipelineIndex = -1; // Optional
 
-		if (vkCreateGraphicsPipelines(*m_device->getDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_graphicsPipeline) != VK_SUCCESS) {
+		if (vkCreateGraphicsPipelines(m_device.getDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_graphicsPipeline) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create graphics pipeline!");
 		}
 
-		vkDestroyShaderModule(*m_device->getDevice(), fragShaderModule, nullptr);
-		vkDestroyShaderModule(*m_device->getDevice(), vertShaderModule, nullptr);
+		vkDestroyShaderModule(m_device.getDevice(), fragShaderModule, nullptr);
+		vkDestroyShaderModule(m_device.getDevice(), vertShaderModule, nullptr);
 	}
 
 	VkShaderModule VulkanGraphicsPipeline::createShaderModule(const std::vector<char>& code) {
@@ -150,7 +150,7 @@ namespace letc { namespace graphics {
 
 		VkShaderModule shaderModule;
 
-		if (vkCreateShaderModule(*m_device->getDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+		if (vkCreateShaderModule(m_device.getDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create shader module!");
 		}
 
@@ -158,8 +158,8 @@ namespace letc { namespace graphics {
 	}
 
 	VulkanGraphicsPipeline::~VulkanGraphicsPipeline(){
-		vkDestroyPipeline(*m_device->getDevice(), m_graphicsPipeline, nullptr);
-		vkDestroyPipelineLayout(*m_device->getDevice(), m_pipelineLayout, nullptr);
+		vkDestroyPipeline(m_device.getDevice(), m_graphicsPipeline, nullptr);
+		vkDestroyPipelineLayout(m_device.getDevice(), m_pipelineLayout, nullptr);
 	}
 
 } }

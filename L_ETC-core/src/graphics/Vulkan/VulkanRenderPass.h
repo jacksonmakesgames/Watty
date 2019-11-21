@@ -7,14 +7,15 @@ namespace letc { namespace graphics {
 
 	class VulkanRenderPass {
 	private:
-		VkDevice* m_device;
+		VkDevice m_device;
 		VkRenderPass m_renderPass;
 	public:
-		VulkanRenderPass(VkDevice* device, VkFormat swapChainImageFormat);
+		VulkanRenderPass(const VkDevice& device, const VkFormat& swapChainImageFormat);
+		VulkanRenderPass() {}
 
-		void startRenderPass(VkExtent2D swapChainExtent, std::vector<VkFramebuffer>& frameBuffers, std::vector<VkCommandBuffer>& commandBuffers, VkPipeline& graphicsPipeline);
+		void startRenderPass(const VkExtent2D & swapChainExtent, const std::vector<VkFramebuffer>& frameBuffers, const std::vector<VkCommandBuffer>& commandBuffers, const VkPipeline & graphicsPipeline);
 
-		inline VkRenderPass* getRenderPass() { return &m_renderPass; }
+		inline VkRenderPass& getRenderPass() { return m_renderPass; }
 
 		~VulkanRenderPass();
 	};

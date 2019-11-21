@@ -13,9 +13,8 @@ namespace letc { namespace graphics {
 		std::vector<VkImage> m_swapChainImages;
 		std::vector<VkImageView> m_swapChainImageViews;
 
-		VulkanPhysicalDevice* m_physicalDevice;
-		VulkanDevice* m_device;
-		VkSurfaceKHR* m_surface;
+		VulkanDevice m_device;
+		VkSurfaceKHR m_surface;
 		SwapChainSupportDetails m_supportDetails;
 
 		VkFormat m_swapChainImageFormat;
@@ -24,14 +23,15 @@ namespace letc { namespace graphics {
 		float m_height;
 
 	public:
-		VulkanSwapChain(VulkanDevice* device, VkSurfaceKHR* surface, VulkanPhysicalDevice* physicalDevice, float width, float height);
+		VulkanSwapChain(const VulkanDevice & device, const VkSurfaceKHR & surface, const VulkanPhysicalDevice& physicalDevice, float width, float height);
+		VulkanSwapChain() {}
 		
 
-		inline VkSwapchainKHR* getSwapChain() { return &m_swapChain; }
+		inline VkSwapchainKHR& getSwapChain() { return m_swapChain; }
 		inline VkExtent2D& getSwapChainExtent() { return m_swapChainExtent; }
-		inline VkFormat* getSwapChainImageFormatExtent() { return &m_swapChainImageFormat; }
+		inline VkFormat& getSwapChainImageFormatExtent() { return m_swapChainImageFormat; }
 		inline std::vector<VkImage>& getSwapChainImages(){ return m_swapChainImages; }
-		inline std::vector<VkImageView>* getSwapChainImageViews() { return &m_swapChainImageViews; }
+		const inline std::vector<VkImageView>& getSwapChainImageViews() { return m_swapChainImageViews; }
 
 		static VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 		static VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
@@ -42,7 +42,7 @@ namespace letc { namespace graphics {
 		
 		~VulkanSwapChain();
 	private:
-		void init();
+		void init(const VkPhysicalDevice& physicalDevice, QueueFamilyIndices indices);
 		void createImageViews();
 	};
 

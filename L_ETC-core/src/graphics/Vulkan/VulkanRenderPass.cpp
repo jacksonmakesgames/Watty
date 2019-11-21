@@ -1,6 +1,6 @@
 #include "VulkanRenderPass.h"
 namespace letc {namespace graphics {
-	VulkanRenderPass::VulkanRenderPass(VkDevice* device, VkFormat swapChainImageFormat) {
+	VulkanRenderPass::VulkanRenderPass(const VkDevice& device, const VkFormat& swapChainImageFormat) {
 		m_device = device;
 
 		// should be in initializers 
@@ -45,11 +45,11 @@ namespace letc {namespace graphics {
 		renderPassInfo.dependencyCount = 1;
 		renderPassInfo.pDependencies = &dependency;
 
-		if (vkCreateRenderPass(*m_device, &renderPassInfo, nullptr, &m_renderPass) != VK_SUCCESS) {
+		if (vkCreateRenderPass(m_device, &renderPassInfo, nullptr, &m_renderPass) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create render pass!");
 		}
 	}
-	void VulkanRenderPass::startRenderPass(VkExtent2D swapChainExtent, std::vector<VkFramebuffer>& frameBuffers, std::vector<VkCommandBuffer>& commandBuffers, VkPipeline& graphicsPipeline){
+	void VulkanRenderPass::startRenderPass(const VkExtent2D& swapChainExtent, const std::vector<VkFramebuffer>& frameBuffers, const std::vector<VkCommandBuffer>& commandBuffers, const VkPipeline& graphicsPipeline){
 
 		VkClearValue clearColor = { 0.0f, 0.0f, 0.0f, 1.0f };
 		for (size_t i = 0; i < commandBuffers.size(); i++)
@@ -79,6 +79,6 @@ namespace letc {namespace graphics {
 	}
 	VulkanRenderPass::~VulkanRenderPass()
 	{
-		vkDestroyRenderPass(*m_device, m_renderPass, nullptr);
+		vkDestroyRenderPass(m_device, m_renderPass, nullptr);
 	}
 }}

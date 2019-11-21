@@ -1,7 +1,7 @@
 #include "initializers.h"
 namespace letc {namespace initializers {
 
-	VkApplicationInfo ApplicationInfo(graphics::VulkanConfig& config)
+	VkApplicationInfo ApplicationInfo(const graphics::VulkanConfig& config)
 	{
 		VkApplicationInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -12,20 +12,19 @@ namespace letc {namespace initializers {
 		info.pEngineName = config.engine_name;
 		return info;
 	}
-	VkInstanceCreateInfo InstanceCreateInfo(VkApplicationInfo& appInfo, std::vector<const char*>& layers, std::vector<const char*>& extensions){
+	VkInstanceCreateInfo InstanceCreateInfo(const VkApplicationInfo& appInfo, const std::vector<const char*>& layers, const std::vector<const char*>& extensions){
 		VkInstanceCreateInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 		info.pApplicationInfo = &appInfo;
-
 		info.enabledLayerCount = layers.size();
 		info.enabledExtensionCount = extensions.size();
-
 		info.ppEnabledLayerNames = layers.data();
 		info.ppEnabledExtensionNames = extensions.data();
 
 		return info;
 	}
-	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features, std::vector<const char*>& layers, std::vector<const char*>& deviceExtensions){
+
+	VkDeviceCreateInfo DeviceCreateInfo(std::vector<VkDeviceQueueCreateInfo>& queueCreateInfos, VkPhysicalDeviceFeatures& features, std::vector<const char*>& layers, std::vector<const char*>& deviceExtensions) {
 		VkDeviceCreateInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 		info.queueCreateInfoCount = static_cast<uint32_t>( queueCreateInfos.size());
@@ -35,12 +34,11 @@ namespace letc {namespace initializers {
 		info.ppEnabledLayerNames = layers.data();
 		info.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
 		info.ppEnabledExtensionNames = deviceExtensions.data();
-		
 		return info;
 
 	}
 
-	VkDeviceQueueCreateInfo DeviceQueueCreate(uint32_t queueFamilyIndex, float& priority){
+	VkDeviceQueueCreateInfo DeviceQueueCreate(uint32_t queueFamilyIndex, const float & priority){
 		VkDeviceQueueCreateInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
 		info.queueFamilyIndex = queueFamilyIndex;
@@ -55,7 +53,7 @@ namespace letc {namespace initializers {
 		info.flags = flags;
 		return info;
 	}
-	VkCommandBufferAllocateInfo CommandBufferAllocateInfo(VkCommandPool pool, std::vector<VkCommandBuffer>& buffers)
+	VkCommandBufferAllocateInfo CommandBufferAllocateInfo(VkCommandPool pool, const std::vector<VkCommandBuffer>& buffers)
 	{
 		VkCommandBufferAllocateInfo allocInfo = {};
 		allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -84,7 +82,7 @@ namespace letc {namespace initializers {
 		return info;
 	}
 
-	VkSwapchainCreateInfoKHR SwapChainCreateInfo(VkSurfaceKHR& surface, VkPhysicalDevice& physicalDevice, VkExtent2D extent, uint32_t imageCount, VkSurfaceFormatKHR surfaceFormat, uint32_t queueFamilyIndices[], graphics::SwapChainSupportDetails swapChainSupport, VkPresentModeKHR presentMode)
+	VkSwapchainCreateInfoKHR SwapChainCreateInfo(const VkSurfaceKHR& surface, const VkPhysicalDevice& physicalDevice, const VkExtent2D& extent, uint32_t imageCount, const VkSurfaceFormatKHR& surfaceFormat, uint32_t queueFamilyIndices[], const graphics::SwapChainSupportDetails& swapChainSupport, const VkPresentModeKHR& presentMode)
 	{
 		VkSwapchainCreateInfoKHR createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
@@ -118,7 +116,7 @@ namespace letc {namespace initializers {
 
 	}
 	
-	VkImageViewCreateInfo ImageViewCreateInfo(VkImage swapChainImage, VkFormat swapChainImageFormat)
+	VkImageViewCreateInfo ImageViewCreateInfo(const VkImage& swapChainImage, const VkFormat& swapChainImageFormat)
 	{
 		VkImageViewCreateInfo createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
@@ -181,7 +179,7 @@ namespace letc {namespace initializers {
 		return inputAssembly;
 	}
 
-	VkPipelineViewportStateCreateInfo PipelineViewportStateCreateInfo(VkViewport* viewport, VkRect2D* scissor) {
+	VkPipelineViewportStateCreateInfo PipelineViewportStateCreateInfo(const VkViewport* viewport, const VkRect2D* scissor) {
 		VkPipelineViewportStateCreateInfo viewportState = {};
 		viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 		viewportState.viewportCount = 1;

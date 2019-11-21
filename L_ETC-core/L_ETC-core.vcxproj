@@ -61,36 +61,13 @@
     <ClCompile Include="ext\freetype\src\winfonts\winfnt.c" />
     <ClCompile Include="src\audio\audioclip.cpp" />
     <ClCompile Include="src\audio\audiomanager.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\VulkanBuffer.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\VulkanDevice.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\VulkanFrameBuffer.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\VulkanGraphicsPipeline.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\vulkaninstance.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\vulkanphysicaldevice.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\VulkanRenderPass.cpp" />
-    <ClCompile Include="src\graphics\Vulkan\VulkanSwapChain.cpp" />
-    <ClCompile Include="src\graphics\window.cpp" />
-    <ClCompile Include="src\initializers.cpp" />
     <ClCompile Include="src\math\matrix4.cpp" />
     <ClCompile Include="src\math\vector2.cpp" />
     <ClCompile Include="src\math\vector3.cpp" />
     <ClCompile Include="src\math\vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\graphics\Vulkan\queuefamilyindices.h" />
-    <ClInclude Include="src\graphics\Vulkan\SwapChainSupportDetails.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanBuffer.h" />
-    <ClInclude Include="src\graphics\Vulkan\vulkanconfig.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanDevice.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanError.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanFrameBuffer.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanGraphicsPipeline.h" />
-    <ClInclude Include="src\graphics\Vulkan\vulkaninstance.h" />
-    <ClInclude Include="src\graphics\Vulkan\vulkanphysicaldevice.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanRenderPass.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanShader.h" />
-    <ClInclude Include="src\graphics\Vulkan\VulkanSwapChain.h" />
-    <ClInclude Include="src\initializers.h" />
+    <ClInclude Include="src\graphics\Vulkan\VulkanDefaultInstance.h" />
     <ClInclude Include="src\letc.h" />
     <ClInclude Include="ext\freetype\include\freetype\config\ftconfig.h" />
     <ClInclude Include="ext\freetype\include\freetype\config\ftheader.h" />
@@ -394,7 +371,6 @@
     <ClInclude Include="src\audio\audioclip.h" />
     <ClInclude Include="src\audio\audiomanager.h" />
     <ClInclude Include="src\graphics\layers\tilelayer.h" />
-    <ClInclude Include="src\graphics\window.h" />
     <ClInclude Include="src\math\math.h" />
     <ClInclude Include="src\math\math_functions.h" />
     <ClInclude Include="src\math\matrix4.h" />
@@ -467,7 +443,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;C:\VulkanSDK\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(SolutionDir)Dependencies\stb_image\include\;$(SolutionDir)Dependencies\tiny_obj_loader\include\;$(SolutionDir)Dependencies\glm\include\;C:\VulkanSDK\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\gorilla-audio\bin\win32\Release;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;C:\VulkanSDK\Lib32</LibraryPath>
     <OutDir>$(SolutionDir)bin</OutDir>
   </PropertyGroup>
@@ -476,7 +452,7 @@
     <LibraryPath>J:\OneDrive\Projects\Game_Development\L_ETC\Dependencies\GLFW\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;C:\VulkanSDK\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(SolutionDir)Dependencies\stb_image\include\;$(SolutionDir)Dependencies\tiny_obj_loader\include\;$(SolutionDir)Dependencies\glm\include\;C:\VulkanSDK\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\gorilla-audio\bin\win32\Release;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;C:\VulkanSDK\Lib32</LibraryPath>
     <OutDir>$(SolutionDir)bin</OutDir>
   </PropertyGroup>

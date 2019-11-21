@@ -1,8 +1,8 @@
 #pragma once
 #include <set>
+#include <string>
 #include <cstdint>
 #include <algorithm>
-#include "vulkaninstance.h"
 #include "queuefamilyindices.h"
 #include "SwapChainSupportDetails.h"
 
@@ -16,37 +16,32 @@ namespace letc { namespace graphics {
 	class VulkanPhysicalDevice {
 
 	private:
-		VulkanInstance* m_instance;
-		VkPhysicalDevice m_device;
+		VkPhysicalDevice m_physicalDevice;
 		QueueFamilyIndices m_indices;
 		VkPhysicalDeviceProperties m_physicalDeviceProperties;
 		VkPhysicalDeviceFeatures m_physicalDeviceFeatures;
 		VkPhysicalDeviceMemoryProperties m_physicalDeviceMemoryProperties;
 	
 	public:
-		inline VkPhysicalDevice& GetPhysicalDevice() { return m_device; }
-		inline QueueFamilyIndices& GetQueueFamilyIndices() { return m_indices; }
-		inline VkPhysicalDeviceFeatures& GetPhysicalDeviceFeatures() { return m_physicalDeviceFeatures; }
-		inline VkPhysicalDeviceProperties& GetPhysicalDeviceProperties() { return m_physicalDeviceProperties; }
-		inline VkPhysicalDeviceMemoryProperties& GetPhysicalDeviceMemoryProperties() { return m_physicalDeviceMemoryProperties; }
+		VulkanPhysicalDevice(VkInstance& instance, const VkSurfaceKHR& surface);
+		VulkanPhysicalDevice() {}
 
-		static VulkanPhysicalDevice* GetPhysicalDevice(VulkanInstance* instance, VkSurfaceKHR& surface);
-		static SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice& device, VkSurfaceKHR& surface);
+		inline const VkPhysicalDevice& GetThisPhysicalDevice()const { return m_physicalDevice; }
 
-	public:
+		inline const QueueFamilyIndices& GetQueueFamilyIndices() const { return m_indices; }
+		inline const VkPhysicalDeviceFeatures& GetPhysicalDeviceFeatures() { return m_physicalDeviceFeatures; }
+		inline const VkPhysicalDeviceProperties& GetPhysicalDeviceProperties() { return m_physicalDeviceProperties; }
+		inline const VkPhysicalDeviceMemoryProperties& GetPhysicalDeviceMemoryProperties() const { return m_physicalDeviceMemoryProperties; }
+
+		static SwapChainSupportDetails querySwapChainSupport(const VkPhysicalDevice& device, const VkSurfaceKHR& surface);
+
 		~VulkanPhysicalDevice();
-
-
-
+	public:
 	private:
-		VulkanPhysicalDevice(VulkanInstance* instance, VkPhysicalDevice device, QueueFamilyIndices indices);
-		static std::vector<VkPhysicalDevice> GetAvailablePhysicalDevices(VulkanInstance* instance);
-		static bool PhysicalDeviceSupported(VulkanInstance* instance, VkPhysicalDevice& device, QueueFamilyIndices& queueFamily, VkSurfaceKHR& surface);
-		static bool IsDeviceSuitable( VkPhysicalDevice& device, QueueFamilyIndices& queueFamily, VkSurfaceKHR& surface);
-		static bool checkDeviceExtensionSupport(VkPhysicalDevice& device);
-
-		
-		
+		static std::vector<VkPhysicalDevice> GetAvailablePhysicalDevices(VkInstance& instance);
+		static bool PhysicalDeviceSupported(const VkInstance& instance, const VkPhysicalDevice& device, QueueFamilyIndices& queueFamily,const VkSurfaceKHR& surface);
+		static bool IsDeviceSuitable(const VkPhysicalDevice& device, QueueFamilyIndices& familyIndices, const VkSurfaceKHR& surface);
+		static bool checkDeviceExtensionSupport(const VkPhysicalDevice& device);
 	
 	};
 

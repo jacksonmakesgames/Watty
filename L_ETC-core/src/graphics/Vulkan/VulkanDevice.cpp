@@ -1,11 +1,12 @@
 #include "VulkanDevice.h"
 namespace letc { namespace graphics {
 
-	VulkanDevice::VulkanDevice(VulkanInstance* instance, VulkanPhysicalDevice* physical_device, std::vector<const char*>& layers){
-		m_instance = instance;
+	VulkanDevice::VulkanDevice(const VulkanPhysicalDevice& physical_device, const std::vector<const char*>& layers){
 		m_physicalDevice = physical_device;
+		VkPhysicalDeviceFeatures physicalDeviceFeatures = m_physicalDevice.GetPhysicalDeviceFeatures();
+		std::vector<const char*> deviceLayers = layers;
 
-		QueueFamilyIndices indices = m_physicalDevice->GetQueueFamilyIndices();
+		QueueFamilyIndices indices = m_physicalDevice.GetQueueFamilyIndices();
 
 		std::vector<VkDeviceQueueCreateInfo> queueCreateInfos = std::vector<VkDeviceQueueCreateInfo>();
 		float priority = 1.0f;
@@ -16,10 +17,10 @@ namespace letc { namespace graphics {
 
 		std::vector<const char*> extensions = desiredDeviceExtensions;
 
-		VkDeviceCreateInfo createInfo = initializers::DeviceCreateInfo(queueCreateInfos, m_physicalDevice->GetPhysicalDeviceFeatures(), layers, extensions);
+		VkDeviceCreateInfo createInfo = initializers::DeviceCreateInfo(queueCreateInfos, physicalDeviceFeatures, deviceLayers, extensions);
 		
 		//Logical Device
-		if (vkCreateDevice(m_physicalDevice->GetPhysicalDevice(), &createInfo, nullptr, &m_device) != VK_SUCCESS) {
+		if (vkCreateDevice(m_physicalDevice.GetThisPhysicalDevice(), &createInfo, nullptr, &m_device) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create logical device!");
 		}
 
@@ -28,7 +29,7 @@ namespace letc { namespace graphics {
 		//vkGetDeviceQueue(m_device, indices.present_indices, 0, &m_presentQueue);
 	
 		// Command Pool
-		VkCommandPoolCreateInfo computePoolInfo = initializers::CommandPoolCreateInfo(m_physicalDevice->GetQueueFamilyIndices().graphics_indices);
+		VkCommandPoolCreateInfo computePoolInfo = initializers::CommandPoolCreateInfo(m_physicalDevice.GetQueueFamilyIndices().graphics_indices);
 
 		VkResult result = vkCreateCommandPool(
 			m_device,
