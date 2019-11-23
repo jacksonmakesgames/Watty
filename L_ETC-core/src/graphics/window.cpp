@@ -58,8 +58,11 @@ namespace letc {namespace graphics {
 		graphics::Texture::clean();
 	}
 
+	// TODO: NOT SURE, asks nvidia to use dedicate gpu
+	extern "C" {
+		_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+	}
 	bool Window::init() {
-		// enable optimus!
 
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
