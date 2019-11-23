@@ -19,14 +19,15 @@ namespace letc {namespace graphics {
 		float tid;
 		unsigned int color;
 
-
 	};
 
 	class Renderable2D{
+	public:
+		math::Vector3& position;
+		math::Vector2& size;
 	protected:
 		math::Vector2 m_size;
 		math::Vector3 m_position;
-		// WE SHOULD MAKE A PUBLIC POSITION REFERENCE 
 		unsigned int m_color;
 		std::vector<math::Vector2> m_UVs;
 		Texture* m_texture; 
@@ -34,7 +35,7 @@ namespace letc {namespace graphics {
 		std::vector<Renderable2D*> m_childrenRenderables = std::vector<Renderable2D*>();
 
 	protected:
-		Renderable2D() {
+		Renderable2D() : position(m_position), size(m_size) {
 			setUVDefaults();
 			m_texture = nullptr;
 		}
@@ -43,9 +44,11 @@ namespace letc {namespace graphics {
 
 	public:
 		Renderable2D(math::Vector3 position, math::Vector2 size, unsigned int color)
-		: m_position(position), m_size(size), m_color(color){
+		: m_position(position), m_size(size), m_color(color), position(m_position), size(m_size) {
 			setUVDefaults();
 			m_texture = nullptr;
+			m_size = size;
+			m_position = position;
 		}
 
 		virtual ~Renderable2D() {

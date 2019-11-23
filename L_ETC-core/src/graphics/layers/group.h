@@ -1,19 +1,21 @@
 #pragma once
 #include "../renderable2d.h"
+#include "../../GameObject.h"
 
-namespace letc {namespace graphics {
-	class Group : public Renderable2D {
+namespace letc {
+	class Group : public GameObject {
 	private:
 		math::Matrix4 m_transformationMatrix;
 	public:
 		Group(const math::Matrix4& transform);
 		~Group();
-		void add(Renderable2D* renderable);
-		void submit(Renderer2D* renderer)const  override;
-		std::vector<Renderable2D*> m_childrenRenderables;
+		void add(GameObject* gameObject);
+		void submit(graphics::Renderer2D* renderer) const override;
 
-		const std::vector<Renderable2D*>& getChildren() const override  {
-			return m_childrenRenderables;
-		}
+		void update() override;
+
+		std::vector<GameObject*> m_childrenGameObjects;
+		inline const std::vector<GameObject*>& getChildren()const { return m_childrenGameObjects; }
+
 	};
-}}
+}

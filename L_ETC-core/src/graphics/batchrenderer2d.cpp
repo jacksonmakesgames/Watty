@@ -72,8 +72,20 @@ namespace letc {namespace graphics {
 		const GLuint tid = renderable->getTID();
 		float glTID = (float)tid;
 
-		if(glTID>0)
-			m_glTIDsThisFlush.push_back(glTID);
+		if (glTID > 0) {
+			bool found = false;
+			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
+			{
+				if (m_glTIDsThisFlush[i] == glTID) {
+					found = true;
+				}
+			}
+			if (!found) {
+
+				m_glTIDsThisFlush.push_back(glTID);
+			}
+		
+		}
 		if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
 			end();
 			flush();
@@ -106,6 +118,8 @@ namespace letc {namespace graphics {
 		m_currentBuffer++;
 
 		m_indexCount += 6;
+
+
 	}
 
 	void BatchRenderer2D::drawString(const std::string& text, const math::Vector3& position, const Font& font, unsigned int color){
@@ -115,9 +129,21 @@ namespace letc {namespace graphics {
 		const GLuint tid = font.getTexID();
 		float glTID = (float)tid;
 
-		if (glTID > 0)
-			m_glTIDsThisFlush.push_back(glTID);
+		if (glTID > 0) {
+			if (glTID > 0) {
+				bool found = false;
+				for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
+				{
+					if (m_glTIDsThisFlush[i] == glTID) {
+						found = true;
+					}
+				}
+				if (!found) {
 
+					m_glTIDsThisFlush.push_back(glTID);
+				}
+			}
+		}
 		if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
 			end();
 			flush();
@@ -187,7 +213,7 @@ namespace letc {namespace graphics {
 
 	void BatchRenderer2D::flush(){
 		//bind all the textures
-		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
+	/*	for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
 			float thisGlTID = m_glTIDsThisFlush[glIndex];
 			if (thisGlTID == 0) {
 				continue;
@@ -195,26 +221,27 @@ namespace letc {namespace graphics {
 			glActiveTexture(GL_TEXTURE0 + glIndex);
 			glBindTexture(GL_TEXTURE_2D, thisGlTID);
 
-		}
+		}*/
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
 		
-		
+	/*	
 		for (size_t glIndex = 0; glIndex < RENDERER_TEXTURES_PER_DRAW; glIndex++) {
 			glActiveTexture(GL_TEXTURE0 + glIndex);
 			glBindTexture(GL_TEXTURE_2D, NULL);
 
-		}
+		}*/
 		
-		
+		//
+	
 		m_indexCount = 0;
 
 
-
 		m_glTIDsThisFlush.clear();
+
 	}
 
 

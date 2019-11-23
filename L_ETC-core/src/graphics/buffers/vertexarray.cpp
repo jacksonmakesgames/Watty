@@ -19,8 +19,6 @@ namespace letc {namespace graphics {
 		glEnableVertexAttribArray(index);
 		glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, GL_FALSE, 0,0);
 
-
-
 		buffer->unbind();
 		unbind();
 

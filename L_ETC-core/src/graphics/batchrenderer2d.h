@@ -6,6 +6,11 @@
 #include "renderer2d.h"
 #include "renderable2d.h"
 
+#include <imgui/imgui.h>
+#include <sstream>
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
 #define RENDERER_MAX_SPRITES		60000
 #define RENDERER_VERTEX_SIZE		sizeof(VertexData)
 #define RENDERER_SPRITE_SIZE		RENDERER_VERTEX_SIZE * 4
@@ -27,6 +32,8 @@ namespace letc {namespace graphics {
 		GLsizei m_indexCount;
 		VertexData* m_currentBuffer;
 		std::vector<float> m_glTIDsThisFlush;
+
+		std::vector<const Texture*> m_textures;
 
 	public:
 		BatchRenderer2D();

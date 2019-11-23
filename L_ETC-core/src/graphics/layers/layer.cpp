@@ -1,6 +1,6 @@
 #include "layer.h"
-namespace letc {namespace graphics {
-	Layer::Layer(Renderer2D* renderer, Shader* shader, math::Matrix4 prMatrix) {
+namespace letc {
+	Layer::Layer(graphics::Renderer2D* renderer, graphics::Shader* shader, math::Matrix4 prMatrix) {
 		m_shader = shader;
 		m_prMatrix = prMatrix;
 		m_renderer = renderer;
@@ -13,29 +13,29 @@ namespace letc {namespace graphics {
 	Layer::~Layer() {
 		delete m_shader;
 		delete m_renderer;
-		for (size_t i = 0; i < m_renderables.size(); i++){
-			delete m_renderables[i];
+		for (size_t i = 0; i < m_gameObjects.size(); i++){
+			delete m_gameObjects[i];
 		}
 	}
 
-	void Layer::add(Renderable2D* renderable) {
-		
-		m_renderables.push_back(renderable);
+	void Layer::add(GameObject* gameObject) {
+		m_gameObjects.push_back(gameObject);
 	}
 
 	void Layer::add(Group* group)
 	{
-		
-		m_renderables.push_back(group);
-
+		m_gameObjects.push_back(group);
 	}
 
 	void Layer::draw(){
 		m_shader->enable();
 		m_renderer->begin();
-		
-		for (const Renderable2D* renderable : m_renderables){
-			renderable->submit(m_renderer);
+
+
+		for (GameObject* gameObject : m_gameObjects){
+			gameObject->update();
+			gameObject->submit(m_renderer);
+			
 		}
 
 
@@ -47,4 +47,4 @@ namespace letc {namespace graphics {
 	}
 	
 
-}}
+}

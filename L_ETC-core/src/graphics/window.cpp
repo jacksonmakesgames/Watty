@@ -26,9 +26,32 @@ namespace letc {namespace graphics {
 			m_buttonsLastFrame[i]		=	 false;
 			m_buttonsDown[i]			=	 false;
 		}
+
+		// imgui:
+		 // Setup Dear ImGui context
+		IMGUI_CHECKVERSION();
+		const char* glsl_version = "#version 150";
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+		// Setup Dear ImGui style
+		ImGui::StyleColorsLight();
+		//ImGui::StyleColorsClassic();
+
+		// Setup Platform/Renderer bindings
+		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+		ImGui_ImplOpenGL3_Init(glsl_version); // we might need this
+
+
 	}	
 
 	Window::~Window() {
+
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
 		glfwTerminate();
 		FontManager::clean();
 		audio::AudioManager::clean();
@@ -36,12 +59,18 @@ namespace letc {namespace graphics {
 	}
 
 	bool Window::init() {
+		// enable optimus!
+
+
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 		if (!glfwInit()){
 			std::cout << "Failed to initialize GLFW" << std::endl;
 			return false;
 		}
 
-		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
 #if 0 // fullscreen
 		m_Width = 1920;
@@ -82,6 +111,9 @@ namespace letc {namespace graphics {
 			glDebugMessageCallback(openglCallbackFunction, nullptr);
 			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 		}
+
+		glClearColor(0, 0, 0, 1);
+
 
 		// choose how textures render on top of one another
 		glEnable(GL_BLEND);
@@ -146,11 +178,15 @@ namespace letc {namespace graphics {
 		}
 		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool)*MAX_BUTTONS);
 
+	
+
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 
 		//audio:
 		audio::AudioManager::update(); // TODO: TEST PERMORMANCE
+
+
 	}
 
 	bool Window::closed() const {

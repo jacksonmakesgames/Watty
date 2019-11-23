@@ -57,7 +57,7 @@ namespace letc {namespace graphics {
 		texture_font_load_glyphs(m_FTFont, characters);
 		
 
-		 m_texture = m_texture->regenerate(m_texture->getID(), m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);
+		 m_texture = m_texture->regenerate( m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);
 
 	}
 

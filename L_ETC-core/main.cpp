@@ -10,16 +10,24 @@
 #include "src/graphics/batchrenderer2d.h"
 #include "src/graphics/sprite.h"
 #include "src/graphics/layers/layer.h"
+#include "src/graphics/layers/GUILayer.h"
 #include "src/graphics/layers/group.h"
 #include "src/graphics/texture.h"
 #include "src/graphics/font/label.h"
 #include "src/graphics/font/fontmanager.h"
 #include "src/utils/timer.h"
+//#include "src/GameObject.h"
 
 #include <vector>
 #include <stdio.h>
 #include <time.h>
 
+#include <imgui/imgui.h>
+#include "src/graphics/imgui/imgui_impl_glfw.h"
+#include "src/graphics/imgui/imgui_impl_opengl3.h"
+
+
+ImVec4 m_clearColor = ImVec4(0, 0, 0, 1.00f);
 
 #define LOG(x) std::cout << x << std::endl;
 
@@ -41,10 +49,11 @@ int main() {
 	using namespace math;
 	using namespace audio;
 	Window window("This little engine could", 1280, 720);
-	//glClearColor(1.0f,1.0f,1.0f,1.0f);
-	//glClearColor(.5,.5,.5,1.0f);
-
+	Vector2 fontScale = Vector2(window.getWidth() / 32.0f, window.getHeight() / 18.0f);
 	math::Matrix4 ortho = math::Matrix4::orthographic(-16,16,-9,9,-10,10);
+
+	Shader* guiShader = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
+	GUILayer guiLayer(guiShader, ortho);
 
 	Shader* shader0 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
 	Layer layer0(new BatchRenderer2D(), shader0, ortho);
@@ -98,25 +107,32 @@ int main() {
 
 #else
 
+	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 10, fontScale)); // breaks
+
 	//test textures
-	Texture* texture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/test2.png");
-	layer0.add(new Sprite(-6, 0, 4, 4, texture));
+	//Texture* texture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/test2.png");
+	//layer0.add(new Sprite(-6, 0, 4, 4, texture));
 	Texture* texture2 = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/Alien.png");
-	layer0.add(new Sprite(2, 0, 4, 4, texture2));
+	GameObject* alien = new GameObject(
+							Vector3(-2,-2,0),
+							Vector2(4,4), 
+							new Sprite(texture2));
+	layer0.add(alien);
 	
 #endif
-	Vector2 fontScale = Vector2(window.getWidth() / 32.0f, window.getHeight() / 18.0f);
 	//draw fps label
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 16, fontScale));
 	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 14, fontScale));
-	FontManager::add(new Font("Roboto", "Fonts/Roboto-Italic.ttf", 13, fontScale));
-
+	
 	Group* fpsGroup = new Group(Matrix4::translation(Vector3(-15.5,7.5,0)));
-	fpsGroup->add(new Sprite(0, 0, 2.8f, 1, 0x80808080));
+	fpsGroup->add(new GameObject(Vector3(0, 0, 0), Vector2(2.8f, 1), new Sprite(0x80808080))); // background
+	
 	Label* mspf = new Label("", .3f, .55f, "Roboto", 16, WHITE);
+	fpsGroup->add(new GameObject(Vector3(.3f,.55f,0.0f), mspf));
+	
 	Label* fps = new Label("", .3f, .15f, "Roboto", 14, WHITE);
-	fpsGroup->add(mspf);
-	fpsGroup->add(fps);
+	fpsGroup->add(new GameObject(Vector3(.3f, .15f, 0), fps));
+
 	layer0.add(fpsGroup);
 
 
@@ -194,8 +210,15 @@ int main() {
 		layer3.draw();
 		layer4.draw();
 #endif
+		
+
+
+		alien->position.x = (16*sin(t)) - 2.0f;
+		alien->position.y = cos(t);
 
 		layer0.draw();
+		guiLayer.draw();
+
 		window.update();
 		
 #ifdef __SOUND

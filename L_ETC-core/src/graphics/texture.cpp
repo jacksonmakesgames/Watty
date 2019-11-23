@@ -3,7 +3,7 @@
 
 namespace letc {namespace graphics {
 	std::vector<const Texture*> Texture::allTextures;
-
+	unsigned int Texture::currentActiveTexture = 0;
 
 	std::vector<const Texture*> Texture::getAllTextures()
 	{
@@ -40,15 +40,24 @@ namespace letc {namespace graphics {
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_width, m_height,
 			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
-		glBindTexture(GL_TEXTURE_2D, NULL);
+		//glBindTexture(GL_TEXTURE_2D, NULL);
 		addGlobalTexture(this);
+
+		currentActiveTexture = m_TID + 1;
+		glActiveTexture(GL_TEXTURE0 + currentActiveTexture);
+		glBindTexture(GL_TEXTURE_2D, currentActiveTexture);
 	}
 
-	Texture* Texture::regenerate(unsigned int id, unsigned int width, unsigned int height, const void* data){
+	Texture* Texture::regenerate( unsigned int width, unsigned int height, const void* data){
 		m_width = width;
 		m_height = height;
+		unsigned int originalActiveTexture = currentActiveTexture;
+
 		// remake GL texture
-		glBindTexture(GL_TEXTURE_2D, id);
+		glActiveTexture(GL_TEXTURE0 + m_TID);
+		currentActiveTexture = m_TID;
+
+		glBindTexture(GL_TEXTURE_2D, m_TID);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -56,9 +65,12 @@ namespace letc {namespace graphics {
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_width, m_height,
 			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
-		glBindTexture(GL_TEXTURE_2D, NULL);
 		addGlobalTexture(this);
 
+		currentActiveTexture = originalActiveTexture;
+		glActiveTexture(GL_TEXTURE0 + currentActiveTexture);
+		glBindTexture(GL_TEXTURE_2D, currentActiveTexture);
+	
 		return this;
 
 	}
@@ -73,7 +85,19 @@ namespace letc {namespace graphics {
 
 	}
 
+	void Texture::bind(unsigned int glActiveTID) const{
+		glActiveTexture(GL_TEXTURE0 + glActiveTID);
+		glBindTexture(GL_TEXTURE_2D, m_TID);
+	
+	}
 
+	void Texture::unbind(unsigned int glActiveTID) const {
+		glActiveTexture(GL_TEXTURE0 + glActiveTID);
+		currentActiveTexture = glActiveTID;
+
+		glBindTexture(GL_TEXTURE_2D, NULL);
+
+	}
 
 	GLuint Texture::load(){
 		BYTE* pixels = load_image(m_filename.c_str(), &m_width, &m_height);
@@ -82,6 +106,8 @@ namespace letc {namespace graphics {
 			std::cout << "Error loading texture: " << m_filename << std::endl;
 			return 0;
 		}
+
+
 
 		GLuint output;
 		glGenTextures(1, &output); // generate unique glTID
@@ -93,7 +119,11 @@ namespace letc {namespace graphics {
 	
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
 
-		glBindTexture(GL_TEXTURE_2D, 0);
+		//glBindTexture(GL_TEXTURE_2D, 0);
+
+		currentActiveTexture = output + 1;
+		glActiveTexture(GL_TEXTURE0 +currentActiveTexture);
+		glBindTexture(GL_TEXTURE_2D, currentActiveTexture);
 
 		//TODO delete pixels
 		delete[] pixels;

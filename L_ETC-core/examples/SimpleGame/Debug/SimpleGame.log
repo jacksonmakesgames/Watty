@@ -1,1 +1,15 @@
-﻿  SimpleGame.vcxproj -> J:\OneDrive\Projects\Game_Development\L_ETC\Debug\SimpleGame.exe
+﻿  simplegame.cpp
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\math\math_functions.h(8,19): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(63,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(64,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(65,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\graphics\renderable2d.h(66,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\utils\timer.h(20,24): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\src\letc.h(69,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(29,94): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(29,66): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(55,1): warning C4305: 'argument': truncation from 'double' to 'const float'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(56,1): warning C4305: 'argument': truncation from 'double' to 'const float'
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(75,80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+J:\OneDrive\Projects\Game_Development\L_ETC\L_ETC-core\examples\SimpleGame\src\simplegame.cpp(75,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SimpleGame.vcxproj -> J:\OneDrive\Projects\Game_Development\L_ETC\Debug\SimpleGame.exe

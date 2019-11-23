@@ -8,6 +8,7 @@
 #include "graphics/batchrenderer2d.h"
 #include "graphics/shader.h"
 #include "graphics/layers/layer.h"
+#include "graphics/layers/GUILayer.h"
 
 #include "utils/timer.h"
 

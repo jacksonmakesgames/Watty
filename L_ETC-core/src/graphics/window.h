@@ -3,8 +3,15 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <imgui/imgui.h>
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
 #include "font/fontmanager.h"
 #include "../audio/audiomanager.h"
+
+#include "../math/vector4.h"
+
 
 namespace letc {namespace graphics {
 #define MAX_KEYS 1024
@@ -18,6 +25,7 @@ namespace letc {namespace graphics {
 		int m_Width, m_Height;
 		GLFWwindow *m_Window;
 		bool m_Closed;
+
 
 		bool m_keysThisFrame[MAX_KEYS];
 		bool m_keysLastFrame[MAX_KEYS];

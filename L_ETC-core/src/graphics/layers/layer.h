@@ -2,26 +2,27 @@
 #include "../renderer2d.h"
 #include "group.h"
 #include "../shader.h"
+#include "../../GameObject.h"
 #include <vector>
 
-namespace letc { namespace graphics{ 
+namespace letc {
 	class Layer {
 	protected:
-		Renderer2D* m_renderer;
-		std::vector<Renderable2D*> m_renderables;
-		Shader* m_shader;
+		graphics::Renderer2D* m_renderer;
+		std::vector<GameObject*> m_gameObjects;
+		graphics::Shader* m_shader;
 		math::Matrix4 m_prMatrix;
 	public:
-		Layer(Renderer2D*, Shader* shader, math::Matrix4 prMatrix);
+		Layer(graphics::Renderer2D*, graphics::Shader* shader, math::Matrix4 prMatrix);
 		virtual ~Layer();
 
-		virtual void add(Renderable2D*	renderable);
+		virtual void add(GameObject*	gameObject);
 		virtual void add(Group*			group);
 		
 		virtual void draw();
 
-		inline const std::vector<Renderable2D*>& getRenderables() const { return m_renderables; }
+		inline const std::vector<GameObject*>& getGameObjects() const { return m_gameObjects; }
 
 	};
 
-}}
+}

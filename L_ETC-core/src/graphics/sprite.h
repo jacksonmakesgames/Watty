@@ -7,5 +7,7 @@ namespace letc {namespace graphics {
 	public:
 		Sprite(float x, float y, float width, float height, const unsigned int color);
 		Sprite(float x, float y, float width, float height, Texture* texture);
+		Sprite(Texture* texture);
+		Sprite(unsigned int color);
 	};
 }}

@@ -13,7 +13,6 @@ namespace letc {namespace graphics {
 			texIDs[i] = i;
 		enable();
 		setUniform1iv("textures", texIDs, 32);
-
 	}
 
 	Shader::~Shader(){

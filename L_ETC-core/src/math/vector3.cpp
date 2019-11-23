@@ -1,5 +1,9 @@
 #include "Vector3.h"
 namespace letc {namespace math {
+	Vector3 Vector3::One()
+	{
+		return Vector3(1,1,1);
+	}
 	math::Vector3::Vector3(){
 		x = 0.0f;
 		y = 0.0f;
@@ -29,6 +33,21 @@ namespace letc {namespace math {
 		x *= other.x;
 		y *= other.y;
 		z *= other.z;
+		return *this;
+	}
+
+	Vector3& Vector3::multiply(const float& other)
+	{
+		x *= other;
+		y *= other;
+		z *= other;
+		return *this;
+	}
+	Vector3& Vector3::divide(const float& other)
+	{
+		x /= other;
+		y /= other;
+		z /= other;
 		return *this;
 	}
 
@@ -74,6 +93,14 @@ namespace letc {namespace math {
 	Vector3 operator*(Vector3 left, const Vector3& right){
 		return left.multiply(right);
 		
+	}
+	Vector3 operator*(Vector3 left, const float& right)
+	{
+		return left.multiply(right);
+	}
+	Vector3 operator/(Vector3 left, const float& right)
+	{
+		return left.divide(right);
 	}
 	Vector3 operator/(Vector3 left, const Vector3& right){
 		return left.divide(right);
