@@ -33,7 +33,8 @@ namespace letc {namespace graphics {
 
 	void FontManager::clean() {
 		for (size_t i = 0; i < m_fonts.size(); i++){
-			delete m_fonts[i];
+			
+			m_fonts[i];
 		}
 	}
 

@@ -12,9 +12,13 @@
 
 #include "utils/timer.h"
 
+#define LETC_UPDATE_RATE 144.0f
 namespace letc {
 	class LETC {
-	
+	public:
+		Timer* gameTimer;
+		std::vector<Layer*> layers;
+
 	private:
 		graphics::Window* m_window;
 		Timer* m_time;
@@ -28,7 +32,8 @@ namespace letc {
 		}
 
 	protected:
-		LETC() {
+		LETC(){
+			gameTimer = new Timer();
 			m_framesPerSecond  =	0;
 			m_updatesPerSecond =	0;
 			m_msPerFrame =	0;
@@ -37,6 +42,8 @@ namespace letc {
 		virtual ~LETC() {
 			delete m_window;
 			delete m_time;
+			for (size_t i = 0; i < layers.size(); i++)
+				delete layers[i];
 		}
 
 		graphics::Window* createWindow(const char* title, int width, int height) {
@@ -52,10 +59,20 @@ namespace letc {
 		virtual void tick() {}
 
 		// runs 60 times per second
-		virtual void update() {}
+		virtual void update() {
+			gameTimer->update();
+			for (size_t i = 0; i < layers.size(); i++)
+			{
+				layers[i]->update();
+			}
+		}
 
 		// runs as fast as possible (unless vsync is enabled, then it runs at refresh rate)
-		virtual void render() = 0;
+		virtual void render() {
+			for (size_t i = 0; i < layers.size(); i++){
+				layers[i]->draw();
+			}
+		}
 
 		const unsigned int getFramesPerSecond()  const  { return m_framesPerSecond;  }
 		const unsigned int getUpdatesPerSecond() const  { return m_updatesPerSecond; }
@@ -66,7 +83,7 @@ private:
 		m_time = new Timer();
 		float timer = 0.0f;
 		float updateTimer = 0.0f;
-		float updateTick = 1.0 / 60.0f;
+		float updateTick = 1.0 / LETC_UPDATE_RATE;
 		unsigned int frames = 0;
 		unsigned int updates = 0;
 		while (!m_window->closed()) {

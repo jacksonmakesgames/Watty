@@ -27,7 +27,6 @@
 #include "src/graphics/imgui/imgui_impl_opengl3.h"
 
 
-ImVec4 m_clearColor = ImVec4(0, 0, 0, 1.00f);
 
 #define LOG(x) std::cout << x << std::endl;
 
@@ -112,6 +111,9 @@ int main() {
 	//test textures
 	//Texture* texture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/test2.png");
 	//layer0.add(new Sprite(-6, 0, 4, 4, texture));
+	Texture* alienTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/alien.png");
+
+
 	Texture* texture2 = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/Alien.png");
 	GameObject* alien = new GameObject(
 							Vector3(-2,-2,0),
@@ -160,8 +162,7 @@ int main() {
 		window.clear();
 		double x, y;
 		window.getMousePos(x, y);
-
-		if (window.keyPressed(GLFW_KEY_SPACE)) {
+		if (window.keyWasPressed(GLFW_KEY_SPACE)) {
 			time.reset();
 			t = 0.0f;
 		};
@@ -213,32 +214,33 @@ int main() {
 		
 
 
-		alien->position.x = (16*sin(t)) - 2.0f;
-		alien->position.y = cos(t);
+		alien->position.x = (16*sin(time.elapsed())) - 2.0f;
+		alien->position.y = cos(time.elapsed());
 
 		layer0.draw();
+		layer0.update();
 		guiLayer.draw();
 
 		window.update();
 		
 #ifdef __SOUND
-		if (window.keyPressed(GLFW_KEY_LEFT)) {
+		if (window.keyIsDown(GLFW_KEY_LEFT)) {
 			gain -= 0.005f;
 			AudioManager::getClip("sci_fi")->setGain(gain);
 
 		}
-		else if (window.keyPressed(GLFW_KEY_RIGHT)) {
+		else if (window.keyIsDown(GLFW_KEY_RIGHT)) {
 			gain += 0.005f;
 			AudioManager::getClip("sci_fi")->setGain(gain);
 		}
-		else if (window.keyDown(GLFW_KEY_P)) {
+		else if (window.keyWasPressed(GLFW_KEY_P)) {
 			AudioManager::getClip("sci_fi")->pause();
 		}
-		else if (window.keyDown(GLFW_KEY_R)) {
+		else if (window.keyWasPressed(GLFW_KEY_R)) {
 			AudioManager::getClip("sci_fi")->resume();
 			AudioManager::getClip("sci_fi")->setGain(gain);
 		}
-		else if (window.keyDown(GLFW_KEY_S)) {
+		else if (window.keyWasPressed(GLFW_KEY_S)) {
 			AudioManager::getClip("sci_fi")->stop();
 		}
 
@@ -257,6 +259,8 @@ int main() {
 	/********************************************************************************************************************
 	*********GAME LOOP***************************************************************************************************
 	*********************************************************************************************************************/
+
+	
 
 	return 0;
 }

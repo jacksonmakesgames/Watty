@@ -33,7 +33,6 @@ namespace letc {
 
 
 		for (GameObject* gameObject : m_gameObjects){
-			gameObject->update();
 			gameObject->submit(m_renderer);
 			
 		}
@@ -44,6 +43,13 @@ namespace letc {
 
 		m_renderer->nextFrame();
 		
+	}
+
+	void Layer::update(){
+		for (GameObject* gameObject : m_gameObjects) {
+				gameObject->update();
+			}
+
 	}
 	
 

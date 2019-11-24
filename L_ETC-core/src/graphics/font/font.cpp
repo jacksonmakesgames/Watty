@@ -37,6 +37,12 @@ namespace letc {namespace graphics {
 		makeOpenGLTextureAtlas();
 
 	}
+	Font::~Font()
+	{
+		
+		texture_atlas_delete(m_FTAtlas);
+		texture_font_delete(m_FTFont);
+	}
 	void Font::makeOpenGLTextureAtlas(){
 		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
 

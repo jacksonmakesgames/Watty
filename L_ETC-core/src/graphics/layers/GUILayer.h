@@ -7,11 +7,12 @@
 
 namespace letc { namespace graphics {
 	class GUILayer : public Layer {
+	ImVec4 m_clearColor = ImVec4(0, 0, 0, 1.00f);
+
 	public: 
 		GUILayer(graphics::Shader* shader, math::Matrix4 prMatrix);
 
 		void draw() override;
-
 
 	};
 

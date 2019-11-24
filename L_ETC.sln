@@ -8,6 +8,9 @@ EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LETC_Installer", "Setup\Setup.vdproj", "{9E01B040-0B9D-42C3-BED1-A43781E159AA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleGame", "L_ETC-core\examples\SimpleGame\SimpleGame.vcxproj", "{E94A4790-C0C8-4E86-88C7-545B99823CF5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9FDBC8C8-173B-46EB-A1B5-36EFC39A6041} = {9FDBC8C8-173B-46EB-A1B5-36EFC39A6041}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

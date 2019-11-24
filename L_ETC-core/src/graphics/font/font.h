@@ -38,5 +38,6 @@ namespace letc {namespace graphics {
 		inline ftgl::texture_font_t* getFTFont() const { return m_FTFont; }
 		inline ftgl::texture_atlas_t* getFTAtlas() const { return m_FTAtlas; }
 		inline Texture* getTexture() const { return m_texture; }
+		~Font();
 	};
 }}

@@ -25,6 +25,7 @@ namespace letc {namespace graphics {
 		int m_Width, m_Height;
 		GLFWwindow *m_Window;
 		bool m_Closed;
+		bool m_useVSync = false;
 
 
 		bool m_keysThisFrame[MAX_KEYS];
@@ -45,12 +46,13 @@ namespace letc {namespace graphics {
 		inline int getWidth() const { return Window::m_Width; };
 		inline int getHeight() const { return Window::m_Height; };
 
-		bool keyDown(unsigned int keycode) const;
-		bool keyPressed(unsigned int keycode) const;
-		bool mouseButtonDown(unsigned int button) const;
-		bool mouseButtonPressed(unsigned int button) const;
+		bool keyWasPressed(unsigned int keycode) const;
+		bool keyIsDown(unsigned int keycode) const;
+		bool mouseButtonWasPressed(unsigned int button) const;
+		bool mouseButtonIsDown(unsigned int button) const;
 		void getMousePos(double& x, double& y) const;
-
+		void toggleVSync();
+		void setVSync(bool state);
 
 		
 	private:

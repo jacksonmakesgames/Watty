@@ -59,9 +59,10 @@ namespace letc {namespace graphics {
 	}
 
 	// TODO: NOT SURE, asks nvidia to use dedicate gpu
-	extern "C" {
+	/*extern "C" {
 		_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
-	}
+	}*/
+
 	bool Window::init() {
 
 
@@ -96,7 +97,7 @@ namespace letc {namespace graphics {
 		glfwSetKeyCallback(m_Window, key_callback);
 		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
-		glfwSwapInterval(0);
+		glfwSwapInterval(m_useVSync);
 
 
 		if (glewInit() != GLEW_OK) {
@@ -129,14 +130,14 @@ namespace letc {namespace graphics {
 
 	}
 
-	bool Window::keyPressed(unsigned int keycode) const {
+	bool Window::keyIsDown(unsigned int keycode) const {
 		if (keycode >= MAX_KEYS) {
 		// TODO: log an error
 			return false;
 		}
 		return m_keysThisFrame[keycode];
 	}
-	bool Window::keyDown(unsigned int keycode) const {
+	bool Window::keyWasPressed(unsigned int keycode) const {
 		if (keycode >= MAX_KEYS) {
 		// TODO: log an error
 			return false;
@@ -144,14 +145,14 @@ namespace letc {namespace graphics {
 		return m_keysDown[keycode];
 	}
 
-	bool Window::mouseButtonDown(unsigned int button) const {
+	bool Window::mouseButtonWasPressed(unsigned int button) const {
 		if (button >= MAX_BUTTONS) {
 		// TODO: log an error
 			return false;
 		}
 		return m_buttonsDown[button];
 	}
-	bool Window::mouseButtonPressed(unsigned int button) const {
+	bool Window::mouseButtonIsDown(unsigned int button) const {
 		if (button >= MAX_BUTTONS) {
 		// TODO: log an error
 			return false;
@@ -220,6 +221,17 @@ namespace letc {namespace graphics {
 		win->mx = xpos;
 		win->my = ypos;
 
+	}
+
+	void Window::toggleVSync()
+	{
+		m_useVSync = !m_useVSync;
+		glfwSwapInterval(m_useVSync);
+	}
+	void Window::setVSync(bool state)
+	{
+		m_useVSync = state;
+		glfwSwapInterval(m_useVSync);
 	}
 
 	static void GLAPIENTRY openglCallbackFunction(GLenum source,

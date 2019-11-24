@@ -2,9 +2,11 @@
 
 namespace letc {
 	class Timer {
+	public:
+		double delta;
 	private:
 		double m_startTime;
-
+		double m_last = 0;
 	public:
 		Timer() {
 			m_startTime = glfwGetTime();
@@ -20,5 +22,10 @@ namespace letc {
 			return (currentTime - m_startTime);
 		}
 
+		void update() {
+			delta = elapsed() - m_last;
+			m_last = elapsed();
+		}
+		
 	};
 }

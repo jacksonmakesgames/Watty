@@ -20,6 +20,7 @@ namespace letc {
 		virtual void add(Group*			group);
 		
 		virtual void draw();
+		virtual void update();
 
 		inline const std::vector<GameObject*>& getGameObjects() const { return m_gameObjects; }
 
