@@ -1,6 +1,7 @@
 #include "layer.h"
 namespace letc {
-	Layer::Layer(graphics::Renderer2D* renderer, graphics::Shader* shader, math::Matrix4 prMatrix) {
+	Layer::Layer(std::string name, graphics::Renderer2D* renderer, graphics::Shader* shader, math::Matrix4 prMatrix)
+	: name(name){
 		m_shader = shader;
 		m_prMatrix = prMatrix;
 		m_renderer = renderer;
@@ -19,6 +20,8 @@ namespace letc {
 	}
 
 	void Layer::add(GameObject* gameObject) {
+		if (!enabled && gameObject->getPhysicsBody2D() != nullptr)
+			gameObject->getPhysicsBody2D()->disable();
 		m_gameObjects.push_back(gameObject);
 	}
 
@@ -27,7 +30,30 @@ namespace letc {
 		m_gameObjects.push_back(group);
 	}
 
+	void Layer::disable()
+	{
+		for (GameObject* gameObject : m_gameObjects) {
+			if (gameObject->getPhysicsBody2D() != nullptr) {
+				gameObject->getPhysicsBody2D()->disable();
+			}
+
+		}
+		enabled = false;
+	}
+
+	void Layer::enable()
+	{
+		for (GameObject* gameObject : m_gameObjects) {
+			if (gameObject->getPhysicsBody2D() != nullptr) {
+				gameObject->getPhysicsBody2D()->enable();
+			}
+
+		}
+		enabled = true;
+	}
+
 	void Layer::draw(){
+		if (!enabled) return;
 		m_shader->enable();
 		m_renderer->begin();
 
@@ -46,6 +72,12 @@ namespace letc {
 	}
 
 	void Layer::update(){
+		if (!m_enabledLastFrame && enabled)
+			enable();
+		else if (m_enabledLastFrame && !enabled)
+			disable();
+		m_enabledLastFrame = enabled;
+		if (!enabled) return;
 		for (GameObject* gameObject : m_gameObjects) {
 				gameObject->update();
 			}

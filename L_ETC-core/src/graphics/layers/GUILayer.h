@@ -1,4 +1,5 @@
 #pragma once
+#include "../../letc.h"
 #include "layer.h"
 #include "../batchrenderer2d.h"
 #include <imgui/imgui.h>
@@ -7,10 +8,19 @@
 
 namespace letc { namespace graphics {
 	class GUILayer : public Layer {
-	ImVec4 m_clearColor = ImVec4(0, 0, 0, 1.00f);
+		struct SelectableLayer {
+			SelectableLayer(Layer* layer):text(layer->name), layer(layer) {}
+			Layer *layer;
+			std::string text = "";
+			bool IsSelected = false;
+		};
+
+	private:
+		ImVec4 m_clearColor = ImVec4(.976f, .972f, .972f, 1);
+		LETC& m_app;
 
 	public: 
-		GUILayer(graphics::Shader* shader, math::Matrix4 prMatrix);
+		GUILayer(LETC& app, graphics::Shader* shader, math::Matrix4 prMatrix);
 
 		void draw() override;
 

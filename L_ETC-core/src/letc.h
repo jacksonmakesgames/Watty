@@ -14,10 +14,12 @@
 
 #define LETC_UPDATE_RATE 144.0f
 namespace letc {
+
 	class LETC {
 	public:
 		Timer* gameTimer;
 		std::vector<Layer*> layers;
+		bool debugPhysics = false;
 
 	private:
 		graphics::Window* m_window;
@@ -29,6 +31,9 @@ namespace letc {
 		void start() {
 			init();
 			run();
+		}
+
+		void initPhysics() {
 		}
 
 	protected:

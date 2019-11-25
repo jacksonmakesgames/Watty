@@ -51,6 +51,11 @@ namespace letc {namespace math {
 		return *this;
 	}
 
+	Vector2 Vector3::xy()
+	{
+		return Vector2(x, y);
+	}
+
 	Vector3& math::Vector3::divide(const Vector3& other){
 		x /= other.x;
 		y /= other.y;
