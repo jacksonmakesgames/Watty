@@ -1,58 +1,28 @@
 
-#include "src/math/math.h"
-#include "src/math/matrix4.h"
 
-#include "src/graphics/window.h"
-#include "src/graphics/shader.h"
-#include "src/graphics/buffers/indexbuffer.h"
-#include "src/graphics/buffers/vertexarray.h"
-#include "src/graphics/simple2drenderer.h"
-#include "src/graphics/batchrenderer2d.h"
-#include "src/graphics/sprite.h"
-#include "src/graphics/layers/layer.h"
-#include "src/graphics/layers/GridLayer.h"
-#include "src/graphics/layers/GUILayer.h"
-#include "src/graphics/layers/group.h"
-#include "src/graphics/texture.h"
-#include "src/graphics/font/label.h"
-#include "src/graphics/font/fontmanager.h"
-#include "src/utils/timer.h"
-//#include "src/GameObject.h"
+
+#include "src/letc.h"
 #include "ext/Box2D/Box2D.h"
-#include "src/physics/PhysicsWorld2D.h"
-#include "src/physics/DebugPhysics.h"
-
-#include <vector>
-#include <stdio.h>
-#include <time.h>
-
+#include "src/graphics/layers/GUILayer.h"
+#include "src/graphics/layers/GridLayer.h"
+#include "src/physics/QueryAABBCallback.h"
 #include <imgui/imgui.h>
-#include "src/graphics/imgui/imgui_impl_glfw.h"
-#include "src/graphics/imgui/imgui_impl_opengl3.h"
-
-
 
 #define LOG(x) std::cout << x << std::endl;
-
-// NOTE: COLORS ARE ABGR
-#define WHITE 0xFFFFFFFF
-#define BLUE 0xFFFF0000
-#define PINK 0xFFFF80FF
-#define BLACK 0xFF000000
-#define GREY 0xFF808080
-
 //#define __BUTTERFLY 1
 #define __SOUND 1
 
-b2World* letc::physics::PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -10.0f));
 
-letc::physics::DebugPhysics* letc::physics::PhysicsWorld2D::debugDraw = new letc::physics::DebugPhysics();
-
-#include "src/letc.h"
 using namespace letc;
 using namespace graphics;
 using namespace math;
 using namespace audio;
+using namespace physics;
+
+DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
+b2World* letc::physics::PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
+
+
 class SimpleGame : public LETC {
 	private:
 		Window* m_window;
@@ -60,15 +30,18 @@ class SimpleGame : public LETC {
 		Label* fpsLabel;
 		Label* upsLabel;
 		Label* mpsLabel;
-
+		std::vector<GameObject*> boxes;
 		float m_gain = 0.5f;
 
-		float playerSpeed = 5000;
+		float playerSpeed = 70;
 		float playerAcceleration = .9f;
+		float playerJumpForce = 35;
 
 		float time = 0.0f;
 
 		GameObject* player;
+
+		Texture* boxTexture;
 
 	public:
 		SimpleGame() {}
@@ -77,30 +50,29 @@ class SimpleGame : public LETC {
 		}
 
 		void init() override {
-			initPhysics();
-			letc::physics::PhysicsWorld2D::setDebugDraw();
-
 			m_window = createWindow("This little engine could", 1280, 720);
 			m_window->setVSync(true);
 			Vector2 fontScale = Vector2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 			math::Matrix4 ortho = math::Matrix4::orthographic(-16, 16, -9, 9, -10, 10);
+			glClearColor(.6,.6,.6,1);
+			initPhysics();
+			letc::physics::PhysicsWorld2D::setDebugDraw();
 
-			layers.push_back(new GridLayer(new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag"), -16, 16, -9, 9, -10, 10));
+		
 
-			Shader* guiShader = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
-			GUILayer* guiLayer = new GUILayer(*this, guiShader, ortho);
-			layers.push_back(guiLayer);
+			Shader* shader0 = new Shader("src/shaders/basic.vert", "src/shaders/basic_lit.frag");
+			shader0->setUniform3f("light_pos", Vector3(16,16,0));
+			shader0->setUniform1f("light_radius", 250.0f);
+			shader0->setUniform1f("light_intensity", 1.1f);
 
-			Shader* shader0 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
+
 			Layer* layer0 = new Layer("Ball Layer", new BatchRenderer2D(), shader0, ortho);
 			layers.push_back(layer0);
 
-			Shader* shader1 = new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag");
-			Layer* layer1 = new Layer("Layer1", new BatchRenderer2D(), shader1, ortho);
-			layers.push_back(layer1);
-
 			Layer* uiLayer = new Layer("UI Layer", new BatchRenderer2D(), new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag"), math::Matrix4::orthographic(-16, 16, -9, 9, -10, 10));
 			layers.push_back(uiLayer);
+			
+			FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 10, fontScale)); 
 
 #ifdef __BUTTERFLY
 
@@ -147,8 +119,13 @@ class SimpleGame : public LETC {
 
 #else
 
-			FontManager::add(new Font("Roboto", "Fonts/Roboto-Regular.ttf", 10, fontScale)); // breaks
-
+			layer0->add(
+				new GameObject(
+					Vector3(-16, -9, 0),
+					Vector2(32, 18),
+					new Sprite(0xffF5F0F0)
+				)
+			);
 
 			Vector3 playerPos(-2, -2, 0);
 			Vector2 playerSize(2, 2);
@@ -157,40 +134,41 @@ class SimpleGame : public LETC {
 				playerSize,
 				new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/Player.png")));
 
-			player->addComponent(new physics::PhysicsBody2D(
+			player->addComponent(new PhysicsBody2D(
+				physics::BodyShapes::circle,
 				playerPos.x, playerPos.y,
 				playerSize.x, playerSize.y,
-				b2_dynamicBody, 0.6f));
-
+				b2_dynamicBody, 0.6f, 0.5f));
+			player->setTag("Player");
 			layer0->add(player);
 
-			
+			boxTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/box.png");
+			Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/floor.png");
+
+
 			Vector3 floorPos(-16.0f,-9.0f,0);
 			Vector2 floorSize(32, 2);
 			GameObject* floor = new GameObject(floorPos, floorSize);
-			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/floor.png")));
-			floor->addComponent(new physics::PhysicsBody2D(floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
+			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
+			floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floor);
 			
-			Vector3 floorPosL(-18.0f,-9.0f,0);
+			Vector3 floorPosL(-18.0f,-7.0f,0);
 			Vector2 floorSizeL(2, 18);
 			GameObject* floorL = new GameObject(floorPosL, floorSizeL);
-			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/floor.png")));
-			floorL->addComponent(new physics::PhysicsBody2D(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, b2_staticBody));
+			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
+			floorL->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floorL);
 			
-			Vector3 floorPosR(18.0f,-9.0f,0);
+			Vector3 floorPosR(16.0f,-7.0f,0);
 			Vector2 floorSizeR(2, 18);
 			GameObject* floorR = new GameObject(floorPosR, floorSizeR);
-			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/floor.png")));
-			floorR->addComponent(new physics::PhysicsBody2D(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, b2_staticBody));
+			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
+			floorR->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floorR);
-
-			
-
 
 #endif
 			math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
@@ -208,6 +186,8 @@ class SimpleGame : public LETC {
 			profileGroup->add(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
 			profileGroup->add(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
 			uiLayer->add(profileGroup);
+
+
 			
 
 #ifdef __SOUND
@@ -215,8 +195,17 @@ class SimpleGame : public LETC {
 			AudioManager::addClip(clip);
 			AudioManager::getClip("slow_motion")->play(true);
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
-
 #endif
+
+
+			GridLayer* gridLayer = new GridLayer(new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag"), -16, 16, -9, 9, -10, 10);
+			layers.push_back(gridLayer);
+			gridLayer->disable();
+
+			GUILayer* guiLayer = new GUILayer("LETC GUI Layer", *this, new Shader("src/shaders/basic.vert", "src/shaders/basic_unlit.frag"), ortho);
+			layers.push_back(guiLayer);
+			guiLayer->disable();
+
 		}
 
 		void update() override {
@@ -224,11 +213,54 @@ class SimpleGame : public LETC {
 			m_window->getMousePos(x, y);
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
+			//if (!ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
 
-			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT)) {
-				addBox();
-			}
+				if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT)) {
 
+					QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
+					b2AABB* aabb = new b2AABB();
+					aabb->lowerBound = b2Vec2(xScreenMousePos - .01f, yScreenMousePos - .01f);
+					aabb->upperBound = b2Vec2(xScreenMousePos + .01f, yScreenMousePos + .01f);
+
+					PhysicsWorld2D::box2DWorld->QueryAABB(callback, *aabb);
+
+
+					if (!callback->hit)
+						addBox();
+					else {
+						callback->gameObjects[0]->position = Vector3(xScreenMousePos - 1.0f, yScreenMousePos - 1.0f, 0);
+					}
+				}
+				else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT)) {
+					QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
+					b2AABB* aabb = new b2AABB();
+					aabb->lowerBound = b2Vec2(xScreenMousePos - .01f, yScreenMousePos - .01f);
+					aabb->upperBound = b2Vec2(xScreenMousePos + .01f, yScreenMousePos + .01f);
+
+					PhysicsWorld2D::box2DWorld->QueryAABB(callback, *aabb);
+
+					if (callback->hit) {
+						if (callback->gameObjects[0]->getTag() == "Box") {
+							callback->gameObjects[0]->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), callback->gameObjects[0]->getPhysicsBody2D()->getBody()->GetAngle());
+							callback->gameObjects[0]->getPhysicsBody2D()->getBody()->SetAwake(true);
+							callback->gameObjects[0]->getPhysicsBody2D()->setLinearVelocity(Vector2(0.0f, 0.0f));
+						}
+					}
+				}
+				else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT)) {
+
+					QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
+					b2AABB* aabb = new b2AABB();
+					aabb->lowerBound = b2Vec2(xScreenMousePos - .01f, yScreenMousePos - .01f);
+					aabb->upperBound = b2Vec2(xScreenMousePos + .01f, yScreenMousePos + .01f);
+
+					PhysicsWorld2D::box2DWorld->QueryAABB(callback, *aabb);
+					if (callback->hit) {
+						if (callback->gameObjects[0]->getTag() == "Box")
+							getLayerByName("Ball Layer")->remove(callback->gameObjects[0]);
+					}
+				}
+			
 #ifdef __SOUND
 			if (m_window->keyIsDown(GLFW_KEY_LEFT_BRACKET)) {
 				m_gain -= 0.005f;
@@ -290,14 +322,15 @@ class SimpleGame : public LETC {
 			layer4.draw();
 #endif
 			getInput();
-			if(debugPhysics) physics::PhysicsWorld2D::box2DWorld->DrawDebugData();
-			physics::PhysicsWorld2D::step(gameTimer->delta);
+			PhysicsWorld2D::step(gameTimer->delta);
 			LETC::update();
 		}
 
 		void render() override {
 
 			LETC::render();
+			if (debugPhysics) PhysicsWorld2D::box2DWorld->DrawDebugData();
+
 		}
 
 		void tick() override {
@@ -308,15 +341,26 @@ class SimpleGame : public LETC {
 			LETC::tick();
 		}
 
+		void reset() override{
+			for (size_t i = 0; i < boxes.size(); i++)
+			{
+				getLayerByName("Ball Layer")->remove(boxes[i]);
+			}
+		}
+
 		void getInput() {
+			if (m_window->keyWasPressed(GLFW_KEY_GRAVE_ACCENT))
+				getLayerByName("LETC GUI Layer")->enabled = !getLayerByName("LETC GUI Layer")->enabled;
+
+
 			float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 			//float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
 			if (m_window->keyWasPressed(GLFW_KEY_SPACE))
-				player->getPhysicsBody2D()->addForce(Vector2(0,1), 1.0f);
+				player->getPhysicsBody2D()->addImpulse(Vector2(0,1), playerJumpForce);
 
-			player->getPhysicsBody2D()->addForce(Vector2(horizontal, 0), playerAcceleration * playerSpeed * gameTimer->delta);
+			player->getPhysicsBody2D()->addImpulse(Vector2(1, 0), horizontal * playerSpeed * gameTimer->delta);
 			//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
-
+			
 			if (player->position.y < -10.0f) {
 				player->position.y = 10.0f;
 				player->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(0,0), 0.0f);
@@ -326,20 +370,25 @@ class SimpleGame : public LETC {
 		}
 
 		void addBox() {
-			// todo doesn't work
 			double x, y;
 			m_window->getMousePos(x, y);
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
-
-			Vector3 boxPos(x, y, 0);
+			
 			Vector2 boxSize(2, 2);
+			Vector3 boxPos(xScreenMousePos-boxSize.x/2.0f, yScreenMousePos-boxSize.y/2.0f, 0);
 			GameObject* box = new GameObject(boxPos, boxSize);
-			box->addComponent(new Sprite(boxPos.x, boxPos.y, boxSize.x, boxSize.y, new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/floor.png")));
-			box->addComponent(new physics::PhysicsBody2D(boxPos.x, boxPos.y, boxSize.x, boxSize.y, b2_dynamicBody));
-			layers[1]->add(box);
+			box->addComponent(new Sprite(boxPos.x, boxPos.y, boxSize.x, boxSize.y, boxTexture));
+			box->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, boxPos.x, boxPos.y, boxSize.x, boxSize.y, b2_dynamicBody));
+			box->setTag("Box");
+			for (size_t i = 0; i < layers.size(); i++)
+			{
+				if (layers[i]->name == "Ball Layer") {
+					layers[i]->add(box);
+					boxes.push_back(box);
+				}
+			}
 
-		
 		}
 };
 

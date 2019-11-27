@@ -1,16 +1,15 @@
 #include "PhysicsBody2D.h"
-
 namespace letc { namespace physics {
-	//TODO use inv_pixels_per_meter
-	PhysicsBody2D::PhysicsBody2D(float screenX, float screenY, float width, float height, b2BodyType type, float bounciness, float friction)
-		: 
+	PhysicsBody2D::PhysicsBody2D(BodyShapes shape, float xPos, float yPos, float width, float height, b2BodyType type, float bounciness, float friction)
+		:
 		m_bounciness(bounciness),
 		m_friction(friction),
-		m_size((width * PhysicsConstants::inv_pixels_per_meter)/2.0f, (height * PhysicsConstants::inv_pixels_per_meter)/2.0f),
-		m_worldPosition((screenX+width/2) * PhysicsConstants::inv_pixels_per_meter, (screenY +height/2)* PhysicsConstants::inv_pixels_per_meter),
+		m_size((width* PhysicsConstants::inv_pixels_per_meter) / 2.0f, (height* PhysicsConstants::inv_pixels_per_meter) / 2.0f),
+		m_worldPosition((xPos + width / 2)* PhysicsConstants::inv_pixels_per_meter, (yPos + height / 2)* PhysicsConstants::inv_pixels_per_meter),
 		m_bodyType(type),
 		m_bodyDef(),
 		m_polygonShape(),
+		m_circleShape(),
 		m_fixtureDef()
 	{
 		// define body
@@ -19,16 +18,27 @@ namespace letc { namespace physics {
 		// create body in world
 		m_body = PhysicsWorld2D::box2DWorld->CreateBody(&m_bodyDef);
 		// create shape
-		m_polygonShape.SetAsBox(m_size.x, m_size.y);
-		// create fixture
-		m_fixtureDef.shape =&m_polygonShape;
-		m_fixtureDef.density = 1.0f;
-		m_fixtureDef.restitution = m_bounciness;
-		m_fixtureDef.friction = m_friction;
-		// attach shape to body using fixture
-		m_body->CreateFixture(&m_fixtureDef);
-
-
+		if (shape == BodyShapes::box) {
+			m_polygonShape.SetAsBox(m_size.x, m_size.y);
+			m_fixtureDef.shape = &m_polygonShape;
+			// create fixture
+			m_fixtureDef.density = 1.0f;
+			m_fixtureDef.restitution = m_bounciness;
+			m_fixtureDef.friction = m_friction;
+			// attach shape to body using fixture
+			m_body->CreateFixture(&m_fixtureDef);
+		}
+		else if (shape == BodyShapes::circle) {
+			m_circleShape.m_radius = width/2.0f;
+			//m_circleShape.Set(m_size.x, m_size.y);
+			m_fixtureDef.shape = &m_circleShape;
+			// create fixture
+			m_fixtureDef.density = 1.0f;
+			m_fixtureDef.restitution = m_bounciness;
+			m_fixtureDef.friction = m_friction;
+			// attach shape to body using fixture
+			m_body->CreateFixture(&m_fixtureDef);
+		}
 	}
 
 	void PhysicsBody2D::addForce(math::Vector2 direction, float amount)
@@ -36,12 +46,27 @@ namespace letc { namespace physics {
 		b2Vec2 force(direction.x * amount, direction.y * amount);
 		m_body->ApplyForceToCenter(force, true);
 	}
-	void PhysicsBody2D::zeroVelocity()
+
+	void PhysicsBody2D::addImpulse(math::Vector2 direction, float amount)
 	{
-		m_body->SetLinearVelocity(b2Vec2(0,0));
+		b2Vec2 impulse(direction.x * amount, direction.y * amount);
+		m_body->ApplyLinearImpulse(impulse, m_body->GetWorldCenter(), true);
 	}
 
-	math::Vector2 PhysicsBody2D::getBodyPositionPixels()
+
+
+	void PhysicsBody2D::setLinearVelocity(math::Vector2 newVelocity)
+	{
+		m_body->SetLinearVelocity(b2Vec2(newVelocity.x, newVelocity.y));
+
+	}
+
+	void PhysicsBody2D::zeroVelocity()
+	{
+		m_body->SetLinearVelocity(b2Vec2(0, 0));
+	}
+
+	math::Vector2 PhysicsBody2D::getBodyPosition()
 	{
 		b2Vec2 pos = m_body->GetPosition();
 		// quite unsure
@@ -54,9 +79,9 @@ namespace letc { namespace physics {
 
 	PhysicsBody2D::~PhysicsBody2D()
 	{
+		m_body->GetWorld()->DestroyBody(m_body);
 	}
 
-	void PhysicsBody2D::init(){
-	}
+
 
 } }

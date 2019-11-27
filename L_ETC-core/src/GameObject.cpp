@@ -38,6 +38,17 @@ namespace letc {
 	{
 		m_physicsBody2D = physicsBody2D;
 	}
+	void GameObject::translate(math::Vector2 translation)
+	{
+		m_position.x += translation.x;
+		m_position.y += translation.y;
+	}
+	void GameObject::rotate(float angleInRadians)
+	{
+		math::Vector3 origin = math::Vector3(m_position.x + m_size.x/2.0f, m_position.y + m_size.y/2.0f, m_position.z);
+
+		if (m_renderable) m_renderable->setTransformationMatrix(math::Matrix4::rotationAroundPoint(origin, angleInRadians* RADTODEG, math::Vector3(0, 0, 1)));
+	}
 	void GameObject::submit(graphics::Renderer2D* renderer) const
 	{
 		if (m_renderable)
@@ -46,11 +57,12 @@ namespace letc {
 
 	void GameObject::update(){
 		if (m_physicsBody2D!=nullptr) {
-			math::Vector2 pos = m_physicsBody2D->getBodyPositionPixels();
+			math::Vector2 pos = m_physicsBody2D->getBodyPosition();
 			m_position.x = pos.x;
 			m_position.y = pos.y;
 			// TODO, HANDLE ROTATION!
-			m_physicsBody2D->getBody()->SetTransform(m_physicsBody2D->getBody()->GetPosition(), 0.0f);
+			rotate(-m_physicsBody2D->getBody()->GetAngle());
+			//m_angle = m_physicsBody2D->getBody()->GetAngle();
 		}
 		
 		if (m_renderable) {
@@ -62,5 +74,6 @@ namespace letc {
 	{
 		delete m_renderable;
 		delete m_physicsBody2D;
+
 	}
 }

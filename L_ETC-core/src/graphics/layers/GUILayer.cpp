@@ -1,11 +1,13 @@
 #include "GUILayer.h"
 namespace letc {namespace graphics {
-	GUILayer::GUILayer(LETC& app, graphics::Shader* shader, math::Matrix4 prMatrix):Layer("GUI Layer",new BatchRenderer2D(), shader, prMatrix), m_app(app){
-		
+	GUILayer::GUILayer(std::string name, LETC& app, graphics::Shader* shader, math::Matrix4 prMatrix):Layer(name ,new BatchRenderer2D(), shader, prMatrix), m_app(app){
+		GLfloat bkColor[4];
+		glGetFloatv(GL_COLOR_CLEAR_VALUE, bkColor);
+		m_clearColor = ImVec4(bkColor[0],bkColor[1],bkColor[2],bkColor[3]);
 	}
 	
 	void GUILayer::draw(){
-
+		if (!enabled) return;
 		// IMGUI
 		// Start the Dear ImGui frame	
 		ImGui_ImplOpenGL3_NewFrame();
@@ -39,8 +41,14 @@ namespace letc {namespace graphics {
 			ImGui::ListBoxFooter();
 			ImGui::PopItemWidth();
 			
+			if (ImGui::Button("Reset")) {
+				m_app.reset();
+			};
+
 			ImGui::End();
 		}
+
+		
 			
 		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
 

@@ -450,13 +450,13 @@
     <ClCompile Include="ext\Box2D\Rope\b2Rope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\physics\PhysicsBody2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\physics\PhysicsConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\layers\GridLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\physics\PhysicsBody2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -470,6 +470,8 @@
     <None Include="src\shaders\basic_unlit.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="src\shaders\simple.vert" />
+    <None Include="src\shaders\simple.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\freetype\include\ft2build.h">
@@ -1648,9 +1650,6 @@
     <ClInclude Include="src\physics\PhysicsConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\physics\PhysicsBody2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\physics\PhysicsWorld2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1664,6 +1663,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\GridRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\physics\PhysicsBody2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\physics\RaycastCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\physics\QueryAABBCallback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

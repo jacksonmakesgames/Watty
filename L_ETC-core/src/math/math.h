@@ -6,4 +6,5 @@
 #include "vector4.h"
 #include "matrix4.h"
 
-
+#define DEGTORAD 0.0174532925199432957f
+#define RADTODEG 57.2958f

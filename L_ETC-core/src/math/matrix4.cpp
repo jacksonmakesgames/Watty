@@ -57,6 +57,15 @@ namespace letc {
 			);
 		}
 
+		const bool Matrix4::isEmpty() const
+		{
+			for (size_t i = 0; i < (4*4); i++)
+			{
+				if (elements[i] != 0)return false;
+			}
+			return true;
+		}
+
 		Matrix4& Matrix4::invert()
 		{
 			double temp[16];
@@ -268,8 +277,61 @@ namespace letc {
 			output.elements[0 + 2 * 4] = x * z * omc + z * s;
 			output.elements[1 + 2 * 4] = y * z * omc - x * s;
 			output.elements[2 + 2 * 4] = z * omc + c;
+			/*
+			result.elements[0 + 0 * 4] = x * x * omc + c;
+			result.elements[0 + 1 * 4] = y * x * omc + z * s;
+			result.elements[0 + 2 * 4] = x * z * omc - y * s;
 
+			result.elements[1 + 0 * 4] = x * y * omc - z * s;
+			result.elements[1 + 1 * 4] = y * y * omc + c;
+			result.elements[1 + 2 * 4] = y * z * omc + x * s;
+
+			result.elements[2 + 0 * 4] = x * z * omc + y * s;
+			result.elements[2 + 1 * 4] = y * z * omc - x * s;
+			result.elements[2 + 2 * 4] = z * z * omc + c;
+			*/
 			return output;
+		}
+		
+		Matrix4 Matrix4::rotationAroundPoint(const Vector3& point, float angle, const Vector3& axis){
+			Matrix4 output(1.0);
+
+			float r = toRadians(angle);
+			float c = cos(r);
+			float s = sin(r);
+			float omc = 1.0f - c;
+
+			float x = axis.x;
+			float y = axis.y;
+			float z = axis.z;
+
+			/*output.elements[0 + 0 * 4] = x * omc + c;
+			output.elements[1 + 0 * 4] = y * x * omc + z * s;
+			output.elements[2 + 0 * 4] = x * z * omc - y * s;
+			
+			output.elements[0 + 1 * 4] = x * y * omc - z * s;
+			output.elements[1 + 1 * 4] = y * omc + c;
+			output.elements[2 + 1 * 4] = y * z * omc + x * s;
+
+			output.elements[0 + 2 * 4] = x * z * omc + z * s;
+			output.elements[1 + 2 * 4] = y * z * omc - x * s;
+			output.elements[2 + 2 * 4] = z * omc + c;*/
+			
+			output.elements[0 + 0 * 4] = x * x * omc + c;
+			output.elements[0 + 1 * 4] = y * x * omc + z * s;
+			output.elements[0 + 2 * 4] = x * z * omc - y * s;
+			
+			output.elements[1 + 0 * 4] = x * y * omc - z * s;
+			output.elements[1 + 1 * 4] = y * y * omc + c;
+			output.elements[1 + 2 * 4] = y * z * omc + x * s;
+			
+			output.elements[2 + 0 * 4] = x * z * omc + y * s;
+			output.elements[2 + 1 * 4] = y * z * omc - x * s;
+			output.elements[2 + 2 * 4] = z * z * omc + c;
+			
+			
+
+			return translation(point) * output * translation(-point);
 		}
 
 		Matrix4 Matrix4::scale(const Vector3& scale){

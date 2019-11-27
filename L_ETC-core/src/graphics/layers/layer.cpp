@@ -30,6 +30,20 @@ namespace letc {
 		m_gameObjects.push_back(group);
 	}
 
+	void Layer::remove(GameObject* gameObject)
+	{
+		for (size_t i = 0; i < m_gameObjects.size(); i++)
+		{
+			if (m_gameObjects[i] == gameObject) {
+				delete m_gameObjects[i];
+				m_gameObjects.erase(m_gameObjects.begin()+i);
+
+			}
+		}
+	}
+
+
+
 	void Layer::disable()
 	{
 		for (GameObject* gameObject : m_gameObjects) {

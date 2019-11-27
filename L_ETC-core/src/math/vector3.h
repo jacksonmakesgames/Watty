@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 #include "vector2.h"
+//#include "matrix4.h";
 
 namespace letc { namespace math{
+	
 	struct Vector3 {
 		float x, y, z;
 
@@ -15,6 +17,7 @@ namespace letc { namespace math{
 		Vector3& subtract(const Vector3& other);
 		Vector3& multiply(const Vector3& other);
 		Vector3& multiply(const float& other);
+		//Vector3& multiply(const Matrix4& other);
 		Vector3& divide(const Vector3& other);
 		Vector3& divide(const float& other);
 
@@ -23,10 +26,14 @@ namespace letc { namespace math{
 		Vector3& operator += (const Vector3 &other);
 		Vector3& operator -= (const Vector3 &other);
 		Vector3& operator *= (const Vector3 &other);
+		Vector3& operator *= (const float &other);
+		//Vector3& operator *= (const Matrix4 &other);
 		Vector3& operator /= (const Vector3 &other);
 
 		bool operator == (const Vector3& other);
 		bool operator != (const Vector3& other);
+		
+		Vector3 operator - ()const;
 
 		friend Vector3 operator + (Vector3 left, const Vector3& right);
 		friend Vector3 operator - (Vector3 left, const Vector3& right);

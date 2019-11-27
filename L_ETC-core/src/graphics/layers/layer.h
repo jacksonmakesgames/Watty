@@ -25,6 +25,8 @@ namespace letc {
 		virtual void add(GameObject*	gameObject);
 		virtual void add(Group*			group);
 		
+		virtual void remove(GameObject* gameObject);
+
 		virtual void disable();
 		virtual void enable();
 		virtual void draw();

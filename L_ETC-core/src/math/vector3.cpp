@@ -36,6 +36,15 @@ namespace letc {namespace math {
 		return *this;
 	}
 
+	/*Vector3& math::Vector3::multiply(const Matrix4& other){
+	
+		x = other.columns[0].x * x + other.columns[1].x * y + other.columns[2].x * z + other.columns[3].x;
+		y = other.columns[0].y * x + other.columns[1].y * y + other.columns[2].y * z + other.columns[3].y;
+		z = other.columns[0].z * x + other.columns[1].z * y + other.columns[2].z * z + other.columns[3].z;
+		
+		return *this;
+	}*/
+
 	Vector3& Vector3::multiply(const float& other)
 	{
 		x *= other;
@@ -74,6 +83,13 @@ namespace letc {namespace math {
 	Vector3& Vector3::operator*=(const Vector3& other){
 		return multiply(other);
 	}
+	Vector3& Vector3::operator*=(const float& other){
+		return multiply(other);
+	}
+
+	/*Vector3& Vector3::operator*=(const Matrix4& other){
+		return multiply(other);
+	}*/
 
 	Vector3& Vector3::operator/=(const Vector3& other){
 		return divide(other);
@@ -85,6 +101,15 @@ namespace letc {namespace math {
 
 	bool Vector3::operator!=(const Vector3& other){
 		return !(*this == other);
+	}
+
+	Vector3 Vector3::operator-() const
+	{
+			Vector3 v;
+			v.x = -x;
+			v.y = -y;
+			v.z = -z;
+			return v;
 	}
 
 	Vector3 operator+(Vector3 left, const Vector3& right){

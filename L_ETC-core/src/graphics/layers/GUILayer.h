@@ -1,4 +1,5 @@
 #pragma once
+#include <GL/glew.h>
 #include "../../letc.h"
 #include "layer.h"
 #include "../batchrenderer2d.h"
@@ -16,11 +17,11 @@ namespace letc { namespace graphics {
 		};
 
 	private:
-		ImVec4 m_clearColor = ImVec4(.976f, .972f, .972f, 1);
+		ImVec4 m_clearColor;
 		LETC& m_app;
 
 	public: 
-		GUILayer(LETC& app, graphics::Shader* shader, math::Matrix4 prMatrix);
+		GUILayer(std::string name, LETC& app, graphics::Shader* shader, math::Matrix4 prMatrix);
 
 		void draw() override;
 

@@ -28,9 +28,11 @@ namespace letc {namespace graphics {
 	protected:
 		math::Vector2 m_size;
 		math::Vector3 m_position;
+		float m_rotation = 0;
 		unsigned int m_color;
 		std::vector<math::Vector2> m_UVs;
 		Texture* m_texture; 
+		math::Matrix4 m_transformationMatrix;
 	private:
 		std::vector<Renderable2D*> m_childrenRenderables = std::vector<Renderable2D*>();
 
@@ -51,11 +53,21 @@ namespace letc {namespace graphics {
 			m_position = position;
 		}
 
+		void setTransformationMatrix(math::Matrix4 matrix) {
+			m_transformationMatrix = matrix;
+		}
+
 		virtual ~Renderable2D() {
 		}
 
 		virtual void submit(Renderer2D* renderer)const {
+			bool emptyMat = m_transformationMatrix.isEmpty();
+			if(!emptyMat)
+				renderer->push(m_transformationMatrix);
 			renderer->submit(this);
+			if(!emptyMat)
+				renderer->pop();
+
 		}
 
 		void setColor(unsigned int color) { m_color = color; }

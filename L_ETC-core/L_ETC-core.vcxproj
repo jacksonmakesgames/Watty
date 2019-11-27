@@ -540,6 +540,8 @@
     <ClInclude Include="src\physics\PhysicsBody2D.h" />
     <ClInclude Include="src\physics\PhysicsConstants.h" />
     <ClInclude Include="src\physics\PhysicsWorld2D.h" />
+    <ClInclude Include="src\physics\QueryAABBCallback.h" />
+    <ClInclude Include="src\physics\RaycastCallback.h" />
     <ClInclude Include="src\utils\file_utils.h" />
     <ClInclude Include="src\utils\string_utils.h" />
     <ClInclude Include="src\utils\timer.h" />
@@ -548,6 +550,8 @@
     <None Include="src\shaders\basic_lit.frag" />
     <None Include="src\shaders\basic_unlit.frag" />
     <None Include="src\shaders\basic.vert" />
+    <None Include="src\shaders\simple.frag" />
+    <None Include="src\shaders\simple.vert" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ext\freetype\src\base\ftver.rc" />

@@ -21,6 +21,7 @@ namespace letc {namespace math {
 
 		static Matrix4 translation(const Vector3& translation);
 		static Matrix4 rotation(float angle, const Vector3& axis);
+		static Matrix4 rotationAroundPoint(const Vector3& point,float angle , const Vector3& axis);
 		static Matrix4 scale(const Vector3& scale);
 
 		Matrix4& multiply(const Matrix4& other);
@@ -34,6 +35,8 @@ namespace letc {namespace math {
 
 		friend Vector3 operator * (const Matrix4& left, const Vector3& right);
 		friend Vector4 operator * (const Matrix4& left, const Vector4& right);
+
+		const bool isEmpty() const;
 
 		Matrix4& invert();
 		

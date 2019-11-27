@@ -21,15 +21,22 @@ namespace letc {
 			void begin() override {};
 			void end() override {};
 			void flush() override {
-				glClear(GL_COLOR_BUFFER_BIT);
+
+
+
+				//glClear(GL_COLOR_BUFFER_BIT);
 				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-				glColor3f(0.0, 0.0, 0.3);
+				glLineWidth(.5); //thin lines
+
+				glVertexAttrib4f(3, .5,.5,.5, .4f); // color
 
 				for (int x = m_left; x < m_right; x++)
 				{
 					for (int y = m_bottom; y < m_top; y++)
 					{
 						glBegin(GL_POLYGON);
+						glColor4f(0.0, 0.0, 0.3, .5);
+						
 						glVertex3f(x,		y,		0.0);
 						glVertex3f(x + 1,	y,		0.0);
 						glVertex3f(x + 1,	y + 1,	0.0);
@@ -38,7 +45,10 @@ namespace letc {
 					}
 			}
 				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			
+				glVertexAttrib4f(3, 1,1,1,1);
+				glLineWidth(1); //regular lines
+
+
 			};
 			~GridRenderer();
 

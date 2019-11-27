@@ -1,6 +1,5 @@
 #pragma once
 #include "math/math.h"
-
 #include "graphics/window.h"
 #include "graphics/sprite.h"
 #include "graphics/font/label.h"
@@ -8,13 +7,10 @@
 #include "graphics/batchrenderer2d.h"
 #include "graphics/shader.h"
 #include "graphics/layers/layer.h"
-#include "graphics/layers/GUILayer.h"
-
 #include "utils/timer.h"
 
 #define LETC_UPDATE_RATE 144.0f
 namespace letc {
-
 	class LETC {
 	public:
 		Timer* gameTimer;
@@ -35,6 +31,18 @@ namespace letc {
 
 		void initPhysics() {
 		}
+
+		virtual void reset() {};
+
+		Layer* getLayerByName(std::string name) {
+
+			for (Layer* layer : layers) {
+				if (layer->name == name) return layer;
+			}
+		
+			return nullptr;
+		}
+
 
 	protected:
 		LETC(){
@@ -117,5 +125,6 @@ private:
 		}
 	}
 	};
+
 
 }
