@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(438,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4286: symbol '___glewVertexAttrib4f' defined in 'glew32s.lib(glew.obj)' is imported by 'main.obj'
+LINK : warning LNK4217: symbol '_fprintf' defined in 'L_ETC-core.lib(texture-atlas.obj)' is imported by 'gorilla.lib(analysis.obj)' in function '__analysis_output_always'
+LINK : warning LNK4217: symbol '_sprintf' defined in 'L_ETC-core.lib(bdf.obj)' is imported by 'gorilla.lib(analysis.obj)' in function '__analysis_output_always'
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'J:\OneDrive\Projects\Game_Development\L_ETC\bin\Demos\vc120.pdb'; linking object as if no debug info
+  PhysicsDemo.vcxproj -> J:\OneDrive\Projects\Game_Development\L_ETC\bin\Demos\PhysicsDemo.exe
