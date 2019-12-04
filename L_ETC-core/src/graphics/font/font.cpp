@@ -44,10 +44,15 @@ namespace letc {namespace graphics {
 		texture_font_delete(m_FTFont);
 	}
 	void Font::makeOpenGLTextureAtlas(){
+
+		// glPixelStorei(GL_UNPACK_ALIGNMENT, 1);  //?
 		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
 
 		m_FTFont = texture_font_new_from_file(m_FTAtlas, m_size, m_fileName.c_str());
-
+		if (m_FTFont == NULL) {
+			std::cout << "Error loading font file at " << m_fileName << std::endl;
+			exit(1);
+		}
 		texture_font_load_glyphs(m_FTFont, characters);
 
 		 m_texture = new Texture(m_fileName, m_FTAtlas->id, m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);

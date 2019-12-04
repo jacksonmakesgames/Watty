@@ -112,7 +112,6 @@
     <ClCompile Include="ext\freetype\src\type1\type1.c" />
     <ClCompile Include="ext\freetype\src\type42\type42.c" />
     <ClCompile Include="ext\freetype\src\winfonts\winfnt.c" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\audio\audioclip.cpp" />
     <ClCompile Include="src\audio\audiomanager.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -129,6 +128,7 @@
     <ClCompile Include="src\graphics\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\graphics\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\graphics\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\graphics\layers\EngineControlLayer.cpp" />
     <ClCompile Include="src\graphics\layers\GridLayer.cpp" />
     <ClCompile Include="src\graphics\layers\group.cpp" />
     <ClCompile Include="src\graphics\layers\GUILayer.cpp" />
@@ -197,6 +197,7 @@
     <ClInclude Include="src\graphics\GridRenderer.h" />
     <ClInclude Include="src\graphics\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="src\graphics\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\graphics\layers\EngineControlLayer.h" />
     <ClInclude Include="src\graphics\layers\GridLayer.h" />
     <ClInclude Include="src\graphics\layers\GUILayer.h" />
     <ClInclude Include="src\graphics\SimpleRenderer2D.h" />
@@ -564,13 +565,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>

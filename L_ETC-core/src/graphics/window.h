@@ -48,8 +48,10 @@ namespace letc {namespace graphics {
 
 		bool keyWasPressed(unsigned int keycode) const;
 		bool keyIsDown(unsigned int keycode) const;
+		bool keyWasReleased(unsigned int keycode) const;
 		bool mouseButtonWasPressed(unsigned int button) const;
 		bool mouseButtonIsDown(unsigned int button) const;
+		bool mouseButtonWasReleased(unsigned int button) const;
 		void getMousePos(double& x, double& y) const;
 		void toggleVSync();
 		void setVSync(bool state);

@@ -1,15 +1,29 @@
 #include "../../../src/letc.h"
 #include <math.h>
 
+#define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/shaders/basic.vert"
+#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/shaders/basic_unlit.frag"
+#define FONTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/fonts/Roboto-Italic.ttf"
+
 
 using namespace letc;
 using namespace graphics;
 using namespace math;
 
+namespace letc {
+	namespace physics {
+		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
+		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
+
+	}
+}
+
 class SimpleGame : public LETC {
 private:
 	Window* m_window;
-	GUILayer* m_guiLayer;
+	EngineControlLayer* m_engineControlLayer;
 	Label* fpsLabel; 
 	Label* upsLabel; 
 	Label* mpsLabel; 
@@ -31,30 +45,29 @@ public:
 		m_window = createWindow("The First Game Made With the LETC!", 1600,900);
 		m_window->setVSync(true);
 
-		Layer* playerLayer= new Layer(new BatchRenderer2D(), new Shader("res/shaders/basic.vert", "res/shaders/basic_unlit.frag"), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
-		Layer* uiLayer= new Layer(new BatchRenderer2D(), new Shader("res/shaders/basic.vert", "res/shaders/basic_unlit.frag"), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
+		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
+		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
 		layers.push_back(playerLayer);
 		layers.push_back(uiLayer);
 
-		m_guiLayer = new GUILayer(new Shader("res/shaders/basic.vert", "res/shaders/basic_unlit.frag"), math::Matrix4::orthographic(-16, 16, -9, 9, -10, 10));
-
 		glClearColor(.976f,.972f,.972f,1);
-
+		m_engineControlLayer = new EngineControlLayer("Engine Control Layer", debugPhysics, resetFlag, layers, new Shader(VERTPATH,FRAGUNLITPATH), math::Matrix4::orthographic(-16, 16, -9, 9, -10, 10));
+		
 		math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
 
-		Texture* playerTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/Player.png");
+		Texture* playerTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/textures/Player.png");
 		playerGO = new GameObject(Vector3(0,0,0), Vector2(4,4), new Sprite(playerTexture));
 		playerLayer->add(playerGO);
 		
-		Texture* enemyTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/examples/SimpleGame/res/Enemy.png");
+		Texture* enemyTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/textures/Enemy.png");
 		enemyGO = new GameObject(Vector3(5,0,0), Vector2(4,4), new Sprite(enemyTexture));
 		playerLayer->add(enemyGO);
 
 
 		//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
-		FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Regular.ttf", 16, screenScale));
-		FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/fonts/Roboto-Italic.ttf", 14, screenScale));
+		FontManager::add(new Font("Roboto", FONTPATH, 16, screenScale));
+		FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
 		Group* profileGroup = new Group(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
 		profileGroup->add(new GameObject(Vector3(0, 0, 0), Vector2( 3.8f, 1.8), new Sprite(0x80808080)));

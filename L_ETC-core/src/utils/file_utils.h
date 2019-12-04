@@ -1,11 +1,13 @@
 #pragma once
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 
 #include <GL/glew.h>
 #include "FreeImage.h"
+
+
+namespace fs = std::experimental::filesystem;
 
 namespace letc {
 
@@ -58,6 +60,10 @@ namespace letc {
 	static std::string read_file(const char* filepath) {
 		FILE* file = &FILE();
 		fopen_s(&file, filepath, "rt");
+		if (file == NULL) {
+			std::cout << "Error loading file: " << filepath << std::endl;
+			exit(1);
+		}
 		fseek(file, 0, SEEK_END);
 		unsigned long length = ftell(file);
 		char* data = new char[length + 1];
@@ -69,5 +75,9 @@ namespace letc {
 		delete[] data;
 		return output;
 	}
+
+
+
+
 
 }

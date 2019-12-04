@@ -160,6 +160,24 @@ namespace letc {namespace graphics {
 		return m_buttonsThisFrame[button];
 	}
 
+	bool Window::mouseButtonWasReleased(unsigned int button) const
+	{
+		if (button >= MAX_BUTTONS) {
+			// TODO: log an error
+			return false;
+		}
+		return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
+	}	
+	
+	bool Window::keyWasReleased(unsigned int button) const
+	{
+		if (button >= MAX_KEYS) {
+			// TODO: log an error
+			return false;
+		}
+		return false;
+	}
+
 	void Window::getMousePos(double& x, double& y) const {
 		x = mx;
 		y = my;

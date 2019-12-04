@@ -1,21 +1,33 @@
 #pragma once
-#include "math/math.h"
-#include "graphics/window.h"
-#include "graphics/sprite.h"
-#include "graphics/font/label.h"
-#include "graphics/renderer2d.h"
-#include "graphics/batchrenderer2d.h"
-#include "graphics/shader.h"
-#include "graphics/layers/layer.h"
-#include "utils/timer.h"
+
+#include "./math/math.h"
+#include "./graphics/window.h"
+#include "./graphics/sprite.h"
+#include "./graphics/font/label.h"
+#include "./graphics/renderer2d.h"
+#include "./graphics/batchrenderer2d.h"
+#include "./graphics/shader.h"
+#include "./graphics/layers/layer.h"
+#include "./graphics/layers/GuiLayer.h"
+#include "./graphics/layers/EngineControlLayer.h"
+#include "./graphics/layers/GridLayer.h"
+
+#include "./utils/timer.h"
+#include "../ext/Box2D/Box2D.h"
+#include "./physics/QueryAABBCallback.h"
+
+#include <imgui/imgui.h>
 
 #define LETC_UPDATE_RATE 144.0f
+
+
 namespace letc {
 	class LETC {
 	public:
 		Timer* gameTimer;
 		std::vector<Layer*> layers;
 		bool debugPhysics = false;
+		bool resetFlag = false;
 
 	private:
 		graphics::Window* m_window;
@@ -71,12 +83,16 @@ namespace letc {
 		// runs once per second
 		virtual void tick() {}
 
-		// runs 60 times per second
+		// runs LETC_UPDATE_RATE times per second
 		virtual void update() {
 			gameTimer->update();
 			for (size_t i = 0; i < layers.size(); i++)
 			{
 				layers[i]->update();
+			}
+			if (resetFlag) {
+				reset();
+				resetFlag = false;
 			}
 		}
 

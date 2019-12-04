@@ -23,6 +23,7 @@ namespace letc { namespace physics {
 
 			for (size_t i = 0; i < m_testLayer->getGameObjects().size(); i++)
 			{
+				// TODO: we could make this sort gameObjects by distance from the center, etc
 				if (m_testLayer->getGameObjects()[i]->hasFixture(fixture))
 					gameObjects.push_back(m_testLayer->getGameObjects()[i]);
 			}

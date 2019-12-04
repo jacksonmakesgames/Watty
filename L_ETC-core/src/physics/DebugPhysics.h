@@ -63,16 +63,13 @@ namespace letc { namespace physics {
 
 		/// Draw a solid circle.
 		virtual void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
-		
 			//set up vertex array
-			const int resolution = 32;
+			const int resolution = 20;
 			//call normal render at different position/rotation
 			GLfloat glverts[2 * resolution];
 
 			glVertexPointer(2, GL_FLOAT, 0, glverts); //tell OpenGL where to find vertices
 			glEnableClientState(GL_VERTEX_ARRAY); //use vertices in subsequent calls to glDrawArrays
-
-			
 
 			int i = 0;
 			// Create the circle in the coordinates origin
