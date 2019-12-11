@@ -223,6 +223,18 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Demos/SimpleGame,
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype/include",
+					"../../L_ETC-core/ext/freetype-gl",
+					../../Dependencies/imgui/include,
+					"../../L_ETC-core/src",
+					../../Dependencies/glad/include,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					../../bin,
 					"../../Dependencies/gorilla-audio/bin/win32",
@@ -241,17 +253,6 @@
 					"-lfreetype_release",
 				);
 				SYMROOT = ../../bin/Demos;
-				USER_HEADER_SEARCH_PATHS = (
-					../../Demos/SimpleGame,
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype/include",
-					"../../L_ETC-core/ext/freetype-gl",
-					../../Dependencies/imgui/include,
-					"../../L_ETC-core/src",
-					../../Dependencies/glad/include,
-				);
 			};
 			name = Release;
 		};
@@ -273,6 +274,18 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Demos/SimpleGame,
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype/include",
+					"../../L_ETC-core/ext/freetype-gl",
+					../../Dependencies/imgui/include,
+					"../../L_ETC-core/src",
+					../../Dependencies/glad/include,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					../../bin,
 					"../../Dependencies/gorilla-audio/bin/win32",
@@ -291,17 +304,6 @@
 					"-lfreetype_debug",
 				);
 				SYMROOT = ../../bin/Demos;
-				USER_HEADER_SEARCH_PATHS = (
-					../../Demos/SimpleGame,
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype/include",
-					"../../L_ETC-core/ext/freetype-gl",
-					../../Dependencies/imgui/include,
-					"../../L_ETC-core/src",
-					../../Dependencies/glad/include,
-				);
 			};
 			name = Debug;
 		};

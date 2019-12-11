@@ -224,6 +224,18 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Demos/PhysicsDemo,
+					"../../L_ETC-core/src",
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype-gl",
+					"../../L_ETC-core/ext/freetype/include",
+					../../Dependencies/imgui/include,
+					../../Dependencies/glad/include,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../../Dependencies/gorilla-audio/bin/win32",
 					../../Dependencies/FreeImage/lib,
@@ -241,17 +253,6 @@
 					"-lfreetype_debug",
 				);
 				SYMROOT = ../../bin/Demos;
-				USER_HEADER_SEARCH_PATHS = (
-					../../Demos/PhysicsDemo,
-					"../../L_ETC-core/src",
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype-gl",
-					"../../L_ETC-core/ext/freetype/include",
-					../../Dependencies/imgui/include,
-					../../Dependencies/glad/include,
-				);
 			};
 			name = Debug;
 		};
@@ -272,6 +273,18 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../Demos/PhysicsDemo,
+					"../../L_ETC-core/src",
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype-gl",
+					"../../L_ETC-core/ext/freetype/include",
+					../../Dependencies/imgui/include,
+					../../Dependencies/glad/include,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../../Dependencies/gorilla-audio/bin/win32",
 					../../Dependencies/FreeImage/lib,
@@ -289,17 +302,6 @@
 					"-lfreetype_release",
 				);
 				SYMROOT = ../../bin/Demos;
-				USER_HEADER_SEARCH_PATHS = (
-					../../Demos/PhysicsDemo,
-					"../../L_ETC-core/src",
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype-gl",
-					"../../L_ETC-core/ext/freetype/include",
-					../../Dependencies/imgui/include,
-					../../Dependencies/glad/include,
-				);
 			};
 			name = Release;
 		};

@@ -113,7 +113,6 @@
 		056F9EB5ACE53A6755AA44F5 /* ftstdlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ftstdlib.h; path = "../../L_ETC-core/ext/freetype/include/freetype/config/ftstdlib.h"; sourceTree = "<group>"; };
 		0588829C33330A8E33D6B0DC /* b2PolygonAndCircleContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = b2PolygonAndCircleContact.h; path = "../../L_ETC-core/ext/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h"; sourceTree = "<group>"; };
 		06A9F58F7A926D419CE01BCF /* psfixed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = psfixed.h; path = "../../L_ETC-core/ext/freetype/src/psaux/psfixed.h"; sourceTree = "<group>"; };
-		0874E75414FF99C68FE46594 /* FontLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FontLibrary.h; path = "../../L_ETC-core/src/graphics/font/FontLibrary.h"; sourceTree = "<group>"; };
 		08AE559D189381CF05070BDD /* psauxerr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = psauxerr.h; path = "../../L_ETC-core/ext/freetype/src/psaux/psauxerr.h"; sourceTree = "<group>"; };
 		08DC58F2F9D3C6E465D74732 /* inftrees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = inftrees.h; path = "../../L_ETC-core/ext/freetype/src/gzip/inftrees.h"; sourceTree = "<group>"; };
 		0909FF9EEEA106D0B1E615DE /* ftcalc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ftcalc.h; path = "../../L_ETC-core/ext/freetype/include/freetype/internal/ftcalc.h"; sourceTree = "<group>"; };
@@ -1457,7 +1456,6 @@
 		E02B503812249AEA8C03D678 /* font */ = {
 			isa = PBXGroup;
 			children = (
-				0874E75414FF99C68FE46594 /* FontLibrary.h */,
 				BBA1730A1306E5FCC515014A /* font.h */,
 				6EED3B207B77ED92F65CB960 /* fontmanager.h */,
 				B46B6D7C7AF964EEE8FB8BBC /* label.h */,
@@ -1751,6 +1749,17 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../L_ETC-core",
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype/include",
+					"../../L_ETC-core/ext/freetype-gl",
+					../../Dependencies/imgui/include,
+					../../Dependencies/glad/include,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../../Dependencies/gorilla-audio/bin/win32",
 					../../Dependencies/FreeImage/lib,
@@ -1766,16 +1775,6 @@
 					"-lgorilla",
 				);
 				SYMROOT = ../../bin;
-				USER_HEADER_SEARCH_PATHS = (
-					"../../L_ETC-core",
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype/include",
-					"../../L_ETC-core/ext/freetype-gl",
-					../../Dependencies/imgui/include,
-					../../Dependencies/glad/include,
-				);
 			};
 			name = Release;
 		};
@@ -1811,6 +1810,17 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../L_ETC-core",
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype/include",
+					"../../L_ETC-core/ext/freetype-gl",
+					../../Dependencies/imgui/include,
+					../../Dependencies/glad/include,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../../Dependencies/gorilla-audio/bin/win32",
 					../../Dependencies/FreeImage/lib,
@@ -1826,16 +1836,6 @@
 					"-lgorilla",
 				);
 				SYMROOT = ../../bin;
-				USER_HEADER_SEARCH_PATHS = (
-					"../../L_ETC-core",
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype/include",
-					"../../L_ETC-core/ext/freetype-gl",
-					../../Dependencies/imgui/include,
-					../../Dependencies/glad/include,
-				);
 			};
 			name = Debug;
 		};
