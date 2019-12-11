@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Dependencies\glad\src\glad.c" />
     <ClCompile Include="ext\Box2D\Collision\b2BroadPhase.cpp" />
     <ClCompile Include="ext\Box2D\Collision\b2CollideCircle.cpp" />
     <ClCompile Include="ext\Box2D\Collision\b2CollideEdge.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="ext\Box2D\Rope\b2Rope.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\graphics\buffers\buffer.h" />
+    <ClInclude Include="src\graphics\font\FontLibrary.h" />
     <ClInclude Include="src\graphics\GridRenderer.h" />
     <ClInclude Include="src\graphics\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="src\graphics\imgui\imgui_impl_opengl3.h" />
@@ -551,11 +553,10 @@
     <None Include="src\shaders\basic_lit.frag" />
     <None Include="src\shaders\basic_unlit.frag" />
     <None Include="src\shaders\basic.vert" />
+    <None Include="src\shaders\font.frag" />
+    <None Include="src\shaders\font.vert" />
     <None Include="src\shaders\simple.frag" />
     <None Include="src\shaders\simple.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ext\freetype\src\base\ftver.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -609,7 +610,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(SolutionDir)Dependencies\imgui\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(SolutionDir)Dependencies\imgui\include;$(SolutionDir)Dependencies\glad\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\gorilla-audio\bin\win32;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)bin</OutDir>
   </PropertyGroup>
@@ -618,7 +619,7 @@
     <LibraryPath>J:\OneDrive\Projects\Game_Development\L_ETC\Dependencies\GLFW\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(SolutionDir)Dependencies\imgui\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(SolutionDir)Dependencies\imgui\include;$(SolutionDir)Dependencies\glad\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\gorilla-audio\bin\win32;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)bin</OutDir>
   </PropertyGroup>
@@ -628,7 +629,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>GLEW_STATIC;FT2_BUILD_LIBRARY;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
     </ClCompile>
     <Link>
@@ -658,7 +659,7 @@
       <ConformanceMode>true</ConformanceMode>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <PreprocessorDefinitions>GLEW_STATIC;FT2_BUILD_LIBRARY;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;FT2_BUILD_LIBRARY;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

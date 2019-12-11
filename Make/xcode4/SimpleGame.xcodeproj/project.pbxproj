@@ -1,0 +1,332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BABE4E11035D8C4326894451 /* simplegame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CEEC0997DE62E8BE9E9AED9 /* simplegame.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73B7E080A349AF727E56EEC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 917A892CA88D245E98A91F6C;
+			remoteInfo = "LETC-core.lib";
+		};
+		C5F25319F584220BD0916159 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EF3FEB92EFF2E88463D4B9D2;
+			remoteInfo = "LETC-core.lib";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8CEEC0997DE62E8BE9E9AED9 /* simplegame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = simplegame.cpp; path = ../../Demos/SimpleGame/src/simplegame.cpp; sourceTree = "<group>"; };
+		B8F8297DB25E2AEFA5F987BD /* SimpleGame.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = SimpleGame.exe; path = SimpleGame.exe; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7CA41BCC5ED956E4CFBE7FC /* LETC-core.lib */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LETC-Core.xcodeproj; path = "LETC-Core.xcodeproj"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		821EE86DF3AA00DFA2AB26AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		108D5DC038C816722063A400 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8116FF8C168DBEBE852A15CC /* LETC-core.lib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43FD41CB44B03EBDB892100B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8CEEC0997DE62E8BE9E9AED9 /* simplegame.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		8F1EDA50D78FBE821C2E9090 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				43FD41CB44B03EBDB892100B /* src */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		9D968EAA920D05DCE0E0A4EA /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+		A6C936B49B3FADE6EA134CF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8F8297DB25E2AEFA5F987BD /* SimpleGame.exe */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B7B13384A3A23F36F5D9D9C4 /* SimpleGame */ = {
+			isa = PBXGroup;
+			children = (
+				8F1EDA50D78FBE821C2E9090 /* Source Files */,
+				A6C936B49B3FADE6EA134CF4 /* Products */,
+				9D968EAA920D05DCE0E0A4EA /* Projects */,
+			);
+			name = SimpleGame;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F07245C30784E0F5F7A0DC03 /* SimpleGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 705A30CCE1E5493E90E66F0C /* Build configuration list for PBXNativeTarget "SimpleGame" */;
+			buildPhases = (
+				F206690D6391817F1292A74D /* Resources */,
+				5BB38264CD3E9AD67C3FC0A4 /* Sources */,
+				821EE86DF3AA00DFA2AB26AD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE459AC92680537B0E1BE109 /* PBXTargetDependency */,
+			);
+			name = SimpleGame;
+			productInstallPath = "$(HOME)/bin";
+			productName = SimpleGame;
+			productReference = B8F8297DB25E2AEFA5F987BD /* SimpleGame.exe */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "SimpleGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = B7B13384A3A23F36F5D9D9C4 /* SimpleGame */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 108D5DC038C816722063A400 /* Products */;
+					ProjectRef = F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F07245C30784E0F5F7A0DC03 /* SimpleGame.exe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8116FF8C168DBEBE852A15CC /* LETC-core.lib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "LETC-core.lib";
+			remoteRef = 73B7E080A349AF727E56EEC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F206690D6391817F1292A74D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BB38264CD3E9AD67C3FC0A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BABE4E11035D8C4326894451 /* simplegame.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE459AC92680537B0E1BE109 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "LETC-core.lib";
+			targetProxy = C5F25319F584220BD0916159 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		17391F0C481D16FE5B354D4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = ../../bin/Demos;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = SimpleGame.exe;
+			};
+			name = Release;
+		};
+		20A1D7927BE32B044F3D75D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = ../../bin/Demos;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = SimpleGame.exe;
+			};
+			name = Debug;
+		};
+		88CB238DFA563BFFA95761CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					GLEW_STATIC,
+					FT2_BUILD_LIBRARY,
+					CRT_SECURE_NO_WARNINGS,
+					_CRT_NONSTDC_NO_DEPRECATE,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					../../bin,
+					"../../Dependencies/gorilla-audio/bin/win32",
+					../../Dependencies/GLEW/lib,
+					../../Dependencies/FreeImage/lib,
+					"../../Dependencies/GLFW/lib-vc2019",
+					../../Dependencies/Freetype/lib,
+				);
+				OBJROOT = obj/x86/Release/SimpleGame;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-lopengl32",
+					"-lglfw3",
+					"-lFreeImage",
+					"-lgorilla",
+					"-lfreetype_release",
+				);
+				SYMROOT = ../../bin/Demos;
+				USER_HEADER_SEARCH_PATHS = (
+					../../Demos/SimpleGame,
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype/include",
+					"../../L_ETC-core/ext/freetype-gl",
+					../../Dependencies/imgui/include,
+					"../../L_ETC-core/src",
+					../../Dependencies/glad/include,
+				);
+			};
+			name = Release;
+		};
+		D64AD89304F12C855E3286D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					FT2_BUILD_LIBRARY,
+					CRT_SECURE_NO_WARNINGS,
+					_CRT_NONSTDC_NO_DEPRECATE,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					../../bin,
+					"../../Dependencies/gorilla-audio/bin/win32",
+					../../Dependencies/GLEW/lib,
+					../../Dependencies/FreeImage/lib,
+					"../../Dependencies/GLFW/lib-vc2019",
+					../../Dependencies/Freetype/lib,
+				);
+				OBJROOT = obj/x86/Debug/SimpleGame;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lopengl32",
+					"-lglfw3",
+					"-lFreeImage",
+					"-lgorilla",
+					"-lfreetype_debug",
+				);
+				SYMROOT = ../../bin/Demos;
+				USER_HEADER_SEARCH_PATHS = (
+					../../Demos/SimpleGame,
+					../../Dependencies/GLFW/include,
+					"../../Dependencies/gorilla-audio/include",
+					../../Dependencies/FreeImage/include,
+					"../../L_ETC-core/ext/freetype/include",
+					"../../L_ETC-core/ext/freetype-gl",
+					../../Dependencies/imgui/include,
+					"../../L_ETC-core/src",
+					../../Dependencies/glad/include,
+				);
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "SimpleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D64AD89304F12C855E3286D3 /* Debug */,
+				88CB238DFA563BFFA95761CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		705A30CCE1E5493E90E66F0C /* Build configuration list for PBXNativeTarget "SimpleGame.exe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20A1D7927BE32B044F3D75D2 /* Debug */,
+				17391F0C481D16FE5B354D4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+};
+rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

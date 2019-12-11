@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include <glad/glad.h>
+
 #include "../math/math.h"
 #include "../math/matrix4.h"
 #include "../utils/file_utils.h"

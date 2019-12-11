@@ -15,6 +15,7 @@
 #include "./utils/timer.h"
 #include "../ext/Box2D/Box2D.h"
 #include "./physics/QueryAABBCallback.h"
+#include "GameObject.h"
 
 #include <imgui/imgui.h>
 

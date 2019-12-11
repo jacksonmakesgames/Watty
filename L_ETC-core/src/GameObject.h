@@ -51,7 +51,9 @@ namespace letc {
 		inline const graphics::Renderable2D * getRenderable()const { return m_renderable; }
 		virtual inline const std::vector<GameObject*>& getChildren()const { return m_children; }
 
-		inline physics::PhysicsBody2D* getPhysicsBody2D() { return m_physicsBody2D; }
+		inline physics::PhysicsBody2D* getPhysicsBody2D() {
+			return m_physicsBody2D;
+		}
 
 		~GameObject();
 

@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{63FC8616-CF66-3B8D-18A5-EC32844E19E2}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>LETC-Core</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\bin\</OutDir>
+    <IntDir>obj\x86\Debug\LETC-Core\</IntDir>
+    <TargetName>LETC-core</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\bin\</OutDir>
+    <IntDir>obj\x86\Release\LETC-Core\</IntDir>
+    <TargetName>LETC-core</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>DEBUG;_LIB;FT2_BUILD_LIBRARY;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\L_ETC-core;..\..\Dependencies\GLFW\include;..\..\Dependencies\gorilla-audio\include;..\..\Dependencies\FreeImage\include;..\..\L_ETC-core\ext\freetype\include;..\..\L_ETC-core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;FreeImage.lib;gorilla.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Dependencies\gorilla-audio\bin\win32;..\..\Dependencies\FreeImage\lib;..\..\Dependencies\GLFW\lib-vc2019;..\..\Dependencies\Freetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>NDEBUG;GLEW_STATIC;_LIB;FT2_BUILD_LIBRARY;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\L_ETC-core;..\..\Dependencies\GLFW\include;..\..\Dependencies\gorilla-audio\include;..\..\Dependencies\FreeImage\include;..\..\L_ETC-core\ext\freetype\include;..\..\L_ETC-core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;FreeImage.lib;gorilla.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Dependencies\gorilla-audio\bin\win32;..\..\Dependencies\FreeImage\lib;..\..\Dependencies\GLFW\lib-vc2019;..\..\Dependencies\Freetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Box2D.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2ChainShape.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2CircleShape.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2EdgeShape.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2PolygonShape.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2Shape.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\b2BroadPhase.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\b2Collision.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\b2Distance.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\b2DynamicTree.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Collision\b2TimeOfImpact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2BlockAllocator.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2Draw.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2GrowableStack.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2Math.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2Settings.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2StackAllocator.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Common\b2Timer.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2CircleContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2Contact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2ContactSolver.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2PolygonContact.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2DistanceJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2FrictionJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2GearJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2Joint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2MotorJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2MouseJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2PrismaticJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2PulleyJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2RevoluteJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2RopeJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2WeldJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2WheelJoint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2Body.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2ContactManager.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2Fixture.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2Island.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2TimeStep.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2World.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2WorldCallbacks.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Rope\b2Rope.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\distance-field.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\edtaa3func.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\font-manager.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\freetype-gl.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\markup.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\opengl.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\platform.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\texture-atlas.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\texture-font.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\utf8-utils.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\vec234.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype-gl\vector.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\config\ftconfig.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\config\ftheader.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\config\ftmodule.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\config\ftoption.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\config\ftstdlib.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\freetype.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftadvanc.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftbbox.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftbdf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftbitmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftbzip2.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftcache.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftchapters.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftcid.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftcolor.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftdriver.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\fterrdef.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\fterrors.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftfntfmt.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftgasp.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftglyph.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftgxval.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftgzip.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftimage.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftincrem.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftlcdfil.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftlist.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftlzw.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftmac.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftmm.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftmodapi.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftmoderr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftotval.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftoutln.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftparams.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftpfr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftrender.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftsizes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftsnames.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftstroke.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftsynth.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftsystem.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\fttrigon.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\fttypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ftwinfnt.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\autohint.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\cffotypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\cfftypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftcalc.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftdebug.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftdrv.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftgloadr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\fthash.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftmemory.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftpsprop.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftrfork.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftserv.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftstream.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\fttrace.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\ftvalid.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\internal.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\psaux.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\pshints.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svbdf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svcfftl.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svcid.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svfntfmt.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svgldict.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svgxval.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svkern.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svmetric.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svmm.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svotval.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svpfr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svpostnm.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svprop.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svpscmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svpsinfo.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svsfnt.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svttcmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svtteng.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svttglyf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\services\svwinfnt.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\sfnt.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\t1types.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\tttypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\internal\wofftypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\t1tables.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\ttnameid.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\tttables.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\freetype\tttags.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\include\ft2build.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afangles.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afblue.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afcjk.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afcover.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afdummy.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\aferrors.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afglobal.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afhints.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afindic.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\aflatin.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\aflatin2.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afloader.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afmodule.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afranges.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afscript.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afshaper.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afstyles.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\aftypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afwarp.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\autofit\afwrtsys.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\base\ftbase.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\base\md5.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\bdf\bdf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\bdf\bdfdrivr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\bdf\bdferror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftccache.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftccback.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftcerror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftcglyph.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftcimage.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftcmanag.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftcmru.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cache\ftcsbits.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cffcmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cffdrivr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cfferrs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cffgload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cffload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cffobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cffparse.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cff\cfftoken.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\ciderrs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\cidgload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\cidload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\cidobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\cidparse.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\cidriver.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\cid\cidtoken.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxvalid.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxvcommn.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxverror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxvfeat.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxvmod.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxvmort.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gxvalid\gxvmorx.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\ftzconf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\infblock.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\infcodes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\inffixed.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\inftrees.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\infutil.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\zlib.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\gzip\zutil.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\lzw\ftzopen.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\otvalid\otvalid.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\otvalid\otvcommn.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\otvalid\otverror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\otvalid\otvgpos.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\otvalid\otvmod.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pcf\pcf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pcf\pcfdrivr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pcf\pcferror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pcf\pcfread.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pcf\pcfutil.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrcmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrdrivr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrerror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrgload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrsbit.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pfr\pfrtypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\afmparse.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\cffdecode.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psarrst.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psauxerr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psauxmod.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psblues.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psconv.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\pserror.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psfixed.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psfont.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psft.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psglue.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\pshints.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psintrp.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psread.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\psstack.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\pstypes.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\t1cmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psaux\t1decode.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pshinter\pshalgo.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pshinter\pshglob.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pshinter\pshmod.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pshinter\pshnterr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\pshinter\pshrec.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psnames\psmodule.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psnames\psnamerr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\psnames\pstables.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\raster\ftmisc.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\raster\ftraster.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\raster\ftrend1.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\raster\rasterrs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\pngshim.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\sfdriver.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\sferrors.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\sfobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\sfwoff.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttbdf.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttcmap.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttcmapc.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttcolr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttcpal.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttkern.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttmtx.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttpost.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\sfnt\ttsbit.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\smooth\ftgrays.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\smooth\ftsmerrs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\smooth\ftsmooth.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttdriver.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\tterrors.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttgload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttgxvar.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttinterp.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttobjs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttpload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\truetype\ttsubpix.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1afm.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1driver.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1errors.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1gload.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1load.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1objs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1parse.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type1\t1tokens.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type42\t42drivr.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type42\t42error.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type42\t42objs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type42\t42parse.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\type42\t42types.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\winfonts\fnterrs.h" />
+    <ClInclude Include="..\..\L_ETC-core\ext\freetype\src\winfonts\winfnt.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\GameObject.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\audio\audioclip.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\audio\audiomanager.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\GridRenderer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\SimpleRenderer2D.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\batchrenderer2d.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\buffer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\indexbuffer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\vertexarray.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\font\FontLibrary.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\font\font.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\font\fontmanager.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\font\label.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\EngineControlLayer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\GUILayer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\GridLayer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\group.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\layer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\renderable2d.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\renderer2d.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\shader.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\simple2drenderer.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\sprite.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\texture.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\window.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\letc.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\math\math.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\math\math_functions.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\math\matrix4.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\math\vector2.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\math\vector3.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\math\vector4.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\physics\DebugPhysics.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\physics\PhysicsBody2D.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\physics\PhysicsConstants.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\physics\PhysicsWorld2D.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\physics\QueryAABBCallback.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\physics\RaycastCallback.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\utils\file_utils.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\utils\string_utils.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\utils\timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Dependencies\glad\src\glad.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2ChainShape.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2CircleShape.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2EdgeShape.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\Shapes\b2PolygonShape.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2BroadPhase.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2CollideCircle.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2CollideEdge.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2CollidePolygon.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2Collision.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2Distance.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2DynamicTree.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Collision\b2TimeOfImpact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Common\b2BlockAllocator.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Common\b2Draw.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Common\b2Math.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Common\b2Settings.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Common\b2StackAllocator.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Common\b2Timer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2CircleContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2Contact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2ContactSolver.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Contacts\b2PolygonContact.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2DistanceJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2FrictionJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2GearJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2Joint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2MotorJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2MouseJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2PulleyJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2RopeJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2WeldJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\Joints\b2WheelJoint.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2Body.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2ContactManager.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2Fixture.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2Island.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2World.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Dynamics\b2WorldCallbacks.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\Box2D\Rope\b2Rope.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\distance-field.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\edtaa3func.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\font-manager.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\platform.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\texture-atlas.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\texture-font.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\utf8-utils.c" />
+    <ClCompile Include="..\..\L_ETC-core\ext\freetype-gl\vector.c" />
+    <ClCompile Include="..\..\L_ETC-core\main.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\GameObject.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\audio\audioclip.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\audio\audiomanager.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\batchrenderer2d.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\buffers\buffer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\buffers\indexbuffer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\font\font.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\font\fontmanager.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\font\label.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\EngineControlLayer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\GUILayer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\GridLayer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\group.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\layer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\shader.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\sprite.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\texture.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\window.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\math\matrix4.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\math\vector2.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\math\vector3.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\math\vector4.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\physics\PhysicsBody2D.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\physics\PhysicsConstants.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

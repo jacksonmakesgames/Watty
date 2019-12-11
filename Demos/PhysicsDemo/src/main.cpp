@@ -5,13 +5,11 @@
 //#define __BUTTERFLY 1
 #define __SOUND 1W
 
-#define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/shaders/basic.vert"
-#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/shaders/basic_unlit.frag"
-#define FONTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/fonts/Roboto-Italic.ttf"
-
-
+#define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic.vert"
+#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_unlit.frag"
+#define FONTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/fonts/Roboto-Italic.ttf"
 
 
 using namespace letc;
@@ -53,7 +51,7 @@ class SimpleGame : public LETC {
 
 		Texture* boxTexture;
 
-		GameObject* grabbedBox;
+		GameObject* m_grabbedBox = nullptr;
 
 	public:
 		SimpleGame() {}
@@ -96,7 +94,7 @@ class SimpleGame : public LETC {
 			player = new GameObject(
 				playerPos,
 				playerSize,
-				new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/textures/Player.png")));
+				new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/Player.png")));
 
 			player->addComponent(new PhysicsBody2D(
 				physics::BodyShapes::circle,
@@ -106,8 +104,8 @@ class SimpleGame : public LETC {
 			player->setTag("Player");
 			layer0->add(player);
 
-			boxTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/textures/box.png");
-			Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/textures/floor.png");
+			boxTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/box.png");
+			Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/floor.png");
 
 
 			Vector3 floorPos(-16.0f,-9.0f,0);
@@ -150,7 +148,7 @@ class SimpleGame : public LETC {
 			profileGroup->add(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
 			uiLayer->add(profileGroup);
 
-			AudioClip* clip = new AudioClip("slow_motion", "J:/OneDrive/Projects/Game_Development/L_ETC/bin/Demos/res/sounds/slow_motion.ogg");
+			AudioClip* clip = new AudioClip("slow_motion", "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/sounds/slow_motion.ogg");
 			AudioManager::addClip(clip);
 			AudioManager::getClip("slow_motion")->play(true);
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
@@ -250,17 +248,17 @@ class SimpleGame : public LETC {
 
 
 				if (!callback->hit){
-					grabbedBox = addBox();
-					grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0, 0));
-					grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
+					m_grabbedBox = addBox();
+					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0, 0));
+					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
 
 				}
 				else {
-					grabbedBox = callback->gameObjects[0];
+					m_grabbedBox = callback->gameObjects[0];
 				}
 			}
 			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT)) {
-				if (grabbedBox) {
+				if (m_grabbedBox) {
 					float xSum = 0;
 					for (size_t i = 0; i < m_lastXs.size(); i++)
 					{
@@ -278,8 +276,8 @@ class SimpleGame : public LETC {
 					float xDiff = xScreenMousePos - xAvg;
 					float yDiff = yScreenMousePos - yAvg;
 
-					grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(4*xDiff, 4*yDiff));
-					grabbedBox = nullptr;
+					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(4*xDiff, 4*yDiff));
+					m_grabbedBox = nullptr;
 				}
 
 			}
@@ -299,10 +297,10 @@ class SimpleGame : public LETC {
 				}
 			}
 
-			if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT)) {
-				if (grabbedBox != nullptr) {
-					grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0,0));
-					grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
+			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT)) {
+				if (m_grabbedBox != nullptr) {
+					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0,0));
+					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
 				}
 
 			}

@@ -1,5 +1,6 @@
 #pragma once
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include<glad/glad.h>
 #include "layer.h"
 #include "../batchrenderer2d.h"
 #include <imgui/imgui.h>

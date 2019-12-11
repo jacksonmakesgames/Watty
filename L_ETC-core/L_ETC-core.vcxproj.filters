@@ -85,6 +85,9 @@
     <Filter Include="Source Files\ext\gorilla-audio\ext">
       <UniqueIdentifier>{b906cc71-0399-44fe-981d-35f1f0beceda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ext\glad">
+      <UniqueIdentifier>{58992346-1c6b-4ec7-b1fa-64dbf3a9111c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ext\freetype\src\base\ftbbox.c">
@@ -459,6 +462,9 @@
     <ClCompile Include="src\graphics\layers\EngineControlLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Dependencies\glad\src\glad.c">
+      <Filter>Source Files\ext\glad</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.vert">
@@ -472,6 +478,8 @@
     </None>
     <None Include="src\shaders\simple.vert" />
     <None Include="src\shaders\simple.frag" />
+    <None Include="src\shaders\font.vert" />
+    <None Include="src\shaders\font.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\freetype\include\ft2build.h">
@@ -1677,10 +1685,8 @@
     <ClInclude Include="src\graphics\layers\EngineControlLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ext\freetype\src\base\ftver.rc">
-      <Filter>Source Files\ext\freetype\src</Filter>
-    </ResourceCompile>
+    <ClInclude Include="src\graphics\font\FontLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -70,12 +70,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(IncludePath);$(SolutionDir)\L_ETC-core\src;$(SolutionDir)Dependencies\imgui\include</IncludePath>
-    <LibraryPath>$(SolutionDir)/bin;$(SolutionDir)Dependencies\gorilla-audio\bin\win32;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(IncludePath);$(SolutionDir)\L_ETC-core\src;$(SolutionDir)Dependencies\imgui\include;$(SolutionDir)Dependencies\glad\include</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\Freetype\lib;$(SolutionDir)/bin;$(SolutionDir)Dependencies\gorilla-audio\bin\win32;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)bin\Demos</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(IncludePath);$(SolutionDir)\L_ETC-core\src;$(SolutionDir)Dependencies\imgui\include</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies/gorilla-audio/include;$(SolutionDir)Dependencies\FreeImage\include;$(ProjectDir)ext\freetype\include;$(IncludePath);$(SolutionDir)\L_ETC-core\src;$(SolutionDir)Dependencies\imgui\include;$(SolutionDir)Dependencies\glad\include</IncludePath>
     <LibraryPath>$(SolutionDir)/bin;$(SolutionDir)Dependencies\gorilla-audio\bin\win32;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\FreeImage\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)bin\Demos</OutDir>
   </PropertyGroup>
@@ -88,7 +88,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>L_ETC-core.lib;opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;gorilla.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>L_ETC-core.lib;opengl32.lib;glfw3.lib;glew32s.lib;FreeImage.lib;gorilla.lib;freetype_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

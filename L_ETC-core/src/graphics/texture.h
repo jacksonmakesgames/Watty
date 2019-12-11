@@ -1,7 +1,9 @@
 #pragma once
 #include "FreeImage.h"
 #include <string>
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include <glad/glad.h>
+
 #include <vector>
 //#include "texturemanager.h"
 

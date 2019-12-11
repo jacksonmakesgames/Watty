@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LETC-Core", "LETC-Core.vcxproj", "{63FC8616-CF66-3B8D-18A5-EC32844E19E2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsDemo", "PhysicsDemo.vcxproj", "{6D15EBEE-D9CA-63E4-62BF-5DBBCE735AE8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleGame", "SimpleGame.vcxproj", "{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63FC8616-CF66-3B8D-18A5-EC32844E19E2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{63FC8616-CF66-3B8D-18A5-EC32844E19E2}.Debug|Win32.Build.0 = Debug|Win32
+		{63FC8616-CF66-3B8D-18A5-EC32844E19E2}.Release|Win32.ActiveCfg = Release|Win32
+		{63FC8616-CF66-3B8D-18A5-EC32844E19E2}.Release|Win32.Build.0 = Release|Win32
+		{6D15EBEE-D9CA-63E4-62BF-5DBBCE735AE8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6D15EBEE-D9CA-63E4-62BF-5DBBCE735AE8}.Debug|Win32.Build.0 = Debug|Win32
+		{6D15EBEE-D9CA-63E4-62BF-5DBBCE735AE8}.Release|Win32.ActiveCfg = Release|Win32
+		{6D15EBEE-D9CA-63E4-62BF-5DBBCE735AE8}.Release|Win32.Build.0 = Release|Win32
+		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Debug|Win32.Build.0 = Debug|Win32
+		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Release|Win32.ActiveCfg = Release|Win32
+		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

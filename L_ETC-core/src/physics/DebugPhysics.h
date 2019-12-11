@@ -1,7 +1,9 @@
 #pragma once
 #include "../../ext/Box2D/Box2D.h"
 #include "../../ext/Box2D/Common/b2Draw.h"
-#include <GL/glew.h>
+//#include <GL/glew.h>
+#include <glad/glad.h>
+
 #include "../graphics/shader.h"
 #include "../math/math.h"
 #include "../graphics/buffers/vertexarray.h"
@@ -27,7 +29,7 @@ namespace letc { namespace physics {
 
 			//set up vertex array
 			GLfloat glverts[16]; //allow for polygons up to 8 vertices
-
+			
 			glVertexPointer(2, GL_FLOAT, 0, glverts); //tell OpenGL where to find vertices
 			glEnableClientState(GL_VERTEX_ARRAY); //use vertices in subsequent calls to glDrawArrays
 
@@ -38,7 +40,7 @@ namespace letc { namespace physics {
 			}
 
 			//draw solid area
-			//glVertexAttrib4f(3, 0.0f, .5f, 0.0f, .2f);
+			glVertexAttrib4f(3, 0.0f, .5f, 0.0f, .2f);
 			glVertexAttrib4f(3, color.r/1.2f, color.g, color.b/1.2f, .3f);
 			glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount);
 

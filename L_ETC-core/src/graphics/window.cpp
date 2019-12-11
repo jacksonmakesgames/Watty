@@ -100,11 +100,18 @@ namespace letc {namespace graphics {
 		glfwSwapInterval(m_useVSync);
 
 
-		if (glewInit() != GLEW_OK) {
-			std::cout << "Could not initialize GLEW" << std::endl;
-			return false;
+		//if (glewInit() != GLEW_OK) {
+		//	std::cout << "Could not initialize GLEW" << std::endl;
+		//	return false;
 
+		//}	
+		
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			std::cout << "Failed to initialize GLAD" << std::endl;
+			return -1;
 		}
+
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
 		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
