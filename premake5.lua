@@ -128,7 +128,7 @@ filter { "platforms:*86" } architecture "x86"
     filter {} -- clear filter!
 
     -- where to find header files that you might be including, mainly for library headers.
-    includedirs
+    sysincludedirs
     {
       SourceDir, -- include root source directory to allow for absolute include paths
       -- include the headers of any libraries/dlls you need
@@ -256,7 +256,7 @@ filter { "platforms:*86" } architecture "x86"
     filter {} -- clear filter!
 
     -- where to find header files that you might be including, mainly for library headers.
-    includedirs
+    sysincludedirs
     {
       SourceDir, -- include root source directory to allow for absolute include paths
       -- include the headers of any libraries/dlls you need
@@ -366,7 +366,7 @@ filter { "platforms:*86" } architecture "x86"
     filter {} -- clear filter!
 
     -- where to find header files that you might be including, mainly for library headers.
-    includedirs
+    sysincludedirs
     {
       SourceDir, -- include root source directory to allow for absolute include paths
       -- include the headers of any libraries/dlls you need
@@ -395,7 +395,8 @@ filter { "platforms:*86" } architecture "x86"
     	ROOT .. "Dependencies/GLEW/lib/",
     	ROOT .. "Dependencies/FreeImage/lib/",
     	ROOT .. "Dependencies/GLFW/lib-vc2019/",
-    	ROOT .. "Dependencies/Freetype/lib/"
+    	ROOT .. "Dependencies/Freetype/lib/",
+    	
 
     	--ROOT .. "Dependencies/OpenGL32/"
 
