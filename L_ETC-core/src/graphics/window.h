@@ -34,10 +34,10 @@ namespace letc {namespace graphics {
 
 		bool m_keysThisFrame[MAX_KEYS];
 		bool m_keysLastFrame[MAX_KEYS];
-		bool m_keysDown[MAX_KEYS];
+		bool m_keysFirstFrameDown[MAX_KEYS];
 		bool m_buttonsThisFrame[MAX_BUTTONS];
 		bool m_buttonsLastFrame[MAX_BUTTONS];
-		bool m_buttonsDown[MAX_BUTTONS];
+		bool m_buttonsFirstFrameDown[MAX_BUTTONS];
 		double mx, my;
 
 		int m_refreshRate;
@@ -48,6 +48,7 @@ namespace letc {namespace graphics {
 		~Window();
 		bool closed() const;
 		void update();
+		void listenForInput();
 		void clear() const;
 
 		inline int getWidth() const { return Window::m_Width; };

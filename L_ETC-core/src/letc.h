@@ -95,6 +95,8 @@ namespace letc {
 		// runs LETC_UPDATE_RATE times per second
 		virtual void update() {
 			gameTimer->update();
+
+
 			for (size_t i = 0; i < layers.size(); i++)
 			{
 				layers[i]->update();
@@ -118,6 +120,8 @@ namespace letc {
 			for (size_t i = 0; i < layers.size(); i++){
 				layers[i]->draw();
 			}
+			m_window->listenForInput();
+
 		}
 
 		const unsigned int getFramesPerSecond()  const  { return m_framesPerSecond;  }

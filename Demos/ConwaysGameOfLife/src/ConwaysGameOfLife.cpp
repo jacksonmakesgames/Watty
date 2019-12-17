@@ -48,6 +48,9 @@ private:
 
 	float stepRate   = 2.0f;
 	float nextStepTime = 0.0f;
+	float spaceDownTime = 0.0f;
+	int framesHeld = 0;
+
 public:
 	ConwaysGOL() {}
 	~ConwaysGOL() {
@@ -89,21 +92,22 @@ public:
 	}
 
 	void update() override {
-
 		getInput();
 		if (reset) resetGrid();
-		if (run && gameTimer->elapsed()>nextStepTime) { 
+		if (run && gameTimer->elapsed() > nextStepTime) {
 			nextStepTime = gameTimer->elapsed() + (1.0 / stepRate);
 			step();
-		
+
 		}
 		LETC::update();
+	
 	}
 
 	void render() override {
 
-
 		LETC::render();
+
+		
 	}
 
 	void tick() override {
@@ -112,8 +116,26 @@ public:
 	}
 
 	void getInput() {
+		
+
 		if (m_window->keyWasPressed(GLFW_KEY_SPACE)) {
 			step();
+ 			spaceDownTime = gameTimer->elapsed();
+		}
+		else if (m_window->keyIsDown(GLFW_KEY_SPACE)) {
+			// test if held
+			if (framesHeld > 2) {
+				if (gameTimer->elapsed() > spaceDownTime + 1.0f/stepRate) {
+					run = true;
+				}
+			}
+			framesHeld++;
+		}
+		if (m_window->keyWasReleased(GLFW_KEY_SPACE)) { 
+			run = false;
+			spaceDownTime = gameTimer->elapsed();
+			framesHeld = 0;
+
 		}
 		
 		if (m_window->keyWasPressed(GLFW_KEY_R)) {
@@ -154,10 +176,20 @@ public:
 			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			
-			r = (r + 1) / 4;
+		/*	r = (r + 1) / 4;
 			g = (g + 1) / 2;
-			b = (b + 1) / 2;
+			b = (b + 1) / 2;*/
 
+			r = pos.x / WINDOWWIDTH;
+			g = pos.y / WINDOWHEIGHT;
+			b = pos.x / WINDOWWIDTH;
+			if (r < 0.4f) r = 0.4f;
+			if (g < 0.4f) g = 0.4f;
+			if (b < 0.5f) b = 0.5f;
+
+			if (r > 0.8f) r = 0.8f;
+			if (g > 0.8f) g = 0.8f;
+			if (b > 0.9f) b = 0.9f;
 			getLayerByName("Cell Layer")->add(new GameObject(pos, Vector2(cellSize, cellSize), new Sprite(Color::RGBA(r, g, b, 1.0f))));
 
 		}
@@ -219,9 +251,6 @@ public:
 			{
 				if ((grid[i][j] == true)) {
 					Vector2 pos;
-
-
-
 					
 					pos.x = i * 20;
 					pos.y = 900 - (j+1) * 20;

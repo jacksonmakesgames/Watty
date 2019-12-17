@@ -20,12 +20,12 @@ namespace letc {namespace graphics {
 		for (int i = 0; i < MAX_KEYS; i++) {
 			m_keysThisFrame[i]		=	false;
 			m_keysLastFrame[i]	=	false;
-			m_keysDown[i]	=	false;
+			m_keysFirstFrameDown[i]	=	false;
 		}
 		for (int i = 0; i < MAX_BUTTONS; i++) {
 			m_buttonsThisFrame[i]		=	 false;
 			m_buttonsLastFrame[i]		=	 false;
-			m_buttonsDown[i]			=	 false;
+			m_buttonsFirstFrameDown[i]			=	 false;
 		}
 
 		// imgui:
@@ -141,18 +141,21 @@ namespace letc {namespace graphics {
 	}
 
 	bool Window::keyIsDown(unsigned int keycode) const {
+		// if the key is down this frame
 		if (keycode >= MAX_KEYS) {
 		// TODO: log an error
 			return false;
 		}
 		return m_keysThisFrame[keycode];
 	}
+
 	bool Window::keyWasPressed(unsigned int keycode) const {
+		// If this is the first frame a key is down
 		if (keycode >= MAX_KEYS) {
 		// TODO: log an error
 			return false;
 		}
-		return m_keysDown[keycode];
+		return m_keysFirstFrameDown[keycode];
 	}
 
 	bool Window::mouseButtonWasPressed(unsigned int button) const {
@@ -160,7 +163,7 @@ namespace letc {namespace graphics {
 		// TODO: log an error
 			return false;
 		}
-		return m_buttonsDown[button];
+		return m_buttonsFirstFrameDown[button];
 	}
 	bool Window::mouseButtonIsDown(unsigned int button) const {
 		if (button >= MAX_BUTTONS) {
@@ -179,13 +182,13 @@ namespace letc {namespace graphics {
 		return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
 	}	
 	
-	bool Window::keyWasReleased(unsigned int button) const
+	bool Window::keyWasReleased(unsigned int key) const
 	{
-		if (button >= MAX_KEYS) {
+		if (key >= MAX_KEYS) {
 			// TODO: log an error
 			return false;
 		}
-		return false;
+		return  (m_keysLastFrame[key] && !m_keysThisFrame[key]);;
 	}
 
 	void Window::getMousePos(double& x, double& y) const {
@@ -199,17 +202,7 @@ namespace letc {namespace graphics {
 	}
 
 	void Window::update() {
-		// handle input:
-		for (size_t i = 0; i < MAX_KEYS; i++){
-			m_keysDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i];
-		}
-		memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool)*MAX_KEYS);
-
-		for (size_t i = 0; i < MAX_BUTTONS; i++){
-			m_buttonsDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
-		}
-		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool)*MAX_BUTTONS);
-
+		
 	
 
 		glfwPollEvents();
@@ -218,6 +211,22 @@ namespace letc {namespace graphics {
 		//audio:
 		audio::AudioManager::update(); // TODO: TEST PERMORMANCE
 
+
+	}
+
+	void Window::listenForInput()
+	{
+
+		// handle input:
+		for (size_t i = 0; i < MAX_KEYS; i++) {
+			m_keysFirstFrameDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i]; // first frame pressed
+		}
+		memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool) * MAX_KEYS);
+
+		for (size_t i = 0; i < MAX_BUTTONS; i++) {
+			m_buttonsFirstFrameDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
+		}
+		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool) * MAX_BUTTONS);
 
 	}
 
