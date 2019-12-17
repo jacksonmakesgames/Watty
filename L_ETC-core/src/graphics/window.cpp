@@ -6,14 +6,15 @@ namespace letc {namespace graphics {
 	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
-	Window::Window(const char* title, int width, int height) {
+	Window::Window(const char* title, int width, int height, bool resizeable) {
 		m_Title = title;
 		m_Width = width;
 		m_Height = height;
+		isResizeable = resizeable;
 		if (!init())
 			glfwTerminate();
 		
-		//FontManager::add(new Font("default", "Fonts/Roboto-Regular.ttf", 15)); // TODO: WE SHOULD DO THIS AT SOME POINT
+		//FontManager::add(new Font("default", "res/fonts/Roboto-Regular.ttf", 15)); 
 		audio::AudioManager::init();
 
 		for (int i = 0; i < MAX_KEYS; i++) {
@@ -30,7 +31,7 @@ namespace letc {namespace graphics {
 		// imgui:
 		 // Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
-		const char* glsl_version = "#version 150";
+		const char* glsl_version = "#version 450";
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
@@ -55,7 +56,6 @@ namespace letc {namespace graphics {
 		glfwTerminate();
 		FontManager::clean();
 		audio::AudioManager::clean();
-		graphics::Texture::clean();
 	}
 
 	// TODO: NOT SURE, asks nvidia to use dedicate gpu
@@ -70,11 +70,12 @@ namespace letc {namespace graphics {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+
 		if (!glfwInit()){
 			std::cout << "Failed to initialize GLFW" << std::endl;
 			return false;
 		}
-
+		glfwWindowHint(GLFW_RESIZABLE, isResizeable);
 
 #if 0 // fullscreen
 		m_Width = 1920;
@@ -83,7 +84,9 @@ namespace letc {namespace graphics {
 
 #else
 		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+		
 #endif
+		m_refreshRate = glfwGetVideoMode(glfwGetPrimaryMonitor())->refreshRate;
 		if (!m_Window) {
 			glfwTerminate();
 			std::cout << "Failed to create window" << std::endl;
@@ -93,11 +96,11 @@ namespace letc {namespace graphics {
 		glfwMakeContextCurrent(m_Window);
 		
 		glfwSetWindowUserPointer(m_Window, this);
-		glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
+		if(isResizeable) glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
 		glfwSetKeyCallback(m_Window, key_callback);
 		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
-		glfwSwapInterval(m_useVSync);
+		glfwSwapInterval(useVSync);
 
 
 		//if (glewInit() != GLEW_OK) {
@@ -224,8 +227,9 @@ namespace letc {namespace graphics {
 
 
 	void window_resize_callback(GLFWwindow* window, int width, int height){
-		glViewport(0, 0, width, height);
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
+		if (!win->isResizeable) { return;  }
+		glViewport(0, 0, width, height);
 		win->m_Width = width;
 		win->m_Height = height;
 		FontManager::remakeAllFonts(width/32.0f, height/16.0f); // NOTE: huge performance hit when resizing.. we should rethink this
@@ -250,13 +254,13 @@ namespace letc {namespace graphics {
 
 	void Window::toggleVSync()
 	{
-		m_useVSync = !m_useVSync;
-		glfwSwapInterval(m_useVSync);
+		Window::useVSync = !Window::useVSync;
+		glfwSwapInterval(Window::useVSync);
 	}
 	void Window::setVSync(bool state)
 	{
-		m_useVSync = state;
-		glfwSwapInterval(m_useVSync);
+		Window::useVSync = state;
+		glfwSwapInterval(Window::useVSync);
 	}
 
 	static void GLAPIENTRY openglCallbackFunction(GLenum source,

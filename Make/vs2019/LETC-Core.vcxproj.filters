@@ -1152,6 +1152,12 @@
     <ClInclude Include="..\..\L_ETC-core\src\audio\audiomanager.h">
       <Filter>Header Files\src\audio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\Camera.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\Color.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\L_ETC-core\src\graphics\GridRenderer.h">
       <Filter>Header Files\src\graphics</Filter>
     </ClInclude>
@@ -1169,9 +1175,6 @@
     </ClInclude>
     <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\vertexarray.h">
       <Filter>Header Files\src\graphics\buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\L_ETC-core\src\graphics\font\FontLibrary.h">
-      <Filter>Header Files\src\graphics\font</Filter>
     </ClInclude>
     <ClInclude Include="..\..\L_ETC-core\src\graphics\font\font.h">
       <Filter>Header Files\src\graphics\font</Filter>
@@ -1271,6 +1274,9 @@
     </ClInclude>
     <ClInclude Include="..\..\L_ETC-core\src\utils\timer.h">
       <Filter>Header Files\src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\DebugRenderer.h">
+      <Filter>Header Files\src\physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1451,6 +1457,9 @@
     <ClCompile Include="..\..\L_ETC-core\src\audio\audiomanager.cpp">
       <Filter>Source Files\src\audio</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\Camera.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\L_ETC-core\src\graphics\batchrenderer2d.cpp">
       <Filter>Source Files\src\graphics</Filter>
     </ClCompile>
@@ -1535,5 +1544,6 @@
     <ClCompile Include="..\..\L_ETC-core\src\physics\PhysicsConstants.cpp">
       <Filter>Source Files\src\physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\DebugRenderer.cpp" />
   </ItemGroup>
 </Project>

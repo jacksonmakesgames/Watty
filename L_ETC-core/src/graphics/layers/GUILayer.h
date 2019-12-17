@@ -14,7 +14,7 @@ namespace letc { namespace graphics {
 		
 
 	public: 
-		GUILayer(std::string name, graphics::Shader* shader, math::Matrix4 prMatrix);
+		GUILayer(std::string name, graphics::Shader* shader);
 
 		virtual void draw() override;
 

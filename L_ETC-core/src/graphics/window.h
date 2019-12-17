@@ -19,15 +19,17 @@ namespace letc {namespace graphics {
 #define MAX_KEYS 1024
 #define MAX_BUTTONS 32
 
-	class Window {
+	static class Window {
+	protected:
+		bool isResizeable;
 	public:
+		static bool useVSync;
 	private:
 		friend struct GLFWwindow;
 		const char* m_Title;
 		int m_Width, m_Height;
 		GLFWwindow *m_Window;
 		bool m_Closed;
-		bool m_useVSync = false;
 
 
 		bool m_keysThisFrame[MAX_KEYS];
@@ -38,8 +40,11 @@ namespace letc {namespace graphics {
 		bool m_buttonsDown[MAX_BUTTONS];
 		double mx, my;
 
+		int m_refreshRate;
+
+
 	public:
-		Window(const char *title, int width, int height);
+		Window(const char *title, int width, int height, bool resizeable);
 		~Window();
 		bool closed() const;
 		void update();
@@ -55,8 +60,10 @@ namespace letc {namespace graphics {
 		bool mouseButtonIsDown(unsigned int button) const;
 		bool mouseButtonWasReleased(unsigned int button) const;
 		void getMousePos(double& x, double& y) const;
-		void toggleVSync();
-		void setVSync(bool state);
+		static void toggleVSync();
+		static void setVSync(bool state);
+
+		inline int getRefreshRate() { return m_refreshRate; };
 
 		
 	private:

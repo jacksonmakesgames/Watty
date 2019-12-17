@@ -25,9 +25,10 @@ namespace letc {
 
 	}
 }
-class SimpleGame : public LETC {
+class ConwaysGOL : public LETC {
 	private:
 		Window* m_window;
+
 		GUILayer* m_engineControlLayer;
 		Label* fpsLabel;
 		Label* upsLabel;
@@ -54,16 +55,16 @@ class SimpleGame : public LETC {
 		GameObject* m_grabbedBox = nullptr;
 
 	public:
-		SimpleGame() {}
-		~SimpleGame() {
+		ConwaysGOL() {}
+		~ConwaysGOL() {
 
 		}
 
 		void init() override {
-			m_window = createWindow("This little engine could", 1280, 720);
-			m_window->setVSync(true);
+			m_window = createWindow("This little engine could", 1280, 720, false);
+			Window::setVSync(true);
 			Vector2 fontScale = Vector2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
-			math::Matrix4 ortho = math::Matrix4::orthographic(-16, 16, -9, 9, -10, 10);
+			DebugPhysics::init();
 			letc::physics::PhysicsWorld2D::setDebugDraw();
 
 			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
@@ -72,10 +73,10 @@ class SimpleGame : public LETC {
 			shader0->setUniform1f("light_intensity", 1.1f);
 
 
-			Layer* layer0 = new Layer("Ball Layer", new BatchRenderer2D(), shader0, ortho);
+			Layer* layer0 = new Layer("Ball Layer", new BatchRenderer2D(), shader0);
 			layers.push_back(layer0);
 
-			Layer* uiLayer = new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH), math::Matrix4::orthographic(-16, 16, -9, 9, -10, 10));
+			Layer* uiLayer = new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
 			layers.push_back(uiLayer);
 			
 			FontManager::add(new Font("Roboto", FONTPATH, 10, fontScale)); 
@@ -157,9 +158,13 @@ class SimpleGame : public LETC {
 			layers.push_back(gridLayer);
 			gridLayer->disable();
 
-			EngineControlLayer* engineControlLayer = new EngineControlLayer("LETC GUI Layer", debugPhysics, resetFlag, layers, new Shader(VERTPATH, FRAGUNLITPATH), ortho);
+			EngineControlLayer* engineControlLayer = new EngineControlLayer("LETC GUI Layer", debugPhysics, resetFlag, &Window::useVSync, layers, new Shader(VERTPATH, FRAGUNLITPATH));
 			layers.push_back(engineControlLayer);
 			engineControlLayer->disable();
+
+
+			//m_camera = new Camera(layers, Vector3(0, 0, -1), Vector2(32.0f, 18.0f), 20, CameraMode::orthographic);
+
 
 		}
 
@@ -168,6 +173,7 @@ class SimpleGame : public LETC {
 			getInput();
 			PhysicsWorld2D::step(gameTimer->delta);
 			LETC::update();
+
 		}
 
 		void render() override {
@@ -235,9 +241,8 @@ class SimpleGame : public LETC {
 			m_window->getMousePos(x, y);
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
-			//if (!ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
 
-			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT)) {
+			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -257,7 +262,7 @@ class SimpleGame : public LETC {
 					m_grabbedBox = callback->gameObjects[0];
 				}
 			}
-			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT)) {
+			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 				if (m_grabbedBox) {
 					float xSum = 0;
 					for (size_t i = 0; i < m_lastXs.size(); i++)
@@ -283,7 +288,7 @@ class SimpleGame : public LETC {
 			}
 
 
-			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT)) {
+			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -297,7 +302,7 @@ class SimpleGame : public LETC {
 				}
 			}
 
-			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT)) {
+			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 				if (m_grabbedBox != nullptr) {
 					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0,0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
@@ -341,7 +346,7 @@ class SimpleGame : public LETC {
 
 
 int main() {
-	SimpleGame game;
+	ConwaysGOL game;
 	game.start();
 	return 0;
 

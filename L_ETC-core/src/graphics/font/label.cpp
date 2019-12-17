@@ -52,11 +52,16 @@ namespace letc {namespace graphics {
 
 		validateFont(fontName, size);
 	}
-	Label::Label(std::string text, const std::string& fontName, unsigned int size, unsigned int color):
-	Renderable2D(), text(text) {
+	Label::Label(std::string text, const std::string& fontName, unsigned int size, unsigned int color) :
+		Renderable2D(), text(text) {
+		
 		m_position = math::Vector3(0, 0, 0);
 		m_color = color;
 		m_font = FontManager::get(fontName, size);
+		if (m_font == nullptr) {
+			std::cout << "Error, no font found for label" << std::endl;
+			return;
+		}
 		m_texture = m_font->getTexture();
 
 		validateFont(fontName, size);

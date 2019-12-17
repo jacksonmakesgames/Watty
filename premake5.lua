@@ -415,3 +415,226 @@ filter { "platforms:*86" } architecture "x86"
     filter "configurations:Debug"  links{"freetype_debug"} 
     filter "configurations:Release"  links{"freetype_release"} 
     filter{}
+
+
+
+-----------------------------
+  -- [ PROJECT CONFIGURATION ] --
+  ------------------------------- 
+    project "PlatformerDemo"
+    kind "ConsoleApp" -- "WindowApp" removes console
+    language "C++"
+    targetdir (ROOT .. "bin/Demos/") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
+    targetname "PlatformerDemo" -- the name of the executable saved to 'targetdir'
+  	defines {"FT2_BUILD_LIBRARY", "CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE"}
+  
+  --------------------------------------
+    -- [ PROJECT FILES CONFIGURATIONS ] --
+    --------------------------------------
+    local SourceDir = ROOT .. "Demos/PlatformerDemo/";
+    -- what files the visual studio project/makefile/etc should know about
+    files
+    { 
+      -- all paths in premake can have * for wildcard.
+      --     /Some/Path/*.txt     will find any .txt file in /Some/Path
+      --     /Some/Path/**.txt    will find any .txt file in /Some/Path and any of its subdirectories
+      SourceDir .. "**.h", 
+      SourceDir .. "**.hpp", 
+     -- SourceDir .. "**.c",
+      SourceDir .. "**.cpp",
+      SourceDir .. "**.tpp"
+    }
+
+    -- Exclude template files from project (so they don't accidentally get compiled)
+    filter { "files:**.tpp" }
+      flags {"ExcludeFromBuild"}
+
+    filter {} -- clear filter!
+
+
+    -- setting up visual studio filters (basically virtual folders).
+    vpaths 
+    {
+      ["Header Files/*"] = { 
+        SourceDir .. "**.h", 
+        SourceDir .. "**.hxx", 
+        SourceDir .. "**.hpp",
+      },
+      ["Source Files/*"] = { 
+        SourceDir .. "**.cxx", 
+        SourceDir .. "**.cpp",
+      },
+    }
+
+    -- You can use filters on files as well. 
+    -- Whatever follows will then only apply to files that match the filter.
+
+    -- For template files that are included in headers, we want to make sure that they don't accidentally get compiled.
+    filter { "files:**.tpp" }
+      flags {"ExcludeFromBuild"}
+
+    filter {} -- clear filter!
+
+    -- where to find header files that you might be including, mainly for library headers.
+    sysincludedirs
+    {
+      SourceDir, -- include root source directory to allow for absolute include paths
+      -- include the headers of any libraries/dlls you need
+      ROOT .. "L_ETC-core/src/",
+      ROOT .. "Dependencies/GLFW/include/",
+      ROOT .. "Dependencies/gorilla-audio/include/",
+      ROOT .. "Dependencies/FreeImage/include/",
+      ROOT .. "L_ETC-core/ext/freetype-gl/",
+      ROOT .. "L_ETC-core/ext/freetype/include/",
+      ROOT .. "Dependencies/imgui/include/",
+      ROOT .. "Dependencies/glad/include/"
+
+
+    }
+
+
+    -------------------------------------------
+    -- [ PROJECT DEPENDENCY CONFIGURATIONS ] --
+    -------------------------------------------
+
+    -- basically a set of paths/rules for where to find libs/dlls/etc
+    libdirs
+    {
+
+    	ROOT .. "Dependencies/gorilla-audio/bin/win32/",
+    	ROOT .. "Dependencies/FreeImage/lib/",
+    	ROOT .. "Dependencies/GLFW/lib-vc2019/",
+    	ROOT .. "bin/",
+    	ROOT .. "Dependencies/Freetype/lib/"
+
+    	--ROOT .. "Dependencies/OpenGL32/"
+
+    }
+
+    links
+    {
+      -- A list of the actual library/dll names to include
+      -- For example if you want to include fmod_123.lib you put "fmod_123" here. Just like when adding to visual studio's linker.
+    "LETC-core",
+    "opengl32",
+    "glfw3",
+    "FreeImage",
+    "gorilla"
+    }
+
+ 	filter "configurations:Debug"  links{"freetype_debug"} 
+    filter "configurations:Release"  links{"freetype_release"} 
+    filter{}
+
+
+
+
+
+-----------------------------
+  -- [ PROJECT CONFIGURATION ] --
+  ------------------------------- 
+    project "ConwaysGameOfLife"
+    kind "ConsoleApp" -- "WindowApp" removes console
+    language "C++"
+    targetdir (ROOT .. "bin/Demos/") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
+    targetname "ConwaysGameOfLife" -- the name of the executable saved to 'targetdir'
+  	defines {"FT2_BUILD_LIBRARY", "CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE"}
+
+
+    --------------------------------------
+    -- [ PROJECT FILES CONFIGURATIONS ] --
+    --------------------------------------
+    local SourceDir = ROOT .. "Demos/ConwaysGameOfLife/";
+    -- what files the visual studio project/makefile/etc should know about
+    files
+    { 
+      -- all paths in premake can have * for wildcard.
+      --     /Some/Path/*.txt     will find any .txt file in /Some/Path
+      --     /Some/Path/**.txt    will find any .txt file in /Some/Path and any of its subdirectories
+      SourceDir .. "**.h", 
+      SourceDir .. "**.hpp", 
+     -- SourceDir .. "**.c",
+      SourceDir .. "**.cpp",
+      SourceDir .. "**.tpp"
+    }
+
+    -- Exclude template files from project (so they don't accidentally get compiled)
+    filter { "files:**.tpp" }
+      flags {"ExcludeFromBuild"}
+
+    filter {} -- clear filter!
+
+
+    -- setting up visual studio filters (basically virtual folders).
+    vpaths 
+    {
+      ["Header Files/*"] = { 
+        SourceDir .. "**.h", 
+        SourceDir .. "**.hxx", 
+        SourceDir .. "**.hpp",
+      },
+      ["Source Files/*"] = { 
+        SourceDir .. "**.cxx", 
+        SourceDir .. "**.cpp",
+      },
+    }
+
+    -- You can use filters on files as well. 
+    -- Whatever follows will then only apply to files that match the filter.
+
+    -- For template files that are included in headers, we want to make sure that they don't accidentally get compiled.
+    filter { "files:**.tpp" }
+      flags {"ExcludeFromBuild"}
+
+    filter {} -- clear filter!
+
+    -- where to find header files that you might be including, mainly for library headers.
+    sysincludedirs
+    {
+      SourceDir, -- include root source directory to allow for absolute include paths
+      -- include the headers of any libraries/dlls you need
+      ROOT .. "L_ETC-core/src/",
+      ROOT .. "Dependencies/GLFW/include/",
+      ROOT .. "Dependencies/gorilla-audio/include/",
+      ROOT .. "Dependencies/FreeImage/include/",
+      ROOT .. "L_ETC-core/ext/freetype-gl/",
+      ROOT .. "L_ETC-core/ext/freetype/include/",
+      ROOT .. "Dependencies/imgui/include/",
+      ROOT .. "Dependencies/glad/include/"
+
+
+    }
+
+
+    -------------------------------------------
+    -- [ PROJECT DEPENDENCY CONFIGURATIONS ] --
+    -------------------------------------------
+
+    -- basically a set of paths/rules for where to find libs/dlls/etc
+    libdirs
+    {
+
+    	ROOT .. "Dependencies/gorilla-audio/bin/win32/",
+    	ROOT .. "Dependencies/FreeImage/lib/",
+    	ROOT .. "Dependencies/GLFW/lib-vc2019/",
+    	ROOT .. "bin/",
+    	ROOT .. "Dependencies/Freetype/lib/"
+
+    	--ROOT .. "Dependencies/OpenGL32/"
+
+    }
+
+    links
+    {
+      -- A list of the actual library/dll names to include
+      -- For example if you want to include fmod_123.lib you put "fmod_123" here. Just like when adding to visual studio's linker.
+    "LETC-core",
+    "opengl32",
+    "glfw3",
+    "FreeImage",
+    "gorilla"
+    }
+
+ 	filter "configurations:Debug"  links{"freetype_debug"} 
+    filter "configurations:Release"  links{"freetype_release"} 
+    filter{}

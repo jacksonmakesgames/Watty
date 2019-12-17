@@ -7,10 +7,24 @@ namespace letc {
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 	}
+	GameObject::GameObject(math::Vector2 position, math::Vector2 size)
+		:position(m_position), size(m_size) {
+		m_position = math::Vector3(position.x, position.y, 0.0f);
+		m_size = size;
+		m_renderable = nullptr;
+		m_physicsBody2D = nullptr;
+	}
 	
 	GameObject::GameObject(math::Vector3 position, math::Vector2 size, graphics::Renderable2D* renderable)
 		:position(m_position), size(m_size){
 		m_position = position;
+		m_size = size;
+		m_physicsBody2D = nullptr;
+		m_renderable = renderable;
+	}
+	GameObject::GameObject(math::Vector2 position, math::Vector2 size, graphics::Renderable2D* renderable)
+		:position(m_position), size(m_size){
+		m_position = math::Vector3(position.x, position.y, 0.0f);
 		m_size = size;
 		m_physicsBody2D = nullptr;
 		m_renderable = renderable;

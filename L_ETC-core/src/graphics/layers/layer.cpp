@@ -1,13 +1,10 @@
 #include "layer.h"
 namespace letc {
-	Layer::Layer(std::string name, graphics::Renderer2D* renderer, graphics::Shader* shader, math::Matrix4 prMatrix)
+	Layer::Layer(std::string name, graphics::Renderer2D* renderer, graphics::Shader* shader)
 	: name(name){
 		m_shader = shader;
-		m_prMatrix = prMatrix;
 		m_renderer = renderer;
-
 		m_shader->enable();
-		m_shader->setUniformMat4("pr_matrix", prMatrix);
 		m_shader->disable();
 	}
 
@@ -74,14 +71,15 @@ namespace letc {
 
 		for (GameObject* gameObject : m_gameObjects){
 			gameObject->submit(m_renderer);
-			
 		}
 
 
 		m_renderer->end();
 		m_renderer->flush();
+		m_shader->disable();
 
 		m_renderer->nextFrame();
+
 		
 	}
 
@@ -97,6 +95,16 @@ namespace letc {
 			}
 
 	}
+
+
+
+	void Layer::setProjection(math::Matrix4 projection)
+	{
+		m_shader->enable();
+		m_shader->setUniformMat4("pr_matrix", projection);
+		m_shader->disable();
+	}
+	
 	
 
 }

@@ -1,24 +1,28 @@
 #pragma once
 #include "../../ext/Box2D/Box2D.h"
 #include "../../ext/Box2D/Common/b2Draw.h"
-//#include <GL/glew.h>
 #include <glad/glad.h>
-
-#include "../graphics/shader.h"
 #include "../math/math.h"
-#include "../graphics/buffers/vertexarray.h"
-#include "../graphics/buffers/buffer.h"
-namespace letc { namespace physics {
+#include "../graphics/DebugRenderer.h"
+
+#define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic.vert"
+#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_unlit.frag"
+
+namespace letc { namespace physics { 
 
 	class DebugPhysics : public b2Draw
 	{
+
 	private:
+	private:
+		static graphics::DebugRenderer* renderer;
+		static graphics::Shader* m_shader;
 	public:
 
 		static DebugPhysics* instance;
-	
 		static void init() {
-
+			DebugPhysics::m_shader = new graphics::Shader(VERTPATH, FRAGUNLITPATH);
+			DebugPhysics::renderer = new graphics::DebugRenderer();
 		}
 
 		/// Draw a closed polygon provided in CCW order.
@@ -26,32 +30,35 @@ namespace letc { namespace physics {
 
 		/// Draw a solid closed polygon provided in CCW order.
 		void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
+			m_shader->enable();
+			m_shader->setUniformMat4("pr_matrix", math::Matrix4::scale(math::Vector3(1/16.0f, 1/9.0f, .1f)));
 
-			//set up vertex array
-			GLfloat glverts[16]; //allow for polygons up to 8 vertices
-			
-			glVertexPointer(2, GL_FLOAT, 0, glverts); //tell OpenGL where to find vertices
-			glEnableClientState(GL_VERTEX_ARRAY); //use vertices in subsequent calls to glDrawArrays
+			renderer->begin();
+			math::Vector3* vecVertices = new math::Vector3[vertexCount];
 
-			//fill in vertex positions as directed by Box2D
-			for (int i = 0; i < vertexCount; i++) {
-				glverts[i * 2] = vertices[i].x;
-				glverts[i * 2 + 1] = vertices[i].y;
+			for (size_t i = 0; i < vertexCount; i++)
+			{
+				vecVertices[i].x = vertices[i].x;
+				vecVertices[i].y = vertices[i].y;
+
 			}
+			//memcpy(vecVertices, vertices, vertexCount);
+			int	r = color.r * 255.0f/2.0f;
+			int	g = color.g * 255.0f;
+			int	b = color.b * 255.0f/2.0f;
+			int	a = color.a * 255.0f/2.0f;
+			unsigned int col = a << 24 | b << 16 | g << 8 | r;
 
-			//draw solid area
-			glVertexAttrib4f(3, 0.0f, .5f, 0.0f, .2f);
-			glVertexAttrib4f(3, color.r/1.2f, color.g, color.b/1.2f, .3f);
-			glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount);
 
-			//draw lines
-			glLineWidth(2); //fat lines
-			glVertexAttrib4f(3, color.r / 2, color.g*2.0f, color.b / 1.5f, .8f);
-			glDrawArrays(GL_LINE_LOOP, 0, vertexCount);
-			glDisableClientState(GL_VERTEX_ARRAY);
-			glVertexAttrib4f(3, 1.0f,1.0f,1.0f,1.0f);
-			glLineWidth(1); //regular lines
 
+
+			renderer->submit(vecVertices, vertexCount, col);
+			renderer->end();
+			glLineWidth(2.5f);
+			renderer->flush(GL_LINE_LOOP, (int)vertexCount*1.5);
+			glLineWidth(1.0f);
+			renderer->flush(GL_TRIANGLES, (int)vertexCount*1.5);
+			m_shader->disable();
 
 
 		}
@@ -65,35 +72,41 @@ namespace letc { namespace physics {
 
 		/// Draw a solid circle.
 		virtual void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
-			//set up vertex array
-			const int resolution = 20;
-			//call normal render at different position/rotation
-			GLfloat glverts[2 * resolution];
 
-			glVertexPointer(2, GL_FLOAT, 0, glverts); //tell OpenGL where to find vertices
-			glEnableClientState(GL_VERTEX_ARRAY); //use vertices in subsequent calls to glDrawArrays
+			const int resolution = 60;
 
-			int i = 0;
-			// Create the circle in the coordinates origin
+			m_shader->enable();
+			m_shader->setUniformMat4("pr_matrix", math::Matrix4::scale(math::Vector3(1 / 16.0f, 1 / 9.0f, .1f)));
+
+			renderer->begin();
+			math::Vector3* vecVertices = new math::Vector3[resolution];
 			float heading = 0.0f;
-			for (int a = 0; a < 360; a += 360 / resolution)
+			int i = 0;
+
+			for (int a = 0; a < 360; a += 360 / (resolution))
 			{
 				heading = a * DEGTORAD;
-				glverts[i * 2] = center.x + cos(heading) * radius;
-				glverts[i * 2 + 1] = center.y + sin(heading) * radius;
+				vecVertices[i].x = center.x + cos(heading) * radius;
+				vecVertices[i].y = center.y + sin(heading) * radius;
+				vecVertices[i].z = 0.0f;
 				i++;
 			}
-			glVertexAttrib4f(3, color.r / 5.0f, color.g, color.b / 1.2f, .3f);
 
-			glDrawArrays(GL_TRIANGLE_FAN, 0, resolution);
+			int	r = color.r * 255.0f / 2.0f;
+			int	g = color.g * 255.0f;
+			int	b = color.b * 255.0f / 2.0f;
+			int	a = color.a * 255.0f / 2.0f;
+			unsigned int col = a << 24 | b << 16 | g << 8 | r;
 
-			//draw lines
-			glLineWidth(2); //fat lines
-			glVertexAttrib4f(3, color.r / 5.0f, color.g * 2.0f, color.b / 1.5f, .8f);
-			glDrawArrays(GL_LINE_LOOP, 0, resolution);
-			glDisableClientState(GL_VERTEX_ARRAY);
-			glVertexAttrib4f(3, 1.0f, 1.0f, 1.0f, 1.0f);
-			glLineWidth(1); //regular lines
+			renderer->submit(vecVertices, resolution, col);
+			renderer->end();
+			glLineWidth(2.5f);
+			renderer->flush(GL_LINE_LOOP, (int)resolution * 1.5);
+			glLineWidth(1.0f);
+			renderer->flush(GL_TRIANGLE_FAN, (int)resolution * 1.5);
+
+			m_shader->disable();
+
 		
 		}
 
@@ -129,9 +142,9 @@ namespace letc { namespace physics {
 			
 		}
 		~DebugPhysics() {
+			delete DebugPhysics::renderer;
 		}
 	};
-
 
 
 } }

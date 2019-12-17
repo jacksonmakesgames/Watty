@@ -21,8 +21,11 @@ namespace letc {
 
 	public:
 		GameObject(math::Vector3 position, math::Vector2 size);
+		GameObject(math::Vector2 position, math::Vector2 size);
 		GameObject(math::Vector3 position, math::Vector2 size, graphics::Renderable2D* renderable);
+		GameObject(math::Vector2 position, math::Vector2 size, graphics::Renderable2D* renderable);
 		GameObject(math::Vector3 position, graphics::Renderable2D* renderable);
+		GameObject(math::Vector2 position, graphics::Renderable2D* renderable);
 		GameObject();
 
 		inline void setTag(std::string tag) { m_tag = tag; }

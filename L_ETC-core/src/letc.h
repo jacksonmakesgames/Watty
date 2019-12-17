@@ -16,19 +16,22 @@
 #include "../ext/Box2D/Box2D.h"
 #include "./physics/QueryAABBCallback.h"
 #include "GameObject.h"
-
+#include "graphics/Camera.h"
 #include <imgui/imgui.h>
+#include "graphics/Color.h"
 
-#define LETC_UPDATE_RATE 144.0f
+bool letc::graphics::Window::useVSync = false;
 
 
 namespace letc {
+
 	class LETC {
 	public:
 		Timer* gameTimer;
 		std::vector<Layer*> layers;
 		bool debugPhysics = false;
 		bool resetFlag = false;
+		graphics::Camera* sceneCamera;
 
 	private:
 		graphics::Window* m_window;
@@ -72,8 +75,13 @@ namespace letc {
 				delete layers[i];
 		}
 
-		graphics::Window* createWindow(const char* title, int width, int height) {
-			m_window = new graphics::Window(title, width, height);
+		graphics::Window* createWindow(const char* title, int width, int height, bool resizeable = true) {
+			m_window = new graphics::Window(title, width, height, resizeable);
+
+			float aspectRatio = width / height;
+
+			sceneCamera = new graphics::Camera(&layers, math::Vector3(0.0f, 0.0f, -10.0f), math::Vector2(32, 18), 20, graphics::CameraMode::orthographic); //TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
+
 			return m_window;
 		}
 
@@ -95,6 +103,14 @@ namespace letc {
 				reset();
 				resetFlag = false;
 			}
+
+			// For now, if there is more than one camera, ignore the default "Scene Camera"
+			size_t i = graphics::Camera::allCameras.size() > 1 ? 1 : 0;
+			
+			for (i; i < graphics::Camera::allCameras.size(); i++)
+			{
+				graphics::Camera::allCameras[i]->update();
+			}
 		}
 
 		// runs as fast as possible (unless vsync is enabled, then it runs at refresh rate)
@@ -113,7 +129,7 @@ private:
 		m_time = new Timer();
 		float timer = 0.0f;
 		float updateTimer = 0.0f;
-		float updateTick = 1.0 / LETC_UPDATE_RATE;
+		float updateTick = 1.0 / m_window->getRefreshRate();
 		unsigned int frames = 0;
 		unsigned int updates = 0;
 		while (!m_window->closed()) {
@@ -142,6 +158,7 @@ private:
 		}
 	}
 	};
-
+	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
+	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
 
 }

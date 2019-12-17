@@ -44,19 +44,20 @@
     <IntDir>obj\x86\Debug\LETC-Core\</IntDir>
     <TargetName>LETC-core</TargetName>
     <TargetExt>.lib</TargetExt>
+    <IncludePath>..\..\L_ETC-core;..\..\Dependencies\GLFW\include;..\..\Dependencies\gorilla-audio\include;..\..\Dependencies\FreeImage\include;..\..\L_ETC-core\ext\freetype\include;..\..\L_ETC-core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\bin\</OutDir>
     <IntDir>obj\x86\Release\LETC-Core\</IntDir>
     <TargetName>LETC-core</TargetName>
     <TargetExt>.lib</TargetExt>
+    <IncludePath>..\..\L_ETC-core;..\..\Dependencies\GLFW\include;..\..\Dependencies\gorilla-audio\include;..\..\Dependencies\FreeImage\include;..\..\L_ETC-core\ext\freetype\include;..\..\L_ETC-core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_LIB;FT2_BUILD_LIBRARY;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\L_ETC-core;..\..\Dependencies\GLFW\include;..\..\Dependencies\gorilla-audio\include;..\..\Dependencies\FreeImage\include;..\..\L_ETC-core\ext\freetype\include;..\..\L_ETC-core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -77,7 +78,6 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;GLEW_STATIC;_LIB;FT2_BUILD_LIBRARY;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\L_ETC-core;..\..\Dependencies\GLFW\include;..\..\Dependencies\gorilla-audio\include;..\..\Dependencies\FreeImage\include;..\..\L_ETC-core\ext\freetype\include;..\..\L_ETC-core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -407,13 +407,15 @@
     <ClInclude Include="..\..\L_ETC-core\src\GameObject.h" />
     <ClInclude Include="..\..\L_ETC-core\src\audio\audioclip.h" />
     <ClInclude Include="..\..\L_ETC-core\src\audio\audiomanager.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\Camera.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\Color.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\DebugRenderer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\GridRenderer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\SimpleRenderer2D.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\batchrenderer2d.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\buffer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\indexbuffer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\buffers\vertexarray.h" />
-    <ClInclude Include="..\..\L_ETC-core\src\graphics\font\FontLibrary.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\font\font.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\font\fontmanager.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\font\label.h" />
@@ -508,10 +510,12 @@
     <ClCompile Include="..\..\L_ETC-core\src\GameObject.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\audio\audioclip.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\audio\audiomanager.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\Camera.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\batchrenderer2d.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\buffers\buffer.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\buffers\indexbuffer.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\DebugRenderer.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\font\font.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\font\fontmanager.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\font\label.cpp" />

@@ -17,10 +17,12 @@ namespace letc {namespace graphics {
 		const math::Matrix4* m_tranformationStackBack;
 		unsigned short m_flushesPerFrame = 1;
 		unsigned short m_flushesThisFrame = 0;
+		GLint m_maxTextureUnits = 0;
 
 		Renderer2D() {
 			m_TransformationStack.push_back(math::Matrix4::identity());
 			m_tranformationStackBack = &m_TransformationStack.back();
+			glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &m_maxTextureUnits);
 		}
 		
 			
@@ -33,7 +35,6 @@ namespace letc {namespace graphics {
 				m_TransformationStack.push_back(m_TransformationStack.back() * mat);
 			}
 			m_tranformationStackBack = &m_TransformationStack.back();
-
 		}
 
 		void pop() {
@@ -50,6 +51,7 @@ namespace letc {namespace graphics {
 		}
 		~Renderer2D() {
 		}
+
 
 		virtual void begin() {}
 		virtual void submit(const Renderable2D* renderable) = 0;

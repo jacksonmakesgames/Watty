@@ -1,0 +1,17 @@
+*.log
+*.obj
+*.exe
+*.lib
+*.pdb
+*.lastbuildstate
+*.tlog
+.vs
+*.d
+*.o
+*.Lib
+*.idb
+obj/
+*.FileBuildAbsolute.txt
+*.tmp
+*.ilk
+*.iobj

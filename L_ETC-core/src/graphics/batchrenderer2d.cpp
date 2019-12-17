@@ -19,7 +19,7 @@ namespace letc {namespace graphics {
 		glBindVertexArray(m_vertexArray);
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
 		glBufferData(GL_ARRAY_BUFFER, RENDERER_BUFFER_SIZE, NULL, GL_DYNAMIC_DRAW);
-		//Enable
+		//Enable attribs
 		glEnableVertexAttribArray(SHADER_VERTEX_INDEX);
 		glEnableVertexAttribArray(SHADER_UV_INDEX);
 		glEnableVertexAttribArray(SHADER_TID_INDEX);
@@ -31,6 +31,9 @@ namespace letc {namespace graphics {
 		glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::color)));
 		//Unbind
 		glBindBuffer(GL_ARRAY_BUFFER, NULL);
+
+		// Texture Arrays:
+
 
 		//Indices
 		int indexOffset = 0;
@@ -56,12 +59,13 @@ namespace letc {namespace graphics {
 		glBindVertexArray(NULL);
 
 
-
 	}
 
 	void BatchRenderer2D::begin(){
-		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-		m_currentBuffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	
+		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer); // bind vertex buffer
+		m_currentBuffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY); // map the buffer and get the pointer to the first vertex
+
 	}
 
 	void BatchRenderer2D::submit(const Renderable2D* renderable){
@@ -72,6 +76,8 @@ namespace letc {namespace graphics {
 		const GLuint tid = renderable->getTID();
 		float glTID = (float)tid;
 
+
+		float idForShader = 0.0f;
 		if (glTID > 0) {
 			bool found = false;
 			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
@@ -79,46 +85,51 @@ namespace letc {namespace graphics {
 				if (m_glTIDsThisFlush[i] == glTID) {
 					found = true;
 				}
+				
 			}
 			if (!found) {
 
 				m_glTIDsThisFlush.push_back(glTID);
 			}
+			idForShader = (float)(m_glTIDsThisFlush.size() % m_maxTextureUnits);
+			if (idForShader == 0.0f) idForShader = 1.0f;
 		
 		}
-		if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
+
+		if (m_glTIDsThisFlush.size() >= m_maxTextureUnits) {
 			end();
 			flush();
 			begin();
+			m_glTIDsThisFlush.push_back(glTID);
+
 		}
 
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * pos;
 		m_currentBuffer->uv = uvs[0];
-		m_currentBuffer->tid = glTID;
+		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x, pos.y+size.y, pos.z);
 		m_currentBuffer->uv = uvs[1];
-		m_currentBuffer->tid = glTID;
+		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y + size.y, pos.z);
 		m_currentBuffer->uv = uvs[2];
-		m_currentBuffer->tid = glTID;
+		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y, pos.z);
 		m_currentBuffer->uv = uvs[3];
-		m_currentBuffer->tid = glTID;
+		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_indexCount += 6;
-
 
 	}
 
@@ -128,28 +139,35 @@ namespace letc {namespace graphics {
 		texture_font_t* ftFont = font.getFTFont();
 		const GLuint tid = font.getTexID();
 		float glTID = (float)tid;
+		
 
+
+		float idForShader = 0.0f;
 		if (glTID > 0) {
-			if (glTID > 0) {
-				bool found = false;
-				for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
-				{
-					if (m_glTIDsThisFlush[i] == glTID) {
-						found = true;
-					}
+			bool found = false;
+			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
+			{
+				if (m_glTIDsThisFlush[i] == glTID) {
+					found = true;
 				}
-				if (!found) {
 
-					m_glTIDsThisFlush.push_back(glTID);
-				}
 			}
+			if (!found) {
+
+				m_glTIDsThisFlush.push_back(glTID);
+			}
+			idForShader = (float)(m_glTIDsThisFlush.size() % m_maxTextureUnits);
+			if (idForShader == 0.0f) idForShader = 1.0f;
+
 		}
-		if (m_glTIDsThisFlush.size() >= RENDERER_TEXTURES_PER_DRAW) {
+
+		if (m_glTIDsThisFlush.size() >= m_maxTextureUnits) {
 			end();
 			flush();
 			begin();
-		}
+			m_glTIDsThisFlush.push_back(glTID);
 
+		}
 
 		const math::Vector2 scale = font.getScale();
 		float x = position.x;
@@ -174,27 +192,28 @@ namespace letc {namespace graphics {
 				float s1 = glyph->s1;
 				float t1 = glyph->t1;
 
+
 				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y0,0.0f);
 				m_currentBuffer->uv = math::Vector2(s0, t0);
-				m_currentBuffer->tid = glTID;
+				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 
 				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y1,0.0f);
 				m_currentBuffer->uv = math::Vector2(s0, t1);
-				m_currentBuffer->tid = glTID;
+				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 
 				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y1,0.0f);
 				m_currentBuffer->uv = math::Vector2(s1, t1);
-				m_currentBuffer->tid = glTID;
+				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 				
 				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y0,0.0f);
 				m_currentBuffer->uv = math::Vector2(s1, t0);
-				m_currentBuffer->tid = glTID;
+				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 
@@ -202,7 +221,6 @@ namespace letc {namespace graphics {
 				x += glyph->advance_x/scale.x;
 			}
 		}
-
 
 	}
 
@@ -213,33 +231,33 @@ namespace letc {namespace graphics {
 
 	void BatchRenderer2D::flush(){
 		//bind all the textures
-	/*	for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
+		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
 			float thisGlTID = m_glTIDsThisFlush[glIndex];
-			if (thisGlTID == 0) {
+			if (thisGlTID == 0) 
 				continue;
-			}
+			
 			glActiveTexture(GL_TEXTURE0 + glIndex);
 			glBindTexture(GL_TEXTURE_2D, thisGlTID);
 
-		}*/
+		}
+
+	
+		
+
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
 		
-	/*	
-		for (size_t glIndex = 0; glIndex < RENDERER_TEXTURES_PER_DRAW; glIndex++) {
+		
+		// unbind all the textures 
+	/*	for (size_t glIndex = 0; glIndex < m_maxTextureUnits; glIndex++) {
 			glActiveTexture(GL_TEXTURE0 + glIndex);
 			glBindTexture(GL_TEXTURE_2D, NULL);
-
 		}*/
-		
-		//
-	
+
 		m_indexCount = 0;
-
-
 		m_glTIDsThisFlush.clear();
 
 	}

@@ -6,20 +6,14 @@
 #include "renderer2d.h"
 #include "renderable2d.h"
 
-#include <imgui/imgui.h>
-#include <sstream>
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
-
 #define RENDERER_MAX_SPRITES		60000
 #define RENDERER_VERTEX_SIZE		sizeof(VertexData)
 #define RENDERER_SPRITE_SIZE		RENDERER_VERTEX_SIZE * 4
 #define RENDERER_BUFFER_SIZE		RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
 #define RENDERER_INDICES_SIZE		RENDERER_MAX_SPRITES * 6
-#define RENDERER_TEXTURES_PER_DRAW	32 -1 /*MAX: 32*/
 
 #define SHADER_VERTEX_INDEX		0
-#define SHADER_UV_INDEX		1
+#define SHADER_UV_INDEX			1
 #define SHADER_TID_INDEX		2
 #define SHADER_COLOR_INDEX		3
 
@@ -32,7 +26,7 @@ namespace letc {namespace graphics {
 		GLsizei m_indexCount;
 		VertexData* m_currentBuffer;
 		std::vector<float> m_glTIDsThisFlush;
-
+		unsigned int m_textureArrayID;
 		std::vector<const Texture*> m_textures;
 
 	public:

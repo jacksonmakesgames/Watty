@@ -1,11 +1,12 @@
 #include "EngineControlLayer.h"
 namespace letc {namespace graphics {
 
-	EngineControlLayer::EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, std::vector<Layer*>& appLayers, graphics::Shader* shader, math::Matrix4 prMatrix) :
-		GUILayer(name, shader, prMatrix),
+	EngineControlLayer::EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers, graphics::Shader* shader) :
+		GUILayer(name, shader),
 		m_debugPhysics(debugPhysics),
 		m_appLayers(appLayers),
-		m_appReset(appReset)
+		m_appReset(appReset),
+		m_windowVSync(windowVSync)
 	{
 		GLfloat bkColor[4];
 		glGetFloatv(GL_COLOR_CLEAR_VALUE, bkColor);
@@ -50,6 +51,12 @@ namespace letc {namespace graphics {
 			if (ImGui::Button("Reset")) {
 				m_appReset = true;
 			};
+
+			if (ImGui::Checkbox("VSync", m_windowVSync)) {
+				*m_windowVSync = !*m_windowVSync;
+				Window::toggleVSync();
+			}
+		
 
 			ImGui::End();
 		}

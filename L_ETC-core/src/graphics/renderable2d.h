@@ -61,6 +61,7 @@ namespace letc {namespace graphics {
 		}
 
 		virtual void submit(Renderer2D* renderer)const {
+			// todo we should cache EmptyMat
 			bool emptyMat = m_transformationMatrix.isEmpty();
 			if(!emptyMat)
 				renderer->push(m_transformationMatrix);

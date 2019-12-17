@@ -28,7 +28,7 @@ namespace letc {namespace graphics {
 		for (size_t i = 0; i < m_fonts.size(); i++) {
 			if (m_fonts[i]->getSize() == size && m_fonts[i]->getName() == name) return m_fonts[i];
 		}
-		return nullptr;
+		return m_fonts[0];
 	}
 
 	void FontManager::clean() {

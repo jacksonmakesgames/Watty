@@ -1,5 +1,6 @@
 #pragma once
 #include "GuiLayer.h"
+#include "../window.h"
 namespace letc { namespace graphics {
 
 	class EngineControlLayer : public GUILayer
@@ -14,10 +15,11 @@ namespace letc { namespace graphics {
 		ImVec4 m_clearColor;
 		bool& m_debugPhysics;
 		bool& m_appReset;
+		bool* m_windowVSync;
 		std::vector<Layer*>& m_appLayers;
 
 	public:
-		EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, std::vector<Layer*>& appLayers, graphics::Shader* shader, math::Matrix4 prMatrix);
+		EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers, graphics::Shader* shader);
 		void draw() override;
 
 	private:

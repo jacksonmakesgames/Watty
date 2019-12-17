@@ -1,6 +1,7 @@
 #include "../../../L_ETC-core/src/letc.h"
 #include <math.h>
 
+// TODO: relative 
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic.vert"
 #define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_lit.frag"
 #define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_unlit.frag"
@@ -21,7 +22,7 @@ namespace letc {
 	}
 }
 
-class SimpleGame : public LETC {
+class ConwaysGOL : public LETC {
 private:
 	Window* m_window;
 	Label* fpsLabel; 
@@ -36,8 +37,8 @@ private:
 	GameObject* enemyGO;
 
 public:
-	SimpleGame() {}
-	~SimpleGame() {
+	ConwaysGOL() {}
+	~ConwaysGOL() {
 	
 	}
 
@@ -45,8 +46,8 @@ public:
 		m_window = createWindow("The First Game Made With the LETC!", 1600,900);
 		m_window->setVSync(true);
 
-		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
-		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH), math::Matrix4::orthographic(-16, 16,-9, 9,-10, 10));
+		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH));
+		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH));
 		layers.push_back(playerLayer);
 		layers.push_back(uiLayer);
 
@@ -63,6 +64,8 @@ public:
 		enemyGO = new GameObject(Vector3(5,0,0), Vector2(4,4), new Sprite(enemyTexture));
 		playerLayer->add(enemyGO);
 
+	
+
 
 		//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
 		FontManager::add(new Font("Roboto", FONTPATH, 16, screenScale));
@@ -77,10 +80,12 @@ public:
 		profileGroup->add(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
 		profileGroup->add(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
 		uiLayer->add(profileGroup);
+
 	
 	}
 
 	void update() override {
+
 		getInput();
 		LETC::update();
 	}
@@ -99,10 +104,10 @@ public:
 	}
 
 	void getInput() {
-		/*float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
+		float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
-		*/
-		//Vector2 input(horizontal, vertical);
+		
+		Vector2 input(horizontal, vertical);
 
 		float horizontalP1 = -1*(float)(m_window->keyIsDown(GLFW_KEY_A)) + (float)(m_window->keyIsDown(GLFW_KEY_D));
 		float verticalP1 = (float)(m_window->keyIsDown(GLFW_KEY_W))+ -1*(float)(m_window->keyIsDown(GLFW_KEY_S));
@@ -122,7 +127,7 @@ public:
 
 
 int main() {
-	SimpleGame game;
+	ConwaysGOL game;
 	game.start();
 	return 0;
 }
