@@ -8,8 +8,10 @@ private:
 	bool& m_running;
 	bool& m_reset;
 	bool& m_funColors;
+	bool& m_stepFlag;
+	bool& m_stepBackFlag;
 	public:
-		ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors, graphics::Shader* shader);
+		ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors,bool& stepFlag,bool& stepBackFlag, graphics::Shader* shader);
 
 public:
 	void draw() override;

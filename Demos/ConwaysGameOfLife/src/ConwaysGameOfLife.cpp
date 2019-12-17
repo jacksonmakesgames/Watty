@@ -1,7 +1,7 @@
 #include "../../../L_ETC-core/src/letc.h"
 #include "ConwayLayer.h"
 #include <math.h>
-
+#include <deque>
 // TODO: relative 
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic.vert"
 #define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_lit.frag"
@@ -42,9 +42,12 @@ private:
 
 	bool run = false;
 	bool reset = false;
-	bool funColors = false;
+	bool funColors = true;
+	bool stepFlag = false;
+	bool stepBackFlag = false;
 
 	std::vector<std::vector<bool>> grid;
+	std::deque<std::vector<std::vector<bool>>> lastGrids;
 
 	float stepRate   = 2.0f;
 	float nextStepTime = 0.0f;
@@ -87,8 +90,9 @@ public:
 			}
 		}
 
-		layers.push_back(new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, new Shader(VERTPATH, FRAGUNLITPATH)));
+		layers.push_back(new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, stepFlag, stepBackFlag, new Shader(VERTPATH, FRAGUNLITPATH)));
 
+		lastGrids.push_back(grid);
 	}
 
 	void update() override {
@@ -97,8 +101,18 @@ public:
 		if (run && gameTimer->elapsed() > nextStepTime) {
 			nextStepTime = gameTimer->elapsed() + (1.0 / stepRate);
 			step();
-
 		}
+		if (stepFlag) {
+			stepFlag = false;
+			run = false;
+			step();
+		}
+		else if (stepBackFlag) {
+			stepBackFlag = false;
+			run = false;
+			stepBack();
+		}
+
 		LETC::update();
 	
 	}
@@ -151,6 +165,33 @@ public:
 			x = x - cellSize / 2;
 
 			placeCell(Vector2(x, y));
+			lastGrids.back() = grid;
+
+		}
+		
+		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
+			double x, y;
+			m_window->getMousePos(x, y);
+			y = WINDOWHEIGHT - y;
+
+			y = y - cellSize / 2;
+			x = x - cellSize / 2;
+
+			deleteCell(Vector2(x, y));
+			lastGrids.back() = grid;
+
+		}
+
+		if (m_window->keyWasPressed(GLFW_KEY_LEFT))
+		{
+			stepBack();
+		}
+
+		if (m_window->keyWasPressed(GLFW_KEY_RIGHT))
+		{
+			step();
+			spaceDownTime = gameTimer->elapsed();
+
 		}
 	}
 
@@ -198,6 +239,68 @@ public:
 	}
 
 
+	void deleteCell(Vector2 pos) {
+
+		pos.x = std::round(pos.x / 20) * 20;
+		pos.y = std::round(pos.y / 20) * 20;
+
+		pos.x += 1;
+		pos.y += 1;
+
+		int xIndex = pos.x / 20;
+		int yIndex = (WINDOWHEIGHT - pos.y) / 20;
+		if (xIndex >= grid.size() || yIndex >= grid[0].size()) return;
+		//if (grid[xIndex][yIndex]) return;
+
+		grid[xIndex][yIndex] = false;
+		clearGridObjects();
+
+		for (size_t i = 0; i < grid.size(); i++)
+		{
+			for (size_t j = 0; j < grid[i].size(); j++)
+			{
+				if ((grid[i][j] == true)) {
+					Vector2 pos;
+
+					pos.x = i * 20;
+					pos.y = 900 - (j + 1) * 20;
+					pos.y = pos.y - cellSize / 2;
+					pos.x = pos.x - cellSize / 2;
+
+					placeCell(pos);
+
+				}
+			}
+		}
+
+	}
+
+	void stepBack() {
+		clearGridObjects();
+		if (lastGrids.size() > 1)
+			lastGrids.pop_back();
+		grid = lastGrids.back();
+
+		for (size_t i = 0; i < grid.size(); i++)
+		{
+			for (size_t j = 0; j < grid[i].size(); j++)
+			{
+				if ((grid[i][j] == true)) {
+					Vector2 pos;
+
+					pos.x = i * 20;
+					pos.y = 900 - (j + 1) * 20;
+					pos.y = pos.y - cellSize / 2;
+					pos.x = pos.x - cellSize / 2;
+
+					placeCell(pos);
+
+				}
+			}
+		}
+
+	}
+		
 	void step() {
 		// Loop through every cell 
 		// l = i // m = j
@@ -263,6 +366,9 @@ public:
 			}
 		}
 
+		lastGrids.push_back(grid);
+		if (lastGrids.size() > 30)
+			lastGrids.pop_front();
 		
 	}
 
