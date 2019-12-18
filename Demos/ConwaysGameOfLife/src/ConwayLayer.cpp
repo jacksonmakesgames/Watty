@@ -2,13 +2,14 @@
 namespace letc { namespace graphics {
 	ConwayLayer::ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors, bool& stepFlag, bool& stepBackFlag, graphics::Shader* shader) :
 		GUILayer(name, shader),
-		m_stepRate(stepRate),
+		m_stepRateConway(stepRate),
 		m_running(running),
 		m_reset(reset),
 		m_stepFlag(stepFlag),
 		m_stepBackFlag(stepBackFlag),
 		m_funColors(funColors)
 	{
+		m_stepRateInternal = stepRate;
 	}
 
 	void ConwayLayer::draw() {
@@ -22,8 +23,12 @@ namespace letc { namespace graphics {
 			ImGui::Begin("Conway");
 			ImGui::Text("Simulation Speed:");
 			ImGui::SameLine();
-			ImGui::SliderFloat("", &m_stepRate, .5f, 10.0f);
+			ImGui::SliderFloat("", &m_stepRateInternal, .5f, 100.0f);
 			ImGui::Checkbox("Run Simulation", &m_running);
+			ImGui::SameLine();
+			ImGui::Checkbox("x10 Speed", &m_x10Speed);
+			if (m_x10Speed) m_stepRateConway = 10.0f * m_stepRateInternal;
+			else m_stepRateConway = m_stepRateInternal;
 
 
 			if (ImGui::Button("Back")) {

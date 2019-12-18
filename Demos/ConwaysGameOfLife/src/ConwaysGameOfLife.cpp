@@ -367,7 +367,7 @@ public:
 		}
 
 		lastGrids.push_back(grid);
-		if (lastGrids.size() > 30)
+		if (lastGrids.size() > 1000)
 			lastGrids.pop_front();
 		
 	}
