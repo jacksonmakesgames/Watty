@@ -57,6 +57,10 @@ namespace letc {namespace graphics {
 
 		 m_texture = new Texture(m_fileName, m_FTAtlas->id, m_FTAtlas->width, m_FTAtlas->height, m_FTAtlas->data);
 
+		 
+		 for (size_t i = 0; i < charCount; i++){
+			 m_glyphs[characters[i]] = ftgl::texture_font_find_glyph(m_FTFont, &characters[i]);
+		 }
 	}
 	void Font::remakeOpenGLTextureAtlas(float scaleX, float scaleY){
 		m_scale = math::Vector2(scaleX, scaleY);

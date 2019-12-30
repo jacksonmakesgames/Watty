@@ -22,18 +22,19 @@ private:
 	Window* m_window;
 	GUILayer* m_engineControlLayer;
 	GameObject* player; //todo make player class
-	Camera* m_camera;
 
 	float playerSpeed = 70;
-	float playerAcceleration = .9f;
-	float playerJumpForce = 35;
+	float playerAcceleration = 2.0f;
+	float playerJumpForce = 70;
 
 public:
 	PlatformerDemo() {}
 	~PlatformerDemo() {}
 
 	void init() override {
-		m_window = createWindow("This little engine could", 1280, 720);
+		Vector2 screenSize(1280, 720);
+
+		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, true);
 		m_window->setVSync(true);
 
 		Vector2 fontScale = Vector2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
@@ -48,9 +49,6 @@ public:
 		Layer* layer0 = new Layer("Play Layer", new BatchRenderer2D(), shader0);
 		layers.push_back(layer0);
 		
-		Layer* layer1 = new Layer("Play Layer2", new BatchRenderer2D(), new Shader(VERTPATH, FRAGLITPATH));
-		layers.push_back(layer1);
-
 		layer0->add(
 			new GameObject(
 				Vector3(-100, -100, 0),
@@ -64,29 +62,67 @@ public:
 		player = new GameObject(
 			playerPos,
 			playerSize,
-			new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/Player.png")));
+			//new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/Player.png")));
+			new Sprite(new Texture("C:/Users/Jacks/Pictures/Tests/AnimationTest.png")));
+		
+		player->setTag("Player");
 
 		player->addComponent(new PhysicsBody2D(
-			physics::BodyShapes::circle,
+			physics::BodyShapes::box,
 			playerPos.x, playerPos.y,
 			playerSize.x, playerSize.y,
 			b2_dynamicBody, 0.6f, 0.5f));
-		player->setTag("Player");
+
+		player->addAnimator();
+
+		player->getAnimator()->addAnimation(new SpriteSheetAnimation("Test", Vector2(32, 32), 1.0f, 6, true));
+
+		player->getAnimator()->play("Test");
+
 		layer0->add(player);
+
+		//GameObject* childTest = new GameObject(Vector2(2, 0), Vector2(1, 1), new Sprite(Color::orange));
+		//player->addChild(childTest);
 
 		Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/floor.png");
 
-		Vector3 floorPos(-16.0f, -9.0f, 0);
-		Vector2 floorSize(32, 2);
+		/*Vector3 floorPos(-16.0f, -9.0f, 0);
+		Vector2 floorSize(32, 2);*/
+		Vector3 floorPos(-100000, -9.0f, 0);
+		Vector2 floorSize(10000000, 2);
 		GameObject* floor = new GameObject(floorPos, floorSize);
 		floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
 		floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
-		//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 		layer0->add(floor);
+
+		for (int x = 0; x < 100; x+=10)
+		{
+			for (int y = -5; y < 100; y+=10)
+			{
+				if (x % 20 == 0) continue;
+				floorPos = Vector3(x, y, 0);
+				floorSize = Vector2(5, 2);
+				GameObject* floor = new GameObject(floorPos, floorSize);
+				floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
+				floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
+				layer0->add(floor);
+			}
+
+		}
+		
+
+		//layer0->add(new GameObject(Vector2(0, 100), Vector2(2, 2), new Sprite(Color::brown)));
+
+
+
+
 
 		math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
-		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), -16, 16, -9, 9, -10, 10);
+
+		//m_camera = new Camera(&layers, Vector3(0, 0, -10), Vector2(32.0f, 18.0f), 20, CameraMode::orthographic);
+
+		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), sceneCamera->position, 32, Vector2(screenSize.x, screenSize.y));
 		layers.push_back(gridLayer);
 		gridLayer->disable();
 
@@ -94,21 +130,17 @@ public:
 		layers.push_back(engineControlLayer);
 		engineControlLayer->disable();
 
-
-		m_camera = new Camera(&layers, Vector3(0, 0, -10), Vector2(32.0f, 18.0f), 20, CameraMode::orthographic);
-
-
 	}
 
 	void update() override {
 		getInput();
 		PhysicsWorld2D::step(gameTimer->delta);
 		LETC::update();
-		m_camera->position = player->position + Vector3(0.0f, 3.0f, -1.0f);
+		sceneCamera->position = player->position + Vector3(0.0f, 3.0f, -1.0f);
+
 	}
 
 	void render() override {
-
 		LETC::render();
 		if (debugPhysics) PhysicsWorld2D::box2DWorld->DrawDebugData();
 

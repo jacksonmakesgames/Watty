@@ -9,5 +9,6 @@ namespace letc {namespace graphics {
 		Sprite(float x, float y, float width, float height, Texture* texture);
 		Sprite(Texture* texture);
 		Sprite(unsigned int color);
+
 	};
 }}

@@ -22,7 +22,7 @@ namespace letc {
 	}
 }
 
-class ConwaysGOL : public LETC {
+class PhysicsDemo : public LETC {
 private:
 	Window* m_window;
 	Label* fpsLabel; 
@@ -37,13 +37,13 @@ private:
 	GameObject* enemyGO;
 
 public:
-	ConwaysGOL() {}
-	~ConwaysGOL() {
+	PhysicsDemo() {}
+	~PhysicsDemo() {
 	
 	}
 
 	void init() override {
-		m_window = createWindow("The First Game Made With the LETC!", 1600,900);
+		m_window = createWindow("The First Game Made With the LETC!", 1600,900, false, true);
 		m_window->setVSync(true);
 
 		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH));
@@ -71,7 +71,7 @@ public:
 		FontManager::add(new Font("Roboto", FONTPATH, 16, screenScale));
 		FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
-		Group* profileGroup = new Group(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
+		/*Group* profileGroup = new Group(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
 		profileGroup->add(new GameObject(Vector3(0, 0, 0), Vector2( 3.8f, 1.8), new Sprite(0x80808080)));
 		fpsLabel = new Label("", "Roboto", 16, 0xffffffff);
 		upsLabel = new Label("", "Roboto", 14, 0xffffffff);
@@ -79,7 +79,7 @@ public:
 		profileGroup->add(new GameObject(Vector3(.3f, 1.2f, 0), fpsLabel));
 		profileGroup->add(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
 		profileGroup->add(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
-		uiLayer->add(profileGroup);
+		uiLayer->add(profileGroup);*/
 
 	
 	}
@@ -97,9 +97,9 @@ public:
 
 	void tick() override {
 
-		fpsLabel->text = std::to_string(getFramesPerSecond()) +  " frames / second";
-		upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
-		mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
+		//fpsLabel->text = std::to_string(getFramesPerSecond()) +  " frames / second";
+		//upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
+		//mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
 		LETC::tick();
 	}
 
@@ -127,7 +127,7 @@ public:
 
 
 int main() {
-	ConwaysGOL game;
+	PhysicsDemo game;
 	game.start();
 	return 0;
 }

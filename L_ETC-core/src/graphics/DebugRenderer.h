@@ -2,7 +2,7 @@
 #include "buffers/indexbuffer.h"
 #include "renderer2d.h"
 #include "renderable2d.h"
-
+#include <glad/glad.h>
 
 #define RENDERER_MAX_SPRITES		60000
 #define RENDERER_VERTEX_SIZE		sizeof(VertexData)

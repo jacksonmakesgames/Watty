@@ -18,6 +18,11 @@ namespace letc {namespace graphics {
 		math::Vector2 uv;
 		float tid;
 		unsigned int color;
+	};
+
+	struct FrameInfo {
+		float currentFrame;
+		float totalFrames;
 
 	};
 
@@ -33,6 +38,9 @@ namespace letc {namespace graphics {
 		std::vector<math::Vector2> m_UVs;
 		Texture* m_texture; 
 		math::Matrix4 m_transformationMatrix;
+
+		FrameInfo m_frameInfo;
+
 	private:
 		std::vector<Renderable2D*> m_childrenRenderables = std::vector<Renderable2D*>();
 
@@ -92,6 +100,9 @@ namespace letc {namespace graphics {
 
 		inline const GLuint getTID() const { return m_texture == nullptr ? 0 : m_texture->getID(); }
 		inline const Texture* getTexture() const { return m_texture == nullptr ? nullptr : m_texture; }
+		inline const FrameInfo getFrameInfo() const { return m_frameInfo; }
+
+		inline void setFrameInfo(FrameInfo frameInfo) { m_frameInfo = frameInfo; }
 
 	private:
 		void setUVDefaults() {
@@ -99,6 +110,9 @@ namespace letc {namespace graphics {
 			m_UVs.push_back(math::Vector2(0, 1));
 			m_UVs.push_back(math::Vector2(1, 1));
 			m_UVs.push_back(math::Vector2(1, 0));
+
+			m_frameInfo.currentFrame = 0.0f;
+			m_frameInfo.totalFrames = 1.0f;
 		}
 	};
 }}

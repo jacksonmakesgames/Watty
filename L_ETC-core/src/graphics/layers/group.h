@@ -5,7 +5,6 @@
 namespace letc {
 	class Group : public GameObject {
 	private:
-		math::Matrix4 m_transformationMatrix;
 	public:
 		Group(const math::Matrix4& transform);
 		~Group();

@@ -25,7 +25,7 @@ namespace letc {
 
 	}
 }
-class ConwaysGOL : public LETC {
+class PhysicsDemo : public LETC {
 	private:
 		Window* m_window;
 
@@ -54,18 +54,18 @@ class ConwaysGOL : public LETC {
 
 		GameObject* m_grabbedBox = nullptr;
 
+		//Camera* m_camera;
+
 	public:
-		ConwaysGOL() {}
-		~ConwaysGOL() {
+		PhysicsDemo() {}
+		~PhysicsDemo() {
 
 		}
 
 		void init() override {
-			m_window = createWindow("This little engine could", 1280, 720, false);
+			m_window = createWindow("This little engine could", 1280, 720, false, true);
 			Window::setVSync(true);
 			Vector2 fontScale = Vector2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
-			DebugPhysics::init();
-			letc::physics::PhysicsWorld2D::setDebugDraw();
 
 			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
 			shader0->setUniform3f("light_pos", Vector3(16,16,0));
@@ -139,14 +139,14 @@ class ConwaysGOL : public LETC {
 			FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/fonts/Roboto-Regular.ttf", 16, screenScale));
 			FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/fonts/Roboto-Italic.ttf", 14, screenScale));
 
-			Group* profileGroup = new Group(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
-			profileGroup->add(new GameObject(Vector3(0, 0, 0), Vector2(4.5f, 1.8), new Sprite(0x80808080)));
+			GameObject* profileGroup = new GameObject(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
+			profileGroup->addChild(new GameObject(Vector3(0, 0, 0), Vector2(4.5f, 1.8), new Sprite(0x80808080)));
 			fpsLabel = new Label("", "Roboto", 16, 0xffffffff);
 			upsLabel = new Label("", "Roboto", 14, 0xffffffff);
 			mpsLabel = new Label("", "Roboto", 14, 0xffffffff);
-			profileGroup->add(new GameObject(Vector3(.3f, 1.2f, 0), fpsLabel));
-			profileGroup->add(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
-			profileGroup->add(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
+			profileGroup->addChild(new GameObject(Vector3(.3f, 1.2f, 0), fpsLabel));
+			profileGroup->addChild(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
+			profileGroup->addChild(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
 			uiLayer->add(profileGroup);
 
 			AudioClip* clip = new AudioClip("slow_motion", "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/sounds/slow_motion.ogg");
@@ -154,19 +154,19 @@ class ConwaysGOL : public LETC {
 			AudioManager::getClip("slow_motion")->play(true);
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
 
-			GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), -16, 16, -9, 9, -10, 10);
-			layers.push_back(gridLayer);
-			gridLayer->disable();
+			// TODO: crashes in fullscreen
+			//GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), sceneCamera->position, 32, Vector2(m_window->getWidth(), m_window->getHeight()));
+			//layers.push_back(gridLayer);
+			//gridLayer->disable();
 
-			EngineControlLayer* engineControlLayer = new EngineControlLayer("LETC GUI Layer", debugPhysics, resetFlag, &Window::useVSync, layers, new Shader(VERTPATH, FRAGUNLITPATH));
+			EngineControlLayer* engineControlLayer = new EngineControlLayer("Watty {} Layer", debugPhysics, resetFlag, &Window::useVSync, layers, new Shader(VERTPATH, FRAGUNLITPATH));
 			layers.push_back(engineControlLayer);
 			engineControlLayer->disable();
 
 
-			//m_camera = new Camera(layers, Vector3(0, 0, -1), Vector2(32.0f, 18.0f), 20, CameraMode::orthographic);
+			//m_camera = new Camera(&layers, Vector3(0, 0, -1), Vector2(32.0f, 18.0f), 20, CameraMode::orthographic);
 
-
-		}
+	}
 
 		void update() override {
 		
@@ -179,12 +179,12 @@ class ConwaysGOL : public LETC {
 		void render() override {
 
 			LETC::render();
+			//m_camera->update();
 			if (debugPhysics) PhysicsWorld2D::box2DWorld->DrawDebugData();
 
 		}
 
 		void tick() override {
-
 			fpsLabel->text = std::to_string(getFramesPerSecond()) + " frames / second";
 			upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
 			mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
@@ -219,7 +219,7 @@ class ConwaysGOL : public LETC {
 
 			// ENGINE
 			if (m_window->keyWasPressed(GLFW_KEY_GRAVE_ACCENT))
-				getLayerByName("LETC GUI Layer")->enabled = !getLayerByName("LETC GUI Layer")->enabled;
+				getLayerByName("Watty {} Layer")->enabled = !getLayerByName("Watty {} Layer")->enabled;
 
 			// PLAYER
 			float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
@@ -242,7 +242,7 @@ class ConwaysGOL : public LETC {
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
 
-			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
+			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -262,7 +262,7 @@ class ConwaysGOL : public LETC {
 					m_grabbedBox = callback->gameObjects[0];
 				}
 			}
-			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
+			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
 				if (m_grabbedBox) {
 					float xSum = 0;
 					for (size_t i = 0; i < m_lastXs.size(); i++)
@@ -288,7 +288,7 @@ class ConwaysGOL : public LETC {
 			}
 
 
-			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
+			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -302,7 +302,7 @@ class ConwaysGOL : public LETC {
 				}
 			}
 
-			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
+			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
 				if (m_grabbedBox != nullptr) {
 					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0,0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
@@ -346,7 +346,7 @@ class ConwaysGOL : public LETC {
 
 
 int main() {
-	ConwaysGOL game;
+	PhysicsDemo game;
 	game.start();
 	return 0;
 

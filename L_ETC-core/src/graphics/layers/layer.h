@@ -1,6 +1,5 @@
 #pragma once
 #include "../renderer2d.h"
-#include "group.h"
 #include "../shader.h"
 #include "../../GameObject.h"
 #include <vector>
@@ -23,7 +22,6 @@ namespace letc {
 		virtual ~Layer();
 
 		virtual void add(GameObject*	gameObject);
-		virtual void add(Group*			group);
 		
 		virtual void remove(GameObject* gameObject);
 

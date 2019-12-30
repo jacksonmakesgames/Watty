@@ -22,6 +22,7 @@ namespace letc {namespace graphics {
 	static class Window {
 	protected:
 		bool isResizeable;
+		bool isFullScreen;
 	public:
 		static bool useVSync;
 	private:
@@ -30,7 +31,6 @@ namespace letc {namespace graphics {
 		int m_Width, m_Height;
 		GLFWwindow *m_Window;
 		bool m_Closed;
-
 
 		bool m_keysThisFrame[MAX_KEYS];
 		bool m_keysLastFrame[MAX_KEYS];
@@ -44,7 +44,7 @@ namespace letc {namespace graphics {
 
 
 	public:
-		Window(const char *title, int width, int height, bool resizeable);
+		Window(const char *title, int width, int height, bool resizeable, bool fullscreen=false);
 		~Window();
 		bool closed() const;
 		void update();

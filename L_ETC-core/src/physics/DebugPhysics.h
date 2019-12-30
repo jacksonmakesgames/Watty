@@ -1,7 +1,6 @@
 #pragma once
 #include "../../ext/Box2D/Box2D.h"
 #include "../../ext/Box2D/Common/b2Draw.h"
-#include <glad/glad.h>
 #include "../math/math.h"
 #include "../graphics/DebugRenderer.h"
 
@@ -17,10 +16,13 @@ namespace letc { namespace physics {
 	private:
 		static graphics::DebugRenderer* renderer;
 		static graphics::Shader* m_shader;
+		static math::Vector3* m_sceneCameraPosition;
+		math::Vector3 m_positionLastFrame = math::Vector3();
 	public:
 
 		static DebugPhysics* instance;
-		static void init() {
+		static void init(math::Vector3* sceneCameraPosition) {
+			m_sceneCameraPosition = sceneCameraPosition;
 			DebugPhysics::m_shader = new graphics::Shader(VERTPATH, FRAGUNLITPATH);
 			DebugPhysics::renderer = new graphics::DebugRenderer();
 		}
@@ -31,7 +33,14 @@ namespace letc { namespace physics {
 		/// Draw a solid closed polygon provided in CCW order.
 		void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
 			m_shader->enable();
-			m_shader->setUniformMat4("pr_matrix", math::Matrix4::scale(math::Vector3(1/16.0f, 1/9.0f, .1f)));
+
+			math::Vector3 translation = m_positionLastFrame - *m_sceneCameraPosition ;
+
+			math::Matrix4 transMat = math::Matrix4::translation(translation);
+
+			m_shader->setUniformMat4("pr_matrix",transMat* math::Matrix4::scale(math::Vector3(1/16.0f, 1/9.0f, .1f)));
+			m_positionLastFrame = *m_sceneCameraPosition;
+
 
 			renderer->begin();
 			math::Vector3* vecVertices = new math::Vector3[vertexCount];
@@ -72,11 +81,16 @@ namespace letc { namespace physics {
 
 		/// Draw a solid circle.
 		virtual void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
-
+			
 			const int resolution = 60;
 
 			m_shader->enable();
-			m_shader->setUniformMat4("pr_matrix", math::Matrix4::scale(math::Vector3(1 / 16.0f, 1 / 9.0f, .1f)));
+			math::Vector3 translation = *m_sceneCameraPosition - m_positionLastFrame;
+
+			math::Matrix4 transMat = math::Matrix4::translation(translation);
+
+			m_shader->setUniformMat4("pr_matrix", transMat * math::Matrix4::scale(math::Vector3(1 / 16.0f, 1 / 9.0f, .1f)));
+			m_positionLastFrame = *m_sceneCameraPosition;
 
 			renderer->begin();
 			math::Vector3* vecVertices = new math::Vector3[resolution];
@@ -89,6 +103,8 @@ namespace letc { namespace physics {
 				vecVertices[i].x = center.x + cos(heading) * radius;
 				vecVertices[i].y = center.y + sin(heading) * radius;
 				vecVertices[i].z = 0.0f;
+
+				
 				i++;
 			}
 
@@ -102,8 +118,9 @@ namespace letc { namespace physics {
 			renderer->end();
 			glLineWidth(2.5f);
 			renderer->flush(GL_LINE_LOOP, (int)resolution * 1.5);
-			glLineWidth(1.0f);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			renderer->flush(GL_TRIANGLE_FAN, (int)resolution * 1.5);
+			glLineWidth(1.0f);
 
 			m_shader->disable();
 

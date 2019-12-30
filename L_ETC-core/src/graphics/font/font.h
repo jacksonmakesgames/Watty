@@ -1,6 +1,7 @@
 #pragma once
 #include "../../ext/freetype-gl/freetype-gl.h"
 #include <string>
+#include <map>
 #include "../texture.h"
 #include "../../math/vector2.h"
 
@@ -9,7 +10,7 @@ namespace letc {namespace graphics {
 	const char* characters = " !\"#$%&'()*+,-./0123456789:;<=>?"
 			"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
 			"`abcdefghijklmnopqrstuvwxyz{|}~";
-
+	const unsigned short charCount = 94;
 	private:
 		ftgl::texture_atlas_t* m_FTAtlas;
 		ftgl::texture_font_t* m_FTFont;
@@ -18,6 +19,8 @@ namespace letc {namespace graphics {
 		math::Vector2 m_scale;
 		unsigned int m_size;
 		Texture * m_texture;
+		std::map<char, ftgl::texture_glyph_t*> m_glyphs;
+
 	private:
 	public:
 		void makeOpenGLTextureAtlas();
@@ -27,6 +30,8 @@ namespace letc {namespace graphics {
 		Font(std::string name, std::string filename, unsigned int size, math::Vector2 scale);
 		Font(ftgl::texture_font_t* ftglFont, ftgl::texture_atlas_t*);
 
+		// TODO: there might be a faster way to cache
+		inline const ftgl::texture_glyph_t* getGlyph(char c) const {return m_glyphs.find(c)->second;}
 		inline void setScale(float x, float y) { m_scale = math::Vector2(x, y); }
 
 		inline const math::Vector2& getScale() const { return m_scale; }

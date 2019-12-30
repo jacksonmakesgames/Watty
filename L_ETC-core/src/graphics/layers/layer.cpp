@@ -22,10 +22,6 @@ namespace letc {
 		m_gameObjects.push_back(gameObject);
 	}
 
-	void Layer::add(Group* group)
-	{
-		m_gameObjects.push_back(group);
-	}
 
 	void Layer::remove(GameObject* gameObject)
 	{
@@ -41,25 +37,17 @@ namespace letc {
 
 
 
-	void Layer::disable()
-	{
-		for (GameObject* gameObject : m_gameObjects) {
-			if (gameObject->getPhysicsBody2D() != nullptr) {
-				gameObject->getPhysicsBody2D()->disable();
-			}
+	void Layer::disable(){
+		for (GameObject* gameObject : m_gameObjects)
+			gameObject->disable();
 
-		}
 		enabled = false;
 	}
 
-	void Layer::enable()
-	{
-		for (GameObject* gameObject : m_gameObjects) {
-			if (gameObject->getPhysicsBody2D() != nullptr) {
-				gameObject->getPhysicsBody2D()->enable();
-			}
+	void Layer::enable(){
+		for (GameObject* gameObject : m_gameObjects)
+			gameObject->enable();
 
-		}
 		enabled = true;
 	}
 

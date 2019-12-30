@@ -6,11 +6,12 @@ namespace letc {namespace graphics {
 	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
-	Window::Window(const char* title, int width, int height, bool resizeable) {
+	Window::Window(const char* title, int width, int height, bool resizeable, bool fullscreen) {
 		m_Title = title;
 		m_Width = width;
 		m_Height = height;
 		isResizeable = resizeable;
+		isFullScreen = fullscreen;
 		if (!init())
 			glfwTerminate();
 		
@@ -77,15 +78,16 @@ namespace letc {namespace graphics {
 		}
 		glfwWindowHint(GLFW_RESIZABLE, isResizeable);
 
-#if 0 // fullscreen
-		m_Width = 1920;
-		m_Height = 1080;
-		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, glfwGetPrimaryMonitor(), NULL); // fullscreen
-
-#else
-		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+		if (isFullScreen) {
+			const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+			
+			m_Width = mode->width;
+			m_Height = mode->height;
+			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, glfwGetPrimaryMonitor(), NULL); // fullscreen
+		}
+		else
+			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
 		
-#endif
 		m_refreshRate = glfwGetVideoMode(glfwGetPrimaryMonitor())->refreshRate;
 		if (!m_Window) {
 			glfwTerminate();
@@ -216,7 +218,9 @@ namespace letc {namespace graphics {
 
 	void Window::listenForInput()
 	{
-
+		for (int i = 0; i < MAX_KEYS; i++) {
+			m_keysFirstFrameDown[i] = false;
+		}
 		// handle input:
 		for (size_t i = 0; i < MAX_KEYS; i++) {
 			m_keysFirstFrameDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i]; // first frame pressed

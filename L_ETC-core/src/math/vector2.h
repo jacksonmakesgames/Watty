@@ -11,11 +11,16 @@ namespace letc { namespace math{
 		Vector2& add(const Vector2& other);
 		Vector2& subtract(const Vector2& other);
 		Vector2& multiply(const Vector2& other);
+		Vector2& multiply(const float& other);
 		Vector2& divide(const Vector2& other);
+		Vector2& divide(const float& other);
 		
 		Vector2& operator += (const Vector2 &other);
 		Vector2& operator -= (const Vector2 &other);
 		Vector2& operator *= (const Vector2 &other);
+		Vector2& operator *= (const float& other);
+		Vector2& operator /= (const float& other);
+
 		Vector2& operator /= (const Vector2 &other);
 
 		bool operator == (const Vector2& other);
@@ -24,6 +29,8 @@ namespace letc { namespace math{
 		friend Vector2 operator + (Vector2 left, const Vector2& right);
 		friend Vector2 operator - (Vector2 left, const Vector2& right);
 		friend Vector2 operator * (Vector2 left, const Vector2& right);
+		friend Vector2 operator * (Vector2 left, const float& right);
+		friend Vector2 operator / (Vector2 left, const float& right);
 		friend Vector2 operator / (Vector2 left, const Vector2& right);
 
 

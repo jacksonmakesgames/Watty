@@ -27,9 +27,23 @@ namespace letc {namespace math {
 		return *this;
 	}
 
+	Vector2& Vector2::multiply(const float& other)
+	{
+		x *= other;
+		y *= other;
+		return *this;
+	}
+
 	Vector2& math::Vector2::divide(const Vector2& other){
 		x /= other.x;
 		y /= other.y;
+		return *this;
+	}
+
+	Vector2& Vector2::divide(const float& other)
+	{
+		x /= other;
+		y /= other;
 		return *this;
 	}
 
@@ -43,6 +57,16 @@ namespace letc {namespace math {
 
 	Vector2& Vector2::operator*=(const Vector2& other){
 		return multiply(other);
+	}
+
+	Vector2& Vector2::operator*=(const float& other)
+	{
+		return multiply(other);
+	}
+
+	Vector2& Vector2::operator/=(const float& other)
+	{
+		return divide(other);
 	}
 
 	Vector2& Vector2::operator/=(const Vector2& other){
@@ -68,6 +92,14 @@ namespace letc {namespace math {
 	Vector2 operator*(Vector2 left, const Vector2& right){
 		return left.multiply(right);
 		
+	}
+	Vector2 operator*(Vector2 left, const float& right)
+	{
+		return Vector2();
+	}
+	Vector2 operator/(Vector2 left, const float& right)
+	{
+		return Vector2();
 	}
 	Vector2 operator/(Vector2 left, const Vector2& right){
 		return left.divide(right);

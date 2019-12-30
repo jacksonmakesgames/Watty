@@ -424,7 +424,6 @@
     <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\EngineControlLayer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\GUILayer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\GridLayer.h" />
-    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\group.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\layer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\renderable2d.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\renderer2d.h" />
@@ -432,6 +431,9 @@
     <ClInclude Include="..\..\L_ETC-core\src\graphics\simple2drenderer.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\sprite.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\texture.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\textures\Animation2D.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\textures\Animator2D.h" />
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\textures\SpriteSheetAnimation.h" />
     <ClInclude Include="..\..\L_ETC-core\src\graphics\window.h" />
     <ClInclude Include="..\..\L_ETC-core\src\letc.h" />
     <ClInclude Include="..\..\L_ETC-core\src\math\math.h" />
@@ -528,11 +530,11 @@
     <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\EngineControlLayer.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\GUILayer.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\GridLayer.cpp" />
-    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\group.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\layer.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\shader.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\sprite.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\texture.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\textures\Animator2D.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\graphics\window.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\math\matrix4.cpp" />
     <ClCompile Include="..\..\L_ETC-core\src\math\vector2.cpp" />

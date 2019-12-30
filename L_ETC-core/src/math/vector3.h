@@ -12,9 +12,12 @@ namespace letc { namespace math{
 
 		Vector3();
 		Vector3(const float& x, const float& y, const float&z);
+		Vector3(Vector2 vector2);
 
 		Vector3& add(const Vector3& other);
+		Vector3& add(const float& other);
 		Vector3& subtract(const Vector3& other);
+		Vector3& subtract(const float& other);
 		Vector3& multiply(const Vector3& other);
 		Vector3& multiply(const float& other);
 		//Vector3& multiply(const Matrix4& other);
@@ -24,7 +27,9 @@ namespace letc { namespace math{
 		Vector2 xy();
 		
 		Vector3& operator += (const Vector3 &other);
+		Vector3& operator += (const float &other);
 		Vector3& operator -= (const Vector3 &other);
+		Vector3& operator -= (const float &other);
 		Vector3& operator *= (const Vector3 &other);
 		Vector3& operator *= (const float &other);
 		//Vector3& operator *= (const Matrix4 &other);
@@ -37,6 +42,8 @@ namespace letc { namespace math{
 
 		friend Vector3 operator + (Vector3 left, const Vector3& right);
 		friend Vector3 operator - (Vector3 left, const Vector3& right);
+		friend Vector3 operator + (Vector3 left, const float& right);
+		friend Vector3 operator - (Vector3 left, const float& right);
 		friend Vector3 operator * (Vector3 left, const Vector3& right);
 		friend Vector3 operator * (Vector3 left, const float& right);
 		friend Vector3 operator / (Vector3 left, const float& right);

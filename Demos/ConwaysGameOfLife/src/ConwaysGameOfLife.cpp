@@ -9,9 +9,9 @@
 #define FONTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/fonts/Roboto-Regular.ttf"
 #define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/fonts/Roboto-Italic.ttf"
 #define GRIDTEXTUREPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/ConwaysGameOfLife/res/grid.png"
-
-#define WINDOWWIDTH 1600
-#define WINDOWHEIGHT 900
+//
+//#define WINDOWWIDTH 1600
+//#define WINDOWHEIGHT 900
 
 using namespace letc;
 using namespace graphics;
@@ -25,7 +25,7 @@ namespace letc {
 	}
 }
 
-class ConwaysGOL : public LETC {
+class PhysicsDemo : public LETC {
 private:
 	Window* m_window;
 	Label* fpsLabel;
@@ -54,22 +54,29 @@ private:
 	float spaceDownTime = 0.0f;
 	int framesHeld = 0;
 
+	int m_height;
+	int m_width;
+
+
 public:
-	ConwaysGOL() {}
-	~ConwaysGOL() {
+	PhysicsDemo() {}
+	~PhysicsDemo() {
 
 	}
 
 	void init() override {
-		m_window = createWindow("Conway's Game of Life {Watty}", WINDOWWIDTH, WINDOWHEIGHT, false);
+		m_window = createWindow("Conway's Game of Life {Watty}", 1600, 900, false);
 		m_window->setVSync(true);
-		sceneCamera->setProjection(math::Matrix4::orthographic(0,WINDOWWIDTH, 0, WINDOWHEIGHT, -10, 10));
 		glClearColor(1, 1, 1, 1);
 
+		m_width = m_window->getWidth();
+		m_height = m_window->getHeight();
+
+		sceneCamera->setProjection(math::Matrix4::orthographic(0,m_width, 0, m_height, -10, 10));
 		Layer* gridLayer = new Layer("Grid Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
 
 		layers.push_back(gridLayer);
-		gridLayer->add(new GameObject(Vector2(0, 0), Vector2(WINDOWWIDTH, WINDOWHEIGHT), new Sprite(new Texture(GRIDTEXTUREPATH))));
+		gridLayer->add(new GameObject(Vector2(0, 0), Vector2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
 
 
 		Layer* cellLayer = new Layer("Cell Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
@@ -78,9 +85,9 @@ public:
 		layers.push_back(uiLayer);
 
 		/*Resize the 2D std::vector to the specified width and height*/
-		grid.resize(WINDOWWIDTH/20); //We need HEIGHT/20 sub-vectors
+		grid.resize(m_width/20); //We need HEIGHT/20 sub-vectors
 		for (int i = 0; i < grid.size(); ++i)
-			grid[i].resize(WINDOWHEIGHT/20); //each sub-vector has a size of WIDTH
+			grid[i].resize(m_height/20); //each sub-vector has a size of WIDTH
 
 		for (size_t i = 0; i < grid.size(); i++)
 		{
@@ -159,7 +166,7 @@ public:
 		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
 			m_window->getMousePos(x, y);
-			y = WINDOWHEIGHT - y;
+			y = m_height - y;
 
 			y = y - cellSize / 2;
 			x = x - cellSize / 2;
@@ -172,7 +179,7 @@ public:
 		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
 			m_window->getMousePos(x, y);
-			y = WINDOWHEIGHT - y;
+			y = m_height - y;
 
 			y = y - cellSize / 2;
 			x = x - cellSize / 2;
@@ -206,7 +213,7 @@ public:
 		pos.y += 1;
 
 		int xIndex = pos.x/20;
-		int yIndex = (WINDOWHEIGHT-pos.y)/20;
+		int yIndex = (m_height-pos.y)/20;
 		if (xIndex >= grid.size() || yIndex >= grid[0].size()) return;
 		//if (grid[xIndex][yIndex]) return;
 		
@@ -221,9 +228,9 @@ public:
 			g = (g + 1) / 2;
 			b = (b + 1) / 2;*/
 
-			r = pos.x / WINDOWWIDTH;
-			g = pos.y / WINDOWHEIGHT;
-			b = pos.x / WINDOWWIDTH;
+			r = pos.x / m_width;
+			g = pos.y / m_height;
+			b = pos.x / m_width;
 			if (r < 0.4f) r = 0.4f;
 			if (g < 0.4f) g = 0.4f;
 			if (b < 0.5f) b = 0.5f;
@@ -248,7 +255,7 @@ public:
 		pos.y += 1;
 
 		int xIndex = pos.x / 20;
-		int yIndex = (WINDOWHEIGHT - pos.y) / 20;
+		int yIndex = (m_height - pos.y) / 20;
 		if (xIndex >= grid.size() || yIndex >= grid[0].size()) return;
 		//if (grid[xIndex][yIndex]) return;
 
@@ -395,7 +402,7 @@ public:
 
 
 int main() {
-	ConwaysGOL game;
+	PhysicsDemo game;
 	game.start();
 	return 0;
 }

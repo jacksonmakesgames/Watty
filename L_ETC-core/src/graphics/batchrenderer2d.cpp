@@ -76,6 +76,10 @@ namespace letc {namespace graphics {
 		const GLuint tid = renderable->getTID();
 		float glTID = (float)tid;
 
+		FrameInfo frameInfo = renderable->getFrameInfo();
+
+		
+
 
 		float idForShader = 0.0f;
 		if (glTID > 0) {
@@ -104,27 +108,35 @@ namespace letc {namespace graphics {
 
 		}
 
+		const float tw = float(1) / frameInfo.totalFrames;
+		const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.totalFrames) * tw;
+
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * pos;
-		m_currentBuffer->uv = uvs[0];
+		//m_currentBuffer->uv.x = (uvs[0].x * tx);
+		m_currentBuffer->uv.x = tx,
+		m_currentBuffer->uv.y = uvs[0].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x, pos.y+size.y, pos.z);
-		m_currentBuffer->uv = uvs[1];
+		m_currentBuffer->uv.x = tx,
+		m_currentBuffer->uv.y = uvs[1].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y + size.y, pos.z);
-		m_currentBuffer->uv = uvs[2];
+		m_currentBuffer->uv.x = tx+tw,
+		m_currentBuffer->uv.y = uvs[2].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y, pos.z);
-		m_currentBuffer->uv = uvs[3];
+		m_currentBuffer->uv.x = tx+tw,
+		m_currentBuffer->uv.y = uvs[3].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
@@ -174,7 +186,8 @@ namespace letc {namespace graphics {
 		for (int i = 0; i < text.length(); i++){
 			
 			char c = text[i];
-			texture_glyph_t* glyph = texture_font_find_glyph(ftFont, &c); 
+			//texture_glyph_t* glyph = texture_font_find_glyph(ftFont, &c); 
+			const texture_glyph_t* glyph = font.getGlyph(c); 
 			
 			if (glyph != NULL) {
 				if (i > 0) {
@@ -241,9 +254,7 @@ namespace letc {namespace graphics {
 
 		}
 
-	
-		
-
+		// draw
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
@@ -252,10 +263,10 @@ namespace letc {namespace graphics {
 		
 		
 		// unbind all the textures 
-	/*	for (size_t glIndex = 0; glIndex < m_maxTextureUnits; glIndex++) {
+		for (size_t glIndex = 0; glIndex < m_maxTextureUnits; glIndex++) {
 			glActiveTexture(GL_TEXTURE0 + glIndex);
 			glBindTexture(GL_TEXTURE_2D, NULL);
-		}*/
+		}
 
 		m_indexCount = 0;
 		m_glTIDsThisFlush.clear();

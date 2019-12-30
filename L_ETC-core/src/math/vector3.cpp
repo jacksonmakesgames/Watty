@@ -15,6 +15,13 @@ namespace letc {namespace math {
 		this->z = z;
 	}
 
+	Vector3::Vector3(Vector2 vector2)
+	{
+		x = vector2.x;
+		y = vector2.y;
+		z = 0.0f;
+	}
+
 	Vector3& math::Vector3::add(const Vector3& other){
 		x += other.x;
 		y += other.y;
@@ -22,10 +29,26 @@ namespace letc {namespace math {
 		return *this;
 	}
 
+	Vector3& Vector3::add(const float& other)
+	{
+		x += other;
+		y += other;
+		z += other;
+		return *this;
+	}
+
 	Vector3& math::Vector3::subtract(const Vector3& other){
 		x -= other.x;
 		y -= other.y;
 		z -= other.z;
+		return *this;
+	}
+
+	Vector3& Vector3::subtract(const float& other)
+	{
+		x -= other;
+		y -= other;
+		z -= other;
 		return *this;
 	}
 
@@ -76,8 +99,19 @@ namespace letc {namespace math {
 		return add(other);
 	}
 
+	Vector3& Vector3::operator+=(const float& other)
+	{
+		return add(other);
+	}
+
 	Vector3& Vector3::operator-=(const Vector3& other){
 		return subtract(other);
+	}
+
+	Vector3& Vector3::operator-=(const float& other)
+	{
+		return subtract(other);
+
 	}
 
 	Vector3& Vector3::operator*=(const Vector3& other){
@@ -119,6 +153,14 @@ namespace letc {namespace math {
 	Vector3 operator-(Vector3 left, const Vector3& right){
 		return left.subtract(right);
 		
+	}
+	Vector3 operator+(Vector3 left, const float& right)
+	{
+		return left.add(right);
+	}
+	Vector3 operator-(Vector3 left, const float& right)
+	{
+		return left.subtract(right);
 	}
 	Vector3 operator*(Vector3 left, const Vector3& right){
 		return left.multiply(right);

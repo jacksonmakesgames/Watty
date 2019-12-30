@@ -220,6 +220,9 @@
     <Filter Include="Source Files\src\physics">
       <UniqueIdentifier>{126E7F17-FE92-CE97-27DE-B3271362CDB5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\src\graphics\textures">
+      <UniqueIdentifier>{3fcabd8a-e36d-4e01-8d8f-81e2c124ef04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\L_ETC-core\ext\Box2D\Box2D.h">
@@ -1200,9 +1203,6 @@
     <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\GridLayer.h">
       <Filter>Header Files\src\graphics\layers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\group.h">
-      <Filter>Header Files\src\graphics\layers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\L_ETC-core\src\graphics\layers\layer.h">
       <Filter>Header Files\src\graphics\layers</Filter>
     </ClInclude>
@@ -1277,6 +1277,15 @@
     </ClInclude>
     <ClInclude Include="..\..\L_ETC-core\src\graphics\DebugRenderer.h">
       <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\textures\Animator2D.h">
+      <Filter>Source Files\src\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\textures\Animation2D.h">
+      <Filter>Source Files\src\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\L_ETC-core\src\graphics\textures\SpriteSheetAnimation.h">
+      <Filter>Source Files\src\graphics\textures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1508,9 +1517,6 @@
     <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\GridLayer.cpp">
       <Filter>Source Files\src\graphics\layers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\group.cpp">
-      <Filter>Source Files\src\graphics\layers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\L_ETC-core\src\graphics\layers\layer.cpp">
       <Filter>Source Files\src\graphics\layers</Filter>
     </ClCompile>
@@ -1545,5 +1551,6 @@
       <Filter>Source Files\src\physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\L_ETC-core\src\graphics\DebugRenderer.cpp" />
+    <ClCompile Include="..\..\L_ETC-core\src\graphics\textures\Animator2D.cpp" />
   </ItemGroup>
 </Project>

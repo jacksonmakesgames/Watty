@@ -4,22 +4,38 @@
 #include "physics/PhysicsBody2d.h"
 #include <vector>
 #include <math.h>
+#include "graphics/textures/Animator2D.h"
 
 namespace letc {
 	class GameObject {
 	public:
 		math::Vector3& position;
 		math::Vector2& size;
+		math::Vector3 m_parentOffset;
 	private:
 		std::string m_tag = "";
-		graphics::Renderable2D* m_renderable;
-		math::Vector3 m_position;
-		float m_angle = 0;
-		math::Vector2 m_size;
-		physics::PhysicsBody2D* m_physicsBody2D;
 		std::vector<GameObject*> m_children;
+		
+		
+		math::Matrix4 m_rotationMatrix;
+		math::Matrix4 m_translationMatrix;
+		
+
+
+		//Graphics
+		graphics::Renderable2D* m_renderable	= nullptr;
+		graphics::Animator2D*	m_animator		= nullptr;
+		
+		//TODO: add transform struct
+		math::Vector3 m_position;
+		float m_angle =0;
+		math::Vector2 m_size;
+
+		// Physics
+		physics::PhysicsBody2D* m_physicsBody2D;
 
 	public:
+		GameObject(math::Matrix4 transformationMatrix);
 		GameObject(math::Vector3 position, math::Vector2 size);
 		GameObject(math::Vector2 position, math::Vector2 size);
 		GameObject(math::Vector3 position, math::Vector2 size, graphics::Renderable2D* renderable);
@@ -32,7 +48,16 @@ namespace letc {
 		inline std::string getTag() { return m_tag; }
 
 		void addComponent(graphics::Renderable2D* renderable);
+		void addAnimator();
 		void addComponent(physics::PhysicsBody2D* physicsBody2D);
+		
+		void addChild(GameObject* object);
+		void removeChild(GameObject* object);
+
+		inline graphics::Animator2D* getAnimator() { return m_animator; }
+		
+		void disable();
+		void enable();
 
 		void translate(math::Vector2 translation);
 		void rotate(float rotation);
@@ -50,6 +75,7 @@ namespace letc {
 		virtual void submit(graphics::Renderer2D* renderer) const;
 
 		virtual void update();
+		virtual void update(math::Vector3 positionOffset);
 
 		inline const graphics::Renderable2D * getRenderable()const { return m_renderable; }
 		virtual inline const std::vector<GameObject*>& getChildren()const { return m_children; }

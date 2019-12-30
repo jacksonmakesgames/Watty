@@ -11,14 +11,15 @@
 #include "./graphics/layers/GuiLayer.h"
 #include "./graphics/layers/EngineControlLayer.h"
 #include "./graphics/layers/GridLayer.h"
+#include "./graphics/Camera.h"
+#include "./graphics/Color.h"
+#include "./graphics/textures/SpriteSheetAnimation.h"
 
+#include "GameObject.h"
 #include "./utils/timer.h"
 #include "../ext/Box2D/Box2D.h"
 #include "./physics/QueryAABBCallback.h"
-#include "GameObject.h"
-#include "graphics/Camera.h"
 #include <imgui/imgui.h>
-#include "graphics/Color.h"
 
 bool letc::graphics::Window::useVSync = false;
 
@@ -55,7 +56,7 @@ namespace letc {
 			for (Layer* layer : layers) {
 				if (layer->name == name) return layer;
 			}
-		
+			std::cout << "Error: could not find layer: " << name << std::endl;
 			return nullptr;
 		}
 
@@ -75,13 +76,12 @@ namespace letc {
 				delete layers[i];
 		}
 
-		graphics::Window* createWindow(const char* title, int width, int height, bool resizeable = true) {
-			m_window = new graphics::Window(title, width, height, resizeable);
+		graphics::Window* createWindow(const char* title, int width, int height, bool resizeable = true, bool fullscreen=false) {
+			m_window = new graphics::Window(title, width, height, resizeable, fullscreen);
 
 			float aspectRatio = width / height;
 
 			sceneCamera = new graphics::Camera(&layers, math::Vector3(0.0f, 0.0f, -10.0f), math::Vector2(32, 18), 20, graphics::CameraMode::orthographic); //TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
-
 			return m_window;
 		}
 
@@ -130,6 +130,9 @@ namespace letc {
 
 private:
 	void run() {
+		letc::physics::DebugPhysics::init(&(sceneCamera->position));
+		letc::physics::PhysicsWorld2D::setDebugDraw();
+
 		m_time = new Timer();
 		float timer = 0.0f;
 		float updateTimer = 0.0f;
@@ -156,6 +159,8 @@ private:
 				m_msPerFrame = 1000.0 / (double)frames;
 				
 				tick();
+				std::cout <<"\t"<< std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
+
 				frames = 0;
 				updates = 0;
 			}
@@ -164,5 +169,6 @@ private:
 	};
 	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
+	letc::math::Vector3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
 
 }
