@@ -11,26 +11,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		73B7E080A349AF727E56EEC0 /* PBXContainerItemProxy */ = {
+		2A9ED1714C6A7EA3891FA7B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */;
+			containerPortal = 07D727DEEC1E3010700B5E1E /* Watty-Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 917A892CA88D245E98A91F6C;
-			remoteInfo = "LETC-core.lib";
+			remoteGlobalIDString = 389A3F1D3200408F259B9D5D;
+			remoteInfo = "Watty-Core.lib";
 		};
-		C5F25319F584220BD0916159 /* PBXContainerItemProxy */ = {
+		7CD9440A9EA4F13CDB5A1A4A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */;
+			containerPortal = 07D727DEEC1E3010700B5E1E /* Watty-Core.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = EF3FEB92EFF2E88463D4B9D2;
-			remoteInfo = "LETC-core.lib";
+			remoteGlobalIDString = 135827632A6AC2951A86BDA3;
+			remoteInfo = "Watty-Core.lib";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07D727DEEC1E3010700B5E1E /* Watty-Core.lib */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Watty-Core.xcodeproj; path = "Watty-Core.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		8CEEC0997DE62E8BE9E9AED9 /* simplegame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = simplegame.cpp; path = ../../Demos/SimpleGame/src/simplegame.cpp; sourceTree = "<group>"; };
 		B8F8297DB25E2AEFA5F987BD /* SimpleGame.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = SimpleGame.exe; path = SimpleGame.exe; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7CA41BCC5ED956E4CFBE7FC /* LETC-core.lib */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LETC-Core.xcodeproj; path = "LETC-Core.xcodeproj"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,20 +44,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		108D5DC038C816722063A400 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8116FF8C168DBEBE852A15CC /* LETC-core.lib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		43FD41CB44B03EBDB892100B /* src */ = {
 			isa = PBXGroup;
 			children = (
 				8CEEC0997DE62E8BE9E9AED9 /* simplegame.cpp */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		7AF17491AA834383859082D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF6E09A6CA3A7858CE0B0FE6 /* Watty-Core.lib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8F1EDA50D78FBE821C2E9090 /* Source Files */ = {
@@ -71,7 +71,7 @@
 		9D968EAA920D05DCE0E0A4EA /* Projects */ = {
 			isa = PBXGroup;
 			children = (
-				F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */,
+				07D727DEEC1E3010700B5E1E /* Watty-Core.xcodeproj */,
 			);
 			name = Projects;
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				FE459AC92680537B0E1BE109 /* PBXTargetDependency */,
+				68A9B19A983B808C7348BFDA /* PBXTargetDependency */,
 			);
 			name = SimpleGame;
 			productInstallPath = "$(HOME)/bin";
@@ -128,8 +128,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 108D5DC038C816722063A400 /* Products */;
-					ProjectRef = F7CA41BCC5ED956E4CFBE7FC /* LETC-Core.xcodeproj */;
+					ProductGroup = 7AF17491AA834383859082D1 /* Products */;
+					ProjectRef = 07D727DEEC1E3010700B5E1E /* Watty-Core.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -140,11 +140,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		8116FF8C168DBEBE852A15CC /* LETC-core.lib */ = {
+		AF6E09A6CA3A7858CE0B0FE6 /* Watty-Core.lib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "LETC-core.lib";
-			remoteRef = 73B7E080A349AF727E56EEC0 /* PBXContainerItemProxy */;
+			path = "Watty-Core.lib";
+			remoteRef = 2A9ED1714C6A7EA3891FA7B1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -171,10 +171,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FE459AC92680537B0E1BE109 /* PBXTargetDependency */ = {
+		68A9B19A983B808C7348BFDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "LETC-core.lib";
-			targetProxy = C5F25319F584220BD0916159 /* PBXContainerItemProxy */;
+			name = "Watty-Core.lib";
+			targetProxy = 7CD9440A9EA4F13CDB5A1A4A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -186,7 +186,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CONFIGURATION_BUILD_DIR = ../../bin/Demos;
+				CONFIGURATION_BUILD_DIR = ../../bin/Release/Mac64/Demos;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
 				INSTALL_PATH = /usr/local/bin;
@@ -198,7 +198,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CONFIGURATION_BUILD_DIR = ../../bin/Demos;
+				CONFIGURATION_BUILD_DIR = ../../bin/Debug/Mac64/Demos;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
 				INSTALL_PATH = /usr/local/bin;
@@ -209,57 +209,52 @@
 		88CB238DFA563BFFA95761CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
 				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
-					GLEW_STATIC,
-					FT2_BUILD_LIBRARY,
 					CRT_SECURE_NO_WARNINGS,
 					_CRT_NONSTDC_NO_DEPRECATE,
+					GLFW_DLL,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					../../Demos/SimpleGame,
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype/include",
-					"../../L_ETC-core/ext/freetype-gl",
-					../../Dependencies/imgui/include,
-					"../../L_ETC-core/src",
-					../../Dependencies/glad/include,
+					"../../Watty-Core/src",
+					"../../Watty-Core/ext/GLFW/include",
+					"../../Watty-Core/ext/glad/include",
+					"../../Watty-Core/ext/FreeImage/include",
+					"../../Watty-Core/ext/imgui/include",
+					"../../Watty-Core/ext/freetype-gl",
+					"../../Watty-Core/ext/freetype/include",
 					"$(inherited)",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					../../bin,
-					"../../Dependencies/gorilla-audio/bin/win32",
-					../../Dependencies/GLEW/lib,
-					../../Dependencies/FreeImage/lib,
-					"../../Dependencies/GLFW/lib-vc2019",
-					../../Dependencies/Freetype/lib,
+					../../bin/Release/Mac64,
+					../../bin/Release/Mac64/Demos,
+					"../../Watty-Core/ext/FreeImage/lib/Release/Mac64",
+					"../../Watty-Core/ext/GLFW/lib/Release/Mac64",
+					"../../Watty-Core/ext/Freetype/lib/Release/Mac64",
+					"../../Watty-Core/ext/opengl/lib/Release/Mac64",
 				);
-				OBJROOT = obj/x86/Release/SimpleGame;
+				OBJROOT = obj/Mac64/Release/SimpleGame;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-lopengl32",
 					"-lglfw3",
 					"-lFreeImage",
-					"-lgorilla",
-					"-lfreetype_release",
+					"-lFreeType",
+					"-lopengl32",
 				);
-				SYMROOT = ../../bin/Demos;
+				SYMROOT = ../../bin/Release/Mac64/Demos;
 			};
 			name = Release;
 		};
 		D64AD89304F12C855E3286D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
 				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
 				COPY_PHASE_STRIP = NO;
@@ -267,43 +262,41 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
-					FT2_BUILD_LIBRARY,
 					CRT_SECURE_NO_WARNINGS,
 					_CRT_NONSTDC_NO_DEPRECATE,
+					GLFW_DLL,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					../../Demos/SimpleGame,
-					../../Dependencies/GLFW/include,
-					"../../Dependencies/gorilla-audio/include",
-					../../Dependencies/FreeImage/include,
-					"../../L_ETC-core/ext/freetype/include",
-					"../../L_ETC-core/ext/freetype-gl",
-					../../Dependencies/imgui/include,
-					"../../L_ETC-core/src",
-					../../Dependencies/glad/include,
+					"../../Watty-Core/src",
+					"../../Watty-Core/ext/GLFW/include",
+					"../../Watty-Core/ext/glad/include",
+					"../../Watty-Core/ext/FreeImage/include",
+					"../../Watty-Core/ext/imgui/include",
+					"../../Watty-Core/ext/freetype-gl",
+					"../../Watty-Core/ext/freetype/include",
 					"$(inherited)",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					../../bin,
-					"../../Dependencies/gorilla-audio/bin/win32",
-					../../Dependencies/GLEW/lib,
-					../../Dependencies/FreeImage/lib,
-					"../../Dependencies/GLFW/lib-vc2019",
-					../../Dependencies/Freetype/lib,
+					../../bin/Debug/Mac64,
+					../../bin/Debug/Mac64/Demos,
+					"../../Watty-Core/ext/FreeImage/lib/Debug/Mac64",
+					"../../Watty-Core/ext/GLFW/lib/Debug/Mac64",
+					"../../Watty-Core/ext/Freetype/lib/Debug/Mac64",
+					"../../Watty-Core/ext/opengl/lib/Debug/Mac64",
 				);
-				OBJROOT = obj/x86/Debug/SimpleGame;
+				OBJROOT = obj/Mac64/Debug/SimpleGame;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-lopengl32",
 					"-lglfw3",
 					"-lFreeImage",
-					"-lgorilla",
-					"-lfreetype_debug",
+					"-lFreeType",
+					"-lopengl32",
 				);
-				SYMROOT = ../../bin/Demos;
+				SYMROOT = ../../bin/Debug/Mac64/Demos;
 			};
 			name = Debug;
 		};
@@ -314,6 +307,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D64AD89304F12C855E3286D3 /* Debug */,
+				D64AD89304F12C855E3286D3 /* Debug */,
+				D64AD89304F12C855E3286D3 /* Debug */,
+				88CB238DFA563BFFA95761CD /* Release */,
+				88CB238DFA563BFFA95761CD /* Release */,
 				88CB238DFA563BFFA95761CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -323,6 +320,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20A1D7927BE32B044F3D75D2 /* Debug */,
+				20A1D7927BE32B044F3D75D2 /* Debug */,
+				20A1D7927BE32B044F3D75D2 /* Debug */,
+				17391F0C481D16FE5B354D4C /* Release */,
+				17391F0C481D16FE5B354D4C /* Release */,
 				17391F0C481D16FE5B354D4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

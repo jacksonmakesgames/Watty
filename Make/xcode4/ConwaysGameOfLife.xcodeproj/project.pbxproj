@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91221F57852168C90A0C7D97 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12865BBF569A2CF14A6BB1FF /* main.cpp */; };
+		00CAD85EC28369D0699E369E /* ConwaysGameOfLife.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 684150061C3D6938FDEFA646 /* ConwaysGameOfLife.cpp */; };
+		12E45194D799A8068C084FD4 /* ConwayLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10468CDC58E5CB0E7C11831C /* ConwayLayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,12 +30,14 @@
 
 /* Begin PBXFileReference section */
 		07D727DEEC1E3010700B5E1E /* Watty-Core.lib */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Watty-Core.xcodeproj; path = "Watty-Core.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		12865BBF569A2CF14A6BB1FF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../Demos/PhysicsDemo/src/main.cpp; sourceTree = "<group>"; };
-		9718B361BD3EE3132445D9A1 /* PhysicsDemo.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = PhysicsDemo.exe; path = PhysicsDemo.exe; sourceTree = BUILT_PRODUCTS_DIR; };
+		10468CDC58E5CB0E7C11831C /* ConwayLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConwayLayer.cpp; path = ../../Demos/ConwaysGameOfLife/src/ConwayLayer.cpp; sourceTree = "<group>"; };
+		684150061C3D6938FDEFA646 /* ConwaysGameOfLife.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConwaysGameOfLife.cpp; path = ../../Demos/ConwaysGameOfLife/src/ConwaysGameOfLife.cpp; sourceTree = "<group>"; };
+		75713D460F953278BFBB1386 /* ConwayLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConwayLayer.h; path = ../../Demos/ConwaysGameOfLife/src/ConwayLayer.h; sourceTree = "<group>"; };
+		EAF9400C0CC4ED3E497A164C /* ConwaysGameOfLife.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = ConwaysGameOfLife.exe; path = ConwaysGameOfLife.exe; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E55E2051884C470317722691 /* Frameworks */ = {
+		C6550F7C0EC5F3AE5364C5BC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,20 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D8AB1E8979D33DA30C82028 /* PhysicsDemo */ = {
-			isa = PBXGroup;
-			children = (
-				8F1EDA50D78FBE821C2E9090 /* Source Files */,
-				A6C936B49B3FADE6EA134CF4 /* Products */,
-				9D968EAA920D05DCE0E0A4EA /* Projects */,
-			);
-			name = PhysicsDemo;
-			sourceTree = "<group>";
-		};
 		43FD41CB44B03EBDB892100B /* src */ = {
 			isa = PBXGroup;
 			children = (
-				12865BBF569A2CF14A6BB1FF /* main.cpp */,
+				10468CDC58E5CB0E7C11831C /* ConwayLayer.cpp */,
+				684150061C3D6938FDEFA646 /* ConwaysGameOfLife.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		572C1D0357DF19F5CBC0EB43 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				75713D460F953278BFBB1386 /* ConwayLayer.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -89,31 +91,50 @@
 		A6C936B49B3FADE6EA134CF4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9718B361BD3EE3132445D9A1 /* PhysicsDemo.exe */,
+				EAF9400C0CC4ED3E497A164C /* ConwaysGameOfLife.exe */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C98A48C011FB2CF25699FF00 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				572C1D0357DF19F5CBC0EB43 /* src */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		E8C81DF3F584CD656A6F3C33 /* ConwaysGameOfLife */ = {
+			isa = PBXGroup;
+			children = (
+				C98A48C011FB2CF25699FF00 /* Header Files */,
+				8F1EDA50D78FBE821C2E9090 /* Source Files */,
+				A6C936B49B3FADE6EA134CF4 /* Products */,
+				9D968EAA920D05DCE0E0A4EA /* Projects */,
+			);
+			name = ConwaysGameOfLife;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1DF72327175D24990AF88167 /* PhysicsDemo */ = {
+		6653467295E5156470F254B2 /* ConwaysGameOfLife */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D39968B076878F6205AD6EF0 /* Build configuration list for PBXNativeTarget "PhysicsDemo" */;
+			buildConfigurationList = B49057DBFD013C0D41A00E1B /* Build configuration list for PBXNativeTarget "ConwaysGameOfLife" */;
 			buildPhases = (
-				5545A0F1F833C7A38759A731 /* Resources */,
-				BEF2BA4861E0E0FAF106C088 /* Sources */,
-				E55E2051884C470317722691 /* Frameworks */,
+				363C901C7EAD744EC34C465C /* Resources */,
+				9FE9A973E85A8DA52CF95FB3 /* Sources */,
+				C6550F7C0EC5F3AE5364C5BC /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				68A9B19A983B808C7348BFDA /* PBXTargetDependency */,
 			);
-			name = PhysicsDemo;
+			name = ConwaysGameOfLife;
 			productInstallPath = "$(HOME)/bin";
-			productName = PhysicsDemo;
-			productReference = 9718B361BD3EE3132445D9A1 /* PhysicsDemo.exe */;
+			productName = ConwaysGameOfLife;
+			productReference = EAF9400C0CC4ED3E497A164C /* ConwaysGameOfLife.exe */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -121,10 +142,10 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "PhysicsDemo" */;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "ConwaysGameOfLife" */;
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
-			mainGroup = 2D8AB1E8979D33DA30C82028 /* PhysicsDemo */;
+			mainGroup = E8C81DF3F584CD656A6F3C33 /* ConwaysGameOfLife */;
 			projectDirPath = "";
 			projectReferences = (
 				{
@@ -134,7 +155,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1DF72327175D24990AF88167 /* PhysicsDemo.exe */,
+				6653467295E5156470F254B2 /* ConwaysGameOfLife.exe */,
 			);
 		};
 /* End PBXProject section */
@@ -150,7 +171,7 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5545A0F1F833C7A38759A731 /* Resources */ = {
+		363C901C7EAD744EC34C465C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -160,11 +181,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BEF2BA4861E0E0FAF106C088 /* Sources */ = {
+		9FE9A973E85A8DA52CF95FB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91221F57852168C90A0C7D97 /* main.cpp in Sources */,
+				12E45194D799A8068C084FD4 /* ConwayLayer.cpp in Sources */,
+				00CAD85EC28369D0699E369E /* ConwaysGameOfLife.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,31 +204,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		76100576397BC728781F6BB6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CONFIGURATION_BUILD_DIR = ../../bin/Debug/Mac64/Demos;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_DYNAMIC_NO_PIC = NO;
-				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = PhysicsDemo.exe;
-			};
-			name = Debug;
-		};
-		80EA55F0CE4D4C22446C4C30 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CONFIGURATION_BUILD_DIR = ../../bin/Release/Mac64/Demos;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_DYNAMIC_NO_PIC = NO;
-				INSTALL_PATH = /usr/local/bin;
-				PRODUCT_NAME = PhysicsDemo.exe;
-			};
-			name = Release;
-		};
-		B7D2C777BB4399A93CB03DB7 /* Debug */ = {
+		095DEFE22F841F94968B1622 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
@@ -224,7 +222,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../Demos/PhysicsDemo,
+					../../Demos/ConwaysGameOfLife,
 					"../../Watty-Core/src",
 					"../../Watty-Core/ext/GLFW/include",
 					"../../Watty-Core/ext/glad/include",
@@ -242,7 +240,7 @@
 					"../../Watty-Core/ext/Freetype/lib/Debug/Mac64",
 					"../../Watty-Core/ext/opengl/lib/Debug/Mac64",
 				);
-				OBJROOT = obj/Mac64/Debug/PhysicsDemo;
+				OBJROOT = obj/Mac64/Debug/ConwaysGameOfLife;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lglfw3",
@@ -254,7 +252,19 @@
 			};
 			name = Debug;
 		};
-		EC0A5B718EF882231E1E61B1 /* Release */ = {
+		86DC0D211C52CC538AEF2361 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = ../../bin/Debug/Mac64/Demos;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = ConwaysGameOfLife.exe;
+			};
+			name = Debug;
+		};
+		CD014A9C15722ECE5A1100DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
@@ -270,7 +280,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					../../Demos/PhysicsDemo,
+					../../Demos/ConwaysGameOfLife,
 					"../../Watty-Core/src",
 					"../../Watty-Core/ext/GLFW/include",
 					"../../Watty-Core/ext/glad/include",
@@ -288,7 +298,7 @@
 					"../../Watty-Core/ext/Freetype/lib/Release/Mac64",
 					"../../Watty-Core/ext/opengl/lib/Release/Mac64",
 				);
-				OBJROOT = obj/Mac64/Release/PhysicsDemo;
+				OBJROOT = obj/Mac64/Release/ConwaysGameOfLife;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lglfw3",
@@ -300,31 +310,43 @@
 			};
 			name = Release;
 		};
+		F4D6F45BC2FA480D4A089A9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = ../../bin/Release/Mac64/Demos;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = ConwaysGameOfLife.exe;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "PhysicsDemo" */ = {
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "ConwaysGameOfLife" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B7D2C777BB4399A93CB03DB7 /* Debug */,
-				B7D2C777BB4399A93CB03DB7 /* Debug */,
-				B7D2C777BB4399A93CB03DB7 /* Debug */,
-				EC0A5B718EF882231E1E61B1 /* Release */,
-				EC0A5B718EF882231E1E61B1 /* Release */,
-				EC0A5B718EF882231E1E61B1 /* Release */,
+				095DEFE22F841F94968B1622 /* Debug */,
+				095DEFE22F841F94968B1622 /* Debug */,
+				095DEFE22F841F94968B1622 /* Debug */,
+				CD014A9C15722ECE5A1100DC /* Release */,
+				CD014A9C15722ECE5A1100DC /* Release */,
+				CD014A9C15722ECE5A1100DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		D39968B076878F6205AD6EF0 /* Build configuration list for PBXNativeTarget "PhysicsDemo.exe" */ = {
+		B49057DBFD013C0D41A00E1B /* Build configuration list for PBXNativeTarget "ConwaysGameOfLife.exe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				76100576397BC728781F6BB6 /* Debug */,
-				76100576397BC728781F6BB6 /* Debug */,
-				76100576397BC728781F6BB6 /* Debug */,
-				80EA55F0CE4D4C22446C4C30 /* Release */,
-				80EA55F0CE4D4C22446C4C30 /* Release */,
-				80EA55F0CE4D4C22446C4C30 /* Release */,
+				86DC0D211C52CC538AEF2361 /* Debug */,
+				86DC0D211C52CC538AEF2361 /* Debug */,
+				86DC0D211C52CC538AEF2361 /* Debug */,
+				F4D6F45BC2FA480D4A089A9B /* Release */,
+				F4D6F45BC2FA480D4A089A9B /* Release */,
+				F4D6F45BC2FA480D4A089A9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
