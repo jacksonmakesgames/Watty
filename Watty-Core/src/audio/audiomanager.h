@@ -2,11 +2,8 @@
 #include <vector>
 #include "audioclip.h"
 
-#define GAU_THREAD_POLICY_MULTI 2
-//#include "../../../Dependencies/gorilla-audio/include/gorilla/ga.h"
-//#include "../../../Dependencies/gorilla-audio/include/gorilla/gau.h"
-#include "../../../Dependencies/soloud/include/soloud.h"
-#include "../../../Dependencies/soloud/include/soloud_wav.h"
+#include "../../ext/soloud/include/soloud/soloud.h"
+#include "../../ext/soloud/include/soloud/soloud_wav.h"
 
 namespace letc{ namespace audio{
 	class AudioManager{

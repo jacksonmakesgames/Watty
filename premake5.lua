@@ -76,16 +76,16 @@ filter { "system:windows", "action:vs*"}
       SourceDir .. "ext/freetype-gl/*.c",
       SourceDir .. "**.cpp",
       SourceDir .. "**.tpp",
-      ROOT .. "Dependencies/glad/src/*",
-  	  ROOT .. "Dependencies/soloud/src/audiosource/**.c*",
-	  ROOT .. "Dependencies/soloud/src/backend/sdl/**.c*",
-	  ROOT .. "Dependencies/soloud/src/filter/**.c*",
-	  ROOT .. "Dependencies/soloud/src/core/**.c*"
+      ROOT .. CORE .. "/ext/glad/src/*",
+  	  ROOT .. CORE .. "/ext/soloud/src/audiosource/**.c*",
+	  ROOT .. CORE .. "/ext/soloud/src/backend/sdl/**.c*",
+	  ROOT .. CORE .. "/ext/soloud/src/filter/**.c*",
+	  ROOT .. CORE .. "/ext/soloud/src/core/**.c*"
 
     }
 
 	includedirs {
-	  ROOT .. "Dependencies/sdl/include"
+	  ROOT .. CORE .. "/ext/sdl/include"
 	}
 
     vpaths 
@@ -102,9 +102,9 @@ filter { "system:windows", "action:vs*"}
       },
     
 	["Source Files/ext/SoLoud/*"]={
- 		ROOT .. "Dependencies/soloud/src/audiosource/**.c*",
-		ROOT .. "Dependencies/soloud/src/filter/**.c*",
-		ROOT .. "Dependencies/soloud/src/core/**.c*"
+ 		ROOT .. CORE .. "/ext/soloud/src/audiosource/**.c*",
+		ROOT .. CORE .. "/ext/soloud/src/filter/**.c*",
+		ROOT .. CORE .. "/ext/soloud/src/core/**.c*"
 
 		}
 
@@ -118,14 +118,13 @@ filter { "system:windows", "action:vs*"}
     sysincludedirs
     {
       SourceDir, -- include root source directory to allow for absolute include paths
-      ROOT .. "Dependencies/GLFW/include/",
-      ROOT .. "Dependencies/FreeImage/include/",
+      ROOT .. CORE .. "/ext/GLFW/include/",
+      ROOT .. CORE .. "/ext/FreeImage/include/",
       ROOT .. CORE .. "/ext/freetype/include/",
       ROOT .. CORE .. "/ext/freetype-gl/",
-      ROOT .. "Dependencies/imgui/include/",
-      ROOT .. "Dependencies/glad/include/",
-      ROOT .. "Dependencies/soloud/src/**",
-	  ROOT .. "Dependencies/soloud/include"
+      ROOT .. CORE .. "/ext/imgui/include/",
+      ROOT .. CORE .. "/ext/glad/include/",
+	  ROOT .. CORE .. "/ext/soloud/include/"
     }
 
    
@@ -172,10 +171,10 @@ filter { "system:windows", "action:vs*"}
     {
       SourceDir, 
       ROOT .. CORE .. "/src/",
-      ROOT .. "Dependencies/GLFW/include/",
-      ROOT .. "Dependencies/glad/include/",
-      ROOT .. "Dependencies/FreeImage/include/",
-      ROOT .. "Dependencies/imgui/include/",
+      ROOT .. CORE .. "/ext/GLFW/include/",
+      ROOT .. CORE .. "/ext/glad/include/",
+      ROOT .. CORE .. "/ext/FreeImage/include/",
+      ROOT .. CORE .. "/ext/imgui/include/",
       ROOT .. CORE .. "/ext/freetype-gl/",
       ROOT .. CORE .. "/ext/freetype/include/"
     }
@@ -190,10 +189,10 @@ filter { "system:windows", "action:vs*"}
     	ROOT .. "bin/".."%{cfg.longname}",
     	ROOT .. "bin/".."%{cfg.longname}/Demos/",
 
-    	ROOT .. "Dependencies/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/opengl/lib/%{cfg.longname}/"
+    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
 
     }
 
@@ -248,10 +247,10 @@ filter { "system:windows", "action:vs*"}
     {
       SourceDir, 
       ROOT .. CORE .. "/src/",
-      ROOT .. "Dependencies/GLFW/include/",
-      ROOT .. "Dependencies/glad/include/",
-      ROOT .. "Dependencies/FreeImage/include/",
-      ROOT .. "Dependencies/imgui/include/",
+      ROOT .. CORE .. "/ext/GLFW/include/",
+      ROOT .. CORE .. "/ext/glad/include/",
+      ROOT .. CORE .. "/ext/FreeImage/include/",
+      ROOT .. CORE .. "/ext/imgui/include/",
       ROOT .. CORE .. "/ext/freetype-gl/",
       ROOT .. CORE .. "/ext/freetype/include/"
     }
@@ -266,10 +265,10 @@ filter { "system:windows", "action:vs*"}
     	ROOT .. "bin/".."%{cfg.longname}",
     	ROOT .. "bin/".."%{cfg.longname}/Demos/",
 
-    	ROOT .. "Dependencies/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/opengl/lib/%{cfg.longname}/"
+    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
 
     }
 
@@ -325,10 +324,10 @@ filter { "system:windows", "action:vs*"}
     {
       SourceDir, 
       ROOT .. CORE .. "/src/",
-      ROOT .. "Dependencies/GLFW/include/",
-      ROOT .. "Dependencies/glad/include/",
-      ROOT .. "Dependencies/FreeImage/include/",
-      ROOT .. "Dependencies/imgui/include/",
+      ROOT .. CORE .. "/ext/GLFW/include/",
+      ROOT .. CORE .. "/ext/glad/include/",
+      ROOT .. CORE .. "/ext/FreeImage/include/",
+      ROOT .. CORE .. "/ext/imgui/include/",
       ROOT .. CORE .. "/ext/freetype-gl/",
       ROOT .. CORE .. "/ext/freetype/include/"
     }
@@ -343,10 +342,10 @@ filter { "system:windows", "action:vs*"}
     	ROOT .. "bin/".."%{cfg.longname}",
     	ROOT .. "bin/".."%{cfg.longname}/Demos/",
 
-    	ROOT .. "Dependencies/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/opengl/lib/%{cfg.longname}/"
+    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
 
     }
 
@@ -401,10 +400,10 @@ filter { "system:windows", "action:vs*"}
     {
       SourceDir, 
       ROOT .. CORE .. "/src/",
-      ROOT .. "Dependencies/GLFW/include/",
-      ROOT .. "Dependencies/glad/include/",
-      ROOT .. "Dependencies/FreeImage/include/",
-      ROOT .. "Dependencies/imgui/include/",
+      ROOT .. CORE .. "/ext/GLFW/include/",
+      ROOT .. CORE .. "/ext/glad/include/",
+      ROOT .. CORE .. "/ext/FreeImage/include/",
+      ROOT .. CORE .. "/ext/imgui/include/",
       ROOT .. CORE .. "/ext/freetype-gl/",
       ROOT .. CORE .. "/ext/freetype/include/"
     }
@@ -419,10 +418,10 @@ filter { "system:windows", "action:vs*"}
     	ROOT .. "bin/".."%{cfg.longname}",
     	ROOT .. "bin/".."%{cfg.longname}/Demos/",
 
-    	ROOT .. "Dependencies/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. "Dependencies/opengl/lib/%{cfg.longname}/"
+    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
 
     }
 

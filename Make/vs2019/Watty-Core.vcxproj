@@ -120,49 +120,49 @@
     <IntDir>obj\Win32\Debug\Watty-Core\</IntDir>
     <TargetName>Watty-Core</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Dependencies\GLFW\include;..\..\Dependencies\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;..\..\Dependencies\soloud\src\audiosource;..\..\Dependencies\soloud\src\backend;..\..\Dependencies\soloud\src\core;..\..\Dependencies\soloud\src\c_api;..\..\Dependencies\soloud\src\filter;..\..\Dependencies\soloud\src\tools;..\..\Dependencies\soloud\src\audiosource\monotone;..\..\Dependencies\soloud\src\audiosource\openmpt;..\..\Dependencies\soloud\src\audiosource\sfxr;..\..\Dependencies\soloud\src\audiosource\speech;..\..\Dependencies\soloud\src\audiosource\tedsid;..\..\Dependencies\soloud\src\audiosource\vic;..\..\Dependencies\soloud\src\audiosource\vizsn;..\..\Dependencies\soloud\src\audiosource\wav;..\..\Dependencies\soloud\src\backend\alsa;..\..\Dependencies\soloud\src\backend\coreaudio;..\..\Dependencies\soloud\src\backend\null;..\..\Dependencies\soloud\src\backend\openal;..\..\Dependencies\soloud\src\backend\opensles;..\..\Dependencies\soloud\src\backend\oss;..\..\Dependencies\soloud\src\backend\portaudio;..\..\Dependencies\soloud\src\backend\sdl;..\..\Dependencies\soloud\src\backend\sdl2_static;..\..\Dependencies\soloud\src\backend\sdl_static;..\..\Dependencies\soloud\src\backend\vita_homebrew;..\..\Dependencies\soloud\src\backend\wasapi;..\..\Dependencies\soloud\src\backend\winmm;..\..\Dependencies\soloud\src\backend\xaudio2;..\..\Dependencies\soloud\src\tools\codegen;..\..\Dependencies\soloud\src\tools\lutgen;..\..\Dependencies\soloud\src\tools\resamplerlab;..\..\Dependencies\soloud\src\tools\sanity;..\..\Dependencies\soloud\src\tools\tedsid2dump;..\..\Dependencies\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Win64|x64'">
     <OutDir>..\..\bin\Debug\Win64\</OutDir>
     <IntDir>obj\Win64\Debug\Watty-Core\</IntDir>
     <TargetName>Watty-Core</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Dependencies\GLFW\include;..\..\Dependencies\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;..\..\Dependencies\soloud\src\audiosource;..\..\Dependencies\soloud\src\backend;..\..\Dependencies\soloud\src\core;..\..\Dependencies\soloud\src\c_api;..\..\Dependencies\soloud\src\filter;..\..\Dependencies\soloud\src\tools;..\..\Dependencies\soloud\src\audiosource\monotone;..\..\Dependencies\soloud\src\audiosource\openmpt;..\..\Dependencies\soloud\src\audiosource\sfxr;..\..\Dependencies\soloud\src\audiosource\speech;..\..\Dependencies\soloud\src\audiosource\tedsid;..\..\Dependencies\soloud\src\audiosource\vic;..\..\Dependencies\soloud\src\audiosource\vizsn;..\..\Dependencies\soloud\src\audiosource\wav;..\..\Dependencies\soloud\src\backend\alsa;..\..\Dependencies\soloud\src\backend\coreaudio;..\..\Dependencies\soloud\src\backend\null;..\..\Dependencies\soloud\src\backend\openal;..\..\Dependencies\soloud\src\backend\opensles;..\..\Dependencies\soloud\src\backend\oss;..\..\Dependencies\soloud\src\backend\portaudio;..\..\Dependencies\soloud\src\backend\sdl;..\..\Dependencies\soloud\src\backend\sdl2_static;..\..\Dependencies\soloud\src\backend\sdl_static;..\..\Dependencies\soloud\src\backend\vita_homebrew;..\..\Dependencies\soloud\src\backend\wasapi;..\..\Dependencies\soloud\src\backend\winmm;..\..\Dependencies\soloud\src\backend\xaudio2;..\..\Dependencies\soloud\src\tools\codegen;..\..\Dependencies\soloud\src\tools\lutgen;..\..\Dependencies\soloud\src\tools\resamplerlab;..\..\Dependencies\soloud\src\tools\sanity;..\..\Dependencies\soloud\src\tools\tedsid2dump;..\..\Dependencies\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Mac64|x64'">
     <OutDir>..\..\bin\Debug\Mac64\</OutDir>
     <IntDir>obj\Mac64\Debug\Watty-Core\</IntDir>
     <TargetName>Watty-Core</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Dependencies\GLFW\include;..\..\Dependencies\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;..\..\Dependencies\soloud\src\audiosource;..\..\Dependencies\soloud\src\backend;..\..\Dependencies\soloud\src\core;..\..\Dependencies\soloud\src\c_api;..\..\Dependencies\soloud\src\filter;..\..\Dependencies\soloud\src\tools;..\..\Dependencies\soloud\src\audiosource\monotone;..\..\Dependencies\soloud\src\audiosource\openmpt;..\..\Dependencies\soloud\src\audiosource\sfxr;..\..\Dependencies\soloud\src\audiosource\speech;..\..\Dependencies\soloud\src\audiosource\tedsid;..\..\Dependencies\soloud\src\audiosource\vic;..\..\Dependencies\soloud\src\audiosource\vizsn;..\..\Dependencies\soloud\src\audiosource\wav;..\..\Dependencies\soloud\src\backend\alsa;..\..\Dependencies\soloud\src\backend\coreaudio;..\..\Dependencies\soloud\src\backend\null;..\..\Dependencies\soloud\src\backend\openal;..\..\Dependencies\soloud\src\backend\opensles;..\..\Dependencies\soloud\src\backend\oss;..\..\Dependencies\soloud\src\backend\portaudio;..\..\Dependencies\soloud\src\backend\sdl;..\..\Dependencies\soloud\src\backend\sdl2_static;..\..\Dependencies\soloud\src\backend\sdl_static;..\..\Dependencies\soloud\src\backend\vita_homebrew;..\..\Dependencies\soloud\src\backend\wasapi;..\..\Dependencies\soloud\src\backend\winmm;..\..\Dependencies\soloud\src\backend\xaudio2;..\..\Dependencies\soloud\src\tools\codegen;..\..\Dependencies\soloud\src\tools\lutgen;..\..\Dependencies\soloud\src\tools\resamplerlab;..\..\Dependencies\soloud\src\tools\sanity;..\..\Dependencies\soloud\src\tools\tedsid2dump;..\..\Dependencies\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\bin\Release\Win32\</OutDir>
     <IntDir>obj\Win32\Release\Watty-Core\</IntDir>
     <TargetName>Watty-Core</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Dependencies\GLFW\include;..\..\Dependencies\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;..\..\Dependencies\soloud\src\audiosource;..\..\Dependencies\soloud\src\backend;..\..\Dependencies\soloud\src\core;..\..\Dependencies\soloud\src\c_api;..\..\Dependencies\soloud\src\filter;..\..\Dependencies\soloud\src\tools;..\..\Dependencies\soloud\src\audiosource\monotone;..\..\Dependencies\soloud\src\audiosource\openmpt;..\..\Dependencies\soloud\src\audiosource\sfxr;..\..\Dependencies\soloud\src\audiosource\speech;..\..\Dependencies\soloud\src\audiosource\tedsid;..\..\Dependencies\soloud\src\audiosource\vic;..\..\Dependencies\soloud\src\audiosource\vizsn;..\..\Dependencies\soloud\src\audiosource\wav;..\..\Dependencies\soloud\src\backend\alsa;..\..\Dependencies\soloud\src\backend\coreaudio;..\..\Dependencies\soloud\src\backend\null;..\..\Dependencies\soloud\src\backend\openal;..\..\Dependencies\soloud\src\backend\opensles;..\..\Dependencies\soloud\src\backend\oss;..\..\Dependencies\soloud\src\backend\portaudio;..\..\Dependencies\soloud\src\backend\sdl;..\..\Dependencies\soloud\src\backend\sdl2_static;..\..\Dependencies\soloud\src\backend\sdl_static;..\..\Dependencies\soloud\src\backend\vita_homebrew;..\..\Dependencies\soloud\src\backend\wasapi;..\..\Dependencies\soloud\src\backend\winmm;..\..\Dependencies\soloud\src\backend\xaudio2;..\..\Dependencies\soloud\src\tools\codegen;..\..\Dependencies\soloud\src\tools\lutgen;..\..\Dependencies\soloud\src\tools\resamplerlab;..\..\Dependencies\soloud\src\tools\sanity;..\..\Dependencies\soloud\src\tools\tedsid2dump;..\..\Dependencies\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Win64|x64'">
     <OutDir>..\..\bin\Release\Win64\</OutDir>
     <IntDir>obj\Win64\Release\Watty-Core\</IntDir>
     <TargetName>Watty-Core</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Dependencies\GLFW\include;..\..\Dependencies\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;..\..\Dependencies\soloud\src\audiosource;..\..\Dependencies\soloud\src\backend;..\..\Dependencies\soloud\src\core;..\..\Dependencies\soloud\src\c_api;..\..\Dependencies\soloud\src\filter;..\..\Dependencies\soloud\src\tools;..\..\Dependencies\soloud\src\audiosource\monotone;..\..\Dependencies\soloud\src\audiosource\openmpt;..\..\Dependencies\soloud\src\audiosource\sfxr;..\..\Dependencies\soloud\src\audiosource\speech;..\..\Dependencies\soloud\src\audiosource\tedsid;..\..\Dependencies\soloud\src\audiosource\vic;..\..\Dependencies\soloud\src\audiosource\vizsn;..\..\Dependencies\soloud\src\audiosource\wav;..\..\Dependencies\soloud\src\backend\alsa;..\..\Dependencies\soloud\src\backend\coreaudio;..\..\Dependencies\soloud\src\backend\null;..\..\Dependencies\soloud\src\backend\openal;..\..\Dependencies\soloud\src\backend\opensles;..\..\Dependencies\soloud\src\backend\oss;..\..\Dependencies\soloud\src\backend\portaudio;..\..\Dependencies\soloud\src\backend\sdl;..\..\Dependencies\soloud\src\backend\sdl2_static;..\..\Dependencies\soloud\src\backend\sdl_static;..\..\Dependencies\soloud\src\backend\vita_homebrew;..\..\Dependencies\soloud\src\backend\wasapi;..\..\Dependencies\soloud\src\backend\winmm;..\..\Dependencies\soloud\src\backend\xaudio2;..\..\Dependencies\soloud\src\tools\codegen;..\..\Dependencies\soloud\src\tools\lutgen;..\..\Dependencies\soloud\src\tools\resamplerlab;..\..\Dependencies\soloud\src\tools\sanity;..\..\Dependencies\soloud\src\tools\tedsid2dump;..\..\Dependencies\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Mac64|x64'">
     <OutDir>..\..\bin\Release\Mac64\</OutDir>
     <IntDir>obj\Mac64\Release\Watty-Core\</IntDir>
     <TargetName>Watty-Core</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Dependencies\GLFW\include;..\..\Dependencies\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Dependencies\imgui\include;..\..\Dependencies\glad\include;..\..\Dependencies\soloud\src\audiosource;..\..\Dependencies\soloud\src\backend;..\..\Dependencies\soloud\src\core;..\..\Dependencies\soloud\src\c_api;..\..\Dependencies\soloud\src\filter;..\..\Dependencies\soloud\src\tools;..\..\Dependencies\soloud\src\audiosource\monotone;..\..\Dependencies\soloud\src\audiosource\openmpt;..\..\Dependencies\soloud\src\audiosource\sfxr;..\..\Dependencies\soloud\src\audiosource\speech;..\..\Dependencies\soloud\src\audiosource\tedsid;..\..\Dependencies\soloud\src\audiosource\vic;..\..\Dependencies\soloud\src\audiosource\vizsn;..\..\Dependencies\soloud\src\audiosource\wav;..\..\Dependencies\soloud\src\backend\alsa;..\..\Dependencies\soloud\src\backend\coreaudio;..\..\Dependencies\soloud\src\backend\null;..\..\Dependencies\soloud\src\backend\openal;..\..\Dependencies\soloud\src\backend\opensles;..\..\Dependencies\soloud\src\backend\oss;..\..\Dependencies\soloud\src\backend\portaudio;..\..\Dependencies\soloud\src\backend\sdl;..\..\Dependencies\soloud\src\backend\sdl2_static;..\..\Dependencies\soloud\src\backend\sdl_static;..\..\Dependencies\soloud\src\backend\vita_homebrew;..\..\Dependencies\soloud\src\backend\wasapi;..\..\Dependencies\soloud\src\backend\winmm;..\..\Dependencies\soloud\src\backend\xaudio2;..\..\Dependencies\soloud\src\tools\codegen;..\..\Dependencies\soloud\src\tools\lutgen;..\..\Dependencies\soloud\src\tools\resamplerlab;..\..\Dependencies\soloud\src\tools\sanity;..\..\Dependencies\soloud\src\tools\tedsid2dump;..\..\Dependencies\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -181,7 +181,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -200,7 +200,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -219,7 +219,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -241,7 +241,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -263,7 +263,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Dependencies\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -328,6 +328,9 @@
     <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2World.h" />
     <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2WorldCallbacks.h" />
     <ClInclude Include="..\..\Watty-Core\ext\Box2D\Rope\b2Rope.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\FreeImage\include\FreeImage.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\distance-field.h" />
     <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\edtaa3func.h" />
     <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\font-manager.h" />
@@ -588,6 +591,151 @@
     <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type42\t42types.h" />
     <ClInclude Include="..\..\Watty-Core\ext\freetype\src\winfonts\fnterrs.h" />
     <ClInclude Include="..\..\Watty-Core\ext\freetype\src\winfonts\winfnt.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glad\include\KHR\khrplatform.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glad\include\glad\glad.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imconfig.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imgui.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imgui_internal.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_assert.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_atomic.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_audio.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_bits.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_blendmode.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_clipboard.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_android.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_iphoneos.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_macosx.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_minimal.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_os2.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_pandora.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_psp.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_windows.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_winrt.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_config_wiz.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_copying.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_cpuinfo.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_egl.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_endian.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_error.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_events.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_filesystem.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_gamecontroller.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_gesture.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_haptic.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_hints.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_joystick.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_keyboard.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_keycode.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_loadso.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_log.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_main.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_messagebox.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_mouse.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_mutex.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_name.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengl.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengl_glext.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengles.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengles2.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengles2_gl2.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengles2_gl2ext.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengles2_gl2platform.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_opengles2_khrplatform.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_pixels.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_platform.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_power.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_quit.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_rect.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_render.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_revision.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_rwops.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_scancode.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_sensor.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_shape.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_stdinc.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_surface.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_system.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_syswm.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_assert.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_common.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_compare.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_crc32.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_font.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_fuzzer.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_harness.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_images.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_log.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_md5.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_memory.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_test_random.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_thread.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_timer.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_touch.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_types.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_version.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_video.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_vulkan.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\begin_code.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\sdl\include\close_code.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_audiosource.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_bassboostfilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_biquadresonantfilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_bus.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_c.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_dcremovalfilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_echofilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_error.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_fader.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_fft.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_fftfilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_file.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_file_hack_off.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_file_hack_on.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_filter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_flangerfilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_internal.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_lofifilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_monotone.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_openmpt.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_queue.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_robotizefilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_sfxr.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_speech.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_tedsid.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_thread.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_vic.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_vizsn.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_wav.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_waveshaperfilter.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\include\soloud\soloud_wavstream.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\darray.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\klatt.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\resonator.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\tts.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\sid.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\ted.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\dr_flac.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\dr_mp3.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\dr_wav.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\stb_vorbis.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\resamplerlab\stb_image_write.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\cbmtune.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\cpu.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\cpu7501asm.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\mem.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\psid.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\roms.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\sid.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedmem.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedplay.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\types.h" />
     <ClInclude Include="..\..\Watty-Core\src\GameObject.h" />
     <ClInclude Include="..\..\Watty-Core\src\audio\audioclip.h" />
     <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h" />
@@ -637,56 +785,6 @@
     <ClInclude Include="..\..\Watty-Core\src\utils\timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Dependencies\glad\src\glad.c" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\monotone\soloud_monotone.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\openmpt\soloud_openmpt.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\sfxr\soloud_sfxr.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\darray.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\klatt.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\resonator.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\soloud_speech.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\tts.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\tedsid\sid.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\tedsid\soloud_tedsid.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\tedsid\ted.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\vic\soloud_vic.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\vizsn\soloud_vizsn.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\dr_impl.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\soloud_wav.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\soloud_wavstream.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\stb_vorbis.c" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl1.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl1_dll.c" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl2.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl2_dll.c" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_audiosource.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_bus.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_3d.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_basicops.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_faderops.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_filterops.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_getters.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_setters.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_voicegroup.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_voiceops.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_fader.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_fft.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_fft_lut.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_file.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_filter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_queue.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_thread.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_bassboostfilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_biquadresonantfilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_dcremovalfilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_echofilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_fftfilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_flangerfilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_lofifilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_robotizefilter.cpp" />
-    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_waveshaperfilter.cpp" />
     <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2ChainShape.cpp" />
     <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2CircleShape.cpp" />
     <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2EdgeShape.cpp" />
@@ -741,7 +839,92 @@
     <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\texture-font.c" />
     <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\utf8-utils.c" />
     <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\vector.c" />
-    <ClCompile Include="..\..\Watty-Core\main.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\glad\src\glad.c" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\monotone\soloud_monotone.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\openmpt\soloud_openmpt.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\sfxr\soloud_sfxr.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\darray.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\klatt.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\resonator.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\soloud_speech.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\tts.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\sid.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\soloud_tedsid.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\ted.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\vic\soloud_vic.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\vizsn\soloud_vizsn.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\dr_impl.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\soloud_wav.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\soloud_wavstream.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\stb_vorbis.c" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\alsa\soloud_alsa.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\coreaudio\soloud_coreaudio.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\null\soloud_null.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\openal\soloud_openal.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\opensles\soloud_opensles.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\oss\soloud_oss.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\portaudio\soloud_portaudio.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\sdl\soloud_sdl1.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\sdl\soloud_sdl1_dll.c" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\sdl\soloud_sdl2.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\sdl\soloud_sdl2_dll.c" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\sdl2_static\soloud_sdl2_static.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\sdl_static\soloud_sdl_static.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\vita_homebrew\soloud_vita_homebrew.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\wasapi\soloud_wasapi.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\winmm\soloud_winmm.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\xaudio2\soloud_xaudio2.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\c_api\soloud_c.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_audiosource.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_bus.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_3d.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_basicops.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_faderops.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_filterops.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_getters.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_setters.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_voicegroup.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_voiceops.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fader.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fft.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fft_lut.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_file.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_filter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_queue.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_thread.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_bassboostfilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_biquadresonantfilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_dcremovalfilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_echofilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_fftfilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_flangerfilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_lofifilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_robotizefilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_waveshaperfilter.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\codegen\main.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\lutgen\main.cpp">
+      <ObjectFileName>$(IntDir)\main1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\resamplerlab\main.cpp">
+      <ObjectFileName>$(IntDir)\main2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\sanity\sanity.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\cbmtune.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\cpu.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\main.cpp">
+      <ObjectFileName>$(IntDir)\main3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\sid.cpp">
+      <ObjectFileName>$(IntDir)\sid1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedmem.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedplay.cpp" />
+    <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedsound.cpp" />
+    <ClCompile Include="..\..\Watty-Core\main.cpp">
+      <ObjectFileName>$(IntDir)\main4.obj</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\GameObject.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\audio\audioclip.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\audio\audiomanager.cpp" />

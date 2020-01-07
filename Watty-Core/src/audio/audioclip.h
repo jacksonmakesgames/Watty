@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 #include "audiomanager.h"
-#include "../../../Dependencies/soloud/include/soloud.h"
-#include "../../../Dependencies/soloud/include/soloud_wav.h"
 
-#include "../utils//string_utils.h"
+#include "../../ext/soloud/include/soloud/soloud.h"
+#include "../../ext/soloud/include/soloud/soloud_wav.h"
+#include "../utils/string_utils.h"
 
 namespace letc {namespace audio {
 	class AudioClip {
