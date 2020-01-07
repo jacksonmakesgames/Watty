@@ -1,4 +1,4 @@
-#include "../../L_ETC-core/src/letc.h"
+#include "../../Watty-Core/src/letc.h"
 
 
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic.vert"
@@ -8,7 +8,7 @@
 using namespace letc;
 using namespace graphics;
 using namespace math;
-using namespace audio;
+//using namespace audio;
 using namespace physics;
 
 namespace letc {

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../L_ETC-core/src/graphics/layers/guilayer.h"
+#include "../../../Watty-Core/src/graphics/layers/guilayer.h"
 namespace letc { namespace graphics {
 class ConwayLayer : public GUILayer
 {

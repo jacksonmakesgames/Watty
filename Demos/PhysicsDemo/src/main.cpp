@@ -1,9 +1,9 @@
 
-#include "../../L_ETC-core/src/letc.h"
+#include "../../Watty-Core/src/letc.h"
 
 #define LOG(x) std::cout << x << std::endl;
 //#define __BUTTERFLY 1
-#define __SOUND 1W
+#define __SOUND 1
 
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic.vert"
 #define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/shaders/basic_lit.frag"
@@ -63,7 +63,7 @@ class PhysicsDemo : public LETC {
 		}
 
 		void init() override {
-			m_window = createWindow("This little engine could", 1280, 720, false, true);
+			m_window = createWindow("This little engine could", 1280, 720, false, false);
 			Window::setVSync(true);
 			Vector2 fontScale = Vector2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
@@ -108,7 +108,6 @@ class PhysicsDemo : public LETC {
 			boxTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/box.png");
 			Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/Demos/res/textures/floor.png");
 
-
 			Vector3 floorPos(-16.0f,-9.0f,0);
 			Vector2 floorSize(32, 2);
 			GameObject* floor = new GameObject(floorPos, floorSize);
@@ -136,8 +135,8 @@ class PhysicsDemo : public LETC {
 			math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
 			//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
-			FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/fonts/Roboto-Regular.ttf", 16, screenScale));
-			FontManager::add(new Font("Roboto", "J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/fonts/Roboto-Italic.ttf", 14, screenScale));
+			FontManager::add(new Font("Roboto",FONTPATH, 16, screenScale));
+			FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
 			GameObject* profileGroup = new GameObject(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
 			profileGroup->addChild(new GameObject(Vector3(0, 0, 0), Vector2(4.5f, 1.8), new Sprite(0x80808080)));

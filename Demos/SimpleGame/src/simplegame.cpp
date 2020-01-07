@@ -1,4 +1,4 @@
-#include "../../../L_ETC-core/src/letc.h"
+#include "../../../Watty-Core/src/letc.h"
 #include <math.h>
 
 // TODO: relative 

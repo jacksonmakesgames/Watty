@@ -1,0 +1,1749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{6C01343A-5864-C3DE-01EA-FB94ED2B8F61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\glad">
+      <UniqueIdentifier>{F397560F-5FAE-54A5-A825-E0C6147B252D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\glad\src">
+      <UniqueIdentifier>{8A171388-F683-CE82-BF77-66E02BA3F0EA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\soloud">
+      <UniqueIdentifier>{31D8965B-9D39-7469-26A7-BA1B9207AB28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\soloud\src">
+      <UniqueIdentifier>{C846D57E-347E-1D16-3D88-8139A93E440F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\soloud\src\backend">
+      <UniqueIdentifier>{9F2D554D-0B11-648D-1414-92C980762ADE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\soloud\src\backend\sdl">
+      <UniqueIdentifier>{71A17C29-DD5A-E7D3-66BA-01AED2729D43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{21EB8090-0D4E-1035-B6D3-48EBA215DCB7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext">
+      <UniqueIdentifier>{01176F6F-ED0F-8EC1-1642-7346029A6DCD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D">
+      <UniqueIdentifier>{CF3DAA41-BB37-D393-A4A4-69A4903D3900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Collision">
+      <UniqueIdentifier>{AA418AF3-9692-7535-BFF6-63F7ABA6089F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Collision\Shapes">
+      <UniqueIdentifier>{1DE12CDA-8970-EEC4-926C-CFDCFE7A29D1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Common">
+      <UniqueIdentifier>{27CCAFFD-93E4-9627-5C91-26C1C8682BC1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Dynamics">
+      <UniqueIdentifier>{16885618-826B-6558-8B6E-9394F7D02BA9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Dynamics\Contacts">
+      <UniqueIdentifier>{8443AD70-70C0-A0B3-993D-A1C785193D47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Dynamics\Joints">
+      <UniqueIdentifier>{5CD0F8B8-4822-D0A8-3141-0DB91D32E991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\Box2D\Rope">
+      <UniqueIdentifier>{F494F50C-60A2-23F3-E988-1FDE5595EFA9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype">
+      <UniqueIdentifier>{D486E4F2-4049-187D-89F9-A609F5FAF05A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\include">
+      <UniqueIdentifier>{4742A52B-B3B0-FAAA-FC99-B5AA6847F046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\include\freetype">
+      <UniqueIdentifier>{DAC01EAD-C628-E57A-2F94-F9901B1BFC66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\include\freetype\config">
+      <UniqueIdentifier>{BF960CA0-2B5D-69BC-74B8-F71EE0BDD720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\include\freetype\internal">
+      <UniqueIdentifier>{66F80F20-D209-B8C6-5B5B-4A06C76B4100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\include\freetype\internal\services">
+      <UniqueIdentifier>{19CD606F-0538-217B-AE53-86E09A9DE45D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src">
+      <UniqueIdentifier>{EB8ECF4C-57A7-B676-2054-46108C2B4B10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\autofit">
+      <UniqueIdentifier>{56AEFD44-C272-FC34-8BD8-2CFFF75B986A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\base">
+      <UniqueIdentifier>{75826E0A-61BE-7174-CAD0-896BB62B1A8F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\bdf">
+      <UniqueIdentifier>{66809E36-D2EE-F3B5-1BD8-AEB58785E951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\cache">
+      <UniqueIdentifier>{4EA65058-BA5F-BB02-43BF-D5DCAF777172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\cff">
+      <UniqueIdentifier>{E9849E36-55F3-F3B5-9EDC-AEB50A8AE951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\cid">
+      <UniqueIdentifier>{4A859E36-B6F3-F3B5-FFDC-AEB56B8AE951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\gxvalid">
+      <UniqueIdentifier>{E931F719-55F6-F509-1E5C-26D48ADF913F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\gzip">
+      <UniqueIdentifier>{74A9710A-60E5-7474-C9F7-8C6BB5521D8F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\lzw">
+      <UniqueIdentifier>{D7AD9E36-431C-F4B5-8C05-AFB5F8B2E951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\otvalid">
+      <UniqueIdentifier>{6D757478-D939-7368-A29F-A3320E230F9E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\pcf">
+      <UniqueIdentifier>{D3BB9E36-3F2A-F4B5-8813-AFB5F4C0E951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\pfr">
+      <UniqueIdentifier>{42BC9E36-AE2A-F4B5-F713-AFB563C1E951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\psaux">
+      <UniqueIdentifier>{EBBC4559-5776-B003-E0D5-CADD4C8E6673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\pshinter">
+      <UniqueIdentifier>{878E3406-73E0-0BF6-5CFF-480648F024DF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\psnames">
+      <UniqueIdentifier>{51C988C2-BD8D-87B2-86F3-B77CF27623E8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\raster">
+      <UniqueIdentifier>{0BCB6B85-F7B1-2D7D-A002-949A8CC8A6E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\sfnt">
+      <UniqueIdentifier>{95E9770A-8125-7B74-EA37-936BD692238F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\smooth">
+      <UniqueIdentifier>{D4D49788-C0BB-5980-690C-C09D55D2D2E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\truetype">
+      <UniqueIdentifier>{5CB44F88-4806-2778-3125-64881D164061}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\type1">
+      <UniqueIdentifier>{ADA69159-1960-FC03-A2BF-16DE0E78B273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\type42">
+      <UniqueIdentifier>{E27CC68B-CE63-8883-77B4-EEA0637A01EA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype\src\winfonts">
+      <UniqueIdentifier>{32200488-1E72-DB77-0791-1888F381F460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\freetype-gl">
+      <UniqueIdentifier>{74D35302-608E-43AE-0946-BCF8F5DF8D3E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src">
+      <UniqueIdentifier>{B8516F6F-A44A-8EC1-CD7C-7346B9D46DCD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\audio">
+      <UniqueIdentifier>{D95983FC-C553-AC4E-AEC0-425F9A5912BB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\graphics">
+      <UniqueIdentifier>{1825011F-84E7-34A9-CD97-C33539990D87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\graphics\buffers">
+      <UniqueIdentifier>{B4143D68-2083-92E7-696C-4DE7D5198883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\graphics\font">
+      <UniqueIdentifier>{3E690832-2A8F-D298-13D5-5764FF99F764}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\graphics\imgui">
+      <UniqueIdentifier>{82A44A73-EE87-59B3-F78A-87EF63ED1F04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\graphics\layers">
+      <UniqueIdentifier>{F724CFE2-E375-BA24-0CDA-A8E6F8894D8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\graphics\textures">
+      <UniqueIdentifier>{0BCEDF67-F709-E3D1-601C-FBC84C778BEC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\math">
+      <UniqueIdentifier>{B1156F0F-1D82-2A0A-E675-C26752A14C72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\physics">
+      <UniqueIdentifier>{4A259990-364A-E810-5F95-CDA04B19E72E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\utils">
+      <UniqueIdentifier>{38CDECFD-24C7-1550-0D34-AC60F9CC7BBC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E9C7FDCE-D52A-8D73-7EB0-C5296AF258F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext">
+      <UniqueIdentifier>{C9171D27-B510-3C79-DE42-21FECA9A1B85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D">
+      <UniqueIdentifier>{97B457A7-83AE-80F9-6C1B-170A58B4E665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Collision">
+      <UniqueIdentifier>{72D27001-5E23-5C43-8787-4A057337EFAC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Collision\Shapes">
+      <UniqueIdentifier>{E5C07F24-5150-410F-5A4C-2227C65A7C1B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Common">
+      <UniqueIdentifier>{EFD14A8A-5BEA-31B4-2497-C14D906EC64D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Dynamics">
+      <UniqueIdentifier>{DE1FCA37-4A03-D977-5306-07B4BF689FC8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Dynamics\Contacts">
+      <UniqueIdentifier>{4C1C5C05-3899-4F48-6116-505C4DF2EBDB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Dynamics\Joints">
+      <UniqueIdentifier>{24D70A01-1029-E2F0-F947-1F01E538FBD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\Box2D\Rope">
+      <UniqueIdentifier>{BC88041A-2896-3200-B17C-2EEB1D89FEB6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud">
+      <UniqueIdentifier>{AEE3DEB9-1A1B-2751-2325-8B748FDB4D4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\monotone">
+      <UniqueIdentifier>{EC398F35-D88A-7A77-01EF-6839ED9E0DE1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\openmpt">
+      <UniqueIdentifier>{40C0E009-ACA3-EF49-B5A6-1D862109B69A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\sfxr">
+      <UniqueIdentifier>{80B119B1-6C6C-095D-1524-82A701BE53ED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\speech">
+      <UniqueIdentifier>{3571F65E-2197-C0C5-0ADD-4591F6A1E591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\tedsid">
+      <UniqueIdentifier>{3A3C8460-2662-4EC7-0FA8-D392FB6C7393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\vic">
+      <UniqueIdentifier>{5FD40091-CBE1-2E77-54C8-2A62C0D4FA2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\vizsn">
+      <UniqueIdentifier>{37D987D4-A3F1-6EFE-6C9E-FE97D8750398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\wav">
+      <UniqueIdentifier>{ABD70091-17E5-2E77-A0CB-2A620CD8FA2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\freetype-gl">
+      <UniqueIdentifier>{3C4041B1-28FB-305D-D1B2-A9A7BD4C7BED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{80521D27-6C4B-3C79-957D-21FE81D51B85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\audio">
+      <UniqueIdentifier>{A1D03062-8DCA-59B4-7637-F0C462D0BF20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\graphics">
+      <UniqueIdentifier>{E086B082-4C49-E40C-95F9-729901FBBCEA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\graphics\buffers">
+      <UniqueIdentifier>{7CBEF532-E82C-4BB2-3116-06B29DC3404E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\graphics\font">
+      <UniqueIdentifier>{06280452-F24D-CEB8-DB93-5384C758F384}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\graphics\imgui">
+      <UniqueIdentifier>{4A3CBE92-B61F-CDD2-BF22-FB0E2B859323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\graphics\layers">
+      <UniqueIdentifier>{BFB5B5F0-AB06-A132-D46A-8FF4C01A349C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\graphics\textures">
+      <UniqueIdentifier>{D3B0AD89-BFEC-B0F3-28FF-C8EA145A590E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\math">
+      <UniqueIdentifier>{79D36496-E53F-2091-AE33-B8EE1A5F42F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\physics">
+      <UniqueIdentifier>{126E7F17-FE92-CE97-27DE-B3271362CDB5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Box2D.h">
+      <Filter>Header Files\ext\Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2ChainShape.h">
+      <Filter>Header Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2CircleShape.h">
+      <Filter>Header Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2EdgeShape.h">
+      <Filter>Header Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2PolygonShape.h">
+      <Filter>Header Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2Shape.h">
+      <Filter>Header Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\b2BroadPhase.h">
+      <Filter>Header Files\ext\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\b2Collision.h">
+      <Filter>Header Files\ext\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\b2Distance.h">
+      <Filter>Header Files\ext\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\b2DynamicTree.h">
+      <Filter>Header Files\ext\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Collision\b2TimeOfImpact.h">
+      <Filter>Header Files\ext\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2BlockAllocator.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2Draw.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2GrowableStack.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2Math.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2Settings.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2StackAllocator.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Common\b2Timer.h">
+      <Filter>Header Files\ext\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2CircleContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2Contact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2ContactSolver.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2PolygonContact.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2DistanceJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2FrictionJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2GearJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2Joint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2MotorJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2MouseJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2PrismaticJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2PulleyJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2RevoluteJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2RopeJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2WeldJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2WheelJoint.h">
+      <Filter>Header Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2Body.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2ContactManager.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2Fixture.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2Island.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2TimeStep.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2World.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2WorldCallbacks.h">
+      <Filter>Header Files\ext\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\Box2D\Rope\b2Rope.h">
+      <Filter>Header Files\ext\Box2D\Rope</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\distance-field.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\edtaa3func.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\font-manager.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\freetype-gl.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\markup.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\opengl.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\platform.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\texture-atlas.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\texture-font.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\utf8-utils.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\vec234.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype-gl\vector.h">
+      <Filter>Header Files\ext\freetype-gl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\config\ftconfig.h">
+      <Filter>Header Files\ext\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\config\ftheader.h">
+      <Filter>Header Files\ext\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\config\ftmodule.h">
+      <Filter>Header Files\ext\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\config\ftoption.h">
+      <Filter>Header Files\ext\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\config\ftstdlib.h">
+      <Filter>Header Files\ext\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\freetype.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftadvanc.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftbbox.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftbdf.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftbitmap.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftbzip2.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftcache.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftchapters.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftcid.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftcolor.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftdriver.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\fterrdef.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\fterrors.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftfntfmt.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftgasp.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftglyph.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftgxval.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftgzip.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftimage.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftincrem.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftlcdfil.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftlist.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftlzw.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftmac.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftmm.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftmodapi.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftmoderr.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftotval.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftoutln.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftparams.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftpfr.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftrender.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftsizes.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftsnames.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftstroke.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftsynth.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftsystem.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\fttrigon.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\fttypes.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ftwinfnt.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\autohint.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\cffotypes.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\cfftypes.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftcalc.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftdebug.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftdrv.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftgloadr.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\fthash.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftmemory.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftobjs.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftpsprop.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftrfork.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftserv.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftstream.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\fttrace.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\ftvalid.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\internal.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\psaux.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\pshints.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svbdf.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svcfftl.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svcid.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svfntfmt.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svgldict.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svgxval.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svkern.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svmetric.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svmm.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svotval.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svpfr.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svpostnm.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svprop.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svpscmap.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svpsinfo.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svsfnt.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svttcmap.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svtteng.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svttglyf.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\services\svwinfnt.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\sfnt.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\t1types.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\tttypes.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\internal\wofftypes.h">
+      <Filter>Header Files\ext\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\t1tables.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\ttnameid.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\tttables.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\freetype\tttags.h">
+      <Filter>Header Files\ext\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\include\ft2build.h">
+      <Filter>Header Files\ext\freetype\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afangles.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afblue.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afcjk.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afcover.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afdummy.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\aferrors.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afglobal.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afhints.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afindic.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\aflatin.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\aflatin2.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afloader.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afmodule.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afranges.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afscript.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afshaper.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afstyles.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\aftypes.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afwarp.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\autofit\afwrtsys.h">
+      <Filter>Header Files\ext\freetype\src\autofit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\base\ftbase.h">
+      <Filter>Header Files\ext\freetype\src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\base\md5.h">
+      <Filter>Header Files\ext\freetype\src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\bdf\bdf.h">
+      <Filter>Header Files\ext\freetype\src\bdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\bdf\bdfdrivr.h">
+      <Filter>Header Files\ext\freetype\src\bdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\bdf\bdferror.h">
+      <Filter>Header Files\ext\freetype\src\bdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftccache.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftccback.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftcerror.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftcglyph.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftcimage.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftcmanag.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftcmru.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cache\ftcsbits.h">
+      <Filter>Header Files\ext\freetype\src\cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cffcmap.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cffdrivr.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cfferrs.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cffgload.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cffload.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cffobjs.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cffparse.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cff\cfftoken.h">
+      <Filter>Header Files\ext\freetype\src\cff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\ciderrs.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\cidgload.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\cidload.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\cidobjs.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\cidparse.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\cidriver.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\cid\cidtoken.h">
+      <Filter>Header Files\ext\freetype\src\cid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxvalid.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxvcommn.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxverror.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxvfeat.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxvmod.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxvmort.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gxvalid\gxvmorx.h">
+      <Filter>Header Files\ext\freetype\src\gxvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\ftzconf.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\infblock.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\infcodes.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\inffixed.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\inftrees.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\infutil.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\zlib.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\gzip\zutil.h">
+      <Filter>Header Files\ext\freetype\src\gzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\lzw\ftzopen.h">
+      <Filter>Header Files\ext\freetype\src\lzw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\otvalid\otvalid.h">
+      <Filter>Header Files\ext\freetype\src\otvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\otvalid\otvcommn.h">
+      <Filter>Header Files\ext\freetype\src\otvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\otvalid\otverror.h">
+      <Filter>Header Files\ext\freetype\src\otvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\otvalid\otvgpos.h">
+      <Filter>Header Files\ext\freetype\src\otvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\otvalid\otvmod.h">
+      <Filter>Header Files\ext\freetype\src\otvalid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pcf\pcf.h">
+      <Filter>Header Files\ext\freetype\src\pcf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pcf\pcfdrivr.h">
+      <Filter>Header Files\ext\freetype\src\pcf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pcf\pcferror.h">
+      <Filter>Header Files\ext\freetype\src\pcf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pcf\pcfread.h">
+      <Filter>Header Files\ext\freetype\src\pcf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pcf\pcfutil.h">
+      <Filter>Header Files\ext\freetype\src\pcf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrcmap.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrdrivr.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrerror.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrgload.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrload.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrobjs.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrsbit.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pfr\pfrtypes.h">
+      <Filter>Header Files\ext\freetype\src\pfr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\afmparse.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\cffdecode.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psarrst.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psauxerr.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psauxmod.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psblues.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psconv.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\pserror.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psfixed.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psfont.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psft.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psglue.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\pshints.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psintrp.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psobjs.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psread.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\psstack.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\pstypes.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\t1cmap.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psaux\t1decode.h">
+      <Filter>Header Files\ext\freetype\src\psaux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pshinter\pshalgo.h">
+      <Filter>Header Files\ext\freetype\src\pshinter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pshinter\pshglob.h">
+      <Filter>Header Files\ext\freetype\src\pshinter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pshinter\pshmod.h">
+      <Filter>Header Files\ext\freetype\src\pshinter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pshinter\pshnterr.h">
+      <Filter>Header Files\ext\freetype\src\pshinter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\pshinter\pshrec.h">
+      <Filter>Header Files\ext\freetype\src\pshinter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psnames\psmodule.h">
+      <Filter>Header Files\ext\freetype\src\psnames</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psnames\psnamerr.h">
+      <Filter>Header Files\ext\freetype\src\psnames</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\psnames\pstables.h">
+      <Filter>Header Files\ext\freetype\src\psnames</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\raster\ftmisc.h">
+      <Filter>Header Files\ext\freetype\src\raster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\raster\ftraster.h">
+      <Filter>Header Files\ext\freetype\src\raster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\raster\ftrend1.h">
+      <Filter>Header Files\ext\freetype\src\raster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\raster\rasterrs.h">
+      <Filter>Header Files\ext\freetype\src\raster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\pngshim.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\sfdriver.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\sferrors.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\sfobjs.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\sfwoff.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttbdf.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttcmap.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttcmapc.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttcolr.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttcpal.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttkern.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttload.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttmtx.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttpost.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\sfnt\ttsbit.h">
+      <Filter>Header Files\ext\freetype\src\sfnt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\smooth\ftgrays.h">
+      <Filter>Header Files\ext\freetype\src\smooth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\smooth\ftsmerrs.h">
+      <Filter>Header Files\ext\freetype\src\smooth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\smooth\ftsmooth.h">
+      <Filter>Header Files\ext\freetype\src\smooth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttdriver.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\tterrors.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttgload.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttgxvar.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttinterp.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttobjs.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttpload.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\truetype\ttsubpix.h">
+      <Filter>Header Files\ext\freetype\src\truetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1afm.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1driver.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1errors.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1gload.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1load.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1objs.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1parse.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type1\t1tokens.h">
+      <Filter>Header Files\ext\freetype\src\type1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type42\t42drivr.h">
+      <Filter>Header Files\ext\freetype\src\type42</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type42\t42error.h">
+      <Filter>Header Files\ext\freetype\src\type42</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type42\t42objs.h">
+      <Filter>Header Files\ext\freetype\src\type42</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type42\t42parse.h">
+      <Filter>Header Files\ext\freetype\src\type42</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\type42\t42types.h">
+      <Filter>Header Files\ext\freetype\src\type42</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\winfonts\fnterrs.h">
+      <Filter>Header Files\ext\freetype\src\winfonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\freetype\src\winfonts\winfnt.h">
+      <Filter>Header Files\ext\freetype\src\winfonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\GameObject.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\audio\audioclip.h">
+      <Filter>Header Files\src\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h">
+      <Filter>Header Files\src\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\Camera.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\Color.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\DebugRenderer.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\GridRenderer.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\SimpleRenderer2D.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\batchrenderer2d.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\buffers\buffer.h">
+      <Filter>Header Files\src\graphics\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\buffers\indexbuffer.h">
+      <Filter>Header Files\src\graphics\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\buffers\vertexarray.h">
+      <Filter>Header Files\src\graphics\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\font\font.h">
+      <Filter>Header Files\src\graphics\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\font\fontmanager.h">
+      <Filter>Header Files\src\graphics\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\font\label.h">
+      <Filter>Header Files\src\graphics\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_glfw.h">
+      <Filter>Header Files\src\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_opengl3.h">
+      <Filter>Header Files\src\graphics\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\EngineControlLayer.h">
+      <Filter>Header Files\src\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\GUILayer.h">
+      <Filter>Header Files\src\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\GridLayer.h">
+      <Filter>Header Files\src\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\layer.h">
+      <Filter>Header Files\src\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\renderable2d.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\renderer2d.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\shader.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\simple2drenderer.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\sprite.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\texture.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\textures\Animation2D.h">
+      <Filter>Header Files\src\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\textures\Animator2D.h">
+      <Filter>Header Files\src\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\textures\SpriteSheetAnimation.h">
+      <Filter>Header Files\src\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\graphics\window.h">
+      <Filter>Header Files\src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\letc.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\math\math.h">
+      <Filter>Header Files\src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\math\math_functions.h">
+      <Filter>Header Files\src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\math\matrix4.h">
+      <Filter>Header Files\src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\math\vector2.h">
+      <Filter>Header Files\src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\math\vector3.h">
+      <Filter>Header Files\src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\math\vector4.h">
+      <Filter>Header Files\src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\physics\DebugPhysics.h">
+      <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\physics\PhysicsBody2D.h">
+      <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\physics\PhysicsConstants.h">
+      <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\physics\PhysicsWorld2D.h">
+      <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\physics\QueryAABBCallback.h">
+      <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\physics\RaycastCallback.h">
+      <Filter>Header Files\src\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\utils\file_utils.h">
+      <Filter>Header Files\src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\utils\string_utils.h">
+      <Filter>Header Files\src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\utils\timer.h">
+      <Filter>Header Files\src\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Dependencies\glad\src\glad.c">
+      <Filter>Dependencies\glad\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\monotone\soloud_monotone.cpp">
+      <Filter>Source Files\ext\SoLoud\monotone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\openmpt\soloud_openmpt.cpp">
+      <Filter>Source Files\ext\SoLoud\openmpt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c">
+      <Filter>Source Files\ext\SoLoud\openmpt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\sfxr\soloud_sfxr.cpp">
+      <Filter>Source Files\ext\SoLoud\sfxr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\darray.cpp">
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\klatt.cpp">
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\resonator.cpp">
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\soloud_speech.cpp">
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\speech\tts.cpp">
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\tedsid\sid.cpp">
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\tedsid\soloud_tedsid.cpp">
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\tedsid\ted.cpp">
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\vic\soloud_vic.cpp">
+      <Filter>Source Files\ext\SoLoud\vic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\vizsn\soloud_vizsn.cpp">
+      <Filter>Source Files\ext\SoLoud\vizsn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\dr_impl.cpp">
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\soloud_wav.cpp">
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\soloud_wavstream.cpp">
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\audiosource\wav\stb_vorbis.c">
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl1.cpp">
+      <Filter>Dependencies\soloud\src\backend\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl1_dll.c">
+      <Filter>Dependencies\soloud\src\backend\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl2.cpp">
+      <Filter>Dependencies\soloud\src\backend\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\backend\sdl\soloud_sdl2_dll.c">
+      <Filter>Dependencies\soloud\src\backend\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_audiosource.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_bus.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_3d.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_basicops.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_faderops.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_filterops.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_getters.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_setters.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_voicegroup.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_core_voiceops.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_fader.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_fft.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_fft_lut.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_file.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_filter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_queue.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\core\soloud_thread.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_bassboostfilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_biquadresonantfilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_dcremovalfilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_echofilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_fftfilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_flangerfilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_lofifilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_robotizefilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\soloud\src\filter\soloud_waveshaperfilter.cpp">
+      <Filter>Source Files\ext\SoLoud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2ChainShape.cpp">
+      <Filter>Source Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2CircleShape.cpp">
+      <Filter>Source Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2EdgeShape.cpp">
+      <Filter>Source Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\Shapes\b2PolygonShape.cpp">
+      <Filter>Source Files\ext\Box2D\Collision\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2BroadPhase.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2CollideCircle.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2CollideEdge.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2CollidePolygon.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2Collision.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2Distance.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2DynamicTree.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Collision\b2TimeOfImpact.cpp">
+      <Filter>Source Files\ext\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Common\b2BlockAllocator.cpp">
+      <Filter>Source Files\ext\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Common\b2Draw.cpp">
+      <Filter>Source Files\ext\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Common\b2Math.cpp">
+      <Filter>Source Files\ext\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Common\b2Settings.cpp">
+      <Filter>Source Files\ext\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Common\b2StackAllocator.cpp">
+      <Filter>Source Files\ext\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Common\b2Timer.cpp">
+      <Filter>Source Files\ext\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2CircleContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2Contact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2ContactSolver.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Contacts\b2PolygonContact.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2DistanceJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2FrictionJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2GearJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2Joint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2MotorJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2MouseJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2PulleyJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2RopeJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2WeldJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\Joints\b2WheelJoint.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2Body.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2ContactManager.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2Fixture.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2Island.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2World.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Dynamics\b2WorldCallbacks.cpp">
+      <Filter>Source Files\ext\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\Box2D\Rope\b2Rope.cpp">
+      <Filter>Source Files\ext\Box2D\Rope</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\distance-field.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\edtaa3func.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\font-manager.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\platform.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\texture-atlas.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\texture-font.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\utf8-utils.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\ext\freetype-gl\vector.c">
+      <Filter>Source Files\ext\freetype-gl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\GameObject.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\audio\audioclip.cpp">
+      <Filter>Source Files\src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\audio\audiomanager.cpp">
+      <Filter>Source Files\src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\Camera.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\DebugRenderer.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\batchrenderer2d.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\buffers\buffer.cpp">
+      <Filter>Source Files\src\graphics\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\buffers\indexbuffer.cpp">
+      <Filter>Source Files\src\graphics\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\buffers\vertexarray.cpp">
+      <Filter>Source Files\src\graphics\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\font\font.cpp">
+      <Filter>Source Files\src\graphics\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\font\fontmanager.cpp">
+      <Filter>Source Files\src\graphics\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\font\label.cpp">
+      <Filter>Source Files\src\graphics\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui.cpp">
+      <Filter>Source Files\src\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_demo.cpp">
+      <Filter>Source Files\src\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_draw.cpp">
+      <Filter>Source Files\src\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_glfw.cpp">
+      <Filter>Source Files\src\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files\src\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\src\graphics\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\EngineControlLayer.cpp">
+      <Filter>Source Files\src\graphics\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\GUILayer.cpp">
+      <Filter>Source Files\src\graphics\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\GridLayer.cpp">
+      <Filter>Source Files\src\graphics\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\layer.cpp">
+      <Filter>Source Files\src\graphics\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\shader.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\sprite.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\texture.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\textures\Animator2D.cpp">
+      <Filter>Source Files\src\graphics\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\window.cpp">
+      <Filter>Source Files\src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\math\matrix4.cpp">
+      <Filter>Source Files\src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\math\vector2.cpp">
+      <Filter>Source Files\src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\math\vector3.cpp">
+      <Filter>Source Files\src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\math\vector4.cpp">
+      <Filter>Source Files\src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsBody2D.cpp">
+      <Filter>Source Files\src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsConstants.cpp">
+      <Filter>Source Files\src\physics</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

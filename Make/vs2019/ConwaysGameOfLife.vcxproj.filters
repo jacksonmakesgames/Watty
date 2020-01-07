@@ -1,21 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{69e47457-e389-496a-aaa4-c21343a47f4b}</UniqueIdentifier>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{21EB8090-0D4E-1035-B6D3-48EBA215DCB7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src">
+      <UniqueIdentifier>{B8516F6F-A44A-8EC1-CD7C-7346B9D46DCD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E9C7FDCE-D52A-8D73-7EB0-C5296AF258F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{80521D27-6C4B-3C79-957D-21FE81D51B85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Demos\ConwaysGameOfLife\src\ConwayLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Demos\ConwaysGameOfLife\src\ConwaysGameOfLife.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClInclude Include="..\..\Demos\ConwaysGameOfLife\src\ConwayLayer.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Demos\ConwaysGameOfLife\src\ConwayLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClCompile Include="..\..\Demos\ConwaysGameOfLife\src\ConwayLayer.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\ConwaysGameOfLife\src\ConwaysGameOfLife.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
