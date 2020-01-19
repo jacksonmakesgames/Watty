@@ -748,9 +748,10 @@
     <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedmem.h" />
     <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedplay.h" />
     <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\types.h" />
-    <ClInclude Include="..\..\Watty-Core\src\GameObject.h" />
+    <ClInclude Include="..\..\Watty-Core\src\Watty.h" />
     <ClInclude Include="..\..\Watty-Core\src\audio\audioclip.h" />
     <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h" />
+    <ClInclude Include="..\..\Watty-Core\src\gameobjects\GameObject.h" />
     <ClInclude Include="..\..\Watty-Core\src\gameobjects\Transform.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\Camera.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\Color.h" />
@@ -780,7 +781,6 @@
     <ClInclude Include="..\..\Watty-Core\src\graphics\textures\Animator2D.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\textures\SpriteSheetAnimation.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\window.h" />
-    <ClInclude Include="..\..\Watty-Core\src\letc.h" />
     <ClInclude Include="..\..\Watty-Core\src\math\math.h" />
     <ClInclude Include="..\..\Watty-Core\src\math\math_functions.h" />
     <ClInclude Include="..\..\Watty-Core\src\math\matrix4.h" />
@@ -938,9 +938,9 @@
     <ClCompile Include="..\..\Watty-Core\main.cpp">
       <ObjectFileName>$(IntDir)\main4.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\GameObject.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\audio\audioclip.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\audio\audiomanager.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\gameobjects\GameObject.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\Camera.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\DebugRenderer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\batchrenderer2d.cpp" />

@@ -382,6 +382,9 @@
     <Filter Include="Source Files\src\audio">
       <UniqueIdentifier>{A1D03062-8DCA-59B4-7637-F0C462D0BF20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\src\gameobjects">
+      <UniqueIdentifier>{B35DEF23-9F18-DFCF-48D0-571A346A2960}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\src\graphics">
       <UniqueIdentifier>{E086B082-4C49-E40C-95F9-729901FBBCEA}</UniqueIdentifier>
     </Filter>
@@ -1773,7 +1776,7 @@
     <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\types.h">
       <Filter>Header Files\ext\soloud\src\tools\tedsid2dump</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\GameObject.h">
+    <ClInclude Include="..\..\Watty-Core\src\Watty.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\src\audio\audioclip.h">
@@ -1781,6 +1784,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h">
       <Filter>Header Files\src\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\gameobjects\GameObject.h">
+      <Filter>Header Files\src\gameobjects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\src\gameobjects\Transform.h">
       <Filter>Header Files\src\gameobjects</Filter>
@@ -1868,9 +1874,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\src\graphics\window.h">
       <Filter>Header Files\src\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\letc.h">
-      <Filter>Header Files\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\src\math\math.h">
       <Filter>Header Files\src\math</Filter>
@@ -2309,14 +2312,14 @@
     <ClCompile Include="..\..\Watty-Core\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\GameObject.cpp">
-      <Filter>Source Files\src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\audio\audioclip.cpp">
       <Filter>Source Files\src\audio</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\audio\audiomanager.cpp">
       <Filter>Source Files\src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\gameobjects\GameObject.cpp">
+      <Filter>Source Files\src\gameobjects</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\Camera.cpp">
       <Filter>Source Files\src\graphics</Filter>

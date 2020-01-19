@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Watty-Core", "Watty-Core.vcxproj", "{B42739C5-A0DF-7A12-09E7-536EF5BD1503}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{D2EE3280-8292-477A-9DF9-C1F96B190701}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +29,17 @@ Global
 		{B42739C5-A0DF-7A12-09E7-536EF5BD1503}.Release|Win32.Build.0 = Release|Win32
 		{B42739C5-A0DF-7A12-09E7-536EF5BD1503}.Release|Win64.ActiveCfg = Release Win64|x64
 		{B42739C5-A0DF-7A12-09E7-536EF5BD1503}.Release|Win64.Build.0 = Release Win64|x64
+		{D2EE3280-8292-477A-9DF9-C1F96B190701}.Debug|Mac64.ActiveCfg = Debug
+		{D2EE3280-8292-477A-9DF9-C1F96B190701}.Debug|Win32.ActiveCfg = Debug
+		{D2EE3280-8292-477A-9DF9-C1F96B190701}.Debug|Win64.ActiveCfg = Debug
+		{D2EE3280-8292-477A-9DF9-C1F96B190701}.Release|Mac64.ActiveCfg = Release
+		{D2EE3280-8292-477A-9DF9-C1F96B190701}.Release|Win32.ActiveCfg = Release
+		{D2EE3280-8292-477A-9DF9-C1F96B190701}.Release|Win64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9901AE6A-F8AA-48E0-8C96-5372DEC42215}
 	EndGlobalSection
 EndGlobal
