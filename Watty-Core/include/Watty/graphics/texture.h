@@ -1,8 +1,8 @@
 #pragma once
-#include "../../ext/FreeImage/include/FreeImage.h"
+#include <ext/FreeImage/include/FreeImage.h>
 #include <string>
 //#include <GL/glew.h>
-#include "../../ext/glad/include/glad/glad.h"
+#include <ext/glad/include/glad/glad.h>
 #include <assert.h> 
 #include <stdint.h> 
 

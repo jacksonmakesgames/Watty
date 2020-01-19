@@ -1,5 +1,4 @@
-#include "SpriteSheetAnimation.h"
-
+#include <graphics/textures/SpriteSheetAnimation.h>
 namespace letc { namespace graphics {
 
 	SpriteSheetAnimation::SpriteSheetAnimation(std::string animationName, math::Vector2 textureSize, float playbackRate, int numberOfFrames, bool loop)

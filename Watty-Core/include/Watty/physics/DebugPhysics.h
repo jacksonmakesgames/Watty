@@ -1,6 +1,6 @@
 #pragma once
-#include "../../ext/Box2D/Box2D.h"
-#include "../../ext/Box2D/Common/b2Draw.h"
+#include <ext/Box2D/Box2D.h>
+#include <ext/Box2D/Common/b2Draw.h>
 #include "../math/math.h"
 #include "../graphics/DebugRenderer.h"
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "GuiLayer.h"
 #include "../window.h"
+
 namespace letc { namespace graphics {
 
 	class EngineControlLayer : public GUILayer

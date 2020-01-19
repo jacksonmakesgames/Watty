@@ -1,4 +1,4 @@
-#include "vector2.h"
+#include <math/vector2.h>
 namespace letc {namespace math {
 	math::Vector2::Vector2(){
 		x = 0.0f;

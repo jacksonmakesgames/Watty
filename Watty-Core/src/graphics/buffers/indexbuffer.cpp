@@ -1,5 +1,4 @@
-#include "indexbuffer.h"
-
+#include <graphics/buffers/indexbuffer.h>
 namespace letc {namespace graphics {
 
 	IndexBuffer::IndexBuffer(GLushort* data, GLsizei count) {

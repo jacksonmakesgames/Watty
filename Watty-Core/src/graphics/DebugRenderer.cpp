@@ -1,4 +1,4 @@
-#include "DebugRenderer.h"
+#include <graphics/DebugRenderer.h>
 namespace letc {namespace graphics {
 	DebugRenderer::DebugRenderer()
 	{

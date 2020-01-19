@@ -1,4 +1,4 @@
-#include "../../Watty-Core/src/Watty.h"
+#include <Watty/Watty.h>
 
 
 #define VERTPATH "../../res/shaders/basic.vert"

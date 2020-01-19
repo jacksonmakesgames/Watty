@@ -1,5 +1,5 @@
-#include "matrix4.h"
-#include "math.h"
+#include <math/matrix4.h>
+#include <math/math.h>
 
 namespace letc {
 	namespace math {

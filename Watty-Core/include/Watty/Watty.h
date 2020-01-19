@@ -17,9 +17,9 @@
 
 #include "gameobjects/GameObject.h"
 #include "./utils/timer.h"
-#include "../ext/Box2D/Box2D.h"
+#include "ext/Box2D/Box2D.h"
 #include "./physics/QueryAABBCallback.h"
-#include "../ext/imgui/include/imgui/imgui.h"
+#include "ext/imgui/include/imgui/imgui.h"
 
 bool letc::graphics::Window::useVSync = false;
 

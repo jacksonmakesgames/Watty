@@ -1,5 +1,4 @@
-#include "buffer.h"
-
+#include <graphics/buffers/buffer.h>
 namespace letc {namespace graphics {
 
 	Buffer::Buffer(GLfloat* data, GLsizei count, GLuint componentCount){

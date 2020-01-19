@@ -95,6 +95,7 @@ filter { "system:windows", "action:vs*"}
     {
       ["Header Files/*"] = { 
         SourceDir .. "**.h", 
+        ROOT .. CORE .. "/**.h", 
         SourceDir .. "**.hxx", 
         SourceDir .. "**.hpp",
       },
@@ -117,6 +118,8 @@ filter { "system:windows", "action:vs*"}
     sysincludedirs
     {
       SourceDir, -- include root source directory to allow for absolute include paths
+	  ROOT .. CORE .. "/include/Watty/",
+	  ROOT .. CORE .. "/include/ext/",
       ROOT .. CORE .. "/ext/GLFW/include/",
       ROOT .. CORE .. "/ext/FreeImage/include/",
       ROOT .. CORE .. "/ext/freetype/include/",

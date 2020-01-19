@@ -2,8 +2,8 @@
 #include <string>
 #include "audiomanager.h"
 
-#include "../../ext/soloud/include/soloud/soloud.h"
-#include "../../ext/soloud/include/soloud/soloud_wav.h"
+#include <ext/soloud/include/soloud/soloud.h>
+#include <ext/soloud/include/soloud/soloud_wav.h>
 #include "../utils/string_utils.h"
 
 namespace letc {namespace audio {

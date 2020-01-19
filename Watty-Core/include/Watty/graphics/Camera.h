@@ -1,6 +1,6 @@
 #pragma once
-#include "../../src/math/math.h"
-#include "../../src/graphics/layers/layer.h"
+#include "../math/math.h"
+#include "../graphics/layers/layer.h"
 #include <vector>
 
 

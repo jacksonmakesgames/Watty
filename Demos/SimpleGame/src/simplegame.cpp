@@ -1,4 +1,4 @@
-#include "../../../Watty-Core/src/Watty.h"
+#include <Watty/Watty.h>
 #include <math.h>
 
 // TODO: relative 

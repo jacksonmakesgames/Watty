@@ -1,4 +1,4 @@
-#include "GridLayer.h"
+#include <graphics/layers/GridLayer.h>
 namespace letc { namespace graphics {
 	GridLayer::GridLayer(graphics::Shader* shader, math::Vector3& cameraPosition, int resolution, math::Vector2 screenSize) :
 			Layer("Grid Layer",new DebugRenderer(), shader),

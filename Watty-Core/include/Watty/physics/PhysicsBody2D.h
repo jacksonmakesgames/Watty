@@ -1,5 +1,5 @@
 #pragma once
-#include "../../ext/Box2D/Box2D.h"
+#include <ext/Box2D/Box2D.h>
 #include "PhysicsConstants.h"
 #include "../physics/PhysicsWorld2D.h"
 #include "../math/math.h"

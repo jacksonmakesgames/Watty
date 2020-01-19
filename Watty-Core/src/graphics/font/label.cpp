@@ -1,5 +1,4 @@
-#include "label.h"
-
+#include <graphics/font/label.h>
 namespace letc {namespace graphics {
 	Label::Label(std::string text, float x, float y, unsigned int color) :
 		Renderable2D(), text(text){

@@ -36,7 +36,7 @@
 
 //#include <imgui/imgui.h>
 #include "../../../ext/imgui/include/imgui/imgui.h"
-#include "imgui_impl_glfw.h"
+#include <graphics/imgui/imgui_impl_glfw.h>
 
 // GLFW
 #include "../../ext/GLFW/include/GLFW/glfw3.h"

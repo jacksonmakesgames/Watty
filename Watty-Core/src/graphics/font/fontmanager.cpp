@@ -1,4 +1,4 @@
-#include "fontmanager.h"
+#include <graphics/font/fontmanager.h>
 
 namespace letc {namespace graphics {
 

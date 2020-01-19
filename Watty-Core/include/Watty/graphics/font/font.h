@@ -1,5 +1,5 @@
 #pragma once
-#include "../../ext/freetype-gl/freetype-gl.h"
+#include <ext/freetype-gl/freetype-gl.h>
 #include <string>
 #include <map>
 #include "../texture.h"

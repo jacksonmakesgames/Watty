@@ -1,4 +1,4 @@
-#include "Vector4.h"
+#include <math/vector4.h>
 namespace letc {namespace math {
 
 	math::Vector4::Vector4(const float& x, const float& y, const float& z, const float& w){

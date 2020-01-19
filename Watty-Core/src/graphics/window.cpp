@@ -1,4 +1,4 @@
-﻿#include "window.h"
+﻿#include <graphics/window.h>
 namespace letc {namespace graphics {
 	static void window_resize_callback(GLFWwindow* window, int width, int height);
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);

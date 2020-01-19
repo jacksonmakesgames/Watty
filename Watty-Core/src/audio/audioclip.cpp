@@ -1,5 +1,4 @@
-#include "audioclip.h"
-
+#include <audio/audioclip.h>
 namespace letc {namespace audio {
 
 	AudioClip::AudioClip(const std::string& name, const std::string& filepath){

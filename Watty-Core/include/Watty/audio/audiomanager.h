@@ -2,8 +2,8 @@
 #include <vector>
 #include "audioclip.h"
 
-#include "../../ext/soloud/include/soloud/soloud.h"
-#include "../../ext/soloud/include/soloud/soloud_wav.h"
+#include <ext/soloud/include/soloud/soloud.h>
+#include <ext/soloud/include/soloud/soloud_wav.h>
 
 namespace letc{ namespace audio{
 	class AudioManager{

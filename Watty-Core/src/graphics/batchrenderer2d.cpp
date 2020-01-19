@@ -1,4 +1,4 @@
-#include "batchrenderer2d.h"
+#include <graphics/batchrenderer2d.h>
 
 namespace letc {namespace graphics {
 	

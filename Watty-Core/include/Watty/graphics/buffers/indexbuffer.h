@@ -1,8 +1,7 @@
 #pragma once
 #pragma once
 //#include <GL/glew.h>
-#include "../../ext/glad/include/glad/glad.h"
-
+#include <ext/glad/include/glad/glad.h>
 
 namespace letc {
 	namespace graphics {

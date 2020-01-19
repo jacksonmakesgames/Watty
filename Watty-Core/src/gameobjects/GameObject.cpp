@@ -1,4 +1,4 @@
- #include "GameObject.h"
+#include <gameobjects/GameObject.h>
 namespace letc {
 	GameObject::GameObject(math::Matrix4 transformationMatrix) : 
 		m_rotationMatrix(transformationMatrix),

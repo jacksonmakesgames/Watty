@@ -1,4 +1,4 @@
-#include "PhysicsBody2D.h"
+#include <physics/PhysicsBody2D.h>
 namespace letc { namespace physics {
 	PhysicsBody2D::PhysicsBody2D(BodyShapes shape, float xPos, float yPos, float width, float height, b2BodyType type, float bounciness, float friction)
 		:

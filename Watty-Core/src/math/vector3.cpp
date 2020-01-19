@@ -1,4 +1,4 @@
-#include "Vector3.h"
+#include <math/vector3.h>
 namespace letc {namespace math {
 	Vector3 Vector3::One()
 	{

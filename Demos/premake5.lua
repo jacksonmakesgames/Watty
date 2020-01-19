@@ -78,9 +78,10 @@ workspace("Demos")
   	}
 
   sysincludedirs {
-      SourceDir, 
-      COREDIR .. "/src/"
-    }
+      SourceDir,
+      COREDIR .. "include/",
+      COREDIR
+      }
 
     libdirs {
      WATTYDIR .. "bin/" .. "%{cfg.longname}/"
@@ -122,7 +123,10 @@ workspace("Demos")
 
     sysincludedirs{
       SourceDir, 
-      ROOT .. CORE .. "/src/"
+      COREDIR .. "include/",
+      COREDIR 
+
+
     }
    
     libdirs{
@@ -166,7 +170,10 @@ workspace("Demos")
 
     sysincludedirs {
       SourceDir, 
-      ROOT .. CORE .. "/src/"
+      COREDIR .. "include/",
+      COREDIR
+
+
     }
 
     libdirs {
@@ -210,7 +217,10 @@ workspace("Demos")
 
     sysincludedirs {
       SourceDir, 
-      ROOT .. CORE .. "/src/"
+      COREDIR .. "include/",
+      COREDIR
+
+
     }
 
     libdirs {

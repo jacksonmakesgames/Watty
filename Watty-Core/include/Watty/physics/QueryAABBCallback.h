@@ -1,5 +1,5 @@
 #pragma once
-#include "../../ext/Box2D/Box2D.h"
+#include "../ext/Box2D/Box2D.h"
 #include <iostream>
 #include <vector>
 #include "../gameobjects/GameObject.h"

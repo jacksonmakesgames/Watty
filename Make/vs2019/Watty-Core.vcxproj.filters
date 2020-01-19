@@ -196,41 +196,44 @@
     <Filter Include="Header Files\ext\soloud\src\tools\tedsid2dump">
       <UniqueIdentifier>{312ED785-9D9E-D9FE-66BD-5387D2EC1100}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src">
-      <UniqueIdentifier>{B8516F6F-A44A-8EC1-CD7C-7346B9D46DCD}</UniqueIdentifier>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{94A3D34A-8032-5D14-2951-710F15BF6DBA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\audio">
-      <UniqueIdentifier>{D95983FC-C553-AC4E-AEC0-425F9A5912BB}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty">
+      <UniqueIdentifier>{9CF96C26-8809-19F7-F1C2-7D15DDF10790}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\gameobjects">
-      <UniqueIdentifier>{EBF00175-D7AB-F120-8063-6A6B6CFD3BB1}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\audio">
+      <UniqueIdentifier>{BD5CC009-A9AD-AB4B-D211-9A0DBEC13EB5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\graphics">
-      <UniqueIdentifier>{1825011F-84E7-34A9-CD97-C33539990D87}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\gameobjects">
+      <UniqueIdentifier>{CF8E563F-BBE0-2D2F-A4FF-6A3F90F04618}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\graphics\buffers">
-      <UniqueIdentifier>{B4143D68-2083-92E7-696C-4DE7D5198883}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\graphics">
+      <UniqueIdentifier>{7CEDB380-E8A6-1E2B-7106-3905DDBED49A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\graphics\font">
-      <UniqueIdentifier>{3E690832-2A8F-D298-13D5-5764FF99F764}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\graphics\buffers">
+      <UniqueIdentifier>{1801D414-8466-679B-0D3F-097479A35C0A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\graphics\imgui">
-      <UniqueIdentifier>{82A44A73-EE87-59B3-F78A-87EF63ED1F04}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\graphics\font">
+      <UniqueIdentifier>{2210FCE3-0E8D-EF26-370A-F03A23E68BBA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\graphics\layers">
-      <UniqueIdentifier>{F724CFE2-E375-BA24-0CDA-A8E6F8894D8E}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\graphics\imgui">
+      <UniqueIdentifier>{E627B363-5242-1605-9B64-269907BE3D0C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\graphics\textures">
-      <UniqueIdentifier>{0BCEDF67-F709-E3D1-601C-FBC84C778BEC}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\graphics\layers">
+      <UniqueIdentifier>{DB1448E0-C77C-0EAE-30E8-22C41C6F259A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\math">
-      <UniqueIdentifier>{B1156F0F-1D82-2A0A-E675-C26752A14C72}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\graphics\textures">
+      <UniqueIdentifier>{EF4654A7-DB59-5400-8443-31ED7035F14D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\physics">
-      <UniqueIdentifier>{4A259990-364A-E810-5F95-CDA04B19E72E}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\math">
+      <UniqueIdentifier>{154CE54D-812F-F48D-8A32-22CAF694BADE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\utils">
-      <UniqueIdentifier>{38CDECFD-24C7-1550-0D34-AC60F9CC7BBC}</UniqueIdentifier>
+    <Filter Include="Header Files\include\Watty\physics">
+      <UniqueIdentifier>{2E7122E1-1AAD-254B-83BF-3D426F1ACE65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\Watty\utils">
+      <UniqueIdentifier>{1CD0290B-0821-154D-3185-030F1D35A8B6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{E9C7FDCE-D52A-8D73-7EB0-C5296AF258F6}</UniqueIdentifier>
@@ -1776,149 +1779,149 @@
     <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\types.h">
       <Filter>Header Files\ext\soloud\src\tools\tedsid2dump</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\Watty.h">
-      <Filter>Header Files\src</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\Watty.h">
+      <Filter>Header Files\include\Watty</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\audio\audioclip.h">
-      <Filter>Header Files\src\audio</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\audio\audioclip.h">
+      <Filter>Header Files\include\Watty\audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h">
-      <Filter>Header Files\src\audio</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\audio\audiomanager.h">
+      <Filter>Header Files\include\Watty\audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\gameobjects\GameObject.h">
-      <Filter>Header Files\src\gameobjects</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\GameObject.h">
+      <Filter>Header Files\include\Watty\gameobjects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\gameobjects\Transform.h">
-      <Filter>Header Files\src\gameobjects</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\Transform.h">
+      <Filter>Header Files\include\Watty\gameobjects</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\Camera.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Camera.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\Color.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Color.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\DebugRenderer.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\DebugRenderer.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\GridRenderer.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\GridRenderer.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\SimpleRenderer2D.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\SimpleRenderer2D.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\batchrenderer2d.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\batchrenderer2d.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\buffers\buffer.h">
-      <Filter>Header Files\src\graphics\buffers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\buffers\buffer.h">
+      <Filter>Header Files\include\Watty\graphics\buffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\buffers\indexbuffer.h">
-      <Filter>Header Files\src\graphics\buffers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\buffers\indexbuffer.h">
+      <Filter>Header Files\include\Watty\graphics\buffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\buffers\vertexarray.h">
-      <Filter>Header Files\src\graphics\buffers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\buffers\vertexarray.h">
+      <Filter>Header Files\include\Watty\graphics\buffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\font\font.h">
-      <Filter>Header Files\src\graphics\font</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\font\font.h">
+      <Filter>Header Files\include\Watty\graphics\font</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\font\fontmanager.h">
-      <Filter>Header Files\src\graphics\font</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\font\fontmanager.h">
+      <Filter>Header Files\include\Watty\graphics\font</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\font\label.h">
-      <Filter>Header Files\src\graphics\font</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\font\label.h">
+      <Filter>Header Files\include\Watty\graphics\font</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_glfw.h">
-      <Filter>Header Files\src\graphics\imgui</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\imgui\imgui_impl_glfw.h">
+      <Filter>Header Files\include\Watty\graphics\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_opengl3.h">
-      <Filter>Header Files\src\graphics\imgui</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\imgui\imgui_impl_opengl3.h">
+      <Filter>Header Files\include\Watty\graphics\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\EngineControlLayer.h">
-      <Filter>Header Files\src\graphics\layers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\EngineControlLayer.h">
+      <Filter>Header Files\include\Watty\graphics\layers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\GUILayer.h">
-      <Filter>Header Files\src\graphics\layers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\GUILayer.h">
+      <Filter>Header Files\include\Watty\graphics\layers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\GridLayer.h">
-      <Filter>Header Files\src\graphics\layers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\GridLayer.h">
+      <Filter>Header Files\include\Watty\graphics\layers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\layers\layer.h">
-      <Filter>Header Files\src\graphics\layers</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\layer.h">
+      <Filter>Header Files\include\Watty\graphics\layers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\renderable2d.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\renderable2d.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\renderer2d.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\renderer2d.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\shader.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\shader.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\simple2drenderer.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\simple2drenderer.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\sprite.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\sprite.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\texture.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\texture.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\textures\Animation2D.h">
-      <Filter>Header Files\src\graphics\textures</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\textures\Animation2D.h">
+      <Filter>Header Files\include\Watty\graphics\textures</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\textures\Animator2D.h">
-      <Filter>Header Files\src\graphics\textures</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\textures\Animator2D.h">
+      <Filter>Header Files\include\Watty\graphics\textures</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\textures\SpriteSheetAnimation.h">
-      <Filter>Header Files\src\graphics\textures</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\textures\SpriteSheetAnimation.h">
+      <Filter>Header Files\include\Watty\graphics\textures</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\graphics\window.h">
-      <Filter>Header Files\src\graphics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\window.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\math\math.h">
-      <Filter>Header Files\src\math</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\math\math.h">
+      <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\math\math_functions.h">
-      <Filter>Header Files\src\math</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\math\math_functions.h">
+      <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\math\matrix4.h">
-      <Filter>Header Files\src\math</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\math\matrix4.h">
+      <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\math\vector2.h">
-      <Filter>Header Files\src\math</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\math\vector2.h">
+      <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\math\vector3.h">
-      <Filter>Header Files\src\math</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\math\vector3.h">
+      <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\math\vector4.h">
-      <Filter>Header Files\src\math</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\math\vector4.h">
+      <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\physics\DebugPhysics.h">
-      <Filter>Header Files\src\physics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\DebugPhysics.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\physics\PhysicsBody2D.h">
-      <Filter>Header Files\src\physics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsBody2D.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\physics\PhysicsConstants.h">
-      <Filter>Header Files\src\physics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsConstants.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\physics\PhysicsWorld2D.h">
-      <Filter>Header Files\src\physics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsWorld2D.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\physics\QueryAABBCallback.h">
-      <Filter>Header Files\src\physics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\QueryAABBCallback.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\physics\RaycastCallback.h">
-      <Filter>Header Files\src\physics</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\RaycastCallback.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\utils\file_utils.h">
-      <Filter>Header Files\src\utils</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\utils\file_utils.h">
+      <Filter>Header Files\include\Watty\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\utils\string_utils.h">
-      <Filter>Header Files\src\utils</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\utils\string_utils.h">
+      <Filter>Header Files\include\Watty\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Watty-Core\src\utils\timer.h">
-      <Filter>Header Files\src\utils</Filter>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\utils\timer.h">
+      <Filter>Header Files\include\Watty\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2308,9 +2311,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\tedsound.cpp">
       <Filter>Source Files\ext\soloud\src\tools\tedsid2dump</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\main.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\audio\audioclip.cpp">
       <Filter>Source Files\src\audio</Filter>

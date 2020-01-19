@@ -1,6 +1,5 @@
 
-#include "../../Watty-Core/src/Watty.h"
-
+#include <Watty/Watty.h>
 #define LOG(x) std::cout << x << std::endl;
 //#define __BUTTERFLY 1
 #define __SOUND 1

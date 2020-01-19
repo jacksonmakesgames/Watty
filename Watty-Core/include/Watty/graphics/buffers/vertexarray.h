@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
-//#include <GL/glew.h>
-#include "../../ext/glad/include/glad/glad.h"
+#include <ext/glad/include/glad/glad.h>
 #include "buffer.h"
 
 namespace letc {namespace graphics {

@@ -1,4 +1,4 @@
-#include "font.h"
+#include <graphics/font/font.h>
 
 namespace letc {namespace graphics {
 	Font::Font(unsigned int size){
