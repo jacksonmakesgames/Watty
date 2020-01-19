@@ -1,9 +1,10 @@
-#include "../../Watty-Core/src/letc.h"
+#include "../../Watty-Core/src/Watty.h"
 
 
-#define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
-#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
+#define VERTPATH "../../res/shaders/basic.vert"
+#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
+#define FLOORTEXTUREPATH "../../res/textures/floor.png"
 
 using namespace letc;
 using namespace graphics;
@@ -62,7 +63,7 @@ public:
 		player = new GameObject(
 			playerPos,
 			playerSize,
-			//new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/Player.png")));
+			//new Sprite(new Texture("../../res/textures/Player.png")));
 			new Sprite(new Texture("C:/Users/Jacks/Pictures/Tests/AnimationTest.png")));
 		
 		player->setTag("Player");
@@ -84,7 +85,7 @@ public:
 		//GameObject* childTest = new GameObject(Vector2(2, 0), Vector2(1, 1), new Sprite(Color::orange));
 		//player->addChild(childTest);
 
-		Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/floor.png");
+		Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
 		/*Vector3 floorPos(-16.0f, -9.0f, 0);
 		Vector2 floorSize(32, 2);*/

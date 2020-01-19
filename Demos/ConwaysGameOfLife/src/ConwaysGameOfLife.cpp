@@ -1,15 +1,16 @@
-#include "../../../Watty-Core/src/letc.h"
+#include "../../../Watty-Core/src/Watty.h"
 #include "ConwayLayer.h"
 #include <math.h>
 #include <deque>
 // TODO: relative 
-#define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
-#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
-#define FONTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/fonts/Roboto-Italic.ttf"
-#define GRIDTEXTUREPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/ConwaysGameOfLife/res/grid.png"
-//
+#define VERTPATH "../../res/shaders/basic.vert"
+#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
+#define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
+#define GRIDTEXTUREPATH "../ConwaysGameOfLife/res/grid.png"
+
+
 //#define WINDOWWIDTH 1600
 //#define WINDOWHEIGHT 900
 

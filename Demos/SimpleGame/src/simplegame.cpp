@@ -1,14 +1,14 @@
-#include "../../../Watty-Core/src/letc.h"
+#include "../../../Watty-Core/src/Watty.h"
 #include <math.h>
 
 // TODO: relative 
-#define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
-#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
-#define FONTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/fonts/Roboto-Italic.ttf"
-#define PLAYERTEXTUREPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/Player.png"
-#define ENEMYTEXTUREPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/Enemy.png"
+#define VERTPATH "../../res/shaders/basic.vert"
+#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
+#define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
+#define PLAYERTEXTUREPATH "../../res/textures/Player.png"
+#define ENEMYTEXTUREPATH "../../res/textures/Enemy.png"
 
 using namespace letc;
 using namespace graphics;

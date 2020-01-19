@@ -1,16 +1,17 @@
 
-#include "../../Watty-Core/src/letc.h"
+#include "../../Watty-Core/src/Watty.h"
 
 #define LOG(x) std::cout << x << std::endl;
 //#define __BUTTERFLY 1
 #define __SOUND 1
 
-#define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
-#define FRAGLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
-#define FONTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/fonts/Roboto-Italic.ttf"
-
+#define VERTPATH "../../res/shaders/basic.vert"
+#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
+#define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
+#define FLOORTEXTUREPATH "../../res/textures/floor.png"
+#define MUSICPATH "../../res/sounds/slow_motion.ogg"
 
 using namespace letc;
 using namespace graphics;
@@ -95,7 +96,7 @@ class PhysicsDemo : public LETC {
 			player = new GameObject(
 				playerPos,
 				playerSize,
-				new Sprite(new Texture("J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/Player.png")));
+				new Sprite(new Texture("../../res/textures/Player.png")));
 
 			player->addComponent(new PhysicsBody2D(
 				physics::BodyShapes::circle,
@@ -105,8 +106,8 @@ class PhysicsDemo : public LETC {
 			player->setTag("Player");
 			layer0->add(player);
 
-			boxTexture = new Texture("J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/box.png");
-			Texture* floorTexture = new Texture("J:/OneDrive/Projects/Game_Development/Watty/Demos/res/textures/floor.png");
+			boxTexture = new Texture("../../res/textures/box.png");
+			Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
 			Vector3 floorPos(-16.0f,-9.0f,0);
 			Vector2 floorSize(32, 2);
@@ -148,7 +149,7 @@ class PhysicsDemo : public LETC {
 			profileGroup->addChild(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
 			uiLayer->add(profileGroup);
 
-			AudioClip* clip = new AudioClip("slow_motion", "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/sounds/slow_motion.ogg");
+			AudioClip* clip = new AudioClip("slow_motion", MUSICPATH);
 			AudioManager::addClip(clip);
 			AudioManager::getClip("slow_motion")->play(true);
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
