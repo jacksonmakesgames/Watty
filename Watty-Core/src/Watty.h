@@ -15,7 +15,7 @@
 #include "./graphics/Color.h"
 #include "./graphics/textures/SpriteSheetAnimation.h"
 
-#include "GameObject.h"
+#include "gameobjects/GameObject.h"
 #include "./utils/timer.h"
 #include "../ext/Box2D/Box2D.h"
 #include "./physics/QueryAABBCallback.h"
@@ -39,6 +39,7 @@ namespace letc {
 		Timer* m_time;
 		int m_framesPerSecond, m_updatesPerSecond;
 		double m_msPerFrame;
+		unsigned int updates = 0;
 
 	public:
 		void start() {
@@ -94,6 +95,8 @@ namespace letc {
 
 		// runs LETC_UPDATE_RATE times per second
 		virtual void update() {
+			updates++;
+
 			gameTimer->update();
 
 
@@ -138,17 +141,15 @@ private:
 		float updateTimer = 0.0f;
 		float updateTick = 1.0 / m_window->getRefreshRate();
 		unsigned int frames = 0;
-		unsigned int updates = 0;
 		while (!m_window->closed()) {
 			m_window->clear();
-			
 			if (m_time->elapsed() - updateTimer > updateTick) {
-				update();
+				if (m_window->useVSync) update(); // With Vsync enabled, update at the refresh rate of the window
 				updateTimer += updateTick;
-				updates++;
 			}
-			frames++;
 
+			if (!m_window->useVSync) update(); // With Vsync disabled, update as fast as possible
+			frames++;
 			render();
 			m_window->update();
 			

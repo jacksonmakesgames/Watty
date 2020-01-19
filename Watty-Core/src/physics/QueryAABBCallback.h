@@ -2,7 +2,7 @@
 #include "../../ext/Box2D/Box2D.h"
 #include <iostream>
 #include <vector>
-#include "../GameObject.h"
+#include "../gameobjects/GameObject.h"
 
 namespace letc { namespace physics {
 

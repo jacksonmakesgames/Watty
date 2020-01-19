@@ -1,7 +1,7 @@
 #pragma once
 #include "../renderer2d.h"
 #include "../shader.h"
-#include "../../GameObject.h"
+#include "../../gameobjects/GameObject.h"
 #include <vector>
 
 

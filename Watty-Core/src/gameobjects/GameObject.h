@@ -1,10 +1,10 @@
 #pragma once
-#include "graphics/renderable2d.h"
-#include "math/math.h"
-#include "physics/PhysicsBody2d.h"
+#include "../graphics/renderable2d.h"
+#include "../math/math.h"
+#include "../physics/PhysicsBody2d.h"
 #include <vector>
 #include <math.h>
-#include "graphics/textures/Animator2D.h"
+#include "../graphics/textures/Animator2D.h"
 
 namespace letc {
 	class GameObject {
