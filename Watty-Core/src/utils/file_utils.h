@@ -4,9 +4,8 @@
 #include <fstream>
 
 //#include <GL/glew.h>
-#include <glad/glad.h>
-
-#include "FreeImage.h"
+#include "../../ext/glad/include/glad/glad.h"
+#include "../../ext/FreeImage/include/FreeImage.h"
 
 
 namespace fs = std::experimental::filesystem;

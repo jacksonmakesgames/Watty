@@ -117,6 +117,7 @@ namespace letc {namespace graphics {
 			return -1;
 		}
 
+		std::cout << "Watty{} Version: " << WATTYVERSION << std::endl;
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
 		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);

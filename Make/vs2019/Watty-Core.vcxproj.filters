@@ -202,6 +202,9 @@
     <Filter Include="Header Files\src\audio">
       <UniqueIdentifier>{D95983FC-C553-AC4E-AEC0-425F9A5912BB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\src\gameobjects">
+      <UniqueIdentifier>{EBF00175-D7AB-F120-8063-6A6B6CFD3BB1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\src\graphics">
       <UniqueIdentifier>{1825011F-84E7-34A9-CD97-C33539990D87}</UniqueIdentifier>
     </Filter>
@@ -1779,6 +1782,9 @@
     <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h">
       <Filter>Header Files\src\audio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\src\gameobjects\Transform.h">
+      <Filter>Header Files\src\gameobjects</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Watty-Core\src\graphics\Camera.h">
       <Filter>Header Files\src\graphics</Filter>
     </ClInclude>
@@ -2381,6 +2387,9 @@
     <ClCompile Include="..\..\Watty-Core\src\graphics\textures\Animator2D.cpp">
       <Filter>Source Files\src\graphics\textures</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\textures\SpriteSheetAnimation.cpp">
+      <Filter>Source Files\src\graphics\textures</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\window.cpp">
       <Filter>Source Files\src\graphics</Filter>
     </ClCompile>
@@ -2400,6 +2409,9 @@
       <Filter>Source Files\src\physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsConstants.cpp">
+      <Filter>Source Files\src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsWorld2D.cpp">
       <Filter>Source Files\src\physics</Filter>
     </ClCompile>
   </ItemGroup>

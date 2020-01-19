@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 //#include <GL/glew.h>
-#include <glad/glad.h>
+#include "../../ext/glad/include/glad/glad.h"
 
 #include "../math/math.h"
 #include "../math/matrix4.h"

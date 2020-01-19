@@ -1,4 +1,9 @@
 local ROOT = "./"
+local WATTYVERSION = "0.24"
+local CORE = "Watty-Core"
+
+local LIBNAME = CORE .. "_v" .. WATTYVERSION
+
 
 ---------------------------------
 -- [ WORKSPACE CONFIGURATION   --
@@ -54,16 +59,14 @@ filter { "system:windows", "action:vs*"}
  -------------------------------
   -- [ PROJECT CONFIGURATION ] --
   ------------------------------- 
-  local CORE = "Watty-Core"
-
   project (CORE)
     kind "StaticLib"
     language "C++"
     targetdir (ROOT .. "bin/".. "%{cfg.longname}") 
-    targetname(CORE)
+    targetname(LIBNAME)
   
     defines {"_LIB"}
-  	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "WITH_SDL2"}
+  	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "WITH_SDL2", "WATTYVERSION=".. WATTYVERSION}
 
     --------------------------------------
     -- [ PROJECT FILES CONFIGURATIONS ] --
@@ -110,10 +113,6 @@ filter { "system:windows", "action:vs*"}
 
     }
 
-    filter { "files:**.tpp" }
-      flags {"ExcludeFromBuild"}
-
-    filter {}
 
     sysincludedirs
     {
@@ -127,309 +126,22 @@ filter { "system:windows", "action:vs*"}
 	  ROOT .. CORE .. "/ext/soloud/include/"
     }
 
+
+  libdirs
+    {
+    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
+    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
+
+    }
+
+    links
+    {
+   	"glfw3",
+    "FreeImage",
+    "FreeType",
+    "opengl32"
+    }
+
    
-
--------------------------------
-  -- [ PROJECT CONFIGURATION ] --
-  ------------------------------- 
-  local PROJECT = "PhysicsDemo"
-  project(PROJECT)
-    kind "ConsoleApp" -- "WindowApp" removes console
-    language "C++"
-    targetdir (ROOT .. "bin/".."%{cfg.longname}".."/Demos/") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
-    targetname (PROJECT) -- the name of the executable saved to 'targetdir'
-  
-  	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "GLFW_DLL"}
-  
-  --------------------------------------
-    -- [ PROJECT FILES CONFIGURATIONS ] --
-    --------------------------------------
-    local SourceDir = ROOT .. "Demos/".. PROJECT .. "/"
-
-    files
-    { 
-      SourceDir .. "**.h", 
-      SourceDir .. "**.hpp", 
-      SourceDir .. "**.cpp",
-      SourceDir .. "**.tpp"
-    }
-
-    vpaths 
-    {
-      ["Header Files/*"] = { 
-        SourceDir .. "**.h", 
-        SourceDir .. "**.hxx", 
-        SourceDir .. "**.hpp",
-      },
-      ["Source Files/*"] = { 
-        SourceDir .. "**.cxx", 
-        SourceDir .. "**.cpp",
-      }
-  	}
-
-    sysincludedirs
-    {
-      SourceDir, 
-      ROOT .. CORE .. "/src/",
-      ROOT .. CORE .. "/ext/GLFW/include/",
-      ROOT .. CORE .. "/ext/glad/include/",
-      ROOT .. CORE .. "/ext/FreeImage/include/",
-      ROOT .. CORE .. "/ext/imgui/include/",
-      ROOT .. CORE .. "/ext/freetype-gl/",
-      ROOT .. CORE .. "/ext/freetype/include/"
-    }
-
-	filter { "files:**.tpp" }
-      flags {"ExcludeFromBuild"}
-   	filter {}
-
-    libdirs
-    {
-
-    	ROOT .. "bin/".."%{cfg.longname}",
-    	ROOT .. "bin/".."%{cfg.longname}/Demos/",
-
-    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
-
-    }
-
-    links
-    {
-  	CORE,
-   	"glfw3",
-    "FreeImage",
-    "FreeType",
-    "opengl32"
-    }
-
--------------------------------
-  -- [ PROJECT CONFIGURATION ] --
-  ------------------------------- 
-  local PROJECT = "SimpleGame"
-  project(PROJECT)
-    kind "ConsoleApp" -- "WindowApp" removes console
-    language "C++"
-    targetdir (ROOT .. "bin/".."%{cfg.longname}".."/Demos/") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
-    targetname (PROJECT) -- the name of the executable saved to 'targetdir'
-  
-  	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "GLFW_DLL"}
-  
-  --------------------------------------
-    -- [ PROJECT FILES CONFIGURATIONS ] --
-    --------------------------------------
-    local SourceDir = ROOT .. "Demos/".. PROJECT .. "/"
-
-    files
-    { 
-      SourceDir .. "**.h", 
-      SourceDir .. "**.hpp", 
-      SourceDir .. "**.cpp",
-      SourceDir .. "**.tpp"
-    }
-
-    vpaths 
-    {
-      ["Header Files/*"] = { 
-        SourceDir .. "**.h", 
-        SourceDir .. "**.hxx", 
-        SourceDir .. "**.hpp",
-      },
-      ["Source Files/*"] = { 
-        SourceDir .. "**.cxx", 
-        SourceDir .. "**.cpp",
-      }
-  	}
-
-    sysincludedirs
-    {
-      SourceDir, 
-      ROOT .. CORE .. "/src/",
-      ROOT .. CORE .. "/ext/GLFW/include/",
-      ROOT .. CORE .. "/ext/glad/include/",
-      ROOT .. CORE .. "/ext/FreeImage/include/",
-      ROOT .. CORE .. "/ext/imgui/include/",
-      ROOT .. CORE .. "/ext/freetype-gl/",
-      ROOT .. CORE .. "/ext/freetype/include/"
-    }
-
-	filter { "files:**.tpp" }
-      flags {"ExcludeFromBuild"}
-   	filter {}
-   	
-    libdirs
-    {
-
-    	ROOT .. "bin/".."%{cfg.longname}",
-    	ROOT .. "bin/".."%{cfg.longname}/Demos/",
-
-    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
-
-    }
-
-    links
-    {
-  	CORE,
-   	"glfw3",
-    "FreeImage",
-    "FreeType",
-    "opengl32"
-    }
-
-
--------------------------------
-  -- [ PROJECT CONFIGURATION ] --
-  ------------------------------- 
-  local PROJECT = "PlatformerDemo"
-  project(PROJECT)
-    kind "ConsoleApp" -- "WindowApp" removes console
-    language "C++"
-    targetdir (ROOT .. "bin/".."%{cfg.longname}".."/Demos/") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
-    targetname (PROJECT) -- the name of the executable saved to 'targetdir'
-  
-  	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "GLFW_DLL"}
-  
-  --------------------------------------
-    -- [ PROJECT FILES CONFIGURATIONS ] --
-    --------------------------------------
-    local SourceDir = ROOT .. "Demos/".. PROJECT .. "/"
-
-    files
-    { 
-      SourceDir .. "**.h", 
-      SourceDir .. "**.hpp", 
-      SourceDir .. "**.cpp",
-      SourceDir .. "**.tpp"
-    }
-
-    vpaths 
-    {
-      ["Header Files/*"] = { 
-        SourceDir .. "**.h", 
-        SourceDir .. "**.hxx", 
-        SourceDir .. "**.hpp",
-      },
-      ["Source Files/*"] = { 
-        SourceDir .. "**.cxx", 
-        SourceDir .. "**.cpp",
-      }
-  	}
-
-    sysincludedirs
-    {
-      SourceDir, 
-      ROOT .. CORE .. "/src/",
-      ROOT .. CORE .. "/ext/GLFW/include/",
-      ROOT .. CORE .. "/ext/glad/include/",
-      ROOT .. CORE .. "/ext/FreeImage/include/",
-      ROOT .. CORE .. "/ext/imgui/include/",
-      ROOT .. CORE .. "/ext/freetype-gl/",
-      ROOT .. CORE .. "/ext/freetype/include/"
-    }
-
-	filter { "files:**.tpp" }
-      flags {"ExcludeFromBuild"}
-   	filter {}
-   	
-    libdirs
-    {
-
-    	ROOT .. "bin/".."%{cfg.longname}",
-    	ROOT .. "bin/".."%{cfg.longname}/Demos/",
-
-    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
-
-    }
-
-    links
-    {
-  	CORE,
-   	"glfw3",
-    "FreeImage",
-    "FreeType",
-    "opengl32"
-    }
-
--------------------------------
-  -- [ PROJECT CONFIGURATION ] --
-  ------------------------------- 
-  local PROJECT = "ConwaysGameOfLife"
-  project(PROJECT)
-    kind "ConsoleApp" -- "WindowApp" removes console
-    language "C++"
-    targetdir (ROOT .. "bin/".."%{cfg.longname}".."/Demos/") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
-    targetname (PROJECT) -- the name of the executable saved to 'targetdir'
-  
-  	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "GLFW_DLL"}
-  
-  --------------------------------------
-    -- [ PROJECT FILES CONFIGURATIONS ] --
-    --------------------------------------
-    local SourceDir = ROOT .. "Demos/".. PROJECT .. "/"
-
-    files
-    { 
-      SourceDir .. "**.h", 
-      SourceDir .. "**.hpp", 
-      SourceDir .. "**.cpp",
-      SourceDir .. "**.tpp"
-    }
-
-    vpaths 
-    {
-      ["Header Files/*"] = { 
-        SourceDir .. "**.h", 
-        SourceDir .. "**.hxx", 
-        SourceDir .. "**.hpp",
-      },
-      ["Source Files/*"] = { 
-        SourceDir .. "**.cxx", 
-        SourceDir .. "**.cpp",
-      }
-  	}
-
-    sysincludedirs
-    {
-      SourceDir, 
-      ROOT .. CORE .. "/src/",
-      ROOT .. CORE .. "/ext/GLFW/include/",
-      ROOT .. CORE .. "/ext/glad/include/",
-      ROOT .. CORE .. "/ext/FreeImage/include/",
-      ROOT .. CORE .. "/ext/imgui/include/",
-      ROOT .. CORE .. "/ext/freetype-gl/",
-      ROOT .. CORE .. "/ext/freetype/include/"
-    }
-
-	filter { "files:**.tpp" }
-      flags {"ExcludeFromBuild"}
-   	filter {}
-   	
-    libdirs
-    {
-
-    	ROOT .. "bin/".."%{cfg.longname}",
-    	ROOT .. "bin/".."%{cfg.longname}/Demos/",
-
-    	ROOT .. CORE .. "/ext/FreeImage/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/GLFW/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/Freetype/lib/%{cfg.longname}/",
-    	ROOT .. CORE .. "/ext/opengl/lib/%{cfg.longname}/"
-
-    }
-
-    links
-    {
-  	CORE,
-   	"glfw3",
-    "FreeImage",
-    "FreeType",
-    "opengl32"
-    }

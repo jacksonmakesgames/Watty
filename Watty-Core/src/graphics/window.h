@@ -1,11 +1,11 @@
 ﻿#pragma once
 #include <iostream>
 //#include <GL/glew.h>
-#include <glad/glad.h>
+#//include <glad/glad.h>
+#include "../../ext/glad/include/glad/glad.h"
 
-#include <GLFW/glfw3.h>
-
-#include <imgui/imgui.h>
+#include "../../ext/GLFW/include/GLFW/glfw3.h"
+#include "../../ext/imgui/include/imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 

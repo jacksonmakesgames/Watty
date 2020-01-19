@@ -117,43 +117,43 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\bin\Debug\Win32\</OutDir>
-    <IntDir>obj\Win32\Debug\Watty-Core\</IntDir>
-    <TargetName>Watty-Core</TargetName>
+    <IntDir>obj\Win32\Debug\</IntDir>
+    <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
     <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Win64|x64'">
     <OutDir>..\..\bin\Debug\Win64\</OutDir>
-    <IntDir>obj\Win64\Debug\Watty-Core\</IntDir>
-    <TargetName>Watty-Core</TargetName>
+    <IntDir>obj\Win64\Debug\</IntDir>
+    <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
     <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Mac64|x64'">
     <OutDir>..\..\bin\Debug\Mac64\</OutDir>
-    <IntDir>obj\Mac64\Debug\Watty-Core\</IntDir>
-    <TargetName>Watty-Core</TargetName>
+    <IntDir>obj\Mac64\Debug\</IntDir>
+    <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
     <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\bin\Release\Win32\</OutDir>
-    <IntDir>obj\Win32\Release\Watty-Core\</IntDir>
-    <TargetName>Watty-Core</TargetName>
+    <IntDir>obj\Win32\Release\</IntDir>
+    <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
     <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Win64|x64'">
     <OutDir>..\..\bin\Release\Win64\</OutDir>
-    <IntDir>obj\Win64\Release\Watty-Core\</IntDir>
-    <TargetName>Watty-Core</TargetName>
+    <IntDir>obj\Win64\Release\</IntDir>
+    <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
     <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Mac64|x64'">
     <OutDir>..\..\bin\Release\Mac64\</OutDir>
-    <IntDir>obj\Mac64\Release\Watty-Core\</IntDir>
-    <TargetName>Watty-Core</TargetName>
+    <IntDir>obj\Mac64\Release\</IntDir>
+    <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
     <IncludePath>..\..\Watty-Core;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
@@ -161,7 +161,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -173,6 +173,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
+      <AdditionalDependencies>glfw3.lib;FreeImage.lib;FreeType.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Watty-Core\ext\FreeImage\lib\Debug\Win32;..\..\Watty-Core\ext\GLFW\lib\Debug\Win32;..\..\Watty-Core\ext\Freetype\lib\Debug\Win32;..\..\Watty-Core\ext\opengl\lib\Debug\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -180,7 +182,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -192,6 +194,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
+      <AdditionalDependencies>glfw3.lib;FreeImage.lib;FreeType.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Watty-Core\ext\FreeImage\lib\Debug\Win64;..\..\Watty-Core\ext\GLFW\lib\Debug\Win64;..\..\Watty-Core\ext\Freetype\lib\Debug\Win64;..\..\Watty-Core\ext\opengl\lib\Debug\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -199,7 +203,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -211,6 +215,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
+      <AdditionalDependencies>glfw3.lib;FreeImage.lib;FreeType.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Watty-Core\ext\FreeImage\lib\Debug\Mac64;..\..\Watty-Core\ext\GLFW\lib\Debug\Mac64;..\..\Watty-Core\ext\Freetype\lib\Debug\Mac64;..\..\Watty-Core\ext\opengl\lib\Debug\Mac64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -218,7 +224,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -233,6 +239,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
+      <AdditionalDependencies>glfw3.lib;FreeImage.lib;FreeType.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Watty-Core\ext\FreeImage\lib\Release\Win32;..\..\Watty-Core\ext\GLFW\lib\Release\Win32;..\..\Watty-Core\ext\Freetype\lib\Release\Win32;..\..\Watty-Core\ext\opengl\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -240,7 +248,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -255,6 +263,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
+      <AdditionalDependencies>glfw3.lib;FreeImage.lib;FreeType.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Watty-Core\ext\FreeImage\lib\Release\Win64;..\..\Watty-Core\ext\GLFW\lib\Release\Win64;..\..\Watty-Core\ext\Freetype\lib\Release\Win64;..\..\Watty-Core\ext\opengl\lib\Release\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -262,7 +272,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -277,6 +287,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
+      <AdditionalDependencies>glfw3.lib;FreeImage.lib;FreeType.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Watty-Core\ext\FreeImage\lib\Release\Mac64;..\..\Watty-Core\ext\GLFW\lib\Release\Mac64;..\..\Watty-Core\ext\Freetype\lib\Release\Mac64;..\..\Watty-Core\ext\opengl\lib\Release\Mac64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -739,6 +751,7 @@
     <ClInclude Include="..\..\Watty-Core\src\GameObject.h" />
     <ClInclude Include="..\..\Watty-Core\src\audio\audioclip.h" />
     <ClInclude Include="..\..\Watty-Core\src\audio\audiomanager.h" />
+    <ClInclude Include="..\..\Watty-Core\src\gameobjects\Transform.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\Camera.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\Color.h" />
     <ClInclude Include="..\..\Watty-Core\src\graphics\DebugRenderer.h" />
@@ -951,6 +964,7 @@
     <ClCompile Include="..\..\Watty-Core\src\graphics\sprite.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\texture.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\textures\Animator2D.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\textures\SpriteSheetAnimation.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\window.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\math\matrix4.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\math\vector2.cpp" />
@@ -958,6 +972,7 @@
     <ClCompile Include="..\..\Watty-Core\src\math\vector4.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsBody2D.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsConstants.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsWorld2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
