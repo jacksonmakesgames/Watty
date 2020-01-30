@@ -16,7 +16,7 @@ private:
 	
 
 public:
-	SpriteSheetAnimation(std::string name, math::Vector2 textureSize, float playbackRate, int numberOfFrames, bool loop = false);
+	SpriteSheetAnimation(std::string name, glm::vec2 textureSize, float playbackRate, int numberOfFrames, bool loop = false);
 	~SpriteSheetAnimation();
 
 	void play() override;

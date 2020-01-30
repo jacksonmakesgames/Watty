@@ -148,6 +148,27 @@
     <Filter Include="Header Files\ext\glad\include\glad">
       <UniqueIdentifier>{021E326E-EE59-35D8-576C-4DCF43C7DDF2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ext\glm">
+      <UniqueIdentifier>{D039502F-BCC8-D9F8-65E7-EDF35155EA9E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\glm\include">
+      <UniqueIdentifier>{433122D4-2FEC-1180-D8A3-8ACAC43D5C10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\glm\include\detail">
+      <UniqueIdentifier>{A5BF751B-1179-E0C5-9AD8-FA9F06919635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\glm\include\ext">
+      <UniqueIdentifier>{239EAA90-0FEF-95D2-3853-84942403293C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\glm\include\gtc">
+      <UniqueIdentifier>{10A6AA90-FCF6-95D2-255B-8494110B293C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\glm\include\gtx">
+      <UniqueIdentifier>{25A6AA90-11F7-95D2-3A5B-8494260B293C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\glm\include\simd">
+      <UniqueIdentifier>{7FCF05A6-EB3D-5B25-3427-1625A0D450C1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\ext\imgui">
       <UniqueIdentifier>{2BA16A44-179B-9396-0008-2AA7ECA0F902}</UniqueIdentifier>
     </Filter>
@@ -265,6 +286,33 @@
     <Filter Include="Source Files\ext\Box2D\Rope">
       <UniqueIdentifier>{BC88041A-2896-3200-B17C-2EEB1D89FEB6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ext\SoLoud">
+      <UniqueIdentifier>{AEE3DEB9-1A1B-2751-2325-8B748FDB4D4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\monotone">
+      <UniqueIdentifier>{EC398F35-D88A-7A77-01EF-6839ED9E0DE1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\openmpt">
+      <UniqueIdentifier>{40C0E009-ACA3-EF49-B5A6-1D862109B69A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\sfxr">
+      <UniqueIdentifier>{80B119B1-6C6C-095D-1524-82A701BE53ED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\speech">
+      <UniqueIdentifier>{3571F65E-2197-C0C5-0ADD-4591F6A1E591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\tedsid">
+      <UniqueIdentifier>{3A3C8460-2662-4EC7-0FA8-D392FB6C7393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\vic">
+      <UniqueIdentifier>{5FD40091-CBE1-2E77-54C8-2A62C0D4FA2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\vizsn">
+      <UniqueIdentifier>{37D987D4-A3F1-6EFE-6C9E-FE97D8750398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\wav">
+      <UniqueIdentifier>{ABD70091-17E5-2E77-A0CB-2A620CD8FA2D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\ext\freetype-gl">
       <UniqueIdentifier>{3C4041B1-28FB-305D-D1B2-A9A7BD4C7BED}</UniqueIdentifier>
     </Filter>
@@ -274,38 +322,20 @@
     <Filter Include="Source Files\ext\glad\src">
       <UniqueIdentifier>{87A66B6B-F368-9FF5-3C19-2E82A81A78D3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ext\glm">
+      <UniqueIdentifier>{985E211C-84ED-AAE5-2D0C-BFE0197ABB8B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\glm\include">
+      <UniqueIdentifier>{0B9E0F83-F758-FF2E-A010-78798CAA49BF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\glm\include\detail">
+      <UniqueIdentifier>{6DFBFF76-D9B4-6A21-6214-85FBCECC2091}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\ext\soloud">
       <UniqueIdentifier>{EE839504-5ABB-DD9B-63C5-41BFCF7B0495}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ext\soloud\src">
       <UniqueIdentifier>{05898D9A-7196-BB80-FA7C-B76B66898737}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource">
-      <UniqueIdentifier>{17261A79-83B5-DB63-8CB1-BC7BF8BF1670}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\monotone">
-      <UniqueIdentifier>{7542EAA8-61EB-51D8-8A81-6D5776896C19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\openmpt">
-      <UniqueIdentifier>{A95B48B0-1597-A873-1E8C-25038A462DA4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\sfxr">
-      <UniqueIdentifier>{89DD9B16-75F0-9B6F-1EDA-785C0ACC38BD}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\speech">
-      <UniqueIdentifier>{7EC3B32D-6A41-04C7-5339-C25E3F5646EF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\tedsid">
-      <UniqueIdentifier>{838E412F-6F0C-92C8-5804-50604421D4F0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\vic">
-      <UniqueIdentifier>{48237927-B488-0CAE-3D61-AE86A9C5011D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\vizsn">
-      <UniqueIdentifier>{60864FEA-CCF6-5163-9515-CCEB01458A64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\wav">
-      <UniqueIdentifier>{94267927-008C-0CAE-8964-AE86F5C8011D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ext\soloud\src\backend">
       <UniqueIdentifier>{DC5CD677-4816-4122-D175-5BFC3D2EF791}</UniqueIdentifier>
@@ -354,12 +384,6 @@
     </Filter>
     <Filter Include="Source Files\ext\soloud\src\c_api">
       <UniqueIdentifier>{B02B8B70-1C9A-E0EF-6583-9BEFD130D68B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\core">
-      <UniqueIdentifier>{9DA49FDC-89F5-8A1E-B259-79E09E091E88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\filter">
-      <UniqueIdentifier>{BA29AB89-A665-AEF3-0F78-C6EAFBD2560E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ext\soloud\src\tools">
       <UniqueIdentifier>{65CDC771-D13B-1DF1-1A25-D8F086D2128D}</UniqueIdentifier>
@@ -1350,6 +1374,738 @@
     <ClInclude Include="..\..\Watty-Core\ext\glad\include\glad\glad.h">
       <Filter>Header Files\ext\glad\include\glad</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\common.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_features.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_fixes.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_noise.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_swizzle.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_swizzle_func.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_vectorize.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\compute_common.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\compute_vector_relational.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\qualifier.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\setup.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_float.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_half.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat2x2.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat2x3.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat2x4.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat3x2.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat3x3.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat3x4.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat4x2.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat4x3.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat4x4.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_quat.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec1.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec2.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec3.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec4.hpp">
+      <Filter>Header Files\ext\glm\include\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\exponential.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_clip_space.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_common.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_projection.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_relational.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_transform.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_common.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_double.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_double_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_exponential.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_float.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_float_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_geometric.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_relational.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_transform.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_trigonometric.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_common.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_constants.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_int_sized.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_integer.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_relational.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_uint_sized.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_ulp.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool1.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool1_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_common.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double1.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double1_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float1.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float1_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int1.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int1_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_integer.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_relational.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint1.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint1_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint2.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint2_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint3.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint3_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint4.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint4_precision.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_ulp.hpp">
+      <Filter>Header Files\ext\glm\include\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\fwd.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\geometric.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\glm.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\bitfield.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\color_space.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\constants.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\epsilon.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\integer.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_access.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_integer.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_inverse.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_transform.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\noise.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\packing.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\quaternion.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\random.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\reciprocal.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\round.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\type_aligned.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\type_precision.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\type_ptr.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\ulp.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\vec1.hpp">
+      <Filter>Header Files\ext\glm\include\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\associated_min_max.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\bit.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\closest_point.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\color_encoding.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\color_space.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\color_space_YCoCg.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\common.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\compatibility.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\component_wise.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\dual_quaternion.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\easing.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\euler_angles.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\extend.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\extended_min_max.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\exterior_product.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\fast_exponential.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\fast_square_root.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\fast_trigonometry.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\functions.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\gradient_paint.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\handed_coordinate_space.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\hash.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\integer.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\intersect.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\io.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\log_base.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_cross_product.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_decompose.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_factorisation.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_interpolation.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_major_storage.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_operation.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_query.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_transform_2d.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\mixed_product.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\norm.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\normal.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\normalize_dot.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\number_precision.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\optimum_pow.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\orthonormalize.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\perpendicular.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\polar_coordinates.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\projection.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\quaternion.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\range.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\raw_data.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\rotate_normalized_axis.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\rotate_vector.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\scalar_multiplication.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\scalar_relational.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\spline.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\std_based_type.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\string_cast.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\texture.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\transform.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\transform2.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\type_aligned.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\type_trait.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\vec_swizzle.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\vector_angle.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\vector_query.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\wrap.hpp">
+      <Filter>Header Files\ext\glm\include\gtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\integer.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat2x2.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat2x3.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat2x4.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat3x2.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat3x3.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat3x4.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat4x2.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat4x3.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat4x4.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\matrix.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\packing.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\common.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\exponential.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\geometric.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\integer.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\matrix.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\neon.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\packing.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\platform.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\trigonometric.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\vector_relational.h">
+      <Filter>Header Files\ext\glm\include\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\trigonometric.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vec2.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vec3.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vec4.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vector_relational.hpp">
+      <Filter>Header Files\ext\glm\include</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imconfig.h">
       <Filter>Header Files\ext\imgui\include\imgui</Filter>
     </ClInclude>
@@ -2091,58 +2847,58 @@
       <Filter>Source Files\ext\glad\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\monotone\soloud_monotone.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\monotone</Filter>
+      <Filter>Source Files\ext\SoLoud\monotone</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\openmpt\soloud_openmpt.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\openmpt</Filter>
+      <Filter>Source Files\ext\SoLoud\openmpt</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c">
-      <Filter>Source Files\ext\soloud\src\audiosource\openmpt</Filter>
+      <Filter>Source Files\ext\SoLoud\openmpt</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\sfxr\soloud_sfxr.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\sfxr</Filter>
+      <Filter>Source Files\ext\SoLoud\sfxr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\darray.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\klatt.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\resonator.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\soloud_speech.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\tts.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\sid.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\tedsid</Filter>
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\soloud_tedsid.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\tedsid</Filter>
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\ted.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\tedsid</Filter>
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\vic\soloud_vic.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\vic</Filter>
+      <Filter>Source Files\ext\SoLoud\vic</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\vizsn\soloud_vizsn.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\vizsn</Filter>
+      <Filter>Source Files\ext\SoLoud\vizsn</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\dr_impl.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\soloud_wav.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\soloud_wavstream.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\stb_vorbis.c">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\alsa\soloud_alsa.cpp">
       <Filter>Source Files\ext\soloud\src\backend\alsa</Filter>
@@ -2199,85 +2955,85 @@
       <Filter>Source Files\ext\soloud\src\c_api</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_audiosource.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_bus.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_3d.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_basicops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_faderops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_filterops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_getters.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_setters.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_voicegroup.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_voiceops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fader.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fft.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fft_lut.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_file.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_filter.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_queue.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_thread.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_bassboostfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_biquadresonantfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_dcremovalfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_echofilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_fftfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_flangerfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_lofifilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_robotizefilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_waveshaperfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\codegen\main.cpp">
       <Filter>Source Files\ext\soloud\src\tools\codegen</Filter>

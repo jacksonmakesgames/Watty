@@ -19,12 +19,12 @@ namespace letc {namespace graphics {
 	
 	}
 
-	void DebugRenderer::submit(math::Vector3* vertices, int vertexCount, unsigned int color)
+	void DebugRenderer::submit(glm::vec3* vertices, int vertexCount, unsigned int color)
 	{
 
 		for (int i = 0; i < vertexCount; i++) {
-			m_currentBuffer->vertex = *m_tranformationStackBack * vertices[i];
-			m_currentBuffer->uv = math::Vector2();
+			m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(vertices[i].x, vertices[i].y, vertices[i].z, 1.0f);
+			m_currentBuffer->uv = glm::vec2();
 			m_currentBuffer->tid = 0;
 			m_currentBuffer->color = color;
 			m_currentBuffer++;
@@ -55,7 +55,7 @@ namespace letc {namespace graphics {
 
 	}
 
-	void DebugRenderer::drawString(const std::string& text, const math::Vector3& position, const Font& font, unsigned int color)
+	void DebugRenderer::drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color)
 	{
 	}
 

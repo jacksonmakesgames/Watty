@@ -1,6 +1,7 @@
 #pragma once
 
-#include "./math/math.h"
+//#include "./math/math.h"
+#include "ext/glm/include/glm.hpp"
 #include "./graphics/window.h"
 #include "./graphics/sprite.h"
 #include "./graphics/font/label.h"
@@ -82,7 +83,7 @@ namespace letc {
 
 			float aspectRatio = width / height;
 
-			sceneCamera = new graphics::Camera(&layers, math::Vector3(0.0f, 0.0f, -10.0f), math::Vector2(32, 18), 20, graphics::CameraMode::orthographic); //TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
+			sceneCamera = new graphics::Camera(&layers, glm::vec3(0.0f, 0.0f, -10.0f), glm::vec2(32, 18), 20, graphics::CameraMode::orthographic); //TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
 			return m_window;
 		}
 
@@ -170,6 +171,6 @@ private:
 	};
 	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
-	letc::math::Vector3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
+	glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
 
 }

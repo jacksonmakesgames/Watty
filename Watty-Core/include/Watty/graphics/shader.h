@@ -2,8 +2,10 @@
 #include <vector>
 //#include <GL/glew.h>
 #include <ext/glad/include/glad/glad.h>
-#include "../math/math.h"
-#include "../math/matrix4.h"
+#include <ext/glm/include/glm.hpp>
+#include <ext/glm/include/gtc/type_ptr.hpp>
+
+//#include "../math/matrix4.h"
 #include "../utils/file_utils.h"
 
 namespace letc {namespace graphics {
@@ -22,11 +24,11 @@ namespace letc {namespace graphics {
 		void setUniform1iv(const GLchar* name,  int* value, int count);
 		void setUniform1i(const GLchar* name, int value);
 		
-		void setUniform2f(const GLchar* name, const math::Vector2& vector);
-		void setUniform3f(const GLchar* name, const math::Vector3& vector);
-		void setUniform4f(const GLchar* name, const math::Vector4& vector);
+		void setUniform2f(const GLchar* name, const glm::vec2& vector);
+		void setUniform3f(const GLchar* name, const glm::vec3& vector);
+		void setUniform4f(const GLchar* name, const glm::vec4& vector);
 		
-		void setUniformMat4(const GLchar* name, const math::Matrix4& matrix);
+		void setUniformMat4(const GLchar* name, const glm::mat4& matrix);
 
 
 		void enable() const;

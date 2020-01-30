@@ -2,7 +2,7 @@
 namespace letc {namespace graphics {
 	Label::Label(std::string text, float x, float y, unsigned int color) :
 		Renderable2D(), text(text){
-		m_position = math::Vector3(x, y, 0);
+		m_position = glm::vec3(x, y, 0);
 		m_color = color;
 		m_font = FontManager::get("default");
 		m_texture = m_font->getTexture();
@@ -10,7 +10,7 @@ namespace letc {namespace graphics {
 	}
 	Label::Label(std::string text, unsigned int color) :
 		Renderable2D(), text(text){
-		m_position = math::Vector3(0, 0, 0);
+		m_position = glm::vec3(0, 0, 0);
 		m_color = color;
 		m_font = FontManager::get("default");
 		m_texture = m_font->getTexture();
@@ -18,7 +18,7 @@ namespace letc {namespace graphics {
 	}
 	Label::Label(std::string text, float x, float y, Font* font, unsigned int color):
 	Renderable2D(), text(text){
-		m_position = math::Vector3(x, y, 0);
+		m_position = glm::vec3(x, y, 0);
 		m_color = color;
 		m_font = font;
 		m_texture = m_font->getTexture();
@@ -26,7 +26,7 @@ namespace letc {namespace graphics {
 	}
 	Label::Label(std::string text, Font* font, unsigned int color):
 	Renderable2D(), text(text){
-		m_position = math::Vector3(0, 0, 0);
+		m_position = glm::vec3(0, 0, 0);
 		m_color = color;
 		m_font = font;
 		m_texture = m_font->getTexture();
@@ -35,7 +35,7 @@ namespace letc {namespace graphics {
 
 	Label::Label(std::string text, float x, float y, const std::string& fontName, unsigned int color)
 		:Renderable2D(), text(text){
-		m_position = math::Vector3(x, y, 0);
+		m_position = glm::vec3(x, y, 0);
 		m_color = color;
 		m_font = FontManager::get(fontName);
 		m_texture = m_font->getTexture();
@@ -44,7 +44,7 @@ namespace letc {namespace graphics {
 
 	Label::Label(std::string text, float x, float y, const std::string& fontName, unsigned int size, unsigned int color):
 	Renderable2D(), text(text) {
-		m_position = math::Vector3(x, y, 0);
+		m_position = glm::vec3(x, y, 0);
 		m_color = color;
 		m_font = FontManager::get(fontName, size);
 		m_texture = m_font->getTexture();
@@ -54,7 +54,7 @@ namespace letc {namespace graphics {
 	Label::Label(std::string text, const std::string& fontName, unsigned int size, unsigned int color) :
 		Renderable2D(), text(text) {
 		
-		m_position = math::Vector3(0, 0, 0);
+		m_position = glm::vec3(0, 0, 0);
 		m_color = color;
 		m_font = FontManager::get(fontName, size);
 		if (m_font == nullptr) {

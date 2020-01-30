@@ -7,8 +7,8 @@ namespace letc { namespace graphics {
 
 	class GridLayer : public Layer {
 	private:
-		math::Vector3& m_cameraPosition;
-		math::Vector2  m_screenSize;
+		glm::vec3& m_cameraPosition;
+		glm::vec2  m_screenSize;
 		int m_resolution;
 		DebugRenderer* m_debugRenderer;
 
@@ -17,13 +17,13 @@ namespace letc { namespace graphics {
 		int m_vertexCount;
 		float max = 10000000.0f;
 
-		math::Vector2 scale;
+		glm::vec2 scale;
 
 		int xStep;
 		int yStep;
 
 	public:
-		GridLayer(graphics::Shader* shader, math::Vector3& cameraPosition, int resolution, math::Vector2 screenSize);
+		GridLayer(graphics::Shader* shader, glm::vec3& cameraPosition, int resolution, glm::vec2 screenSize);
 
 		void draw() override {
 			// TODO: OPTIMIZE!
@@ -31,14 +31,14 @@ namespace letc { namespace graphics {
 
 			m_shader->enable();
 			m_debugRenderer->begin();
-			m_debugRenderer->push(math::Matrix4::scale(math::Vector3(scale.x, scale.y, 1.0f)));
+			m_debugRenderer->push(glm::scale(glm::mat4(1),glm::vec3(scale.x, scale.y, 1.0f)));
 
 			int width  =	m_screenSize.x;
 			int height =	m_screenSize.y;
 
 			int count = 0;
 
-			math::Vector3* vertices = new math::Vector3[m_vertexCount];
+			glm::vec3* vertices = new glm::vec3[m_vertexCount];
 
 
 			int xMin = (80 * (int)(.5f*m_cameraPosition.x) - width);
@@ -48,11 +48,11 @@ namespace letc { namespace graphics {
 				if (x%80==0)
 				{
 				// make quad
-				vertices[count + 0]		=   math::Vector3(x,  max, 0);
-				vertices[count + 1]		=	math::Vector3(x, -max, 0);
+				vertices[count + 0]		=   glm::vec3(x,  max, 0);
+				vertices[count + 1]		=	glm::vec3(x, -max, 0);
 
-				vertices[count + 2]		=	math::Vector3(x + xStep, -max, 0);
-				vertices[count + 3]		=	math::Vector3(x + xStep,  max, 0);
+				vertices[count + 2]		=	glm::vec3(x + xStep, -max, 0);
+				vertices[count + 3]		=	glm::vec3(x + xStep,  max, 0);
 				count += 4;
 
 				}
@@ -63,11 +63,11 @@ namespace letc { namespace graphics {
 		
 			for (float y =yMin - m_pixelToMeterRatio/2.0f; y <= yMax- m_pixelToMeterRatio/2.0f; y += m_pixelToMeterRatio)
 			{
-				vertices[count + 0]		=	math::Vector3( max, y, 0);
-				vertices[count + 1]		=	math::Vector3(-max, y, 0);
+				vertices[count + 0]		=	glm::vec3( max, y, 0);
+				vertices[count + 1]		=	glm::vec3(-max, y, 0);
 
- 				vertices[count + 2]		=	math::Vector3(-max, y + yStep, 0);
-				vertices[count + 3]		=	math::Vector3( max, y + yStep, 0);
+ 				vertices[count + 2]		=	glm::vec3(-max, y + yStep, 0);
+				vertices[count + 3]		=	glm::vec3( max, y + yStep, 0);
 
 				count += 4;
 			} 

@@ -3,7 +3,8 @@
 #include <string>
 #include <map>
 #include "../texture.h"
-#include "../../math/vector2.h"
+#include <ext/glm/include/glm.hpp>
+#include <iostream>
 
 namespace letc {namespace graphics {
 	class Font{
@@ -16,7 +17,7 @@ namespace letc {namespace graphics {
 		ftgl::texture_font_t* m_FTFont;
 		std::string m_name;
 		std::string m_fileName;
-		math::Vector2 m_scale;
+		glm::vec2 m_scale;
 		unsigned int m_size;
 		Texture * m_texture;
 		std::map<char, ftgl::texture_glyph_t*> m_glyphs;
@@ -27,14 +28,14 @@ namespace letc {namespace graphics {
 		void remakeOpenGLTextureAtlas(float scaleX, float scaleY);
 		Font(unsigned int size);
 		Font(std::string name, std::string filename, unsigned int size);
-		Font(std::string name, std::string filename, unsigned int size, math::Vector2 scale);
+		Font(std::string name, std::string filename, unsigned int size, glm::vec2 scale);
 		Font(ftgl::texture_font_t* ftglFont, ftgl::texture_atlas_t*);
 
 		// TODO: there might be a faster way to cache
 		inline const ftgl::texture_glyph_t* getGlyph(char c) const {return m_glyphs.find(c)->second;}
-		inline void setScale(float x, float y) { m_scale = math::Vector2(x, y); }
+		inline void setScale(float x, float y) { m_scale = glm::vec2(x, y); }
 
-		inline const math::Vector2& getScale() const { return m_scale; }
+		inline const glm::vec2& getScale() const { return m_scale; }
 		inline const std::string& getName() const { return m_name; }
 		inline const std::string& getFileName() const { return m_fileName; }
 		inline const unsigned int getSize() const { return m_size; }
@@ -45,4 +46,5 @@ namespace letc {namespace graphics {
 		inline Texture* getTexture() const { return m_texture; }
 		~Font();
 	};
+
 }}

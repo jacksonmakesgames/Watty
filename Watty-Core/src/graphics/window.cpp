@@ -102,6 +102,7 @@ namespace letc {namespace graphics {
 		glfwSetKeyCallback(m_Window, key_callback);
 		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+		glfwSetScrollCallback(m_Window, scroll_callback);
 		glfwSwapInterval(useVSync);
 
 
@@ -205,8 +206,8 @@ namespace letc {namespace graphics {
 	}
 
 	void Window::update() {
-		
-	
+		scrolledThisFrameY = 0;
+
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
@@ -219,6 +220,7 @@ namespace letc {namespace graphics {
 
 	void Window::listenForInput()
 	{
+		
 		for (int i = 0; i < MAX_KEYS; i++) {
 			m_keysFirstFrameDown[i] = false;
 		}
@@ -265,6 +267,12 @@ namespace letc {namespace graphics {
 		win->my = ypos;
 
 	}
+	
+	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+		Window* win = (Window*)glfwGetWindowUserPointer(window);
+		win->scrolledThisFrameY = yoffset;
+	}
+
 
 	void Window::toggleVSync()
 	{

@@ -65,10 +65,10 @@ class PhysicsDemo : public LETC {
 		void init() override {
 			m_window = createWindow("This little engine could", 1280, 720, false, false);
 			Window::setVSync(true);
-			Vector2 fontScale = Vector2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
+			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
 			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
-			shader0->setUniform3f("light_pos", Vector3(16,16,0));
+			shader0->setUniform3f("light_pos", glm::vec3(16,16,0));
 			shader0->setUniform1f("light_radius", 250.0f);
 			shader0->setUniform1f("light_intensity", 1.1f);
 
@@ -84,14 +84,14 @@ class PhysicsDemo : public LETC {
 
 			layer0->add(
 				new GameObject(
-					Vector3(-16, -9, 0),
-					Vector2(32, 18),
+					glm::vec3(-16, -9, 0),
+					glm::vec2(32, 18),
 					new Sprite(0xffF5F0F0)
 				)
 			);
 
-			Vector3 playerPos(-2, -2, 0);
-			Vector2 playerSize(2, 2);
+			glm::vec3 playerPos(-2, -2, 0);
+			glm::vec2 playerSize(2, 2);
 			player = new GameObject(
 				playerPos,
 				playerSize,
@@ -108,44 +108,44 @@ class PhysicsDemo : public LETC {
 			boxTexture = new Texture("../../res/textures/box.png");
 			Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
-			Vector3 floorPos(-16.0f,-9.0f,0);
-			Vector2 floorSize(32, 2);
+			glm::vec3 floorPos(-16.0f,-9.0f,0);
+			glm::vec2 floorSize(32, 2);
 			GameObject* floor = new GameObject(floorPos, floorSize);
 			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
 			floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floor);
 			
-			Vector3 floorPosL(-18.0f,-7.0f,0);
-			Vector2 floorSizeL(2, 18);
+			glm::vec3 floorPosL(-18.0f,-7.0f,0);
+			glm::vec2 floorSizeL(2, 18);
 			GameObject* floorL = new GameObject(floorPosL, floorSizeL);
 			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
 			floorL->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floorL);
 			
-			Vector3 floorPosR(16.0f,-7.0f,0);
-			Vector2 floorSizeR(2, 18);
+			glm::vec3 floorPosR(16.0f,-7.0f,0);
+			glm::vec2 floorSizeR(2, 18);
 			GameObject* floorR = new GameObject(floorPosR, floorSizeR);
 			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
 			floorR->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floorR);
 
-			math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
+			glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
 			//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
 			FontManager::add(new Font("Roboto",FONTPATH, 16, screenScale));
 			FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
-			GameObject* profileGroup = new GameObject(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
-			profileGroup->addChild(new GameObject(Vector3(0, 0, 0), Vector2(4.5f, 1.8), new Sprite(0x80808080)));
+			GameObject* profileGroup = new GameObject(glm::translate(glm::mat4(1),glm::vec3(-15.5, 6.8, 0)));
+			profileGroup->addChild(new GameObject(glm::vec3(0, 0, 0), glm::vec2(4.5f, 1.8), new Sprite(0x80808080)));
 			fpsLabel = new Label("", "Roboto", 16, 0xffffffff);
 			upsLabel = new Label("", "Roboto", 14, 0xffffffff);
 			mpsLabel = new Label("", "Roboto", 14, 0xffffffff);
-			profileGroup->addChild(new GameObject(Vector3(.3f, 1.2f, 0), fpsLabel));
-			profileGroup->addChild(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
-			profileGroup->addChild(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
+			profileGroup->addChild(new GameObject(glm::vec3(.3f, 1.2f, 0), fpsLabel));
+			profileGroup->addChild(new GameObject(glm::vec3(.3f, .8f, 0), upsLabel));
+			profileGroup->addChild(new GameObject(glm::vec3(.3f, .4f, 0), mpsLabel));
 			uiLayer->add(profileGroup);
 
 			AudioClip* clip = new AudioClip("slow_motion", MUSICPATH);
@@ -154,7 +154,7 @@ class PhysicsDemo : public LETC {
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
 
 			// TODO: crashes in fullscreen
-			//GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), sceneCamera->position, 32, Vector2(m_window->getWidth(), m_window->getHeight()));
+			//GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), sceneCamera->position, 32, glm::vec2(m_window->getWidth(), m_window->getHeight()));
 			//layers.push_back(gridLayer);
 			//gridLayer->disable();
 
@@ -163,7 +163,7 @@ class PhysicsDemo : public LETC {
 			engineControlLayer->disable();
 
 
-			//m_camera = new Camera(&layers, Vector3(0, 0, -1), Vector2(32.0f, 18.0f), 20, CameraMode::orthographic);
+			//m_camera = new Camera(&layers, glm::vec3(0, 0, -1), glm::vec2(32.0f, 18.0f), 20, CameraMode::orthographic);
 
 	}
 
@@ -224,9 +224,9 @@ class PhysicsDemo : public LETC {
 			float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 			//float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
 			if (m_window->keyWasPressed(GLFW_KEY_SPACE))
-				player->getPhysicsBody2D()->addImpulse(Vector2(0,1), playerJumpForce);
+				player->getPhysicsBody2D()->addImpulse(glm::vec2(0,1), playerJumpForce);
 
-			player->getPhysicsBody2D()->addImpulse(Vector2(1, 0), horizontal * playerSpeed * gameTimer->delta);
+			player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
 			//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
 			
 			if (player->position.y < -10.0f) {
@@ -253,7 +253,7 @@ class PhysicsDemo : public LETC {
 
 				if (!callback->hit){
 					m_grabbedBox = addBox();
-					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0, 0));
+					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(glm::vec2(0, 0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
 
 				}
@@ -280,7 +280,7 @@ class PhysicsDemo : public LETC {
 					float xDiff = xScreenMousePos - xAvg;
 					float yDiff = yScreenMousePos - yAvg;
 
-					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(4*xDiff, 4*yDiff));
+					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(glm::vec2(4*xDiff, 4*yDiff));
 					m_grabbedBox = nullptr;
 				}
 
@@ -303,7 +303,7 @@ class PhysicsDemo : public LETC {
 
 			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
 				if (m_grabbedBox != nullptr) {
-					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(Vector2(0,0));
+					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(glm::vec2(0,0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
 				}
 
@@ -324,8 +324,8 @@ class PhysicsDemo : public LETC {
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
 			
-			Vector2 boxSize(2, 2);
-			Vector3 boxPos(xScreenMousePos-boxSize.x/2.0f, yScreenMousePos-boxSize.y/2.0f, 0);
+			glm::vec2 boxSize(2, 2);
+			glm::vec3 boxPos(xScreenMousePos-boxSize.x/2.0f, yScreenMousePos-boxSize.y/2.0f, 0);
 			GameObject* box = new GameObject(boxPos, boxSize);
 			box->addComponent(new Sprite(boxPos.x, boxPos.y, boxSize.x, boxSize.y, boxTexture));
 			box->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, boxPos.x, boxPos.y, boxSize.x, boxSize.y, b2_dynamicBody));

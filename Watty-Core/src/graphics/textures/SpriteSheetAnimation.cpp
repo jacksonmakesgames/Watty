@@ -1,7 +1,7 @@
 #include <graphics/textures/SpriteSheetAnimation.h>
 namespace letc { namespace graphics {
 
-	SpriteSheetAnimation::SpriteSheetAnimation(std::string animationName, math::Vector2 textureSize, float playbackRate, int numberOfFrames, bool loop)
+	SpriteSheetAnimation::SpriteSheetAnimation(std::string animationName, glm::vec2 textureSize, float playbackRate, int numberOfFrames, bool loop)
 		: Animation2D(animationName, playbackRate, loop),
 		m_textureWidth(textureSize.y),
 		m_textureHeight(textureSize.x),

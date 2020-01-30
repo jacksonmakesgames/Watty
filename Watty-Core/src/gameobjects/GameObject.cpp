@@ -1,71 +1,72 @@
 #include <gameobjects/GameObject.h>
 namespace letc {
-	GameObject::GameObject(math::Matrix4 transformationMatrix) : 
+	GameObject::GameObject(glm::mat4 transformationMatrix) : 
 		m_rotationMatrix(transformationMatrix),
-		position(math::Vector3()), size(math::Vector2()){
+		position(glm::vec3()), size(glm::vec2()){
 		m_position = position;
 		m_size = size;
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		m_angle = 0.0f;
 	}
-	GameObject::GameObject(math::Vector3 position, math::Vector2 size)
+	GameObject::GameObject(glm::vec3 position, glm::vec2 size)
 		:position(m_position), size(m_size) {
 		m_position = position;
 		m_size = size;
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
-		m_rotationMatrix = math::Matrix4::identity();
+		m_rotationMatrix = glm::mat4(1);
 		m_angle = 0.0f;
 
 	}
 
-	GameObject::GameObject(math::Vector2 position, math::Vector2 size)
+	GameObject::GameObject(glm::vec2 position, glm::vec2 size)
 		:position(m_position), size(m_size) {
-		m_position = math::Vector3(position.x, position.y, 0.0f);
+		m_position = glm::vec3(position.x, position.y, 0.0f);
 		m_size = size;
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		m_angle = 0.0f;
-		m_rotationMatrix = math::Matrix4::identity();
+		m_rotationMatrix = glm::mat4(1);
 	}
 	
-	GameObject::GameObject(math::Vector3 position, math::Vector2 size, graphics::Renderable2D* renderable)
+	GameObject::GameObject(glm::vec3 position, glm::vec2 size, graphics::Renderable2D* renderable)
 		:position(m_position), size(m_size){
 		m_position = position;
 		m_size = size;
 		m_physicsBody2D = nullptr;
 		m_angle = 0.0f;
 		m_renderable = renderable;
-		m_rotationMatrix = math::Matrix4::identity();
+		m_rotationMatrix = glm::mat4(1);
 	}
-	GameObject::GameObject(math::Vector2 position, math::Vector2 size, graphics::Renderable2D* renderable)
+	GameObject::GameObject(glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable)
 		:position(m_position), size(m_size){
-		m_position = math::Vector3(position.x, position.y, 0.0f);
+		m_position = glm::vec3(position.x, position.y, 0.0f);
 		m_size = size;
 		m_physicsBody2D = nullptr;
 		m_renderable = renderable;
 		m_angle = 0.0f;
-		m_rotationMatrix = math::Matrix4::identity();
+		m_rotationMatrix = glm::mat4(1);
 
 	}
-	GameObject::GameObject(math::Vector3 position, graphics::Renderable2D* renderable)
+	GameObject::GameObject(glm::vec3 position, graphics::Renderable2D* renderable)
 		:position(m_position), size(m_size){
 		m_position = position;
-		m_size = math::Vector2();
+		m_size = glm::vec2();
 		m_physicsBody2D = nullptr;
 		m_renderable = renderable;
 		m_angle = 0.0f;
-		m_rotationMatrix = math::Matrix4::identity();
+		m_rotationMatrix = glm::mat4(1);
 
 	}
 
 	GameObject::GameObject()
 		: position(m_position), size(m_size){
+		position = glm::vec3(0.0f);
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		m_angle = 0.0f;
-		m_rotationMatrix = math::Matrix4::identity();
+		m_rotationMatrix = glm::mat4(1);
 
 
 	}
@@ -117,7 +118,7 @@ namespace letc {
 			m_children[i]->enable();
 	}
 
-	void GameObject::translate(math::Vector2 translation){
+	void GameObject::translate(glm::vec2 translation){
 
 		m_position.x += translation.x;
 		m_position.y += translation.y;
@@ -128,14 +129,19 @@ namespace letc {
 
 	void GameObject::rotate(float angleInRadians){
 		m_angle = angleInRadians;
-		math::Vector3 origin = math::Vector3(m_position.x + m_size.x/2.0f, m_position.y + m_size.y/2.0f, m_position.z);
+		glm::vec3 origin = glm::vec3(m_position.x + m_size.x/2.0f, m_position.y + m_size.y/2.0f, m_position.z);
 
-		//if (m_renderable) m_renderable->setTransformationMatrix(math::Matrix4::rotationAroundPoint(origin, angleInRadians* RADTODEG, math::Vector3(0, 0, 1)));
-		m_rotationMatrix = math::Matrix4::rotationAroundPoint(origin, angleInRadians * RADTODEG, math::Vector3(0, 0, 1));
+		//if (m_renderable) m_renderable->setTransformationMatrix(glm::mat4::rotationAroundPoint(origin, angleInRadians* RADTODEG, glm::vec3(0, 0, 1)));
+		//m_rotationMatrix =math::Matrix4::rotationAroundPoint(origin, angleInRadians * RADTODEG, glm::vec3(0, 0, 1));
 
 		//for (size_t i = 0; i < m_children.size(); i++)
 		//	m_children[i]->rotate(angleInRadians);
 
+		//TODO: QUATERNIONS
+
+		glm::mat4 rot = glm::rotate(glm::mat4(1), angleInRadians, glm::vec3(0, 0, -1));
+		rot = glm::translate(glm::mat4(1), origin) * rot * glm::translate(glm::mat4(1),-origin);
+		m_rotationMatrix = rot;
 	}
 
 	void GameObject::submit(graphics::Renderer2D* renderer) const {
@@ -154,7 +160,7 @@ namespace letc {
 
 	void GameObject::update(){
 		if (m_physicsBody2D!=nullptr) {
-			math::Vector2 pos = m_physicsBody2D->getBodyPosition();
+			glm::vec2 pos = m_physicsBody2D->getBodyPosition();
 			m_position.x = pos.x;
 			m_position.y = pos.y;
 			rotate(-m_physicsBody2D->getBody()->GetAngle());
@@ -167,17 +173,17 @@ namespace letc {
 		}
 
 		for (size_t i = 0; i < m_children.size(); i++) {
-			math::Vector3 offset = m_position - m_children[i]->position;
+			glm::vec3 offset = m_position - m_children[i]->position;
 			//m_children[i]->position = m_position + offset;
 			m_children[i]->update(m_position);
 		}
 
 	}
 
-	void GameObject::update(math::Vector3 parentPosition)
+	void GameObject::update(glm::vec3 parentPosition)
 	{
 		if (m_physicsBody2D != nullptr) {
-			math::Vector2 pos = m_physicsBody2D->getBodyPosition();
+			glm::vec2 pos = m_physicsBody2D->getBodyPosition();
 			m_position.x = pos.x;
 			m_position.y = pos.y;
 			rotate(-m_physicsBody2D->getBody()->GetAngle());

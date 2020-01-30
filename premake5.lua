@@ -32,8 +32,6 @@ workspace("Watty")
   -------------------------------
   filter "configurations:Debug"    defines { "DEBUG" }  symbols  "On"
   filter "configurations:Release"  defines { "NDEBUG" } optimize "On"
-  defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE"}
-
 
 
 filter { "platforms:*32" } architecture "x86"
@@ -126,6 +124,7 @@ filter { "system:windows", "action:vs*"}
       ROOT .. CORE .. "/ext/freetype-gl/",
       ROOT .. CORE .. "/ext/imgui/include/",
       ROOT .. CORE .. "/ext/glad/include/",
+      ROOT .. CORE .. "/ext/glm/include/",
 	  ROOT .. CORE .. "/ext/soloud/include/"
     }
 

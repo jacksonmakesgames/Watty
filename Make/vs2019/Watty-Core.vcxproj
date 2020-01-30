@@ -120,42 +120,42 @@
     <IntDir>obj\Win32\Debug\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Win64|x64'">
     <OutDir>..\..\bin\Debug\Win64\</OutDir>
     <IntDir>obj\Win64\Debug\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Mac64|x64'">
     <OutDir>..\..\bin\Debug\Mac64\</OutDir>
     <IntDir>obj\Mac64\Debug\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\bin\Release\Win32\</OutDir>
     <IntDir>obj\Win32\Release\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Win64|x64'">
     <OutDir>..\..\bin\Release\Win64\</OutDir>
     <IntDir>obj\Win64\Release\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Mac64|x64'">
     <OutDir>..\..\bin\Release\Mac64\</OutDir>
     <IntDir>obj\Mac64\Release\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -605,6 +605,250 @@
     <ClInclude Include="..\..\Watty-Core\ext\freetype\src\winfonts\winfnt.h" />
     <ClInclude Include="..\..\Watty-Core\ext\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="..\..\Watty-Core\ext\glad\include\glad\glad.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_features.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_fixes.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_noise.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_swizzle.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_swizzle_func.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\_vectorize.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\compute_common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\compute_vector_relational.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\qualifier.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\setup.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_float.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_half.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat2x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat2x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat2x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat3x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat3x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat3x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat4x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat4x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_mat4x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_quat.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\detail\type_vec4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\exponential.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_clip_space.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double2x4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double3x4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_double4x4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float2x4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float3x4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_float4x4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_projection.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_relational.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\matrix_transform.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_double.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_double_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_exponential.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_float.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_float_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_geometric.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_relational.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_transform.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\quaternion_trigonometric.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_constants.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_int_sized.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_integer.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_relational.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_uint_sized.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\scalar_ulp.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool1_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_bool4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double1_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_double4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float1_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_float4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int1_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_int4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_integer.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_relational.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint1_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint2_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint3_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_uint4_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\ext\vector_ulp.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\fwd.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\geometric.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\glm.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\bitfield.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\color_space.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\constants.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\epsilon.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\integer.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_access.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_integer.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_inverse.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\matrix_transform.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\noise.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\packing.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\quaternion.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\random.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\reciprocal.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\round.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\type_aligned.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\type_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\type_ptr.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\ulp.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtc\vec1.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\associated_min_max.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\bit.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\closest_point.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\color_encoding.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\color_space.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\color_space_YCoCg.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\common.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\compatibility.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\component_wise.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\dual_quaternion.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\easing.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\euler_angles.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\extend.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\extended_min_max.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\exterior_product.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\fast_exponential.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\fast_square_root.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\fast_trigonometry.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\functions.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\gradient_paint.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\handed_coordinate_space.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\hash.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\integer.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\intersect.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\io.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\log_base.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_cross_product.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_decompose.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_factorisation.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_interpolation.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_major_storage.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_operation.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_query.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\matrix_transform_2d.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\mixed_product.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\norm.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\normal.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\normalize_dot.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\number_precision.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\optimum_pow.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\orthonormalize.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\perpendicular.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\polar_coordinates.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\projection.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\quaternion.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\range.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\raw_data.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\rotate_normalized_axis.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\rotate_vector.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\scalar_multiplication.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\scalar_relational.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\spline.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\std_based_type.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\string_cast.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\texture.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\transform.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\transform2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\type_aligned.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\type_trait.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\vec_swizzle.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\vector_angle.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\vector_query.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\gtx\wrap.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\integer.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat2x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat2x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat2x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat3x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat3x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat3x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat4x2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat4x3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\mat4x4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\matrix.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\packing.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\common.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\exponential.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\geometric.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\integer.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\matrix.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\neon.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\packing.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\platform.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\trigonometric.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\simd\vector_relational.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\trigonometric.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vec2.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vec3.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vec4.hpp" />
+    <ClInclude Include="..\..\Watty-Core\ext\glm\include\vector_relational.hpp" />
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imconfig.h" />
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imgui.h" />
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imgui_internal.h" />

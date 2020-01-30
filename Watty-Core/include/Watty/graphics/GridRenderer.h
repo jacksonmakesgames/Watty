@@ -1,7 +1,7 @@
 #pragma once
 #pragma once
 #include "renderer2d.h"
-#include "../math/math.h"
+#include <ext/glm/include/glm.hpp>
 namespace letc {
 	namespace graphics {
 		class GridRenderer : public Renderer2D {

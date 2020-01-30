@@ -29,7 +29,7 @@ namespace letc {
 		virtual void enable();
 		virtual void draw();
 		virtual void update();
-		virtual void setProjection(math::Matrix4 projection);
+		virtual void setProjection(glm::mat4 projection);
 
 		inline const std::vector<GameObject*>& getGameObjects() const { return m_gameObjects; }
 

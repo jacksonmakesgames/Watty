@@ -3,7 +3,7 @@
 //#include <GL/glew.h>
 #include <ext/glad/include/glad/glad.h>
 
-#include "../math/math.h"
+#include <ext/glm/include/glm.hpp>
 #include "font/font.h"
 
 //#include "texturemanager.h"
@@ -13,21 +13,22 @@ namespace letc {namespace graphics {
 
 	class Renderer2D{
 	protected:
-		std::vector<math::Matrix4> m_TransformationStack;
-		const math::Matrix4* m_tranformationStackBack;
+
+		std::vector<glm::mat4> m_TransformationStack;
+		const glm::mat4* m_tranformationStackBack;
 		unsigned short m_flushesPerFrame = 1;
 		unsigned short m_flushesThisFrame = 0;
 		GLint m_maxTextureUnits = 0;
 
 		Renderer2D() {
-			m_TransformationStack.push_back(math::Matrix4::identity());
+			m_TransformationStack.push_back(glm::mat4(1.0));
 			m_tranformationStackBack = &m_TransformationStack.back();
 			glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &m_maxTextureUnits);
 		}
 		
 			
 	public:
-		void push(const math::Matrix4& mat, bool override = false) {
+		void push(const glm::mat4& mat, bool override = false) {
 			if (override) {
 				m_TransformationStack.push_back(mat);
 			}
@@ -55,7 +56,7 @@ namespace letc {namespace graphics {
 
 		virtual void begin() {}
 		virtual void submit(const Renderable2D* renderable) = 0;
-		virtual void drawString(const std::string& text, const math::Vector3& position, const Font& font, unsigned int color) {};
+		virtual void drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color) {};
 		virtual void end() {}
 		virtual void flush() = 0;
 

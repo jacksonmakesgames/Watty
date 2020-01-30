@@ -8,8 +8,7 @@
 #define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
 #define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
 #define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
-//#define GRIDTEXTUREPATH "../res/grid.png"
-#define GRIDTEXTUREPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/ConwaysGameOfLife/res/grid.png"
+#define GRIDTEXTUREPATH "../../res/textures/grid.png"
 
 //#define WINDOWWIDTH 1600
 //#define WINDOWHEIGHT 900
@@ -73,17 +72,22 @@ public:
 		m_width = m_window->getWidth();
 		m_height = m_window->getHeight();
 
-		sceneCamera->setProjection(math::Matrix4::orthographic(0,m_width, 0, m_height, -10, 10));
+		//sceneCamera->setProjection(glm::ortho(0, m_width, 0, m_height, -10, 10));
+		//sceneCamera->setProjection(glm::ortho(0, m_width, 0, m_height));
+		sceneCamera->setSize(glm::vec2(1600, 900));
+		sceneCamera->position = glm::vec3(800,450,0);
+
 		Layer* gridLayer = new Layer("Grid Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
 
 		layers.push_back(gridLayer);
-		gridLayer->add(new GameObject(Vector2(0, 0), Vector2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
+		gridLayer->add(new GameObject(glm::vec3(0.0f), glm::vec2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
 
 
 		Layer* cellLayer = new Layer("Cell Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
 		Layer* uiLayer = new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
 		layers.push_back(cellLayer);
 		layers.push_back(uiLayer);
+
 
 		/*Resize the 2D std::vector to the specified width and height*/
 		grid.resize(m_width/20); //We need HEIGHT/20 sub-vectors
@@ -101,6 +105,7 @@ public:
 		layers.push_back(new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, stepFlag, stepBackFlag, new Shader(VERTPATH, FRAGUNLITPATH)));
 
 		lastGrids.push_back(grid);
+	
 	}
 
 	void update() override {
@@ -126,7 +131,7 @@ public:
 	}
 
 	void render() override {
-
+		
 		LETC::render();
 
 		
@@ -138,7 +143,11 @@ public:
 	}
 
 	void getInput() {
-		
+			sceneCamera->setSize(
+				glm::vec2(	
+					sceneCamera->getSize().x - 4.0f  * m_window->getScrollAmountThisFrameY(),
+					sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
+				));
 
 		if (m_window->keyWasPressed(GLFW_KEY_SPACE)) {
 			step();
@@ -172,7 +181,7 @@ public:
 			y = y - cellSize / 2;
 			x = x - cellSize / 2;
 
-			placeCell(Vector2(x, y));
+			placeCell(glm::vec2(x, y));
 			lastGrids.back() = grid;
 
 		}
@@ -185,7 +194,7 @@ public:
 			y = y - cellSize / 2;
 			x = x - cellSize / 2;
 
-			deleteCell(Vector2(x, y));
+			deleteCell(glm::vec2(x, y));
 			lastGrids.back() = grid;
 
 		}
@@ -203,7 +212,7 @@ public:
 		}
 	}
 
-	void placeCell(Vector2 pos) {
+	void placeCell(glm::vec2 pos) {
 		// round to nearest multiple of .2
 
 
@@ -239,15 +248,15 @@ public:
 			if (r > 0.8f) r = 0.8f;
 			if (g > 0.8f) g = 0.8f;
 			if (b > 0.9f) b = 0.9f;
-			getLayerByName("Cell Layer")->add(new GameObject(pos, Vector2(cellSize, cellSize), new Sprite(Color::RGBA(r, g, b, 1.0f))));
+			getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(r, g, b, 1.0f))));
 
 		}
 		else
-			getLayerByName("Cell Layer")->add(new GameObject(pos, Vector2(cellSize, cellSize), new Sprite(Color::RGBA(0.2, .6f, .8f, 1.0f))));
+			getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(0.2, .6f, .8f, 1.0f))));
 	}
 
 
-	void deleteCell(Vector2 pos) {
+	void deleteCell(glm::vec2 pos) {
 
 		pos.x = std::round(pos.x / 20) * 20;
 		pos.y = std::round(pos.y / 20) * 20;
@@ -268,7 +277,7 @@ public:
 			for (size_t j = 0; j < grid[i].size(); j++)
 			{
 				if ((grid[i][j] == true)) {
-					Vector2 pos;
+					glm::vec2 pos;
 
 					pos.x = i * 20;
 					pos.y = 900 - (j + 1) * 20;
@@ -294,7 +303,7 @@ public:
 			for (size_t j = 0; j < grid[i].size(); j++)
 			{
 				if ((grid[i][j] == true)) {
-					Vector2 pos;
+					glm::vec2 pos;
 
 					pos.x = i * 20;
 					pos.y = 900 - (j + 1) * 20;
@@ -361,7 +370,7 @@ public:
 			for (size_t j = 0; j < grid[i].size(); j++)
 			{
 				if ((grid[i][j] == true)) {
-					Vector2 pos;
+					glm::vec2 pos;
 					
 					pos.x = i * 20;
 					pos.y = 900 - (j+1) * 20;

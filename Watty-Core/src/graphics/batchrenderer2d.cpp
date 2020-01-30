@@ -69,10 +69,10 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::submit(const Renderable2D* renderable){
-		const math::Vector3& pos = renderable->getPosition();
-		const math::Vector2& size = renderable->getSize();
+		const glm::vec3& pos = renderable->getPosition();
+		const glm::vec2& size = renderable->getSize();
 		const unsigned int color = renderable->getColor();
-		const std::vector<math::Vector2>& uvs = renderable->getUVs();
+		const std::vector<glm::vec2>& uvs = renderable->getUVs();
 		const GLuint tid = renderable->getTID();
 		float glTID = (float)tid;
 
@@ -112,7 +112,7 @@ namespace letc {namespace graphics {
 		const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.totalFrames) * tw;
 
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * pos;
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x, pos.y, pos.z, 1);
 		//m_currentBuffer->uv.x = (uvs[0].x * tx);
 		m_currentBuffer->uv.x = tx,
 		m_currentBuffer->uv.y = uvs[0].y;
@@ -120,21 +120,21 @@ namespace letc {namespace graphics {
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x, pos.y+size.y, pos.z);
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x, pos.y+size.y, pos.z, 1);
 		m_currentBuffer->uv.x = tx,
 		m_currentBuffer->uv.y = uvs[1].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y + size.y, pos.z);
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x + size.x, pos.y + size.y, pos.z, 1);
 		m_currentBuffer->uv.x = tx+tw,
 		m_currentBuffer->uv.y = uvs[2].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(pos.x + size.x, pos.y, pos.z);
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x + size.x, pos.y, pos.z, 1);
 		m_currentBuffer->uv.x = tx+tw,
 		m_currentBuffer->uv.y = uvs[3].y;
 		m_currentBuffer->tid = idForShader;
@@ -145,7 +145,7 @@ namespace letc {namespace graphics {
 
 	}
 
-	void BatchRenderer2D::drawString(const std::string& text, const math::Vector3& position, const Font& font, unsigned int color){
+	void BatchRenderer2D::drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color){
 		using namespace ftgl;
 		bool found = false;
 		texture_font_t* ftFont = font.getFTFont();
@@ -181,7 +181,7 @@ namespace letc {namespace graphics {
 
 		}
 
-		const math::Vector2 scale = font.getScale();
+		const glm::vec2 scale = font.getScale();
 		float x = position.x;
 		for (int i = 0; i < text.length(); i++){
 			
@@ -206,26 +206,26 @@ namespace letc {namespace graphics {
 				float t1 = glyph->t1;
 
 
-				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y0,0.0f);
-				m_currentBuffer->uv = math::Vector2(s0, t0);
+				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y0, 0.0f, 1);
+				m_currentBuffer->uv = glm::vec2(s0, t0);
 				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 
-				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x0,y1,0.0f);
-				m_currentBuffer->uv = math::Vector2(s0, t1);
+				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y1, 0.0f, 1);
+				m_currentBuffer->uv = glm::vec2(s0, t1);
 				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 
-				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y1,0.0f);
-				m_currentBuffer->uv = math::Vector2(s1, t1);
+				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y1, 0.0f, 1);
+				m_currentBuffer->uv = glm::vec2(s1, t1);
 				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;
 				
-				m_currentBuffer->vertex = *m_tranformationStackBack * math::Vector3(x1,y0,0.0f);
-				m_currentBuffer->uv = math::Vector2(s1, t0);
+				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y0 ,0.0f, 1);
+				m_currentBuffer->uv = glm::vec2(s1, t0);
 				m_currentBuffer->tid = idForShader;
 				m_currentBuffer->color = color;
 				m_currentBuffer++;

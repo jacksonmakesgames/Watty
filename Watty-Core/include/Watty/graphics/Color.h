@@ -16,7 +16,7 @@ namespace letc { namespace graphics {
 		static unsigned int brown;
 		static unsigned int white;
 
-		static unsigned int RGB(math::Vector3 color) {
+		static unsigned int RGB(glm::vec3 color) {
 			int	r = color.x * 255.0f;
 			int	g = color.y * 255.0f;
 			int	b = color.z * 255.0f;
@@ -24,7 +24,7 @@ namespace letc { namespace graphics {
 			return a << 24 | b << 16 | g << 8 | r;
 		}
 
-	static 	unsigned int RGBA(math::Vector4 color) {
+	static 	unsigned int RGBA(glm::vec4 color) {
 			int	r = color.x * 255.0f;
 			int	g = color.y * 255.0f;
 			int	b = color.z * 255.0f;

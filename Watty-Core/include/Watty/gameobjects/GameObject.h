@@ -1,24 +1,24 @@
 #pragma once
 #include "../graphics/renderable2d.h"
-#include "../math/math.h"
 #include "../physics/PhysicsBody2d.h"
 #include <vector>
 #include <math.h>
 #include "../graphics/textures/Animator2D.h"
+#include <ext/glm/include/glm.hpp>
 
 namespace letc {
 	class GameObject {
 	public:
-		math::Vector3& position;
-		math::Vector2& size;
-		math::Vector3 m_parentOffset;
+		glm::vec3& position		 = glm::vec3(0.0f);
+		glm::vec2& size			 = glm::vec2(0.0f);
+		glm::vec3 m_parentOffset = glm::vec3(0.0f);
 	private:
 		std::string m_tag = "";
 		std::vector<GameObject*> m_children;
 		
 		
-		math::Matrix4 m_rotationMatrix;
-		math::Matrix4 m_translationMatrix;
+		glm::mat4 m_rotationMatrix		= glm::mat4(1.0f);
+		glm::mat4 m_translationMatrix	= glm::mat4(1.0f);
 		
 
 
@@ -27,21 +27,21 @@ namespace letc {
 		graphics::Animator2D*	m_animator		= nullptr;
 		
 		//TODO: add transform struct
-		math::Vector3 m_position;
-		float m_angle =0;
-		math::Vector2 m_size;
+		glm::vec3 m_position = glm::vec3(0.0f);
+		float m_angle = 0.0f;
+		glm::vec2 m_size = glm::vec2(1.0f);
 
 		// Physics
 		physics::PhysicsBody2D* m_physicsBody2D;
 
 	public:
-		GameObject(math::Matrix4 transformationMatrix);
-		GameObject(math::Vector3 position, math::Vector2 size);
-		GameObject(math::Vector2 position, math::Vector2 size);
-		GameObject(math::Vector3 position, math::Vector2 size, graphics::Renderable2D* renderable);
-		GameObject(math::Vector2 position, math::Vector2 size, graphics::Renderable2D* renderable);
-		GameObject(math::Vector3 position, graphics::Renderable2D* renderable);
-		GameObject(math::Vector2 position, graphics::Renderable2D* renderable);
+		GameObject(glm::mat4 transformationMatrix);
+		GameObject(glm::vec3 position, glm::vec2 size);
+		GameObject(glm::vec2 position, glm::vec2 size);
+		GameObject(glm::vec3 position, glm::vec2 size, graphics::Renderable2D* renderable);
+		GameObject(glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable);
+		GameObject(glm::vec3 position, graphics::Renderable2D* renderable);
+		GameObject(glm::vec2 position, graphics::Renderable2D* renderable);
 		GameObject();
 
 		inline void setTag(std::string tag) { m_tag = tag; }
@@ -59,7 +59,7 @@ namespace letc {
 		void disable();
 		void enable();
 
-		void translate(math::Vector2 translation);
+		void translate(glm::vec2 translation);
 		void rotate(float rotation);
 
 		bool hasFixture(b2Fixture* fixture) {
@@ -75,7 +75,7 @@ namespace letc {
 		virtual void submit(graphics::Renderer2D* renderer) const;
 
 		virtual void update();
-		virtual void update(math::Vector3 positionOffset);
+		virtual void update(glm::vec3 positionOffset);
 
 		inline const graphics::Renderable2D * getRenderable()const { return m_renderable; }
 		virtual inline const std::vector<GameObject*>& getChildren()const { return m_children; }

@@ -53,15 +53,15 @@ public:
 
 		glClearColor(.976f,.972f,.972f,1);
 
-		math::Vector2 screenScale = math::Vector2(m_window->getWidth() / 32, m_window->getHeight() / 18);
+		glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
 
 		Texture* playerTexture = new Texture(PLAYERTEXTUREPATH);
-		playerGO = new GameObject(Vector3(0,0,0), Vector2(4,4), new Sprite(playerTexture));
+		playerGO = new GameObject(glm::vec3(0,0,0), glm::vec2(4,4), new Sprite(playerTexture));
 		playerLayer->add(playerGO);
 		
 		Texture* enemyTexture = new Texture(ENEMYTEXTUREPATH);
-		enemyGO = new GameObject(Vector3(5,0,0), Vector2(4,4), new Sprite(enemyTexture));
+		enemyGO = new GameObject(glm::vec3(5,0,0), glm::vec2(4,4), new Sprite(enemyTexture));
 		playerLayer->add(enemyGO);
 
 	
@@ -71,14 +71,14 @@ public:
 		FontManager::add(new Font("Roboto", FONTPATH, 16, screenScale));
 		FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
-		/*Group* profileGroup = new Group(math::Matrix4::translation(Vector3(-15.5, 6.8, 0)));
-		profileGroup->add(new GameObject(Vector3(0, 0, 0), Vector2( 3.8f, 1.8), new Sprite(0x80808080)));
+		/*Group* profileGroup = new Group(math::Matrix4::translation(glm::vec3(-15.5, 6.8, 0)));
+		profileGroup->add(new GameObject(glm::vec3(0, 0, 0), glm::vec2( 3.8f, 1.8), new Sprite(0x80808080)));
 		fpsLabel = new Label("", "Roboto", 16, 0xffffffff);
 		upsLabel = new Label("", "Roboto", 14, 0xffffffff);
 		mpsLabel = new Label("", "Roboto", 14, 0xffffffff);
-		profileGroup->add(new GameObject(Vector3(.3f, 1.2f, 0), fpsLabel));
-		profileGroup->add(new GameObject(Vector3(.3f, .8f, 0), upsLabel));
-		profileGroup->add(new GameObject(Vector3(.3f, .4f, 0), mpsLabel));
+		profileGroup->add(new GameObject(glm::vec3(.3f, 1.2f, 0), fpsLabel));
+		profileGroup->add(new GameObject(glm::vec3(.3f, .8f, 0), upsLabel));
+		profileGroup->add(new GameObject(glm::vec3(.3f, .4f, 0), mpsLabel));
 		uiLayer->add(profileGroup);*/
 
 	
@@ -107,7 +107,7 @@ public:
 		float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
 		
-		Vector2 input(horizontal, vertical);
+		glm::vec2 input(horizontal, vertical);
 
 		float horizontalP1 = -1*(float)(m_window->keyIsDown(GLFW_KEY_A)) + (float)(m_window->keyIsDown(GLFW_KEY_D));
 		float verticalP1 = (float)(m_window->keyIsDown(GLFW_KEY_W))+ -1*(float)(m_window->keyIsDown(GLFW_KEY_S));

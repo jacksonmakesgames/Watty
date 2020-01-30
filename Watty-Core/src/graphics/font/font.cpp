@@ -16,7 +16,7 @@ namespace letc {namespace graphics {
 
 	}
 	
-	Font::Font(std::string name, std::string filename, unsigned int size, math::Vector2 scale){
+	Font::Font(std::string name, std::string filename, unsigned int size, glm::vec2 scale){
 		m_name = name;
 		m_fileName = filename;
 		m_size = size;
@@ -63,7 +63,7 @@ namespace letc {namespace graphics {
 		 }
 	}
 	void Font::remakeOpenGLTextureAtlas(float scaleX, float scaleY){
-		m_scale = math::Vector2(scaleX, scaleY);
+		m_scale = glm::vec2(scaleX, scaleY);
 		
 		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
 

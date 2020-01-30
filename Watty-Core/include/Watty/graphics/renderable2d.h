@@ -8,14 +8,14 @@
 
 #include "texture.h"
 
-#include "../math/math.h"
+#include <ext/glm/include/glm.hpp>
 #include "shader.h"
 
 namespace letc {namespace graphics {
 	struct VertexData
 	{
-		math::Vector3 vertex;
-		math::Vector2 uv;
+		glm::vec3 vertex;
+		glm::vec2 uv;
 		float tid;
 		unsigned int color;
 	};
@@ -28,16 +28,16 @@ namespace letc {namespace graphics {
 
 	class Renderable2D{
 	public:
-		math::Vector3& position;
-		math::Vector2& size;
+		glm::vec3& position;
+		glm::vec2& size;
 	protected:
-		math::Vector2 m_size;
-		math::Vector3 m_position;
+		glm::vec2 m_size = glm::vec2(1.0f);
+		glm::vec3 m_position = glm::vec3(0.0f);
 		float m_rotation = 0;
-		unsigned int m_color;
-		std::vector<math::Vector2> m_UVs;
+		unsigned int m_color = 0;
+		std::vector<glm::vec2> m_UVs = std::vector<glm::vec2>();
 		Texture* m_texture; 
-		math::Matrix4 m_transformationMatrix;
+		glm::mat4 m_transformationMatrix = glm::mat4(1.0f);
 
 		FrameInfo m_frameInfo;
 
@@ -46,6 +46,7 @@ namespace letc {namespace graphics {
 
 	protected:
 		Renderable2D() : position(m_position), size(m_size) {
+			m_transformationMatrix = glm::mat4(1);
 			setUVDefaults();
 			m_texture = nullptr;
 		}
@@ -53,15 +54,17 @@ namespace letc {namespace graphics {
 
 
 	public:
-		Renderable2D(math::Vector3 position, math::Vector2 size, unsigned int color)
+		Renderable2D(glm::vec3 position, glm::vec2 size, unsigned int color)
 		: m_position(position), m_size(size), m_color(color), position(m_position), size(m_size) {
+			m_transformationMatrix = glm::mat4(1);
+
 			setUVDefaults();
 			m_texture = nullptr;
 			m_size = size;
 			m_position = position;
 		}
 
-		void setTransformationMatrix(math::Matrix4 matrix) {
+		void setTransformationMatrix(glm::mat4 matrix) {
 			m_transformationMatrix = matrix;
 		}
 
@@ -70,7 +73,8 @@ namespace letc {namespace graphics {
 
 		virtual void submit(Renderer2D* renderer)const {
 			// todo we should cache EmptyMat
-			bool emptyMat = m_transformationMatrix.isEmpty();
+			
+			bool emptyMat = m_transformationMatrix == glm::mat4(1);
 			if(!emptyMat)
 				renderer->push(m_transformationMatrix);
 			renderer->submit(this);
@@ -80,7 +84,7 @@ namespace letc {namespace graphics {
 		}
 
 		void setColor(unsigned int color) { m_color = color; }
-		void setColor(math::Vector4 color) {
+		void setColor(glm::vec4 color) {
 			int	r = color.x * 255.0f;
 			int	g = color.y * 255.0f;
 			int	b = color.z * 255.0f;
@@ -93,10 +97,10 @@ namespace letc {namespace graphics {
 		}
 
 
-		inline const math::Vector2& getSize()const{ return m_size; }
-		inline const math::Vector3& getPosition()const{ return m_position; }
+		inline const glm::vec2& getSize()const{ return m_size; }
+		inline const glm::vec3& getPosition()const{ return m_position; }
 		inline const unsigned int getColor()const{ return m_color; }
-		inline const std::vector<math::Vector2>& getUVs()const{ return m_UVs; }
+		inline const std::vector<glm::vec2>& getUVs()const{ return m_UVs; }
 
 		inline const GLuint getTID() const { return m_texture == nullptr ? 0 : m_texture->getID(); }
 		inline const Texture* getTexture() const { return m_texture == nullptr ? nullptr : m_texture; }
@@ -106,10 +110,10 @@ namespace letc {namespace graphics {
 
 	private:
 		void setUVDefaults() {
-			m_UVs.push_back(math::Vector2(0, 0));
-			m_UVs.push_back(math::Vector2(0, 1));
-			m_UVs.push_back(math::Vector2(1, 1));
-			m_UVs.push_back(math::Vector2(1, 0));
+			m_UVs.push_back(glm::vec2(0.0f, 0.0f));
+			m_UVs.push_back(glm::vec2(0.0f, 1.0f));
+			m_UVs.push_back(glm::vec2(1.0f, 1.0f));
+			m_UVs.push_back(glm::vec2(1.0f, 0.0f));
 
 			m_frameInfo.currentFrame = 0.0f;
 			m_frameInfo.totalFrames = 1.0f;

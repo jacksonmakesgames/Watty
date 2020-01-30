@@ -41,13 +41,13 @@ namespace letc { namespace physics {
 		}
 	}
 
-	void PhysicsBody2D::addForce(math::Vector2 direction, float amount)
+	void PhysicsBody2D::addForce(glm::vec2 direction, float amount)
 	{
 		b2Vec2 force(direction.x * amount, direction.y * amount);
 		m_body->ApplyForceToCenter(force, true);
 	}
 
-	void PhysicsBody2D::addImpulse(math::Vector2 direction, float amount)
+	void PhysicsBody2D::addImpulse(glm::vec2 direction, float amount)
 	{
 		b2Vec2 impulse(direction.x * amount, direction.y * amount);
 		m_body->ApplyLinearImpulse(impulse, m_body->GetWorldCenter(), true);
@@ -55,7 +55,7 @@ namespace letc { namespace physics {
 
 
 
-	void PhysicsBody2D::setLinearVelocity(math::Vector2 newVelocity)
+	void PhysicsBody2D::setLinearVelocity(glm::vec2 newVelocity)
 	{
 		m_body->SetLinearVelocity(b2Vec2(newVelocity.x, newVelocity.y));
 
@@ -66,7 +66,7 @@ namespace letc { namespace physics {
 		m_body->SetLinearVelocity(b2Vec2(0, 0));
 	}
 
-	math::Vector2 PhysicsBody2D::getBodyPosition()
+	glm::vec2 PhysicsBody2D::getBodyPosition()
 	{
 		b2Vec2 pos = m_body->GetPosition();
 		// quite unsure
@@ -74,7 +74,7 @@ namespace letc { namespace physics {
 		pos.y -= m_size.y;
 
 		pos *= PhysicsConstants::pixels_per_meter;
-		return math::Vector2(pos.x, pos.y);
+		return glm::vec2(pos.x, pos.y);
 	}
 
 	PhysicsBody2D::~PhysicsBody2D()

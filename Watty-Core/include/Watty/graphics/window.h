@@ -31,6 +31,7 @@ namespace letc {namespace graphics {
 		GLFWwindow *m_Window;
 		bool m_Closed;
 
+
 		bool m_keysThisFrame[MAX_KEYS];
 		bool m_keysLastFrame[MAX_KEYS];
 		bool m_keysFirstFrameDown[MAX_KEYS];
@@ -38,6 +39,7 @@ namespace letc {namespace graphics {
 		bool m_buttonsLastFrame[MAX_BUTTONS];
 		bool m_buttonsFirstFrameDown[MAX_BUTTONS];
 		double mx, my;
+		double scrolledThisFrameY = 0;
 
 		int m_refreshRate;
 
@@ -63,6 +65,7 @@ namespace letc {namespace graphics {
 		static void toggleVSync();
 		static void setVSync(bool state);
 
+		inline double getScrollAmountThisFrameY() { return scrolledThisFrameY; };
 		inline int getRefreshRate() { return m_refreshRate; };
 
 		
@@ -72,7 +75,7 @@ namespace letc {namespace graphics {
 		friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		friend void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 		friend void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
-
+		friend void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 	};
 
 

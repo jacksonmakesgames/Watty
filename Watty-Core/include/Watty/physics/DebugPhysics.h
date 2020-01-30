@@ -1,11 +1,13 @@
 #pragma once
 #include <ext/Box2D/Box2D.h>
 #include <ext/Box2D/Common/b2Draw.h>
-#include "../math/math.h"
+#include <ext/glm/include/glm.hpp>
 #include "../graphics/DebugRenderer.h"
 
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
 #define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
+
+#define DEGTORAD 0.01745329251
 
 namespace letc { namespace physics { 
 
@@ -16,12 +18,12 @@ namespace letc { namespace physics {
 	private:
 		static graphics::DebugRenderer* renderer;
 		static graphics::Shader* m_shader;
-		static math::Vector3* m_sceneCameraPosition;
-		math::Vector3 m_positionLastFrame = math::Vector3();
+		static glm::vec3* m_sceneCameraPosition;
+		glm::vec3 m_positionLastFrame = glm::vec3();
 	public:
 
 		static DebugPhysics* instance;
-		static void init(math::Vector3* sceneCameraPosition) {
+		static void init(glm::vec3* sceneCameraPosition) {
 			m_sceneCameraPosition = sceneCameraPosition;
 			DebugPhysics::m_shader = new graphics::Shader(VERTPATH, FRAGUNLITPATH);
 			DebugPhysics::renderer = new graphics::DebugRenderer();
@@ -34,16 +36,16 @@ namespace letc { namespace physics {
 		void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
 			m_shader->enable();
 
-			math::Vector3 translation = m_positionLastFrame - *m_sceneCameraPosition ;
+			glm::vec3 translation = m_positionLastFrame - *m_sceneCameraPosition ;
 
-			math::Matrix4 transMat = math::Matrix4::translation(translation);
+			glm::mat4 transMat = glm::translate(glm::mat4(1.0f), translation);
 
-			m_shader->setUniformMat4("pr_matrix",transMat* math::Matrix4::scale(math::Vector3(1/16.0f, 1/9.0f, .1f)));
+			m_shader->setUniformMat4("pr_matrix", transMat * glm::scale(glm::mat4(1.0f), glm::vec3(1/16.0f, 1/9.0f, .1f)));
 			m_positionLastFrame = *m_sceneCameraPosition;
 
 
 			renderer->begin();
-			math::Vector3* vecVertices = new math::Vector3[vertexCount];
+			glm::vec3* vecVertices = new glm::vec3[vertexCount];
 
 			for (size_t i = 0; i < vertexCount; i++)
 			{
@@ -85,15 +87,15 @@ namespace letc { namespace physics {
 			const int resolution = 60;
 
 			m_shader->enable();
-			math::Vector3 translation = *m_sceneCameraPosition - m_positionLastFrame;
+			glm::vec3 translation = *m_sceneCameraPosition - m_positionLastFrame;
 
-			math::Matrix4 transMat = math::Matrix4::translation(translation);
+			glm::mat4 transMat = glm::translate(glm::mat4(1.0f), translation);
 
-			m_shader->setUniformMat4("pr_matrix", transMat * math::Matrix4::scale(math::Vector3(1 / 16.0f, 1 / 9.0f, .1f)));
+			m_shader->setUniformMat4("pr_matrix", transMat * glm::scale(glm::mat4(1), glm::vec3(1 / 16.0f, 1 / 9.0f, .1f)));
 			m_positionLastFrame = *m_sceneCameraPosition;
 
 			renderer->begin();
-			math::Vector3* vecVertices = new math::Vector3[resolution];
+			glm::vec3* vecVertices = new glm::vec3[resolution];
 			float heading = 0.0f;
 			int i = 0;
 

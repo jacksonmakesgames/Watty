@@ -40,23 +40,24 @@ namespace letc {namespace graphics {
 
 	}
 
-	void Shader::setUniform2f(const GLchar* name, const math::Vector2& vector){
+	void Shader::setUniform2f(const GLchar* name, const glm::vec2& vector){
 		glUniform2f(getUniformLocation(name), vector.x, vector.y);
 
 	}
 
-	void Shader::setUniform3f(const GLchar* name, const math::Vector3& vector){
+	void Shader::setUniform3f(const GLchar* name, const glm::vec3& vector){
 		glUniform3f(getUniformLocation(name), vector.x, vector.y, vector.z);
 
 	}
 
-	void Shader::setUniform4f(const GLchar* name, const math::Vector4& vector){
+	void Shader::setUniform4f(const GLchar* name, const glm::vec4& vector){
 		glUniform4f(getUniformLocation(name), vector.x, vector.y, vector.z, vector.w);
 
 	}
 
-	void Shader::setUniformMat4(const GLchar* name, const math::Matrix4& matrix){
-		glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, matrix.elements);
+	void Shader::setUniformMat4(const GLchar* name, const glm::mat4& matrix){
+
+		glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix[0]));
 
 	}
 

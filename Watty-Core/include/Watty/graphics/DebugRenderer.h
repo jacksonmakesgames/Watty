@@ -34,11 +34,11 @@ public:
 
 	void begin() override;
 	void submit(const Renderable2D* renderable) override;
-	void submit(math::Vector3* vertices, int vertexCount, unsigned int color);
+	void submit(glm::vec3* vertices, int vertexCount, unsigned int color);
 	void end() override;
 	void flush() override;
 	void flush(unsigned int mode, int indexCount);
-	void drawString(const std::string& text, const math::Vector3& position, const Font& font, unsigned int color) override;
+	void drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color) override;
 
 private:
 	void init();

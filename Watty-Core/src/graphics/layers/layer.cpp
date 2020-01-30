@@ -86,7 +86,7 @@ namespace letc {
 
 
 
-	void Layer::setProjection(math::Matrix4 projection)
+	void Layer::setProjection(glm::mat4 projection)
 	{
 		m_shader->enable();
 		m_shader->setUniformMat4("pr_matrix", projection);
