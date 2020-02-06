@@ -1,18 +1,25 @@
 ﻿#pragma once
 #include <iostream>
-//#include <GL/glew.h>
-#//include <glad/glad.h>
-#include <ext/glad/include/glad/glad.h>
-#include <ext/GLFW/include/GLFW/glfw3.h>
+
+#ifdef WATTY_VULKAN
+#include <src/graphics/vulkan/initializers.h>
+#include <src/graphics/vulkan/vulkaninstance.h>
 #include <ext/imgui/include/imgui/imgui.h>
+#include <ext/GLFW/include/GLFW/glfw3.h>
+#endif // WATTY_VULKAN
+
+#ifdef WATTY_OPENGL
+#include <ext/glad/include/glad/glad.h>
+#include <ext/imgui/include/imgui/imgui.h>
+#include <ext/GLFW/include/GLFW/glfw3.h>
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
+#endif // WATTY_OPENGL
+
+
 
 #include "font/fontmanager.h"
 #include "../audio/audiomanager.h"
-
-#include "../math/vector4.h"
-
 
 namespace letc {namespace graphics {
 #define MAX_KEYS 1024

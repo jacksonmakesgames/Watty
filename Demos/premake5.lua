@@ -5,6 +5,9 @@ local LIBNAME = CORE .. "_v" .. WATTYVERSION
 local WATTYDIR = ROOT .. "../"
 local COREDIR = WATTYDIR .. CORE .. "/"
 
+
+local GRAPHICS_BACKEND = "opengl"
+
 ---------------------------------
 -- [ WORKSPACE CONFIGURATION   --
 ---------------------------------
@@ -27,6 +30,12 @@ workspace("Demos")
   -------------------------------
   filter "configurations:Debug"    defines { "DEBUG" }  symbols  "On"
   filter "configurations:Release"  defines { "NDEBUG" } optimize "On"
+
+  if GRAPHICS_BACKEND == "vulkan"
+    then defines{"WATTY_VULKAN"}
+  elseif GRAPHICS_BACKEND == "opengl"
+    then defines{"WATTY_OPENGL"}
+  end
 
   filter { "platforms:*32" } architecture "x86"
   filter { "platforms:*64" } architecture "x86_64"
@@ -57,6 +66,12 @@ workspace("Demos")
     targetname (PROJECT) -- the name of the executable saved to 'targetdir'
     
     local SourceDir = ROOT .. PROJECT .. "/"
+
+ if GRAPHICS_BACKEND == "vulkan"
+    then defines{"WATTY_VULKAN"}
+  elseif GRAPHICS_BACKEND == "opengl"
+    then defines{"WATTY_OPENGL"}
+  end
 
     files { 
       SourceDir .. "**.h", 
@@ -102,6 +117,11 @@ workspace("Demos")
     targetname (PROJECT) -- the name of the executable saved to 'targetdir'
     local SourceDir = ROOT .. PROJECT .. "/"
 
+ if GRAPHICS_BACKEND == "vulkan"
+    then defines{"WATTY_VULKAN"}
+  elseif GRAPHICS_BACKEND == "opengl"
+    then defines{"WATTY_OPENGL"}
+  end
     files { 
       SourceDir .. "**.h", 
       SourceDir .. "**.hpp", 
@@ -148,6 +168,12 @@ workspace("Demos")
     targetdir (ROOT .. "bin/".."%{cfg.longname}") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
     targetname (PROJECT) -- the name of the executable saved to 'targetdir'
     local SourceDir = ROOT .. PROJECT .. "/"
+
+ if GRAPHICS_BACKEND == "vulkan"
+    then defines{"WATTY_VULKAN"}
+  elseif GRAPHICS_BACKEND == "opengl"
+    then defines{"WATTY_OPENGL"}
+  end
 
     files { 
       SourceDir .. "**.h", 
@@ -196,6 +222,11 @@ workspace("Demos")
     targetname (PROJECT) -- the name of the executable saved to 'targetdir'
     local SourceDir = ROOT .. PROJECT .. "/"
 
+ if GRAPHICS_BACKEND == "vulkan"
+    then defines{"WATTY_VULKAN"}
+  elseif GRAPHICS_BACKEND == "opengl"
+    then defines{"WATTY_OPENGL"}
+  end
     files { 
       SourceDir .. "**.h", 
       SourceDir .. "**.hpp", 

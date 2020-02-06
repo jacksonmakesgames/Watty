@@ -1,5 +1,9 @@
 #pragma once
+#ifdef WATTY_OPENGL
+// TODO: Abstract out atlases and fonts so that we can use this same header with vulkan
 #include <ext/freetype-gl/freetype-gl.h>
+#endif
+
 #include <string>
 #include <map>
 #include "../texture.h"
@@ -8,6 +12,8 @@
 
 namespace letc {namespace graphics {
 	class Font{
+#ifdef WATTY_OPENGL
+
 	const char* characters = " !\"#$%&'()*+,-./0123456789:;<=>?"
 			"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
 			"`abcdefghijklmnopqrstuvwxyz{|}~";
@@ -45,6 +51,7 @@ namespace letc {namespace graphics {
 		inline ftgl::texture_atlas_t* getFTAtlas() const { return m_FTAtlas; }
 		inline Texture* getTexture() const { return m_texture; }
 		~Font();
+#endif
 	};
 
 }}

@@ -2,7 +2,11 @@
 #include "buffers/indexbuffer.h"
 #include "renderer2d.h"
 #include "renderable2d.h"
+
+#ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
+#endif // WATTY_OPENGL
+
 
 #define RENDERER_MAX_SPRITES		60000
 #define RENDERER_VERTEX_SIZE		sizeof(VertexData)
@@ -19,10 +23,10 @@ namespace letc { namespace graphics {
 class DebugRenderer : public Renderer2D
 {
 private:
-	GLuint m_vertexArray;
-	GLuint m_vertexBuffer;
+	unsigned int m_vertexArray;
+	unsigned int m_vertexBuffer;
 	IndexBuffer* m_indexBuffer;
-	GLsizei m_indexCount;
+	int m_indexCount;
 	VertexData* m_currentBuffer;
 	std::vector<float> m_glTIDsThisFlush;
 	unsigned int m_textureArrayID;

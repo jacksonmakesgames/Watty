@@ -2,17 +2,20 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-
+#include <vector>
 //#include <GL/glew.h>
+#ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
+
+#endif // WATTY_OPENGL
 #include <ext/FreeImage/include/FreeImage.h>
 
 
-namespace fs = std::experimental::filesystem;
 
 namespace letc {
 
-	static BYTE* load_image(const char* filename, GLsizei* width, GLsizei* height)
+
+	static BYTE* load_image(const char* filename, int* width, int* height)
 	{
 		//image format
 		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
@@ -78,7 +81,19 @@ namespace letc {
 	}
 
 
+	static std::vector<char> read_spv_file(const std::string& filename) {
+		std::ifstream file(filename, std::ios::ate | std::ios::binary);
+		if (!file.is_open()) {
+			throw std::runtime_error("failed to open file!");
+		}
+		size_t fileSize = (size_t)file.tellg();
+		std::vector<char> buffer(fileSize);
 
+		file.seekg(0);
+		file.read(buffer.data(), fileSize);
+		file.close();
+		return buffer;
+	}
 
 
 }

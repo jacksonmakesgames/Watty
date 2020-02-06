@@ -1,21 +1,24 @@
 #pragma once
 #include <ext/FreeImage/include/FreeImage.h>
 #include <string>
-//#include <GL/glew.h>
+#ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
+
+#endif // WATTY_OPENGL
+
+
 #include <assert.h> 
 #include <stdint.h> 
 
 #include <vector>
-//#include "texturemanager.h"
 
 namespace letc {namespace graphics {
 	class Texture {
 	private:
 		std::string m_filename;
-		GLuint m_TID;
-		GLsizei m_width;
-		GLsizei m_height;
+		unsigned int m_TID;
+		int m_width;
+		int m_height;
 		
 	public:
 		Texture(const std::string& filename);
@@ -29,13 +32,13 @@ namespace letc {namespace graphics {
 		void unbind() const;
 		void unbind(unsigned int glActiveTID) const;
 
-		inline const GLsizei getWidth() const  { return m_width; }
-		inline const GLsizei getHeight() const { return m_height; }
-		inline const GLsizei getID() const { return m_TID; }
+		inline const int getWidth() const  { return m_width; }
+		inline const int getHeight() const { return m_height; }
+		inline const int getID() const { return m_TID; }
 
 
 	private:
-		GLuint load();
+		unsigned int load();
 
 	};
 }}

@@ -1,22 +1,21 @@
 #pragma once
-#pragma once
-//#include <GL/glew.h>
+#ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
-
+#endif
 namespace letc {
 	namespace graphics {
 
 		class IndexBuffer {
 		private:
-			GLuint m_bufferID;
-			GLuint m_count;
+			unsigned int m_bufferID;
+			unsigned int m_count;
 		public:
-			IndexBuffer(GLushort* data, GLsizei count);
+			IndexBuffer(unsigned short* data, int count);
 			~IndexBuffer();
 			void bind() const;
 			void unbind() const;
 
-			inline GLuint getCount() const { return m_count; };
+			inline unsigned int getCount() const { return m_count; };
 		};
 
 	}

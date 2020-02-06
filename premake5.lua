@@ -2,6 +2,10 @@ local ROOT = "./"
 local WATTYVERSION = "0.24"
 local CORE = "Watty-Core"
 
+local GRAPHICS_BACKEND = "opengl"
+-- local GRAPHICS_BACKEND = "vulkan"
+
+
 local LIBNAME = CORE .. "_v" .. WATTYVERSION
 
 
@@ -63,6 +67,14 @@ filter { "system:windows", "action:vs*"}
     targetdir (ROOT .. "bin/".. "%{cfg.longname}") 
     targetname(LIBNAME)
   
+	cppdialect "C++17"
+
+	if GRAPHICS_BACKEND == "vulkan"
+		then defines{"WATTY_VULKAN"}
+	elseif GRAPHICS_BACKEND == "opengl"
+		then defines{"WATTY_OPENGL"}
+	end
+
     defines {"_LIB"}
   	defines {"CRT_SECURE_NO_WARNINGS","_CRT_NONSTDC_NO_DEPRECATE", "WITH_SDL2", "WATTYVERSION=".. WATTYVERSION}
 
@@ -125,9 +137,17 @@ filter { "system:windows", "action:vs*"}
       ROOT .. CORE .. "/ext/imgui/include/",
       ROOT .. CORE .. "/ext/glad/include/",
       ROOT .. CORE .. "/ext/glm/include/",
-	  ROOT .. CORE .. "/ext/soloud/include/"
+	  ROOT .. CORE .. "/ext/soloud/include/",
+	  ROOT .. CORE .. "/ext/stb_image/include/",
+	  ROOT .. CORE .. "/ext/tiny_obj_loader/include/"
     }
+    if GRAPHICS_BACKEND == "vulkan"
+	 	then sysincludedirs{ROOT .. CORE .. "/ext/vulkan/include/"}
+		excludes{ROOT .. CORE .. "/src/graphics/opengl/**"}
 
+	elseif GRAPHICS_BACKEND == "opengl"
+		then excludes{ROOT .. CORE .. "/src/graphics/vulkan/**"}
+	end
 
   libdirs
     {
@@ -147,3 +167,54 @@ filter { "system:windows", "action:vs*"}
     }
 
    
+
+local PROJECT = "Sandbox"
+	project(PROJECT)
+kind "ConsoleApp" -- "WindowApp" removes console
+language "C++"
+targetdir (ROOT .. PROJECT .. "/bin/".."%{cfg.longname}") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
+targetname (PROJECT) -- the name of the executable saved to 'targetdir'
+
+local SourceDir = ROOT .. "Sandbox/src/"
+
+if GRAPHICS_BACKEND == "vulkan"
+		then defines{"WATTY_VULKAN"}
+	elseif GRAPHICS_BACKEND == "opengl"
+		then defines{"WATTY_OPENGL"}
+end
+
+files{ 
+  SourceDir .. "**.h", 
+  SourceDir .. "**.hpp", 
+  SourceDir .. "**.cpp",
+  SourceDir .. "**.tpp"
+}
+
+vpaths {
+  ["Header Files/*"] = { 
+    SourceDir .. "**.h", 
+    SourceDir .. "**.hxx", 	
+    SourceDir .. "**.hpp",
+  },
+  ["Source Files/*"] = { 
+    SourceDir .. "**.cxx", 
+    SourceDir .. "**.cpp",
+  }
+}
+
+sysincludedirs{
+  SourceDir,
+  ROOT .. "include/",
+  ROOT .. CORE .. "/",
+  ROOT .. CORE .. "/include/Watty/",
+}
+
+
+libdirs{
+	"bin/" .. "%{cfg.longname}/"
+}
+
+
+links{
+  LIBNAME
+}

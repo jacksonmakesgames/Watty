@@ -1,3 +1,4 @@
+
 /*************************************************************************
  * GLFW 3.3 - www.glfw.org
  * A library for OpenGL, window and input
@@ -212,7 +213,7 @@ extern "C" {
 #endif /* OpenGL and OpenGL ES headers */
 
 #if defined(GLFW_INCLUDE_VULKAN)
-  #include <vulkan/vulkan.h>
+  #include <ext/vulkan/include/vulkan.h>
 #endif /* Vulkan header */
 
 #if defined(GLFW_DLL) && defined(_GLFW_BUILD_DLL)

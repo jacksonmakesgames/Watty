@@ -1,6 +1,5 @@
 #pragma once
 
-//#include "./math/math.h"
 #include "ext/glm/include/glm.hpp"
 #include "./graphics/window.h"
 #include "./graphics/sprite.h"
@@ -15,12 +14,15 @@
 #include "./graphics/Camera.h"
 #include "./graphics/Color.h"
 #include "./graphics/textures/SpriteSheetAnimation.h"
+#include <graphics/ParticleSystem.h>
 
 #include "gameobjects/GameObject.h"
 #include "./utils/timer.h"
+#include "./utils/Random.h"
 #include "ext/Box2D/Box2D.h"
 #include "./physics/QueryAABBCallback.h"
 #include "ext/imgui/include/imgui/imgui.h"
+
 
 bool letc::graphics::Window::useVSync = false;
 
@@ -105,7 +107,7 @@ namespace letc {
 			{
 				layers[i]->update();
 			}
-			if (resetFlag) {
+			if (resetFlag) { // is this for conways? we should move it 
 				reset();
 				resetFlag = false;
 			}
@@ -134,9 +136,9 @@ namespace letc {
 
 private:
 	void run() {
+		Random::init();
 		letc::physics::DebugPhysics::init(&(sceneCamera->position));
 		letc::physics::PhysicsWorld2D::setDebugDraw();
-
 		m_time = new Timer();
 		float timer = 0.0f;
 		float updateTimer = 0.0f;

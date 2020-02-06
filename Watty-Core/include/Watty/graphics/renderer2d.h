@@ -1,7 +1,10 @@
 #pragma once
 #include <vector>
-//#include <GL/glew.h>
+
+#ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
+#endif // WATTY_OPENGL
+
 
 #include <ext/glm/include/glm.hpp>
 #include "font/font.h"
@@ -18,12 +21,15 @@ namespace letc {namespace graphics {
 		const glm::mat4* m_tranformationStackBack;
 		unsigned short m_flushesPerFrame = 1;
 		unsigned short m_flushesThisFrame = 0;
-		GLint m_maxTextureUnits = 0;
+		int m_maxTextureUnits = 0;
 
 		Renderer2D() {
+			//TODO: MOVE TO CPP
 			m_TransformationStack.push_back(glm::mat4(1.0));
 			m_tranformationStackBack = &m_TransformationStack.back();
+#ifdef WATTY_OPENGL
 			glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &m_maxTextureUnits);
+#endif
 		}
 		
 			

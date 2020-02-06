@@ -217,6 +217,24 @@
     <Filter Include="Header Files\ext\soloud\src\tools\tedsid2dump">
       <UniqueIdentifier>{312ED785-9D9E-D9FE-66BD-5387D2EC1100}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ext\stb_image">
+      <UniqueIdentifier>{DB3C8F1C-C74C-3BED-3006-A00B1C352A86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\stb_image\include">
+      <UniqueIdentifier>{4E0F0D07-3A4B-1071-A35D-28688FB8B88B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\tiny_obj_loader">
+      <UniqueIdentifier>{2453A696-10A4-91D8-3908-809A25B82442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\tiny_obj_loader\include">
+      <UniqueIdentifier>{975E5691-83DB-49D4-AC58-4AE89834E667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\vulkan">
+      <UniqueIdentifier>{812DA5F0-ED64-ED87-F66E-51AB62251481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ext\vulkan\include">
+      <UniqueIdentifier>{F445C452-6029-D392-692C-01CFD58E99E3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{94A3D34A-8032-5D14-2951-710F15BF6DBA}</UniqueIdentifier>
     </Filter>
@@ -322,15 +340,6 @@
     <Filter Include="Source Files\ext\glad\src">
       <UniqueIdentifier>{87A66B6B-F368-9FF5-3C19-2E82A81A78D3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ext\glm">
-      <UniqueIdentifier>{985E211C-84ED-AAE5-2D0C-BFE0197ABB8B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\glm\include">
-      <UniqueIdentifier>{0B9E0F83-F758-FF2E-A010-78798CAA49BF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\glm\include\detail">
-      <UniqueIdentifier>{6DFBFF76-D9B4-6A21-6214-85FBCECC2091}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ext\soloud">
       <UniqueIdentifier>{EE839504-5ABB-DD9B-63C5-41BFCF7B0495}</UniqueIdentifier>
     </Filter>
@@ -415,26 +424,29 @@
     <Filter Include="Source Files\src\graphics">
       <UniqueIdentifier>{E086B082-4C49-E40C-95F9-729901FBBCEA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\graphics\buffers">
-      <UniqueIdentifier>{7CBEF532-E82C-4BB2-3116-06B29DC3404E}</UniqueIdentifier>
+    <Filter Include="Source Files\src\graphics\opengl">
+      <UniqueIdentifier>{74CCB9F8-601D-A53A-8981-93FC753138A4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\graphics\font">
-      <UniqueIdentifier>{06280452-F24D-CEB8-DB93-5384C758F384}</UniqueIdentifier>
+    <Filter Include="Source Files\src\graphics\opengl\buffers">
+      <UniqueIdentifier>{10586584-FCD4-58C7-2552-59DB112EF55A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\graphics\imgui">
-      <UniqueIdentifier>{4A3CBE92-B61F-CDD2-BF22-FB0E2B859323}</UniqueIdentifier>
+    <Filter Include="Source Files\src\graphics\opengl\font">
+      <UniqueIdentifier>{1A0ADC42-86CE-DA32-4F34-0BFDBBB77668}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\graphics\layers">
-      <UniqueIdentifier>{BFB5B5F0-AB06-A132-D46A-8FF4C01A349C}</UniqueIdentifier>
+    <Filter Include="Source Files\src\graphics\opengl\imgui">
+      <UniqueIdentifier>{DE60929E-CAB2-698E-B3D1-A69E9FC28277}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\graphics\textures">
-      <UniqueIdentifier>{D3B0AD89-BFEC-B0F3-28FF-C8EA145A590E}</UniqueIdentifier>
+    <Filter Include="Source Files\src\graphics\opengl\layers">
+      <UniqueIdentifier>{D36C0E77-3FFC-CF61-48F8-B079B4060B6E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\math">
-      <UniqueIdentifier>{79D36496-E53F-2091-AE33-B8EE1A5F42F9}</UniqueIdentifier>
+    <Filter Include="Source Files\src\graphics\opengl\textures">
+      <UniqueIdentifier>{E77C1009-5397-73AA-9CB9-833E08139BB1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\src\physics">
       <UniqueIdentifier>{126E7F17-FE92-CE97-27DE-B3271362CDB5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\utils">
+      <UniqueIdentifier>{00449A63-EC3D-C3B5-D5AA-59C6C1432922}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2535,6 +2547,78 @@
     <ClInclude Include="..\..\Watty-Core\ext\soloud\src\tools\tedsid2dump\types.h">
       <Filter>Header Files\ext\soloud\src\tools\tedsid2dump</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\stb_image\include\stb_image.h">
+      <Filter>Header Files\ext\stb_image\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\tiny_obj_loader\include\tiny_obj_loader.h">
+      <Filter>Header Files\ext\tiny_obj_loader\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\GLSL.std.450.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\spirv.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\spirv.hpp">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vk_icd.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vk_layer.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vk_platform.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vk_sdk_platform.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan.hpp">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_android.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_core.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_fuchsia.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_ggp.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_ios.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_macos.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_metal.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_vi.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_wayland.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_win32.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_xcb.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_xlib.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\ext\vulkan\include\vulkan_xlib_xrandr.h">
+      <Filter>Header Files\ext\vulkan\include</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\Watty.h">
       <Filter>Header Files\include\Watty</Filter>
     </ClInclude>
@@ -2560,6 +2644,9 @@
       <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\GridRenderer.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleSystem.h">
       <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\SimpleRenderer2D.h">
@@ -2669,6 +2756,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\RaycastCallback.h">
       <Filter>Header Files\include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\utils\Random.h">
+      <Filter>Header Files\include\Watty\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\utils\file_utils.h">
       <Filter>Header Files\include\Watty\utils</Filter>
@@ -3077,92 +3167,83 @@
     <ClCompile Include="..\..\Watty-Core\src\gameobjects\GameObject.cpp">
       <Filter>Source Files\src\gameobjects</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\Camera.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Camera.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\DebugRenderer.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\DebugRenderer.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\batchrenderer2d.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\ParticleSystem.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\buffers\buffer.cpp">
-      <Filter>Source Files\src\graphics\buffers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\batchrenderer2d.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\buffers\indexbuffer.cpp">
-      <Filter>Source Files\src\graphics\buffers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\buffers\buffer.cpp">
+      <Filter>Source Files\src\graphics\opengl\buffers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\buffers\vertexarray.cpp">
-      <Filter>Source Files\src\graphics\buffers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\buffers\indexbuffer.cpp">
+      <Filter>Source Files\src\graphics\opengl\buffers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\font\font.cpp">
-      <Filter>Source Files\src\graphics\font</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\buffers\vertexarray.cpp">
+      <Filter>Source Files\src\graphics\opengl\buffers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\font\fontmanager.cpp">
-      <Filter>Source Files\src\graphics\font</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\font\font.cpp">
+      <Filter>Source Files\src\graphics\opengl\font</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\font\label.cpp">
-      <Filter>Source Files\src\graphics\font</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\font\fontmanager.cpp">
+      <Filter>Source Files\src\graphics\opengl\font</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui.cpp">
-      <Filter>Source Files\src\graphics\imgui</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\font\label.cpp">
+      <Filter>Source Files\src\graphics\opengl\font</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_demo.cpp">
-      <Filter>Source Files\src\graphics\imgui</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui.cpp">
+      <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_draw.cpp">
-      <Filter>Source Files\src\graphics\imgui</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_demo.cpp">
+      <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_glfw.cpp">
-      <Filter>Source Files\src\graphics\imgui</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_draw.cpp">
+      <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_impl_opengl3.cpp">
-      <Filter>Source Files\src\graphics\imgui</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_impl_glfw.cpp">
+      <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\imgui\imgui_widgets.cpp">
-      <Filter>Source Files\src\graphics\imgui</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\EngineControlLayer.cpp">
-      <Filter>Source Files\src\graphics\layers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\GUILayer.cpp">
-      <Filter>Source Files\src\graphics\layers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\EngineControlLayer.cpp">
+      <Filter>Source Files\src\graphics\opengl\layers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\GridLayer.cpp">
-      <Filter>Source Files\src\graphics\layers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\GUILayer.cpp">
+      <Filter>Source Files\src\graphics\opengl\layers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\layers\layer.cpp">
-      <Filter>Source Files\src\graphics\layers</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\GridLayer.cpp">
+      <Filter>Source Files\src\graphics\opengl\layers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\shader.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\layer.cpp">
+      <Filter>Source Files\src\graphics\opengl\layers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\sprite.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\shader.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\texture.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\sprite.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\textures\Animator2D.cpp">
-      <Filter>Source Files\src\graphics\textures</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\texture.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\textures\SpriteSheetAnimation.cpp">
-      <Filter>Source Files\src\graphics\textures</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\textures\Animator2D.cpp">
+      <Filter>Source Files\src\graphics\opengl\textures</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\graphics\window.cpp">
-      <Filter>Source Files\src\graphics</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\textures\SpriteSheetAnimation.cpp">
+      <Filter>Source Files\src\graphics\opengl\textures</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\math\matrix4.cpp">
-      <Filter>Source Files\src\math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\math\vector2.cpp">
-      <Filter>Source Files\src\math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\math\vector3.cpp">
-      <Filter>Source Files\src\math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Watty-Core\src\math\vector4.cpp">
-      <Filter>Source Files\src\math</Filter>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\window.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsBody2D.cpp">
       <Filter>Source Files\src\physics</Filter>
@@ -3172,6 +3253,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsWorld2D.cpp">
       <Filter>Source Files\src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\utils\Random.cpp">
+      <Filter>Source Files\src\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
