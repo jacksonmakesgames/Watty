@@ -6,7 +6,7 @@ local WATTYDIR = ROOT .. "../"
 local COREDIR = WATTYDIR .. CORE .. "/"
 
 
-local GRAPHICS_BACKEND = "opengl"
+local   GRAPHICS_BACKEND = "opengl"
 
 ---------------------------------
 -- [ WORKSPACE CONFIGURATION   --
@@ -95,6 +95,7 @@ workspace("Demos")
   sysincludedirs {
       SourceDir,
       COREDIR .. "include/",
+      COREDIR .. "include/Watty/",
       COREDIR
       }
 
@@ -143,6 +144,7 @@ workspace("Demos")
 
     sysincludedirs{
       SourceDir, 
+      COREDIR .. "include/Watty/",
       COREDIR .. "include/",
       COREDIR 
 
@@ -196,6 +198,7 @@ workspace("Demos")
 
     sysincludedirs {
       SourceDir, 
+      COREDIR .. "include/Watty/",
       COREDIR .. "include/",
       COREDIR
 
@@ -249,6 +252,7 @@ workspace("Demos")
     sysincludedirs {
       SourceDir, 
       COREDIR .. "include/",
+      COREDIR .. "include/Watty/",
       COREDIR
 
 

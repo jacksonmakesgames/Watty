@@ -74,13 +74,13 @@ public:
 
 		//sceneCamera->setProjection(glm::ortho(0, m_width, 0, m_height, -10, 10));
 		//sceneCamera->setProjection(glm::ortho(0, m_width, 0, m_height));
-		sceneCamera->setSize(glm::vec2(1600, 900));
-		sceneCamera->position = glm::vec3(800,450,0);
+		sceneCamera->setSize(glm::vec2(m_width, m_height));
+		sceneCamera->position = glm::vec3(800,450,0)+ .5f * cellSize;
 
 		Layer* gridLayer = new Layer("Grid Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
 
 		layers.push_back(gridLayer);
-		gridLayer->add(new GameObject(glm::vec3(0.0f), glm::vec2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
+		gridLayer->add(new GameObject(glm::vec3(.5f*m_width,.5f*m_height,0) + .5f*cellSize, glm::vec2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
 
 
 		Layer* cellLayer = new Layer("Cell Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
@@ -176,12 +176,9 @@ public:
 		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
 			m_window->getMousePos(x, y);
-			y = m_height - y;
-
-			y = y - cellSize / 2;
-			x = x - cellSize / 2;
-
-			placeCell(glm::vec2(x, y));
+			glm::vec2 pos = m_window->viewportToWorld({ x,y });
+			
+			placeCell(pos);
 			lastGrids.back() = grid;
 
 		}
@@ -189,12 +186,9 @@ public:
 		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
 			m_window->getMousePos(x, y);
-			y = m_height - y;
 
-			y = y - cellSize / 2;
-			x = x - cellSize / 2;
-
-			deleteCell(glm::vec2(x, y));
+			glm::vec2 pos = m_window->viewportToWorld({ x,y });
+			deleteCell(pos);
 			lastGrids.back() = grid;
 
 		}
@@ -215,20 +209,22 @@ public:
 	void placeCell(glm::vec2 pos) {
 		// round to nearest multiple of .2
 
-
 		pos.x = std::round(pos.x / 20) * 20;
 		pos.y = std::round(pos.y / 20) * 20;
 
-		pos.x += 1;
-		pos.y += 1;
+		pos.x -= 1;
+		pos.y -= 1;
+		//pos += (.5f*cellSize);
 
 		int xIndex = pos.x/20;
 		int yIndex = (m_height-pos.y)/20;
+		//int yIndex = (pos.y)/20;
 		if (xIndex >= grid.size() || yIndex >= grid[0].size()) return;
-		//if (grid[xIndex][yIndex]) return;
 		
 		grid[xIndex][yIndex] = true;
 
+		// adjust for size
+		
 		if (funColors) {
 			float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 			float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -261,15 +257,18 @@ public:
 		pos.x = std::round(pos.x / 20) * 20;
 		pos.y = std::round(pos.y / 20) * 20;
 
-		pos.x += 1;
-		pos.y += 1;
+		pos.x -= 1;
+		pos.y -= 1;
+		//pos += (.5f*cellSize);
 
 		int xIndex = pos.x / 20;
 		int yIndex = (m_height - pos.y) / 20;
+		//int yIndex = (pos.y)/20;
 		if (xIndex >= grid.size() || yIndex >= grid[0].size()) return;
-		//if (grid[xIndex][yIndex]) return;
 
 		grid[xIndex][yIndex] = false;
+
+
 		clearGridObjects();
 
 		for (size_t i = 0; i < grid.size(); i++)
@@ -279,11 +278,9 @@ public:
 				if ((grid[i][j] == true)) {
 					glm::vec2 pos;
 
-					pos.x = i * 20;
-					pos.y = 900 - (j + 1) * 20;
-					pos.y = pos.y - cellSize / 2;
-					pos.x = pos.x - cellSize / 2;
 
+					pos.x = cellSize + i * 20;
+					pos.y = m_height - (j) * 20;
 					placeCell(pos);
 
 				}
@@ -305,10 +302,9 @@ public:
 				if ((grid[i][j] == true)) {
 					glm::vec2 pos;
 
-					pos.x = i * 20;
-					pos.y = 900 - (j + 1) * 20;
-					pos.y = pos.y - cellSize / 2;
-					pos.x = pos.x - cellSize / 2;
+
+					pos.x = cellSize + i * 20;
+					pos.y = m_height - (j) * 20;
 
 					placeCell(pos);
 
@@ -372,10 +368,8 @@ public:
 				if ((grid[i][j] == true)) {
 					glm::vec2 pos;
 					
-					pos.x = i * 20;
-					pos.y = 900 - (j+1) * 20;
-					pos.y = pos.y - cellSize / 2;
-					pos.x = pos.x - cellSize / 2;
+					pos.x = cellSize + i * 20;
+					pos.y = m_height - (j) * 20;
 
 					placeCell(pos);
 

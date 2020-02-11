@@ -11,14 +11,18 @@
 #include <ext/glm/include/glm.hpp>
 
 #include "shader.h"
+#include "Color.h"
 
-namespace letc {namespace graphics {
+
+namespace letc {
+	namespace graphics {
+
 	struct VertexData
 	{
 		glm::vec3 vertex;
 		glm::vec2 uv;
 		float tid;
-		unsigned int color;
+		WattyColor color;
 	};
 
 	struct FrameInfo {
@@ -29,13 +33,13 @@ namespace letc {namespace graphics {
 
 	class Renderable2D{
 	public:
-		glm::vec3& position;
+		glm::vec2& position;
 		glm::vec2& size;
 	protected:
 		glm::vec2 m_size = glm::vec2(1.0f);
-		glm::vec3 m_position = glm::vec3(0.0f);
+		glm::vec2 m_position = glm::vec2(0.0f);
 		float m_rotation = 0;
-		unsigned int m_color = 0;
+		WattyColor m_color = WattyColor(1,1,1,1);
 		std::vector<glm::vec2> m_UVs = std::vector<glm::vec2>();
 		Texture* m_texture; 
 		glm::mat4 m_transformationMatrix = glm::mat4(1.0f);
@@ -55,10 +59,9 @@ namespace letc {namespace graphics {
 
 
 	public:
-		Renderable2D(glm::vec3 position, glm::vec2 size, unsigned int color)
+		Renderable2D(glm::vec3 position, glm::vec2 size, WattyColor color)
 		: m_position(position), m_size(size), m_color(color), position(m_position), size(m_size) {
 			m_transformationMatrix = glm::mat4(1);
-
 			setUVDefaults();
 			m_texture = nullptr;
 			m_size = size;
@@ -84,7 +87,7 @@ namespace letc {namespace graphics {
 
 		}
 
-		void setColor(unsigned int color) { m_color = color; }
+		void setColor(WattyColor color) { m_color = color; }
 		void setColor(glm::vec4 color) {
 			int	r = color.x * 255.0f;
 			int	g = color.y * 255.0f;
@@ -99,8 +102,9 @@ namespace letc {namespace graphics {
 
 
 		inline const glm::vec2& getSize()const{ return m_size; }
-		inline const glm::vec3& getPosition()const{ return m_position; }
-		inline const unsigned int getColor()const{ return m_color; }
+		inline const glm::vec2& getPosition()const{ return m_position; }
+		inline void setPosition(glm::vec3 pos){ m_position = pos; }
+		inline const WattyColor getColor()const{ return m_color; }
 		inline const std::vector<glm::vec2>& getUVs()const{ return m_UVs; }
 
 		inline const GLuint getTID() const { return m_texture == nullptr ? 0 : m_texture->getID(); }

@@ -35,7 +35,7 @@ public:
 	void init() override {
 		glm::vec2 screenSize(1280.0f, 720.0f);
 
-		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, true);
+		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, false);
 		m_window->setVSync(true);
 
 		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
@@ -52,13 +52,13 @@ public:
 		
 		layer0->add(
 			new GameObject(
-				glm::vec3(-100, -100, 0),
+				glm::vec3(0, 0, 0),
 				glm::vec2(200, 200),
 				new Sprite(0xffF5F0F0)
 			)
 		);
 
-		glm::vec3 playerPos(-2, -2, 0);
+		glm::vec3 playerPos(0, 0, 0);
 		glm::vec2 playerSize(2, 2);
 		player = new GameObject(
 			playerPos,
@@ -76,14 +76,14 @@ public:
 
 		player->addAnimator();
 
-		player->getAnimator()->addAnimation(new SpriteSheetAnimation("Test", glm::vec2(32.0f, 32.0f), 1.0f, 6, true));
+		player->getAnimator()->addAnimation(new SpriteSheetAnimation("Test", glm::vec2(32.0f, 32.0f), 10.0f, 6, true));
 
 		player->getAnimator()->play("Test");
 
 		layer0->add(player);
 
-		GameObject* childTest = new GameObject(glm::vec2(2, 0), glm::vec2(1, 1), new Sprite(Color::orange));
-		player->addChild(childTest);
+		GameObject* childTest = new GameObject(glm::vec2(1, 0), glm::vec2(.5, .5), new Sprite(Color::orange));
+		player->transform->addChild(childTest->transform);
 
 		Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
@@ -123,7 +123,7 @@ public:
 
 		//m_camera = new Camera(&layers, glm::vec3(0, 0, -10), glm::vec2(32.0f, 18.0f), 20, CameraMode::orthographic);
 
-		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), sceneCamera->position, 32, glm::vec2(screenSize.x, screenSize.y));
+		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), *sceneCamera, 32, *m_window);
 		layers.push_back(gridLayer);
 		gridLayer->disable();
 
@@ -137,7 +137,7 @@ public:
 		getInput();
 		PhysicsWorld2D::step(gameTimer->delta);
 		LETC::update();
-		sceneCamera->position = player->position + glm::vec3(0.0f, 3.0f, -1.0f);
+		sceneCamera->position = { player->transform->getPosition().x, player->transform->getPosition().y+3.0f, -1.0f};
 
 	}
 
@@ -166,8 +166,9 @@ public:
 		player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
 		//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
 
-		if (player->position.y < -10.0f) {
-			player->position.y = 10.0f;
+		glm::vec2 playerPos = player->transform->getPosition();
+		if (playerPos.y < -10.0f) {
+			player->transform->setPosition({ playerPos.x, 10 });
 			player->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(0, 0), 0.0f);
 			player->getPhysicsBody2D()->zeroVelocity();
 		}

@@ -1,25 +1,61 @@
-#include <graphics/DebugRenderer.h>
+#include <graphics/ParticleRenderer.h>
 namespace letc {namespace graphics {
-	DebugRenderer::DebugRenderer()
+	ParticleRenderer::ParticleRenderer()
 	{
 		init();
 	}
-	DebugRenderer::~DebugRenderer()
+	ParticleRenderer::~ParticleRenderer()
 	{
 		delete m_indexBuffer;
 		glDeleteBuffers(1, &m_vertexBuffer);
 	}
-	void DebugRenderer::begin()
+	void ParticleRenderer::begin()
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer); // bind vertex buffer
 		m_currentBuffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY); // map the buffer and get the pointer to the first vertex
 	}
-	void DebugRenderer::submit(const Renderable2D* renderable)
+	void ParticleRenderer::submit(const Renderable2D* renderable)
 	{
-	
 	}
 
-	void DebugRenderer::submit(std::vector<glm::vec3> vertices, int vertexCount, WattyColor color)
+	void ParticleRenderer::submit(glm::mat4 transform, unsigned int color, glm::vec2 size)
+	{
+		//TODO: set up shader
+		//glUniformMatrix4fv(particleTransformLocation, 1, GL_FALSE,);
+
+
+		m_currentBuffer->vertex = transform * glm::vec4(0, 0, 0, 1);
+		m_currentBuffer->uv.x = 0,
+		m_currentBuffer->uv.y = 0;
+		m_currentBuffer->tid = 0;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
+
+		m_currentBuffer->vertex = transform * glm::vec4(0, 1, 0, 1);
+		m_currentBuffer->uv.x = 0;
+		m_currentBuffer->uv.y = 1;
+		m_currentBuffer->tid = 0;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
+
+		m_currentBuffer->vertex = transform * glm::vec4(1, 1, 0, 1);
+		m_currentBuffer->uv.x =1;
+		m_currentBuffer->uv.y = 1;
+		m_currentBuffer->tid = 0;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
+
+		m_currentBuffer->vertex = transform * glm::vec4(1, 0, 0, 1);
+		m_currentBuffer->uv.x = 1;
+		m_currentBuffer->uv.y = 0;
+		m_currentBuffer->tid = 0;
+		m_currentBuffer->color = color;
+		m_currentBuffer++;
+
+		m_indexCount += 6;
+	}
+
+	void ParticleRenderer::submit(glm::vec3* vertices, int vertexCount, WattyColor color)
 	{
 
 		for (int i = 0; i < vertexCount; i++) {
@@ -31,28 +67,27 @@ namespace letc {namespace graphics {
 		}
 
 	}
-	void DebugRenderer::end()
+	void ParticleRenderer::end()
 	{
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 		glBindBuffer(GL_ARRAY_BUFFER, NULL);
 	}
 
-
-	void DebugRenderer::flush(unsigned int mode, int indexCount)
-	{
-		//flush
+	void ParticleRenderer::flush() {
+		
+		// draw
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
-		glDrawElements(mode, indexCount, GL_UNSIGNED_SHORT, NULL);
+		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
+		m_indexCount = 0;
 		Renderer2D::globalFlushesThisFrame++;
 
 	}
 
-	
 
-	void DebugRenderer::init()
+	void ParticleRenderer::init()
 	{
 
 		// Generate

@@ -27,7 +27,9 @@ namespace letc { namespace graphics {
 		glm::vec3& position;
 		Camera(std::vector<Layer*>* layers, glm::vec3 position, glm::vec2 size, float clippingDepth, CameraMode mode);
 		inline void setSize(glm::vec2 newSize) { m_size = newSize; }
-		inline glm::vec2 getSize() {return m_size; }
+		inline glm::vec2 getSize() const {return m_size; }
+		inline void setDepth(float newDepth) { m_clippingDepth = newDepth; }
+		inline float getDepth() { return m_clippingDepth; }
 		inline void setProjection(glm::mat4 newProjection) { m_projection = newProjection; m_mode = CameraMode::custom; }
 		~Camera();
 

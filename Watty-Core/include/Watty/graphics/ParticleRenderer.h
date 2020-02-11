@@ -20,7 +20,7 @@
 #define SHADER_COLOR_INDEX		3
 
 namespace letc { namespace graphics {
-class DebugRenderer : public Renderer2D
+class ParticleRenderer : public Renderer2D
 {
 private:
 	unsigned int m_vertexArray;
@@ -33,16 +33,15 @@ private:
 	std::vector<const Texture*> m_textures;
 
 public:
-	DebugRenderer();
-	~DebugRenderer();
+	ParticleRenderer();
+	~ParticleRenderer();
 
 	void begin() override;
 	void submit(const Renderable2D* renderable) override;
-	void submit(std::vector<glm::vec3> vertices, int vertexCount, WattyColor color);
+	void submit(glm::mat4 tranform, unsigned int color, glm::vec2 size);
+	void submit(glm::vec3* vertices, int vertexCount, WattyColor color);
 	void end() override;
-	void flush(unsigned int mode, int indexCount);
-
-	inline void flush() override {};
+	void flush() override;
 private:
 	void init();
 

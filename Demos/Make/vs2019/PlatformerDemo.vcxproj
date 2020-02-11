@@ -121,7 +121,7 @@
     <IntDir>obj\Win32\Debug\PlatformerDemo\</IntDir>
     <TargetName>PlatformerDemo</TargetName>
     <TargetExt>.exe</TargetExt>
-    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include\Watty;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Win64|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -129,7 +129,7 @@
     <IntDir>obj\Win64\Debug\PlatformerDemo\</IntDir>
     <TargetName>PlatformerDemo</TargetName>
     <TargetExt>.exe</TargetExt>
-    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include\Watty;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Mac64|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -137,7 +137,7 @@
     <IntDir>obj\Mac64\Debug\PlatformerDemo\</IntDir>
     <TargetName>PlatformerDemo</TargetName>
     <TargetExt>.exe</TargetExt>
-    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include\Watty;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -145,7 +145,7 @@
     <IntDir>obj\Win32\Release\PlatformerDemo\</IntDir>
     <TargetName>PlatformerDemo</TargetName>
     <TargetExt>.exe</TargetExt>
-    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include\Watty;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Win64|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -153,7 +153,7 @@
     <IntDir>obj\Win64\Release\PlatformerDemo\</IntDir>
     <TargetName>PlatformerDemo</TargetName>
     <TargetExt>.exe</TargetExt>
-    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include\Watty;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Mac64|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -161,7 +161,7 @@
     <IntDir>obj\Mac64\Release\PlatformerDemo\</IntDir>
     <TargetName>PlatformerDemo</TargetName>
     <TargetExt>.exe</TargetExt>
-    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\PlatformerDemo;..\..\..\Watty-Core\include\Watty;..\..\..\Watty-Core\include;..\..\..\Watty-Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

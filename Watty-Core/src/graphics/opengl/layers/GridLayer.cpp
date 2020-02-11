@@ -1,20 +1,22 @@
 #include <graphics/layers/GridLayer.h>
 namespace letc { namespace graphics {
-	GridLayer::GridLayer(graphics::Shader* shader, glm::vec3& cameraPosition, int resolution, glm::vec2 screenSize) :
+	GridLayer::GridLayer(graphics::Shader* shader, Camera& camera, int resolution, Window& window) :
 			Layer("Grid Layer",new DebugRenderer(), shader),
-			m_cameraPosition(cameraPosition),
+			mCamera(camera),
 			m_resolution(resolution),
 			m_debugRenderer(new DebugRenderer()),
-			m_screenSize(screenSize)
+			mWindow(window)
 
 	{
-		m_vertexCount =		4 * (2 * m_screenSize.x / m_pixelToMeterRatio + 8); // 4 per step in x direction
-		m_vertexCount +=	4 * (2 * m_screenSize.y / m_pixelToMeterRatio + 8); // 4 per step in y direction
+		m_pixelToMeterRatio = glm::vec2(mWindow.getWidth(),mWindow.getHeight()) / camera.getSize();
 
-		scale = glm::vec2((2 * m_screenSize.x / m_pixelToMeterRatio)/screenSize.x, (2 * m_screenSize.y / m_pixelToMeterRatio )/screenSize.y);
+		m_vertexCount =		4 * (2 * mWindow.getWidth() / (int)m_pixelToMeterRatio.x + 8); // 4 per step in x direction
+		m_vertexCount +=	4 * (2 * mWindow.getHeight() / (int)m_pixelToMeterRatio.y + 8); // 4 per step in y direction
 
-		xStep = m_resolution / m_screenSize.x;
-		yStep = m_resolution / m_screenSize.y;
+		scale = glm::vec2((2 * mWindow.getWidth() / m_pixelToMeterRatio.x)/ mWindow.getWidth(), (2 * mWindow.getHeight() / m_pixelToMeterRatio.y )/mWindow.getHeight());
+
+		xStep = mWindow.getWidth()/resolution;
+		yStep = mWindow.getHeight()/resolution;
 	}
 
 } }

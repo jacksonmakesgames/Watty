@@ -11,13 +11,13 @@ namespace letc { namespace graphics {
 		std::string text;
 	public:
 		//TODO we should remove x,y from all of these
-		Label(std::string text, float x, float y, unsigned int color);
-		Label(std::string text, unsigned int color);
-		Label(std::string text, float x, float y, Font* font, unsigned int color);
-		Label(std::string text, Font* font, unsigned int color);
-		Label(std::string text, float x, float y, const std::string& fontName, unsigned int color);
-		Label(std::string text, float x, float y, const std::string& fontName, unsigned int size, unsigned int color);
-		Label(std::string text, const std::string& fontName, unsigned int size, unsigned int color);
+		Label(std::string text, float x, float y, WattyColor color);
+		Label(std::string text, WattyColor color);
+		Label(std::string text, float x, float y, Font* font, WattyColor color);
+		Label(std::string text, Font* font, WattyColor color);
+		Label(std::string text, float x, float y, const std::string& fontName, WattyColor color);
+		Label(std::string text, float x, float y, const std::string& fontName, unsigned int size, WattyColor color);
+		Label(std::string text, const std::string& fontName, unsigned int size, WattyColor color);
 		void submit(Renderer2D* renderer)const override;
 	private:
 		void validateFont(const std::string& name, int size = -1);

@@ -14,7 +14,7 @@
 #include "./graphics/Camera.h"
 #include "./graphics/Color.h"
 #include "./graphics/textures/SpriteSheetAnimation.h"
-#include <graphics/ParticleSystem.h>
+#include "graphics/ParticleSystem.h"
 
 #include "gameobjects/GameObject.h"
 #include "./utils/timer.h"
@@ -94,7 +94,9 @@ namespace letc {
 		virtual void init() = 0;
 
 		// runs once per second
-		virtual void tick() {}
+		virtual void tick() {
+			std::cout << "\t" << std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
+		}
 
 		// runs LETC_UPDATE_RATE times per second
 		virtual void update() {
@@ -127,7 +129,7 @@ namespace letc {
 				layers[i]->draw();
 			}
 			m_window->listenForInput();
-
+			graphics::Renderer2D::globalFlushesThisFrame = 0;
 		}
 
 		const unsigned int getFramesPerSecond()  const  { return m_framesPerSecond;  }
@@ -161,10 +163,7 @@ private:
 				m_framesPerSecond = frames;
 				m_updatesPerSecond = updates;
 				m_msPerFrame = 1000.0 / (double)frames;
-				
 				tick();
-				std::cout <<"\t"<< std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
-
 				frames = 0;
 				updates = 0;
 			}

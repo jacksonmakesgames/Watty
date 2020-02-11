@@ -237,6 +237,28 @@ namespace letc {namespace graphics {
 
 	}
 
+
+	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam)
+	{
+		using namespace glm;
+		vec2 pointScreenRatio = vec2();
+		pointScreenRatio.x = position.x / getWidth();
+		pointScreenRatio.y = (getHeight() -position.y) / getHeight();
+
+
+
+		vec2 pointWorldRatio = pointScreenRatio * cam.getSize();
+
+		pointWorldRatio.x -= (.5f * cam.getSize().x);
+		pointWorldRatio.y -= (.5f * cam.getSize().y);
+
+
+		vec3 worldPoint = vec3(pointWorldRatio.x, pointWorldRatio.y, 0) + cam.position;
+		return worldPoint;
+	}
+	
+	
+
 	bool Window::closed() const {
 		return glfwWindowShouldClose(m_Window) == 1;
 	}

@@ -69,9 +69,9 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::submit(const Renderable2D* renderable){
-		const glm::vec3& pos = renderable->getPosition();
+		const glm::vec2& pos = renderable->getPosition();
 		const glm::vec2& size = renderable->getSize();
-		const unsigned int color = renderable->getColor();
+		const unsigned int color = renderable->getColor().c;
 		const std::vector<glm::vec2>& uvs = renderable->getUVs();
 		const GLuint tid = renderable->getTID();
 		float glTID = (float)tid;
@@ -112,30 +112,29 @@ namespace letc {namespace graphics {
 		const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.totalFrames) * tw;
 
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x, pos.y, pos.z, 1);
-		//m_currentBuffer->uv.x = (uvs[0].x * tx);
-		m_currentBuffer->uv.x = tx,
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 0, 0, 1);
+		m_currentBuffer->uv.x = tx;
 		m_currentBuffer->uv.y = uvs[0].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x, pos.y+size.y, pos.z, 1);
-		m_currentBuffer->uv.x = tx,
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 1, 0, 1);
+		m_currentBuffer->uv.x = tx;
 		m_currentBuffer->uv.y = uvs[1].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x + size.x, pos.y + size.y, pos.z, 1);
-		m_currentBuffer->uv.x = tx+tw,
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(1, 1, 0, 1);
+		m_currentBuffer->uv.x = tx + tw,
 		m_currentBuffer->uv.y = uvs[2].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(pos.x + size.x, pos.y, pos.z, 1);
-		m_currentBuffer->uv.x = tx+tw,
+		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(1, 0, 0, 1);
+		m_currentBuffer->uv.x = tx + tw,
 		m_currentBuffer->uv.y = uvs[3].y;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
@@ -145,14 +144,12 @@ namespace letc {namespace graphics {
 
 	}
 
-	void BatchRenderer2D::drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color){
+	void BatchRenderer2D::drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color){
 		using namespace ftgl;
 		bool found = false;
 		texture_font_t* ftFont = font.getFTFont();
 		const GLuint tid = font.getTexID();
 		float glTID = (float)tid;
-		
-
 
 		float idForShader = 0.0f;
 		if (glTID > 0) {
@@ -209,25 +206,25 @@ namespace letc {namespace graphics {
 				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y0, 0.0f, 1);
 				m_currentBuffer->uv = glm::vec2(s0, t0);
 				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color;
+				m_currentBuffer->color = color.c;
 				m_currentBuffer++;
 
 				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y1, 0.0f, 1);
 				m_currentBuffer->uv = glm::vec2(s0, t1);
 				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color;
+				m_currentBuffer->color = color.c;
 				m_currentBuffer++;
 
 				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y1, 0.0f, 1);
 				m_currentBuffer->uv = glm::vec2(s1, t1);
 				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color;
+				m_currentBuffer->color = color.c;
 				m_currentBuffer++;
 				
 				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y0 ,0.0f, 1);
 				m_currentBuffer->uv = glm::vec2(s1, t0);
 				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color;
+				m_currentBuffer->color = color.c;
 				m_currentBuffer++;
 
 				m_indexCount += 6;
@@ -270,6 +267,7 @@ namespace letc {namespace graphics {
 
 		m_indexCount = 0;
 		m_glTIDsThisFlush.clear();
+		Renderer2D::globalFlushesThisFrame++;
 
 	}
 

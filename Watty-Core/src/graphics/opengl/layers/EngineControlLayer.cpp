@@ -24,6 +24,7 @@ namespace letc {namespace graphics {
 			ImGui::Begin("Application Info");
 			ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 			ImGui::ColorEdit3("Clear Color", (float*)&m_clearColor);
+			ImGui::Text("%4d draws/frame", Renderer2D::globalFlushesThisFrame);
 			ImGui::End();
 		}
 		//layers:

@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-
+#include "Color.h"
 #ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
 #endif // WATTY_OPENGL
@@ -15,6 +15,8 @@ namespace letc {namespace graphics {
 	class Renderable2D;
 
 	class Renderer2D{
+	public:
+		static unsigned int globalFlushesThisFrame;
 	protected:
 
 		std::vector<glm::mat4> m_TransformationStack;
@@ -62,7 +64,7 @@ namespace letc {namespace graphics {
 
 		virtual void begin() {}
 		virtual void submit(const Renderable2D* renderable) = 0;
-		virtual void drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color) {};
+		virtual void drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color) {};
 		virtual void end() {}
 		virtual void flush() = 0;
 

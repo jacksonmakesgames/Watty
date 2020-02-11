@@ -37,7 +37,7 @@ namespace letc {namespace audio {
 		for (size_t i = 0; i < m_clips.size(); i++){
 			delete m_clips[i];
 		}
-
+		soloud->stopAll();
 		soloud->deinit();           // clean-up
 		delete soloud;              // this cleans up too
 	}

@@ -1027,10 +1027,12 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\audio\audiomanager.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\GameObject.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\Transform.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\Transform2D.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Camera.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Color.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\DebugRenderer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\GridRenderer.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleRenderer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\SimpleRenderer2D.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\batchrenderer2d.h" />
@@ -1214,9 +1216,13 @@
     <ClCompile Include="..\..\Watty-Core\src\audio\audioclip.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\audio\audiomanager.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\gameobjects\GameObject.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\gameobjects\Transform2D.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Camera.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Color.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\DebugRenderer.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\ParticleRenderer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\ParticleSystem.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Renderer2D.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\batchrenderer2d.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\buffers\buffer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\buffers\indexbuffer.cpp" />

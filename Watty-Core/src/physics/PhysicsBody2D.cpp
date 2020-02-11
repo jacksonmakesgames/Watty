@@ -70,8 +70,8 @@ namespace letc { namespace physics {
 	{
 		b2Vec2 pos = m_body->GetPosition();
 		// quite unsure
-		pos.x -= m_size.x;
-		pos.y -= m_size.y;
+		/*pos.x -= m_size.x;
+		pos.y -= m_size.y;*/
 
 		pos *= PhysicsConstants::pixels_per_meter;
 		return glm::vec2(pos.x, pos.y);

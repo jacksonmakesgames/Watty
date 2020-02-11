@@ -2634,6 +2634,9 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\Transform.h">
       <Filter>Header Files\include\Watty\gameobjects</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\gameobjects\Transform2D.h">
+      <Filter>Header Files\include\Watty\gameobjects</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Camera.h">
       <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
@@ -2644,6 +2647,9 @@
       <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\GridRenderer.h">
+      <Filter>Header Files\include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleRenderer.h">
       <Filter>Header Files\include\Watty\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleSystem.h">
@@ -3167,13 +3173,25 @@
     <ClCompile Include="..\..\Watty-Core\src\gameobjects\GameObject.cpp">
       <Filter>Source Files\src\gameobjects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\gameobjects\Transform2D.cpp">
+      <Filter>Source Files\src\gameobjects</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Camera.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Color.cpp">
       <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\DebugRenderer.cpp">
       <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\ParticleRenderer.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\ParticleSystem.cpp">
+      <Filter>Source Files\src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\Renderer2D.cpp">
       <Filter>Source Files\src\graphics\opengl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\batchrenderer2d.cpp">

@@ -45,8 +45,8 @@ namespace letc { namespace physics {
 
 
 			renderer->begin();
-			glm::vec3* vecVertices = new glm::vec3[vertexCount];
-
+			//glm::vec3* vecVertices = new glm::vec3[vertexCount];
+			std::vector<glm::vec3> vecVertices = std::vector<glm::vec3>(vertexCount);
 			for (size_t i = 0; i < vertexCount; i++)
 			{
 				vecVertices[i].x = vertices[i].x;
@@ -95,7 +95,9 @@ namespace letc { namespace physics {
 			m_positionLastFrame = *m_sceneCameraPosition;
 
 			renderer->begin();
-			glm::vec3* vecVertices = new glm::vec3[resolution];
+			//glm::vec3* vecVertices = new glm::vec3[resolution];
+			std::vector<glm::vec3> vecVertices = std::vector<glm::vec3>(resolution);
+
 			float heading = 0.0f;
 			int i = 0;
 

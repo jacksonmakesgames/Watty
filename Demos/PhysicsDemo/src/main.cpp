@@ -65,6 +65,7 @@ class PhysicsDemo : public LETC {
 		void init() override {
 			m_window = createWindow("This little engine could", 1280, 720, false, false);
 			Window::setVSync(true);
+
 			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
 			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
@@ -81,16 +82,16 @@ class PhysicsDemo : public LETC {
 			
 			FontManager::add(new Font("Roboto", FONTPATH, 10, fontScale)); 
 
-
+			// background
 			layer0->add(
 				new GameObject(
-					glm::vec3(-16, -9, 0),
+					glm::vec3(0, 0, 0),
 					glm::vec2(32, 18),
 					new Sprite(0xffF5F0F0)
 				)
 			);
 
-			glm::vec3 playerPos(-2, -2, 0);
+			glm::vec3 playerPos(0, 2, 0);
 			glm::vec2 playerSize(2, 2);
 			player = new GameObject(
 				playerPos,
@@ -138,14 +139,15 @@ class PhysicsDemo : public LETC {
 			FontManager::add(new Font("Roboto",FONTPATH, 16, screenScale));
 			FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
-			GameObject* profileGroup = new GameObject(glm::translate(glm::mat4(1),glm::vec3(-15.5, 6.8, 0)));
-			profileGroup->addChild(new GameObject(glm::vec3(0, 0, 0), glm::vec2(4.5f, 1.8), new Sprite(0x80808080)));
-			fpsLabel = new Label("", "Roboto", 16, 0xffffffff);
-			upsLabel = new Label("", "Roboto", 14, 0xffffffff);
-			mpsLabel = new Label("", "Roboto", 14, 0xffffffff);
-			profileGroup->addChild(new GameObject(glm::vec3(.3f, 1.2f, 0), fpsLabel));
-			profileGroup->addChild(new GameObject(glm::vec3(.3f, .8f, 0), upsLabel));
-			profileGroup->addChild(new GameObject(glm::vec3(.3f, .4f, 0), mpsLabel));
+			GameObject* profileGroup = new GameObject(glm::vec3(0,0,0),glm::vec2(3.5f,2.5f));
+			GameObject* bkg = new GameObject(glm::vec3(0, 0, 0), glm::vec2(4.5f, 1.8), new Sprite(0x80808080));
+			profileGroup->transform->addChild(bkg->transform);
+			fpsLabel = new Label("", "Roboto", 16, 0xffffffff); GameObject* fpsGO= new GameObject(glm::vec3(.3f, 1.2f, 0), fpsLabel);
+			upsLabel = new Label("", "Roboto", 14, 0xffffffff);	GameObject* upsGO = new GameObject(glm::vec3(.3f, .8f, 0), upsLabel);
+			mpsLabel = new Label("", "Roboto", 14, 0xffffffff);	GameObject* mpsGO = new GameObject(glm::vec3(.3f, .4f, 0), mpsLabel);
+			profileGroup->transform->addChild(fpsGO->transform);
+			profileGroup->transform->addChild(upsGO->transform);
+			profileGroup->transform->addChild(mpsGO->transform);
 			uiLayer->add(profileGroup);
 
 			AudioClip* clip = new AudioClip("slow_motion", MUSICPATH);
@@ -228,9 +230,9 @@ class PhysicsDemo : public LETC {
 
 			player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
 			//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
-			
-			if (player->position.y < -10.0f) {
-				player->position.y = 10.0f;
+			glm::vec2 playerPos = player->transform->getPosition();
+			if (playerPos.y < -10.0f) {
+				player->transform->setPosition({ playerPos.x, 10 });
 				player->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(0,0), 0.0f);
 				player->getPhysicsBody2D()->zeroVelocity();
 			}

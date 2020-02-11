@@ -115,10 +115,8 @@ public:
 		float horizontalP2 = -1*(float) m_window->keyIsDown(GLFW_KEY_LEFT) + m_window->keyIsDown(GLFW_KEY_RIGHT);
 		float verticalP2 = (float) m_window->keyIsDown(GLFW_KEY_UP) + -1*(float)(m_window->keyIsDown(GLFW_KEY_DOWN));
 		
-		playerGO->position.x += playerSpeed * horizontalP1 * gameTimer->delta;
-		playerGO->position.y += playerSpeed * verticalP1 * gameTimer->delta;
-		enemyGO->position.x += playerSpeed * horizontalP2 * gameTimer->delta;
-		enemyGO->position.y += playerSpeed * verticalP2 * gameTimer->delta;
+		playerGO->transform->translate({playerSpeed * horizontalP1 * gameTimer->delta, playerSpeed * verticalP1 * gameTimer->delta});
+		enemyGO->transform->translate({playerSpeed * horizontalP2 * gameTimer->delta, playerSpeed * verticalP2 * gameTimer->delta});
 
 	}
 

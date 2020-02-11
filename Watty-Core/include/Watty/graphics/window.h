@@ -17,7 +17,7 @@
 #endif // WATTY_OPENGL
 
 
-
+#include "Camera.h"
 #include "font/fontmanager.h"
 #include "../audio/audiomanager.h"
 
@@ -75,6 +75,7 @@ namespace letc {namespace graphics {
 		inline double getScrollAmountThisFrameY() { return scrolledThisFrameY; };
 		inline int getRefreshRate() { return m_refreshRate; };
 
+		glm::vec3 viewportToWorld(glm::vec2 position, const Camera& cam = *Camera::allCameras[0]);
 		
 	private:
 		bool init();

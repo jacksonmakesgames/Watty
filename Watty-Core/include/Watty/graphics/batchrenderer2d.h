@@ -36,7 +36,7 @@ namespace letc {namespace graphics {
 		void submit(const Renderable2D* renderable) override;
 		void end() override;
 		void flush() override;
-		void drawString(const std::string& text, const glm::vec3& position, const Font& font, unsigned int color) override;
+		void drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color) override;
 
 
 	private:
