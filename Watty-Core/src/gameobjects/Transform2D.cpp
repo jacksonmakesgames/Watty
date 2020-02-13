@@ -87,8 +87,43 @@ namespace letc {
 		return transformMatrix;
 	}
 
+	glm::mat4 Transform2D::getMatrixNoScale()
+	{
+		glm::mat4 transformMatrixNoScale = glm::mat4(1.0f);
+
+		glm::vec3 drawPosition = {
+			position.x,
+			position.y,
+			0.0f
+		};
+
+		// adjust position for size
+		if (parent != nullptr) {
+		/*	drawPosition.x += .5f * parent->getSize().x;
+			drawPosition.y += .5f * parent->getSize().y;*/
+			/*drawPosition.x -= .5f * size.x;
+			drawPosition.y -= .5f * size.y;*/
+		}
+		else {
+			drawPosition.x -= .5f * size.x;
+			drawPosition.y -= .5f * size.y;
+		}
+	
+
+		//Position
+		transformMatrixNoScale = glm::translate(transformMatrixNoScale, drawPosition);
+
+		//Rotation
+		transformMatrixNoScale = glm::translate(transformMatrixNoScale, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+		transformMatrixNoScale = glm::rotate(transformMatrixNoScale, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+		transformMatrixNoScale = glm::translate(transformMatrixNoScale, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+		return transformMatrixNoScale;
+	
+	}
+
 	void Transform2D::updateMatrix()
 	{
+
 		transformMatrix = glm::mat4(1.0f);
 
 		glm::vec3 drawPosition = { 
@@ -97,18 +132,15 @@ namespace letc {
 			0.0f
 		};
 		
-		// adjust position for size
-		if (parent != nullptr) {
-			/*drawPosition.x += .5f * parent->getSize().x;
-			drawPosition.y += .5f * parent->getSize().y;*/
-			drawPosition.x += .5f * size.x;
-			drawPosition.y += .5f * size.y;
-		}
-		else {
-			drawPosition.x -= .5f * size.x;
-			drawPosition.y -= .5f * size.y;
-		}
+	
+		// if local:
+		if(parent!=nullptr)
+			transformMatrix = glm::translate(transformMatrix, glm::vec3(0.25f * parent->getSize().x, 0.25f * parent->getSize().y, 0.0f));
 
+		drawPosition.x -= .5f * size.x;
+		drawPosition.y -= .5f * size.y;
+		
+	
 
 		//Position
 		transformMatrix = glm::translate(transformMatrix, drawPosition);
@@ -145,6 +177,7 @@ namespace letc {
 	void Transform2D::addChild(Transform2D* child)
 	{
 		child->parent = this;
+		child->parentOffset = position - child->getPosition();
 		child->updateMatrix();
 		//child->parentOffset = (position) - (child->getPosition() - .5f * child->getSize());
 		//child->parentOffset = position - (child->getPosition());

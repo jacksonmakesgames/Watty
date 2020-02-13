@@ -82,8 +82,10 @@ public:
 
 		layer0->add(player);
 
-		GameObject* childTest = new GameObject(glm::vec2(1, 0), glm::vec2(.5, .5), new Sprite(Color::orange));
+		GameObject* childTest = new GameObject(glm::vec2(.33f, .33f), glm::vec2(.15, .15), new Sprite(Color::white));
+		GameObject* childTest2 = new GameObject(glm::vec2(.2f, -.15f), glm::vec2(.6f, .15), new Sprite(Color::RGBA(0,.4,.8,.5)));
 		player->transform->addChild(childTest->transform);
+		player->transform->addChild(childTest2->transform);
 
 		Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
@@ -123,7 +125,7 @@ public:
 
 		//m_camera = new Camera(&layers, glm::vec3(0, 0, -10), glm::vec2(32.0f, 18.0f), 20, CameraMode::orthographic);
 
-		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), *sceneCamera, 32, *m_window);
+		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), *sceneCamera, *m_window);
 		layers.push_back(gridLayer);
 		gridLayer->disable();
 

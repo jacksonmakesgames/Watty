@@ -33,6 +33,7 @@ namespace letc {
 
 		void setMatrix(glm::mat4 newMatrix);
 		glm::mat4 getMatrix();
+		glm::mat4 getMatrixNoScale();
 
 		void updateMatrix();
 

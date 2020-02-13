@@ -44,8 +44,8 @@ public:
 		layers.push_back(testLayer);
 
 
-		//gridLayer = new GridLayer(new Shader(SHADERVERT, SHADERFRAG), *sceneCamera, 1, *m_window);
-		//layers.push_back(gridLayer);
+		gridLayer = new GridLayer(new Shader(SHADERVERT, SHADERFRAG), *sceneCamera, *m_window);
+		layers.push_back(gridLayer);
 
 		EngineControlLayer * engineControlLayer = new EngineControlLayer("Watty {} Layer", debugPhysics, resetFlag, &Window::useVSync, layers, new Shader(VERTPATH, FRAGUNLITPATH));
 		layers.push_back(engineControlLayer);
@@ -82,16 +82,23 @@ public:
 			endColor[3] = particleProps.colorEnd.rgba.r / 255.0f;
 		}
 	
-		/*testSprite = new GameObject(vec2(0, 0.0f), vec2(2,2),new Sprite(new Texture(TESTTEXTURE)));
-		testSprite->setTag("Test");
+
+		testSprite = new GameObject(vec2(0, 0.0f), vec2(2,2),new Sprite(new Texture(TESTTEXTURE))); // parent
+		testSprite->setTag("Test Parent");
 		testLayer->add(testSprite);
 
-		GameObject* childTest = new GameObject(glm::vec2(0, 0), glm::vec2(.5f, .5f), new Sprite(Color::orange));
-		testSprite->transform->addChild(childTest->transform);*/
+		GameObject* childTest = new GameObject(glm::vec2(0,0), {.2,.2}, new Sprite(Color::orange));
+		testSprite->transform->addChild(childTest->transform);
 
 		/*testLayer->add(testSprite);  
 		testLayer->add(new GameObject(vec2(-8, 0), vec2(1.0f), new Sprite(Color::blue)));*/
 
+		testLayer->add(new GameObject({ 0,0 }, {.1,.1},new Sprite(0x80808080))); // greyboi
+		testLayer->add(new GameObject({ 1,1 }, {.1,.1},new Sprite(0x80808080))); // greyboi
+		testLayer->add(new GameObject({ -1,1 }, {.1,.1},new Sprite(0x80808080))); // greyboi
+		testLayer->add(new GameObject({ 1,-1 }, {.1,.1},new Sprite(0x80808080))); // greyboi
+		testLayer->add(new GameObject({ -1,-1 }, {.1,.1},new Sprite(0x80808080))); // greyboi
+		testLayer->add(new GameObject({ -2,-2 }, {.1,.1},new Sprite(0x80808080))); // greyboi
 	}
 
 	void tick() override {

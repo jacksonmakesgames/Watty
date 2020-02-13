@@ -133,16 +133,21 @@ namespace letc {
 
 	void GameObject::submit(graphics::Renderer2D* renderer) const {
 		m_tag;
-		glm::mat4 m = transform->getMatrix();
-		
+	
+		//if (transform->children.size()>0) {
+		//	//has children, don't pass scale
+		//	renderer->push(transform->getMatrixNoScale());
+		//}
+		//else 
+		//glm::mat4 matToPush = transform->parent == nullptr ? transform->getMatrix() : transform->getMatrix()*transform->parent->getMatrixNoScale();
+
 		renderer->push(transform->getMatrix());
-		
 			
 		if (m_animator != nullptr)
 			m_animator->update();
-		if (m_renderable)
-			m_renderable->submit(renderer);
-
+		if (m_renderable != nullptr) {
+				m_renderable->submit(renderer);
+		}
 		for (size_t i = 0; i < transform->children.size(); i++)
 			transform->children[i]->gameObject->submit(renderer);
 

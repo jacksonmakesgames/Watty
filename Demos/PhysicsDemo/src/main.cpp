@@ -65,7 +65,7 @@ class PhysicsDemo : public LETC {
 		void init() override {
 			m_window = createWindow("This little engine could", 1280, 720, false, false);
 			Window::setVSync(true);
-
+			sceneCamera->setSize({48,27});
 			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
 			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
@@ -139,12 +139,13 @@ class PhysicsDemo : public LETC {
 			FontManager::add(new Font("Roboto",FONTPATH, 16, screenScale));
 			FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
-			GameObject* profileGroup = new GameObject(glm::vec3(0,0,0),glm::vec2(3.5f,2.5f));
-			GameObject* bkg = new GameObject(glm::vec3(0, 0, 0), glm::vec2(4.5f, 1.8), new Sprite(0x80808080));
-			profileGroup->transform->addChild(bkg->transform);
-			fpsLabel = new Label("", "Roboto", 16, 0xffffffff); GameObject* fpsGO= new GameObject(glm::vec3(.3f, 1.2f, 0), fpsLabel);
+			// PROFILING
+			GameObject* profileGroup = new GameObject({ -14, 8, 0 }, { 4.0f,2.0f }, new Sprite(Color::pink));
+			GameObject* bkg = new GameObject(glm::vec3(0, 0, 0), {1.0f,1.0f}, new Sprite(0x80808080));
+			fpsLabel = new Label("", "Roboto", 16, 0xffffffff); GameObject* fpsGO = new GameObject(glm::vec3(0, 1.f, 0), {.5f,.5f}, fpsLabel);
 			upsLabel = new Label("", "Roboto", 14, 0xffffffff);	GameObject* upsGO = new GameObject(glm::vec3(.3f, .8f, 0), upsLabel);
 			mpsLabel = new Label("", "Roboto", 14, 0xffffffff);	GameObject* mpsGO = new GameObject(glm::vec3(.3f, .4f, 0), mpsLabel);
+			profileGroup->transform->addChild(bkg->transform);
 			profileGroup->transform->addChild(fpsGO->transform);
 			profileGroup->transform->addChild(upsGO->transform);
 			profileGroup->transform->addChild(mpsGO->transform);

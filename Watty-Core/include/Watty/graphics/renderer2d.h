@@ -46,17 +46,17 @@ namespace letc {namespace graphics {
 			m_tranformationStackBack = &m_TransformationStack.back();
 		}
 
-		void pop() {
+		glm::mat4 pop() {
 			if (m_TransformationStack.size() > 1) {
 				m_TransformationStack.pop_back();
 			}
 			else {
 				//TODO: log error
 				std::cout << "ERROR: TRIED TO POP TOO MANY MATRIX4s" << std::endl;
-				return;
+				return glm::mat4(1.0f);
 			}
 			m_tranformationStackBack = &m_TransformationStack.back();
-
+			return *m_tranformationStackBack;
 		}
 		~Renderer2D() {
 		}

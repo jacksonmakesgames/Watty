@@ -75,16 +75,19 @@ namespace letc {
 		virtual ~Renderable2D() {
 		}
 
-		virtual void submit(Renderer2D* renderer)const {
-			// todo we should cache EmptyMat
-			
-			bool emptyMat = m_transformationMatrix == glm::mat4(1);
-			if(!emptyMat)
-				renderer->push(m_transformationMatrix);
-			renderer->submit(this);
-			if(!emptyMat)
+		virtual void submit(Renderer2D* renderer, glm::mat4 overrideMatrix)const {
+			glm::mat4 originalMat = renderer->pop();
+			{
+				renderer->push(overrideMatrix);
+				renderer->submit(this);
 				renderer->pop();
+			}
+			renderer->push(originalMat);
+		}
 
+
+		virtual void submit(Renderer2D* renderer)const {
+			renderer->submit(this);
 		}
 
 		void setColor(WattyColor color) { m_color = color; }
