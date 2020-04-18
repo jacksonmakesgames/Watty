@@ -57,6 +57,7 @@ namespace letc {
 		m_renderer->begin();
 
 
+
 		for (GameObject* gameObject : m_gameObjects){
 			gameObject->submit(m_renderer);
 		}

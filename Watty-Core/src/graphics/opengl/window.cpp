@@ -34,7 +34,8 @@ namespace letc {namespace graphics {
 		IMGUI_CHECKVERSION();
 		const char* glsl_version = "#version 450";
 		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		ImGuiIO& io = ImGui::GetIO(); 
+		//(void)io;
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
@@ -45,6 +46,7 @@ namespace letc {namespace graphics {
 		// Setup Platform/Renderer bindings
 		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
 		ImGui_ImplOpenGL3_Init(glsl_version); // we might need this
+		//io.DisplaySize = ImVec2(m_Width, m_Height);
 
 
 	}	
@@ -242,8 +244,8 @@ namespace letc {namespace graphics {
 	{
 		using namespace glm;
 		vec2 pointScreenRatio = vec2();
-		pointScreenRatio.x = position.x / getWidth();
-		pointScreenRatio.y = (getHeight() -position.y) / getHeight();
+		pointScreenRatio.x = position.x / getNumColumns();
+		pointScreenRatio.y = (getNumRows() -position.y) / getNumRows();
 
 
 

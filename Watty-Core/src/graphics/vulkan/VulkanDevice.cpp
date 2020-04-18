@@ -1,4 +1,4 @@
-#include "VulkanDevice.h"
+#include <graphics/Vulkan/VulkanDevice.h>
 namespace letc { namespace graphics {
 
 	VulkanDevice::VulkanDevice(const VulkanPhysicalDevice& physical_device, const std::vector<const char*>& layers){

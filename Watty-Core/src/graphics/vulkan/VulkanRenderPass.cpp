@@ -1,4 +1,4 @@
-#include "VulkanRenderPass.h"
+#include <graphics/Vulkan/VulkanRenderPass.h>
 namespace letc {namespace graphics {
 	VulkanRenderPass::VulkanRenderPass(const VkDevice& device, const VkFormat& swapChainImageFormat) {
 		m_device = device;

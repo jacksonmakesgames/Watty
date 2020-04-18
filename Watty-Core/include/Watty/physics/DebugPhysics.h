@@ -34,6 +34,7 @@ namespace letc { namespace physics {
 
 		/// Draw a solid closed polygon provided in CCW order.
 		void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
+#ifdef WATTY_OPENGL
 			m_shader->enable();
 
 			glm::vec3 translation = m_positionLastFrame - *m_sceneCameraPosition ;
@@ -71,6 +72,7 @@ namespace letc { namespace physics {
 			renderer->flush(GL_TRIANGLES, (int)vertexCount*1.5);
 			m_shader->disable();
 
+#endif
 
 		}
 
@@ -83,6 +85,7 @@ namespace letc { namespace physics {
 
 		/// Draw a solid circle.
 		virtual void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
+#ifdef WATTY_OPENGL
 			
 			const int resolution = 60;
 
@@ -129,10 +132,12 @@ namespace letc { namespace physics {
 			m_shader->disable();
 
 		
+#endif
 		}
 
 		/// Draw a line segment.
 		virtual void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color) {
+#ifdef WATTY_OPENGL
 			GLfloat glverts[4];
 
 			glVertexPointer(2, GL_FLOAT, 0, glverts); //tell OpenGL where to find vertices
@@ -148,7 +153,7 @@ namespace letc { namespace physics {
 			glDisableClientState(GL_VERTEX_ARRAY);
 			glVertexAttrib4f(3, 1.0f, 1.0f, 1.0f, 1.0f);
 			glLineWidth(1); //regular lines
-		
+#endif
 		
 		}
 

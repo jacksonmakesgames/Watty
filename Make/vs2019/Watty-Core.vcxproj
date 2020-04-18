@@ -120,42 +120,42 @@
     <IntDir>obj\Win32\Debug\Watty-Core\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\freetype\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Win64|x64'">
     <OutDir>..\..\bin\Debug\Win64\</OutDir>
     <IntDir>obj\Win64\Debug\Watty-Core\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\freetype\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Mac64|x64'">
     <OutDir>..\..\bin\Debug\Mac64\</OutDir>
     <IntDir>obj\Mac64\Debug\Watty-Core\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\freetype\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\bin\Release\Win32\</OutDir>
     <IntDir>obj\Win32\Release\Watty-Core\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\freetype\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Win64|x64'">
     <OutDir>..\..\bin\Release\Win64\</OutDir>
     <IntDir>obj\Win64\Release\Watty-Core\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\freetype\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Mac64|x64'">
     <OutDir>..\..\bin\Release\Mac64\</OutDir>
     <IntDir>obj\Mac64\Release\Watty-Core\</IntDir>
     <TargetName>Watty-Core_v0.24</TargetName>
     <TargetExt>.lib</TargetExt>
-    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\freetype\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\Watty-Core;..\..\Watty-Core\include\Watty;..\..\Watty-Core\include\ext;..\..\Watty-Core\ext\GLFW\include;..\..\Watty-Core\ext\FreeImage\include;..\..\Watty-Core\ext\imgui\include;..\..\Watty-Core\ext\glm\include;..\..\Watty-Core\ext\soloud\include;..\..\Watty-Core\ext\stb_image\include;..\..\Watty-Core\ext\tiny_obj_loader\include;..\..\Watty-Core\ext\glad\include;..\..\Watty-Core\ext\freetype-gl;..\..\Watty-Core\ext\freetype\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -861,6 +861,7 @@
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imstb_textedit.h" />
     <ClInclude Include="..\..\Watty-Core\ext\imgui\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\..\Watty-Core\ext\json\include\json.hpp" />
     <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL.h" />
     <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_assert.h" />
     <ClInclude Include="..\..\Watty-Core\ext\sdl\include\SDL_atomic.h" />
@@ -1035,6 +1036,21 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleRenderer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\ParticleSystem.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\SimpleRenderer2D.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\SwapChainSupportDetails.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanBuffer.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanDefaultInstance.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanDevice.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanError.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanFrameBuffer.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanGraphicsPipeline.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanRenderPass.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanShader.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\VulkanSwapChain.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\initializers.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\queuefamilyindices.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\vulkanconfig.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\vulkaninstance.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\Vulkan\vulkanphysicaldevice.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\batchrenderer2d.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\buffers\buffer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\buffers\indexbuffer.h" />
@@ -1057,6 +1073,9 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\textures\Animation2D.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\textures\Animator2D.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\textures\SpriteSheetAnimation.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\tilemap\Tile.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\tilemap\TileMap.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\tilemap\TileMapLayer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\window.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\math\math.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\math\math_functions.h" />
@@ -1245,6 +1264,9 @@
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\texture.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\textures\Animator2D.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\textures\SpriteSheetAnimation.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\tilemap\Tile.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\tilemap\TileMap.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\tilemap\TileMapLayer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\window.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsBody2D.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsConstants.cpp" />

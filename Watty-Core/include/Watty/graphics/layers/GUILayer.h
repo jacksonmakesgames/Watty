@@ -1,9 +1,13 @@
 #pragma once
+#ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
+#endif
 #include <ext/imgui/include/imgui/imgui.h>
 #include "layer.h"
 #include "../batchrenderer2d.h"
+#ifdef WATTY_OPENGL
 #include "../imgui/imgui_impl_opengl3.h"
+#endif
 #include "../imgui/imgui_impl_glfw.h"
 
 namespace letc { namespace graphics {

@@ -28,7 +28,8 @@ namespace letc {
 	struct FrameInfo {
 		float currentFrame;
 		float totalFrames;
-
+		int rows = 1;
+		int cols = 1;
 	};
 
 	class Renderable2D{
@@ -110,14 +111,26 @@ namespace letc {
 		inline const WattyColor getColor()const{ return m_color; }
 		inline const std::vector<glm::vec2>& getUVs()const{ return m_UVs; }
 
-		inline const GLuint getTID() const { return m_texture == nullptr ? 0 : m_texture->getID(); }
+		inline const unsigned int getTID() const { return m_texture == nullptr ? 0 : m_texture->getID(); }
 		inline const Texture* getTexture() const { return m_texture == nullptr ? nullptr : m_texture; }
 		inline const FrameInfo getFrameInfo() const { return m_frameInfo; }
 
 		inline void setFrameInfo(FrameInfo frameInfo) { m_frameInfo = frameInfo; }
 
+		void setUvs(glm::vec2 sw, glm::vec2 nw, glm::vec2 ne, glm::vec2 se) {
+			m_UVs = std::vector<glm::vec2>();
+			m_UVs.push_back(sw);
+			m_UVs.push_back(nw);
+			m_UVs.push_back(ne);
+			m_UVs.push_back(se);
+
+			m_frameInfo.currentFrame = 0.0f;
+			m_frameInfo.totalFrames = 1.0f;
+		}
+
 	private:
 		void setUVDefaults() {
+			m_UVs = std::vector<glm::vec2>();
 			m_UVs.push_back(glm::vec2(0.0f, 0.0f));
 			m_UVs.push_back(glm::vec2(0.0f, 1.0f));
 			m_UVs.push_back(glm::vec2(1.0f, 1.0f));

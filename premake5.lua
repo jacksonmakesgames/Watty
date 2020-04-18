@@ -70,7 +70,7 @@ filter { "system:windows", "action:vs*"}
 	cppdialect "C++17"
 
 	if GRAPHICS_BACKEND == "vulkan"
-		then defines{"WATTY_VULKAN"}
+		then defines{"WATTY_VULKAN", "GLFW_INCLUDE_VULKAN"}
 	elseif GRAPHICS_BACKEND == "opengl"
 		then defines{"WATTY_OPENGL"}
 	end
@@ -86,16 +86,19 @@ filter { "system:windows", "action:vs*"}
     { 
       SourceDir .. "**.h", 
       SourceDir .. "**.hpp", 
-      SourceDir .. "ext/freetype-gl/*.c",
+
       SourceDir .. "**.cpp",
       SourceDir .. "**.tpp",
-      ROOT .. CORE .. "/ext/glad/src/*",
   	  ROOT .. CORE .. "/ext/soloud/src/audiosource/**.c*",
 	  ROOT .. CORE .. "/ext/soloud/src/backend/sdl/**.c*",
 	  ROOT .. CORE .. "/ext/soloud/src/filter/**.c*",
 	  ROOT .. CORE .. "/ext/soloud/src/core/**.c*"
 
     }
+
+    if GRAPHICS_BACKEND == "opengl"
+      then files{SourceDir .. "ext/freetype-gl/*.c", ROOT .. CORE .. "/ext/glad/src/*"}
+    end
 
 	includedirs {
 	  ROOT .. CORE .. "/ext/sdl/include"
@@ -132,10 +135,7 @@ filter { "system:windows", "action:vs*"}
 	  ROOT .. CORE .. "/include/ext/",
       ROOT .. CORE .. "/ext/GLFW/include/",
       ROOT .. CORE .. "/ext/FreeImage/include/",
-      ROOT .. CORE .. "/ext/freetype/include/",
-      ROOT .. CORE .. "/ext/freetype-gl/",
       ROOT .. CORE .. "/ext/imgui/include/",
-      ROOT .. CORE .. "/ext/glad/include/",
       ROOT .. CORE .. "/ext/glm/include/",
 	  ROOT .. CORE .. "/ext/soloud/include/",
 	  ROOT .. CORE .. "/ext/stb_image/include/",
@@ -146,7 +146,11 @@ filter { "system:windows", "action:vs*"}
 		excludes{ROOT .. CORE .. "/src/graphics/opengl/**"}
 
 	elseif GRAPHICS_BACKEND == "opengl"
+		      
 		then excludes{ROOT .. CORE .. "/src/graphics/vulkan/**"}
+			sysincludedirs{	ROOT .. CORE .. "/ext/glad/include/",
+							ROOT .. CORE .. "/ext/freetype-gl/",
+							ROOT .. CORE .. "/ext/freetype/include/"}
 	end
 
   libdirs
@@ -162,9 +166,14 @@ filter { "system:windows", "action:vs*"}
     {
    	"glfw3",
     "FreeImage",
-    "FreeType",
-    "opengl32"
+    "FreeType"
     }
+
+    
+
+	if GRAPHICS_BACKEND == "opengl"
+		then links{"opengl32"}
+	end
 
    
 

@@ -1,13 +1,15 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include "Color.h"
 #ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
+#include "font/font.h"
 #endif // WATTY_OPENGL
 
 
+
 #include <ext/glm/include/glm.hpp>
-#include "font/font.h"
 
 //#include "texturemanager.h"
 
@@ -63,8 +65,12 @@ namespace letc {namespace graphics {
 
 
 		virtual void begin() {}
+
 		virtual void submit(const Renderable2D* renderable) = 0;
+#ifdef WATTY_OPENGL
 		virtual void drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color) {};
+#endif
+
 		virtual void end() {}
 		virtual void flush() = 0;
 

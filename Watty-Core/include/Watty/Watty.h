@@ -1,20 +1,27 @@
 #pragma once
 
 #include "ext/glm/include/glm.hpp"
-#include "./graphics/window.h"
+
+#ifdef WATTY_OPENGL
+	#include "./graphics/window.h"
+	bool letc::graphics::Window::useVSync = false;
+	#include <graphics/font/label.h>
+	#include "./graphics/font/label.h"
+	#include "./graphics/renderer2d.h"
+	#include "./graphics/batchrenderer2d.h"
+	#include "./graphics/shader.h"
+	#include "./graphics/Camera.h"
+	#include "./graphics/textures/SpriteSheetAnimation.h"
+#endif
+
+#include "./graphics/tilemap/Tilemap.h"
 #include "./graphics/sprite.h"
-#include "./graphics/font/label.h"
-#include "./graphics/renderer2d.h"
-#include "./graphics/batchrenderer2d.h"
-#include "./graphics/shader.h"
 #include "./graphics/layers/layer.h"
 #include "./graphics/layers/GuiLayer.h"
 #include "./graphics/layers/EngineControlLayer.h"
 #include "./graphics/layers/GridLayer.h"
-#include "./graphics/Camera.h"
-#include "./graphics/Color.h"
-#include "./graphics/textures/SpriteSheetAnimation.h"
 #include "graphics/ParticleSystem.h"
+#include "./graphics/Color.h"
 
 #include "gameobjects/GameObject.h"
 #include "./utils/timer.h"
@@ -24,7 +31,6 @@
 #include "ext/imgui/include/imgui/imgui.h"
 
 
-bool letc::graphics::Window::useVSync = false;
 
 
 namespace letc {
@@ -129,7 +135,11 @@ namespace letc {
 				layers[i]->draw();
 			}
 			m_window->listenForInput();
+
 			graphics::Renderer2D::globalFlushesThisFrame = 0;
+			//ImGui::Render();
+
+
 		}
 
 		const unsigned int getFramesPerSecond()  const  { return m_framesPerSecond;  }
@@ -155,7 +165,18 @@ private:
 
 			if (!m_window->useVSync) update(); // With Vsync disabled, update as fast as possible
 			frames++;
+
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+			
 			render();
+
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+
+
 			m_window->update();
 			
 			if ((m_time->elapsed() - timer) > 1.0f) {

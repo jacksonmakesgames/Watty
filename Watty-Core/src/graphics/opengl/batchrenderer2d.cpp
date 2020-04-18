@@ -108,34 +108,45 @@ namespace letc {namespace graphics {
 
 		}
 
-		const float tw = float(1) / frameInfo.totalFrames;
-		const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.totalFrames) * tw;
+		//const float tw = float(1) / frameInfo.totalFrames;
+		//const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.totalFrames) * tw;
+		/*if (frameInfo.row != -1) {
+			frameInfo.currentFrame = 
+		}*/
+		const float tw = 1.0f / frameInfo.cols;
+		const float th = 1.0f / frameInfo.rows;
 
+		// WORKS FOR TILES:
+		//const float tx = ((int)frameInfo.currentFrame % frameInfo.cols) * tw;
+		//const float ty = 1- ((int)frameInfo.currentFrame / frameInfo.rows+1) * th;
+		
+		const float tx = ((int)frameInfo.currentFrame % frameInfo.rows) * tw;
+		const float ty = 1- ((int)frameInfo.currentFrame / frameInfo.cols+1) * th;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 0, 0, 1);
 		m_currentBuffer->uv.x = tx;
-		m_currentBuffer->uv.y = uvs[0].y;
+		m_currentBuffer->uv.y = ty;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 1, 0, 1);
 		m_currentBuffer->uv.x = tx;
-		m_currentBuffer->uv.y = uvs[1].y;
+		m_currentBuffer->uv.y = ty+th;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(1, 1, 0, 1);
 		m_currentBuffer->uv.x = tx + tw,
-		m_currentBuffer->uv.y = uvs[2].y;
+		m_currentBuffer->uv.y = ty+th;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;
 
 		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(1, 0, 0, 1);
 		m_currentBuffer->uv.x = tx + tw,
-		m_currentBuffer->uv.y = uvs[3].y;
+		m_currentBuffer->uv.y = ty;
 		m_currentBuffer->tid = idForShader;
 		m_currentBuffer->color = color;
 		m_currentBuffer++;

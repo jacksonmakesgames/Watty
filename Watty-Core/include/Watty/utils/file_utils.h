@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
+
+#include <ext/json/include/json.hpp>
 //#include <GL/glew.h>
 #ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>
@@ -13,6 +15,7 @@
 
 
 namespace letc {
+	using json = nlohmann::json;
 
 
 	static BYTE* load_image(const char* filename, int* width, int* height)

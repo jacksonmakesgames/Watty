@@ -1,4 +1,4 @@
-#include "VulkanGraphicsPipeline.h"
+#include <graphics/Vulkan/VulkanGraphicsPipeline.h>
 namespace letc { namespace graphics {
 	VulkanGraphicsPipeline::VulkanGraphicsPipeline(VulkanDevice& device, VkExtent2D& swapChainExtent, VkRenderPass& renderPass){
 		m_device = device;
@@ -6,8 +6,8 @@ namespace letc { namespace graphics {
 	}
 	void VulkanGraphicsPipeline::createGraphicsPipeline(VkExtent2D& swapChainExtent, VkRenderPass& renderPass)
 	{
-		auto vertShaderCode = read_spv_file("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/src/shaders/vert.spv");
-		auto fragShaderCode = read_spv_file("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/src/shaders/frag.spv");
+		auto vertShaderCode = read_spv_file("J:/OneDrive/Projects/Game_Development/Watty/Watty-core/src/graphics/Vulkan/shaders/vert.spv");
+		auto fragShaderCode = read_spv_file("J:/OneDrive/Projects/Game_Development/Watty/Watty-core/src/graphics/Vulkan/shaders/frag.spv");
 		VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
 		VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
 

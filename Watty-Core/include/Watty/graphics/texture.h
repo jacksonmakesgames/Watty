@@ -32,8 +32,8 @@ namespace letc {namespace graphics {
 		void unbind() const;
 		void unbind(unsigned int glActiveTID) const;
 
-		inline const int getWidth() const  { return m_width; }
-		inline const int getHeight() const { return m_height; }
+		inline const int getNumColumns() const  { return m_width; }
+		inline const int getNumRows() const { return m_height; }
 		inline const int getID() const { return m_TID; }
 
 

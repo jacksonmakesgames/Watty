@@ -8,10 +8,17 @@ namespace letc {namespace graphics {
 
 	void Animator2D::play(std::string name)
 	{
+		// Already playing an animation other than current
+		if (isPlaying && m_currentAnimationName!=name) 
+			findByName(m_currentAnimationName)->stop();
+		
+		isPlaying = true;
+
+
 		Animation2D* animation = findByName(name);
 		if (animation == nullptr) return;
-		m_currentAnimationName = name;
 		animation->play();
+		m_currentAnimationName = name;
 	}
 
 	void Animator2D::stop()
@@ -21,8 +28,10 @@ namespace letc {namespace graphics {
 			return;
 		}
 		Animation2D* animation = findByName(m_currentAnimationName);
-		if (animation != nullptr)
+		if (animation != nullptr) {
 			animation->stop();
+			isPlaying = false;
+		}
 	}
 
 	void Animator2D::update()
@@ -32,8 +41,11 @@ namespace letc {namespace graphics {
 			return;
 		}
 		Animation2D* animation = findByName(m_currentAnimationName);
-		if (animation != nullptr)
+		if (animation != nullptr) {
 			animation->update();
+			if (!animation->isDone())isPlaying = true;
+			else isPlaying = false;
+		}
 
 
 	}

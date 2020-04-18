@@ -2,9 +2,10 @@
 #include <iostream>
 
 #ifdef WATTY_VULKAN
-#include <src/graphics/vulkan/initializers.h>
-#include <src/graphics/vulkan/vulkaninstance.h>
+//#include <src/graphics/vulkan/initializers.h>
+//#include <src/graphics/vulkan/vulkaninstance.h>
 #include <ext/imgui/include/imgui/imgui.h>
+#include "imgui/imgui_impl_glfw.h"
 #include <ext/GLFW/include/GLFW/glfw3.h>
 #endif // WATTY_VULKAN
 
@@ -59,8 +60,8 @@ namespace letc {namespace graphics {
 		void listenForInput();
 		void clear() const;
 
-		inline int getWidth() const { return Window::m_Width; };
-		inline int getHeight() const { return Window::m_Height; };
+		inline int getNumColumns() const { return Window::m_Width; };
+		inline int getNumRows() const { return Window::m_Height; };
 
 		bool keyWasPressed(unsigned int keycode) const;
 		bool keyIsDown(unsigned int keycode) const;
@@ -86,7 +87,7 @@ namespace letc {namespace graphics {
 		friend void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 	};
 
-
+#ifdef WATTY_OPENGL
 	static void GLAPIENTRY openglCallbackFunction(GLenum source,
 			GLenum type,
 			GLuint id,
@@ -95,5 +96,5 @@ namespace letc {namespace graphics {
 			const GLchar* message,
 			const void* userParam);
 
-
+#endif
 }}

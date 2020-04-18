@@ -11,7 +11,7 @@ namespace letc {namespace graphics {
 		glDeleteVertexArrays(1, &m_arrayID);
 	}
 
-	void VertexArray::addBuffer(Buffer* buffer, GLuint index){
+	void VertexArray::addBuffer(Buffer* buffer, unsigned int index){
 		bind();
 		buffer->bind();
 

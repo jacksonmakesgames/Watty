@@ -1,4 +1,4 @@
-#include "VulkanBuffer.h"
+#include <graphics/Vulkan/VulkanBuffer.h>
 namespace letc {namespace graphics {
 	
 	VulkanBuffer::VulkanBuffer(const VulkanDevice& device, void* ptr, unsigned int elementSize, unsigned int count)

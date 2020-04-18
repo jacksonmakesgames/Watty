@@ -1,4 +1,4 @@
-#include "VulkanSwapChain.h"
+#include <graphics/Vulkan/VulkanSwapChain.h>
 namespace letc { namespace graphics {
 
 	VulkanSwapChain::VulkanSwapChain(const VulkanDevice & device, const VkSurfaceKHR & surface, const VulkanPhysicalDevice& physicalDevice, float width, float height){
