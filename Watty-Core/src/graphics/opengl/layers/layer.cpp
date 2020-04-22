@@ -1,8 +1,17 @@
 #include <graphics/layers/layer.h>
 namespace letc {
 	Layer::Layer(std::string name, graphics::Renderer2D* renderer, graphics::Shader* shader)
-	: name(name){
+	: name(name), m_enabledLastFrame(enabled){
 		m_shader = shader;
+		m_renderer = renderer;
+		m_shader->enable();
+		m_shader->disable();
+	}
+
+	Layer::Layer(std::string name, graphics::Renderer2D* renderer)
+		:name(name), m_enabledLastFrame(enabled)
+	{
+		m_shader = new graphics::Shader();
 		m_renderer = renderer;
 		m_shader->enable();
 		m_shader->disable();
@@ -89,6 +98,7 @@ namespace letc {
 
 	void Layer::setProjection(glm::mat4 projection)
 	{
+		mProjection = projection;
 		m_shader->enable();
 		m_shader->setUniformMat4("pr_matrix", projection);
 		m_shader->disable();

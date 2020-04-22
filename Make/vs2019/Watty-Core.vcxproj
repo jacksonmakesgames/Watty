@@ -161,7 +161,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WATTYRESDIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";DEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -183,7 +183,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WATTYRESDIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";DEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -205,7 +205,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WATTYRESDIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";DEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -227,7 +227,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WATTYRESDIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";NDEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -252,7 +252,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WATTYRESDIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";NDEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -277,7 +277,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WATTYRESDIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";NDEBUG;WATTY_OPENGL;_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_SDL2;WATTYVERSION=0.24;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\Watty-Core\ext\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -1060,6 +1060,7 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\font\label.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\DebugPhysicsLayer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\EngineControlLayer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\GUILayer.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\GridLayer.h" />
@@ -1084,6 +1085,7 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\math\vector3.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\math\vector4.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\DebugPhysics.h" />
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\MapBodyBuilder.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsBody2D.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsConstants.h" />
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsWorld2D.h" />
@@ -1255,6 +1257,7 @@
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\DebugPhysicsLayer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\EngineControlLayer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\GUILayer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\GridLayer.cpp" />
@@ -1268,6 +1271,7 @@
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\tilemap\TileMap.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\tilemap\TileMapLayer.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\window.cpp" />
+    <ClCompile Include="..\..\Watty-Core\src\physics\MapBodyBuilder.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsBody2D.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsConstants.cpp" />
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsWorld2D.cpp" />

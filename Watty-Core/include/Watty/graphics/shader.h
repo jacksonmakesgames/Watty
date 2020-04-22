@@ -20,6 +20,7 @@ namespace letc {namespace graphics {
 		const char* m_fragPath;
 	public:
 		Shader(const char* vertPath, const char* fragPath);
+		Shader();
 		~Shader();
 
 

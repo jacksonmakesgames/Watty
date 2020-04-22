@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlatformerDemo", "Platforme
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleGame", "SimpleGame.vcxproj", "{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TileMapDemo", "TileMapDemo.vcxproj", "{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mac64 = Debug|Mac64
@@ -67,6 +69,18 @@ Global
 		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Release|Win32.Build.0 = Release|Win32
 		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Release|Win64.ActiveCfg = Release Win64|x64
 		{69E7E094-559F-22E2-BEA6-FB3DAA7DBDD2}.Release|Win64.Build.0 = Release Win64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Debug|Mac64.ActiveCfg = Debug Mac64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Debug|Mac64.Build.0 = Debug Mac64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Debug|Win32.Build.0 = Debug|Win32
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Debug|Win64.ActiveCfg = Debug Win64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Debug|Win64.Build.0 = Debug Win64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Release|Mac64.ActiveCfg = Release Mac64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Release|Mac64.Build.0 = Release Mac64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Release|Win32.ActiveCfg = Release|Win32
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Release|Win32.Build.0 = Release|Win32
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Release|Win64.ActiveCfg = Release Win64|x64
+		{56DA3DC2-C28F-B6B7-4B84-B08EB738ADBB}.Release|Win64.Build.0 = Release Win64|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

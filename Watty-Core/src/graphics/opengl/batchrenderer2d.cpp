@@ -78,9 +78,6 @@ namespace letc {namespace graphics {
 
 		FrameInfo frameInfo = renderable->getFrameInfo();
 
-		
-
-
 		float idForShader = 0.0f;
 		if (glTID > 0) {
 			bool found = false;
@@ -107,18 +104,8 @@ namespace letc {namespace graphics {
 			m_glTIDsThisFlush.push_back(glTID);
 
 		}
-
-		//const float tw = float(1) / frameInfo.totalFrames;
-		//const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.totalFrames) * tw;
-		/*if (frameInfo.row != -1) {
-			frameInfo.currentFrame = 
-		}*/
 		const float tw = 1.0f / frameInfo.cols;
 		const float th = 1.0f / frameInfo.rows;
-
-		// WORKS FOR TILES:
-		//const float tx = ((int)frameInfo.currentFrame % frameInfo.cols) * tw;
-		//const float ty = 1- ((int)frameInfo.currentFrame / frameInfo.rows+1) * th;
 		
 		const float tx = ((int)frameInfo.currentFrame % frameInfo.rows) * tw;
 		const float ty = 1- ((int)frameInfo.currentFrame / frameInfo.cols+1) * th;

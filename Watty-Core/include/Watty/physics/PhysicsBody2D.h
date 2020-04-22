@@ -26,8 +26,10 @@ namespace letc { namespace physics {
 		b2PolygonShape m_polygonShape;
 		b2CircleShape m_circleShape;
 
+		glm::vec2 m_offset;
+
 	public:
-		PhysicsBody2D(BodyShapes shape, float xPos, float yPos, float width, float height, b2BodyType type, float bounciness = .3f, float friction = .3f);
+		PhysicsBody2D(BodyShapes shape, glm::vec2 startingPos, float width, float height, b2BodyType type, glm::vec2 offset = glm::vec2(0,0), float bounciness = .3f, float friction = .3f);
 
 		virtual void addForce(glm::vec2 direction, float amount);
 		virtual void addImpulse(glm::vec2 direction, float amount);
@@ -40,6 +42,7 @@ namespace letc { namespace physics {
 		virtual inline void enable() { m_body->SetActive(true); };
 
 		virtual glm::vec2 getBodyPosition();
+		inline virtual glm::vec2 getOffset() { return m_offset; }
 
 
 		~PhysicsBody2D();

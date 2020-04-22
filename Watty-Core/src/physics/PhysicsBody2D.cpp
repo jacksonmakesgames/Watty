@@ -1,11 +1,12 @@
 #include <physics/PhysicsBody2D.h>
 namespace letc { namespace physics {
-	PhysicsBody2D::PhysicsBody2D(BodyShapes shape, float xPos, float yPos, float width, float height, b2BodyType type, float bounciness, float friction)
+	PhysicsBody2D::PhysicsBody2D(BodyShapes shape,glm::vec2 startingPos, float width, float height, b2BodyType type, glm::vec2 offset, float bounciness, float friction)
 		:
 		m_bounciness(bounciness),
 		m_friction(friction),
 		m_size((width* PhysicsConstants::inv_pixels_per_meter) / 2.0f, (height* PhysicsConstants::inv_pixels_per_meter) / 2.0f),
-		m_worldPosition((xPos + width / 2)* PhysicsConstants::inv_pixels_per_meter, (yPos + height / 2)* PhysicsConstants::inv_pixels_per_meter),
+		m_worldPosition((startingPos.x + width / 2)* PhysicsConstants::inv_pixels_per_meter, (startingPos.y + height / 2)* PhysicsConstants::inv_pixels_per_meter),
+		m_offset(offset),
 		m_bodyType(type),
 		m_bodyDef(),
 		m_polygonShape(),
@@ -69,10 +70,6 @@ namespace letc { namespace physics {
 	glm::vec2 PhysicsBody2D::getBodyPosition()
 	{
 		b2Vec2 pos = m_body->GetPosition();
-		// quite unsure
-		/*pos.x -= m_size.x;
-		pos.y -= m_size.y;*/
-
 		pos *= PhysicsConstants::pixels_per_meter;
 		return glm::vec2(pos.x, pos.y);
 	}

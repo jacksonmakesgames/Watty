@@ -16,7 +16,7 @@ namespace letc { namespace graphics {
 		int m_vertexCount;
 
 	public:
-		GridLayer(graphics::Shader* shader,Camera& camera, Window& window);
+		GridLayer(Camera& camera, Window& window);
 
 		void draw() override;
 

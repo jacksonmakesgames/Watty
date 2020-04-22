@@ -244,8 +244,8 @@ namespace letc {namespace graphics {
 	{
 		using namespace glm;
 		vec2 pointScreenRatio = vec2();
-		pointScreenRatio.x = position.x / getNumColumns();
-		pointScreenRatio.y = (getNumRows() -position.y) / getNumRows();
+		pointScreenRatio.x = position.x / getWidth();
+		pointScreenRatio.y = (getHeight() -position.y) / getHeight();
 
 
 

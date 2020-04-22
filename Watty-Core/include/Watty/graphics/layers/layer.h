@@ -17,8 +17,10 @@ namespace letc {
 		graphics::Shader* m_shader;
 	private:
 		bool m_enabledLastFrame;
+		glm::mat4 mProjection;
 	public:
 		Layer(std::string name, graphics::Renderer2D*, graphics::Shader* shader);
+		Layer(std::string name, graphics::Renderer2D*);
 		virtual ~Layer();
 
 		virtual void add(GameObject*	gameObject);
@@ -30,6 +32,9 @@ namespace letc {
 		virtual void draw();
 		virtual void update();
 		virtual void setProjection(glm::mat4 projection);
+		inline virtual glm::mat4 getProjection() {
+			return mProjection; 
+		};
 
 		inline const std::vector<GameObject*>& getGameObjects() const { return m_gameObjects; }
 

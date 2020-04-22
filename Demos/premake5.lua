@@ -265,3 +265,55 @@ workspace("Demos")
     links {
       LIBNAME
     }
+
+------------------------------
+  -- [ PROJECT CONFIGURATION ] --
+  ------------------------------- 
+  local PROJECT = "TileMapDemo"
+  project(PROJECT)
+    kind "ConsoleApp" -- "WindowApp" removes console
+    language "C++"
+    targetdir (ROOT .. "bin/".."%{cfg.longname}") -- Where the output binary goes. This will be generated when we build from the makefile/visual studio project/etc.
+    targetname (PROJECT) -- the name of the executable saved to 'targetdir'
+    local SourceDir = ROOT .. PROJECT .. "/"
+
+ if GRAPHICS_BACKEND == "vulkan"
+    then defines{"WATTY_VULKAN"}
+  elseif GRAPHICS_BACKEND == "opengl"
+    then defines{"WATTY_OPENGL"}
+  end
+    files { 
+      SourceDir .. "**.h", 
+      SourceDir .. "**.hpp", 
+      SourceDir .. "**.cpp",
+      SourceDir .. "**.tpp"
+    }
+
+    vpaths {
+      ["Header Files/*"] = { 
+        SourceDir .. "**.h", 
+        SourceDir .. "**.hxx", 
+        SourceDir .. "**.hpp",
+      },
+      ["Source Files/*"] = { 
+        SourceDir .. "**.cxx", 
+        SourceDir .. "**.cpp",
+      }
+    }
+
+    sysincludedirs {
+      SourceDir, 
+      COREDIR .. "include/",
+      COREDIR .. "include/Watty/",
+      COREDIR
+
+
+    }
+
+    libdirs {
+     WATTYDIR .. "bin/" .. "%{cfg.longname}/"
+    }
+
+    links {
+      LIBNAME
+    }

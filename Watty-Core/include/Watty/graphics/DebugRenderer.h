@@ -42,7 +42,10 @@ public:
 	void end() override;
 	void flush(unsigned int mode, int indexCount);
 
-	inline void flush() override {};
+	void flush() override;
+
+	inline int getIndexCount() { return m_indexCount; };
+
 private:
 	void init();
 

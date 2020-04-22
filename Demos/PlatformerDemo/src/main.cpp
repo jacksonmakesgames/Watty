@@ -21,10 +21,9 @@ namespace letc {
 class PlatformerDemo : public LETC {
 private:
 	Window* m_window;
-	GUILayer* m_engineControlLayer;
 	GameObject* player; //todo make player class
 
-	float playerSpeed = 70;
+	float playerSpeed = 100;
 	float playerAcceleration = 2.0f;
 	float playerJumpForce = 70;
 
@@ -70,13 +69,18 @@ public:
 
 		player->addComponent(new PhysicsBody2D(
 			physics::BodyShapes::box,
-			playerPos.x, playerPos.y,
+			playerPos,
 			playerSize.x, playerSize.y,
-			b2_dynamicBody, 0.6f, 0.5f));
+			b2_dynamicBody, 
+			{0,0},
+			0.6f, 0.5f));
 
 		player->addAnimator();
 
-		player->getAnimator()->addAnimation(new SpriteSheetAnimation("Test", glm::vec2(32.0f, 32.0f), 10.0f, 6, true));
+		player->getAnimator()->addAnimation(new SpriteSheetAnimation(
+			SpriteSheetAnimInfo{
+			"Test",10.0f, 1, 6, true}
+		));
 
 		player->getAnimator()->play("Test");
 
@@ -95,7 +99,7 @@ public:
 		glm::vec2 floorSize(10000000, 2);
 		GameObject* floor = new GameObject(floorPos, floorSize);
 		floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-		floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
+		floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
 		layer0->add(floor);
 
 		for (int x = 0; x < 100; x+=10)
@@ -107,31 +111,15 @@ public:
 				floorSize = glm::vec2(5, 2);
 				GameObject* floor = new GameObject(floorPos, floorSize);
 				floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-				floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
+				floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
 				layer0->add(floor);
 			}
 
 		}
 		
 
-		//layer0->add(new GameObject(glm::vec2(0, 100), glm::vec2(2, 2), new Sprite(Color::brown)));
-
-
-
-
-
 		glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 
-
-		//m_camera = new Camera(&layers, glm::vec3(0, 0, -10), glm::vec2(32.0f, 18.0f), 20, CameraMode::orthographic);
-
-		GridLayer* gridLayer = new GridLayer(new Shader(VERTPATH, FRAGUNLITPATH), *sceneCamera, *m_window);
-		layers.push_back(gridLayer);
-		gridLayer->disable();
-
-		EngineControlLayer* engineControlLayer = new EngineControlLayer("LETC GUI Layer", debugPhysics, resetFlag, &Window::useVSync, layers, new Shader(VERTPATH, FRAGUNLITPATH));
-		layers.push_back(engineControlLayer);
-		engineControlLayer->disable();
 
 	}
 

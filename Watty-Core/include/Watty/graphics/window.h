@@ -60,8 +60,8 @@ namespace letc {namespace graphics {
 		void listenForInput();
 		void clear() const;
 
-		inline int getNumColumns() const { return Window::m_Width; };
-		inline int getNumRows() const { return Window::m_Height; };
+		inline int getWidth() const { return Window::m_Width; };
+		inline int getHeight() const { return Window::m_Height; };
 
 		bool keyWasPressed(unsigned int keycode) const;
 		bool keyIsDown(unsigned int keycode) const;

@@ -14,6 +14,7 @@ local LIBNAME = CORE .. "_v" .. WATTYVERSION
 ---------------------------------
 
 workspace("Watty")
+local RESDIR os.getcwd();
 
   configurations { "Debug", "Release" }                   -- Optimization/General config mode in VS
   platforms      { "Win32", "Win64", "Mac64" }            -- Dropdown platforms section in VS
@@ -30,6 +31,9 @@ workspace("Watty")
 
   location( ROOT .. "Make/" .. project_action ) -- Where the project files (vs project, solution, etc) go
 
+defines{
+"WATTYRESDIR=" .. "\"" .. path.getabsolute(os.getcwd(), "/") .. "/" ..CORE .."/res/\""
+}
 
   -------------------------------
   -- [ COMPILER/LINKER CONFIG] --

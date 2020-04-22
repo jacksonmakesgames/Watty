@@ -1,8 +1,8 @@
 #include <graphics/layers/EngineControlLayer.h>
 namespace letc {namespace graphics {
 
-	EngineControlLayer::EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers, graphics::Shader* shader) :
-		GUILayer(name, shader),
+	EngineControlLayer::EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers) :
+		GUILayer(name, new graphics::Shader()),
 		m_debugPhysics(debugPhysics),
 		m_appLayers(appLayers),
 		m_appReset(appReset),
@@ -22,6 +22,8 @@ namespace letc {namespace graphics {
 				ImGui::Text("%4d draws/frame", Renderer2D::globalFlushesThisFrame); // TODO: note that global flushes this frame will only be accurate if this layer is last layer in stack
 			}ImGui::End();
 
+			graphics::Renderer2D::globalFlushesThisFrame = 0; // TODO: could be inaccurate if 
+
 
 			//layers:
 			ImGui::Begin("Layers"); {
@@ -39,7 +41,11 @@ namespace letc {namespace graphics {
 					ImGui::Checkbox(item.text.c_str(), &item.layer->enabled);
 					ImGui::PopStyleColor();
 				}
+#ifdef DEBUG
 				ImGui::Checkbox("Debug Physics", &m_debugPhysics);
+
+#endif // DEBUG
+
 
 				ImGui::ListBoxFooter();
 				ImGui::PopItemWidth();

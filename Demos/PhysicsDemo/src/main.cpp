@@ -28,8 +28,6 @@ namespace letc {
 class PhysicsDemo : public LETC {
 	private:
 		Window* m_window;
-
-		GUILayer* m_engineControlLayer;
 		Label* fpsLabel;
 		Label* upsLabel;
 		Label* mpsLabel;
@@ -65,7 +63,7 @@ class PhysicsDemo : public LETC {
 		void init() override {
 			m_window = createWindow("This little engine could", 1280, 720, false, false);
 			Window::setVSync(true);
-			sceneCamera->setSize({48,27});
+			//sceneCamera->setSize({48,27});
 			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
 			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
@@ -100,9 +98,12 @@ class PhysicsDemo : public LETC {
 
 			player->addComponent(new PhysicsBody2D(
 				physics::BodyShapes::circle,
-				playerPos.x, playerPos.y,
+				playerPos,
 				playerSize.x, playerSize.y,
-				b2_dynamicBody, 0.6f, 0.5f));
+				b2_dynamicBody,
+				glm::vec2(),
+				0.6f, 0.5f));
+
 			player->setTag("Player");
 			layer0->add(player);
 
@@ -113,7 +114,7 @@ class PhysicsDemo : public LETC {
 			glm::vec2 floorSize(32, 2);
 			GameObject* floor = new GameObject(floorPos, floorSize);
 			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-			floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos.x, floorPos.y, floorSize.x, floorSize.y, b2_staticBody));
+			floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floor);
 			
@@ -121,7 +122,7 @@ class PhysicsDemo : public LETC {
 			glm::vec2 floorSizeL(2, 18);
 			GameObject* floorL = new GameObject(floorPosL, floorSizeL);
 			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
-			floorL->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, b2_staticBody));
+			floorL->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosL, floorSizeL.x, floorSizeL.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floorL);
 			
@@ -129,7 +130,7 @@ class PhysicsDemo : public LETC {
 			glm::vec2 floorSizeR(2, 18);
 			GameObject* floorR = new GameObject(floorPosR, floorSizeR);
 			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
-			floorR->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, b2_staticBody));
+			floorR->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosR, floorSizeR.x, floorSizeR.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			layer0->add(floorR);
 
@@ -161,10 +162,9 @@ class PhysicsDemo : public LETC {
 			//layers.push_back(gridLayer);
 			//gridLayer->disable();
 
-			EngineControlLayer* engineControlLayer = new EngineControlLayer("Watty {} Layer", debugPhysics, resetFlag, &Window::useVSync, layers, new Shader(VERTPATH, FRAGUNLITPATH));
-			layers.push_back(engineControlLayer);
-			engineControlLayer->disable();
-
+#ifdef DEBUG
+			getLayerByName("Engine Control")->disable();
+#endif
 
 			//m_camera = new Camera(&layers, glm::vec3(0, 0, -1), glm::vec2(32.0f, 18.0f), 20, CameraMode::orthographic);
 
@@ -173,7 +173,6 @@ class PhysicsDemo : public LETC {
 		void update() override {
 		
 			getInput();
-			PhysicsWorld2D::step(gameTimer->delta);
 			LETC::update();
 
 		}
@@ -182,7 +181,6 @@ class PhysicsDemo : public LETC {
 
 			LETC::render();
 			//m_camera->update();
-			if (debugPhysics) PhysicsWorld2D::box2DWorld->DrawDebugData();
 
 		}
 
@@ -331,7 +329,7 @@ class PhysicsDemo : public LETC {
 			glm::vec3 boxPos(xScreenMousePos-boxSize.x/2.0f, yScreenMousePos-boxSize.y/2.0f, 0);
 			GameObject* box = new GameObject(boxPos, boxSize);
 			box->addComponent(new Sprite(boxPos.x, boxPos.y, boxSize.x, boxSize.y, boxTexture));
-			box->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, boxPos.x, boxPos.y, boxSize.x, boxSize.y, b2_dynamicBody));
+			box->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, boxPos, boxSize.x, boxSize.y, b2_dynamicBody));
 			box->setTag("Box");
 			for (size_t i = 0; i < layers.size(); i++)
 			{

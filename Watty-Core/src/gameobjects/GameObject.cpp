@@ -162,7 +162,7 @@ namespace letc {
 		if (m_physicsBody2D!=nullptr) {
 			glm::vec2 pos = m_physicsBody2D->getBodyPosition();
 			// todo we can make this one function call:
-			transform->setPosition(pos);
+			transform->setPosition(pos - m_physicsBody2D->getOffset());
 			transform->setRotation(m_physicsBody2D->getBody()->GetAngle());
 			//transform->setRotation(-m_physicsBody2D->getBody()->GetAngle());
 		}

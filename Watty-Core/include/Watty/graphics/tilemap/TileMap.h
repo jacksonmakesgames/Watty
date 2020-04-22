@@ -2,6 +2,8 @@
 #include "Tile.h"
 #include "TileMapLayer.h"
 #include <utils/file_utils.h>
+#include <graphics/tilemap/TileMap.h>
+#include <physics/MapBodyBuilder.h>
 
 
 namespace letc {namespace graphics {
@@ -18,6 +20,8 @@ namespace letc {namespace graphics {
 		float mTileWidth;
 		const char* mPathToMap;
 		const char* mPathToImage;
+		std::vector<std::vector<glm::vec2>> mPhysicsShapes;
+		void generatePhysicsFromLayer(json layer);
 
 
 	public:
@@ -25,12 +29,16 @@ namespace letc {namespace graphics {
 		const void setPixelToMeterRatio(float newRatio);
 		const void reloadMap();
 
+		inline const std::vector<std::vector<glm::vec2>> getPhysicsShapes() { return mPhysicsShapes; }
+
 		inline const int getNumColumns() { return mTilesPerRow; }
 		inline const int getNumRows() { return mTilesPerColumn; }
 		inline const int getWidth() { return mapSize.x; }
 		inline const int getHeight() { return mapSize.y; }
 		inline std::vector<TileMapLayer*> getLayers() { return mLayers; }
 		
+		void buildPhysicsShapes();
+
 		void submit(Renderer2D* renderer)const override{
 			renderer->push(glm::scale(glm::mat4(1.0f), glm::vec3(size.x, size.y, 0)));
 			renderer->push(glm::translate(glm::mat4(1.0f), glm::vec3(getPosition().x, getPosition().y, 0)));
@@ -39,7 +47,6 @@ namespace letc {namespace graphics {
 			}
 			renderer->pop();
 			renderer->pop();
-
 		}
 		
 		~TileMap() {

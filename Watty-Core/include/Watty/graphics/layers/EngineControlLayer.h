@@ -20,7 +20,7 @@ namespace letc { namespace graphics {
 		std::vector<Layer*>& m_appLayers;
 
 	public:
-		EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers, graphics::Shader* shader);
+		EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers);
 		void draw() override;
 
 	private:

@@ -43,7 +43,7 @@ namespace letc { namespace graphics {
 
 		//float r, g, b, a = 0;
 
-		static WattyColor BLACK;
+		static WattyColor black;
 		static WattyColor white;
 		static WattyColor red;
 		static WattyColor blue;

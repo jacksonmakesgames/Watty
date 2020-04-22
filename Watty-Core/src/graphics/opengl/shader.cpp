@@ -15,6 +15,20 @@ namespace letc {namespace graphics {
 		setUniform1iv("textures", texIDs, 32);
 	}
 
+	Shader::Shader()
+	{
+		m_vertPath = WATTYRESDIR "shaders/default.vert";
+		m_fragPath = WATTYRESDIR "shaders/default.frag";
+		m_shaderID = load();
+
+		GLint texIDs[32];
+		for (size_t i = 0; i < 32; i++)
+			texIDs[i] = i;
+		enable();
+		setUniform1iv("textures", texIDs, 32);
+
+	}
+
 	Shader::~Shader(){
 		glDeleteProgram(m_shaderID);
 	}

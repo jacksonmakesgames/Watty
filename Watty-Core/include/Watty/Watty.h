@@ -15,9 +15,11 @@
 #endif
 
 #include "./graphics/tilemap/Tilemap.h"
+#include "./physics/MapBodyBuilder.h"
 #include "./graphics/sprite.h"
 #include "./graphics/layers/layer.h"
 #include "./graphics/layers/GuiLayer.h"
+#include "./graphics/layers/DebugPhysicsLayer.h"
 #include "./graphics/layers/EngineControlLayer.h"
 #include "./graphics/layers/GridLayer.h"
 #include "graphics/ParticleSystem.h"
@@ -107,8 +109,9 @@ namespace letc {
 		// runs LETC_UPDATE_RATE times per second
 		virtual void update() {
 			updates++;
-
 			gameTimer->update();
+			
+			physics::PhysicsWorld2D::step(gameTimer->delta);
 
 
 			for (size_t i = 0; i < layers.size(); i++)
@@ -131,13 +134,15 @@ namespace letc {
 
 		// runs as fast as possible (unless vsync is enabled, then it runs at refresh rate)
 		virtual void render() {
+#ifdef DEBUG 
+			if(getLayerByName("Debug Physics Layer"))
+				getLayerByName("Debug Physics Layer")->enabled = debugPhysics;
+#endif
 			for (size_t i = 0; i < layers.size(); i++){
 				layers[i]->draw();
 			}
 			m_window->listenForInput();
 
-			graphics::Renderer2D::globalFlushesThisFrame = 0;
-			//ImGui::Render();
 
 
 		}
@@ -149,8 +154,15 @@ namespace letc {
 private:
 	void run() {
 		Random::init();
-		letc::physics::DebugPhysics::init(&(sceneCamera->position));
+
+#ifdef DEBUG 
+		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
 		letc::physics::PhysicsWorld2D::setDebugDraw();
+		layers.push_back(new graphics::DebugPhysicsLayer(*sceneCamera, *m_window));
+		layers.push_back(new graphics::GridLayer(*sceneCamera, *m_window));
+		layers.push_back(new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, layers));
+
+#endif
 		m_time = new Timer();
 		float timer = 0.0f;
 		float updateTimer = 0.0f;
@@ -194,5 +206,6 @@ private:
 	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
 	glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
+	glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
 
 }

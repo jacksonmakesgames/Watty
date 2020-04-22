@@ -316,6 +316,33 @@
     <Filter Include="Source Files\ext\Box2D\Rope">
       <UniqueIdentifier>{BC88041A-2896-3200-B17C-2EEB1D89FEB6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ext\SoLoud">
+      <UniqueIdentifier>{AEE3DEB9-1A1B-2751-2325-8B748FDB4D4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\monotone">
+      <UniqueIdentifier>{EC398F35-D88A-7A77-01EF-6839ED9E0DE1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\openmpt">
+      <UniqueIdentifier>{40C0E009-ACA3-EF49-B5A6-1D862109B69A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\sfxr">
+      <UniqueIdentifier>{80B119B1-6C6C-095D-1524-82A701BE53ED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\speech">
+      <UniqueIdentifier>{3571F65E-2197-C0C5-0ADD-4591F6A1E591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\tedsid">
+      <UniqueIdentifier>{3A3C8460-2662-4EC7-0FA8-D392FB6C7393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\vic">
+      <UniqueIdentifier>{5FD40091-CBE1-2E77-54C8-2A62C0D4FA2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\vizsn">
+      <UniqueIdentifier>{37D987D4-A3F1-6EFE-6C9E-FE97D8750398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext\SoLoud\wav">
+      <UniqueIdentifier>{ABD70091-17E5-2E77-A0CB-2A620CD8FA2D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\ext\freetype-gl">
       <UniqueIdentifier>{3C4041B1-28FB-305D-D1B2-A9A7BD4C7BED}</UniqueIdentifier>
     </Filter>
@@ -330,33 +357,6 @@
     </Filter>
     <Filter Include="Source Files\ext\soloud\src">
       <UniqueIdentifier>{05898D9A-7196-BB80-FA7C-B76B66898737}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource">
-      <UniqueIdentifier>{17261A79-83B5-DB63-8CB1-BC7BF8BF1670}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\monotone">
-      <UniqueIdentifier>{7542EAA8-61EB-51D8-8A81-6D5776896C19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\openmpt">
-      <UniqueIdentifier>{A95B48B0-1597-A873-1E8C-25038A462DA4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\sfxr">
-      <UniqueIdentifier>{89DD9B16-75F0-9B6F-1EDA-785C0ACC38BD}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\speech">
-      <UniqueIdentifier>{7EC3B32D-6A41-04C7-5339-C25E3F5646EF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\tedsid">
-      <UniqueIdentifier>{838E412F-6F0C-92C8-5804-50604421D4F0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\vic">
-      <UniqueIdentifier>{48237927-B488-0CAE-3D61-AE86A9C5011D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\vizsn">
-      <UniqueIdentifier>{60864FEA-CCF6-5163-9515-CCEB01458A64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\audiosource\wav">
-      <UniqueIdentifier>{94267927-008C-0CAE-8964-AE86F5C8011D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ext\soloud\src\backend">
       <UniqueIdentifier>{DC5CD677-4816-4122-D175-5BFC3D2EF791}</UniqueIdentifier>
@@ -405,12 +405,6 @@
     </Filter>
     <Filter Include="Source Files\ext\soloud\src\c_api">
       <UniqueIdentifier>{B02B8B70-1C9A-E0EF-6583-9BEFD130D68B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\core">
-      <UniqueIdentifier>{9DA49FDC-89F5-8A1E-B259-79E09E091E88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ext\soloud\src\filter">
-      <UniqueIdentifier>{BA29AB89-A665-AEF3-0F78-C6EAFBD2560E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ext\soloud\src\tools">
       <UniqueIdentifier>{65CDC771-D13B-1DF1-1A25-D8F086D2128D}</UniqueIdentifier>
@@ -2754,6 +2748,9 @@
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\imgui\imgui_impl_opengl3.h">
       <Filter>Header Files\include\Watty\graphics\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\DebugPhysicsLayer.h">
+      <Filter>Header Files\include\Watty\graphics\layers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\graphics\layers\EngineControlLayer.h">
       <Filter>Header Files\include\Watty\graphics\layers</Filter>
     </ClInclude>
@@ -2824,6 +2821,9 @@
       <Filter>Header Files\include\Watty\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\DebugPhysics.h">
+      <Filter>Header Files\include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Watty-Core\include\Watty\physics\MapBodyBuilder.h">
       <Filter>Header Files\include\Watty\physics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Watty-Core\include\Watty\physics\PhysicsBody2D.h">
@@ -3021,58 +3021,58 @@
       <Filter>Source Files\ext\glad\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\monotone\soloud_monotone.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\monotone</Filter>
+      <Filter>Source Files\ext\SoLoud\monotone</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\openmpt\soloud_openmpt.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\openmpt</Filter>
+      <Filter>Source Files\ext\SoLoud\openmpt</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\openmpt\soloud_openmpt_dll.c">
-      <Filter>Source Files\ext\soloud\src\audiosource\openmpt</Filter>
+      <Filter>Source Files\ext\SoLoud\openmpt</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\sfxr\soloud_sfxr.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\sfxr</Filter>
+      <Filter>Source Files\ext\SoLoud\sfxr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\darray.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\klatt.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\resonator.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\soloud_speech.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\speech\tts.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\speech</Filter>
+      <Filter>Source Files\ext\SoLoud\speech</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\sid.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\tedsid</Filter>
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\soloud_tedsid.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\tedsid</Filter>
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\tedsid\ted.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\tedsid</Filter>
+      <Filter>Source Files\ext\SoLoud\tedsid</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\vic\soloud_vic.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\vic</Filter>
+      <Filter>Source Files\ext\SoLoud\vic</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\vizsn\soloud_vizsn.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\vizsn</Filter>
+      <Filter>Source Files\ext\SoLoud\vizsn</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\dr_impl.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\soloud_wav.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\soloud_wavstream.cpp">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\audiosource\wav\stb_vorbis.c">
-      <Filter>Source Files\ext\soloud\src\audiosource\wav</Filter>
+      <Filter>Source Files\ext\SoLoud\wav</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\backend\alsa\soloud_alsa.cpp">
       <Filter>Source Files\ext\soloud\src\backend\alsa</Filter>
@@ -3129,85 +3129,85 @@
       <Filter>Source Files\ext\soloud\src\c_api</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_audiosource.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_bus.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_3d.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_basicops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_faderops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_filterops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_getters.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_setters.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_voicegroup.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_core_voiceops.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fader.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fft.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_fft_lut.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_file.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_filter.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_queue.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\core\soloud_thread.cpp">
-      <Filter>Source Files\ext\soloud\src\core</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_bassboostfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_biquadresonantfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_dcremovalfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_echofilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_fftfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_flangerfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_lofifilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_robotizefilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\filter\soloud_waveshaperfilter.cpp">
-      <Filter>Source Files\ext\soloud\src\filter</Filter>
+      <Filter>Source Files\ext\SoLoud</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\ext\soloud\src\tools\codegen\main.cpp">
       <Filter>Source Files\ext\soloud\src\tools\codegen</Filter>
@@ -3311,6 +3311,9 @@
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\imgui\imgui_widgets.cpp">
       <Filter>Source Files\src\graphics\opengl\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\DebugPhysicsLayer.cpp">
+      <Filter>Source Files\src\graphics\opengl\layers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\layers\EngineControlLayer.cpp">
       <Filter>Source Files\src\graphics\opengl\layers</Filter>
     </ClCompile>
@@ -3349,6 +3352,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\graphics\opengl\window.cpp">
       <Filter>Source Files\src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Watty-Core\src\physics\MapBodyBuilder.cpp">
+      <Filter>Source Files\src\physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Watty-Core\src\physics\PhysicsBody2D.cpp">
       <Filter>Source Files\src\physics</Filter>
