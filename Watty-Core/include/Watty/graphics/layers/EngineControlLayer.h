@@ -1,6 +1,7 @@
 #pragma once
 #include "GuiLayer.h"
 #include "../window.h"
+#include <gameobjects/GameObject.h>
 
 namespace letc { namespace graphics {
 
@@ -9,6 +10,13 @@ namespace letc { namespace graphics {
 		struct SelectableLayer {
 			SelectableLayer(Layer* layer) :text(layer->name), layer(layer) {}
 			Layer* layer;
+			std::string text = "";
+			bool IsSelected = false;
+		};
+		
+		struct SelectableObject {
+			SelectableObject(GameObject* obj) :text(object->name), object(obj){}
+			GameObject* object;
 			std::string text = "";
 			bool IsSelected = false;
 		};

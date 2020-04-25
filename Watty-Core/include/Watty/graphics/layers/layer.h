@@ -1,5 +1,6 @@
 #pragma once
 #include "../renderer2d.h"
+#include "../batchrenderer2d.h"
 #include "../shader.h"
 #include "../../gameobjects/GameObject.h"
 #include <vector>
@@ -9,6 +10,7 @@ namespace letc {
 	class Layer {
 	public:
 		bool enabled = true;
+		bool hidden = false;
 		std::string name;
 
 	protected:
@@ -21,6 +23,7 @@ namespace letc {
 	public:
 		Layer(std::string name, graphics::Renderer2D*, graphics::Shader* shader);
 		Layer(std::string name, graphics::Renderer2D*);
+		Layer(std::string name);
 		virtual ~Layer();
 
 		virtual void add(GameObject*	gameObject);

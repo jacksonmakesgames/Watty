@@ -11,6 +11,7 @@ namespace letc { namespace graphics {
 	WattyColor Color::orange	= WattyColor(0xff00a5ff);
 	WattyColor Color::purple	= WattyColor(0xffad0d6a);
 	WattyColor Color::brown		= WattyColor(0xff13458b);
+	WattyColor Color::yellow		= WattyColor(0xff00ffff);
 
 
 } }

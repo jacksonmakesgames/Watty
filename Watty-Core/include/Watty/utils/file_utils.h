@@ -7,10 +7,10 @@
 #include <ext/json/include/json.hpp>
 //#include <GL/glew.h>
 #ifdef WATTY_OPENGL
-#include <ext/glad/include/glad/glad.h>
-
+	#include <ext/glad/include/glad/glad.h>
 #endif // WATTY_OPENGL
-#include <ext/FreeImage/include/FreeImage.h>
+#include <stb_image.h>
+//#include <ext/FreeImage/include/FreeImage.h>
 
 
 
@@ -18,49 +18,59 @@ namespace letc {
 	using json = nlohmann::json;
 
 
-	static BYTE* load_image(const char* filename, int* width, int* height)
+	static uint8_t* load_image(const char* filename, int* width, int* height)
 	{
-		//image format
-		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-		//pointer to the image, once loaded
-		FIBITMAP* dib = nullptr;
+#ifdef WATTY_OPENGL
+		stbi_set_flip_vertically_on_load(true);
+#endif
+		int bpp;
+
+		uint8_t* rgba_image = stbi_load(filename, width, height, &bpp, 4);
+
+		return rgba_image;
 
 
-		//check the file signature and deduce its format
-		fif = FreeImage_GetFileType(filename, NULL);
-		//if still unknown, try to guess the file format from the file extension
-		if (fif == FIF_UNKNOWN)
-			fif = FreeImage_GetFIFFromFilename(filename);
-		//if still unkown, return failure
-		if (fif == FIF_UNKNOWN)
-			return nullptr;
+		////image format
+		//FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+		////pointer to the image, once loaded
+		//FIBITMAP* dib = nullptr;
 
-		//check that the plugin has reading capabilities and load the file
-		if (FreeImage_FIFSupportsReading(fif))
-			dib = FreeImage_Load(fif, filename);
-		//if the image failed to load, return failure
-		if (!dib)
-			return nullptr;
 
-		//retrieve the image data
-		BYTE* pixels = FreeImage_GetBits(dib);
+		////check the file signature and deduce its format
+		//fif = FreeImage_GetFileType(filename, NULL);
+		////if still unknown, try to guess the file format from the file extension
+		//if (fif == FIF_UNKNOWN)
+		//	fif = FreeImage_GetFIFFromFilename(filename);
+		////if still unkown, return failure
+		//if (fif == FIF_UNKNOWN)
+		//	return nullptr;
 
-		//get the image width and height
-		*width = FreeImage_GetWidth(dib);
-		*height = FreeImage_GetHeight(dib);
+		////check that the plugin has reading capabilities and load the file
+		//if (FreeImage_FIFSupportsReading(fif))
+		//	dib = FreeImage_Load(fif, filename);
+		////if the image failed to load, return failure
+		//if (!dib)
+		//	return nullptr;
 
-		int bits = FreeImage_GetBPP(dib);
+		////retrieve the image data
+		//BYTE* pixels = FreeImage_GetBits(dib);
 
-		size_t size = *width * *height * bits / 8;
-		BYTE* output = new BYTE[size];
-		memcpy(output, pixels, size);
-		FreeImage_Unload(dib);
+		////get the image width and height
+		//*width = FreeImage_GetWidth(dib);
+		//*height = FreeImage_GetHeight(dib);
 
-		//if this somehow one of these failed (they shouldn't), return failure
-		if ((output == 0) || (width == 0) || (height == 0))
-			return nullptr;
+		//int bits = FreeImage_GetBPP(dib);
 
-		return output;
+		//size_t size = *width * *height * bits / 8;
+		//BYTE* output = new BYTE[size];
+		//memcpy(output, pixels, size);
+		//FreeImage_Unload(dib);
+
+		////if this somehow one of these failed (they shouldn't), return failure
+		//if ((output == 0) || (width == 0) || (height == 0))
+		//	return nullptr;
+
+		//return output;
 
 	}
 

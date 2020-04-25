@@ -23,7 +23,7 @@ private:
 	Window* m_window;
 	GameObject* player; //todo make player class
 
-	float playerSpeed = 100;
+	float playerSpeed = 400;
 	float playerAcceleration = 2.0f;
 	float playerJumpForce = 70;
 
@@ -35,7 +35,7 @@ public:
 		glm::vec2 screenSize(1280.0f, 720.0f);
 
 		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, false);
-		m_window->setVSync(true);
+		m_window->setVSync(false);
 
 		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 		letc::physics::PhysicsWorld2D::setDebugDraw();
@@ -124,7 +124,6 @@ public:
 	}
 
 	void update() override {
-		getInput();
 		PhysicsWorld2D::step(gameTimer->delta);
 		LETC::update();
 		sceneCamera->position = { player->transform->getPosition().x, player->transform->getPosition().y+3.0f, -1.0f};
@@ -132,6 +131,8 @@ public:
 	}
 
 	void render() override {
+		getInput();
+
 		LETC::render();
 		if (debugPhysics) PhysicsWorld2D::box2DWorld->DrawDebugData();
 

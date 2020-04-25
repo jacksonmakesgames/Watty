@@ -75,10 +75,10 @@ class PhysicsDemo : public LETC {
 			Layer* layer0 = new Layer("Ball Layer", new BatchRenderer2D(), shader0);
 			layers.push_back(layer0);
 
-			Layer* uiLayer = new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
-			layers.push_back(uiLayer);
+			Layer* uiLayer = new Layer("UI Layer");
+			//layers.push_back(uiLayer);
 			
-			FontManager::add(new Font("Roboto", FONTPATH, 10, fontScale)); 
+			//FontManager::add(new Font("Roboto", FONTPATH, 10, fontScale)); 
 
 			// background
 			layer0->add(
@@ -135,7 +135,9 @@ class PhysicsDemo : public LETC {
 			layer0->add(floorR);
 
 			glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
-
+			
+			//FONTS:
+			/*
 			//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
 			FontManager::add(new Font("Roboto",FONTPATH, 16, screenScale));
 			FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
@@ -151,7 +153,7 @@ class PhysicsDemo : public LETC {
 			profileGroup->transform->addChild(upsGO->transform);
 			profileGroup->transform->addChild(mpsGO->transform);
 			uiLayer->add(profileGroup);
-
+			*/
 			AudioClip* clip = new AudioClip("slow_motion", MUSICPATH);
 			AudioManager::addClip(clip);
 			AudioManager::getClip("slow_motion")->play(true);
@@ -162,9 +164,6 @@ class PhysicsDemo : public LETC {
 			//layers.push_back(gridLayer);
 			//gridLayer->disable();
 
-#ifdef DEBUG
-			getLayerByName("Engine Control")->disable();
-#endif
 
 			//m_camera = new Camera(&layers, glm::vec3(0, 0, -1), glm::vec2(32.0f, 18.0f), 20, CameraMode::orthographic);
 
@@ -185,9 +184,9 @@ class PhysicsDemo : public LETC {
 		}
 
 		void tick() override {
-			fpsLabel->text = std::to_string(getFramesPerSecond()) + " frames / second";
-			upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
-			mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
+			//fpsLabel->text = std::to_string(getFramesPerSecond()) + " frames / second";
+			//upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
+			//mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
 			LETC::tick();
 		}
 
@@ -242,7 +241,7 @@ class PhysicsDemo : public LETC {
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
 
-			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
+			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -262,7 +261,7 @@ class PhysicsDemo : public LETC {
 					m_grabbedBox = callback->gameObjects[0];
 				}
 			}
-			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
+			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
 				if (m_grabbedBox) {
 					float xSum = 0;
 					for (size_t i = 0; i < m_lastXs.size(); i++)
@@ -288,7 +287,7 @@ class PhysicsDemo : public LETC {
 			}
 
 
-			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
+			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -302,7 +301,7 @@ class PhysicsDemo : public LETC {
 				}
 			}
 
-			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Watty {} Layer")->enabled)) {
+			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
 				if (m_grabbedBox != nullptr) {
 					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(glm::vec2(0,0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());

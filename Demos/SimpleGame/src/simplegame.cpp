@@ -68,8 +68,6 @@ public:
 
 
 		//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
-		FontManager::add(new Font("Roboto", FONTPATH, 16, screenScale));
-		FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
 
 		/*Group* profileGroup = new Group(math::Matrix4::translation(glm::vec3(-15.5, 6.8, 0)));
 		profileGroup->add(new GameObject(glm::vec3(0, 0, 0), glm::vec2( 3.8f, 1.8), new Sprite(0x80808080)));

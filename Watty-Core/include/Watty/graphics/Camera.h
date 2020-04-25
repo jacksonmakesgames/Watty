@@ -31,7 +31,7 @@ namespace letc { namespace graphics {
 		inline void setDepth(float newDepth) { m_clippingDepth = newDepth; }
 		inline float getDepth() { return m_clippingDepth; }
 		inline void setProjection(glm::mat4 newProjection) { m_projection = newProjection; m_mode = CameraMode::custom; }
-		~Camera();
+		~Camera() {};
 
 		void update();
 		

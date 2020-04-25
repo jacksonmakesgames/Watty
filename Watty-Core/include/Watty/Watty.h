@@ -5,8 +5,8 @@
 #ifdef WATTY_OPENGL
 	#include "./graphics/window.h"
 	bool letc::graphics::Window::useVSync = false;
-	#include <graphics/font/label.h>
-	#include "./graphics/font/label.h"
+	//#include <graphics/font/label.h>
+	//#include "./graphics/font/label.h" //TODO
 	#include "./graphics/renderer2d.h"
 	#include "./graphics/batchrenderer2d.h"
 	#include "./graphics/shader.h"
@@ -32,8 +32,14 @@
 #include "./physics/QueryAABBCallback.h"
 #include "ext/imgui/include/imgui/imgui.h"
 
+//Should be last so it is only included once!
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
+#define STB_TRUETYPE_IMPLEMENTATION
+#include <stb_truetype.h>
 
+	
 
 namespace letc {
 
@@ -203,6 +209,7 @@ private:
 		}
 	}
 	};
+
 	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
 	glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;

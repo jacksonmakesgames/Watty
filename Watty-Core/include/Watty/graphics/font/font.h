@@ -1,7 +1,7 @@
 #pragma once
 #ifdef WATTY_OPENGL
 // TODO: Abstract out atlases and fonts so that we can use this same header with vulkan
-#include <ext/freetype-gl/freetype-gl.h>
+//#include <ext/freetype-gl/freetype-gl.h>
 #endif
 
 #include <string>
@@ -12,7 +12,7 @@
 
 namespace letc {namespace graphics {
 	class Font{
-#ifdef WATTY_OPENGL
+#ifdef notused
 
 	const char* characters = " !\"#$%&'()*+,-./0123456789:;<=>?"
 			"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"

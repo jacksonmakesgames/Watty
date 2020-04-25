@@ -1,5 +1,5 @@
 #pragma once
-#include <ext/FreeImage/include/FreeImage.h>
+//#include <ext/FreeImage/include/FreeImage.h>
 #include <string>
 #ifdef WATTY_OPENGL
 #include <ext/glad/include/glad/glad.h>

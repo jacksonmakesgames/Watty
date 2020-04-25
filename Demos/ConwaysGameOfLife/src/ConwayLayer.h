@@ -13,7 +13,7 @@ private:
 	bool& m_stepBackFlag;
 	bool m_x10Speed = false;
 	public:
-		ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors,bool& stepFlag,bool& stepBackFlag, graphics::Shader* shader);
+		ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors,bool& stepFlag,bool& stepBackFlag);
 
 public:
 	void draw() override;

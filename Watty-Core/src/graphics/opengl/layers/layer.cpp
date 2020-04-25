@@ -17,6 +17,15 @@ namespace letc {
 		m_shader->disable();
 	}
 
+	Layer::Layer(std::string name)
+		:name(name), m_enabledLastFrame(enabled)
+	{
+		m_shader = new graphics::Shader();
+		m_renderer = new graphics::BatchRenderer2D();
+		m_shader->enable();
+		m_shader->disable();
+	}
+
 	Layer::~Layer() {
 		delete m_shader;
 		delete m_renderer;

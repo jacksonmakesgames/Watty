@@ -8,8 +8,8 @@ namespace letc { namespace graphics {
 
 	{
 		m_pixelToMeterRatio = glm::vec2(mWindow.getWidth(),mWindow.getHeight()) / camera.getSize();
-
-
+		hidden = true; // Don't list in inspector	
+		m_renderer = m_debugRenderer;
 	}
 
 	

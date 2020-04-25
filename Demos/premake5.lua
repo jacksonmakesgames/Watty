@@ -1,3 +1,4 @@
+require "_cmake"
 local ROOT = "./"
 local WATTYVERSION = "0.24"
 local CORE = "Watty-Core"
@@ -14,13 +15,13 @@ local   GRAPHICS_BACKEND = "opengl"
 workspace("Demos")
 
   configurations { "Debug", "Release" }                   -- Optimization/General config mode in VS
-  platforms      { "Win32", "Win64", "Mac64" }            -- Dropdown platforms section in VS
+  platforms      { "Win32", "Win64", "Mac64", "Emscripten" }            -- Dropdown platforms section in VS
 
   local project_action = "UNDEFINED"
     if _ACTION ~= nill then
     	project_action = _ACTION
 	end
-	if _ACTION == "clean" then
+  if _ACTION == "clean" then
 		print("Cleaning")
    		os.rmdir(ROOT .. "Make/")
 	end
@@ -53,7 +54,34 @@ workspace("Demos")
   filter { "system:macosx", "action:gmake"}
     toolset "clang"
 
+
+
+
+
+
+
+filter { "system:windows", "action:_cmake"}
+    toolset "gcc" 
+
+
+
+
+
   filter {}  -- clear filter when you know you no longer need it!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -------------------------------
   -- [ PROJECT CONFIGURATION ] --

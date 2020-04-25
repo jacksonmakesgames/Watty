@@ -27,7 +27,7 @@ private:
 	Window* m_window;
 	GameObject* player;
 
-	double playerSpeed = 600;
+	double playerSpeed = 3000;
 	int lastPlayerDir = 0;
 	float playerAcceleration = 2.0f;
 
@@ -72,6 +72,7 @@ public:
 
 		player->addAnimator();
 
+		mainLayer->add(new GameObject(glm::vec3(.5f * m_window->getWidth(), .5f * m_window->getHeight(), 0) + .5f * 1, glm::vec2(m_window->getWidth(), m_window->getHeight()), new Sprite(new Texture("../../ConwaysGameOfLife/res/grid.png"))));
 
 		player->getAnimator()->addAnimation(new SpriteSheetAnimation(
 			SpriteSheetAnimInfo{ "idle_down",	10.0f, 4, 9, true, 3, 0 }
@@ -105,6 +106,22 @@ public:
 				sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
 			));
 
+
+
+		LETC::update();
+	}
+
+	void render() override {
+		getInput();
+		LETC::render();
+	}
+
+	~TileMapDemoApp() {
+	}
+
+
+	void getInput() {
+	
 
 		double horizontal = -1 * (double)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 		double vertical = (double)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1 * (float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
@@ -151,18 +168,7 @@ public:
 			horizontal * playerSpeed * gameTimer->delta,
 			vertical * playerSpeed * gameTimer->delta
 		));
-
-		LETC::update();
 	}
-
-	void render() override {
-
-		LETC::render();
-	}
-
-	~TileMapDemoApp() {
-	}
-
 };
 
 

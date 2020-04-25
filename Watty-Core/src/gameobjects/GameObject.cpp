@@ -1,8 +1,17 @@
 #include <gameobjects/GameObject.h>
 namespace letc {
+	GameObject::GameObject(const char* objectName, glm::vec3 position, glm::vec2 size)
+		:	transform(new Transform2D(this)),
+			name(objectName){
+		m_renderable = nullptr;
+		m_physicsBody2D = nullptr;
 
+		transform->setPosition(position);
+		transform->setSize(size);
+		transform->setRotation(0.0f);
+	}
 	GameObject::GameObject(glm::vec3 position, glm::vec2 size)
-		: transform(new Transform2D(this)) {
+		: transform(new Transform2D(this)), name("GameObject") {
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 
@@ -12,7 +21,7 @@ namespace letc {
 	}
 
 	GameObject::GameObject(glm::vec2 position, glm::vec2 size)
-		: transform(new Transform2D(this)) {
+		: transform(new Transform2D(this)), name("GameObject") {
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -20,9 +29,18 @@ namespace letc {
 		transform->setRotation(0.0f);
 
 	}
+
+	GameObject::GameObject(const char* name, glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable)
+		: transform(new Transform2D(this)), name(name) {
+		m_renderable = renderable;
+		m_physicsBody2D = nullptr;
+		transform->setPosition(position);
+		transform->setSize(size);
+		transform->setRotation(0.0f);
+	}
 	
 	GameObject::GameObject(glm::vec3 position, glm::vec2 size, graphics::Renderable2D* renderable)
-		: transform(new Transform2D(this)) {
+		: transform(new Transform2D(this)), name("GameObject") {
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -31,7 +49,7 @@ namespace letc {
 
 	}
 	GameObject::GameObject(glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable)
-		: transform(new Transform2D(this, position, size, 0.0f)) {
+		: transform(new Transform2D(this, position, size, 0.0f)), name("GameObject") {
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 	/*	transform->setPosition(position);
@@ -40,7 +58,7 @@ namespace letc {
 	}
 
 	GameObject::GameObject(glm::vec3 position, graphics::Renderable2D* renderable)
-		: transform(new Transform2D(this)) {
+		: transform(new Transform2D(this)), name("GameObject") {
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -50,7 +68,7 @@ namespace letc {
 	}
 
 	GameObject::GameObject():
-		transform(new Transform2D(this)) {
+		transform(new Transform2D(this)), name("GameObject") {
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(glm::vec2(0.0f));
@@ -91,6 +109,7 @@ namespace letc {
 	}*/
 
 	void GameObject::disable(){
+		enabled = false;
 		if (m_physicsBody2D != nullptr) 
 			m_physicsBody2D->disable();
 		for (size_t i = 0; i < transform->children.size(); i++)
@@ -98,6 +117,7 @@ namespace letc {
 	}
 
 	void GameObject::enable(){
+		enabled = true;
 		if (m_physicsBody2D != nullptr) 
 			m_physicsBody2D->enable();
 
@@ -132,8 +152,7 @@ namespace letc {
 	//}
 
 	void GameObject::submit(graphics::Renderer2D* renderer) const {
-		m_tag;
-	
+		if (!enabled) return;
 		//if (transform->children.size()>0) {
 		//	//has children, don't pass scale
 		//	renderer->push(transform->getMatrixNoScale());
@@ -157,7 +176,14 @@ namespace letc {
 
 
 	void GameObject::update(){
-		
+		if (!enabledLastFrame_ && enabled)
+			enable();
+		else if (enabledLastFrame_ && !enabled)
+			disable();
+
+		enabledLastFrame_ = enabled;
+
+		if (!enabled) return;
 
 		if (m_physicsBody2D!=nullptr) {
 			glm::vec2 pos = m_physicsBody2D->getBodyPosition();

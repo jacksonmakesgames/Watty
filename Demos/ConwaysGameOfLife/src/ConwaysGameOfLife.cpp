@@ -3,9 +3,6 @@
 #include <math.h>
 #include <deque>
 
-#define VERTPATH "../../res/shaders/basic.vert"
-#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
 #define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
 #define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
 #define GRIDTEXTUREPATH "../../res/textures/grid.png"
@@ -28,9 +25,9 @@ namespace letc {
 class PhysicsDemo : public LETC {
 private:
 	Window* m_window;
-	Label* fpsLabel;
-	Label* upsLabel;
-	Label* mpsLabel;
+	//Label* upsLabel;
+	//Label* fpsLabel;
+	//Label* mpsLabel;
 
 	float playerSpeed = 10;
 
@@ -77,14 +74,13 @@ public:
 		sceneCamera->setSize(glm::vec2(m_width, m_height));
 		sceneCamera->position = glm::vec3(800,450,0)+ .5f * cellSize;
 
-		Layer* gridLayer = new Layer("Grid Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
+		Layer* gridLayer = new Layer("Grid Layer");
 
 		layers.push_back(gridLayer);
 		gridLayer->add(new GameObject(glm::vec3(.5f*m_width,.5f*m_height,0) + .5f*cellSize, glm::vec2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
 
-
-		Layer* cellLayer = new Layer("Cell Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
-		Layer* uiLayer = new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH, FRAGUNLITPATH));
+		Layer* cellLayer = new Layer("Cell Layer");
+		Layer* uiLayer = new Layer("UI Layer");
 		layers.push_back(cellLayer);
 		layers.push_back(uiLayer);
 
@@ -102,7 +98,7 @@ public:
 			}
 		}
 
-		layers.push_back(new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, stepFlag, stepBackFlag, new Shader(VERTPATH, FRAGUNLITPATH)));
+		layers.push_back(new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, stepFlag, stepBackFlag));
 
 		lastGrids.push_back(grid);
 	
@@ -206,7 +202,7 @@ public:
 		}
 	}
 
-	void placeCell(glm::vec2 pos) {
+	void placeCell(glm::vec2 pos, bool replace=false) {
 		// round to nearest multiple of .2
 
 		pos.x = std::round(pos.x / 20) * 20;
@@ -221,8 +217,7 @@ public:
 		//int yIndex = (pos.y)/20;
 		if (xIndex >= grid.size() || yIndex >= grid[0].size()) return;
 		
-		grid[xIndex][yIndex] = true;
-
+		if (!replace && grid[xIndex][yIndex]) return; // Already has one 
 		// adjust for size
 		
 		if (funColors) {
@@ -249,6 +244,9 @@ public:
 		}
 		else
 			getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(0.2, .6f, .8f, 1.0f))));
+
+		grid[xIndex][yIndex] = true;
+
 	}
 
 
@@ -281,7 +279,7 @@ public:
 
 					pos.x = cellSize + i * 20;
 					pos.y = m_height - (j) * 20;
-					placeCell(pos);
+					placeCell(pos, true);
 
 				}
 			}
@@ -306,7 +304,7 @@ public:
 					pos.x = cellSize + i * 20;
 					pos.y = m_height - (j) * 20;
 
-					placeCell(pos);
+					placeCell(pos, true);
 
 				}
 			}
@@ -371,7 +369,7 @@ public:
 					pos.x = cellSize + i * 20;
 					pos.y = m_height - (j) * 20;
 
-					placeCell(pos);
+					placeCell(pos, true);
 
 				}
 			}

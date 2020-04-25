@@ -1,7 +1,7 @@
 #include "ConwayLayer.h"
 namespace letc { namespace graphics {
-	ConwayLayer::ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors, bool& stepFlag, bool& stepBackFlag, graphics::Shader* shader) :
-		GUILayer(name, shader),
+	ConwayLayer::ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors, bool& stepFlag, bool& stepBackFlag) :
+		GUILayer(name, new Shader()),
 		m_stepRateConway(stepRate),
 		m_running(running),
 		m_reset(reset),
@@ -16,11 +16,7 @@ namespace letc { namespace graphics {
 		if (!enabled) return;
 		// IMGUI
 		// Start the Dear ImGui frame	
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-		{
-			ImGui::Begin("Conway");
+		ImGui::Begin("Conway"); {
 			ImGui::Text("Simulation Speed:");
 			ImGui::SameLine();
 			ImGui::SliderFloat("", &m_stepRateInternal, .5f, 100.0f);
@@ -41,21 +37,16 @@ namespace letc { namespace graphics {
 
 			if (ImGui::Button("Clear")) {
 				m_reset = true;
-			};	
+			};
 
 			if (ImGui::BeginMenu("Settings"))
 			{
 				ImGui::Checkbox("Colors", &m_funColors);
 				ImGui::EndMenu();
 			}
-			ImGui::End();
-
-		}
-
+		}ImGui::End();
 		Layer::draw();
 
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 	}
 

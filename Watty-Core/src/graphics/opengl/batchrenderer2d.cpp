@@ -143,7 +143,8 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color){
-		using namespace ftgl;
+		return;
+		/*
 		bool found = false;
 		texture_font_t* ftFont = font.getFTFont();
 		const GLuint tid = font.getTexID();
@@ -229,7 +230,7 @@ namespace letc {namespace graphics {
 				x += glyph->advance_x/scale.x;
 			}
 		}
-
+		*/
 	}
 
 	void BatchRenderer2D::end(){

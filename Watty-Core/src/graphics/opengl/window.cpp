@@ -57,7 +57,7 @@ namespace letc {namespace graphics {
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 		glfwTerminate();
-		FontManager::clean();
+		//FontManager::clean(); //TODO
 		audio::AudioManager::clean();
 	}
 
@@ -272,7 +272,7 @@ namespace letc {namespace graphics {
 		glViewport(0, 0, width, height);
 		win->m_Width = width;
 		win->m_Height = height;
-		FontManager::remakeAllFonts(width/32.0f, height/16.0f); // NOTE: huge performance hit when resizing.. we should rethink this
+		//FontManager::remakeAllFonts(width/32.0f, height/16.0f); // NOTE: huge performance hit when resizing.. we should rethink this
 	}
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {

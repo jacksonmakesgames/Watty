@@ -54,7 +54,7 @@ namespace letc {namespace graphics {
 			}
 			else {
 				//TODO: log error
-				std::cout << "ERROR: TRIED TO POP TOO MANY MATRIX4s" << std::endl;
+				std::cout << "ERROR: TRIED TO POP TOO MANY MATRIX4s" << std::endl;	
 				return glm::mat4(1.0f);
 			}
 			m_tranformationStackBack = &m_TransformationStack.back();

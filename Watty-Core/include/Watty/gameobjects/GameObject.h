@@ -9,12 +9,18 @@
 
 namespace letc {
 	class GameObject {
+	protected:
 	public:
 		Transform2D* transform = nullptr;
+		const char* name;
+
 		//glm::vec3& position		 = glm::vec3(0.0f);
 		//glm::vec2& size			 = glm::vec2(0.0f);
 		//glm::vec3 m_parentOffset = glm::vec3(0.0f);
+		bool enabled = true;
 	private:
+		bool enabledLastFrame_ = true;
+
 		std::string m_tag = "";
 		//std::vector<GameObject*> m_children;
 		
@@ -37,12 +43,14 @@ namespace letc {
 		physics::PhysicsBody2D* m_physicsBody2D;
 
 	public:
-		GameObject(glm::vec3 position, glm::vec2 size);
+		GameObject(const char* name, glm::vec3 position, glm::vec2 size);
 		GameObject(glm::vec2 position, glm::vec2 size);
+		GameObject(glm::vec3 position, glm::vec2 size);
 		GameObject(glm::vec3 position, glm::vec2 size, graphics::Renderable2D* renderable);
 		GameObject(glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable);
 		GameObject(glm::vec3 position, graphics::Renderable2D* renderable);
 		GameObject(glm::vec2 position, graphics::Renderable2D* renderable);
+		GameObject(const char* name, glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable);
 		GameObject();
 
 		inline void setTag(std::string tag) { m_tag = tag; }

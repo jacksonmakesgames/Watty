@@ -1,0 +1,2 @@
+Note:
+	To run emscripten compiler, navigate to emsdk folder in powershell as admin, set execution policy to bypass, run emsdk_env.bat, run emcmdprompt.bat

@@ -78,7 +78,7 @@ namespace letc {namespace graphics {
 	}
 
 	GLuint Texture::load(){
-		BYTE* data = load_image(m_filename.c_str(), &m_width, &m_height);
+		uint8_t* data = load_image(m_filename.c_str(), &m_width, &m_height);
 
 		if (data == nullptr) {
 			std::cout << "Error loading texture: " << m_filename << std::endl;
@@ -98,9 +98,9 @@ namespace letc {namespace graphics {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 
 	
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
-		//TODO delete pixels
 		delete[] data;
 		return output;
 	}
