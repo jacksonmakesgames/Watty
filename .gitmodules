@@ -1,6 +1,6 @@
 [submodule "dependencies/glfw"]
 	path = dependencies/glfw
-	url = https://github.com/glfw/glfw
+	url = https://github.com/jacksonmakesgames/glfw.git
 [submodule "dependencies/stb"]
 	path = dependencies/stb
 	url = https://github.com/nothings/stb
