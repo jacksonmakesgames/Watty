@@ -69,6 +69,7 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(dependencies/glfw)
+add_subdirectory(dependencies/SDL)
 
 add_subdirectory(Watty-Core)
 
@@ -98,6 +99,7 @@ source_group("ext/Box2D"         		FILES ${SRC_BOX2D}
 ## Compile:
 add_library(${LIBNAME} STATIC
 	$<TARGET_OBJECTS:glfw>
+	$<TARGET_OBJECTS:SDL2main>
 	$<TARGET_OBJECTS:Core_v${WATTYVERSION}>
 	)
 

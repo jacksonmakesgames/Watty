@@ -7,7 +7,7 @@
 	path = dependencies/glfw
 	url = https://github.com/jacksonmakesgames/glfw/
 	branch = jackson
-[submodule "dependencies/openal-soft"]
-	path = dependencies/openal-soft
-	url = https://github.com/jacksonmakesgames/openal-soft
+[submodule "dependencies/SDL"]
+	path = dependencies/SDL
+	url = https://github.com/jacksonmakesgames/SDL-mirror
 	branch = watty
