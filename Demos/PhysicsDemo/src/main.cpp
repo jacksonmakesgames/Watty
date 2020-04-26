@@ -28,9 +28,9 @@ namespace letc {
 class PhysicsDemo : public LETC {
 	private:
 		Window* m_window;
-		Label* fpsLabel;
-		Label* upsLabel;
-		Label* mpsLabel;
+		//Label* fpsLabel;
+		//Label* upsLabel;
+		//Label* mpsLabel;
 		std::vector<GameObject*> boxes;
 		float m_gain = 0.5f;
 

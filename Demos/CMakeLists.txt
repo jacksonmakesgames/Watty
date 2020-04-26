@@ -29,8 +29,10 @@ include_directories(
 	${COREDIR}
 	${COREDIR}include/
 	${COREDIR}include/Watty
-	${COREDIR}ext/glad/include
 	${WATTYDIR}dependencies/stb
+	${WATTYDIR}dependencies/glad/include
+	${WATTYDIR}dependencies/glfw/include
+	${WATTYDIR}dependencies/box2d/include
 	) 
 
 link_directories(${COREDIR}../bin/${CMAKE_BUILD_TYPE}/)
@@ -46,7 +48,7 @@ add_subdirectory(PhysicsDemo)
 add_subdirectory(TileMapDemo)
 add_subdirectory(ConwaysGameOfLife)
 
-set_property(TARGET SimpleGame PlatformerDemo PhysicsDemo TileMapDemo ConwaysGameOfLife PROPERTY
-  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+# set_property(TARGET SimpleGame PlatformerDemo PhysicsDemo TileMapDemo ConwaysGameOfLife PROPERTY
+#   MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 

@@ -1,6 +1,7 @@
 #pragma once
-#include <ext/Box2D/Box2D.h>
-#include <ext/Box2D/Common/b2Draw.h>
+#include <box2d/Box2D.h>
+#include <box2d/b2_draw.h>
+
 #include <ext/glm/include/glm.hpp>
 #include "../graphics/DebugRenderer.h"
 
@@ -67,14 +68,14 @@ namespace letc { namespace physics {
 		}
 
 		/// Draw a circle.
-		virtual void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) {
+		virtual void DrawCircle(const b2Vec2& center, float radius, const b2Color& color) {
 			
 
 		
 		}
 
 		/// Draw a solid circle.
-		virtual void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
+		virtual void DrawSolidCircle(const b2Vec2& center, float radius, const b2Vec2& axis, const b2Color& color) {
 #ifdef WATTY_OPENGL
 			
 			const int resolution = 60;
@@ -169,7 +170,7 @@ namespace letc { namespace physics {
 		virtual void DrawTransform(const b2Transform& xf) {}
 
 		/// Draw a point.
-		virtual void DrawPoint(const b2Vec2& p, float32 size, const b2Color& color) {}
+		virtual void DrawPoint(const b2Vec2& p, float size, const b2Color& color) {}
 
 		DebugPhysics() {
 			

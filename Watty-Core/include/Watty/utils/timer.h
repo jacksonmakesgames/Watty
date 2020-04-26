@@ -1,5 +1,5 @@
 #pragma once
-#include <ext/GLFW/include/GLFW/glfw3.h>
+#include <GLFW/glfw3.h>
 namespace letc {
 	class Timer {
 	public:

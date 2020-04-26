@@ -2,7 +2,7 @@
 //#include <ext/FreeImage/include/FreeImage.h>
 #include <string>
 #ifdef WATTY_OPENGL
-#include <ext/glad/include/glad/glad.h>
+#include <glad/glad.h>
 
 #endif // WATTY_OPENGL
 

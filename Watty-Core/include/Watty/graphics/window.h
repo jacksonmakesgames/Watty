@@ -10,9 +10,9 @@
 #endif // WATTY_VULKAN
 
 #ifdef WATTY_OPENGL
-#include <ext/glad/include/glad/glad.h>
+#include <glad/glad.h>
 #include <ext/imgui/include/imgui/imgui.h>
-#include <ext/GLFW/include/GLFW/glfw3.h>
+#include <glfw/glfw3.h>
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 #endif // WATTY_OPENGL

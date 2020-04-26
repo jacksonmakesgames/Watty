@@ -11,3 +11,7 @@
 	path = dependencies/SDL
 	url = https://github.com/jacksonmakesgames/SDL-mirror
 	branch = watty
+[submodule "dependencies/box2d"]
+	path = dependencies/box2d
+	url = https://github.com/jacksonmakesgames/box2d
+	branch = watty

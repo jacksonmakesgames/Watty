@@ -1,6 +1,6 @@
 #pragma once
 #ifdef WATTY_OPENGL
-#include <ext/glad/include/glad/glad.h>
+#include <glad/glad.h>
 #endif
 #include <ext/imgui/include/imgui/imgui.h>
 #include "layer.h"

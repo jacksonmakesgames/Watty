@@ -134,7 +134,6 @@ public:
 		getInput();
 
 		LETC::render();
-		if (debugPhysics) PhysicsWorld2D::box2DWorld->DrawDebugData();
 
 	}
 

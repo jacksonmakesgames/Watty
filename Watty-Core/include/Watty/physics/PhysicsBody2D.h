@@ -1,5 +1,5 @@
 #pragma once
-#include <ext/Box2D/Box2D.h>
+#include <box2d/Box2D.h>
 #include "PhysicsConstants.h"
 #include "../physics/PhysicsWorld2D.h"
 //#include "../math/math.h"
@@ -38,8 +38,8 @@ namespace letc { namespace physics {
 		virtual void setLinearVelocity(glm::vec2 newVelocity);
 
 		virtual inline b2Body* getBody() { return m_body; }
-		virtual inline void disable() { m_body->SetActive(false); };
-		virtual inline void enable() { m_body->SetActive(true); };
+		virtual inline void disable() { m_body->SetEnabled(false); };
+		virtual inline void enable() { m_body->SetEnabled(true); };
 
 		virtual glm::vec2 getBodyPosition();
 		inline virtual glm::vec2 getOffset() { return m_offset; }

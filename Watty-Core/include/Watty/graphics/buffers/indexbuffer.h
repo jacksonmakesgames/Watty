@@ -1,6 +1,6 @@
 #pragma once
 #ifdef WATTY_OPENGL
-#include <ext/glad/include/glad/glad.h>
+#include <glad/glad.h>
 #endif
 namespace letc {
 	namespace graphics {

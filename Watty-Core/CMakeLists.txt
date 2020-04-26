@@ -1,4 +1,4 @@
-project (Watty_Core${WATTYVERSION})
+cmake_minimum_required (VERSION 3.15)
 
 file(GLOB_RECURSE HEADERS 		"${COREDIR}/src/**.h*" "${COREDIR}/include/**.h*")
 
@@ -13,18 +13,54 @@ file(GLOB_RECURSE SRC_UTILS 		"${COREDIR}/src/utils/**.cpp")
 
 file(GLOB_RECURSE SRC_SOLOUD 			"${COREDIR}/ext/soloud/src/audiosource/**.c*" "${COREDIR}/ext/soloud/src/backend/sdl/**.c*" "${COREDIR}/ext/soloud/src/filter/**.c*" "${COREDIR}/ext/soloud/src/core/**.c*")
 file(GLOB_RECURSE SRC_FREETYPEGL 		"${COREDIR}/ext/freetype-gl/*.c")
-file(GLOB_RECURSE SRC_GLAD 				"${COREDIR}/ext/glad/*")
-file(GLOB_RECURSE SRC_BOX2D 			"${COREDIR}/ext/Box2D/*")
+
+project (Watty_Core${WATTYVERSION})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${HEADERS})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_SOLOUD})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES  ${SRC_AUDIO})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_GAMEOBJECTS})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_GRAPHICS})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_INPUTS})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_GRAPHICS})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_PHYSICS})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_SHADERS})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_UTILS})
 
 
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
-add_library(Core_v${WATTYVERSION} OBJECT
-	${EXT_FILES}
+
+add_library(${CORENAME} OBJECT
 	${HEADERS}
+
 	${SRC_SOLOUD}
 	${SRC_FREETYPEGL}
-	${SRC_GLAD}
-	${SRC_BOX2D}
 
 	${SRC_AUDIO}
 	${SRC_GAMEOBJECTS}
@@ -36,22 +72,9 @@ add_library(Core_v${WATTYVERSION} OBJECT
 	)
 
 
-set_target_properties(Core_v${WATTYVERSION}
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}
-)
-# ## Link
-target_link_directories(Core_v${WATTYVERSION}
-	PUBLIC ${COREDIR}ext/FreeImage/lib/${CMAKE_BUILD_TYPE}	
-	)
 
-target_link_libraries(Core_v${WATTYVERSION}
-	PUBLIC opengl32
-	)
-
-set_property(TARGET Core_v${WATTYVERSION} PROPERTY
-  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Debug)
+endif()
 
 

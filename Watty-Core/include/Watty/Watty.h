@@ -28,7 +28,7 @@
 #include "gameobjects/GameObject.h"
 #include "./utils/timer.h"
 #include "./utils/Random.h"
-#include "ext/Box2D/Box2D.h"
+#include <box2d/box2d.h>
 #include "./physics/QueryAABBCallback.h"
 #include "ext/imgui/include/imgui/imgui.h"
 

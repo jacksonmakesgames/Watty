@@ -1,5 +1,6 @@
 #pragma once
-#include <ext/Box2D/Box2D.h>
+#include <box2d/Box2D.h>
+
 #include <physics/PhysicsWorld2D.h>
 namespace letc { namespace physics {
 	
