@@ -3,7 +3,7 @@
 #include "PhysicsConstants.h"
 #include "../physics/PhysicsWorld2D.h"
 //#include "../math/math.h"
-#include <ext/glm/include/glm.hpp>
+#include <glm.hpp>
 
 namespace letc { namespace physics {
 	

@@ -1,6 +1,6 @@
 #pragma once
-#include <ext/glm/include/glm.hpp>
-#include <ext/glm/include/gtc/matrix_transform.hpp>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
 //#include <ext/glm/include/gtx/matrix_transform_2d.hpp>
 #include <vector>
 namespace letc {

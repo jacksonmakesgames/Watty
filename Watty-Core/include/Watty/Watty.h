@@ -1,36 +1,34 @@
 #pragma once
-
-#include "ext/glm/include/glm.hpp"
+#include <glm.hpp>
 
 #ifdef WATTY_OPENGL
 	#include "./graphics/window.h"
 	bool letc::graphics::Window::useVSync = false;
 	//#include <graphics/font/label.h>
-	//#include "./graphics/font/label.h" //TODO
-	#include "./graphics/renderer2d.h"
-	#include "./graphics/batchrenderer2d.h"
-	#include "./graphics/shader.h"
-	#include "./graphics/Camera.h"
-	#include "./graphics/textures/SpriteSheetAnimation.h"
+	#include <graphics/renderer2d.h>
+	#include <graphics/batchrenderer2d.h>
+	#include <graphics/shader.h>
+	#include <graphics/Camera.h>
+	#include <graphics/textures/SpriteSheetAnimation.h>
 #endif
 
-#include "./graphics/tilemap/Tilemap.h"
-#include "./physics/MapBodyBuilder.h"
-#include "./graphics/sprite.h"
-#include "./graphics/layers/layer.h"
-#include "./graphics/layers/GuiLayer.h"
-#include "./graphics/layers/DebugPhysicsLayer.h"
-#include "./graphics/layers/EngineControlLayer.h"
-#include "./graphics/layers/GridLayer.h"
-#include "graphics/ParticleSystem.h"
-#include "./graphics/Color.h"
+#include <graphics/tilemap/Tilemap.h>
+#include <physics/MapBodyBuilder.h>
+#include <graphics/sprite.h>
+#include <graphics/layers/layer.h>
+#include <graphics/layers/GuiLayer.h>
+#include <graphics/layers/DebugPhysicsLayer.h>
+#include <graphics/layers/EngineControlLayer.h>
+#include <graphics/layers/GridLayer.h>
+#include <graphics/ParticleSystem.h>
+#include <graphics/Color.h>
 
 #include "gameobjects/GameObject.h"
-#include "./utils/timer.h"
-#include "./utils/Random.h"
+#include <utils/timer.h>
+#include <utils/Random.h>
 #include <box2d/box2d.h>
-#include "./physics/QueryAABBCallback.h"
-#include "ext/imgui/include/imgui/imgui.h"
+#include <physics/QueryAABBCallback.h>
+#include <imgui/imgui.h>
 
 //Should be last so it is only included once!
 #define STB_IMAGE_IMPLEMENTATION
@@ -38,8 +36,6 @@
 
 #define STB_TRUETYPE_IMPLEMENTATION
 #include <stb_truetype.h>
-
-	
 
 namespace letc {
 

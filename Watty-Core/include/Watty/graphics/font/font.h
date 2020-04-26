@@ -7,7 +7,7 @@
 #include <string>
 #include <map>
 #include "../texture.h"
-#include <ext/glm/include/glm.hpp>
+#include <glm.hpp>
 #include <iostream>
 
 namespace letc {namespace graphics {

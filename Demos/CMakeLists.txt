@@ -32,7 +32,13 @@ include_directories(
 	${WATTYDIR}dependencies/stb
 	${WATTYDIR}dependencies/glad/include
 	${WATTYDIR}dependencies/glfw/include
+	${WATTYDIR}dependencies/glad/include
 	${WATTYDIR}dependencies/box2d/include
+	${WATTYDIR}dependencies/soloud/include
+	${WATTYDIR}dependencies/json/include
+	${WATTYDIR}dependencies/glm/include
+	${WATTYDIR}dependencies/imgui/include
+	
 	) 
 
 link_directories(${COREDIR}../bin/${CMAKE_BUILD_TYPE}/)

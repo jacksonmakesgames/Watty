@@ -27,9 +27,14 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 file(GLOB_RECURSE CMAKE_FILES 		"${CMAKE_SOURCE_DIR}/**/CMakeLists.txt")
 
-# Remove 'lib' prefix for shared libraries on Windows
+
+
+
 if (WIN32)
+# Remove 'lib' prefix for shared libraries on Windows
   set(CMAKE_SHARED_LIBRARY_PREFIX "")
+  message(STATUS "Deleting obj files")
+  execute_process(COMMAND "del ./*.dir")
 endif ()
 
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
@@ -47,19 +52,17 @@ include_directories(
 	${COREDIR}
 	${COREDIR}include
 	${COREDIR}include/Watty
-	${COREDIR}include/ext
-	${COREDIR}ext/imgui/include
-	${COREDIR}ext/glm/include
-	${COREDIR}ext/soloud/include
-	${COREDIR}ext/tiny_obj_loader/include
+	${CMAKE_SOURCE_DIR}/dependencies/imgui/include
+	${CMAKE_SOURCE_DIR}/dependencies/glm/include
+	${CMAKE_SOURCE_DIR}/dependencies/tiny_obj_loader/include
+	${CMAKE_SOURCE_DIR}/dependencies/glfw/include
+	${CMAKE_SOURCE_DIR}/dependencies/stb
+	${CMAKE_SOURCE_DIR}/dependencies/glad/include
+	${CMAKE_SOURCE_DIR}/dependencies/box2d/include
+	${CMAKE_SOURCE_DIR}/dependencies/soloud/include
+	${CMAKE_SOURCE_DIR}/dependencies/json/include
 	)
 
-
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/glfw/include)
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/stb)
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/SDL/include)
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/glad/include)
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/box2d/include)
 
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
@@ -69,16 +72,15 @@ add_compile_definitions(
 	_LIB
 	CRT_SECURE_NO_WARNINGS
 	_CRT_NONSTDC_NO_DEPRECATE
-	WITH_SDL2
+	WITH_MINIAUDIO
 	WATTY_OPENGL
 	)
 
 ##DEPS:
 add_subdirectory(dependencies/glfw)
-add_subdirectory(dependencies/SDL)
+add_subdirectory(dependencies/soloud)
 add_subdirectory(dependencies/box2d)
 add_subdirectory(dependencies/glad)
-
 
 
 add_subdirectory(Watty-Core)
@@ -92,7 +94,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY		${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 ## Compile:
 add_library(${LIBNAME} STATIC
 	$<TARGET_OBJECTS:glfw>
-	$<TARGET_OBJECTS:SDL2main>
+	$<TARGET_OBJECTS:soloud>
 	$<TARGET_OBJECTS:box2d>
 	$<TARGET_OBJECTS:glad>
 	$<TARGET_OBJECTS:${CORENAME}>
@@ -106,8 +108,6 @@ set_target_properties( ${LIBNAME}
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}
 )
-
-
 
 set_target_properties(${CORENAME}
     PROPERTIES

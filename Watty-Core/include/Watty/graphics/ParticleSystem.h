@@ -1,5 +1,5 @@
 #pragma once
-#include <ext/glm/include/glm.hpp>
+#include <glm.hpp>
 #include <vector>
 #include <graphics/renderable2d.h>
 #include <graphics/ParticleRenderer.h>

@@ -2,7 +2,7 @@
 #include <box2d/Box2D.h>
 #include <box2d/b2_draw.h>
 
-#include <ext/glm/include/glm.hpp>
+#include <glm.hpp>
 #include "../graphics/DebugRenderer.h"
 
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"

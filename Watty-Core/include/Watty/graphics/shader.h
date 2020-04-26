@@ -6,8 +6,8 @@
 
 #endif // WATTY_OPENGL
 
-#include <ext/glm/include/glm.hpp>
-#include <ext/glm/include/gtc/type_ptr.hpp>
+#include <glm.hpp>
+#include <gtc/type_ptr.hpp>
 
 //#include "../math/matrix4.h"
 #include "../utils/file_utils.h"

@@ -1,5 +1,5 @@
 #pragma once
-#include <ext/glm/include/glm.hpp>
+#include <glm.hpp>
 #include <random>
 
 namespace letc { namespace graphics {

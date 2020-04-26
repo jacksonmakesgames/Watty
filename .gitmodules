@@ -15,3 +15,7 @@
 	path = dependencies/box2d
 	url = https://github.com/jacksonmakesgames/box2d
 	branch = watty
+[submodule "dependencies/soloud"]
+	path = dependencies/soloud
+	url = https://github.com/jacksonmakesgames/soloud
+	branch = watty

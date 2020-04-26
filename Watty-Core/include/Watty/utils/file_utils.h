@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 
-#include <ext/json/include/json.hpp>
+#include <json.hpp>
 //#include <GL/glew.h>
 #ifdef WATTY_OPENGL
 	#include <glad/glad.h>

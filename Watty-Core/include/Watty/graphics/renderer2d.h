@@ -7,9 +7,7 @@
 #include "font/font.h"
 #endif // WATTY_OPENGL
 
-
-
-#include <ext/glm/include/glm.hpp>
+#include <glm.hpp>
 
 //#include "texturemanager.h"
 

@@ -2,7 +2,7 @@
 #ifdef WATTY_OPENGL
 #include <glad/glad.h>
 #endif
-#include <ext/imgui/include/imgui/imgui.h>
+#include <imgui/imgui.h>
 #include "layer.h"
 #include "../batchrenderer2d.h"
 #ifdef WATTY_OPENGL

@@ -141,7 +141,6 @@ public:
 		LETC::tick();
 	}
 
-
 	void getInput() {
 		// ENGINE
 		if (m_window->keyWasPressed(GLFW_KEY_GRAVE_ACCENT))
