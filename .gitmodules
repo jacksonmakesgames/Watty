@@ -19,10 +19,6 @@
 	path = dependencies/soloud
 	url = https://github.com/jacksonmakesgames/soloud
 	branch = watty
-[submodule "dependencies/emscripten"]
-	path = dependencies/emscripten
-	url = https://github.com/jacksonmakesgames/emscripten
-	branch = watty
 [submodule "dependencies/box2d.js"]
 	path = dependencies/box2d.js
 	url = https://github.com/jacksonmakesgames/box2d.js
