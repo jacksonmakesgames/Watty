@@ -23,3 +23,7 @@
 	path = dependencies/box2d.js
 	url = https://github.com/jacksonmakesgames/box2d.js
 	branch = watty
+[submodule "dependencies/emscripten"]
+	path = dependencies/emscripten
+	url = https://github.com/jacksonmakesgames/emsdk
+	branch = watty

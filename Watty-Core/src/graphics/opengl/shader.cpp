@@ -5,27 +5,20 @@ namespace letc {namespace graphics {
 	Shader::Shader(const char* vertPath, const char* fragPath){
 		m_vertPath = vertPath;
 		m_fragPath= fragPath;
-		m_shaderID = load();
-
-
-		GLint texIDs[32];
-		for (size_t i = 0; i < 32; i++)
-			texIDs[i] = i;
-		enable();
-		setUniform1iv("textures", texIDs, 32);
+		init();
 	}
 
 	Shader::Shader()
 	{
+#ifdef WATTY_EMSCRIPTEN
+		m_vertPath = WATTYRESDIR "shaders/default_es3.vert";
+		m_fragPath = WATTYRESDIR "shaders/default_es3.frag";
+#else
 		m_vertPath = WATTYRESDIR "shaders/default.vert";
 		m_fragPath = WATTYRESDIR "shaders/default.frag";
-		m_shaderID = load();
+#endif // WATTY_EMSCRIPTEN
 
-		GLint texIDs[32];
-		for (size_t i = 0; i < 32; i++)
-			texIDs[i] = i;
-		enable();
-		setUniform1iv("textures", texIDs, 32);
+		init();
 
 	}
 
@@ -80,9 +73,11 @@ namespace letc {namespace graphics {
 		GLuint program = glCreateProgram();
 		GLuint vertex = glCreateShader(GL_VERTEX_SHADER);
 		GLuint fragment = glCreateShader(GL_FRAGMENT_SHADER);
-		
-		std::string vertSourceString = read_file(m_vertPath);
-		std::string fragSourceString = read_file(m_fragPath);
+		std::vector<char> vertChars = read_file(m_vertPath);
+		std::vector<char> fragChars = read_file(m_fragPath);
+
+		std::string vertSourceString(vertChars.begin(), vertChars.end());
+		std::string fragSourceString(fragChars.begin(), fragChars.end());
 			
 		const char* vertSource = vertSourceString.c_str();
 		const char* fragSource = fragSourceString.c_str();
@@ -131,6 +126,37 @@ namespace letc {namespace graphics {
 		glDeleteShader(fragment);
 
 		return program;
+	}
+
+	void Shader::init()
+	{
+		m_shaderID = load();
+		enable();
+#ifndef WATTY_EMSCRIPTEN
+		GLint texIDs[32];
+		for (size_t i = 0; i < 32; i++)
+			texIDs[i] = i;
+
+		setUniform1iv("textures", texIDs, 32);
+#else
+
+		setUniform1i("texture_0", 0);
+		setUniform1i("texture_1", 1);
+		setUniform1i("texture_2", 2);
+		setUniform1i("texture_3", 3);
+		setUniform1i("texture_4", 4);
+		setUniform1i("texture_5", 5);
+		setUniform1i("texture_6", 6);
+		setUniform1i("texture_7", 7);
+		setUniform1i("texture_8", 8);
+		setUniform1i("texture_9", 9);
+		setUniform1i("texture_10", 10);
+		setUniform1i("texture_11", 11);
+		setUniform1i("texture_12", 12);
+		setUniform1i("texture_13", 13);
+		setUniform1i("texture_14", 14);
+		setUniform1i("texture_15", 15);
+#endif //!WATTY_EMSCRIPTEN
 	}
 
 	void Shader::enable() const{

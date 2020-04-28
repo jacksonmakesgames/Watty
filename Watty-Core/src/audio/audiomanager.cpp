@@ -1,3 +1,5 @@
+#ifndef WATTY_EMSCRIPTEN
+
 #include <audio/audiomanager.h>
 
 namespace letc {namespace audio {
@@ -47,3 +49,4 @@ namespace letc {namespace audio {
 	}
 
 }}
+#endif

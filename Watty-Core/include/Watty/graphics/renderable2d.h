@@ -3,16 +3,10 @@
 #include "buffers/buffer.h"
 #include "buffers/indexbuffer.h"
 #include "buffers/vertexarray.h"
-
 #include "renderer2d.h"
-
 #include "texture.h"
-
-#include <glm.hpp>
-
 #include "shader.h"
 #include "Color.h"
-
 
 namespace letc {
 	namespace graphics {

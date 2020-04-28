@@ -1,5 +1,4 @@
 #include <graphics/texture.h>
-#include <utils/file_utils.h>
 
 namespace letc {namespace graphics {
 

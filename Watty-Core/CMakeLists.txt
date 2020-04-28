@@ -55,7 +55,23 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
+if(EMSCIPTEN)
+add_library(${CORENAME} STATIC
+	${HEADERS}
 
+	${SRC_SOLOUD}
+	${SRC_FREETYPEGL}
+
+	${SRC_AUDIO}
+	${SRC_GAMEOBJECTS}
+	${SRC_GRAPHICS}
+	${SRC_INPUTS}
+	${SRC_PHYSICS}
+	${SRC_SHADERS}
+	${SRC_UTILS}
+	)
+
+else()
 add_library(${CORENAME} OBJECT
 	${HEADERS}
 
@@ -71,7 +87,7 @@ add_library(${CORENAME} OBJECT
 	${SRC_UTILS}
 	)
 
-
+endif()
 
 if(NOT DEFINED CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Debug)

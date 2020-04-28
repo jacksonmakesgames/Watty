@@ -1,4 +1,6 @@
 #pragma once
+#ifndef WATTY_EMSCRIPTEN
+
 #include <vector>
 #include "audioclip.h"
 
@@ -31,3 +33,4 @@ namespace letc{ namespace audio{
 	
 
 } }
+#endif

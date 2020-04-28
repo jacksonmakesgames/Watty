@@ -1,8 +1,5 @@
 #pragma once
-//#include "../math/math.h"
 #include "../graphics/layers/layer.h"
-#include <vector>
-
 
 namespace letc { namespace graphics {
 	enum class CameraMode

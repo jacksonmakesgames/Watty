@@ -1,8 +1,6 @@
 #pragma once
 #include "../renderable2d.h"
 #include "../../utils/timer.h"
-#include <vector>
-#include "../../math/math.h"
 
 namespace letc { namespace graphics {
 	class Animation2D

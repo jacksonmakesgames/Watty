@@ -36,10 +36,13 @@ IMGUI_IMPL_API void     ImGui_ImplOpenGL3_DestroyFontsTexture();
 IMGUI_IMPL_API bool     ImGui_ImplOpenGL3_CreateDeviceObjects();
 IMGUI_IMPL_API void     ImGui_ImplOpenGL3_DestroyDeviceObjects();
 
+
+#ifdef WATTY_EMSCRIPTEN
 // Specific OpenGL versions
-//#define IMGUI_IMPL_OPENGL_ES2     // Auto-detected on Emscripten
+#define IMGUI_IMPL_OPENGL_ES2     // Auto-detected on Emscripten
 //#define IMGUI_IMPL_OPENGL_ES3     // Auto-detected on iOS/Android
 
+#else
 // Desktop OpenGL: attempt to detect default GL loader based on available header files.
 // If auto-detection fails or doesn't select the same GL loader file as used by your application, 
 // you are likely to get a crash in ImGui_ImplOpenGL3_Init(). 
@@ -63,3 +66,4 @@ IMGUI_IMPL_API void     ImGui_ImplOpenGL3_DestroyDeviceObjects();
     #endif
 #endif
 
+#endif

@@ -1,8 +1,7 @@
 #pragma once
-#include <box2d/Box2D.h>
+#include <box2d/box2d.h>
 #include "PhysicsConstants.h"
 #include "../physics/PhysicsWorld2D.h"
-//#include "../math/math.h"
 #include <glm.hpp>
 
 namespace letc { namespace physics {
@@ -38,8 +37,23 @@ namespace letc { namespace physics {
 		virtual void setLinearVelocity(glm::vec2 newVelocity);
 
 		virtual inline b2Body* getBody() { return m_body; }
-		virtual inline void disable() { m_body->SetEnabled(false); };
-		virtual inline void enable() { m_body->SetEnabled(true); };
+		virtual inline void disable() { 
+#ifndef WATTY_EMSCRIPTEN
+
+			m_body->SetEnabled(false);
+#else
+			m_body->SetAwake(false);
+#endif // !WATTY_EMSCRIPTEN
+
+		};
+		virtual inline void enable() { 
+#ifndef WATTY_EMSCRIPTEN
+			m_body->SetEnabled(true); 
+
+#else
+			m_body->SetAwake(true);
+#endif
+		};
 
 		virtual glm::vec2 getBodyPosition();
 		inline virtual glm::vec2 getOffset() { return m_offset; }

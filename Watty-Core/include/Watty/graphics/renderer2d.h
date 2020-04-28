@@ -2,14 +2,20 @@
 #include <vector>
 #include <iostream>
 #include "Color.h"
-#ifdef WATTY_OPENGL
+
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#include <GLES3/gl32.h>
+#else
 #include <glad/glad.h>
+#endif
+
+
 #include "font/font.h"
-#endif // WATTY_OPENGL
+
 
 #include <glm.hpp>
-
-//#include "texturemanager.h"
 
 namespace letc {namespace graphics {
 	class Renderable2D;
@@ -29,12 +35,16 @@ namespace letc {namespace graphics {
 			//TODO: MOVE TO CPP
 			m_TransformationStack.push_back(glm::mat4(1.0));
 			m_tranformationStackBack = &m_TransformationStack.back();
-#ifdef WATTY_OPENGL
+
+#ifdef WATTY_EMSCRIPTEN
+			
 			glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &m_maxTextureUnits);
-#endif
+#else
+			glGetIntegerv(GL_MAX_TEXTURE_UNITS, &m_maxTextureUnits);
+
+#endif // WATTY_EMSCRIPTEN
 		}
 		
-			
 	public:
 		void push(const glm::mat4& mat, bool override = false) {
 			if (override) {
@@ -58,8 +68,7 @@ namespace letc {namespace graphics {
 			m_tranformationStackBack = &m_TransformationStack.back();
 			return *m_tranformationStackBack;
 		}
-		~Renderer2D() {
-		}
+		virtual ~Renderer2D() {}
 
 
 		virtual void begin() {}

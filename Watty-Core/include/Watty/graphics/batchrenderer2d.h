@@ -1,10 +1,10 @@
 #pragma once
 
 #include <cstddef>
-
 #include "buffers/indexbuffer.h"
 #include "renderer2d.h"
 #include "renderable2d.h"
+
 
 #define RENDERER_MAX_SPRITES		60000
 #define RENDERER_VERTEX_SIZE		sizeof(VertexData)
@@ -25,6 +25,13 @@ namespace letc {namespace graphics {
 		IndexBuffer* m_indexBuffer;
 		GLsizei m_indexCount;
 		VertexData* m_currentBuffer;
+
+#ifdef WATTY_EMSCRIPTEN
+
+		VertexData* m_currentBufferBase;
+#endif // WATTY_EMSCRIPTEN
+
+		
 		std::vector<float> m_glTIDsThisFlush;
 		unsigned int m_textureArrayID;
 		std::vector<const Texture*> m_textures;

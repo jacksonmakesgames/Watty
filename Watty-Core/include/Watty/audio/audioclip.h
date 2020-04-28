@@ -1,4 +1,6 @@
 #pragma once
+#ifndef WATTY_EMSCRIPTEN
+
 #include <string>
 #include "audiomanager.h"
 
@@ -40,3 +42,4 @@ namespace letc {namespace audio {
 	};
 
 }}
+#endif

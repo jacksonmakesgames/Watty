@@ -1,10 +1,12 @@
 ﻿#include <graphics/window.h>
 namespace letc {namespace graphics {
-	static void window_resize_callback(GLFWwindow* window, int width, int height);
-	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
-	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+	void window_resize_callback(GLFWwindow* window, int width, int height);
+	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
+	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+
 
 	Window::Window(const char* title, int width, int height, bool resizeable, bool fullscreen) {
 		m_Title = title;
@@ -16,8 +18,10 @@ namespace letc {namespace graphics {
 			glfwTerminate();
 		
 		//FontManager::add(new Font("default", "res/fonts/Roboto-Regular.ttf", 15)); 
-		audio::AudioManager::init();
+#ifndef WATTY_EMSCRIPTEN
 
+		audio::AudioManager::init();
+#endif
 		for (int i = 0; i < MAX_KEYS; i++) {
 			m_keysThisFrame[i]		=	false;
 			m_keysLastFrame[i]	=	false;
@@ -32,7 +36,14 @@ namespace letc {namespace graphics {
 		// imgui:
 		 // Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
+#ifdef WATTY_EMSCRIPTEN
+
+		const char* glsl_version = "#version 300 es";
+#else
+
 		const char* glsl_version = "#version 450";
+#endif // 
+
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); 
 		//(void)io;
@@ -58,7 +69,10 @@ namespace letc {namespace graphics {
 		ImGui::DestroyContext();
 		glfwTerminate();
 		//FontManager::clean(); //TODO
+#ifndef WATTY_EMSCRIPTEN
+
 		audio::AudioManager::clean();
+#endif
 	}
 
 	// TODO: NOT SURE, asks nvidia to use dedicate gpu
@@ -69,15 +83,16 @@ namespace letc {namespace graphics {
 	bool Window::init() {
 
 
+		if (!glfwInit()){
+			std::cout << "Failed to initialize GLFW" << std::endl;
+			return false;
+		}
+
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
-		if (!glfwInit()){
-			std::cout << "Failed to initialize GLFW" << std::endl;
-			return false;
-		}
 		glfwWindowHint(GLFW_RESIZABLE, isResizeable);
 
 		if (isFullScreen) {
@@ -113,13 +128,14 @@ namespace letc {namespace graphics {
 		//	return false;
 
 		//}	
-		
+#ifndef WATTY_EMSCRIPTEN
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
 			std::cout << "Failed to initialize GLAD" << std::endl;
 			return -1;
 		}
 
+#endif
 		std::cout << "Watty{} Version: " << WATTYVERSION << std::endl;
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
@@ -128,10 +144,13 @@ namespace letc {namespace graphics {
 		{
 			glEnable(GL_DEBUG_OUTPUT);
 			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+#ifndef WATTY_EMSCRIPTEN
 			glDebugMessageCallback(openglCallbackFunction, nullptr);
 			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
-		}
 
+#endif // !WATTY_EMSCRIPTEN
+
+		}
 		glClearColor(0, 0, 0, 1);
 
 
@@ -215,9 +234,9 @@ namespace letc {namespace graphics {
 		glfwSwapBuffers(m_Window);
 
 		//audio:
+#ifndef WATTY_EMSCRIPTEN
 		audio::AudioManager::update(); // TODO: TEST PERMORMANCE
-
-
+#endif
 	}
 
 	void Window::listenForInput()

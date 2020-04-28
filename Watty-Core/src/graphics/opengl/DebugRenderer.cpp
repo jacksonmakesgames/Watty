@@ -6,13 +6,20 @@ namespace letc {namespace graphics {
 	}
 	DebugRenderer::~DebugRenderer()
 	{
+#ifndef WATTY_EMSCRIPTEN
+
 		delete m_indexBuffer;
 		glDeleteBuffers(1, &m_vertexBuffer);
+#endif // !WATTY_EMSCRIPTEN
 	}
 	void DebugRenderer::begin()
 	{
+#ifndef WATTY_EMSCRIPTEN
+
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer); // bind vertex buffer
 		m_currentBuffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY); // map the buffer and get the pointer to the first vertex
+#endif // !WATTY_EMSCRIPTEN
+
 	}
 	void DebugRenderer::submit(const Renderable2D* renderable){
 	
@@ -35,13 +42,17 @@ namespace letc {namespace graphics {
 	}
 	void DebugRenderer::end()
 	{
+#ifndef WATTY_EMSCRIPTEN
+
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 		glBindBuffer(GL_ARRAY_BUFFER, NULL);
+#endif
 	}
 
 
 	void DebugRenderer::flush(unsigned int mode, int indexCount)
 	{
+#ifndef WATTY_EMSCRIPTEN
 		//flush
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
@@ -50,11 +61,14 @@ namespace letc {namespace graphics {
 		glBindVertexArray(NULL);
 		m_indexCount = 0;
 		Renderer2D::globalFlushesThisFrame++;
+#endif
 
 	}
 
 	void DebugRenderer::flush()
 	{
+#ifndef WATTY_EMSCRIPTEN
+
 		// draw
 		glBindVertexArray(m_vertexArray);
 		m_indexBuffer->bind();
@@ -64,12 +78,15 @@ namespace letc {namespace graphics {
 
 		m_indexCount = 0;
 		Renderer2D::globalFlushesThisFrame++;
+#endif
 	}
 
 	
 
 	void DebugRenderer::init()
 	{
+#ifndef WATTY_EMSCRIPTEN
+
 
 		// Generate
 		glGenVertexArrays(1, &m_vertexArray);
@@ -84,10 +101,10 @@ namespace letc {namespace graphics {
 		glEnableVertexAttribArray(SHADER_TID_INDEX);
 		glEnableVertexAttribArray(SHADER_COLOR_INDEX);
 		//Assign
-		glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)0);
-		glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::uv)));
-		glVertexAttribPointer(SHADER_TID_INDEX, 1, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::tid)));
-		glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::color)));
+		glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)0);
+		glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)(offsetof(VertexData, VertexData::uv)));
+		glVertexAttribPointer(SHADER_TID_INDEX, 1, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)(offsetof(VertexData, VertexData::tid)));
+		glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const void*)(offsetof(VertexData, VertexData::color)));
 		//Unbind
 		glBindBuffer(GL_ARRAY_BUFFER, NULL);
 
@@ -114,5 +131,6 @@ namespace letc {namespace graphics {
 
 		//Unbind array
 		glBindVertexArray(NULL);
+#endif
 	}
 }}

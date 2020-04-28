@@ -1,5 +1,5 @@
 #pragma once
-#include "GuiLayer.h"
+#include "GUILayer.h"
 #include "../window.h"
 #include <gameobjects/GameObject.h>
 

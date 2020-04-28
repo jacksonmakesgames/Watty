@@ -1,10 +1,6 @@
 #pragma once
-#include <graphics/renderable2d.h>
-#include <physics/PhysicsBody2d.h>
-#include <vector>
-#include <math.h>
 #include <graphics/textures/Animator2D.h>
-#include <glm.hpp>
+#include <physics/PhysicsBody2D.h>
 #include <gameobjects/Transform2D.h>
 
 namespace letc {

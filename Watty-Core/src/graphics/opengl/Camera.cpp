@@ -1,5 +1,4 @@
 #include <graphics/Camera.h>
-#include <iostream>
 
 namespace letc {namespace graphics {
 	std::vector<Camera*> Camera::allCameras{};

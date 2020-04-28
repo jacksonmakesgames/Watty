@@ -3,9 +3,13 @@
 #include "renderer2d.h"
 #include "renderable2d.h"
 
-#ifdef WATTY_OPENGL
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#include <GLES3/gl32.h>
+
+#else
 #include <glad/glad.h>
-#endif // WATTY_OPENGL
+#endif
 
 
 #define RENDERER_MAX_SPRITES		60000

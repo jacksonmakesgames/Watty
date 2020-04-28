@@ -11,8 +11,11 @@ namespace letc {namespace graphics {
 	}
 	void ParticleRenderer::begin()
 	{
+#ifndef WATTY_EMSCRIPTEN
+
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer); // bind vertex buffer
 		m_currentBuffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY); // map the buffer and get the pointer to the first vertex
+#endif
 	}
 	void ParticleRenderer::submit(const Renderable2D* renderable)
 	{
@@ -20,6 +23,7 @@ namespace letc {namespace graphics {
 
 	void ParticleRenderer::submit(glm::mat4 transform, unsigned int color, glm::vec2 size)
 	{
+
 		//TODO: set up shader
 		//glUniformMatrix4fv(particleTransformLocation, 1, GL_FALSE,);
 
@@ -104,9 +108,9 @@ namespace letc {namespace graphics {
 		glEnableVertexAttribArray(SHADER_COLOR_INDEX);
 		//Assign
 		glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)0);
-		glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::uv)));
-		glVertexAttribPointer(SHADER_TID_INDEX, 1, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::tid)));
-		glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, VertexData::color)));
+		glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, uv)));
+		glVertexAttribPointer(SHADER_TID_INDEX, 1, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData,tid)));
+		glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, color)));
 		//Unbind
 		glBindBuffer(GL_ARRAY_BUFFER, NULL);
 

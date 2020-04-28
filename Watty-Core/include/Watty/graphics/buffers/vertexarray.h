@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
-#ifdef WATTY_OPENGL
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#else
 #include <glad/glad.h>
 #endif
 #include "buffer.h"

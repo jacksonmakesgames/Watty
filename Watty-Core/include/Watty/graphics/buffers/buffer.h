@@ -1,7 +1,13 @@
 #pragma once
-#ifdef WATTY_OPENGL
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#include <GLES3/gl32.h>
+
+#else
 #include <glad/glad.h>
 #endif
+
 namespace letc {namespace graphics {
 	
 	class Buffer {

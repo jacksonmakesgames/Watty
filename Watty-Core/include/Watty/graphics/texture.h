@@ -1,15 +1,17 @@
 #pragma once
-//#include <ext/FreeImage/include/FreeImage.h>
 #include <string>
-#ifdef WATTY_OPENGL
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#include <GLES3/gl32.h>
+
+#else
 #include <glad/glad.h>
+#endif
 
-#endif // WATTY_OPENGL
-
-
+#include <utils/file_utils.h>
 #include <assert.h> 
 #include <stdint.h> 
-
 #include <vector>
 
 namespace letc {namespace graphics {

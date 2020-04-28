@@ -1,6 +1,6 @@
 #pragma once
 #include <random>
-
+#include <float.h>
 namespace letc {
 	class Random {
 	public:

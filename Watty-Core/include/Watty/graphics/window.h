@@ -9,24 +9,31 @@
 #include <ext/GLFW/include/GLFW/glfw3.h>
 #endif // WATTY_VULKAN
 
-#ifdef WATTY_OPENGL
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#include <GLES3/gl32.h>
+#else
 #include <glad/glad.h>
+#endif
+
 #include <imgui/imgui.h>
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
-#endif // WATTY_OPENGL
 
 
 #include "Camera.h"
 #include "font/fontmanager.h"
+#ifndef WATTY_EMSCRIPTEN
 #include "../audio/audiomanager.h"
+#endif
 
 namespace letc {namespace graphics {
 #define MAX_KEYS 1024
 #define MAX_BUTTONS 32
 
-	static class Window {
+	class Window {
 	protected:
 		bool isResizeable;
 		bool isFullScreen;

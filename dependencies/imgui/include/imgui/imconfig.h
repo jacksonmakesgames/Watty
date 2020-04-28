@@ -91,4 +91,11 @@ namespace ImGui
     void MyFunction(const char* name, const MyMatrix44& v);
 }
 */
+
+#ifdef WATTY_EMSCRIPTEN
+
+#define IMGUI_IMPL_OPENGL_LOADER_GLFW3
+#else
+
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD
+#endif

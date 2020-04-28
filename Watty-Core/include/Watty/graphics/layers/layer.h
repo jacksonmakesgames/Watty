@@ -1,10 +1,6 @@
 #pragma once
-#include "../renderer2d.h"
 #include "../batchrenderer2d.h"
-#include "../shader.h"
 #include "../../gameobjects/GameObject.h"
-#include <vector>
-
 
 namespace letc {
 	class Layer {

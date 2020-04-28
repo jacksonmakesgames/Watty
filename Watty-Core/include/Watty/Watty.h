@@ -1,6 +1,12 @@
 #pragma once
 #include <glm.hpp>
 
+#ifdef WATTY_EMSCRIPTEN
+	#define GLFW_INCLUDE_ES3
+	#define GL_GLEXT_PROTOTYPES
+	#include <emscripten.h>
+#endif
+
 #ifdef WATTY_OPENGL
 	#include "./graphics/window.h"
 	bool letc::graphics::Window::useVSync = false;
@@ -12,16 +18,17 @@
 	#include <graphics/textures/SpriteSheetAnimation.h>
 #endif
 
-#include <graphics/tilemap/Tilemap.h>
+#include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>
 #include <graphics/sprite.h>
 #include <graphics/layers/layer.h>
-#include <graphics/layers/GuiLayer.h>
+#include <graphics/layers/GUILayer.h>
 #include <graphics/layers/DebugPhysicsLayer.h>
 #include <graphics/layers/EngineControlLayer.h>
 #include <graphics/layers/GridLayer.h>
 #include <graphics/ParticleSystem.h>
 #include <graphics/Color.h>
+#include <math/math.h>
 
 #include "gameobjects/GameObject.h"
 #include <utils/timer.h>
@@ -36,6 +43,15 @@
 
 #define STB_TRUETYPE_IMPLEMENTATION
 #include <stb_truetype.h>
+
+
+#ifdef WATTY_EMSCRIPTEN
+	static void start_main(void* funcPtr) {
+		std::function<void()>* func = (std::function<void()>*)funcPtr;
+		(*func)();
+	}
+#endif // WATTY_EMSCRIPTEN
+
 
 namespace letc {
 
@@ -108,6 +124,7 @@ namespace letc {
 			std::cout << "\t" << std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
 		}
 
+
 		// runs LETC_UPDATE_RATE times per second
 		virtual void update() {
 			updates++;
@@ -128,7 +145,7 @@ namespace letc {
 			// For now, if there is more than one camera, ignore the default "Scene Camera"
 			size_t i = graphics::Camera::allCameras.size() > 1 ? 1 : 0;
 			
-			for (i; i < graphics::Camera::allCameras.size(); i++)
+			for (i = i; i < graphics::Camera::allCameras.size(); i++)
 			{
 				graphics::Camera::allCameras[i]->update();
 			}
@@ -158,11 +175,11 @@ private:
 		Random::init();
 
 #ifdef DEBUG 
-		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
-		letc::physics::PhysicsWorld2D::setDebugDraw();
-		layers.push_back(new graphics::DebugPhysicsLayer(*sceneCamera, *m_window));
-		layers.push_back(new graphics::GridLayer(*sceneCamera, *m_window));
-		layers.push_back(new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, layers));
+		//letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
+		//letc::physics::PhysicsWorld2D::setDebugDraw();
+		//layers.push_back(new graphics::DebugPhysicsLayer(*sceneCamera, *m_window));
+		//layers.push_back(new graphics::GridLayer(*sceneCamera, *m_window));
+		//layers.push_back(new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, layers));
 
 #endif
 		m_time = new Timer();
@@ -170,7 +187,11 @@ private:
 		float updateTimer = 0.0f;
 		float updateTick = 1.0 / m_window->getRefreshRate();
 		unsigned int frames = 0;
+#ifdef WATTY_EMSCRIPTEN
+		std::function<void()> mainLoop = [&]() {
+#else
 		while (!m_window->closed()) {
+#endif 
 			m_window->clear();
 			if (m_time->elapsed() - updateTimer > updateTick) {
 				if (m_window->useVSync) update(); // With Vsync enabled, update at the refresh rate of the window
@@ -183,16 +204,14 @@ private:
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
-			
+
 			render();
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-
-
 			m_window->update();
-			
+
 			if ((m_time->elapsed() - timer) > 1.0f) {
 				timer += 1.0f;
 				m_framesPerSecond = frames;
@@ -202,13 +221,19 @@ private:
 				frames = 0;
 				updates = 0;
 			}
+#ifdef WATTY_EMSCRIPTEN
+		};
+		emscripten_set_main_loop_arg(start_main, &mainLoop, 0, 1);
+#else
 		}
+#endif // WATTY_EMSCRIPTEN
+
 	}
 	};
 
 	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
-	glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
-	glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
+	const glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
+	const glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
 
 }

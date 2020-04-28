@@ -17,8 +17,8 @@ using namespace glm;
 
 namespace letc {
 	namespace physics {
-		//DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
-		//b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, 0.0f));
+		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
+		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, 0.0f));
 	}
 }
 

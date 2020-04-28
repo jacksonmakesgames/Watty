@@ -1,10 +1,14 @@
 #pragma once
 #include <vector>
-//#include <GL/glew.h>
-#ifdef WATTY_OPENGL
-#include <glad/glad.h>
 
-#endif // WATTY_OPENGL
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+#include <GLES3/gl32.h>
+
+#else
+#include <glad/glad.h>
+#endif
+
 
 #include <glm.hpp>
 #include <gtc/type_ptr.hpp>
@@ -41,6 +45,7 @@ namespace letc {namespace graphics {
 	private:
 		int getUniformLocation(const char* name);
 		unsigned int load();
+		void init();
 
 	};
 

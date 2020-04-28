@@ -1,1 +1,11 @@
+
+--Building from source--
 To create Visual Studio Solution, run "cmake .." from the "build" folder
+
+For Emscripten, 
+    activate the Emscripten env                                 (On windows, launch emcmdpromp.bat)
+    navigate to embuild                                         (Watty/embuild)
+    emcmake cmake -DEMSCRIPTEN=TRUE -G "Unix Makefiles" ..      (Generates Makefiles and configures them for Emscripten)
+    make                                                        (Compiles *.c* -> LLVM Bitcode -> Javascript and then links)
+
+Note that Box2D requires a different javascript version, so we have to link against dependencies/box2d.js

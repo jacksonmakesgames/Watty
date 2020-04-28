@@ -3,10 +3,11 @@ namespace letc { namespace graphics {
 	DebugPhysicsLayer::DebugPhysicsLayer(Camera& camera, Window& window) :
 			mCamera(camera),
 			m_debugRenderer(physics::DebugPhysics::instance->getRenderer()),
-			Layer("Debug Physics Layer",m_debugRenderer),
+			Layer("Debug Physics Layer", physics::DebugPhysics::instance->getRenderer()),
 			mWindow(window)
 
 	{
+		
 		m_pixelToMeterRatio = glm::vec2(mWindow.getWidth(),mWindow.getHeight()) / camera.getSize();
 		hidden = true; // Don't list in inspector	
 		m_renderer = m_debugRenderer;

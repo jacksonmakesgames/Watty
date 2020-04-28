@@ -1,5 +1,11 @@
 #pragma once
-#ifdef WATTY_OPENGL
+
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+//#include <GLFW/glfw3.h>
+#include <GLES3/gl32.h>
+#else
 #include <glad/glad.h>
 #endif
 namespace letc {

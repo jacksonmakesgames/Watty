@@ -1,10 +1,8 @@
 #pragma once
-#include "layer.h";
 #include "../shader.h"
 #include"../DebugRenderer.h"
 #include "../Camera.h"
 #include "../window.h"
-#include <math.h>       /* fmod */
 namespace letc { namespace graphics {
 
 	class GridLayer : public Layer {

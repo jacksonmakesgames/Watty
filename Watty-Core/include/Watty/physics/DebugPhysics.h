@@ -1,14 +1,20 @@
 #pragma once
-#include <box2d/Box2D.h>
+#include <box2d/box2d.h>
 #include <box2d/b2_draw.h>
 
 #include <glm.hpp>
 #include "../graphics/DebugRenderer.h"
 
+
+#ifdef WATTY_EMSCRIPTEN
+#include <emscripten.h>
+//#include <GLFW/glfw3.h>
+#include <GLES3/gl32.h>
+#endif
+#include <math/math.h> //DEGREETORAD
+
 #define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
 #define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
-
-#define DEGTORAD 0.01745329251
 
 namespace letc { namespace physics { 
 
@@ -19,15 +25,15 @@ namespace letc { namespace physics {
 	private:
 		static graphics::DebugRenderer* renderer;
 		static graphics::Shader* m_shader;
-		static glm::vec3* m_sceneCameraPosition;
-		static glm::vec2* m_sceneCameraScale;
+		static const glm::vec3* m_sceneCameraPosition;
+		static const glm::vec2* m_sceneCameraScale;
 		glm::vec3 m_positionLastFrame = glm::vec3();
 	public:
 
 		static inline graphics::DebugRenderer* getRenderer() { return renderer; }
 
 		static DebugPhysics* instance;
-		static void init(glm::vec3* sceneCameraPosition,glm::vec2* sceneCameraScale) {
+		static void init(const glm::vec3* sceneCameraPosition, const glm::vec2* sceneCameraScale) {
 			m_sceneCameraPosition = sceneCameraPosition;
 			m_sceneCameraScale = sceneCameraScale;
 			DebugPhysics::m_shader = new graphics::Shader();
@@ -106,7 +112,11 @@ namespace letc { namespace physics {
 			renderer->end();
 			glLineWidth(2.5f);
 			renderer->flush(GL_LINE_LOOP, (int)resolution * 1.5);
+#ifndef WATTY_EMSCRIPTEN
+
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+#endif // WATTY_EMSCRIPTEN
+
 			renderer->flush(GL_TRIANGLE_FAN, (int)resolution * 1.5);
 			glLineWidth(1.0f);
 
