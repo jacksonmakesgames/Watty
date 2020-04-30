@@ -85,8 +85,8 @@ namespace letc {
 			renderer->submit(this);
 		}
 
-		void setColor(WattyColor color) { m_color = color; }
-		void setColor(glm::vec4 color) {
+		inline void setColor(WattyColor color) { m_color = color; }
+		inline void setColor(glm::vec4 color) {
 			int	r = color.x * 255.0f;
 			int	g = color.y * 255.0f;
 			int	b = color.z * 255.0f;

@@ -4,13 +4,13 @@
 //#define __BUTTERFLY 1
 #define __SOUND 1
 
-#define VERTPATH "../../res/shaders/basic.vert"
-#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
-#define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
-#define FLOORTEXTUREPATH "../../res/textures/floor.png"
-#define MUSICPATH "../../res/sounds/slow_motion.ogg"
+#define VERTPATH RESDIR "res/shaders/basic.vert"
+#define FRAGLITPATH RESDIR "res/shaders/basic_lit.frag"
+#define FRAGUNLITPATH RESDIR "res/shaders/basic_unlit.frag"
+#define FONTPATH RESDIR "res/fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH RESDIR "res/fonts/Roboto-Italic.ttf"
+#define FLOORTEXTUREPATH RESDIR "res/textures/floor.png"
+#define MUSICPATH RESDIR "res/sounds/slow_motion.ogg"
 
 using namespace letc;
 using namespace graphics;
@@ -25,7 +25,7 @@ namespace letc {
 
 	}
 }
-class PhysicsDemo : public LETC {
+class SimpleGame : public LETC {
 	private:
 		Window* m_window;
 		//Label* fpsLabel;
@@ -55,8 +55,8 @@ class PhysicsDemo : public LETC {
 		//Camera* m_camera;
 
 	public:
-		PhysicsDemo() {}
-		~PhysicsDemo() {
+		SimpleGame() {}
+		~SimpleGame() {
 
 		}
 
@@ -94,7 +94,7 @@ class PhysicsDemo : public LETC {
 			player = new GameObject(
 				playerPos,
 				playerSize,
-				new Sprite(new Texture("../../res/textures/Player.png")));
+				new Sprite(new Texture(RESDIR "res/textures/Player.png")));
 
 			player->addComponent(new PhysicsBody2D(
 				physics::BodyShapes::circle,
@@ -107,7 +107,7 @@ class PhysicsDemo : public LETC {
 			player->setTag("Player");
 			layer0->add(player);
 
-			boxTexture = new Texture("../../res/textures/box.png");
+			boxTexture = new Texture(RESDIR "res/textures/box.png");
 			Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
 			glm::vec3 floorPos(-16.0f,-9.0f,0);
@@ -345,7 +345,7 @@ class PhysicsDemo : public LETC {
 
 
 int main() {
-	PhysicsDemo game;
+	SimpleGame game;
 	game.start();
 	return 0;
 

@@ -157,6 +157,7 @@ namespace letc {namespace graphics {
 		setUniform1i("texture_14", 14);
 		setUniform1i("texture_15", 15);
 #endif //!WATTY_EMSCRIPTEN
+		disable();
 	}
 
 	void Shader::enable() const{

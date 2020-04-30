@@ -1,3 +1,5 @@
+precision highp float;
+
 attribute highp vec4 position;
 attribute highp vec2 uv;
 attribute highp float tid;

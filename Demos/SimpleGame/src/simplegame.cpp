@@ -1,14 +1,8 @@
 #include <Watty/Watty.h>
-#include <math.h>
-
 // TODO: relative 
-#define VERTPATH "../../res/shaders/basic.vert"
-#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
-#define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
-#define PLAYERTEXTUREPATH "../../res/textures/Player.png"
-#define ENEMYTEXTUREPATH "../../res/textures/Enemy.png"
+
+#define PLAYERTEXTUREPATH RESDIR "textures/Player.png"
+#define ENEMYTEXTUREPATH RESDIR "textures/Enemy.png"
 
 using namespace letc;
 using namespace graphics;
@@ -22,7 +16,7 @@ namespace letc {
 	}
 }
 
-class PhysicsDemo : public LETC {
+class SimpleGame : public LETC {
 private:
 	Window* m_window;
 	//Label* fpsLabel; 
@@ -37,24 +31,20 @@ private:
 	GameObject* enemyGO;
 
 public:
-	PhysicsDemo() {}
-	~PhysicsDemo() {
+	SimpleGame() {}
+	~SimpleGame() {
 	
 	}
 
 	void init() override {
-		m_window = createWindow("The First Game Made With the LETC!", 1600,900, false, true);
-		m_window->setVSync(true);
+		m_window = createWindow("The First Game Made With the LETC!", 1600,900, true, false);
 
-		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH));
-		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D(), new Shader(VERTPATH,FRAGUNLITPATH));
+		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D());
+		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D());
 		layers.push_back(playerLayer);
 		layers.push_back(uiLayer);
 
 		glClearColor(.976f,.972f,.972f,1);
-
-		glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
-
 
 		Texture* playerTexture = new Texture(PLAYERTEXTUREPATH);
 		playerGO = new GameObject(glm::vec3(0,0,0), glm::vec2(4,4), new Sprite(playerTexture));
@@ -123,7 +113,7 @@ public:
 
 
 int main() {
-	PhysicsDemo game;
+	SimpleGame game;
 	game.start();
 	return 0;
 }

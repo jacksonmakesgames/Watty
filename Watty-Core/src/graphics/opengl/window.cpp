@@ -134,25 +134,23 @@ namespace letc {namespace graphics {
 			std::cout << "Failed to initialize GLAD" << std::endl;
 			return -1;
 		}
-
 #endif
 		std::cout << "Watty{} Version: " << WATTYVERSION << std::endl;
-		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
+		std::cout << " OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
+#ifndef WATTY_EMSCRIPTEN
 		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
 		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
 		{
 			glEnable(GL_DEBUG_OUTPUT);
 			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-#ifndef WATTY_EMSCRIPTEN
 			glDebugMessageCallback(openglCallbackFunction, nullptr);
 			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 
-#endif // !WATTY_EMSCRIPTEN
 
 		}
+#endif // !WATTY_EMSCRIPTEN
 		glClearColor(0, 0, 0, 1);
-
 
 		// choose how textures render on top of one another
 		glEnable(GL_BLEND);

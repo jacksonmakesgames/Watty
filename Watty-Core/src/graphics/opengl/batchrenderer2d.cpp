@@ -103,7 +103,6 @@ namespace letc {namespace graphics {
 			}
 			idForShader = (float)(m_glTIDsThisFlush.size() % m_maxTextureUnits);
 			if (idForShader == 0.0f) idForShader = 1.0f;
-		
 		}
 
 		if (m_glTIDsThisFlush.size() >= m_maxTextureUnits) {
@@ -245,7 +244,8 @@ namespace letc {namespace graphics {
 	void BatchRenderer2D::end(){
 #ifdef WATTY_EMSCRIPTEN
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, (m_currentBuffer - m_currentBufferBase) * RENDERER_VERTEX_SIZE, m_currentBufferBase);
+		if((m_currentBuffer - m_currentBufferBase) * RENDERER_VERTEX_SIZE > 0)
+			glBufferSubData(GL_ARRAY_BUFFER, 0, (m_currentBuffer - m_currentBufferBase) * RENDERER_VERTEX_SIZE, m_currentBufferBase);
 		m_currentBuffer = m_currentBufferBase;
 #else
 		glUnmapBuffer(GL_ARRAY_BUFFER);

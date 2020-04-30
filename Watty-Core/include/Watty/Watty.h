@@ -175,11 +175,11 @@ private:
 		Random::init();
 
 #ifdef DEBUG 
-		//letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
-		//letc::physics::PhysicsWorld2D::setDebugDraw();
-		//layers.push_back(new graphics::DebugPhysicsLayer(*sceneCamera, *m_window));
-		//layers.push_back(new graphics::GridLayer(*sceneCamera, *m_window));
-		//layers.push_back(new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, layers));
+		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
+		letc::physics::PhysicsWorld2D::setDebugDraw();
+		layers.push_back(new graphics::DebugPhysicsLayer(*sceneCamera, *m_window));
+		layers.push_back(new graphics::GridLayer(*sceneCamera, *m_window));
+		layers.push_back(new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, layers));
 
 #endif
 		m_time = new Timer();

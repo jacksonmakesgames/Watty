@@ -72,8 +72,6 @@ public:
 
 		player->addAnimator();
 
-		mainLayer->add(new GameObject(glm::vec3(.5f * m_window->getWidth(), .5f * m_window->getHeight(), 0) + .5f * 1, glm::vec2(m_window->getWidth(), m_window->getHeight()), new Sprite(new Texture("../../ConwaysGameOfLife/res/grid.png"))));
-
 		player->getAnimator()->addAnimation(new SpriteSheetAnimation(
 			SpriteSheetAnimInfo{ "idle_down",	10.0f, 4, 9, true, 3, 0 }
 		)); player->getAnimator()->addAnimation(new SpriteSheetAnimation(

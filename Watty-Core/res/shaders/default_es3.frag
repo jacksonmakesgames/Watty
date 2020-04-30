@@ -1,6 +1,4 @@
 precision highp float;
-uniform highp vec4 col;
-
 varying highp vec4 vs_position;
 varying highp vec2 vs_uv;
 	
@@ -28,8 +26,9 @@ uniform sampler2D textures_15;
 
 void main(){
 	vec4 texColor = vs_color;
+	
 	if(vs_tid > 0.0){
-		int tid = int(vs_tid-0.5);
+		int tid = int(vs_tid - 0.5);
 		if(tid == 0){
 			texColor =  vs_color * texture2D(textures_0, vs_uv);
 		}
@@ -79,12 +78,11 @@ void main(){
 			texColor =  vs_color * texture2D(textures_15, vs_uv);
 		}
 		else{
-			texColor =  vs_color ;
+			texColor =  vec4(1,0,1,1) ;
 		}
-
-
-
 	}
+		
 
+		
 	gl_FragColor = texColor;
 }

@@ -16,13 +16,20 @@ namespace letc {namespace graphics {
 		// make GL texture
 		glGenTextures(1, &m_TID);
 		glBindTexture(GL_TEXTURE_2D, m_TID);
+		std::cout << "gen texture " << m_TID << std::endl;
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		std::cout << "wrap t" << std::endl;
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		std::cout << "wrap s" << std::endl;
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		std::cout << "mag" << std::endl;
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		std::cout << "min" << std::endl;
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, m_width, m_height,
 			0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
+
+		std::cout << "..texture generated" << std::endl;
 
 	}
 
@@ -84,7 +91,9 @@ namespace letc {namespace graphics {
 			return 0;
 		}
 
+		std::cout << "Loading Texture: " << m_filename << std::endl;
 		GLuint output;
+
 		glGenTextures(1, &output); // generate unique glTID
 		glBindTexture(GL_TEXTURE_2D, output);
 		
@@ -93,13 +102,14 @@ namespace letc {namespace graphics {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		
 		// NEW
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	
 		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
+		std::cout << "Loaded Texture: " << m_filename <<" With ID:" << output << std::endl;
 		delete[] data;
 		return output;
 	}

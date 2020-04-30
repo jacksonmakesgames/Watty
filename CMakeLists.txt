@@ -5,11 +5,14 @@ cmake_minimum_required (VERSION 3.15)
 
 
 set(ROOT 						${CMAKE_SOURCE_DIR})
-set(WATTYVERSION 				0.27)
+set(WATTYVERSION 				0.28)
 set(CORE 						Watty-Core)
 set(LIBNAME 					Watty_v${WATTYVERSION})
 set(COREDIR 					${CMAKE_SOURCE_DIR}/${CORE}/)
 set(CORENAME 					Core_Engine_v${WATTYVERSION})
+
+set(CMAKE_CONFIGURATION_TYPES 	Debug Release Web)
+
 
 if(EMSCRIPTEN)
 
@@ -23,8 +26,8 @@ add_compile_definitions(
 	WATTY_OPENGL
 	WATTY_EMSCRIPTEN
 	)
-set(CMAKE_BUILD_TYPE Emscripten)
-
+set(CMAKE_BUILD_TYPE Web)
+set(CMAKE_STATIC_LIBRARY_PREFIX_CPP "")
 
 include_directories(
 	${COREDIR}
@@ -43,7 +46,7 @@ include_directories(
 
 	include(${CMAKE_SOURCE_DIR}/dependencies/box2d.js/Box2D_v2.3.1/Box2D/UseBox2D.cmake)
 
-	set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -s DISABLE_EXCEPTION_CATCHING=0 -s ENVIRONMENT=web -s LLD_REPORT_UNDEFINED -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s WASM=0 -std=c++17 -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 --memory-init-file 0")
+	set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS}  -s ENVIRONMENT=web -s LLD_REPORT_UNDEFINED -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s WASM=0 -std=c++17 -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 --memory-init-file 0")
 	set(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} ${CMAKE_SOURCE_DIR}/dependencies/box2d.js/box2d.o")
 	
 	add_subdirectory(Watty-Core)
@@ -51,6 +54,7 @@ include_directories(
 
 	project (Watty_Engine)
 	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY	 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY	 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY		${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 	add_library(${LIBNAME} STATIC
@@ -73,7 +77,6 @@ set(CMAKE_SUPPRESS_REGENERATION true)
 set(CMAKE_CXX_STANDARD 			17)
 set(CMAKE_CXX_EXTENSIONS 		OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CONFIGURATION_TYPES 	Debug Release Emscripten)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
 set (USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR})

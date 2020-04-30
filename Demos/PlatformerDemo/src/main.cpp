@@ -1,10 +1,9 @@
 #include <Watty/Watty.h>
 
 
-#define VERTPATH "../../res/shaders/basic.vert"
-#define FRAGLITPATH "../../res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH "../../res/shaders/basic_unlit.frag"
-#define FLOORTEXTUREPATH "../../res/textures/floor.png"
+#define FRAGLITPATH RESDIR "shaders/basic_lit.frag"
+#define FRAGUNLITPATH RESDIR "shaders/basic_unlit.frag"
+#define FLOORTEXTUREPATH RESDIR "textures/floor.png"
 
 using namespace letc;
 using namespace graphics;
@@ -40,7 +39,8 @@ public:
 		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 		letc::physics::PhysicsWorld2D::setDebugDraw();
 
-		Shader* shader0 = new Shader(VERTPATH, FRAGLITPATH);
+		//Shader* shader0 = new Shader(VERTPATH, FRAGLITPATH);
+		Shader* shader0 = new Shader();
 		shader0->setUniform3f("light_pos", glm::vec3(16.0f, 16.0f, 0.0f));
 		shader0->setUniform1f("light_radius", 250.0f);
 		shader0->setUniform1f("light_intensity", 1.1f);
@@ -62,8 +62,8 @@ public:
 		player = new GameObject(
 			playerPos,
 			playerSize,
-			//new Sprite(new Texture("../../res/textures/Player.png")));
-			new Sprite(new Texture("C:/Users/Jacks/Pictures/Tests/AnimationTest.png")));
+			//new Sprite(new Texture(RESDIR "res/textures/Player.png")));
+			new Sprite(new Texture(RESDIR "textures/AnimationTest.png")));
 		
 		player->setTag("Player");
 

@@ -1,11 +1,8 @@
 #include <Watty/Watty.h>
 #include "ConwayLayer.h"
-#include <math.h>
 #include <deque>
 
-#define FONTPATH "../../res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH "../../res/fonts/Roboto-Italic.ttf"
-#define GRIDTEXTUREPATH "../../res/textures/grid.png"
+#define GRIDTEXTUREPATH RESDIR "res/textures/grid.png"
 
 //#define WINDOWWIDTH 1600
 //#define WINDOWHEIGHT 900
@@ -22,7 +19,7 @@ namespace letc {
 	}
 }
 
-class PhysicsDemo : public LETC {
+class SimpleGame : public LETC {
 private:
 	Window* m_window;
 	//Label* upsLabel;
@@ -56,8 +53,8 @@ private:
 
 
 public:
-	PhysicsDemo() {}
-	~PhysicsDemo() {
+	SimpleGame() {}
+	~SimpleGame() {
 
 	}
 
@@ -404,7 +401,7 @@ public:
 
 
 int main() {
-	PhysicsDemo game;
+	SimpleGame game;
 	game.start();
 	return 0;
 }
