@@ -1,7 +1,6 @@
 @echo OFF
 
 
-
 PUSHD "%~dp0..\"
 IF EXIST bin\Web\ (
 	PUSHD bin\Web
@@ -12,7 +11,8 @@ IF EXIST bin\Web\ (
 )
 if not exist "build_web\NUL" mkdir build_web
 PUSHD "build_web"
-..\dependencies\emscripten\emsdk_env.bat && cmake -DEMSCRIPTEN=TRUE -G "Unix Makefiles" %~dp0.. && make && POPD && POPD & GOTO continue
+
+..\dependencies\emscripten\emsdk_env.bat && emcmake cmake -DEMSCRIPTEN=TRUE -G "Unix Makefiles" %~dp0.. && make && POPD && POPD & GOTO continue
 
 :continue
 set interactive=1

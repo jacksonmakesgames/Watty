@@ -24,7 +24,7 @@ except ImportError:
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 LOG_WIDTH = 170
-PORT = 311
+PORT = 8080
 
 def open_file(path):
     if platform.system() == "Windows":
@@ -118,25 +118,21 @@ class WattyTools:
         self.root.title("{Watty Tools}")
         self.root.geometry("1200x600")
         self.process = None
+        self.httpd = None
         self.running_web_service = False
-        if platform.system() == "Windows":
-            self.modes = {
-                "build_watty_windows":"\\..\\build_watty_windows.bat",
-                "build_watty_web":"\\..\\build_watty_web.bat",
-                "clean_watty_web":"\\..\\clean_watty_web.bat",
-                "clean_watty_windows":"\\..\\clean_watty_windows.bat",
-                "clean_demos_windows":"\\..\\clean_demos_windows.bat",
-                "clean_demos_web":"\\..\\clean_demos_web.bat",
-                "build_demos_windows":"\\..\\buil_demos_windows.bat",
-                "build_demos_web":"\\..\\build_demos_web.bat",
-            }
 
 
-    def run_build(self, mode):
+    def run_build(self, mode, configuration):
         if(self.process is not None):
             self.process.kill()
+
+        if platform.system() == "Windows":
+            if mode.endswith("web"):
+                mode = "\\"+mode+".bat"
+            else:
+                mode = "\\"+mode+"_"+configuration.lower() + ".bat"
         
-        self.process = subprocess.Popen(["cmd", "/c", "start", "/MIN", "/w","/B", dir_path+self.modes[mode]],stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+        self.process = subprocess.Popen(["cmd", "/c", "start", "/MIN", "/w","/B", dir_path+mode], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
         q = Queue(maxsize=1024)  # limit output buffering (may stall subprocess)
         q.put("")
         q.put("Starting build: " + mode)
@@ -151,19 +147,23 @@ class WattyTools:
 
     def run_web_server(self):
         if(self.running_web_service):
-            print("Can't start another web server")
+            self.listbox.write("Can't start another web server")
             return
-        os.chdir("../../.")
+
+        web_dir = os.path.normpath(os.path.dirname(__file__) + os.sep + os.pardir)
+        os.chdir(web_dir)
+        os.chdir("J:\\OneDrive\\Projects\\Game_Development\\Watty")
+        self.listbox.write("Serving: " + os.getcwd() + " at localhost:" + str(PORT))
         self.running_web_service = True
         server_address = ('', PORT)
-        httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-        httpd.serve_forever()
+        self.httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+        self.httpd.serve_forever()
 
     def run_program_windows(self, program, config):
         q = Queue(maxsize=1024)  # limit output buffering (may stall subprocess)
         q.put("")
         q.put("Starting program: " + program)
-        self.process = subprocess.Popen([dir_path+"\\..\\..\\bin\\"+config+"\\"+program],stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+        self.process = subprocess.Popen([dir_path+"\\..\\bin\\"+config+"\\"+program],stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
         t = Thread(target=self.reader_thread, args=[q])
         t.daemon = True # close pipe if GUI process exits
         t.start()
@@ -171,7 +171,6 @@ class WattyTools:
         # show subprocess' stdout in GUI
         self.update(q) # start update loop
         return
-
 
     def run_watty(self, mode, config):
         if mode == 'Windows':
@@ -212,12 +211,15 @@ class WattyTools:
     def quit(self):
         if(self.process is not None): 
             self.process.kill() # exit subprocess if GUI is closed
+        if self.httpd is not None:
+            self.httpd.server_close() 
         self.root.destroy()
 
 
 
 
 root = Tk()
+root.iconbitmap(dir_path+"/../favicon.ico")
 
 app = WattyTools(root)
 root.protocol("WM_DELETE_WINDOW", app.quit)
@@ -234,29 +236,30 @@ wattyFrame.grid(row = 2, column = 0, columnspan=2, padx=20, pady=10, sticky=W)
 wattyLabel = Label(wattyFrame, text="Watty Game Engine")
 wattyLabel.grid(row = 0, column = 0, padx=5, pady=5)
 
-plat = StringVar(root)
-choicesP = { 'Web','Windows'}
-plat.set('Web') # set the default option
+watty_plat = StringVar(root)
+choicesP = { 'Windows','Web'}
+watty_plat.set('Windows') # set the default option
 
 configuration = StringVar(root)
 choicesC = { 'Debug','Release'}
 configuration.set('Debug') # set the default option
 
-popupMenu = OptionMenu(wattyFrame, plat, *choicesP)
-Label(wattyFrame, text="Platform:").grid(row = 1, column = 0)
-popupMenu.grid(row = 2, column =0)
+popupMenuWP = OptionMenu(wattyFrame, watty_plat, *choicesP)
+Label(wattyFrame, text="Platform:").grid(row = 1, column = 0, sticky=N+E+W+S)
+popupMenuWP.grid(row = 2, column =0, sticky=N+E+W+S)
 
-popupMenu = OptionMenu(wattyFrame, configuration, *choicesC)
-Label(wattyFrame, text="Config:").grid(row = 1, column = 1)
-popupMenu.grid(row = 2, column =1)
+popupMenuWC = OptionMenu(wattyFrame, configuration, *choicesC)
+wattyConfigLabel = Label(wattyFrame, text="Config:")
+wattyConfigLabel.grid(row = 1, column = 1, sticky=N+E+W+S)
+popupMenuWC.grid(row = 2, column =1, sticky=N+E+W+S)
 
-b = Button(wattyFrame, text="Build", command=lambda: app.run_build("build_watty_"+plat.get()))
+b = Button(wattyFrame, text="Build", command=lambda: app.run_build("build_watty_"+watty_plat.get().lower(), configuration.get()))
 b.grid(row = 3, column =0, padx=5, pady=5, sticky=N+E+S+W)
 
-b = Button(wattyFrame, text="Clean", command=lambda: app.run_build("clean_watty_"+plat.get()))
+b = Button(wattyFrame, text="Clean", command=lambda: app.run_build("clean_watty_"+watty_plat.get().lower(), configuration.get()))
 b.grid(row = 3, column =1, padx=5, pady=5, sticky=N+E+S+W)
 
-b = Button(wattyFrame, text="Run", command=lambda: app.run_watty(plat.get(), configuration.get()))
+b = Button(wattyFrame, text="Run", command=lambda: app.run_watty(watty_plat.get(), configuration.get()))
 b.grid(row = 4, column =0, padx=5, pady=5, sticky=N+E+S+W)
 
 demosFrame = Frame(root, borderwidth=2, relief="sunken")
@@ -264,11 +267,16 @@ demosFrame.grid(row = 2, column =1, columnspan=2, padx=5, pady=5, stick=W)
 demosLabel = Label(demosFrame, text="Demos:")
 demosLabel.grid(row = 0, column =0, padx=5, pady=5)
 
-b = Button(demosFrame, text="Build for Web", command=lambda: app.run_build(""))
-b.grid(row = 1, column =0, padx=5, pady=5)
 
-b = Button(demosFrame, text="Build for Windows", command=lambda: app.run_build(""))
-b.grid(row = 1, column =1, padx=5, pady=5)
-
+def change_watty_platform(*args):
+        if watty_plat.get() == "Web":
+            popupMenuWC.grid_forget()
+            wattyConfigLabel.grid_forget()
+        else:
+            wattyConfigLabel.grid(row = 1, column = 1)
+            popupMenuWC.grid(row = 2, column =1)
+  
+ 
+watty_plat.trace('w', change_watty_platform)
 
 root.mainloop()
