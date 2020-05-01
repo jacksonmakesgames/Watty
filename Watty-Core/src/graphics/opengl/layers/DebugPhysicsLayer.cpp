@@ -15,7 +15,7 @@ namespace letc { namespace graphics {
 
 	
 	void DebugPhysicsLayer::draw(){
-		if (!enabled) return;
+		if (!enabled_) return;
 		physics::DebugPhysics::setProjection(getProjection());
 		physics::PhysicsWorld2D::box2DWorld->DebugDraw(); //submit
 	

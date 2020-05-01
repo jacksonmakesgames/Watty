@@ -37,7 +37,7 @@ include_directories(
 	${WATTYDIR}dependencies/soloud/include
 	${WATTYDIR}dependencies/json/include
 	${WATTYDIR}dependencies/glm/include
-	${WATTYDIR}dependencies/imgui/include
+	${WATTYDIR}dependencies/imgui
 	
 	) 
 if(EMSCRIPTEN)

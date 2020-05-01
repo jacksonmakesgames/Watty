@@ -13,6 +13,7 @@ namespace letc { namespace graphics {
 			std::string text = "";
 			bool IsSelected = false;
 		};
+
 		
 		struct SelectableObject {
 			SelectableObject(GameObject* obj) :text(object->name), object(obj){}
@@ -20,6 +21,8 @@ namespace letc { namespace graphics {
 			std::string text = "";
 			bool IsSelected = false;
 		};
+
+
 	private:
 		ImVec4 m_clearColor;
 		bool& m_debugPhysics;
@@ -33,6 +36,5 @@ namespace letc { namespace graphics {
 
 	private:
 	};
-
 	
 } }

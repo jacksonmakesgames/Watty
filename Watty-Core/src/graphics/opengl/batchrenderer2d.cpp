@@ -118,6 +118,14 @@ namespace letc {namespace graphics {
 		const float tx = ((int)frameInfo.currentFrame % frameInfo.rows) * tw;
 		const float ty = 1- ((int)frameInfo.currentFrame / frameInfo.cols+1) * th;
 
+
+		//TODO: log error
+		if (m_currentBuffer == nullptr) {
+			std::cout << "Vertex Buffer was null while rendering texture with ID: " << tid << " Attempting to restart renderer.." <<std::endl;
+		
+			return;
+		}
+
 		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 0, 0, 1);
 		m_currentBuffer->uv.x = tx;
 		m_currentBuffer->uv.y = ty;

@@ -27,6 +27,11 @@ namespace letc {namespace graphics {
 
 	void DebugRenderer::submit(std::vector<glm::vec3> vertices, int vertexCount, WattyColor color)
 	{
+		//TODO: log error
+		if (m_currentBuffer == nullptr) {
+			std::cout << "Current buffer was null in debug renderer" << std::endl;
+			return;
+		}
 		int uvX[] = { 0,0,1,1 };
 		int uvY[] = { 0,1,1,0 };
 		for (int i = 0; i < vertexCount; i++) {

@@ -1,7 +1,7 @@
 #include <graphics/layers/layer.h>
 namespace letc {
 	Layer::Layer(std::string name, graphics::Renderer2D* renderer, graphics::Shader* shader)
-	: name(name), m_enabledLastFrame(enabled){
+	: name(name){
 		m_shader = shader;
 		m_renderer = renderer;
 		m_shader->enable();
@@ -9,7 +9,7 @@ namespace letc {
 	}
 
 	Layer::Layer(std::string name, graphics::Renderer2D* renderer)
-		:name(name), m_enabledLastFrame(enabled)
+		:name(name)
 	{
 		m_shader = new graphics::Shader();
 		m_renderer = renderer;
@@ -18,7 +18,7 @@ namespace letc {
 	}
 
 	Layer::Layer(std::string name)
-		:name(name), m_enabledLastFrame(enabled)
+		:name(name)
 	{
 		m_shader = new graphics::Shader();
 		m_renderer = new graphics::BatchRenderer2D();
@@ -35,7 +35,7 @@ namespace letc {
 	}
 
 	void Layer::add(GameObject* gameObject) {
-		if (!enabled && gameObject->getPhysicsBody2D() != nullptr)
+		if (!enabled_ && gameObject->getPhysicsBody2D() != nullptr)
 			gameObject->getPhysicsBody2D()->disable();
 		m_gameObjects.push_back(gameObject);
 	}
@@ -56,21 +56,22 @@ namespace letc {
 
 
 	void Layer::disable(){
+		if (!enabled_) return;
 		for (GameObject* gameObject : m_gameObjects)
 			gameObject->disable();
 
-		enabled = false;
+		enabled_ = false;
 	}
 
 	void Layer::enable(){
+		if (enabled_) return;
 		for (GameObject* gameObject : m_gameObjects)
 			gameObject->enable();
-
-		enabled = true;
+		enabled_ = true;
 	}
 
 	void Layer::draw(){
-		if (!enabled) return;
+		if (!enabled_) return;
 		m_shader->enable();
 		m_renderer->begin();
 
@@ -91,12 +92,7 @@ namespace letc {
 	}
 
 	void Layer::update(){
-		if (!m_enabledLastFrame && enabled)
-			enable();
-		else if (m_enabledLastFrame && !enabled)
-			disable();
-		m_enabledLastFrame = enabled;
-		if (!enabled) return;
+		if (!enabled_) return;
 		for (GameObject* gameObject : m_gameObjects) {
 				gameObject->update();
 			}

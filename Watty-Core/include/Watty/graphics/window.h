@@ -14,13 +14,13 @@
 #include <emscripten.h>
 #include <GLES3/gl32.h>
 #else
-#include <glad/glad.h>
+#include <glad/glad.h>	
 #endif
 
-#include <imgui/imgui.h>
+#include <imgui.h>
 #include <GLFW/glfw3.h>
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 
 #include "Camera.h"

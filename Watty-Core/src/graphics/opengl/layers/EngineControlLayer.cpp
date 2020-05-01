@@ -13,8 +13,10 @@ namespace letc {namespace graphics {
 		m_clearColor = ImVec4(bkColor[0], bkColor[1], bkColor[2], bkColor[3]);
 		hidden = true;
 	}
+
+
 	void EngineControlLayer::draw(){
-		if (!enabled) return;
+		if (!enabled_) return;
 
 			ImGui::Begin("Application Info"); {
 				ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -22,8 +24,7 @@ namespace letc {namespace graphics {
 				ImGui::Text("%4d draws/frame", Renderer2D::globalFlushesThisFrame); // TODO: note that global flushes this frame will only be accurate if this layer is last layer in stack
 			}ImGui::End();
 
-			graphics::Renderer2D::globalFlushesThisFrame = 0; // TODO: could be inaccurate if 
-
+			graphics::Renderer2D::globalFlushesThisFrame = 0;
 
 			// Inspector:
 			ImGui::Begin("Inspector"); {
@@ -33,44 +34,57 @@ namespace letc {namespace graphics {
 						layerNames.push_back(SelectableLayer(m_appLayers[i]));
 					}
 				}
-				ImGui::PushItemWidth(-1);// "##empty"
+
+				ImGui::PushItemWidth(-1); // "##empty"
 				bool header = ImGui::ListBoxHeader("", ImVec2(0, -100));
 				// Layers
-				for (SelectableLayer item : layerNames) {
-					std::string postfix = (item.layer->enabled ? "" : "(Disabled)");
+				for (size_t layerIndex = 0; layerIndex < layerNames.size(); layerIndex++){
+					SelectableLayer item = layerNames[layerIndex];
+					bool layerEnabled = item.layer->isEnabled();
+
+					std::string postfix = (layerEnabled ? "" : "(Disabled)");
 					std::string item_name = item.text + postfix;
-					ImVec4 col = item.layer->enabled ? ImVec4(0, 0, 0, 1) : ImVec4(.5, .5, .5, 1);
+
+					ImVec4 col = layerEnabled ? ImVec4(0, 0, 0, 1) : ImVec4(.5, .5, .5, 1);
+
 					ImGui::PushStyleColor(ImGuiCol_Text, col);
-					ImGui::Checkbox("", &item.layer->enabled);
+					if(ImGui::Checkbox(("##layer"+std::to_string(layerIndex)).c_str(), &layerEnabled))
+						layerEnabled ? item.layer->enable() : item.layer->disable();
+
 					ImGui::PopStyleColor();
 
-					std::vector<SelectableObject> selectableLayerObjects;
 					std::vector<GameObject*> layerObjs = item.layer->getGameObjects();
-					ImGuiTreeNodeFlags layerFlags = ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_DefaultOpen;
+					ImGuiTreeNodeFlags layerFlags = ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_CollapsingHeader;
 					if (layerObjs.size() == 0) layerFlags |= ImGuiTreeNodeFlags_Bullet;
 					
 					ImGui::SameLine();
-					if (ImGui::TreeNodeEx(item_name.c_str(), layerFlags)) {
+					if (ImGui::CollapsingHeader((item_name + "##layer_tree" + std::to_string(layerIndex)).c_str(), layerFlags)) {
 						// Objects
-						for (size_t j = 0; j < layerObjs.size(); j++) {
-							selectableLayerObjects.push_back(SelectableObject(layerObjs[j]));
-						}
+						for (size_t objIndex = 0; objIndex < layerObjs.size(); objIndex++) {
+							ImGui::Indent();
+							SelectableObject selectable = SelectableObject(layerObjs[objIndex]);
+							bool enabled = selectable.object->isEnabled();
 
-						if (selectableLayerObjects.size()>0) {
-							for (SelectableObject objItem : selectableLayerObjects) {
-								std::string postfix = (objItem.object->enabled ? "" : "(Disabled)");
-								std::string item_name = objItem.text + postfix;
-								ImVec4 col = objItem.object->enabled ? ImVec4(0, 0, 0, 1) : ImVec4(.5, .5, .5, 1);
-								ImGui::PushStyleColor(ImGuiCol_Text, col);
-								ImGui::Checkbox(item_name.c_str(), &objItem.object->enabled);
-								ImGui::PopStyleColor();
-							}
+							std::string postfix = (enabled ? "" : "(Disabled)");
+							std::string item_name_obj = selectable.text + postfix;
+							ImVec4 colObj = enabled ? ImVec4(0, 0, 0, 1) : ImVec4(.5, .5, .5, 1);
+
+							ImGui::PushStyleColor(ImGuiCol_Text, colObj);
+
+							if (ImGui::Checkbox((item_name_obj + "##obj" + std::to_string(objIndex)).c_str(), &enabled))
+								enabled ? selectable.object->enable() : selectable.object->disable();
+
+							ImGui::PopStyleColor();
+							ImGui::Unindent();
 						}
-					ImGui::TreePop();
+					
 					}
+
 				}
+
 				if(header)
-				ImGui::ListBoxFooter();
+					ImGui::ListBoxFooter();
+
 #ifdef DEBUG
 				ImGui::Checkbox("Debug Physics", &m_debugPhysics);
 

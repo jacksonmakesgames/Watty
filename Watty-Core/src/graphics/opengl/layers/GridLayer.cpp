@@ -16,7 +16,7 @@ namespace letc { namespace graphics {
 	}
 
 	void GridLayer::draw(){
-		if (!enabled) return;
+		if (!enabled_) return;
 
 		m_shader->enable();
 		glm::mat4 p = getProjection();

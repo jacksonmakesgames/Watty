@@ -27,3 +27,7 @@
 	path = dependencies/emscripten
 	url = https://github.com/jacksonmakesgames/emsdk
 	branch = watty
+[submodule "dependencies/imgui"]
+	path = dependencies/imgui
+	url = https://github.com/jacksonmakesgames/imgui
+	branch = watty

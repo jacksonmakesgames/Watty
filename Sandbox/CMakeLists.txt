@@ -1,4 +1,3 @@
-# set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
 if(EMSCRIPTEN)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --embed-file ${CMAKE_CURRENT_SOURCE_DIR}/res/")
 	add_compile_definitions(RESDIR="${CMAKE_CURRENT_SOURCE_DIR}/res/")

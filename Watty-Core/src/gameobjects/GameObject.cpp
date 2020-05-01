@@ -109,7 +109,8 @@ namespace letc {
 	}*/
 
 	void GameObject::disable(){
-		enabled = false;
+		if (!enabled_) return;
+		enabled_ = false;
 		if (m_physicsBody2D != nullptr) 
 			m_physicsBody2D->disable();
 		for (size_t i = 0; i < transform->children.size(); i++)
@@ -117,7 +118,8 @@ namespace letc {
 	}
 
 	void GameObject::enable(){
-		enabled = true;
+		if (enabled_) return;
+		enabled_ = true;
 		if (m_physicsBody2D != nullptr) 
 			m_physicsBody2D->enable();
 
@@ -152,7 +154,7 @@ namespace letc {
 	//}
 
 	void GameObject::submit(graphics::Renderer2D* renderer) const {
-		if (!enabled) return;
+		if (!enabled_) return;
 		//if (transform->children.size()>0) {
 		//	//has children, don't pass scale
 		//	renderer->push(transform->getMatrixNoScale());
@@ -176,14 +178,8 @@ namespace letc {
 
 
 	void GameObject::update(){
-		if (!enabledLastFrame_ && enabled)
-			enable();
-		else if (enabledLastFrame_ && !enabled)
-			disable();
 
-		enabledLastFrame_ = enabled;
-
-		if (!enabled) return;
+		if (!enabled_) return;
 
 		if (m_physicsBody2D!=nullptr) {
 			glm::vec2 pos = m_physicsBody2D->getBodyPosition();
@@ -192,12 +188,6 @@ namespace letc {
 			transform->setRotation(m_physicsBody2D->getBody()->GetAngle());
 			//transform->setRotation(-m_physicsBody2D->getBody()->GetAngle());
 		}
-
-		
-		/*if (m_renderable!=nullptr) {
-			m_renderable->position = m_position;
-			m_renderable->size = m_size;
-		}*/
 
 		for (size_t i = 0; i < transform->children.size(); i++) {
 			//glm::vec3 offset = m_position - m_children[i]->position;

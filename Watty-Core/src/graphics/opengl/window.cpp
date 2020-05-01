@@ -14,10 +14,12 @@ namespace letc {namespace graphics {
 		m_Height = height;
 		isResizeable = resizeable;
 		isFullScreen = fullscreen;
-		if (!init())
+		if (!init()) {
 			glfwTerminate();
-		
-		//FontManager::add(new Font("default", "res/fonts/Roboto-Regular.ttf", 15)); 
+			std::cout << "GLFW failed to initialize, terminating." << std::endl;
+			return;
+		}
+
 #ifndef WATTY_EMSCRIPTEN
 
 		audio::AudioManager::init();
@@ -34,57 +36,57 @@ namespace letc {namespace graphics {
 		}
 
 		// imgui:
-		 // Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
-#ifdef WATTY_EMSCRIPTEN
 
+#ifdef WATTY_EMSCRIPTEN
 		const char* glsl_version = "#version 300 es";
 #else
-
 		const char* glsl_version = "#version 450";
-#endif // 
+#endif  
 
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); 
 		
+#ifndef WATTY_EMSCRIPTEN
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable; // enable multiple viewports
-
-
-		//(void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		io.BackendFlags |= ImGuiBackendFlags_PlatformHasViewports;
+#endif // !WATTY_EMSCRIPTEN
+		ImGui::GetStyle().WindowRounding = 0.0f;
+		ImGui::GetStyle().ChildRounding = 0.0f;
+		ImGui::GetStyle().FrameRounding = 0.0f;
+		ImGui::GetStyle().GrabRounding = 0.0f;
+		ImGui::GetStyle().PopupRounding = 0.0f;
+		ImGui::GetStyle().ScrollbarRounding = 0.0f;
 		// Setup Dear ImGui style
 		ImGui::StyleColorsLight();
-		//ImGui::StyleColorsClassic();
 
 		// Setup Platform/Renderer bindings
 		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
 		ImGui_ImplOpenGL3_Init(glsl_version); // we might need this
-		//io.DisplaySize = ImVec2(m_Width, m_Height);
 
-
+		io.DisplaySize = ImVec2(m_Width, m_Height);
 	}	
 
 	Window::~Window() {
-
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyPlatformWindows();
 		ImGui::DestroyContext();
+
 		glfwTerminate();
+
 		//FontManager::clean(); //TODO
 #ifndef WATTY_EMSCRIPTEN
-
 		audio::AudioManager::clean();
 #endif
 	}
 
-	// TODO: NOT SURE, asks nvidia to use dedicate gpu
+	// TODO: NOT SURE, asks nvidia to use dedicated gpu
 	/*extern "C" {
 		_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 	}*/
 
 	bool Window::init() {
-
 
 		if (!glfwInit()){
 			std::cout << "Failed to initialize GLFW" << std::endl;
@@ -116,7 +118,6 @@ namespace letc {namespace graphics {
 		}
 
 		glfwMakeContextCurrent(m_Window);
-		
 		glfwSetWindowUserPointer(m_Window, this);
 		if(isResizeable) glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
 		glfwSetKeyCallback(m_Window, key_callback);
@@ -125,12 +126,6 @@ namespace letc {namespace graphics {
 		glfwSetScrollCallback(m_Window, scroll_callback);
 		glfwSwapInterval(useVSync);
 
-
-		//if (glewInit() != GLEW_OK) {
-		//	std::cout << "Could not initialize GLEW" << std::endl;
-		//	return false;
-
-		//}	
 #ifndef WATTY_EMSCRIPTEN
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
@@ -143,28 +138,22 @@ namespace letc {namespace graphics {
 
 #ifndef WATTY_EMSCRIPTEN
 		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
-		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
-		{
+		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT){
 			glEnable(GL_DEBUG_OUTPUT);
 			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 			glDebugMessageCallback(openglCallbackFunction, nullptr);
 			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 
-
 		}
 #endif // !WATTY_EMSCRIPTEN
-		glClearColor(0, 0, 0, 1);
 
-		// choose how textures render on top of one another
+		glClearColor(0, 0, 0, 1); // Default
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
-		// add error texture to TextureManager
-		//TextureManager::errorTexture = new Texture("J:/OneDrive/Projects/Game_Development/L_ETC/L_ETC-core/res/error_texture.png");
-
 		return true;
-
 	}
+
 
 	bool Window::keyIsDown(unsigned int keycode) const {
 		// if the key is down this frame
@@ -175,6 +164,7 @@ namespace letc {namespace graphics {
 		return m_keysThisFrame[keycode];
 	}
 
+
 	bool Window::keyWasPressed(unsigned int keycode) const {
 		// If this is the first frame a key is down
 		if (keycode >= MAX_KEYS) {
@@ -184,6 +174,7 @@ namespace letc {namespace graphics {
 		return m_keysFirstFrameDown[keycode];
 	}
 
+
 	bool Window::mouseButtonWasPressed(unsigned int button) const {
 		if (button >= MAX_BUTTONS) {
 		// TODO: log an error
@@ -191,6 +182,8 @@ namespace letc {namespace graphics {
 		}
 		return m_buttonsFirstFrameDown[button];
 	}
+
+
 	bool Window::mouseButtonIsDown(unsigned int button) const {
 		if (button >= MAX_BUTTONS) {
 		// TODO: log an error
@@ -199,8 +192,8 @@ namespace letc {namespace graphics {
 		return m_buttonsThisFrame[button];
 	}
 
-	bool Window::mouseButtonWasReleased(unsigned int button) const
-	{
+
+	bool Window::mouseButtonWasReleased(unsigned int button) const {
 		if (button >= MAX_BUTTONS) {
 			// TODO: log an error
 			return false;
@@ -208,14 +201,15 @@ namespace letc {namespace graphics {
 		return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
 	}	
 	
-	bool Window::keyWasReleased(unsigned int key) const
-	{
+
+	bool Window::keyWasReleased(unsigned int key) const {
 		if (key >= MAX_KEYS) {
 			// TODO: log an error
 			return false;
 		}
 		return  (m_keysLastFrame[key] && !m_keysThisFrame[key]);;
 	}
+
 
 	void Window::getMousePos(double& x, double& y) const {
 		x = mx;
@@ -227,9 +221,9 @@ namespace letc {namespace graphics {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
+
 	void Window::update() {
 		scrolledThisFrameY = 0;
-
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
@@ -240,8 +234,8 @@ namespace letc {namespace graphics {
 #endif
 	}
 
-	void Window::listenForInput()
-	{
+
+	void Window::listenForInput(){
 		
 		for (int i = 0; i < MAX_KEYS; i++) {
 			m_keysFirstFrameDown[i] = false;
@@ -256,29 +250,23 @@ namespace letc {namespace graphics {
 			m_buttonsFirstFrameDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
 		}
 		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool) * MAX_BUTTONS);
-
 	}
 
 
-	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam)
-	{
+	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam){
 		using namespace glm;
 		vec2 pointScreenRatio = vec2();
 		pointScreenRatio.x = position.x / getWidth();
 		pointScreenRatio.y = (getHeight() -position.y) / getHeight();
-
-
 
 		vec2 pointWorldRatio = pointScreenRatio * cam.getSize();
 
 		pointWorldRatio.x -= (.5f * cam.getSize().x);
 		pointWorldRatio.y -= (.5f * cam.getSize().y);
 
-
 		vec3 worldPoint = vec3(pointWorldRatio.x, pointWorldRatio.y, 0) + cam.position;
 		return worldPoint;
 	}
-	
 	
 
 	bool Window::closed() const {
@@ -295,16 +283,21 @@ namespace letc {namespace graphics {
 		//FontManager::remakeAllFonts(width/32.0f, height/16.0f); // NOTE: huge performance hit when resizing.. we should rethink this
 	}
 
+
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 		Window * win = (Window*) glfwGetWindowUserPointer(window);
 		win->m_keysThisFrame[key] = action != GLFW_RELEASE;
 
 	}
+
+
 	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
 		Window * win = (Window*) glfwGetWindowUserPointer(window);
 		win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
 
 	}
+
+
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->mx = xpos;
@@ -312,19 +305,19 @@ namespace letc {namespace graphics {
 
 	}
 	
+
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		win->scrolledThisFrameY = yoffset;
 	}
 
 
-	void Window::toggleVSync()
-	{
+	void Window::toggleVSync(){
 		Window::useVSync = !Window::useVSync;
 		glfwSwapInterval(Window::useVSync);
 	}
-	void Window::setVSync(bool state)
-	{
+
+	void Window::setVSync(bool state){
 		Window::useVSync = state;
 		glfwSwapInterval(Window::useVSync);
 	}
@@ -378,8 +371,5 @@ namespace letc {namespace graphics {
 		std::cout << std::endl;
 		std::cout << "---------------------opengl-callback-end--------------" << std::endl;
 	}
-
-
-
 	
 }}

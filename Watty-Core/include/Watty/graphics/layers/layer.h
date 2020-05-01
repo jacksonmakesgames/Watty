@@ -5,7 +5,6 @@
 namespace letc {
 	class Layer {
 	public:
-		bool enabled = true;
 		bool hidden = false;
 		std::string name;
 
@@ -13,8 +12,8 @@ namespace letc {
 		graphics::Renderer2D* m_renderer;
 		std::vector<GameObject*> m_gameObjects;
 		graphics::Shader* m_shader;
+		bool enabled_ = true;
 	private:
-		bool m_enabledLastFrame;
 		glm::mat4 mProjection;
 	public:
 		Layer(std::string name, graphics::Renderer2D*, graphics::Shader* shader);
@@ -28,6 +27,8 @@ namespace letc {
 
 		virtual void disable();
 		virtual void enable();
+		inline virtual bool isEnabled() { return enabled_; }
+
 		virtual void draw();
 		virtual void update();
 		virtual void setProjection(glm::mat4 projection);

@@ -13,9 +13,8 @@ namespace letc {
 		//glm::vec3& position		 = glm::vec3(0.0f);
 		//glm::vec2& size			 = glm::vec2(0.0f);
 		//glm::vec3 m_parentOffset = glm::vec3(0.0f);
-		bool enabled = true;
 	private:
-		bool enabledLastFrame_ = true;
+		bool enabled_ = true;
 
 		std::string m_tag = "";
 		//std::vector<GameObject*> m_children;
@@ -60,7 +59,7 @@ namespace letc {
 		void removeChild(GameObject* object);*/
 
 		inline graphics::Animator2D* getAnimator() { return m_animator; }
-		
+		inline bool isEnabled() { return enabled_; }
 		void disable();
 		void enable();
 

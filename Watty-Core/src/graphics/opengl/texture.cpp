@@ -101,11 +101,14 @@ namespace letc {namespace graphics {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		
-		// NEW
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	
+		if (isPowerOfTwo(m_width) && isPowerOfTwo(m_height)) {
+			// Yes, it's a power of 2. Generate mips.
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+		else {
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		}
 		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
@@ -114,7 +117,10 @@ namespace letc {namespace graphics {
 		return output;
 	}
 
-
+	bool Texture::isPowerOfTwo(int value)
+	{
+		return (value & (value - 1)) == 0;
+	}
 
 
 }}

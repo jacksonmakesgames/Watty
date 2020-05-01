@@ -35,7 +35,7 @@
 #include <utils/Random.h>
 #include <box2d/box2d.h>
 #include <physics/QueryAABBCallback.h>
-#include <imgui/imgui.h>
+#include <imgui.h>
 
 //Should be last so it is only included once!
 #define STB_IMAGE_IMPLEMENTATION
@@ -75,9 +75,11 @@ namespace letc {
 			init();
 			run();
 		}
+		
 
 		void initPhysics() {
 		}
+
 
 		virtual void reset() {};
 
@@ -99,12 +101,14 @@ namespace letc {
 			m_msPerFrame =	0;
 		}
 		
+
 		virtual ~LETC() {
 			delete m_window;
 			delete m_time;
 			for (size_t i = 0; i < layers.size(); i++)
 				delete layers[i];
 		}
+
 
 		graphics::Window* createWindow(const char* title, int width, int height, bool resizeable = true, bool fullscreen=false) {
 			m_window = new graphics::Window(title, width, height, resizeable, fullscreen);
@@ -118,6 +122,7 @@ namespace letc {
 		
 		// runs on initialization
 		virtual void init() = 0;
+
 
 		// runs once per second
 		virtual void tick() {
@@ -137,7 +142,7 @@ namespace letc {
 			{
 				layers[i]->update();
 			}
-			if (resetFlag) { // is this for conways? we should move it 
+			if (resetFlag) { // not sure this is worth having in the main update load
 				reset();
 				resetFlag = false;
 			}
@@ -155,14 +160,13 @@ namespace letc {
 		virtual void render() {
 #ifdef DEBUG 
 			if(getLayerByName("Debug Physics Layer"))
-				getLayerByName("Debug Physics Layer")->enabled = debugPhysics;
+				debugPhysics ? 
+				getLayerByName("Debug Physics Layer")->enable() : getLayerByName("Debug Physics Layer")->disable();
 #endif
 			for (size_t i = 0; i < layers.size(); i++){
 				layers[i]->draw();
 			}
 			m_window->listenForInput();
-
-
 
 		}
 
@@ -205,12 +209,24 @@ private:
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
 
-			render();
+			render(); // Draw Watty Frame
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+
 			m_window->update();
+			//Multiple Viewports:
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				//SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
+				GLFWwindow* backup_current_context = glfwGetCurrentContext();
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				glfwMakeContextCurrent(backup_current_context);
+			}
+
+	
 
 			if ((m_time->elapsed() - timer) > 1.0f) {
 				timer += 1.0f;

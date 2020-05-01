@@ -39,8 +39,10 @@ namespace letc {namespace graphics {
 		inline const int getID() const { return m_TID; }
 
 
+
 	private:
 		unsigned int load();
 
+		bool isPowerOfTwo(int value);
 	};
 }}

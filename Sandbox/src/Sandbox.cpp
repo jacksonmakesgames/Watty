@@ -60,7 +60,7 @@ public:
 		mainLayer->add(
 			new GameObject(
 				{-1,0 }, {1,1},
-				new Sprite(new Texture(RESDIR "textures/sprites/lpc/female_hurt.png"))
+				new Sprite(new Texture(RESDIR "textures/test.png"))
 		));
 
 		mainLayer->add(
