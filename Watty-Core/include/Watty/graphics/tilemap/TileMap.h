@@ -40,7 +40,7 @@ namespace letc {namespace graphics {
 		void buildPhysicsShapes();
 
 		void submit(Renderer2D* renderer)const override{
-			renderer->push(glm::scale(glm::mat4(1.0f), glm::vec3(size.x, size.y, 0)));
+			renderer->push(glm::scale(glm::mat4(1.0f), glm::vec3(m_size.x, m_size.y, 0)));
 			renderer->push(glm::translate(glm::mat4(1.0f), glm::vec3(getPosition().x, getPosition().y, 0)));
 			for (size_t i = 0; i < mLayers.size(); i++){
 				mLayers[i]->submit(renderer);

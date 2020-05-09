@@ -7,24 +7,22 @@ from threading import Thread
 import platform
 import math
 import http
-
-
+import http.server
+import socket
 import webbrowser
+import time
 
 try:
-    from Tkinter import *
-    import tkMessageBox
-    from Queue import Queue, Empty
-except ImportError:
     from tkinter import * # Python 3
     from tkinter import messagebox
-
     from queue import Queue, Empty # Python 3
+except ImportError:
+    print("Must use python 3+")
+    quit()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 LOG_WIDTH = 170
-PORT = 8080
 
 def open_file(path):
     if platform.system() == "Windows":
@@ -118,9 +116,10 @@ class WattyTools:
         self.root.title("{Watty Tools}")
         self.root.geometry("1200x600")
         self.process = None
-        self.httpd = None
+        self.web_process = None
         self.running_web_service = False
-
+        self.webThread = None
+        self.port = 8080
 
     def run_build(self, mode, configuration):
         if(self.process is not None):
@@ -146,18 +145,24 @@ class WattyTools:
         return
 
     def run_web_server(self):
-        if(self.running_web_service):
-            self.listbox.write("Can't start another web server")
-            return
+        try:
+            if(self.web_process is not None):
+                self.web_process.kill()
+                self.listbox.write("Closed running web server")
+            try:
+                web_dir = os.path.normpath(os.path.dirname(__file__) + os.sep + os.pardir)
+                os.chdir(web_dir)
+                self.listbox.write("Serving " + web_dir)
+                self.web_process = subprocess.Popen(["cmd", "/c", "start", "/MIN", "/w","/B", ".\\dependencies\\emscripten\\upstream\\emscripten\\emrun.bat", "--serve_after_close", "--kill_start", "."],stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+                self.listbox.write("web_process PID: " + str(self.web_process.pid))
+            except Exception as e:
+                self.listbox.write(str(e))
+        except Exception as ex:
+                self.listbox.write("Error on web thread:" + str(ex))
+        #finally:
+        #        self.listbox.write("Ended web thread")
 
-        web_dir = os.path.normpath(os.path.dirname(__file__) + os.sep + os.pardir)
-        os.chdir(web_dir)
-        os.chdir("J:\\OneDrive\\Projects\\Game_Development\\Watty")
-        self.listbox.write("Serving: " + os.getcwd() + " at localhost:" + str(PORT))
-        self.running_web_service = True
-        server_address = ('', PORT)
-        self.httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-        self.httpd.serve_forever()
+      
 
     def run_program_windows(self, program, config):
         q = Queue(maxsize=1024)  # limit output buffering (may stall subprocess)
@@ -172,16 +177,26 @@ class WattyTools:
         self.update(q) # start update loop
         return
 
+    def run_demos(self, mode, config):
+        if mode == 'Windows':
+            open_file(os.path.normpath(os.path.dirname(__file__) + os.sep + os.pardir) + os.path.dirname("/Demos/bin/" + config + "/"))
+        elif mode == 'Web':
+            self.run_watty(mode, config)
+        return
+
     def run_watty(self, mode, config):
         if mode == 'Windows':
             t = Thread(target=self.run_program_windows, args=["Sandbox.exe", config])
             t.daemon = True # close pipe if GUI process exits
             t.start()
         elif mode == 'Web':
-            t = Thread(target=self.run_web_server)
-            t.daemon = True # close pipe if GUI process exits
-            t.start()
-            webbrowser.open_new("http://localhost:"+str(PORT))
+            self.run_web_server()
+            return
+            if(self.webThread is not None):
+                self.webThread.join(2)
+            self.webThread = Thread(target=self.run_web_server)
+            self.webThread.daemon = True # close pipe if GUI process exits
+            self.webThread.start()
 
     def reader_thread(self, q):
         """Read subprocess output and put it into the queue."""
@@ -211,8 +226,8 @@ class WattyTools:
     def quit(self):
         if(self.process is not None): 
             self.process.kill() # exit subprocess if GUI is closed
-        if self.httpd is not None:
-            self.httpd.server_close() 
+        if self.web_process is not None:
+            self.web_process.kill() 
         self.root.destroy()
 
 
@@ -262,10 +277,46 @@ b.grid(row = 3, column =1, padx=5, pady=5, sticky=N+E+S+W)
 b = Button(wattyFrame, text="Run", command=lambda: app.run_watty(watty_plat.get(), configuration.get()))
 b.grid(row = 4, column =0, padx=5, pady=5, sticky=N+E+S+W)
 
+
+
+
+                #######
+                #DEMOS#
+                #######
+
+
 demosFrame = Frame(root, borderwidth=2, relief="sunken")
 demosFrame.grid(row = 2, column =1, columnspan=2, padx=5, pady=5, stick=W)
 demosLabel = Label(demosFrame, text="Demos:")
 demosLabel.grid(row = 0, column =0, padx=5, pady=5)
+
+
+demos_plat = StringVar(root)
+choicesPD = { 'Windows','Web'}
+demos_plat.set('Windows') # set the default option
+
+configurationD = StringVar(root)
+choicesCD = { 'Debug','Release'}
+configurationD.set('Debug') # set the default option
+
+popupMenuDP = OptionMenu(demosFrame, demos_plat, *choicesPD)
+Label(demosFrame, text="Platform:").grid(row = 1, column = 0, sticky=N+E+W+S)
+popupMenuDP.grid(row = 2, column =0, sticky=N+E+W+S)
+
+popupMenuDC = OptionMenu(demosFrame, configurationD, *choicesCD)
+demosConfigLabel = Label(demosFrame, text="Config:")
+demosConfigLabel.grid(row = 1, column = 1, sticky=N+E+W+S)
+popupMenuDC.grid(row = 2, column =1, sticky=N+E+W+S)
+
+b = Button(demosFrame, text="Build", command=lambda: app.run_build("build_demos_"+demos_plat.get().lower(), configurationD.get()))
+b.grid(row = 3, column =0, padx=5, pady=5, sticky=N+E+S+W)
+
+b = Button(demosFrame, text="Clean", command=lambda: app.run_build("clean_demos_"+demos_plat.get().lower(), configurationD.get()))
+b.grid(row = 3, column =1, padx=5, pady=5, sticky=N+E+S+W)
+
+b = Button(demosFrame, text="Run", command=lambda: app.run_demos(demos_plat.get(), configurationD.get()))
+b.grid(row = 4, column =0, padx=5, pady=5, sticky=N+E+S+W)
+
 
 
 def change_watty_platform(*args):
@@ -276,7 +327,15 @@ def change_watty_platform(*args):
             wattyConfigLabel.grid(row = 1, column = 1)
             popupMenuWC.grid(row = 2, column =1)
   
+def change_demos_platform(*args):
+        if demos_plat.get() == "Web":
+            popupMenuDC.grid_forget()
+            demosConfigLabel.grid_forget()
+        else:
+            demosConfigLabel.grid(row = 1, column = 1)
+            popupMenuDC.grid(row = 2, column =1)
  
 watty_plat.trace('w', change_watty_platform)
+demos_plat.trace('w', change_demos_platform)
 
 root.mainloop()

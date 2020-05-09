@@ -9,19 +9,22 @@
 #include <glad/glad.h>
 #endif
 
-
 #include <glm.hpp>
 #include <gtc/type_ptr.hpp>
 
-//#include "../math/matrix4.h"
 #include "../utils/file_utils.h"
+
+#define DEFAULT_SHADER_VERT_PATH WATTY_RES_DIR "shaders/default.vert"
+#define DEFAULT_SHADER_FRAG_PATH WATTY_RES_DIR "shaders/default.frag"
 
 namespace letc {namespace graphics {
 	class Shader {
 	private:
 		unsigned int m_shaderID;
-		const char* m_vertPath;
-		const char* m_fragPath;
+		const char* m_vertPath = "";
+		const char* m_fragPath = "";
+		static const char* m_defaultVertPath;
+		static const char* m_defaultFragPath;
 	public:
 		Shader(const char* vertPath, const char* fragPath);
 		Shader();
@@ -42,8 +45,8 @@ namespace letc {namespace graphics {
 
 		void enable() const;
 		void disable() const;
-	private:
 		int getUniformLocation(const char* name);
+	private:
 		unsigned int load();
 		void init();
 

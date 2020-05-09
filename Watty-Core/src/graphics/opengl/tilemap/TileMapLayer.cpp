@@ -22,12 +22,32 @@ namespace letc {namespace graphics {
 			//x = (tileIndex % mTilesPerRow);
 			//y = (tileIndex / mTilesPerRow+1);
 			int tileType = data[tileIndex];
-			Tile* tile = new Tile(pixelMeterRatio, allTilesTexture,x,y, mTileWidth, mTileHeight, tileType);
-			tile->size = glm::vec2(tileWidth, tileHeight);
-			mTiles.push_back(tile);
+			if (tileType != 0) {
+				Tile* tile = new Tile(pixelMeterRatio, allTilesTexture, x, y, mTileWidth, mTileHeight, tileType);
+				tile->setSize({ tileWidth, tileHeight });
+				mTiles.push_back(tile);
+			}
+			
 			x += mTileWidth;
-			//x += 1.0f/mTilesPerColumn;
 			xIndex += 1;
+		}
+	}
+	void TileMapLayer::submit(Renderer2D* renderer) const{
+		renderer->push(glm::scale(glm::mat4(1.0f), glm::vec3(m_size.x, m_size.y, 0)));
+		renderer->push(glm::translate(glm::mat4(1.0f), glm::vec3(getPosition().x, getPosition().y, 0)));
+		for (size_t j = 0; j < mTiles.size(); j++)
+		{
+			mTiles[j]->submit(renderer);
+		}
+		renderer->pop();
+		renderer->pop();
+	}
+
+
+	TileMapLayer::~TileMapLayer(){
+		for (size_t i = 0; i < mTiles.size(); i++)
+		{
+			delete mTiles[i];
 		}
 	}
 }}

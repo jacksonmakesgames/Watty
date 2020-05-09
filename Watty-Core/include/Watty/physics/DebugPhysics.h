@@ -1,6 +1,6 @@
 #pragma once
-#include <box2d/box2d.h>
-#include <box2d/b2_draw.h>
+#include <Box2D/Box2D.h>
+#include <Box2D/Common/b2Draw.h>
 
 #include <glm.hpp>
 #include "../graphics/DebugRenderer.h"
@@ -13,8 +13,6 @@
 #endif
 #include <math/math.h> //DEGREETORAD
 
-#define VERTPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic.vert"
-#define FRAGUNLITPATH "J:/OneDrive/Projects/Game_Development/Watty/Demos/res/shaders/basic_unlit.frag"
 
 namespace letc { namespace physics { 
 

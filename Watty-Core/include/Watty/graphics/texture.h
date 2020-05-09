@@ -21,10 +21,11 @@ namespace letc {namespace graphics {
 		unsigned int m_TID;
 		int m_width;
 		int m_height;
+
 		
 	public:
 		Texture(const std::string& filename);
-		Texture(std::string fileName, unsigned int id, unsigned int width,unsigned int height,const void* data);
+		Texture(std::string fileName, unsigned int* atlasID, unsigned int width,unsigned int height, unsigned int depth, const void* data);
 		~Texture();
 
 		Texture* regenerate(unsigned int width, unsigned int height, const void* data);
@@ -41,7 +42,7 @@ namespace letc {namespace graphics {
 
 
 	private:
-		unsigned int load();
+		unsigned int load(uint8_t* data);
 
 		bool isPowerOfTwo(int value);
 	};

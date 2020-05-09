@@ -1,5 +1,5 @@
 #pragma once
-#include <box2d/box2d.h>
+#include <Box2D/Box2D.h>
 
 #include <iostream>
 #include <vector>
@@ -20,7 +20,6 @@ namespace letc { namespace physics {
 		}
 
 		bool ReportFixture(b2Fixture* fixture) override {
-			hit = true;
 
 			for (size_t i = 0; i < m_testLayer->getGameObjects().size(); i++)
 			{
@@ -28,6 +27,9 @@ namespace letc { namespace physics {
 				if (m_testLayer->getGameObjects()[i]->hasFixture(fixture))
 					gameObjects.push_back(m_testLayer->getGameObjects()[i]);
 			}
+
+			if(gameObjects.size()>0)
+				hit = true;
 
 			fixtures.push_back(fixture);
 			return true;

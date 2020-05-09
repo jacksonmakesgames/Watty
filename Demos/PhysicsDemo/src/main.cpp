@@ -4,13 +4,11 @@
 //#define __BUTTERFLY 1
 #define __SOUND 1
 
-#define VERTPATH RESDIR "res/shaders/basic.vert"
-#define FRAGLITPATH RESDIR "res/shaders/basic_lit.frag"
-#define FRAGUNLITPATH RESDIR "res/shaders/basic_unlit.frag"
-#define FONTPATH RESDIR "res/fonts/Roboto-Regular.ttf"
-#define FONTITALICPATH RESDIR "res/fonts/Roboto-Italic.ttf"
-#define FLOORTEXTUREPATH RESDIR "res/textures/floor.png"
-#define MUSICPATH RESDIR "res/sounds/slow_motion.ogg"
+#define FRAGLITPATH RESDIR "shaders/basic_lit.frag"
+#define FONTPATH RESDIR "fonts/Roboto-Regular.ttf"
+#define FONTITALICPATH RESDIR "fonts/Roboto-Italic.ttf"
+#define FLOORTEXTUREPATH RESDIR "textures/floor.png"
+#define MUSICPATH RESDIR "sounds/slow_motion.ogg"
 
 using namespace letc;
 using namespace graphics;
@@ -25,7 +23,7 @@ namespace letc {
 
 	}
 }
-class SimpleGame : public LETC {
+class PhysicsDemo : public LETC {
 	private:
 		Window* m_window;
 		//Label* fpsLabel;
@@ -52,28 +50,34 @@ class SimpleGame : public LETC {
 
 		GameObject* m_grabbedBox = nullptr;
 
+		
 		//Camera* m_camera;
 
 	public:
-		SimpleGame() {}
-		~SimpleGame() {
+		PhysicsDemo() {}
+		~PhysicsDemo() {
 
 		}
 
 		void init() override {
 			m_window = createWindow("This little engine could", 1280, 720, false, false);
-			Window::setVSync(true);
-			//sceneCamera->setSize({48,27});
 			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
-			Shader* shader0 = new Shader(VERTPATH,FRAGLITPATH);
+#ifdef WATTY_EMSCRIPTEN
+			Shader* shader0 = new Shader(); // Can't use OGL4 shaders on WebGL2
+#else
+			Shader* shader0 = new Shader(DEFAULT_SHADER_VERT_PATH, FRAGLITPATH);
 			shader0->setUniform3f("light_pos", glm::vec3(16,16,0));
 			shader0->setUniform1f("light_radius", 250.0f);
 			shader0->setUniform1f("light_intensity", 1.1f);
 
+#endif
 
 			Layer* layer0 = new Layer("Ball Layer", new BatchRenderer2D(), shader0);
 			layers.push_back(layer0);
+
+			Layer* floorLayer = new Layer("Floor Layer", new BatchRenderer2D(), shader0);
+			layers.push_back(floorLayer);
 
 			Layer* uiLayer = new Layer("UI Layer");
 			//layers.push_back(uiLayer);
@@ -94,7 +98,7 @@ class SimpleGame : public LETC {
 			player = new GameObject(
 				playerPos,
 				playerSize,
-				new Sprite(new Texture(RESDIR "res/textures/Player.png")));
+				new Sprite(new Texture(RESDIR "textures/Player.png")));
 
 			player->addComponent(new PhysicsBody2D(
 				physics::BodyShapes::circle,
@@ -107,7 +111,7 @@ class SimpleGame : public LETC {
 			player->setTag("Player");
 			layer0->add(player);
 
-			boxTexture = new Texture(RESDIR "res/textures/box.png");
+			boxTexture = new Texture(RESDIR "textures/box.png");
 			Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
 			glm::vec3 floorPos(-16.0f,-9.0f,0);
@@ -116,7 +120,7 @@ class SimpleGame : public LETC {
 			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
 			floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
-			layer0->add(floor);
+			floorLayer->add(floor);
 			
 			glm::vec3 floorPosL(-18.0f,-7.0f,0);
 			glm::vec2 floorSizeL(2, 18);
@@ -124,7 +128,7 @@ class SimpleGame : public LETC {
 			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
 			floorL->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosL, floorSizeL.x, floorSizeL.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
-			layer0->add(floorL);
+			floorLayer->add(floorL);
 			
 			glm::vec3 floorPosR(16.0f,-7.0f,0);
 			glm::vec2 floorSizeR(2, 18);
@@ -132,7 +136,7 @@ class SimpleGame : public LETC {
 			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
 			floorR->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosR, floorSizeR.x, floorSizeR.y, b2_staticBody));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
-			layer0->add(floorR);
+			floorLayer->add(floorR);
 
 			glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 			
@@ -154,8 +158,7 @@ class SimpleGame : public LETC {
 			profileGroup->transform->addChild(mpsGO->transform);
 			uiLayer->add(profileGroup);
 			*/
-			AudioClip* clip = new AudioClip("slow_motion", MUSICPATH);
-			AudioManager::addClip(clip);
+			AudioManager::addClip("slow_motion", MUSICPATH);
 			AudioManager::getClip("slow_motion")->play(true);
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
 
@@ -172,6 +175,7 @@ class SimpleGame : public LETC {
 		void update() override {
 		
 			getInput();
+			checkBoxes();
 			LETC::update();
 
 		}
@@ -195,6 +199,23 @@ class SimpleGame : public LETC {
 			{
 				getLayerByName("Ball Layer")->remove(boxes[i]);
 			}
+			boxes.clear();
+		}
+
+		void checkBoxes() {
+			boxes.clear();
+			for (size_t bI = 0; bI < getLayerByName("Ball Layer")->getGameObjects().size(); bI++){
+				if(getLayerByName("Ball Layer")->getGameObjects()[bI]->getTag() == "Box")
+					boxes.push_back(getLayerByName("Ball Layer")->getGameObjects()[bI]);
+			}
+			
+			for (size_t i = 0; i < boxes.size(); i++)
+			{
+			if (boxes[i]->transform->getPosition().y < -10 && m_grabbedBox != boxes[i]) {
+				getLayerByName("Ball Layer")->remove(boxes[i]);
+			}
+			}
+
 		}
 
 		void getInput() {
@@ -217,8 +238,6 @@ class SimpleGame : public LETC {
 			}
 
 			// ENGINE
-			if (m_window->keyWasPressed(GLFW_KEY_GRAVE_ACCENT))
-				getLayerByName("Watty {} Layer")->enabled = !getLayerByName("Watty {} Layer")->enabled;
 
 			// PLAYER
 			float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
@@ -241,7 +260,7 @@ class SimpleGame : public LETC {
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
 
-			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
+			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -257,11 +276,11 @@ class SimpleGame : public LETC {
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
 
 				}
-				else {
+				else
 					m_grabbedBox = callback->gameObjects[0];
-				}
+				
 			}
-			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
+			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 				if (m_grabbedBox) {
 					float xSum = 0;
 					for (size_t i = 0; i < m_lastXs.size(); i++)
@@ -287,7 +306,7 @@ class SimpleGame : public LETC {
 			}
 
 
-			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
+			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -296,12 +315,13 @@ class SimpleGame : public LETC {
 
 				PhysicsWorld2D::box2DWorld->QueryAABB(callback, *aabb);
 				if (callback->hit) {
-					if (callback->gameObjects[0]->getTag() == "Box")
+					if (callback->gameObjects[0]->getTag() == "Box") {
 						getLayerByName("Ball Layer")->remove(callback->gameObjects[0]);
+					}
 				}
 			}
 
-			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse || !getLayerByName("Engine Control")->enabled)) {
+			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 				if (m_grabbedBox != nullptr) {
 					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(glm::vec2(0,0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
@@ -345,7 +365,7 @@ class SimpleGame : public LETC {
 
 
 int main() {
-	SimpleGame game;
+	PhysicsDemo game;
 	game.start();
 	return 0;
 

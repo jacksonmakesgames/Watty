@@ -158,15 +158,14 @@ namespace letc {namespace graphics {
 
 	}
 
-	void BatchRenderer2D::drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color){
-		return;
-		/*
+	void BatchRenderer2D::drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor labelColor, const Bounds2D bounds){
 		bool found = false;
-		texture_font_t* ftFont = font.getFTFont();
-		const GLuint tid = font.getTexID();
+		ftgl::texture_font_t* ftFont = font->getFTFont();
+		const GLuint tid = font->getTexID();
 		float glTID = (float)tid;
-
+		const unsigned int color = labelColor.c;
 		float idForShader = 0.0f;
+		
 		if (glTID > 0) {
 			bool found = false;
 			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
@@ -193,60 +192,74 @@ namespace letc {namespace graphics {
 
 		}
 
-		const glm::vec2 scale = font.getScale();
-		float x = position.x;
+		const glm::vec2 scale = font->getScale();
+		//float x = position.x;
+		
+
+		float x = bounds.upperLeft.x;
 		for (int i = 0; i < text.length(); i++){
-			
-			char c = text[i];
-			//texture_glyph_t* glyph = texture_font_find_glyph(ftFont, &c); 
-			const texture_glyph_t* glyph = font.getGlyph(c); 
-			
-			if (glyph != NULL) {
-				if (i > 0) {
-					float kerning = texture_glyph_get_kerning(glyph, &text[i-1]);
-					x += kerning / scale.x;
-				}
+			const char* c = &text[i];
+			//const ftgl::texture_glyph_t* glyph = font.getGlyph(c); 
 
-				float x0 = x + glyph->offset_x / scale.y;
-				float y0 = position.y + glyph->offset_y / scale.y;
-				float x1 = x0 + glyph->width / scale.x;
-				float y1 = y0 - glyph->height / scale.y;
-				
-				float s0 = glyph->s0;
-				float t0 = glyph->t0;
-				float s1 = glyph->s1;
-				float t1 = glyph->t1;
-
-
-				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y0, 0.0f, 1);
-				m_currentBuffer->uv = glm::vec2(s0, t0);
-				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color.c;
-				m_currentBuffer++;
-
-				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y1, 0.0f, 1);
-				m_currentBuffer->uv = glm::vec2(s0, t1);
-				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color.c;
-				m_currentBuffer++;
-
-				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y1, 0.0f, 1);
-				m_currentBuffer->uv = glm::vec2(s1, t1);
-				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color.c;
-				m_currentBuffer++;
-				
-				m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y0 ,0.0f, 1);
-				m_currentBuffer->uv = glm::vec2(s1, t0);
-				m_currentBuffer->tid = idForShader;
-				m_currentBuffer->color = color.c;
-				m_currentBuffer++;
-
-				m_indexCount += 6;
-				x += glyph->advance_x/scale.x;
+			ftgl::texture_glyph_t* glyph = texture_font_get_glyph(ftFont, c);
+			if (glyph == NULL) {
+				//TODO log error
+				std::cout << "Failed loading glyph: " << c << std::endl;
+				continue;
 			}
+
+			if (i > 0) {
+				float kerning = ftgl::texture_glyph_get_kerning(glyph, c);
+				x += kerning / scale.x;
+			}
+
+			if (*c == '\n') {
+				m_currentTextLine++;
+				x = bounds.upperLeft.x;
+				continue; 
+			}
+		
+			float y = bounds.upperLeft.y - (m_currentTextLine * font->getLineHeight());
+
+			float x0 = x + glyph->offset_x / scale.x;
+			float y0 = y + glyph->offset_y / scale.y;
+			float x1 = x0 + glyph->width / scale.x;
+			float y1 = y0 - glyph->height / scale.y;
+				
+			float s0 = glyph->s0;
+			float t0 = glyph->t0;
+			float s1 = glyph->s1;
+			float t1 = glyph->t1;
+
+
+			m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y0, 0.0f, 1);
+			m_currentBuffer->uv = glm::vec2(s0, t0);
+			m_currentBuffer->tid = idForShader;
+			m_currentBuffer->color = color;
+			m_currentBuffer++;
+
+			m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x0, y1, 0.0f, 1);
+			m_currentBuffer->uv = glm::vec2(s0, t1);
+			m_currentBuffer->tid = idForShader;
+			m_currentBuffer->color = color;
+			m_currentBuffer++;
+
+			m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y1, 0.0f, 1);
+			m_currentBuffer->uv = glm::vec2(s1, t1);
+			m_currentBuffer->tid = idForShader;
+			m_currentBuffer->color = color;
+			m_currentBuffer++;
+				
+			m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(x1, y0 ,0.0f, 1);
+			m_currentBuffer->uv = glm::vec2(s1, t0);
+			m_currentBuffer->tid = idForShader;
+			m_currentBuffer->color = color;
+			m_currentBuffer++;
+
+			m_indexCount += 6;
+			x += glyph->advance_x/scale.x;
 		}
-		*/
+	
 	}
 
 	void BatchRenderer2D::end(){
@@ -264,6 +277,7 @@ namespace letc {namespace graphics {
 	}
 
 	void BatchRenderer2D::flush(){
+		m_currentTextLine = 0; // TODO: rethink, maybe move to label
 		//bind all the textures
 		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
 			float thisGlTID = m_glTIDsThisFlush[glIndex];

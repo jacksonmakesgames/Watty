@@ -3,8 +3,7 @@
 #include <cstddef>
 #include "buffers/indexbuffer.h"
 #include "renderer2d.h"
-#include "renderable2d.h"
-
+#include <graphics/font/label.h>
 
 #define RENDERER_MAX_SPRITES		60000
 #define RENDERER_VERTEX_SIZE		sizeof(VertexData)
@@ -26,6 +25,8 @@ namespace letc {namespace graphics {
 		GLsizei m_indexCount;
 		VertexData* m_currentBuffer;
 
+		int m_currentTextLine = 0;
+
 #ifdef WATTY_EMSCRIPTEN
 
 		VertexData* m_currentBufferBase;
@@ -44,7 +45,7 @@ namespace letc {namespace graphics {
 		void end() override;
 		void flush() override;
 #ifdef WATTY_OPENGL
-		void drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color) override;
+		void drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor labelColor, const Bounds2D bounds) override;
 #endif
 
 	private:

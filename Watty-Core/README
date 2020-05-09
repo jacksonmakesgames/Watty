@@ -1,2 +1,3 @@
 Note:
 	To run emscripten compiler, navigate to emsdk folder in powershell as admin, set execution policy to bypass, run emsdk_env.bat, run emcmdprompt.bat
+		Watty should be compiled with the following EMCC flags: -std=c++17 -s ALLOW_MEMORY_GROWTH=1 -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s ENVIRONMENT=web -s LLD_REPORT_UNDEFINED -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 --embed-file ${COREDIR}/res --use-preload-plugins --no-heap-copy

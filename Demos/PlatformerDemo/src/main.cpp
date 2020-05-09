@@ -2,13 +2,11 @@
 
 
 #define FRAGLITPATH RESDIR "shaders/basic_lit.frag"
-#define FRAGUNLITPATH RESDIR "shaders/basic_unlit.frag"
 #define FLOORTEXTUREPATH RESDIR "textures/floor.png"
 
 using namespace letc;
 using namespace graphics;
 using namespace math;
-//using namespace audio;
 using namespace physics;
 
 namespace letc {
@@ -142,10 +140,6 @@ public:
 	}
 
 	void getInput() {
-		// ENGINE
-		if (m_window->keyWasPressed(GLFW_KEY_GRAVE_ACCENT))
-			getLayerByName("LETC GUI Layer")->enabled = !getLayerByName("LETC GUI Layer")->enabled;
-
 		// PLAYER
 		float horizontal = -1 * (float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
@@ -162,7 +156,6 @@ public:
 			player->getPhysicsBody2D()->zeroVelocity();
 		}
 	}
-
 
 };
 

@@ -1,5 +1,5 @@
 #pragma once
-#include <box2d/box2d.h>
+#include <Box2D/Box2D.h>
 #include "PhysicsConstants.h"
 #include "../physics/PhysicsWorld2D.h"
 #include <glm.hpp>
@@ -32,27 +32,17 @@ namespace letc { namespace physics {
 
 		virtual void addForce(glm::vec2 direction, float amount);
 		virtual void addImpulse(glm::vec2 direction, float amount);
-
+		virtual void setFixedRotation(bool fixed);
+		virtual bool isFixedRotation();
 		virtual void zeroVelocity();
 		virtual void setLinearVelocity(glm::vec2 newVelocity);
 
 		virtual inline b2Body* getBody() { return m_body; }
 		virtual inline void disable() { 
-#ifndef WATTY_EMSCRIPTEN
-
-			m_body->SetEnabled(false);
-#else
-			m_body->SetAwake(false);
-#endif // !WATTY_EMSCRIPTEN
-
+			m_body->SetActive(false);
 		};
 		virtual inline void enable() { 
-#ifndef WATTY_EMSCRIPTEN
-			m_body->SetEnabled(true); 
-
-#else
-			m_body->SetAwake(true);
-#endif
+			m_body->SetActive(true);
 		};
 
 		virtual glm::vec2 getBodyPosition();

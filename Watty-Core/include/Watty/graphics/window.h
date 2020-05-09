@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <iostream>
-
+#include <tuple>
 #ifdef WATTY_VULKAN
 //#include <src/graphics/vulkan/initializers.h>
 //#include <src/graphics/vulkan/vulkaninstance.h>
@@ -25,9 +25,7 @@
 
 #include "Camera.h"
 #include "font/fontmanager.h"
-#ifndef WATTY_EMSCRIPTEN
 #include "../audio/audiomanager.h"
-#endif
 
 namespace letc {namespace graphics {
 #define MAX_KEYS 1024
@@ -39,6 +37,7 @@ namespace letc {namespace graphics {
 		bool isFullScreen;
 	public:
 		static bool useVSync;
+		static Window* Instance;
 	private:
 		friend struct GLFWwindow;
 		const char* m_Title;
@@ -77,6 +76,7 @@ namespace letc {namespace graphics {
 		bool mouseButtonIsDown(unsigned int button) const;
 		bool mouseButtonWasReleased(unsigned int button) const;
 		void getMousePos(double& x, double& y) const;
+		std::tuple<int, int> getAspectRatio();
 		static void toggleVSync();
 		static void setVSync(bool state);
 
@@ -87,11 +87,14 @@ namespace letc {namespace graphics {
 		
 	private:
 		bool init();
+		bool initImGUI();
+
 		friend void window_resize_callback(GLFWwindow* window, int width, int height);
 		friend void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		friend void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 		friend void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 		friend void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+
 	};
 
 #ifdef WATTY_OPENGL

@@ -1,11 +1,12 @@
 #pragma once
-#ifndef WATTY_EMSCRIPTEN
 
 #include <vector>
 #include "audioclip.h"
+#include<iostream>
 
 #include <soloud.h>
 #include <soloud_wav.h>
+
 
 namespace letc{ namespace audio{
 	class AudioManager{
@@ -15,13 +16,10 @@ namespace letc{ namespace audio{
 		friend class AudioClip;
 		static std::vector<AudioClip*> m_clips;
 		static SoLoud::Soloud* soloud;
-
-		//static gau_Manager* m_manager;
-		//static ga_Mixer* m_mixer;
-		
 	public:
+		static bool initialized;
 		static void init();
-		static void addClip(AudioClip* clip);
+		static void addClip(std::string name, const char* path);
 		static AudioClip* getClip(const std::string& name);
 		static void clean();
 		static void update();
@@ -33,4 +31,3 @@ namespace letc{ namespace audio{
 	
 
 } }
-#endif

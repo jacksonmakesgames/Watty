@@ -1,11 +1,12 @@
 #pragma once
-#ifndef WATTY_EMSCRIPTEN
-
-#include <string>
-#include "audiomanager.h"
-
+#ifdef dWATTY_EMSCRIPTEN
+#include <emscripten.h>
+#else
 #include <soloud.h>
 #include <soloud_wav.h>
+#endif // WATTY_EMSCRIPTEN
+#include <iostream>
+#include <string>
 #include "../utils/string_utils.h"
 
 namespace letc {namespace audio {
@@ -13,8 +14,13 @@ namespace letc {namespace audio {
 	private:
 		std::string m_name;
 		std::string m_filepath;
-
-		SoLoud::Wav wavFile;
+#ifdef dWATTY_EMSCRIPTEN
+		 // TODO: error checking
+#else
+		SoLoud::Soloud* m_soloudPtr;
+		SoLoud::Wav wavFile; // TODO: Other file types? Seems like ogg already works for some reason....
+#endif // WATTY_EMSCRIPTEN
+		
 		int m_handle = 0;
 
 		float m_gain;
@@ -24,7 +30,12 @@ namespace letc {namespace audio {
 
 
 	public:
+#ifdef dWATTY_EMSCRIPTEN
 		AudioClip(const std::string& name, const std::string& filepath);
+#else
+		AudioClip(const std::string& name, const std::string& filepath, SoLoud::Soloud* soloudPtr);
+#endif // WATTY_EMSCIPTEN
+
 		~AudioClip();
 
 		void play(bool loop);
@@ -38,8 +49,8 @@ namespace letc {namespace audio {
 		inline const float getGain() { return m_gain; }
 		inline const std::string& getFilePath() { return m_filepath; }
 		inline const bool isPlaying() { return m_playing; }
-
+	private:
+		void init();
 	};
 
 }}
-#endif

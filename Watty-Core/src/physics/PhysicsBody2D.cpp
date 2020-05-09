@@ -54,6 +54,16 @@ namespace letc { namespace physics {
 		m_body->ApplyLinearImpulse(impulse, m_body->GetWorldCenter(), true);
 	}
 
+	void PhysicsBody2D::setFixedRotation(bool fixed)
+	{
+		m_body->SetFixedRotation(fixed);
+	}
+
+	bool PhysicsBody2D::isFixedRotation()
+	{
+		return m_body->IsFixedRotation();
+	}
+
 
 
 	void PhysicsBody2D::setLinearVelocity(glm::vec2 newVelocity)

@@ -7,8 +7,18 @@ namespace letc {namespace graphics {
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
+	Window* Window::Instance = nullptr;
 
 	Window::Window(const char* title, int width, int height, bool resizeable, bool fullscreen) {
+		if (Window::Instance != nullptr) {
+			//TODO: log error
+			std::cout << "Error: can only have one Window" << std::endl;
+			exit(1);
+		}
+		else {
+			Window::Instance = this;
+		}
+
 		m_Title = title;
 		m_Width = width;
 		m_Height = height;
@@ -20,10 +30,6 @@ namespace letc {namespace graphics {
 			return;
 		}
 
-#ifndef WATTY_EMSCRIPTEN
-
-		audio::AudioManager::init();
-#endif
 		for (int i = 0; i < MAX_KEYS; i++) {
 			m_keysThisFrame[i]		=	false;
 			m_keysLastFrame[i]	=	false;
@@ -35,36 +41,9 @@ namespace letc {namespace graphics {
 			m_buttonsFirstFrameDown[i]			=	 false;
 		}
 
-		// imgui:
-		IMGUI_CHECKVERSION();
+		FontManager::init(m_Width / (std::get<0>(getAspectRatio()) * 2),
+			m_Height / (std::get<1>(getAspectRatio()) * 2));
 
-#ifdef WATTY_EMSCRIPTEN
-		const char* glsl_version = "#version 300 es";
-#else
-		const char* glsl_version = "#version 450";
-#endif  
-
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); 
-		
-#ifndef WATTY_EMSCRIPTEN
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable; // enable multiple viewports
-		io.BackendFlags |= ImGuiBackendFlags_PlatformHasViewports;
-#endif // !WATTY_EMSCRIPTEN
-		ImGui::GetStyle().WindowRounding = 0.0f;
-		ImGui::GetStyle().ChildRounding = 0.0f;
-		ImGui::GetStyle().FrameRounding = 0.0f;
-		ImGui::GetStyle().GrabRounding = 0.0f;
-		ImGui::GetStyle().PopupRounding = 0.0f;
-		ImGui::GetStyle().ScrollbarRounding = 0.0f;
-		// Setup Dear ImGui style
-		ImGui::StyleColorsLight();
-
-		// Setup Platform/Renderer bindings
-		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
-		ImGui_ImplOpenGL3_Init(glsl_version); // we might need this
-
-		io.DisplaySize = ImVec2(m_Width, m_Height);
 	}	
 
 	Window::~Window() {
@@ -76,9 +55,7 @@ namespace letc {namespace graphics {
 		glfwTerminate();
 
 		//FontManager::clean(); //TODO
-#ifndef WATTY_EMSCRIPTEN
 		audio::AudioManager::clean();
-#endif
 	}
 
 	// TODO: NOT SURE, asks nvidia to use dedicated gpu
@@ -133,7 +110,7 @@ namespace letc {namespace graphics {
 			return -1;
 		}
 #endif
-		std::cout << "Watty{} Version: " << WATTYVERSION << std::endl;
+		std::cout << "Watty{} Version: " << WATTY_VERSION << std::endl;
 		std::cout << " OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
 #ifndef WATTY_EMSCRIPTEN
@@ -150,9 +127,61 @@ namespace letc {namespace graphics {
 		glClearColor(0, 0, 0, 1); // Default
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		
+		initImGUI();
+
+
 		return true;
 	}
+
+	bool Window::initImGUI()
+	{
+		// imgui:
+		IMGUI_CHECKVERSION();
+
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO();
+
+#ifdef WATTY_EMSCRIPTEN
+		const char* glsl_version = "#version 300 es";
+#else
+		const char* glsl_version = "#version 450";
+		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable; // enable multiple viewports
+		io.BackendFlags |= ImGuiBackendFlags_PlatformHasViewports;
+#endif // WATTY_EMSCRIPTEN
+
+		ImGui::GetStyle().WindowRounding = 0.0f;
+		ImGui::GetStyle().ChildRounding = 0.0f;
+		ImGui::GetStyle().FrameRounding = 0.0f;
+		ImGui::GetStyle().GrabRounding = 0.0f;
+		ImGui::GetStyle().PopupRounding = 0.0f;
+		ImGui::GetStyle().ScrollbarRounding = 0.0f;
+		ImGui::StyleColorsLight();
+
+		// Setup Platform/Renderer bindings
+		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+		ImGui_ImplOpenGL3_Init(glsl_version);
+
+		io.DisplaySize = ImVec2(m_Width, m_Height);
+		return true;
+	}
+
+	std::tuple<int, int> Window::getAspectRatio()
+	{
+		int outNum = m_Width;
+		int outDen = m_Height;
+
+		for (int i = outDen * outNum; i > 1; i--) {
+			if ((outDen % i == 0) && (outNum % i == 0)) {
+				outDen /= i;
+				outNum /= i;
+			}
+		}
+		return std::tuple<int, int>(outNum, outDen);
+	}
+
+
 
 
 	bool Window::keyIsDown(unsigned int keycode) const {
@@ -219,19 +248,14 @@ namespace letc {namespace graphics {
 
 	void Window::clear() const {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	}
 
 
 	void Window::update() {
 		scrolledThisFrameY = 0;
-
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
-
-		//audio:
-#ifndef WATTY_EMSCRIPTEN
-		audio::AudioManager::update(); // TODO: TEST PERMORMANCE
-#endif
 	}
 
 
@@ -254,17 +278,16 @@ namespace letc {namespace graphics {
 
 
 	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam){
-		using namespace glm;
-		vec2 pointScreenRatio = vec2();
+		glm::vec2 pointScreenRatio = glm::vec2();
 		pointScreenRatio.x = position.x / getWidth();
 		pointScreenRatio.y = (getHeight() -position.y) / getHeight();
 
-		vec2 pointWorldRatio = pointScreenRatio * cam.getSize();
+		glm::vec2 pointWorldRatio = pointScreenRatio * cam.getSize();
 
 		pointWorldRatio.x -= (.5f * cam.getSize().x);
 		pointWorldRatio.y -= (.5f * cam.getSize().y);
 
-		vec3 worldPoint = vec3(pointWorldRatio.x, pointWorldRatio.y, 0) + cam.position;
+		glm::vec3 worldPoint = glm::vec3(pointWorldRatio.x, pointWorldRatio.y, 0) + cam.position;
 		return worldPoint;
 	}
 	
@@ -280,7 +303,12 @@ namespace letc {namespace graphics {
 		glViewport(0, 0, width, height);
 		win->m_Width = width;
 		win->m_Height = height;
-		//FontManager::remakeAllFonts(width/32.0f, height/16.0f); // NOTE: huge performance hit when resizing.. we should rethink this
+		
+		// NOTE: huge performance hit when resizing.. we should rethink this
+		/*std::tuple aR = win->getAspectRatio();
+		FontManager::remakeAllFonts(
+			win->getWidth() / (std::get<0>(aR) * 2),
+			win->getHeight() / (std::get<1>(aR) * 2));*/
 	}
 
 

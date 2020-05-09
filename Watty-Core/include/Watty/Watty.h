@@ -5,18 +5,22 @@
 	#define GLFW_INCLUDE_ES3
 	#define GL_GLEXT_PROTOTYPES
 	#include <emscripten.h>
+#undef GL_WITH_GLAD
 #endif
 
 #ifdef WATTY_OPENGL
 	#include "./graphics/window.h"
-	bool letc::graphics::Window::useVSync = false;
-	//#include <graphics/font/label.h>
+
+	#include <graphics/font/label.h>
+
 	#include <graphics/renderer2d.h>
 	#include <graphics/batchrenderer2d.h>
 	#include <graphics/shader.h>
 	#include <graphics/Camera.h>
 	#include <graphics/textures/SpriteSheetAnimation.h>
+	#include <ft2build.h>
 #endif
+bool letc::graphics::Window::useVSync = false;
 
 #include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>
@@ -33,7 +37,6 @@
 #include "gameobjects/GameObject.h"
 #include <utils/timer.h>
 #include <utils/Random.h>
-#include <box2d/box2d.h>
 #include <physics/QueryAABBCallback.h>
 #include <imgui.h>
 
@@ -42,6 +45,7 @@
 #include <stb_image.h>
 
 #define STB_TRUETYPE_IMPLEMENTATION
+#define STBTT_STATIC
 #include <stb_truetype.h>
 
 
@@ -109,7 +113,6 @@ namespace letc {
 				delete layers[i];
 		}
 
-
 		graphics::Window* createWindow(const char* title, int width, int height, bool resizeable = true, bool fullscreen=false) {
 			m_window = new graphics::Window(title, width, height, resizeable, fullscreen);
 
@@ -120,21 +123,21 @@ namespace letc {
 		}
 
 		
-		// runs on initialization
+		// Runs on initialization
 		virtual void init() = 0;
 
 
-		// runs once per second
+		// Runs once per second
 		virtual void tick() {
 			std::cout << "\t" << std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
 		}
 
 
-		// runs LETC_UPDATE_RATE times per second
+		// Runs as fast as possible
 		virtual void update() {
 			updates++;
 			gameTimer->update();
-			
+
 			physics::PhysicsWorld2D::step(gameTimer->delta);
 
 
@@ -158,15 +161,34 @@ namespace letc {
 
 		// runs as fast as possible (unless vsync is enabled, then it runs at refresh rate)
 		virtual void render() {
+			m_window->clear(); { // One frame
+
+				ImGui_ImplOpenGL3_NewFrame();
+				ImGui_ImplGlfw_NewFrame();
+				ImGui::NewFrame();
+
 #ifdef DEBUG 
-			if(getLayerByName("Debug Physics Layer"))
-				debugPhysics ? 
-				getLayerByName("Debug Physics Layer")->enable() : getLayerByName("Debug Physics Layer")->disable();
+				if(getLayerByName("Debug Physics Layer"))
+					debugPhysics ? 
+					getLayerByName("Debug Physics Layer")->enable() : getLayerByName("Debug Physics Layer")->disable();
 #endif
-			for (size_t i = 0; i < layers.size(); i++){
-				layers[i]->draw();
-			}
-			m_window->listenForInput();
+				for (size_t i = 0; i < layers.size(); i++){
+					layers[i]->draw();
+				}
+				m_window->listenForInput();
+
+				ImGui::Render();
+				ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+				// ImGui Multiple Viewports:
+				if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+					GLFWwindow* backup_current_context = glfwGetCurrentContext();
+					ImGui::UpdatePlatformWindows();
+					ImGui::RenderPlatformWindowsDefault();
+					glfwMakeContextCurrent(backup_current_context);
+				}
+
+			}m_window->update(); // End frame, swap buffers
 
 		}
 
@@ -191,43 +213,27 @@ private:
 		float updateTimer = 0.0f;
 		float updateTick = 1.0 / m_window->getRefreshRate();
 		unsigned int frames = 0;
+
 #ifdef WATTY_EMSCRIPTEN
+		if (m_window->getRefreshRate() < 1) 
+			updateTick = 1 / 60.0f; // in WebGL, refresh rate can be 0
+		
 		std::function<void()> mainLoop = [&]() {
 #else
 		while (!m_window->closed()) {
 #endif 
-			m_window->clear();
+			update(); // Physics frame (run as fast as possible)
+
 			if (m_time->elapsed() - updateTimer > updateTick) {
-				if (m_window->useVSync) update(); // With Vsync enabled, update at the refresh rate of the window
+				if (m_window->useVSync) render(); // With Vsync enabled, render at the refresh rate of the window
 				updateTimer += updateTick;
 			}
+			if (!m_window->useVSync)
+				render(); // as fast as possible
 
-			if (!m_window->useVSync) update(); // With Vsync disabled, update as fast as possible
 			frames++;
-
-			ImGui_ImplOpenGL3_NewFrame();
-			ImGui_ImplGlfw_NewFrame();
-			ImGui::NewFrame();
-
-			render(); // Draw Watty Frame
-
-			ImGui::Render();
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-
-			m_window->update();
-			//Multiple Viewports:
-			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			{
-				//SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
-				GLFWwindow* backup_current_context = glfwGetCurrentContext();
-				ImGui::UpdatePlatformWindows();
-				ImGui::RenderPlatformWindowsDefault();
-				glfwMakeContextCurrent(backup_current_context);
-			}
-
-	
-
+			
+			// Timing/FPS
 			if ((m_time->elapsed() - timer) > 1.0f) {
 				timer += 1.0f;
 				m_framesPerSecond = frames;
@@ -237,6 +243,8 @@ private:
 				frames = 0;
 				updates = 0;
 			}
+
+
 #ifdef WATTY_EMSCRIPTEN
 		};
 		emscripten_set_main_loop_arg(start_main, &mainLoop, 0, 1);

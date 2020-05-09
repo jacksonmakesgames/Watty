@@ -1,7 +1,19 @@
 #include <graphics/shader.h>
 
 namespace letc {namespace graphics {
-	
+
+#ifdef WATTY_EMSCRIPTEN
+
+	const char* Shader::m_defaultVertPath = WATTY_RES_DIR "shaders/default_es3.vert";
+	const char* Shader::m_defaultFragPath = WATTY_RES_DIR "shaders/default_es3.frag";
+
+#else
+
+	const char* Shader::m_defaultVertPath= WATTY_RES_DIR "shaders/default.vert";
+	const char* Shader::m_defaultFragPath= WATTY_RES_DIR "shaders/default.frag";
+
+#endif
+
 	Shader::Shader(const char* vertPath, const char* fragPath){
 		m_vertPath = vertPath;
 		m_fragPath= fragPath;
@@ -10,13 +22,8 @@ namespace letc {namespace graphics {
 
 	Shader::Shader()
 	{
-#ifdef WATTY_EMSCRIPTEN
-		m_vertPath = WATTYRESDIR "shaders/default_es3.vert";
-		m_fragPath = WATTYRESDIR "shaders/default_es3.frag";
-#else
-		m_vertPath = WATTYRESDIR "shaders/default.vert";
-		m_fragPath = WATTYRESDIR "shaders/default.frag";
-#endif // WATTY_EMSCRIPTEN
+		m_vertPath = m_defaultVertPath;
+		m_fragPath = m_defaultFragPath;
 
 		init();
 
@@ -73,15 +80,35 @@ namespace letc {namespace graphics {
 		GLuint program = glCreateProgram();
 		GLuint vertex = glCreateShader(GL_VERTEX_SHADER);
 		GLuint fragment = glCreateShader(GL_FRAGMENT_SHADER);
-		std::vector<char> vertChars = read_file(m_vertPath);
-		std::vector<char> fragChars = read_file(m_fragPath);
 
-		std::string vertSourceString(vertChars.begin(), vertChars.end());
-		std::string fragSourceString(fragChars.begin(), fragChars.end());
-			
-		const char* vertSource = vertSourceString.c_str();
-		const char* fragSource = fragSourceString.c_str();
+		const char* vertSource = "";
+		const char* fragSource = "";
+		std::string vertSourceString;
+		std::string fragSourceString;
 
+		if (m_vertPath[0] != '\0'){
+			// Load Custom Shader:
+			std::vector<char> vertChars = read_file(m_vertPath);
+			vertSourceString = std::string(vertChars.begin(), vertChars.end());
+			vertSource = vertSourceString.c_str();
+		}
+		else {
+			m_vertPath = m_defaultVertPath;
+			std::cout << "No vert shader path provided, using default" << std::endl;
+		}
+
+		if (m_fragPath[0] != '\0') {
+			// Load Custom Shader:
+			std::vector<char> fragChars = read_file(m_fragPath);
+			fragSourceString = std::string(fragChars.begin(), fragChars.end());
+			fragSource = fragSourceString.c_str();
+		}
+		else {
+			m_fragPath = m_defaultFragPath;
+			// TODO log warning
+			std::cout << "No frag shader path provided, using default" << std::endl;
+		}
+		
 		glShaderSource(vertex, 1, &vertSource, NULL);
 
 		glCompileShader(vertex);
@@ -94,7 +121,7 @@ namespace letc {namespace graphics {
 			glGetShaderiv(vertex, GL_INFO_LOG_LENGTH, &length);
 			std::vector<char> error(length);
 			glGetShaderInfoLog(vertex, length, &length, &error[0]);
-			std::cout << "Failed to compile vertex shader :( " << std::endl << &error[0] << std::endl;
+			std::cout << "Failed to compile custom vertex shader :( " << std::endl << &error[0] << std::endl;
 			glDeleteShader(vertex);
 			return 0;
 		}
@@ -105,17 +132,17 @@ namespace letc {namespace graphics {
 
 		GLint resultFrag;
 		glGetShaderiv(fragment, GL_COMPILE_STATUS, &resultFrag);
-
 		if (resultFrag == GL_FALSE) {
 			GLint length;
 			glGetShaderiv(fragment, GL_INFO_LOG_LENGTH, &length);
 			std::vector<char> error(length);
 			glGetShaderInfoLog(fragment, length, &length, &error[0]);
-			std::cout << "Failed to compile fragment shader :( " <<std::endl<< &error[0] << std::endl;
+			std::cout << "Failed to compile custom fragment shader :( " <<std::endl<< &error[0] << std::endl;
 			glDeleteShader(fragment);
 			return 0;
 		}
 		
+
 		glAttachShader(program, vertex);
 		glAttachShader(program, fragment);
 
@@ -140,22 +167,22 @@ namespace letc {namespace graphics {
 		setUniform1iv("textures", texIDs, 32);
 #else
 
-		setUniform1i("texture_0", 0);
-		setUniform1i("texture_1", 1);
-		setUniform1i("texture_2", 2);
-		setUniform1i("texture_3", 3);
-		setUniform1i("texture_4", 4);
-		setUniform1i("texture_5", 5);
-		setUniform1i("texture_6", 6);
-		setUniform1i("texture_7", 7);
-		setUniform1i("texture_8", 8);
-		setUniform1i("texture_9", 9);
-		setUniform1i("texture_10", 10);
-		setUniform1i("texture_11", 11);
-		setUniform1i("texture_12", 12);
-		setUniform1i("texture_13", 13);
-		setUniform1i("texture_14", 14);
-		setUniform1i("texture_15", 15);
+		setUniform1i("textures_0", 0);
+		setUniform1i("textures_1", 1);
+		setUniform1i("textures_2", 2);
+		setUniform1i("textures_3", 3);
+		setUniform1i("textures_4", 4);
+		setUniform1i("textures_5", 5);
+		setUniform1i("textures_6", 6);
+		setUniform1i("textures_7", 7);
+		setUniform1i("textures_8", 8);
+		setUniform1i("textures_9", 9);
+		setUniform1i("textures_10", 10);
+		setUniform1i("textures_11", 11);
+		setUniform1i("textures_12", 12);
+		setUniform1i("textures_13", 13);
+		setUniform1i("textures_14", 14);
+		setUniform1i("textures_15", 15);
 #endif //!WATTY_EMSCRIPTEN
 		disable();
 	}

@@ -8,8 +8,9 @@
 #include "shader.h"
 #include "Color.h"
 
-namespace letc {
-	namespace graphics {
+namespace letc { namespace graphics {
+
+	
 
 	struct VertexData
 	{
@@ -29,7 +30,6 @@ namespace letc {
 	class Renderable2D{
 	public:
 		glm::vec2& position;
-		glm::vec2& size;
 	protected:
 		glm::vec2 m_size = glm::vec2(1.0f);
 		glm::vec2 m_position = glm::vec2(0.0f);
@@ -38,29 +38,32 @@ namespace letc {
 		std::vector<glm::vec2> m_UVs = std::vector<glm::vec2>();
 		Texture* m_texture; 
 		glm::mat4 m_transformationMatrix = glm::mat4(1.0f);
-
+		Bounds2D bounds; // TODO: right now, only used for labels
 		FrameInfo m_frameInfo;
 
 	private:
 		std::vector<Renderable2D*> m_childrenRenderables = std::vector<Renderable2D*>();
 
+
 	protected:
-		Renderable2D() : position(m_position), size(m_size) {
+		Renderable2D() : position(m_position){
 			m_transformationMatrix = glm::mat4(1);
 			setUVDefaults();
 			m_texture = nullptr;
+			recalculateBounds();
 		}
 			
 
 
 	public:
 		Renderable2D(glm::vec3 position, glm::vec2 size, WattyColor color)
-		: m_position(position), m_size(size), m_color(color), position(m_position), size(m_size) {
+		: m_position(position), m_size(size), m_color(color), position(m_position){
 			m_transformationMatrix = glm::mat4(1);
 			setUVDefaults();
 			m_texture = nullptr;
 			m_size = size;
 			m_position = position;
+			recalculateBounds();
 		}
 
 		void setTransformationMatrix(glm::mat4 matrix) {
@@ -100,8 +103,11 @@ namespace letc {
 
 
 		inline const glm::vec2& getSize()const{ return m_size; }
+		inline const Bounds2D& getBounds()const{ return bounds; }
 		inline const glm::vec2& getPosition()const{ return m_position; }
-		inline void setPosition(glm::vec3 pos){ m_position = pos; }
+		inline void setPosition(glm::vec3 pos) { m_position = pos; recalculateBounds(); }
+		inline void setSize(glm::vec2 newSize) { m_size = newSize; recalculateBounds(); }
+		
 		inline const WattyColor getColor()const{ return m_color; }
 		inline const std::vector<glm::vec2>& getUVs()const{ return m_UVs; }
 
@@ -110,7 +116,12 @@ namespace letc {
 		inline const FrameInfo getFrameInfo() const { return m_frameInfo; }
 
 		inline void setFrameInfo(FrameInfo frameInfo) { m_frameInfo = frameInfo; }
-
+		inline void recalculateBounds() {
+			bounds.lowerLeft = { m_position.x - (.5f * m_size.x), m_position.y - (.5f * m_size.y) };
+			bounds.upperLeft = { m_position.x - (.5f * m_size.x), m_position.y + (.5f * m_size.y) };
+			bounds.upperRight = { m_position.x + (.5f * m_size.x), m_position.y + (.5f * m_size.y) };
+			bounds.lowerRight = { m_position.x + (.5f * m_size.x), m_position.y - (.5f * m_size.y) };
+		}
 		void setUvs(glm::vec2 sw, glm::vec2 nw, glm::vec2 ne, glm::vec2 se) {
 			m_UVs = std::vector<glm::vec2>();
 			m_UVs.push_back(sw);

@@ -1,14 +1,23 @@
 @echo OFF
-PUSHD "%~dp0..\Demos\"
+
+PUSHD "%~dp0..\Demos"
 IF EXIST bin\Web\ (
-del bin\Web\*.js
-del bin\Web\*.wasm
+	PUSHD bin\Web
+	del /s /q /f *.js
+	del /s /q /f *.wasm
+	del /s /q /f *.a
+	POPD
 )
-IF EXIST Demos\bin\Web\ (
-del Demos\bin\Web\*.js
-del Demos\bin\Web\*.wasm
-)
+
 if not exist "build_web\NUL" mkdir build_web
 PUSHD "build_web"
-call ..\..\dependencies\emscripten\emsdk_env.bat && emcmake cmake -DEMSCRIPTEN=TRUE -G "Unix Makefiles" .. && make && POPD && POPD & pause
 
+..\..\dependencies\emscripten\emsdk_env.bat && emcmake cmake -DEMSCRIPTEN=TRUE -G "Unix Makefiles" .. && make && POPD && POPD & GOTO continue
+
+:continue
+set interactive=1
+echo %cmdcmdline% | find /i "%~0" >nul
+if not errorlevel 1 set interactive=0
+@echo %interactive%
+
+if %interactive% == 0 pause

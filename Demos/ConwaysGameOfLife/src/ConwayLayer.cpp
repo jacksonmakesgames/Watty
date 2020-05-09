@@ -13,7 +13,7 @@ namespace letc { namespace graphics {
 	}
 
 	void ConwayLayer::draw() {
-		if (!enabled) return;
+		if (!enabled_) return;
 		// IMGUI
 		// Start the Dear ImGui frame	
 		ImGui::Begin("Conway"); {

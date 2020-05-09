@@ -1,6 +1,5 @@
 #include <Watty.h>
 
-#define RESDIR "J:/OneDrive/Projects/Game_Development/Watty/Sandbox/res/"
 #define PLAYERTEXTURE RESDIR  "textures/sprites/lpc/soldier.png"
 #define PLAYERCLOTHESTEXTURE RESDIR  "textures/sprites/lpc/female_chainmail.png"
 #define TESTTEXTURE RESDIR  "textures/test.png"
@@ -11,7 +10,7 @@
 using namespace letc;
 using namespace graphics;
 using namespace math;
-//using namespace audio;
+using namespace audio;
 using namespace physics;
 using namespace glm;
 
@@ -27,7 +26,7 @@ private:
 	Window* m_window;
 	GameObject* player;
 
-	double playerSpeed = 3000;
+	double playerSpeed = 150;
 	int lastPlayerDir = 0;
 	float playerAcceleration = 2.0f;
 
@@ -38,7 +37,7 @@ public:
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 
-		Layer* mainLayer = new Layer("main", new BatchRenderer2D());
+		Layer* mainLayer = new Layer("main");
 		layers.push_back(mainLayer);
 
 		TileMap* tilemap = new TileMap(LEVELPATH, IMAGEPATH);
@@ -68,7 +67,7 @@ public:
 			0.0f, 1.0f));
 
 
-		player->getPhysicsBody2D()->getBody()->SetFixedRotation(true);
+		player->getPhysicsBody2D()->setFixedRotation(true);
 
 		player->addAnimator();
 
@@ -105,13 +104,13 @@ public:
 			));
 
 
-
+		getInput();
 		LETC::update();
 	}
 
 	void render() override {
-		getInput();
 		LETC::render();
+
 	}
 
 	~TileMapDemoApp() {
@@ -119,11 +118,11 @@ public:
 
 
 	void getInput() {
-	
 
 		double horizontal = -1 * (double)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
 		double vertical = (double)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1 * (float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
-
+		
+		
 		if (vertical < 0 && horizontal == 0) {
 			player->getAnimator()->play("walk_down");
 			lastPlayerDir = 0;
@@ -160,12 +159,12 @@ public:
 			}
 		}
 
-
-
 		player->getPhysicsBody2D()->setLinearVelocity(glm::vec2(
 			horizontal * playerSpeed * gameTimer->delta,
 			vertical * playerSpeed * gameTimer->delta
 		));
+
+
 	}
 };
 

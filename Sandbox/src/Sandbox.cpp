@@ -11,7 +11,7 @@
 using namespace letc;
 using namespace graphics;
 using namespace math;
-//using namespace audio;
+using namespace audio;
 using namespace physics;
 using namespace glm;
 
@@ -25,20 +25,19 @@ namespace letc {
 class Sandbox : public LETC {
 private:
 	Window* m_window;
-	GameObject* jObject;
-	GameObject* rObject;
+	Label* fpsLabel;
+	std::vector<Sprite*> allSprites;
 	std::vector<GameObject*> allObjects;
 	std::vector<glm::vec2> allObjectPos;
-	std::vector<Sprite*> allSprites;
 public:
-	void init() override{
+	void init() override {
 		m_window = createWindow("Sandbox", 1280, 720, true, false);
-		glClearColor(.7,.9,1,1);
+		glClearColor(.45, .23, .23, 1);
 		Layer* mainLayer = new Layer("Layer 1");
 		//mainLayer->add(new GameObject("Test", { 0,0 }, { 1,1 }, new Sprite(Color::white)));
 		layers.push_back(mainLayer);
-	
-		/*for (int x = -20; x < 20; x++)
+
+		for (int x = -20; x < 20; x++)
 		{
 			for (int y = -20; y < 20; y++) {
 				Sprite* sprite = new Sprite(Color::random());
@@ -49,29 +48,29 @@ public:
 				mainLayer->add(tmp);
 			}
 
-		}*/
+		}
 
-		//mainLayer2->add(new GameObject({ 0,2 }, { 1,1 }, new Sprite(Color::white)));
-		//jObject = new GameObject("Jackson's Object", { -1,2 }, { 1,1 }, new Sprite(new Texture(WATTYRESDIR "textures/error_texture.png")));
-		//rObject = new GameObject("Rachels's Object", { 1,2 }, { 1,1 }, new Sprite(Color::yellow));
-		//mainLayer2->add(jObject);
-		//mainLayer2->add(rObject);
+		AudioManager::addClip("drums", RESDIR "audio/drums.wav");
+		AudioManager::getClip("drums")->play(true);
+		AudioManager::getClip("drums")->setGain(.5f);
 
-		mainLayer->add(
-			new GameObject(
-				{-1,0 }, {1,1},
-				new Sprite(new Texture(RESDIR "textures/test.png"))
-		));
 
-		mainLayer->add(
-			new GameObject(
-				{1,0 }, {1,1},
-				new Sprite(new Texture(RESDIR "textures/asterisk.png"))
-		));
+		FontManager::add("test", RESDIR "fonts/Lobster.ttf", 100);
+		LabelProperties labelProps;
+		labelProps.charsPerLine = 30;
+		labelProps.text =	"";
+		labelProps.font = FontManager::get("test");
+		labelProps.color = Color::orange;
+		labelProps.overflowMode = OverflowMode::Expand;
+		fpsLabel = new Label(labelProps);
+		GameObject* fpsGO = new GameObject({-14,7}, {1,1}, fpsLabel);
+		mainLayer->add(fpsGO);
+
 	}
 
 	void tick() override {
 		LETC::tick();
+		fpsLabel->setText(std::string("FPS: ") + std::to_string(getFramesPerSecond()));
 	}
 	void update() override{
 		sceneCamera->setSize( glm::vec2(	
@@ -79,27 +78,17 @@ public:
 					sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
 				));
 
-		for (size_t objI = 0; objI < allObjects.size(); objI++)
+		float r = Random::range(-1,1);
+		for (GameObject* go : allObjects)
 		{
-			GameObject* tmp = allObjects[objI];
-			float rX = Random::range(0, .2f);
-			float rY = Random::range(0, .2f);
-			int x = allObjectPos[objI].x;
-			int y = allObjectPos[objI].y;
-			tmp->transform->setPosition({x+ sin(gameTimer->elapsed()), y+sin(y + sin(gameTimer->elapsed()))});
-			tmp->transform->setRotation(cos(x*2.0f*y) + sin(gameTimer->elapsed()));
+			float x = abs(go->transform->getPosition().x);
+			float y = abs(go->transform->getPosition().y);
 
-			allSprites[objI]->setColor(
-				glm::vec4(
-					abs(tan(10 + tmp->transform->getPosition().x))>1? 1 : abs(tan(10 + tmp->transform->getPosition().x)),
-					abs(sin(50 + tmp->transform->getPosition().y))>1? 1: abs(sin(50 + tmp->transform->getPosition().y)),
-					abs(cos(-50 + tmp->transform->getPosition().x) / (tmp->transform->getPosition().y) + 1),
-					1
-				));
-			
+			go->transform->translate({ sin(x * gameTimer->elapsed()) / 10, cos(y * gameTimer->elapsed()) / x });
+
+			go->transform->rotate(tan(.25+x*tan(gameTimer->elapsed()/100)));
+
 		}
-		
-
 
 		LETC::update();
 	}
@@ -109,6 +98,7 @@ public:
 		LETC::render();
 	}
 
+	
 	~Sandbox() {
 	}
 };

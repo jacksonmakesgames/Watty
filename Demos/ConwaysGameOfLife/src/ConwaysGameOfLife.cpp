@@ -2,7 +2,7 @@
 #include "ConwayLayer.h"
 #include <deque>
 
-#define GRIDTEXTUREPATH RESDIR "res/textures/grid.png"
+#define GRIDTEXTUREPATH RESDIR "textures/grid.png"
 
 //#define WINDOWWIDTH 1600
 //#define WINDOWHEIGHT 900

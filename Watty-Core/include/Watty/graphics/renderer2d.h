@@ -19,7 +19,13 @@
 
 namespace letc {namespace graphics {
 	class Renderable2D;
+	struct Bounds2D {
+		glm::vec2 lowerLeft = { -.5f, -.5f };
+		glm::vec2 upperLeft = { -.5f,  .5f };
+		glm::vec2 upperRight = { .5f,  .5f };
+		glm::vec2 lowerRight = { .5f, -.5f };
 
+	};
 	class Renderer2D{
 	public:
 		static unsigned int globalFlushesThisFrame;
@@ -31,43 +37,13 @@ namespace letc {namespace graphics {
 		unsigned short m_flushesThisFrame = 0;
 		int m_maxTextureUnits = 0;
 
-		Renderer2D() {
-			//TODO: MOVE TO CPP
-			m_TransformationStack.push_back(glm::mat4(1.0));
-			m_tranformationStackBack = &m_TransformationStack.back();
-
-#ifdef WATTY_EMSCRIPTEN
-			
-			glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &m_maxTextureUnits);
-#else
-			glGetIntegerv(GL_MAX_TEXTURE_UNITS, &m_maxTextureUnits);
-
-#endif // WATTY_EMSCRIPTEN
-		}
+		Renderer2D();
 		
 	public:
-		void push(const glm::mat4& mat, bool override = false) {
-			if (override) {
-				m_TransformationStack.push_back(mat);
-			}
-			else {
-				m_TransformationStack.push_back(m_TransformationStack.back() * mat);
-			}
-			m_tranformationStackBack = &m_TransformationStack.back();
-		}
+		void push(const glm::mat4& mat, bool override = false);
 
-		glm::mat4 pop() {
-			if (m_TransformationStack.size() > 1) {
-				m_TransformationStack.pop_back();
-			}
-			else {
-				//TODO: log error
-				std::cout << "ERROR: TRIED TO POP TOO MANY MATRIX4s" << std::endl;	
-				return glm::mat4(1.0f);
-			}
-			m_tranformationStackBack = &m_TransformationStack.back();
-			return *m_tranformationStackBack;
-		}
+		glm::mat4 pop();
+
 		virtual ~Renderer2D() {}
 
 
@@ -75,7 +51,7 @@ namespace letc {namespace graphics {
 
 		virtual void submit(const Renderable2D* renderable) = 0;
 #ifdef WATTY_OPENGL
-		virtual void drawString(const std::string& text, const glm::vec2& position, const Font& font, WattyColor color) {};
+		virtual void drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor color, const Bounds2D bounds) {};
 #endif
 
 		virtual void end() {}

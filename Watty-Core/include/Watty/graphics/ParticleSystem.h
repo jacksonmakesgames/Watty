@@ -37,7 +37,7 @@ namespace letc { namespace graphics {
 			bool active = false;
 
 			Particle() {
-				Renderable2D::size = m_size;
+				Renderable2D::m_size = m_size;
 			}
 		};
 
