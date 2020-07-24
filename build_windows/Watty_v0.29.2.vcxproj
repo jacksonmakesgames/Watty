@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Web|x64">
+      <Configuration>Web</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{71CDC38E-5A8A-3A07-B9B1-29BBB3D3AEBC}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>Watty_v0.29.2</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Web|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\OneDrive\Projects\Game_Development\Watty\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Watty_v0.29.2.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Watty_v0.29.2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\OneDrive\Projects\Game_Development\Watty\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Watty_v0.29.2.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Watty_v0.29.2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Web|x64'">J:\OneDrive\Projects\Game_Development\Watty\bin\Web\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Web|x64'">Watty_v0.29.2.dir\Web\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Web|x64'">Watty_v0.29.2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Web|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG;WATTY_RES_DIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";WATTY_VERSION="0.29.2";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;DEBUG;WATTY_RES_DIR=\"J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/\";WATTY_VERSION=\"0.29.2\";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WATTY_RES_DIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";WATTY_VERSION="0.29.2";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WATTY_RES_DIR=\"J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/\";WATTY_VERSION=\"0.29.2\";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Web|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;WATTY_RES_DIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";WATTY_VERSION="0.29.2";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR="Web";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;WATTY_RES_DIR=\"J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/\";WATTY_VERSION=\"0.29.2\";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR=\"Web\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\context.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\init.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\input.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\monitor.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\vulkan.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\window.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\win32_init.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\win32_joystick.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\win32_monitor.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\win32_time.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\win32_thread.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\win32_window.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\wgl_context.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\egl_context.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\$(Configuration)\osmesa_context.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\chipplayer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\sndbuffer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\sndchip.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\sndrender.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_ay.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_monotone.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_noise.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_openmpt.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_openmpt_dll.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_sfxr.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\darray.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\klatt.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\resonator.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_speech.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\tts.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\sid.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_tedsid.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\ted.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_vic.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_vizsn.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\dr_impl.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_wav.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_wavstream.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\stb_vorbis.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_miniaudio.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_nosound.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_null.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_c.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_audiosource.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_bus.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_3d.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_basicops.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_faderops.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_filterops.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_getters.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_setters.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_voicegroup.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_core_voiceops.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_fader.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_fft.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_fft_lut.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_file.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_filter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_misc.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_queue.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_thread.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_bassboostfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_biquadresonantfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_dcremovalfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_echofilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_eqfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_fftfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_flangerfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_freeverbfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_lofifilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_robotizefilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\$(Configuration)\soloud_waveshaperfilter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2DistanceJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2FrictionJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2GearJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Joint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2MotorJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2MouseJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2PrismaticJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2PulleyJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2RevoluteJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2RopeJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2WeldJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2WheelJoint.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2CircleContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Contact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2ContactSolver.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2PolygonAndCircleContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2EdgeAndCircleContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2EdgeAndPolygonContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2ChainAndCircleContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2ChainAndPolygonContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2PolygonContact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Body.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2ContactManager.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Fixture.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Island.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2World.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2WorldCallbacks.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2BlockAllocator.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Draw.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Math.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Settings.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2StackAllocator.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Timer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2CircleShape.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2EdgeShape.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2ChainShape.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2PolygonShape.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2BroadPhase.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2CollideCircle.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2CollideEdge.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2CollidePolygon.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Collision.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Distance.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2DynamicTree.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2TimeOfImpact.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\$(Configuration)\b2Rope.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glad\glad.dir\$(Configuration)\glad.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\$(Configuration)\imgui.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\$(Configuration)\imgui_demo.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\$(Configuration)\imgui_draw.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\$(Configuration)\imgui_widgets.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\$(Configuration)\imgui_impl_opengl3.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\$(Configuration)\imgui_impl_glfw.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\autofit.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftbase.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftbbox.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftbdf.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftbitmap.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftcid.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftfstype.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftgasp.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftglyph.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftgxval.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftinit.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftmm.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftotval.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftpatent.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftpfr.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftstroke.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftsynth.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftsystem.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\fttype1.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftwinfnt.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\bdf.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftbzip2.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftcache.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\cff.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\type1cid.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftgzip.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftlzw.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\pcf.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\pfr.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\psaux.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\pshinter.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\psnames.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\raster.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\sfnt.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\smooth.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\truetype.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\type1.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\type42.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\winfnt.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftdebug.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.dir\$(Configuration)\ftver.res" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\distance-field.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\edtaa3func.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\font-manager.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\platform.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\text-buffer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\texture-atlas.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\texture-font.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\utf8-utils.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\vector.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\vertex-attribute.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.dir\$(Configuration)\vertex-buffer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\audioclip.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\audiomanager.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\GameObject.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Transform2D.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Camera.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Color.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\DebugRenderer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\ParticleRenderer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\ParticleSystem.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Renderer2D.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\batchrenderer2d.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\buffer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\indexbuffer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\vertexarray.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\font.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\fontmanager.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\label.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\DebugPhysicsLayer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\EngineControlLayer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\GUILayer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\GridLayer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\layer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\shader.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\sprite.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\texture.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Animator2D.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\SpriteSheetAnimation.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Tile.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\TileMap.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\TileMapLayer.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\window.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\MapBodyBuilder.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\PhysicsBody2D.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\PhysicsConstants.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\PhysicsWorld2D.obj" />
+    <Object Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.dir\$(Configuration)\Random.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.vcxproj">
+      <Project>{30FC6E77-F5FC-32F2-A839-2A6CC6C39825}</Project>
+      <Name>Box2D</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Watty-Core\Core_Engine_v0.29.2.vcxproj">
+      <Project>{08E77676-7DF8-3564-A467-81A232F05A4F}</Project>
+      <Name>Core_Engine_v0.29.2</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype\freetype.vcxproj">
+      <Project>{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}</Project>
+      <Name>freetype</Name>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\freetype-gl\freetype-gl.vcxproj">
+      <Project>{52089B01-6DAC-3825-948A-FF693389C7D1}</Project>
+      <Name>freetype-gl</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glad\glad.vcxproj">
+      <Project>{CFECA571-0B91-3E61-A7C4-443EBEAD44EF}</Project>
+      <Name>glad</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.vcxproj">
+      <Project>{87ADD9EB-6DC1-3D5F-B821-6138C16189DB}</Project>
+      <Name>glfw</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.vcxproj">
+      <Project>{85C7350F-A841-3FC1-A371-98027FE67FCD}</Project>
+      <Name>imgui</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.vcxproj">
+      <Project>{FC5C4256-5781-3E44-8461-0525A879430B}</Project>
+      <Name>soloud</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

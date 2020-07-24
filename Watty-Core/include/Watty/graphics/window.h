@@ -22,10 +22,10 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include <graphics/Camera.h>
+#include <graphics/font/fontmanager.h>
+#include <audio/audiomanager.h>
 
-#include "Camera.h"
-#include "font/fontmanager.h"
-#include "../audio/audiomanager.h"
 
 namespace letc {namespace graphics {
 #define MAX_KEYS 1024
@@ -40,22 +40,24 @@ namespace letc {namespace graphics {
 		static Window* Instance;
 	private:
 		friend struct GLFWwindow;
-		const char* m_Title;
-		int m_Width, m_Height;
-		GLFWwindow *m_Window;
-		bool m_Closed;
+		const char* mTitle;
+		int mWidth, mHeight;
+		GLFWwindow *mGLFWWindow;
+		bool mClosed;
 
 
-		bool m_keysThisFrame[MAX_KEYS];
-		bool m_keysLastFrame[MAX_KEYS];
-		bool m_keysFirstFrameDown[MAX_KEYS];
-		bool m_buttonsThisFrame[MAX_BUTTONS];
-		bool m_buttonsLastFrame[MAX_BUTTONS];
-		bool m_buttonsFirstFrameDown[MAX_BUTTONS];
-		double mx, my;
-		double scrolledThisFrameY = 0;
+		bool mKeysThisFrame[MAX_KEYS];
+		bool mKeysLastFrame[MAX_KEYS];
+		bool mKeysFirstFrameDown[MAX_KEYS];
+		bool mButtonsThisFrame[MAX_BUTTONS];
+		bool mButtonsLastFrame[MAX_BUTTONS];
+		bool mButtonsFirstFrameDown[MAX_BUTTONS];
+		double mMouseX, mMouseY;
+		double mScrolledThisFrameY = 0;
 
-		int m_refreshRate;
+		int mRefreshRate;
+
+
 
 
 	public:
@@ -66,8 +68,10 @@ namespace letc {namespace graphics {
 		void listenForInput();
 		void clear() const;
 
-		inline int getWidth() const { return Window::m_Width; };
-		inline int getHeight() const { return Window::m_Height; };
+		inline int getWidth() const { return Window::mWidth; };
+		inline int getHeight() const { return Window::mHeight; };
+
+
 
 		bool keyWasPressed(unsigned int keycode) const;
 		bool keyIsDown(unsigned int keycode) const;
@@ -80,10 +84,11 @@ namespace letc {namespace graphics {
 		static void toggleVSync();
 		static void setVSync(bool state);
 
-		inline double getScrollAmountThisFrameY() { return scrolledThisFrameY; };
-		inline int getRefreshRate() { return m_refreshRate; };
+		inline double getScrollAmountThisFrameY() { return mScrolledThisFrameY; };
+		inline int getRefreshRate() { return mRefreshRate; };
 
 		glm::vec3 viewportToWorld(glm::vec2 position, const Camera& cam = *Camera::allCameras[0]);
+
 		
 	private:
 		bool init();

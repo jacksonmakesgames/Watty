@@ -19,9 +19,9 @@ namespace letc {namespace graphics {
 			Window::Instance = this;
 		}
 
-		m_Title = title;
-		m_Width = width;
-		m_Height = height;
+		mTitle = title;
+		mWidth = width;
+		mHeight = height;
 		isResizeable = resizeable;
 		isFullScreen = fullscreen;
 		if (!init()) {
@@ -31,18 +31,18 @@ namespace letc {namespace graphics {
 		}
 
 		for (int i = 0; i < MAX_KEYS; i++) {
-			m_keysThisFrame[i]		=	false;
-			m_keysLastFrame[i]	=	false;
-			m_keysFirstFrameDown[i]	=	false;
+			mKeysThisFrame[i]		=	false;
+			mKeysLastFrame[i]	=	false;
+			mKeysFirstFrameDown[i]	=	false;
 		}
 		for (int i = 0; i < MAX_BUTTONS; i++) {
-			m_buttonsThisFrame[i]		=	 false;
-			m_buttonsLastFrame[i]		=	 false;
-			m_buttonsFirstFrameDown[i]			=	 false;
+			mButtonsThisFrame[i]		=	 false;
+			mButtonsLastFrame[i]		=	 false;
+			mButtonsFirstFrameDown[i]			=	 false;
 		}
 
-		FontManager::init(m_Width / (std::get<0>(getAspectRatio()) * 2),
-			m_Height / (std::get<1>(getAspectRatio()) * 2));
+		FontManager::init(mWidth / (std::get<0>(getAspectRatio()) * 2),
+			mHeight / (std::get<1>(getAspectRatio()) * 2));
 
 	}	
 
@@ -80,27 +80,27 @@ namespace letc {namespace graphics {
 		if (isFullScreen) {
 			const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 			
-			m_Width = mode->width;
-			m_Height = mode->height;
-			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, glfwGetPrimaryMonitor(), NULL); // fullscreen
+			mWidth = mode->width;
+			mHeight = mode->height;
+			mGLFWWindow = glfwCreateWindow(mWidth, mHeight, mTitle, glfwGetPrimaryMonitor(), NULL); // fullscreen
 		}
 		else
-			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+			mGLFWWindow = glfwCreateWindow(mWidth, mHeight, mTitle, NULL, NULL);
 		
-		m_refreshRate = glfwGetVideoMode(glfwGetPrimaryMonitor())->refreshRate;
-		if (!m_Window) {
+		mRefreshRate = glfwGetVideoMode(glfwGetPrimaryMonitor())->refreshRate;
+		if (!mGLFWWindow) {
 			glfwTerminate();
 			std::cout << "Failed to create window" << std::endl;
 			return false;
 		}
 
-		glfwMakeContextCurrent(m_Window);
-		glfwSetWindowUserPointer(m_Window, this);
-		if(isResizeable) glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
-		glfwSetKeyCallback(m_Window, key_callback);
-		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
-		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
-		glfwSetScrollCallback(m_Window, scroll_callback);
+		glfwMakeContextCurrent(mGLFWWindow);
+		glfwSetWindowUserPointer(mGLFWWindow, this);
+		if(isResizeable) glfwSetFramebufferSizeCallback(mGLFWWindow, window_resize_callback);
+		glfwSetKeyCallback(mGLFWWindow, key_callback);
+		glfwSetMouseButtonCallback(mGLFWWindow, mouse_button_callback);
+		glfwSetCursorPosCallback(mGLFWWindow, cursor_position_callback);
+		glfwSetScrollCallback(mGLFWWindow, scroll_callback);
 		glfwSwapInterval(useVSync);
 
 #ifndef WATTY_EMSCRIPTEN
@@ -160,17 +160,17 @@ namespace letc {namespace graphics {
 		ImGui::StyleColorsLight();
 
 		// Setup Platform/Renderer bindings
-		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+		ImGui_ImplGlfw_InitForOpenGL(mGLFWWindow, true);
 		ImGui_ImplOpenGL3_Init(glsl_version);
 
-		io.DisplaySize = ImVec2(m_Width, m_Height);
+		io.DisplaySize = ImVec2(mWidth, mHeight);
 		return true;
 	}
 
 	std::tuple<int, int> Window::getAspectRatio()
 	{
-		int outNum = m_Width;
-		int outDen = m_Height;
+		int outNum = mWidth;
+		int outDen = mHeight;
 
 		for (int i = outDen * outNum; i > 1; i--) {
 			if ((outDen % i == 0) && (outNum % i == 0)) {
@@ -190,8 +190,9 @@ namespace letc {namespace graphics {
 		// TODO: log an error
 			return false;
 		}
-		return m_keysThisFrame[keycode];
+		return mKeysThisFrame[keycode];
 	}
+
 
 
 	bool Window::keyWasPressed(unsigned int keycode) const {
@@ -200,7 +201,7 @@ namespace letc {namespace graphics {
 		// TODO: log an error
 			return false;
 		}
-		return m_keysFirstFrameDown[keycode];
+		return mKeysFirstFrameDown[keycode];
 	}
 
 
@@ -209,7 +210,7 @@ namespace letc {namespace graphics {
 		// TODO: log an error
 			return false;
 		}
-		return m_buttonsFirstFrameDown[button];
+		return mButtonsFirstFrameDown[button];
 	}
 
 
@@ -218,7 +219,7 @@ namespace letc {namespace graphics {
 		// TODO: log an error
 			return false;
 		}
-		return m_buttonsThisFrame[button];
+		return mButtonsThisFrame[button];
 	}
 
 
@@ -227,7 +228,7 @@ namespace letc {namespace graphics {
 			// TODO: log an error
 			return false;
 		}
-		return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
+		return (mButtonsLastFrame[button] && !mButtonsThisFrame[button]);
 	}	
 	
 
@@ -236,13 +237,13 @@ namespace letc {namespace graphics {
 			// TODO: log an error
 			return false;
 		}
-		return  (m_keysLastFrame[key] && !m_keysThisFrame[key]);;
+		return  (mKeysLastFrame[key] && !mKeysThisFrame[key]);;
 	}
 
 
 	void Window::getMousePos(double& x, double& y) const {
-		x = mx;
-		y = my;
+		x = mMouseX;
+		y = mMouseY;
 	}
 
 
@@ -253,27 +254,27 @@ namespace letc {namespace graphics {
 
 
 	void Window::update() {
-		scrolledThisFrameY = 0;
+		mScrolledThisFrameY = 0;
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		glfwSwapBuffers(mGLFWWindow);
 	}
 
 
 	void Window::listenForInput(){
 		
 		for (int i = 0; i < MAX_KEYS; i++) {
-			m_keysFirstFrameDown[i] = false;
+			mKeysFirstFrameDown[i] = false;
 		}
 		// handle input:
 		for (size_t i = 0; i < MAX_KEYS; i++) {
-			m_keysFirstFrameDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i]; // first frame pressed
+			mKeysFirstFrameDown[i] = mKeysThisFrame[i] && !mKeysLastFrame[i]; // first frame pressed
 		}
-		memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool) * MAX_KEYS);
+		memcpy(&mKeysLastFrame, mKeysThisFrame, sizeof(bool) * MAX_KEYS);
 
 		for (size_t i = 0; i < MAX_BUTTONS; i++) {
-			m_buttonsFirstFrameDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
+			mButtonsFirstFrameDown[i] = mButtonsThisFrame[i] && !mButtonsLastFrame[i];
 		}
-		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool) * MAX_BUTTONS);
+		memcpy(&mButtonsLastFrame, mButtonsThisFrame, sizeof(bool) * MAX_BUTTONS);
 	}
 
 
@@ -293,7 +294,7 @@ namespace letc {namespace graphics {
 	
 
 	bool Window::closed() const {
-		return glfwWindowShouldClose(m_Window) == 1;
+		return glfwWindowShouldClose(mGLFWWindow) == 1;
 	}
 
 
@@ -301,8 +302,8 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		if (!win->isResizeable) { return;  }
 		glViewport(0, 0, width, height);
-		win->m_Width = width;
-		win->m_Height = height;
+		win->mWidth = width;
+		win->mHeight = height;
 		
 		// NOTE: huge performance hit when resizing.. we should rethink this
 		/*std::tuple aR = win->getAspectRatio();
@@ -314,29 +315,29 @@ namespace letc {namespace graphics {
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 		Window * win = (Window*) glfwGetWindowUserPointer(window);
-		win->m_keysThisFrame[key] = action != GLFW_RELEASE;
+		win->mKeysThisFrame[key] = action != GLFW_RELEASE;
 
 	}
 
 
 	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
 		Window * win = (Window*) glfwGetWindowUserPointer(window);
-		win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
+		win->mButtonsThisFrame[button] = action != GLFW_RELEASE;
 
 	}
 
 
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->mx = xpos;
-		win->my = ypos;
+		win->mMouseX = xpos;
+		win->mMouseY = ypos;
 
 	}
 	
 
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->scrolledThisFrameY = yoffset;
+		win->mScrolledThisFrameY = yoffset;
 	}
 
 

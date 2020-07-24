@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\monitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\vulkan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_joystick.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_monitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_thread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\wgl_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\egl_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\osmesa_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include\GLFW\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include\GLFW\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\mappings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\win32_joystick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\wgl_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\egl_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\src\osmesa_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{A2BB8897-2E57-3D83-B9E5-816F08A309B5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E2526C8F-CF47-35DD-A1DE-A65FCE737956}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

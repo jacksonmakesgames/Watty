@@ -1,0 +1,2 @@
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\Debug\soloud.lib
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\soloud\soloud.dir\Debug\soloud.pdb

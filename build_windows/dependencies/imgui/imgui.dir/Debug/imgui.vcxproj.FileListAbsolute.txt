@@ -1,0 +1,2 @@
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\Debug\imgui.lib
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\imgui\imgui.dir\Debug\imgui.pdb

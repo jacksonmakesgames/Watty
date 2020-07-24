@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/audio/audioclip.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/audio/audiomanager.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/gameobjects/GameObject.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/gameobjects/Transform2D.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/Camera.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/Color.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/DebugRenderer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/ParticleRenderer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/ParticleSystem.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/Renderer2D.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/batchrenderer2d.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/buffers/buffer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/buffers/indexbuffer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/buffers/vertexarray.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/font/font.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/font/fontmanager.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/font/label.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/layers/DebugPhysicsLayer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/layers/EngineControlLayer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/layers/GUILayer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/layers/GridLayer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/layers/layer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/shader.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/sprite.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/texture.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/textures/Animator2D.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/textures/SpriteSheetAnimation.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/tilemap/Tile.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/tilemap/TileMap.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/tilemap/TileMapLayer.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/graphics/opengl/window.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/physics/MapBodyBuilder.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/physics/PhysicsBody2D.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/physics/PhysicsConstants.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/physics/PhysicsWorld2D.cpp.o"
+  "CMakeFiles/Core_Engine_v0.29.2.dir/src/utils/Random.cpp.o"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/Core_Engine_v0.29.2.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

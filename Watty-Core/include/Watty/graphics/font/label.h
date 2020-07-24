@@ -10,11 +10,11 @@ namespace letc { namespace graphics {
 	};
 
 	struct LabelProperties {
+		std::string text;
+		const Font* font;
+		WattyColor color = Color::black;
 		OverflowMode overflowMode = OverflowMode::Expand;
 		int charsPerLine = 100;
-		const Font* font;
-		std::string text;
-		WattyColor color = Color::black;
 
 	};
 

@@ -1,22 +1,14 @@
 #pragma once
-#include "../renderable2d.h"
-#include "../../utils/timer.h"
+#include <graphics/renderable2d.h>
+#include <utils/timer.h>
+#include <graphics/textures/Animation.h>
 
 namespace letc { namespace graphics {
-	class Animation2D
+	class Animation2D : public Animation
 	{
 	protected:
-		bool done = false;
-		float rate;
-		bool loop;
-		Timer time;
-		float nextUpdateTime = 0;
-		std::string name;
 		Renderable2D* objectsRenderable;
 		FrameInfo m_frameInfo;
-		int m_minFrame;
-		int m_maxFrame;
-
 
 	public:
 
@@ -31,7 +23,7 @@ namespace letc { namespace graphics {
 		inline int getMinFrame() { return m_minFrame; }
 		inline int getMaxFrame() { return m_maxFrame; }
 
-		Animation2D(std::string animationName, float playbackRate, bool loop = false): time(Timer()), name(animationName), loop(loop), rate(playbackRate) {}
+		Animation2D(std::string animationName, float playbackRate, bool loop = false): Animation(animationName,loop, playbackRate) {}
 
 	};
 

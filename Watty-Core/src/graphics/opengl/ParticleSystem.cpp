@@ -3,7 +3,7 @@
 namespace letc { namespace graphics {
 	ParticleSystem::ParticleSystem(uint32_t maxParticles) : mMaxParticles(maxParticles)
 	{
-		mParticles.resize(mMaxParticles);
+		mParticles.grow(mMaxParticles);
 		mPoolIndex = mMaxParticles - 1;
 		m_renderer = new ParticleRenderer();
 	}

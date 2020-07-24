@@ -11,7 +11,7 @@ set(CMAKE_CXX_EXTENSIONS 		OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(ROOT 				${CMAKE_SOURCE_DIR})
-set(WATTYVERSION 		0.29.2)
+set(WATTYVERSION 		0.30.0)
 set(CORE 				Watty-Core)
 set(LIBNAME 			Watty_v${WATTYVERSION})
 set(WATTYDIR 			${ROOT}/../)
@@ -23,6 +23,7 @@ set(CMAKE_CONFIGURATION_TYPES 		Debug Release Web)
 
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 add_compile_definitions(RESDIR="${CMAKE_SOURCE_DIR}/res/")
+add_compile_definitions(WATTY_RES_DIR="${COREDIR}res/")
 add_compile_definitions(FT2_BUILD_LIBRARY)
 
 
@@ -31,11 +32,10 @@ include_directories(
 	${COREDIR}include/
 	${COREDIR}include/Watty
 	${WATTYDIR}dependencies/stb
-	${WATTYDIR}dependencies/glad/include
 	${WATTYDIR}dependencies/glfw/include
 	${WATTYDIR}dependencies/glad/include
+	${WATTYDIR}dependencies/freetype-gl
 	${WATTYDIR}dependencies/freetype/include
-	${WATTYDIR}dependencies/freetype/freetype-gl
 	${WATTYDIR}dependencies/box2d/Box2D_v2.3.1
 	${WATTYDIR}dependencies/soloud/include
 	${WATTYDIR}dependencies/json/include
@@ -50,6 +50,11 @@ if(EMSCRIPTEN)
 	set(CMAKE_BUILD_TYPE Web)
 	include_directories(${CMAKE_SOURCE_DIR}/dependencies/emscripten/system/include)
 	add_compile_definitions(WATTY_EMSCRIPTEN)
+else()
+	add_compile_definitions(GL_WITH_GLAD)
+	include_directories(${WATTYDIR}dependencies/glad/include)
+
+
 ENDIF()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})

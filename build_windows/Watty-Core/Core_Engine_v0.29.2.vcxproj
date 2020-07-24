@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Web|x64">
+      <Configuration>Web</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{08E77676-7DF8-3564-A467-81A232F05A4F}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>Core_Engine_v0.29.2</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Web|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Core_Engine_v0.29.2.dir\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Core_Engine_v0.29.2.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Core_Engine_v0.29.2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core_Engine_v0.29.2.dir\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core_Engine_v0.29.2.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core_Engine_v0.29.2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Web|x64'">Core_Engine_v0.29.2.dir\Web\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Web|x64'">Core_Engine_v0.29.2.dir\Web\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Web|x64'">Core_Engine_v0.29.2</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Web|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG;WATTY_RES_DIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";WATTY_VERSION="0.29.2";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;DEBUG;WATTY_RES_DIR=\"J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/\";WATTY_VERSION=\"0.29.2\";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WATTY_RES_DIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";WATTY_VERSION="0.29.2";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WATTY_RES_DIR=\"J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/\";WATTY_VERSION=\"0.29.2\";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Web|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;WATTY_RES_DIR="J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/";WATTY_VERSION="0.29.2";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR="Web";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;WATTY_RES_DIR=\"J:/OneDrive/Projects/Game_Development/Watty/Watty-Core/res/\";WATTY_VERSION=\"0.29.2\";_LIB;CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_MINIAUDIO;WATTY_OPENGL;FT2_BUILD_LIBRARY;GL_WITH_GLAD;CMAKE_INTDIR=\"Web\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\Watty.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\audio\audioclip.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\audio\audiomanager.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\GameObject.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\Transform.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\Transform2D.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Camera.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Color.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\DebugRenderer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\GridRenderer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\ParticleRenderer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\ParticleSystem.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\SimpleRenderer2D.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\SwapChainSupportDetails.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanBuffer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanDefaultInstance.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanDevice.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanError.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanFrameBuffer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanGraphicsPipeline.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanRenderPass.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanShader.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanSwapChain.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\initializers.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\queuefamilyindices.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\vulkanconfig.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\vulkaninstance.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\vulkanphysicaldevice.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\batchrenderer2d.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\buffers\buffer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\buffers\indexbuffer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\buffers\vertexarray.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\font\font.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\font\fontmanager.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\font\label.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\DebugPhysicsLayer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\EngineControlLayer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\GUILayer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\GridLayer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\layer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderable2d.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderer2d.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\shader.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\simple2drenderer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\sprite.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\texture.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\Animation2D.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\Animator2D.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\SpriteSheetAnimation.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\tilemap\Tile.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\tilemap\TileMap.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\tilemap\TileMapLayer.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\window.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\math.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\math_functions.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\matrix4.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\vector2.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\vector3.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\vector4.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\DebugPhysics.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\MapBodyBuilder.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\PhysicsBody2D.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\PhysicsConstants.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\PhysicsWorld2D.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\QueryAABBCallback.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\RaycastCallback.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\Random.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\file_utils.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\string_utils.h" />
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\timer.h" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\audio\audioclip.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\audio\audiomanager.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\GameObject.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\Transform2D.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Camera.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Color.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\DebugRenderer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\ParticleRenderer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\ParticleSystem.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Renderer2D.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\batchrenderer2d.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\buffers\buffer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\buffers\indexbuffer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\buffers\vertexarray.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\font\font.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\font\fontmanager.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\font\label.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\DebugPhysicsLayer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\EngineControlLayer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\GUILayer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\GridLayer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\layer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\shader.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\sprite.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\texture.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\textures\Animator2D.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\textures\SpriteSheetAnimation.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\tilemap\Tile.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\tilemap\TileMap.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\tilemap\TileMapLayer.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\window.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\MapBodyBuilder.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\PhysicsBody2D.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\PhysicsConstants.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\PhysicsWorld2D.cpp" />
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\utils\Random.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

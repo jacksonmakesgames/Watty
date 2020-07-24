@@ -1,0 +1,69 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMakePredefinedTargets", "CMakePredefinedTargets", "{8F0F46BF-5FF4-3D7C-A922-0F784242DADD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{3B99C2FC-0735-3DA9-992D-0A8F11B07693}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "font", "Dependencies\font", "{C4A1E6A1-44FD-33A6-BA50-696FE63600B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "freetype", "Dependencies\font\freetype", "{E20F58B6-816A-3E04-ACF9-A2F79D6C0D16}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78} = {DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "INSTALL", "INSTALL.vcxproj", "{2D0DBE6F-2944-31E9-8F2B-5541BC78FEB3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF} = {D8EDD34A-22E3-35B1-90DF-DD517DF917FF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PACKAGE", "PACKAGE.vcxproj", "{E0492026-89D9-3BB2-8A21-C48656626FB0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF} = {D8EDD34A-22E3-35B1-90DF-DD517DF917FF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "freetype.vcxproj", "{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		Web|x64 = Web|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}.Debug|x64.ActiveCfg = Debug|x64
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}.Debug|x64.Build.0 = Debug|x64
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}.Release|x64.ActiveCfg = Release|x64
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}.Release|x64.Build.0 = Release|x64
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}.Web|x64.ActiveCfg = Web|x64
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}.Web|x64.Build.0 = Web|x64
+		{2D0DBE6F-2944-31E9-8F2B-5541BC78FEB3}.Debug|x64.ActiveCfg = Debug|x64
+		{2D0DBE6F-2944-31E9-8F2B-5541BC78FEB3}.Release|x64.ActiveCfg = Release|x64
+		{2D0DBE6F-2944-31E9-8F2B-5541BC78FEB3}.Web|x64.ActiveCfg = Web|x64
+		{E0492026-89D9-3BB2-8A21-C48656626FB0}.Debug|x64.ActiveCfg = Debug|x64
+		{E0492026-89D9-3BB2-8A21-C48656626FB0}.Release|x64.ActiveCfg = Release|x64
+		{E0492026-89D9-3BB2-8A21-C48656626FB0}.Web|x64.ActiveCfg = Web|x64
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}.Debug|x64.ActiveCfg = Debug|x64
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}.Debug|x64.Build.0 = Debug|x64
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}.Release|x64.ActiveCfg = Release|x64
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}.Release|x64.Build.0 = Release|x64
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}.Web|x64.ActiveCfg = Web|x64
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78}.Web|x64.Build.0 = Web|x64
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8EDD34A-22E3-35B1-90DF-DD517DF917FF} = {8F0F46BF-5FF4-3D7C-A922-0F784242DADD}
+		{2D0DBE6F-2944-31E9-8F2B-5541BC78FEB3} = {8F0F46BF-5FF4-3D7C-A922-0F784242DADD}
+		{E0492026-89D9-3BB2-8A21-C48656626FB0} = {8F0F46BF-5FF4-3D7C-A922-0F784242DADD}
+		{C4A1E6A1-44FD-33A6-BA50-696FE63600B4} = {3B99C2FC-0735-3DA9-992D-0A8F11B07693}
+		{E20F58B6-816A-3E04-ACF9-A2F79D6C0D16} = {C4A1E6A1-44FD-33A6-BA50-696FE63600B4}
+		{DC13F7EE-C7D5-3BFC-9967-A6AFB051DD78} = {E20F58B6-816A-3E04-ACF9-A2F79D6C0D16}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1F1A311-6D47-3017-80C0-433FC8ACB5A1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

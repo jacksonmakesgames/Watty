@@ -22,6 +22,10 @@
 #endif
 bool letc::graphics::Window::useVSync = false;
 
+
+#include <levels/Level2D.h>
+#include <levels/Level3D.h>
+
 #include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>
 #include <graphics/sprite.h>
@@ -34,7 +38,8 @@ bool letc::graphics::Window::useVSync = false;
 #include <graphics/Color.h>
 #include <math/math.h>
 
-#include "gameobjects/GameObject.h"
+#include "gameobjects/GameObject2D.h"
+//#include "gameobjects/GameObject3D.h"
 #include <utils/timer.h>
 #include <utils/Random.h>
 #include <physics/QueryAABBCallback.h>
@@ -74,6 +79,9 @@ namespace letc {
 		double m_msPerFrame;
 		unsigned int updates = 0;
 
+		std::vector<const Level*> mLevels;
+
+
 	public:
 		void start() {
 			init();
@@ -96,6 +104,9 @@ namespace letc {
 			return nullptr;
 		}
 
+		std::vector<const Level*> getLevels();
+		const Level2D* newLevel2D(Level2DProperties levelProps);
+		//const Level3D* newLevel3D(Level3DProperties levelProps);
 
 	protected:
 		LETC(){
@@ -172,6 +183,7 @@ namespace letc {
 					debugPhysics ? 
 					getLayerByName("Debug Physics Layer")->enable() : getLayerByName("Debug Physics Layer")->disable();
 #endif
+
 				for (size_t i = 0; i < layers.size(); i++){
 					layers[i]->draw();
 				}
@@ -259,5 +271,17 @@ private:
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
 	const glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
 	const glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
+
+
+
+	std::vector<const Level*> LETC::getLevels() {
+		return mLevels;
+	}
+
+	const Level2D* LETC::newLevel2D(Level2DProperties levelProps)
+	{
+		return nullptr;
+	}
+
 
 }

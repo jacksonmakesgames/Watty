@@ -1,0 +1,1 @@
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glad\glad.dir\Release\glad.lib

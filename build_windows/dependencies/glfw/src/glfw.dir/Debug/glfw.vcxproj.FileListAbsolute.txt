@@ -1,0 +1,2 @@
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\Debug\glfw.lib
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\glfw\src\glfw.dir\Debug\glfw.pdb

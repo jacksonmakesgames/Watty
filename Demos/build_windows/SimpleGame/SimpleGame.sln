@@ -1,0 +1,34 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{100E25E2-A412-3197-A8E0-1611978137E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C084650F-8FC4-3906-B478-878F8EF57657} = {C084650F-8FC4-3906-B478-878F8EF57657}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleGame", "SimpleGame.vcxproj", "{C084650F-8FC4-3906-B478-878F8EF57657}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		Web|x64 = Web|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{100E25E2-A412-3197-A8E0-1611978137E8}.Debug|x64.ActiveCfg = Debug|x64
+		{100E25E2-A412-3197-A8E0-1611978137E8}.Release|x64.ActiveCfg = Release|x64
+		{100E25E2-A412-3197-A8E0-1611978137E8}.Web|x64.ActiveCfg = Web|x64
+		{C084650F-8FC4-3906-B478-878F8EF57657}.Debug|x64.ActiveCfg = Debug|x64
+		{C084650F-8FC4-3906-B478-878F8EF57657}.Debug|x64.Build.0 = Debug|x64
+		{C084650F-8FC4-3906-B478-878F8EF57657}.Release|x64.ActiveCfg = Release|x64
+		{C084650F-8FC4-3906-B478-878F8EF57657}.Release|x64.Build.0 = Release|x64
+		{C084650F-8FC4-3906-B478-878F8EF57657}.Web|x64.ActiveCfg = Web|x64
+		{C084650F-8FC4-3906-B478-878F8EF57657}.Web|x64.Build.0 = Web|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59998FB4-7BCD-3011-B4F0-F617705E5DC3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

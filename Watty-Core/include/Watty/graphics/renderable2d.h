@@ -7,10 +7,9 @@
 #include "texture.h"
 #include "shader.h"
 #include "Color.h"
+#include <graphics/renderable.h>
 
 namespace letc { namespace graphics {
-
-	
 
 	struct VertexData
 	{
@@ -27,7 +26,7 @@ namespace letc { namespace graphics {
 		int cols = 1;
 	};
 
-	class Renderable2D{
+	class Renderable2D : public Renderable{
 	public:
 		glm::vec2& position;
 	protected:

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Web|x64">
+      <Configuration>Web</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D8EDD34A-22E3-35B1-90DF-DD517DF917FF}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Web|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Web|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Web|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>J:\OneDrive\Projects\Game_Development\Watty\Watty-Core;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include;J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui;J:\OneDrive\Projects\Game_Development\Watty\dependencies\imgui\examples;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glm\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\tiny_obj_loader\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glfw\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\stb;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl;J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\soloud\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\json\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\emscripten\system\include;J:\OneDrive\Projects\Game_Development\Watty\dependencies\box2d\Box2D_v2.3.1;J:\OneDrive\Projects\Game_Development\Watty\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\Sandbox\Sandbox.vcxproj">
+      <Project>{A5852FA9-92D5-3C7C-B6F1-57C4458A58A3}</Project>
+      <Name>Sandbox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

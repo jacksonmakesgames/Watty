@@ -1,0 +1,11 @@
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/CMakeFiles/ALL_BUILD.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/SimpleGame/CMakeFiles/SimpleGame.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/SimpleGame/CMakeFiles/ALL_BUILD.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/PlatformerDemo/CMakeFiles/PlatformerDemo.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/PlatformerDemo/CMakeFiles/ALL_BUILD.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/PhysicsDemo/CMakeFiles/PhysicsDemo.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/PhysicsDemo/CMakeFiles/ALL_BUILD.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/TileMapDemo/CMakeFiles/TileMapDemo.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/TileMapDemo/CMakeFiles/ALL_BUILD.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/ConwaysGameOfLife/CMakeFiles/ConwaysGameOfLife.dir
+J:/OneDrive/Projects/Game_Development/Watty/Demos/build_windows/ConwaysGameOfLife/CMakeFiles/ALL_BUILD.dir

@@ -9,6 +9,7 @@ file(GLOB_RECURSE SRC_INPUTS 		"${COREDIR}/src/input/**.cpp")
 file(GLOB_RECURSE SRC_PHYSICS 		"${COREDIR}/src/physics/**.cpp")
 file(GLOB_RECURSE SRC_SHADERS 		"${COREDIR}/src/shaders/**.cpp")
 file(GLOB_RECURSE SRC_UTILS 		"${COREDIR}/src/utils/**.cpp")
+file(GLOB_RECURSE SRC_LEVELS		"${COREDIR}/src/levels/**.cpp")
 
 
 file(GLOB_RECURSE SRC_SOLOUD 			"${COREDIR}/ext/soloud/src/audiosource/**.c*" "${COREDIR}/ext/soloud/src/backend/sdl/**.c*" "${COREDIR}/ext/soloud/src/filter/**.c*" "${COREDIR}/ext/soloud/src/core/**.c*")
@@ -52,16 +53,17 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
      PREFIX ""
      FILES ${SRC_UTILS})
 
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_LEVELS})
+
 
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
 if(EMSCIPTEN)
 add_library(${CORENAME} STATIC
 	${HEADERS}
-
 	${SRC_SOLOUD}
-	${SRC_FREETYPEGL}
-
 	${SRC_AUDIO}
 	${SRC_GAMEOBJECTS}
 	${SRC_GRAPHICS}
@@ -69,15 +71,13 @@ add_library(${CORENAME} STATIC
 	${SRC_PHYSICS}
 	${SRC_SHADERS}
 	${SRC_UTILS}
+	${SRC_LEVELS}
 	)
 
 else()
 add_library(${CORENAME} OBJECT
 	${HEADERS}
-
 	${SRC_SOLOUD}
-	${SRC_FREETYPEGL}
-
 	${SRC_AUDIO}
 	${SRC_GAMEOBJECTS}
 	${SRC_GRAPHICS}
@@ -85,6 +85,7 @@ add_library(${CORENAME} OBJECT
 	${SRC_PHYSICS}
 	${SRC_SHADERS}
 	${SRC_UTILS}
+	${SRC_LEVELS}
 	)
 
 endif()

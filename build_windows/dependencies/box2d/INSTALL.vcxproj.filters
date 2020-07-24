@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="J:\OneDrive\Projects\Game_Development\Watty\build_windows\CMakeFiles\800bb29d3d6787113834b92dee9b744b\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{09FB547E-9E6B-3512-B0D8-9ADE64192ECD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

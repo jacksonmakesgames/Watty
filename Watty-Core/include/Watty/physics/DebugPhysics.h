@@ -8,7 +8,6 @@
 
 #ifdef WATTY_EMSCRIPTEN
 #include <emscripten.h>
-//#include <GLFW/glfw3.h>
 #include <GLES3/gl32.h>
 #endif
 #include <math/math.h> //DEGREETORAD

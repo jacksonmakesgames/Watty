@@ -27,8 +27,8 @@ namespace letc {
 	}
 
 	Layer::~Layer() {
-		delete m_shader;
-		delete m_renderer;
+		if(m_shader)   delete m_shader;
+		if(m_renderer) delete m_renderer;
 		for (size_t i = 0; i < m_gameObjects.size(); i++){
 			delete m_gameObjects[i];
 		}

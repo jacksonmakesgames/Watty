@@ -17,6 +17,7 @@
 #define SHADER_COLOR_INDEX		3
 
 namespace letc {namespace graphics {
+	struct VertexData;
 	class BatchRenderer2D : public Renderer2D {
 	private:
 		GLuint m_vertexArray;

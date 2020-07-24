@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\audio\audioclip.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\audio\audiomanager.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\GameObject.cpp">
+      <Filter>src\gameobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\GameObject2D.cpp">
+      <Filter>src\gameobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\GameObject3D.cpp">
+      <Filter>src\gameobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\Transform.cpp">
+      <Filter>src\gameobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\Transform2D.cpp">
+      <Filter>src\gameobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\gameobjects\Transform3D.cpp">
+      <Filter>src\gameobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Camera.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Color.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\DebugRenderer.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\ParticleRenderer.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\ParticleSystem.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Renderer.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\Renderer2D.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\batchrenderer2d.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\buffers\buffer.cpp">
+      <Filter>src\graphics\opengl\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\buffers\indexbuffer.cpp">
+      <Filter>src\graphics\opengl\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\buffers\vertexarray.cpp">
+      <Filter>src\graphics\opengl\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\font\font.cpp">
+      <Filter>src\graphics\opengl\font</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\font\fontmanager.cpp">
+      <Filter>src\graphics\opengl\font</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\font\label.cpp">
+      <Filter>src\graphics\opengl\font</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\DebugPhysicsLayer.cpp">
+      <Filter>src\graphics\opengl\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\EngineControlLayer.cpp">
+      <Filter>src\graphics\opengl\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\GUILayer.cpp">
+      <Filter>src\graphics\opengl\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\GridLayer.cpp">
+      <Filter>src\graphics\opengl\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\layers\layer.cpp">
+      <Filter>src\graphics\opengl\layers</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\shader.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\sprite.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\texture.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\textures\Animator.cpp">
+      <Filter>src\graphics\opengl\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\textures\Animator2D.cpp">
+      <Filter>src\graphics\opengl\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\textures\SpriteSheetAnimation.cpp">
+      <Filter>src\graphics\opengl\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\tilemap\Tile.cpp">
+      <Filter>src\graphics\opengl\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\tilemap\TileMap.cpp">
+      <Filter>src\graphics\opengl\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\tilemap\TileMapLayer.cpp">
+      <Filter>src\graphics\opengl\tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\graphics\opengl\window.cpp">
+      <Filter>src\graphics\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\MapBodyBuilder.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\PhysicsBody2D.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\PhysicsConstants.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\physics\PhysicsWorld2D.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\utils\Random.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\levels\Level.cpp">
+      <Filter>src\levels</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\levels\Level2D.cpp">
+      <Filter>src\levels</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\src\levels\Level3D.cpp">
+      <Filter>src\levels</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\Watty.h">
+      <Filter>include\Watty</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\audio\audioclip.h">
+      <Filter>include\Watty\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\audio\audiomanager.h">
+      <Filter>include\Watty\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\GameObject.h">
+      <Filter>include\Watty\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\GameObject2D.h">
+      <Filter>include\Watty\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\GameObject3D.h">
+      <Filter>include\Watty\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\Transform.h">
+      <Filter>include\Watty\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\Transform2D.h">
+      <Filter>include\Watty\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\gameobjects\Transform3D.h">
+      <Filter>include\Watty\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Camera.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Color.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\DebugRenderer.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\GridRenderer.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\ParticleRenderer.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\ParticleSystem.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\SimpleRenderer2D.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\SwapChainSupportDetails.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanBuffer.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanDefaultInstance.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanDevice.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanError.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanFrameBuffer.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanGraphicsPipeline.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanRenderPass.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanShader.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\VulkanSwapChain.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\initializers.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\queuefamilyindices.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\vulkanconfig.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\vulkaninstance.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\Vulkan\vulkanphysicaldevice.h">
+      <Filter>include\Watty\graphics\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\batchrenderer2d.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\buffers\buffer.h">
+      <Filter>include\Watty\graphics\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\buffers\indexbuffer.h">
+      <Filter>include\Watty\graphics\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\buffers\vertexarray.h">
+      <Filter>include\Watty\graphics\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\font\font.h">
+      <Filter>include\Watty\graphics\font</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\font\fontmanager.h">
+      <Filter>include\Watty\graphics\font</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\font\label.h">
+      <Filter>include\Watty\graphics\font</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\DebugPhysicsLayer.h">
+      <Filter>include\Watty\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\EngineControlLayer.h">
+      <Filter>include\Watty\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\GUILayer.h">
+      <Filter>include\Watty\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\GridLayer.h">
+      <Filter>include\Watty\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\layers\layer.h">
+      <Filter>include\Watty\graphics\layers</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderable.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderable2d.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderable3d.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderer.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\renderer2d.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\shader.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\simple2drenderer.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\sprite.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\texture.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\Animation.h">
+      <Filter>include\Watty\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\Animation2D.h">
+      <Filter>include\Watty\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\Animator.h">
+      <Filter>include\Watty\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\Animator2D.h">
+      <Filter>include\Watty\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\textures\SpriteSheetAnimation.h">
+      <Filter>include\Watty\graphics\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\tilemap\Tile.h">
+      <Filter>include\Watty\graphics\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\tilemap\TileMap.h">
+      <Filter>include\Watty\graphics\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\tilemap\TileMapLayer.h">
+      <Filter>include\Watty\graphics\tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\graphics\window.h">
+      <Filter>include\Watty\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\levels\Level.h">
+      <Filter>include\Watty\levels</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\levels\Level2D.h">
+      <Filter>include\Watty\levels</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\levels\Level3D.h">
+      <Filter>include\Watty\levels</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\math.h">
+      <Filter>include\Watty\math</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\math_functions.h">
+      <Filter>include\Watty\math</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\matrix4.h">
+      <Filter>include\Watty\math</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\vector2.h">
+      <Filter>include\Watty\math</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\vector3.h">
+      <Filter>include\Watty\math</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\math\vector4.h">
+      <Filter>include\Watty\math</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\DebugPhysics.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\MapBodyBuilder.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\PhysicsBody2D.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\PhysicsConstants.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\PhysicsWorld2D.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\QueryAABBCallback.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\physics\RaycastCallback.h">
+      <Filter>include\Watty\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\Random.h">
+      <Filter>include\Watty\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\file_utils.h">
+      <Filter>include\Watty\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\string_utils.h">
+      <Filter>include\Watty\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\Watty-Core\include\Watty\utils\timer.h">
+      <Filter>include\Watty\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{4A4A9943-3CAA-37F1-B871-E2A190B23F3F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty">
+      <UniqueIdentifier>{8F154829-4F33-39AB-9103-BCA37C895C2F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\audio">
+      <UniqueIdentifier>{34FE7A5E-B2D2-3697-947A-45C3A1277A2A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\gameobjects">
+      <UniqueIdentifier>{70622DDC-BB90-3ACA-A37F-A65C83B447DA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics">
+      <UniqueIdentifier>{F12B708E-3AFD-3869-9E4D-6B9FF48EC94A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics\Vulkan">
+      <UniqueIdentifier>{3F807BF8-4502-3658-84D1-6862A6896FEB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics\buffers">
+      <UniqueIdentifier>{77A124D3-1268-31EA-9BCE-A7A4EFCBCF1F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics\font">
+      <UniqueIdentifier>{4C40654C-9F21-3B11-8780-03AE7B59EEB5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics\layers">
+      <UniqueIdentifier>{D996244D-4560-32C5-8E8C-3E27A19F020B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics\textures">
+      <UniqueIdentifier>{B707C77E-A1CB-385A-ACD7-FFA227510B30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\graphics\tilemap">
+      <UniqueIdentifier>{03DB757B-72C7-3164-88B7-1D69E2149736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\levels">
+      <UniqueIdentifier>{CE89B2FA-74DE-3905-946E-981EEFDCE657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\math">
+      <UniqueIdentifier>{E6CE8099-9751-34F2-8C98-DB0D8B77B10C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\physics">
+      <UniqueIdentifier>{AE7338D7-20E3-371B-BFEC-271272F3198F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Watty\utils">
+      <UniqueIdentifier>{52E1837F-E57F-389F-8435-C8986B419684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{E88D18EC-C2F3-3B2A-BDE9-0C1382CDE81C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\audio">
+      <UniqueIdentifier>{75ED5E46-FC47-39E2-9B3F-3651E5041E54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gameobjects">
+      <UniqueIdentifier>{E2D0BCD7-0715-3E9C-9788-1F910BB26A15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics">
+      <UniqueIdentifier>{0D33FE70-A46E-33D5-8048-2568E4500BFD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\opengl">
+      <UniqueIdentifier>{35D5C000-8E94-324A-940C-233E147EFE3C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\opengl\buffers">
+      <UniqueIdentifier>{01A47F8A-516E-356C-9947-04E96971E8D3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\opengl\font">
+      <UniqueIdentifier>{002F1B24-BB18-3837-9382-091D9F757904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\opengl\layers">
+      <UniqueIdentifier>{ED4A052B-9417-3000-A34F-5A4240BE7EA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\opengl\textures">
+      <UniqueIdentifier>{F6B4F719-1589-3BB7-AC1E-BFE6EF7159BE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\opengl\tilemap">
+      <UniqueIdentifier>{9DAA3976-6EFE-3470-B829-1A445C1E572B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\levels">
+      <UniqueIdentifier>{1DFE7C75-F336-3232-A1A4-E4C03F9B6844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\physics">
+      <UniqueIdentifier>{A8499AF4-BB82-33D9-B842-5C3BED48CEE6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{73C3B968-ED93-328F-91F8-892B0E6FC1FD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

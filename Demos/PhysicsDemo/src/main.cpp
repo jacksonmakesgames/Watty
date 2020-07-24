@@ -1,8 +1,5 @@
-
 #include <Watty/Watty.h>
 #define LOG(x) std::cout << x << std::endl;
-//#define __BUTTERFLY 1
-#define __SOUND 1
 
 #define FRAGLITPATH RESDIR "shaders/basic_lit.frag"
 #define FONTPATH RESDIR "fonts/Roboto-Regular.ttf"
@@ -16,19 +13,17 @@ using namespace math;
 using namespace audio;
 using namespace physics;
 
-namespace letc {
-	namespace physics {
+namespace letc { namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
+}}
 
-	}
-}
 class PhysicsDemo : public LETC {
 	private:
 		Window* m_window;
-		//Label* fpsLabel;
-		//Label* upsLabel;
-		//Label* mpsLabel;
+		Label* fpsLabel;
+		Label* upsLabel;
+		Label* mpsLabel;
 		std::vector<GameObject*> boxes;
 		float m_gain = 0.5f;
 
@@ -80,7 +75,7 @@ class PhysicsDemo : public LETC {
 			layers.push_back(floorLayer);
 
 			Layer* uiLayer = new Layer("UI Layer");
-			//layers.push_back(uiLayer);
+			layers.push_back(uiLayer);
 			
 			//FontManager::add(new Font("Roboto", FONTPATH, 10, fontScale)); 
 
@@ -138,26 +133,27 @@ class PhysicsDemo : public LETC {
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floorR);
 
-			glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
 			
 			//FONTS:
-			/*
+			
 			//TODO for now, it's best to keep the creation of textures close to where they get added to the layer. This is because if a texture is used in two separate draw calls, things won't show up properly
-			FontManager::add(new Font("Roboto",FONTPATH, 16, screenScale));
-			FontManager::add(new Font("Roboto", FONTITALICPATH, 14, screenScale));
+			FontManager::add("Roboto", FONTPATH, 40);
+			FontManager::add("Roboto-Italic", FONTITALICPATH, 30);
 
 			// PROFILING
-			GameObject* profileGroup = new GameObject({ -14, 8, 0 }, { 4.0f,2.0f }, new Sprite(Color::pink));
-			GameObject* bkg = new GameObject(glm::vec3(0, 0, 0), {1.0f,1.0f}, new Sprite(0x80808080));
-			fpsLabel = new Label("", "Roboto", 16, 0xffffffff); GameObject* fpsGO = new GameObject(glm::vec3(0, 1.f, 0), {.5f,.5f}, fpsLabel);
-			upsLabel = new Label("", "Roboto", 14, 0xffffffff);	GameObject* upsGO = new GameObject(glm::vec3(.3f, .8f, 0), upsLabel);
-			mpsLabel = new Label("", "Roboto", 14, 0xffffffff);	GameObject* mpsGO = new GameObject(glm::vec3(.3f, .4f, 0), mpsLabel);
+			GameObject* profileGroup = new GameObject({ -14, 5, 0 }, { 4.0f,2.0f }, new Sprite(Color::pink));
+			GameObject* bkg = new GameObject(glm::vec3(0, 0, 0), {1.0f,1.0f}, new Sprite(Color::green));
+			LabelProperties labelProps = { "", FontManager::get("Roboto"), 0xffffffff };
+			fpsLabel = new Label(labelProps);	GameObject* fpsGO = new GameObject(glm::vec3(0,.5, 0), {.5f,.5f}, fpsLabel);
+			LabelProperties labelProps2 = { "", FontManager::get("Roboto-Italic"), 0xffffffff };
+			upsLabel = new Label(labelProps2);	GameObject* upsGO = new GameObject(glm::vec3(.3f, 0.f, 0), upsLabel);
+			mpsLabel = new Label(labelProps2);	GameObject* mpsGO = new GameObject(glm::vec3(.3f, -.5f, 0), mpsLabel);
 			profileGroup->transform->addChild(bkg->transform);
-			profileGroup->transform->addChild(fpsGO->transform);
-			profileGroup->transform->addChild(upsGO->transform);
-			profileGroup->transform->addChild(mpsGO->transform);
+			bkg->transform->addChild(fpsGO->transform);
+			bkg->transform->addChild(upsGO->transform);
+			bkg->transform->addChild(mpsGO->transform);
 			uiLayer->add(profileGroup);
-			*/
+			
 			AudioManager::addClip("slow_motion", MUSICPATH);
 			AudioManager::getClip("slow_motion")->play(true);
 			AudioManager::getClip("slow_motion")->setGain(m_gain);
@@ -188,9 +184,9 @@ class PhysicsDemo : public LETC {
 		}
 
 		void tick() override {
-			//fpsLabel->text = std::to_string(getFramesPerSecond()) + " frames / second";
-			//upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
-			//mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
+			fpsLabel->setText(std::to_string(getFramesPerSecond()) + " frames / second");
+			upsLabel->setText(std::to_string(getUpdatesPerSecond()) + " updates / second");
+			mpsLabel->setText(std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame");
 			LETC::tick();
 		}
 

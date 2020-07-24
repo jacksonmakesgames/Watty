@@ -1,0 +1,2 @@
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\Debug\Box2D.lib
+J:\OneDrive\Projects\Game_Development\Watty\build_windows\dependencies\box2d\Box2D_v2.3.1\Box2D\Box2D.dir\Debug\Box2D.pdb

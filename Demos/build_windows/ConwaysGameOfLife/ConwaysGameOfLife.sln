@@ -1,0 +1,34 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{100E25E2-A412-3197-A8E0-1611978137E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC} = {B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConwaysGameOfLife", "ConwaysGameOfLife.vcxproj", "{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		Web|x64 = Web|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{100E25E2-A412-3197-A8E0-1611978137E8}.Debug|x64.ActiveCfg = Debug|x64
+		{100E25E2-A412-3197-A8E0-1611978137E8}.Release|x64.ActiveCfg = Release|x64
+		{100E25E2-A412-3197-A8E0-1611978137E8}.Web|x64.ActiveCfg = Web|x64
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}.Debug|x64.ActiveCfg = Debug|x64
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}.Debug|x64.Build.0 = Debug|x64
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}.Release|x64.ActiveCfg = Release|x64
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}.Release|x64.Build.0 = Release|x64
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}.Web|x64.ActiveCfg = Web|x64
+		{B5287BD1-E15E-32EA-A899-E54FE4B5FBBC}.Web|x64.Build.0 = Web|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B646F185-D79C-36CC-932D-1854CC6E61FA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

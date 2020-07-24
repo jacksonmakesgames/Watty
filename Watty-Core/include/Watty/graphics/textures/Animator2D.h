@@ -1,8 +1,9 @@
 #pragma once
 #include "Animation2D.h"
+#include <graphics/textures/Animator.h>
 #include <map>
 namespace letc {namespace graphics{
-	class Animator2D{
+	class Animator2D : public Animator{
 	protected:
 		bool isPlaying = false;
 	public:
@@ -13,14 +14,8 @@ namespace letc {namespace graphics{
 		
 	public:
 		Animator2D(Renderable2D* renderable);
-		void play(std::string name);
-		void stop();
-		void update();
 		void addAnimation(Animation2D* animation);
 
-		Animation2D* findByName(std::string name);
-
-		inline std::string getCurrentAnimation() { return m_currentAnimationName; }
 	private:
 
 	};

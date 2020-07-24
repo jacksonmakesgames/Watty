@@ -27,21 +27,21 @@ private:
 	Window* m_window;
 	Label* fpsLabel;
 	std::vector<Sprite*> allSprites;
-	std::vector<GameObject*> allObjects;
+	std::vector<GameObject2D*> allObjects;
 	std::vector<glm::vec2> allObjectPos;
 public:
 	void init() override {
 		m_window = createWindow("Sandbox", 1280, 720, true, false);
 		glClearColor(.45, .23, .23, 1);
 		Layer* mainLayer = new Layer("Layer 1");
-		//mainLayer->add(new GameObject("Test", { 0,0 }, { 1,1 }, new Sprite(Color::white)));
+		//mainLayer->add(new GameObject2D("Test", { 0,0 }, { 1,1 }, new Sprite(Color::white)));
 		layers.push_back(mainLayer);
 
 		for (int x = -20; x < 20; x++)
 		{
 			for (int y = -20; y < 20; y++) {
 				Sprite* sprite = new Sprite(Color::random());
-				GameObject* tmp = new GameObject({ x,y }, {.8,.8},sprite);
+				GameObject2D* tmp = new GameObject2D({ x,y }, {.8,.8},sprite);
 				allSprites.push_back(sprite);
 				allObjects.push_back(tmp);
 				allObjectPos.push_back({x,y});
@@ -53,7 +53,7 @@ public:
 		AudioManager::addClip("drums", RESDIR "audio/drums.wav");
 		AudioManager::getClip("drums")->play(true);
 		AudioManager::getClip("drums")->setGain(.5f);
-
+		
 
 		FontManager::add("test", RESDIR "fonts/Lobster.ttf", 100);
 		LabelProperties labelProps;
@@ -63,7 +63,7 @@ public:
 		labelProps.color = Color::orange;
 		labelProps.overflowMode = OverflowMode::Expand;
 		fpsLabel = new Label(labelProps);
-		GameObject* fpsGO = new GameObject({-14,7}, {1,1}, fpsLabel);
+		GameObject2D* fpsGO = new GameObject2D({-14,7}, {1,1}, fpsLabel);
 		mainLayer->add(fpsGO);
 
 	}
@@ -79,7 +79,7 @@ public:
 				));
 
 		float r = Random::range(-1,1);
-		for (GameObject* go : allObjects)
+		for (GameObject2D* go : allObjects)
 		{
 			float x = abs(go->transform->getPosition().x);
 			float y = abs(go->transform->getPosition().y);

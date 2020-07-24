@@ -53,7 +53,7 @@ namespace letc { namespace graphics {
 	public:
 		void update(double deltaTime);
 		void emitOne(const ParticleProperties& properties);
-		inline void changeMaxParticles(unsigned int max) { mParticles = std::vector<Particle>(); mParticles.resize(max); mPoolIndex = max - 1; mMaxParticles = max; }
+		inline void changeMaxParticles(unsigned int max) { mParticles = std::vector<Particle>(); mParticles.grow(max); mPoolIndex = max - 1; mMaxParticles = max; }
 		
 		ParticleSystem(uint32_t maxParticles);
 

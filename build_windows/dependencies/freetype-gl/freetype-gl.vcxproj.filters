@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\distance-field.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\edtaa3func.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\font-manager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\platform.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\text-buffer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\texture-atlas.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\texture-font.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\utf8-utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vertex-attribute.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vertex-buffer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\distance-field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\edtaa3func.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\font-manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\freetype-gl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\markup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\text-buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\texture-atlas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\texture-font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\utf8-utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vec234.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vertex-attribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="J:\OneDrive\Projects\Game_Development\Watty\dependencies\freetype-gl\vertex-buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{A2BB8897-2E57-3D83-B9E5-816F08A309B5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E2526C8F-CF47-35DD-A1DE-A65FCE737956}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

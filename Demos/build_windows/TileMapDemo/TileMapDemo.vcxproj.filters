@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="J:\OneDrive\Projects\Game_Development\Watty\Demos\TileMapDemo\src\TileMapDemo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9E7133DC-DCC8-3435-AF81-2412E478399C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

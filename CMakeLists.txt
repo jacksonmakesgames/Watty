@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.15)
 
 
 set(ROOT 						${CMAKE_SOURCE_DIR})
-set(WATTYVERSION 				0.29.2)
+set(WATTYVERSION 				0.30.0)
 set(CORE 						Watty-Core)
 set(LIBNAME 					Watty_v${WATTYVERSION})
 set(COREDIR 					${CMAKE_SOURCE_DIR}/${CORE}/)
