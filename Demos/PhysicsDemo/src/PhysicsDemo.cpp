@@ -184,10 +184,7 @@ class PhysicsDemo : public LETC {
 		}
 
 		void render() override {
-
 			LETC::render();
-			//m_camera->update();
-
 		}
 
 		void tick() override {

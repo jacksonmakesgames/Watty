@@ -3,7 +3,7 @@
 namespace letc {namespace graphics {
 
 #ifdef WATTY_EMSCRIPTEN
-	const char* Shader::m_defaultVertPath = "shaders/default_es3.vert"; // TODO separate watty resources
+	const char* Shader::m_defaultVertPath = "shaders/default_es3.vert";
 	const char* Shader::m_defaultFragPath = "shaders/default_es3.frag";
 #else
 	const char* Shader::m_defaultVertPath= "shaders/default.vert";

@@ -126,8 +126,12 @@ namespace letc {namespace graphics {
 
 		glClearColor(0, 0, 0, 1); // Default
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+//#ifdef WATTY_EMSCRIPTEN
+		//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+//#else
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//#endif
 		
 		initImGUI();
 

@@ -17,7 +17,6 @@ namespace letc {namespace audio {
 			return;
 		}
 		else {
-			std::cout << "Audiomanager initialized: " << soloud->getErrorString(result) << std::endl;
 			initialized = true; // No error
 		}
 	}

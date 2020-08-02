@@ -26,19 +26,20 @@ public:
 	void init() override {
 #ifndef WATTY_EMSCRIPTEN
 		RawResources::Init(); //TODO
-
 #endif // !WATTY_EMSCRIPTEN
-
 
 		m_window = createWindow("Sandbox", 1280, 720, true, false);
 		glClearColor(.45, .23, .23, 1);
 		Layer* mainLayer = new Layer("Layer 1");
-		//mainLayer->add(new GameObject("Test", { 0,0 }, { 1,1 }, new Sprite(Color::white)));
+		Layer* testLayer = new Layer("Layer 2");
+		layers.push_back(testLayer);
 		layers.push_back(mainLayer);
 		for (int x = -20; x < 20; x++)
 		{
 			for (int y = -20; y < 20; y++) {
-				Sprite* sprite = new Sprite(Color::random());
+				//ABGR
+				WattyColor col = Color::random();
+				Sprite* sprite = new Sprite(col);
 				GameObject* tmp = new GameObject({ x,y }, {.8,.8},sprite);
 				allSprites.push_back(sprite);
 				allObjects.push_back(tmp);

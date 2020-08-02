@@ -1,6 +1,7 @@
 #pragma once
 #include <glm.hpp>
 #include <random>
+#include <utils/Random.h>
 
 namespace letc { namespace graphics {
 
@@ -91,10 +92,11 @@ namespace letc { namespace graphics {
 	}
 	
 	static WattyColor random() {
-		int	r = rand() * 255.0f;
-		int	g = rand() * 255.0f;
-		int	b = rand() * 255.0f;
-		int	a = rand() * 255.0f;
+		
+		int	r = Random::range(0, 1) * 255.0f;
+		int	g = Random::range(0, 1) * 255.0f;
+		int	b = Random::range(0, 1) * 255.0f;
+		int	a = Random::range(0, 1) * 255.0f;
 		WattyColor out = WattyColor(a << 24 | b << 16 | g << 8 | r);
 		return out;
 	}
