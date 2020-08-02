@@ -13,9 +13,9 @@
 #include <gtc/type_ptr.hpp>
 
 #include "../utils/file_utils.h"
-
-#define DEFAULT_SHADER_VERT_PATH WATTY_RES_DIR "shaders/default.vert"
-#define DEFAULT_SHADER_FRAG_PATH WATTY_RES_DIR "shaders/default.frag"
+//
+#define DEFAULT_SHADER_VERT_PATH "shaders/default.vert"
+#define DEFAULT_SHADER_FRAG_PATH "shaders/default.frag"
 
 namespace letc {namespace graphics {
 	class Shader {

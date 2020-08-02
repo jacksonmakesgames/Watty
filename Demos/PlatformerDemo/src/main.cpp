@@ -1,8 +1,8 @@
-#include <Watty/Watty.h>
+#include <Watty.h>
+#include <res.h>
 
-
-#define FRAGLITPATH RESDIR "shaders/basic_lit.frag"
-#define FLOORTEXTUREPATH RESDIR "textures/floor.png"
+#define FRAGLITPATH			"shaders/basic_lit.frag"
+#define FLOORTEXTUREPATH	"textures/floor.png"
 
 using namespace letc;
 using namespace graphics;
@@ -29,6 +29,7 @@ public:
 	~PlatformerDemo() {}
 
 	void init() override {
+		RawResources::Init();
 		glm::vec2 screenSize(1280.0f, 720.0f);
 
 		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, false);
@@ -37,7 +38,6 @@ public:
 		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 		letc::physics::PhysicsWorld2D::setDebugDraw();
 
-		//Shader* shader0 = new Shader(VERTPATH, FRAGLITPATH);
 		Shader* shader0 = new Shader();
 		shader0->setUniform3f("light_pos", glm::vec3(16.0f, 16.0f, 0.0f));
 		shader0->setUniform1f("light_radius", 250.0f);
@@ -60,8 +60,7 @@ public:
 		player = new GameObject(
 			playerPos,
 			playerSize,
-			//new Sprite(new Texture(RESDIR "res/textures/Player.png")));
-			new Sprite(new Texture(RESDIR "textures/AnimationTest.png")));
+			new Sprite(new Texture( "textures/AnimationTest.png")));
 		
 		player->setTag("Player");
 
@@ -91,8 +90,6 @@ public:
 
 		Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
-		/*glm::vec3 floorPos(-16.0f, -9.0f, 0);
-		glm::vec2 floorSize(32, 2);*/
 		glm::vec3 floorPos(-100000, -9.0f, 0);
 		glm::vec2 floorSize(10000000, 2);
 		GameObject* floor = new GameObject(floorPos, floorSize);
@@ -114,11 +111,8 @@ public:
 			}
 
 		}
-		
 
 		glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
-
-
 	}
 
 	void update() override {

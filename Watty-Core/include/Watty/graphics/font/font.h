@@ -8,7 +8,7 @@
 #include <glm.hpp>
 #include <iostream>
 #include <graphics/shader.h>
-
+#include <Resource.h>
 namespace letc {namespace graphics {
 	class Font{
 

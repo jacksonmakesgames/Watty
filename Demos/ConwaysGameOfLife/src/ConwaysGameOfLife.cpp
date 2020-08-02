@@ -1,11 +1,9 @@
-#include <Watty/Watty.h>
+#include <Watty.h>
+#include <res.h>
 #include "ConwayLayer.h"
 #include <deque>
 
-#define GRIDTEXTUREPATH RESDIR "textures/grid.png"
-
-//#define WINDOWWIDTH 1600
-//#define WINDOWHEIGHT 900
+#define GRIDTEXTUREPATH  "textures/grid.png"
 
 using namespace letc;
 using namespace graphics;
@@ -59,6 +57,7 @@ public:
 	}
 
 	void init() override {
+		RawResources::Init();
 		m_window = createWindow("Conway's Game of Life {Watty}", 1600, 900, false);
 		m_window->setVSync(true);
 		glClearColor(1, 1, 1, 1);

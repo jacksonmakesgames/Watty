@@ -14,6 +14,20 @@ file(GLOB_RECURSE SRC_UTILS 		"${COREDIR}/src/utils/**.cpp")
 file(GLOB_RECURSE SRC_SOLOUD 			"${COREDIR}/ext/soloud/src/audiosource/**.c*" "${COREDIR}/ext/soloud/src/backend/sdl/**.c*" "${COREDIR}/ext/soloud/src/filter/**.c*" "${COREDIR}/ext/soloud/src/core/**.c*")
 file(GLOB_RECURSE SRC_FREETYPEGL 		"${COREDIR}/ext/freetype-gl/*.c")
 
+
+create_resources("${CMAKE_CURRENT_SOURCE_DIR}/res" ON)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
+
+
+project(Watty_Resources)
+	file(GLOB_RECURSE RES_INPUTS 		"${CMAKE_CURRENT_SOURCE_DIR}/res/res_watty.cpp")
+	file(GLOB_RECURSE RES_HEADER 		"${CMAKE_CURRENT_SOURCE_DIR}/res/res_watty.h")
+	add_library(Watty_Resources OBJECT
+		${RES_HEADER}
+		${RES_INPUTS}
+	)
+
+
 project (Watty_Core${WATTYVERSION})
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -69,10 +83,13 @@ add_library(${CORENAME} STATIC
 	${SRC_PHYSICS}
 	${SRC_SHADERS}
 	${SRC_UTILS}
+	$<TARGET_OBJECTS:Watty_Resources>
 	)
 
 else()
+
 add_library(${CORENAME} OBJECT
+    ${RES}
 	${HEADERS}
 
 	${SRC_SOLOUD}
@@ -85,12 +102,16 @@ add_library(${CORENAME} OBJECT
 	${SRC_PHYSICS}
 	${SRC_SHADERS}
 	${SRC_UTILS}
+	$<TARGET_OBJECTS:Watty_Resources>
 	)
+
 
 endif()
 
 if(NOT DEFINED CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Debug)
 endif()
+
+
 
 

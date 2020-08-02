@@ -22,6 +22,8 @@
 #endif
 bool letc::graphics::Window::useVSync = false;
 
+#include <res/res_watty.h> // From Watty-Core
+
 #include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>
 #include <graphics/sprite.h>
@@ -48,7 +50,6 @@ bool letc::graphics::Window::useVSync = false;
 #define STBTT_STATIC
 #include <stb_truetype.h>
 
-
 #ifdef WATTY_EMSCRIPTEN
 	static void start_main(void* funcPtr) {
 		std::function<void()>* func = (std::function<void()>*)funcPtr;
@@ -56,6 +57,17 @@ bool letc::graphics::Window::useVSync = false;
 	}
 #endif // WATTY_EMSCRIPTEN
 
+	template <class T, class Enable = void>
+	struct is_defined
+	{
+		static constexpr bool value = false;
+	};
+
+	template <class T>
+	struct is_defined<T, std::enable_if_t<(sizeof(T) > 0)>>
+	{
+		static constexpr bool value = true;
+	};
 
 namespace letc {
 
@@ -66,16 +78,20 @@ namespace letc {
 		bool debugPhysics = false;
 		bool resetFlag = false;
 		graphics::Camera* sceneCamera;
+		unsigned int updates = 0;
 
 	private:
 		graphics::Window* m_window;
 		Timer* m_time;
 		int m_framesPerSecond, m_updatesPerSecond;
 		double m_msPerFrame;
-		unsigned int updates = 0;
 
 	public:
 		void start() {
+#ifndef WATTY_EMSCRIPTEN // todo we don't need this
+			RawWattyResources::Init();
+#endif // !WATTY_EMSCRIPTEN
+
 			init();
 			run();
 		}
@@ -103,6 +119,7 @@ namespace letc {
 			m_framesPerSecond  =	0;
 			m_updatesPerSecond =	0;
 			m_msPerFrame =	0;
+
 		}
 		
 
@@ -132,6 +149,7 @@ namespace letc {
 			std::cout << "\t" << std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
 		}
 
+		virtual void OnGUI() {}
 
 		// Runs as fast as possible
 		virtual void update() {
@@ -145,7 +163,7 @@ namespace letc {
 			{
 				layers[i]->update();
 			}
-			if (resetFlag) { // not sure this is worth having in the main update load
+			if (resetFlag) { // not sure this is worth having in the main update loop
 				reset();
 				resetFlag = false;
 			}
@@ -177,6 +195,7 @@ namespace letc {
 				}
 				m_window->listenForInput();
 
+				OnGUI();
 				ImGui::Render();
 				ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 

@@ -8,4 +8,6 @@ For Emscripten,
     emcmake cmake -DEMSCRIPTEN=TRUE -G "Unix Makefiles" ..      (Generates Makefiles and configures them for Emscripten)
     make                                                        (Compiles *.c* -> LLVM Bitcode -> Javascript and then links)
 
+    NOTE: if emcmake doesn't work, try running test.bat/test.py in dependencies/emscripten. Also check everything is on PATH
+
 Note that Box2D requires a different javascript version, so we have to link against dependencies/box2d.js

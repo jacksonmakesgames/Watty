@@ -14,6 +14,8 @@
 #include <stdint.h> 
 #include <vector>
 
+#include <Resource.h>
+
 namespace letc {namespace graphics {
 	class Texture {
 	private:
@@ -24,6 +26,7 @@ namespace letc {namespace graphics {
 
 		
 	public:
+		//Texture(const std::string& name);
 		Texture(const std::string& filename);
 		Texture(std::string fileName, unsigned int* atlasID, unsigned int width,unsigned int height, unsigned int depth, const void* data);
 		~Texture();

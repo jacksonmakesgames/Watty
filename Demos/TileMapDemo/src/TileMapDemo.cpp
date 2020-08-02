@@ -1,11 +1,12 @@
 #include <Watty.h>
+#include <res.h>
 
-#define PLAYERTEXTURE RESDIR  "textures/sprites/lpc/soldier.png"
-#define PLAYERCLOTHESTEXTURE RESDIR  "textures/sprites/lpc/female_chainmail.png"
-#define TESTTEXTURE RESDIR  "textures/test.png"
+#define PLAYERTEXTURE   "textures/sprites/lpc/soldier.png"
+#define PLAYERCLOTHESTEXTURE   "textures/sprites/lpc/female_chainmail.png"
+#define TESTTEXTURE   "textures/test.png"
 
-#define LEVELPATH RESDIR "tilemaps/levelOne.json"
-#define IMAGEPATH RESDIR "tilemaps/terrain_all.png"
+#define LEVELPATH  "tilemaps/levelOne.json"
+#define IMAGEPATH  "tilemaps/terrain_all.png"
 
 using namespace letc;
 using namespace graphics;
@@ -26,12 +27,17 @@ private:
 	Window* m_window;
 	GameObject* player;
 
-	double playerSpeed = 150;
+	double playerSpeed = 7;
 	int lastPlayerDir = 0;
-	float playerAcceleration = 2.0f;
+	double playerAcceleration = 2.0f;
+	std::vector<double> velocities = std::vector<double>();
+	std::vector<double> timeIntervals = std::vector<double>();
+	double lastMeasureTime = 0;
 
 public:
 	void init() override {
+		RawResources::Init();
+
 		debugPhysics = true;
 		m_window = createWindow("Sandbox", 1280, 734, false, false);
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -97,6 +103,9 @@ public:
 		LETC::tick();
 	}
 	void update() override {
+		LETC::update();
+		getInput();
+
 		sceneCamera->setSize(
 			glm::vec2(
 				sceneCamera->getSize().x - 4.0f * m_window->getScrollAmountThisFrameY(),
@@ -104,12 +113,29 @@ public:
 			));
 
 
-		getInput();
-		LETC::update();
+	}
+
+	void OnGUI() override {
+		return;
+		double velSum = 0;
+		for (size_t i = 0; i < velocities.size(); i++){
+			velSum += (velocities[i]);
+		}
+		
+		double timeSum = 0;
+		for (size_t i = 0; i < timeIntervals.size(); i++){
+			timeSum += (timeIntervals[i]);
+		}
+
+		double avgDist = (velSum * timeSum)/30;
+		ImGui::Begin("Average Distance:");
+		ImGui::LabelText("", std::to_string(avgDist).c_str());
+		ImGui::End();
 	}
 
 	void render() override {
 		LETC::render();
+		
 
 	}
 
@@ -160,10 +186,22 @@ public:
 		}
 
 		player->getPhysicsBody2D()->setLinearVelocity(glm::vec2(
-			horizontal * playerSpeed * gameTimer->delta,
-			vertical * playerSpeed * gameTimer->delta
+			horizontal * playerSpeed,
+			vertical * playerSpeed
 		));
 
+		
+
+		velocities.push_back(playerSpeed);
+		if (velocities.size() > 30) {
+			velocities.erase(velocities.begin());
+			velocities.shrink_to_fit();
+		}
+		timeIntervals.push_back(gameTimer->delta);
+		if (timeIntervals.size() > 30) {
+			timeIntervals.erase(timeIntervals.begin());
+			timeIntervals.shrink_to_fit();
+		}
 
 	}
 };

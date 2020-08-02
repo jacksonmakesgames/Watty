@@ -4,11 +4,22 @@ namespace letc {namespace graphics {
 
 	Texture::Texture(const std::string& filename) {
 		m_filename = filename;
-		uint8_t* dataToLoad = load_image(m_filename.c_str(), &m_width, &m_height);
-		m_TID = load(dataToLoad);
+#ifdef WATTY_EMSCRIPTEN
+		uint8_t* dataToLoad = load_image_from_disk(m_filename.c_str(), &m_width, &m_height);
+#else
 
+		Resource* res = Resources::Load(filename.c_str());
+		if (res == nullptr) {
+			std::cout << "Could not find file: " << filename << std::endl;
+			exit(0);
+		}
+
+		uint8_t* dataToLoad = load_image(res->data, res->size, &m_width, &m_height);
+#endif
+		m_TID = load(dataToLoad);
 	}
 
+	
 	// font textures
 	Texture::Texture(std::string fileName, unsigned int* atlasID, unsigned int width, unsigned int height, unsigned int depth, const void* data){
 		m_filename = std::string("{Font Texture} " + fileName);

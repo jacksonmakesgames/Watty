@@ -5,13 +5,21 @@ cmake_minimum_required (VERSION 3.15)
 
 
 set(ROOT 						${CMAKE_SOURCE_DIR})
-set(WATTYVERSION 				0.29.2)
+set(WATTYVERSION 				0.31.0)
 set(CORE 						Watty-Core)
 set(LIBNAME 					Watty_v${WATTYVERSION})
 set(COREDIR 					${CMAKE_SOURCE_DIR}/${CORE}/)
 set(CORENAME 					Core_Engine_v${WATTYVERSION})
 
 set(CMAKE_CONFIGURATION_TYPES 	Debug Release Web)
+
+#disable warnings for dependencies folder
+set_source_files_properties(
+  ROOT/dependencies
+  PROPERTIES
+  COMPILE_FLAGS "-w"
+)
+include(${CMAKE_SOURCE_DIR}/tools/functions.cmake)
 
 include_directories(
 	${COREDIR}
@@ -58,8 +66,13 @@ if(EMSCRIPTEN)
 	add_compile_definitions(WATTY_EMSCRIPTEN)
 	set(CMAKE_BUILD_TYPE Web)
 
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -s ALLOW_MEMORY_GROWTH=1 -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s ENVIRONMENT=web -s LLD_REPORT_UNDEFINED -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 --embed-file ${COREDIR}/res --use-preload-plugins --no-heap-copy")
-	
+	set(EXCEPTION_CATCHING OFF)
+
+	if(${EXCEPTION_CATCHING})
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -s DISABLE_EXCEPTION_CATCHING=0 -s ALLOW_MEMORY_GROWTH=1 -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s ENVIRONMENT=web -s LLD_REPORT_UNDEFINED -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 --embed-file ${COREDIR}/res@/ --use-preload-plugins --no-heap-copy")
+	else()
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -s ALLOW_MEMORY_GROWTH=1 -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s ENVIRONMENT=web -s LLD_REPORT_UNDEFINED -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 --embed-file ${COREDIR}/res@/ --use-preload-plugins --no-heap-copy")
+	endif()
 	add_subdirectory(Watty-Core)
 	remove_definitions(GL_WITH_GLAD)
 	project (Watty_Engine)
@@ -105,6 +118,7 @@ else()
 	add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 	
 	include_directories(${CMAKE_SOURCE_DIR}/dependencies/glad/include)
+
 	
 	add_compile_definitions(GL_WITH_GLAD) # for freetype
 
@@ -113,11 +127,16 @@ else()
 	add_subdirectory(dependencies/imgui)
 	add_subdirectory(dependencies/freetype)
 	add_subdirectory(dependencies/freetype-gl)
+	
 
 
 	add_subdirectory(Watty-Core)
 
+	# create_resources("${CMAKE_SOURCE_DIR}/Sandbox/res")
+	# include_directories("${CMAKE_SOURCE_DIR}/Sandbox/res")
+
 	project (Watty_Engine)
+
 
 	add_library(${LIBNAME} STATIC
 		$<TARGET_OBJECTS:glfw>
@@ -127,10 +146,13 @@ else()
 		$<TARGET_OBJECTS:imgui>
 		$<TARGET_OBJECTS:freetype>
 		$<TARGET_OBJECTS:freetype-gl>
+		$<TARGET_OBJECTS:Resources>
+		$<TARGET_OBJECTS:Watty_Resources>
 		$<TARGET_OBJECTS:${CORENAME}>
+
 	)
 
-
+	
 
 endif()
 
@@ -158,3 +180,4 @@ target_link_directories(${CORENAME}
 target_link_libraries(${CORENAME}
 	PUBLIC opengl32
 	)
+

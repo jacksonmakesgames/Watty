@@ -1,8 +1,9 @@
-#include <Watty/Watty.h>
+#include <Watty.h>
+#include <res.h>
 // TODO: relative 
 
-#define PLAYERTEXTUREPATH RESDIR "textures/Player.png"
-#define ENEMYTEXTUREPATH RESDIR "textures/Enemy.png"
+#define PLAYERTEXTUREPATH "textures/Player.png"
+#define ENEMYTEXTUREPATH "textures/Enemy.png"
 
 using namespace letc;
 using namespace graphics;
@@ -37,6 +38,7 @@ public:
 	}
 
 	void init() override {
+		RawResources::Init();
 		m_window = createWindow("The First Game Made With the LETC!", 1600,900, true, false);
 
 		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D());
@@ -47,6 +49,7 @@ public:
 		glClearColor(.976f,.972f,.972f,1);
 
 		Texture* playerTexture = new Texture(PLAYERTEXTUREPATH);
+	
 		playerGO = new GameObject(glm::vec3(0,0,0), glm::vec2(4,4), new Sprite(playerTexture));
 		playerLayer->add(playerGO);
 		

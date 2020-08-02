@@ -42,7 +42,18 @@ namespace graphics {
 	// Load tiles from JSON, JSON map file should NOT have tileset embedded
 	// image file should be in the same folder as tileset
 	void TileMap::loadFromJson(const char* pathToMap, const char* pathToImage){
-		json parsedMap = json::parse(read_file(pathToMap));
+		std::vector<char> charsVec = read_file(pathToMap);
+#ifndef WATTY_EMSCRIPTEN
+		charsVec.resize(charsVec.size()/8); // TODO: not sure exactly why we need to divide by size of char here but not elsewhere works.. needs testing
+#endif // !WATTY_EMSCRIPTEN
+
+		if (charsVec.size() <= 0)
+		{
+			std::cout << "Error at JSON map file" << std::endl;
+			return;
+		}
+		std::cout << std::endl;
+		json parsedMap = json::parse(charsVec.begin(), charsVec.end());
 		//json parsedSet = json::parse(read_file(pathToTileSet));
 		
 		mTilesPerRow = parsedMap["width"];

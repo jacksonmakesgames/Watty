@@ -7,6 +7,8 @@ namespace letc {
 	private:
 		double m_startTime;
 		double m_last = 0;
+		double _lastFrameTime = 0;
+		double currentFrameTime=0;
 	public:
 		Timer() {
 			m_startTime = glfwGetTime();
@@ -18,13 +20,14 @@ namespace letc {
 
 		float elapsed() {
 		// return elapsed time in seconds
-			double currentTime = glfwGetTime();
-			return (currentTime - m_startTime);
+			currentFrameTime = glfwGetTime();
+			return (currentFrameTime - m_startTime);
 		}
 
 		void update() {
-			delta = elapsed() - m_last;
-			m_last = elapsed();
+			currentFrameTime = glfwGetTime();
+			delta = currentFrameTime - _lastFrameTime;
+			_lastFrameTime = glfwGetTime();
 		}
 		
 	};
