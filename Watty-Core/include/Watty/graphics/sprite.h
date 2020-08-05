@@ -8,6 +8,7 @@ namespace letc {namespace graphics {
 		Sprite(float x, float y, float width, float height, const WattyColor color);
 		Sprite(float x, float y, float width, float height, Texture* texture);
 		Sprite(Texture* texture);
+		Sprite(std::string texturePath);
 		Sprite(WattyColor color);
 
 	};

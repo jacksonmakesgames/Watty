@@ -33,14 +33,19 @@ namespace letc {
 		return rotation;
 	}
 
-	void Transform2D::translate(glm::vec2 translation)
-	{
+	void Transform2D::translate(glm::vec2 translation){
+		wantsPhysicsMove = true;
 		position += translation;
+		physicsMoveTo = position;
 		updateMatrix();
 	}
 
-	void Transform2D::setPosition(glm::vec2 newPos)
+	void Transform2D::setPosition(glm::vec2 newPos, bool movePhysicsBody)
 	{
+		if (movePhysicsBody) {
+			wantsPhysicsMove = true;
+			physicsMoveTo = newPos;
+		}
 		position = newPos;
 		updateMatrix();
 	}

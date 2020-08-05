@@ -132,9 +132,6 @@ else()
 
 	add_subdirectory(Watty-Core)
 
-	# create_resources("${CMAKE_SOURCE_DIR}/Sandbox/res")
-	# include_directories("${CMAKE_SOURCE_DIR}/Sandbox/res")
-
 	project (Watty_Engine)
 
 
@@ -146,8 +143,6 @@ else()
 		$<TARGET_OBJECTS:imgui>
 		$<TARGET_OBJECTS:freetype>
 		$<TARGET_OBJECTS:freetype-gl>
-		$<TARGET_OBJECTS:Resources>
-		$<TARGET_OBJECTS:Watty_Resources>
 		$<TARGET_OBJECTS:${CORENAME}>
 
 	)

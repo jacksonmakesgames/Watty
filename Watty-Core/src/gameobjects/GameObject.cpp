@@ -92,6 +92,9 @@ namespace letc {
 
 	void GameObject::addComponent(physics::PhysicsBody2D* physicsBody2D){
 		m_physicsBody2D = physicsBody2D;
+		m_physicsBody2D->gameObject = this;
+		m_physicsBody2D->getBody()->SetUserData(this); // store a reference to PhysicsBody2D 
+
 	}
 	/*void GameObject::addChild(GameObject* object){
 		object->position = m_position + object->position;
@@ -183,15 +186,17 @@ namespace letc {
 
 		if (m_physicsBody2D!=nullptr) {
 			glm::vec2 pos = m_physicsBody2D->getBodyPosition();
-			// todo we can make this one function call:
-			transform->setPosition(pos - m_physicsBody2D->getOffset());
+			
+			if (transform->wantsPhysicsMove) {
+				m_physicsBody2D->getBody()->SetTransform(b2Vec2(transform->physicsMoveTo.x, transform->physicsMoveTo.y), m_physicsBody2D->getBody()->GetAngle());
+				transform->wantsPhysicsMove = false;
+			}else
+				transform->setPosition(pos - m_physicsBody2D->getOffset(), false);
+			
 			transform->setRotation(m_physicsBody2D->getBody()->GetAngle());
-			//transform->setRotation(-m_physicsBody2D->getBody()->GetAngle());
 		}
 
 		for (size_t i = 0; i < transform->children.size(); i++) {
-			//glm::vec3 offset = m_position - m_children[i]->position;
-			//m_children[i]->position = m_position + offset;
 			transform->children[i]->gameObject->update(transform->getPosition());
 		}
 
@@ -221,13 +226,66 @@ namespace letc {
 	}
 
 	GameObject::~GameObject(){
-		delete m_renderable;
-		delete m_physicsBody2D;
-		delete transform;
+		if(m_renderable)
+			delete m_renderable;
+		if(m_physicsBody2D)
+			delete m_physicsBody2D;
+		if(transform)
+			delete transform;
 		/*for (size_t i = 0; i < m_children.size(); i++)
 		{
 			delete m_children[i];
 		}*/
 
+	}
+
+	void Physics2DContactListener::BeginContact(b2Contact* contact)
+	{
+		// Fixture A
+		void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+		if (contact->GetFixtureA()->IsSensor()) {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onSensorEnter(contact);
+		}
+		else {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onCollisionEnter(contact);
+		}
+
+		// Fixture B
+		bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
+		if (contact->GetFixtureB()->IsSensor()) {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onSensorEnter(contact);
+		}
+		else {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onCollisionEnter(contact);
+		}
+	}
+
+	void Physics2DContactListener::EndContact(b2Contact* contact)
+	{
+		// Fixture A
+		void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+		if (contact->GetFixtureA()->IsSensor()) {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onSensorExit(contact);
+		}
+		else {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onCollisionExit(contact);
+		}
+
+		// Fixture B
+		bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
+		if (contact->GetFixtureB()->IsSensor()) {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onSensorExit(contact);
+		}
+		else {
+			if (bodyUserData)
+				static_cast<GameObject*>(bodyUserData)->onCollisionEnter(contact);
+		}
 	}
 }

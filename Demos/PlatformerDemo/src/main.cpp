@@ -33,7 +33,7 @@ public:
 		glm::vec2 screenSize(1280.0f, 720.0f);
 
 		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, false);
-		m_window->setVSync(false);
+		m_window->setVSync(true);
 
 		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 		letc::physics::PhysicsWorld2D::setDebugDraw();
@@ -134,10 +134,12 @@ public:
 	}
 
 	void getInput() {
+		if (Input::keyWasPressed(GLFW_KEY_V))
+			Window::toggleVSync();
 		// PLAYER
-		float horizontal = -1 * (float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
-		if (m_window->keyWasPressed(GLFW_KEY_SPACE))
+		float horizontal = -1 * (float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+		float vertical = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1*(float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
+		if (Input::keyWasPressed(GLFW_KEY_SPACE))
 			player->getPhysicsBody2D()->addImpulse(glm::vec2(0, 1), playerJumpForce);
 
 		player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
@@ -148,7 +150,9 @@ public:
 			player->transform->setPosition({ playerPos.x, 10 });
 			player->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(0, 0), 0.0f);
 			player->getPhysicsBody2D()->zeroVelocity();
+
 		}
+			
 	}
 
 };

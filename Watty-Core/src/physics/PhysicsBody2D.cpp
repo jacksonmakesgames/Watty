@@ -1,13 +1,13 @@
 #include <physics/PhysicsBody2D.h>
 namespace letc { namespace physics {
-	PhysicsBody2D::PhysicsBody2D(BodyShapes shape,glm::vec2 startingPos, float width, float height, b2BodyType type, glm::vec2 offset, float bounciness, float friction)
+	PhysicsBody2D::PhysicsBody2D(PhysicsBody2DParams params)
 		:
-		m_bounciness(bounciness),
-		m_friction(friction),
-		m_size((width* PhysicsConstants::inv_pixels_per_meter) / 2.0f, (height* PhysicsConstants::inv_pixels_per_meter) / 2.0f),
-		m_worldPosition((startingPos.x + width / 2)* PhysicsConstants::inv_pixels_per_meter, (startingPos.y + height / 2)* PhysicsConstants::inv_pixels_per_meter),
-		m_offset(offset),
-		m_bodyType(type),
+		m_bounciness(params.bounciness),
+		m_friction(params.friction),
+		m_size((params.size.x* PhysicsConstants::inv_pixels_per_meter) / 2.0f, (params.size.y* PhysicsConstants::inv_pixels_per_meter) / 2.0f),
+		m_worldPosition((params.offset.x + params.size.x / 2)* PhysicsConstants::inv_pixels_per_meter, (params.offset.y + params.size.y / 2)* PhysicsConstants::inv_pixels_per_meter),
+		m_offset(params.offset),
+		m_bodyType(params.bodyType),
 		m_bodyDef(),
 		m_polygonShape(),
 		m_circleShape(),
@@ -18,27 +18,26 @@ namespace letc { namespace physics {
 		m_bodyDef.position.Set(m_worldPosition.x, m_worldPosition.y);
 		// create body in world
 		m_body = PhysicsWorld2D::box2DWorld->CreateBody(&m_bodyDef);
+		//define fixture
+		m_fixtureDef.isSensor = params.isSensor;
+		m_fixtureDef.density = 1.0f;
+		m_fixtureDef.restitution = m_bounciness;
+		m_fixtureDef.friction = m_friction;
 		// create shape
-		if (shape == BodyShapes::box) {
+		if (params.shape == BodyShapes::box) {
 			m_polygonShape.SetAsBox(m_size.x, m_size.y);
 			m_fixtureDef.shape = &m_polygonShape;
-			// create fixture
-			m_fixtureDef.density = 1.0f;
-			m_fixtureDef.restitution = m_bounciness;
-			m_fixtureDef.friction = m_friction;
 			// attach shape to body using fixture
 			m_body->CreateFixture(&m_fixtureDef);
 		}
-		else if (shape == BodyShapes::circle) {
-			m_circleShape.m_radius = width/2.0f;
-			//m_circleShape.Set(m_size.x, m_size.y);
+		else if (params.shape == BodyShapes::circle) {
+			m_circleShape.m_radius = params.size.x/2.0f;
 			m_fixtureDef.shape = &m_circleShape;
-			// create fixture
-			m_fixtureDef.density = 1.0f;
-			m_fixtureDef.restitution = m_bounciness;
-			m_fixtureDef.friction = m_friction;
 			// attach shape to body using fixture
 			m_body->CreateFixture(&m_fixtureDef);
+		}
+		else {
+			throw std::logic_error("Body type not yet implemented");
 		}
 	}
 
@@ -89,6 +88,4 @@ namespace letc { namespace physics {
 		m_body->GetWorld()->DestroyBody(m_body);
 	}
 
-
-
-} }
+}}

@@ -1,7 +1,7 @@
 #pragma once
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
-//#include <ext/glm/include/gtx/matrix_transform_2d.hpp>
+#include<physics/PhysicsBody2D.h>
 #include <vector>
 namespace letc {
 	class GameObject;
@@ -18,12 +18,15 @@ namespace letc {
 		Transform2D* parent = nullptr;
 
 		std::vector<Transform2D*> children = std::vector<Transform2D*>();
+		
+		bool wantsPhysicsMove = false;
+		glm::vec2 physicsMoveTo = glm::vec2();
 
 		void rotate(float angle);
 		void setRotation(float newRotation);
 		float getRotation();
 		void translate(glm::vec2 translation);
-		void setPosition(glm::vec2 newPos);
+		void setPosition(glm::vec2 newPos, bool movePhysicsBody = true);
 		glm::vec2 getPosition();
 		void resize(glm::vec2 sizeDelta);
 		void setSize(glm::vec2 newSize);

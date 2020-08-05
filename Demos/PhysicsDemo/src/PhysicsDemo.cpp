@@ -28,9 +28,9 @@ namespace letc {
 class PhysicsDemo : public LETC {
 	private:
 		Window* m_window;
-		//Label* fpsLabel;
-		//Label* upsLabel;
-		//Label* mpsLabel;
+		Label* fpsLabel;
+		Label* upsLabel;
+		Label* mpsLabel;
 		std::vector<GameObject*> boxes;
 		float m_gain = 0.5f;
 
@@ -51,7 +51,7 @@ class PhysicsDemo : public LETC {
 		Texture* boxTexture;
 
 		GameObject* m_grabbedBox = nullptr;
-
+		Shader* shader0;
 		
 		//Camera* m_camera;
 
@@ -67,9 +67,9 @@ class PhysicsDemo : public LETC {
 			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
 
 #ifdef WATTY_EMSCRIPTEN
-			Shader* shader0 = new Shader(); // Can't use OGL4 shaders on WebGL2
+			shader0 = new Shader(); // Can't use OGL4 shaders on WebGL2
 #else
-			Shader* shader0 = new Shader(DEFAULT_SHADER_VERT_PATH, FRAGLITPATH);
+			shader0 = new Shader(DEFAULT_SHADER_VERT_PATH, FRAGLITPATH);
 			shader0->setUniform3f("light_pos", glm::vec3(16,16,0));
 			shader0->setUniform1f("light_radius", 250.0f);
 			shader0->setUniform1f("light_intensity", 1.1f);
@@ -117,7 +117,7 @@ class PhysicsDemo : public LETC {
 			boxTexture = new Texture( "textures/box.png");
 			Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
-			glm::vec3 floorPos(-16.0f,-9.0f,0);
+			glm::vec3 floorPos(0,-9.0f,0);
 			glm::vec2 floorSize(32, 2);
 			GameObject* floor = new GameObject(floorPos, floorSize);
 			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
@@ -125,7 +125,7 @@ class PhysicsDemo : public LETC {
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floor);
 			
-			glm::vec3 floorPosL(-18.0f,-7.0f,0);
+			glm::vec3 floorPosL(-17.0f,0,0);
 			glm::vec2 floorSizeL(2, 18);
 			GameObject* floorL = new GameObject(floorPosL, floorSizeL);
 			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
@@ -133,7 +133,7 @@ class PhysicsDemo : public LETC {
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floorL);
 			
-			glm::vec3 floorPosR(16.0f,-7.0f,0);
+			glm::vec3 floorPosR(17.0f,0,0);
 			glm::vec2 floorSizeR(2, 18);
 			GameObject* floorR = new GameObject(floorPosR, floorSizeR);
 			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
@@ -219,28 +219,31 @@ class PhysicsDemo : public LETC {
 		}
 
 		void getInput() {
+			if (Input::keyWasPressed(GLFW_KEY_V)) {
+				Window::setVSync(!Window::useVSync);
+			}
 			// SOUND
-			if (m_window->keyIsDown(GLFW_KEY_LEFT_BRACKET)) {
+			if (Input::keyIsDown(GLFW_KEY_LEFT_BRACKET)) {
 				m_gain -= 0.005f;
 				AudioManager::getClip("slow_motion")->setGain(m_gain);
 
 			}
-			else if (m_window->keyIsDown(GLFW_KEY_RIGHT_BRACKET)) {
+			else if (Input::keyIsDown(GLFW_KEY_RIGHT_BRACKET)) {
 				m_gain += 0.005f;
 				AudioManager::getClip("slow_motion")->setGain(m_gain);
 			}
-			else if (m_window->keyWasPressed(GLFW_KEY_P)) {
+			else if (Input::keyWasPressed(GLFW_KEY_P)) {
 				AudioManager::getClip("slow_motion")->pause();
 			}
-			else if (m_window->keyWasPressed(GLFW_KEY_R)) {
+			else if (Input::keyWasPressed(GLFW_KEY_R)) {
 				AudioManager::getClip("slow_motion")->resume();
 				AudioManager::getClip("slow_motion")->setGain(m_gain);
 			}
 
 			// PLAYER
-			float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-			//float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
-			if (m_window->keyWasPressed(GLFW_KEY_SPACE))
+			float horizontal = -1*(float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+			//float vertical = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1*(float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
+			if (Input::keyWasPressed(GLFW_KEY_SPACE))
 				player->getPhysicsBody2D()->addImpulse(glm::vec2(0,1), playerJumpForce);
 
 			player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
@@ -248,18 +251,18 @@ class PhysicsDemo : public LETC {
 			//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
 			glm::vec2 playerPos = player->transform->getPosition();
 			if (playerPos.y < -10.0f) {
-				player->transform->setPosition({ playerPos.x, 10 });
+				player->transform->setPosition({ 0, 10 });
 				player->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(0,0), 0.0f);
 				player->getPhysicsBody2D()->zeroVelocity();
 			}
 
 			// BOXES:
 			double x, y;
-			m_window->getMousePos(x, y);
+			Input::getMousePos(x, y);
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
 
-			if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
+			if (Input::mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -279,7 +282,7 @@ class PhysicsDemo : public LETC {
 					m_grabbedBox = callback->gameObjects[0];
 				
 			}
-			else if (m_window->mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
+			else if (Input::mouseButtonWasReleased(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 				if (m_grabbedBox) {
 					float xSum = 0;
 					for (size_t i = 0; i < m_lastXs.size(); i++)
@@ -305,7 +308,7 @@ class PhysicsDemo : public LETC {
 			}
 
 
-			else if (m_window->mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse)) {
+			else if (Input::mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse)) {
 
 				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
@@ -320,7 +323,7 @@ class PhysicsDemo : public LETC {
 				}
 			}
 
-			else if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
+			else if (Input::mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 				if (m_grabbedBox != nullptr) {
 					m_grabbedBox->getPhysicsBody2D()->setLinearVelocity(glm::vec2(0,0));
 					m_grabbedBox->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(xScreenMousePos, yScreenMousePos), m_grabbedBox->getPhysicsBody2D()->getBody()->GetAngle());
@@ -339,7 +342,7 @@ class PhysicsDemo : public LETC {
 
 		GameObject* addBox() {
 			double x, y;
-			m_window->getMousePos(x, y);
+			Input::getMousePos(x, y);
 			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
 			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
 			

@@ -137,15 +137,15 @@ public:
 	void getInput() {
 			sceneCamera->setSize(
 				glm::vec2(	
-					sceneCamera->getSize().x - 4.0f  * m_window->getScrollAmountThisFrameY(),
-					sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
+					sceneCamera->getSize().x - 4.0f  * Input::getScrollAmountThisFrameY(),
+					sceneCamera->getSize().y - 2.25f * Input::getScrollAmountThisFrameY()
 				));
 
-		if (m_window->keyWasPressed(GLFW_KEY_SPACE)) {
+		if (Input::keyWasPressed(GLFW_KEY_SPACE)) {
 			step();
  			spaceDownTime = gameTimer->elapsed();
 		}
-		else if (m_window->keyIsDown(GLFW_KEY_SPACE)) {
+		else if (Input::keyIsDown(GLFW_KEY_SPACE)) {
 			// test if held
 			if (framesHeld > 2) {
 				if (gameTimer->elapsed() > spaceDownTime + 1.0f/stepRate) {
@@ -154,20 +154,20 @@ public:
 			}
 			framesHeld++;
 		}
-		if (m_window->keyWasReleased(GLFW_KEY_SPACE)) { 
+		if (Input::keyWasReleased(GLFW_KEY_SPACE)) { 
 			run = false;
 			spaceDownTime = gameTimer->elapsed();
 			framesHeld = 0;
 
 		}
 		
-		if (m_window->keyWasPressed(GLFW_KEY_R)) {
+		if (Input::keyWasPressed(GLFW_KEY_R)) {
 			run = !run;
 		}
 
-		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
+		if (Input::mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
-			m_window->getMousePos(x, y);
+			Input::getMousePos(x, y);
 			glm::vec2 pos = m_window->viewportToWorld({ x,y });
 			
 			placeCell(pos);
@@ -175,9 +175,9 @@ public:
 
 		}
 		
-		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
+		if (Input::mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
-			m_window->getMousePos(x, y);
+			Input::getMousePos(x, y);
 
 			glm::vec2 pos = m_window->viewportToWorld({ x,y });
 			deleteCell(pos);
@@ -185,12 +185,12 @@ public:
 
 		}
 
-		if (m_window->keyWasPressed(GLFW_KEY_LEFT))
+		if (Input::keyWasPressed(GLFW_KEY_LEFT))
 		{
 			stepBack();
 		}
 
-		if (m_window->keyWasPressed(GLFW_KEY_RIGHT))
+		if (Input::keyWasPressed(GLFW_KEY_RIGHT))
 		{
 			step();
 			spaceDownTime = gameTimer->elapsed();

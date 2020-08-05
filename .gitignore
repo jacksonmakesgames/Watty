@@ -15,3 +15,6 @@ obj/
 *.tmp
 *.ilk
 *.iobj
+imgui.ini
+build*/
+bin/

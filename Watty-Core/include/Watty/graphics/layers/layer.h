@@ -5,6 +5,9 @@
 namespace letc {
 	class Layer {
 	public:
+		static std::vector<Layer*> allLayers;
+		static Layer* getLayerByName(std::string name);
+
 		bool hidden = false;
 		std::string name;
 

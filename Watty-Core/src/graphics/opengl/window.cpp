@@ -26,23 +26,15 @@ namespace letc {namespace graphics {
 		isFullScreen = fullscreen;
 		if (!init()) {
 			glfwTerminate();
-			std::cout << "GLFW failed to initialize, terminating." << std::endl;
+			std::cout << "GLFW failed to initialize, terminating. Check your video drivers." << std::endl;
 			return;
 		}
 
-		for (int i = 0; i < MAX_KEYS; i++) {
-			m_keysThisFrame[i]		=	false;
-			m_keysLastFrame[i]	=	false;
-			m_keysFirstFrameDown[i]	=	false;
-		}
-		for (int i = 0; i < MAX_BUTTONS; i++) {
-			m_buttonsThisFrame[i]		=	 false;
-			m_buttonsLastFrame[i]		=	 false;
-			m_buttonsFirstFrameDown[i]			=	 false;
-		}
+		
+		
 
-		FontManager::init(m_Width / (std::get<0>(getAspectRatio()) * 2),
-			m_Height / (std::get<1>(getAspectRatio()) * 2));
+		FontManager::init(m_Width / (getAspectRatio().x * 2),
+			m_Height / (getAspectRatio().y * 2));
 
 	}	
 
@@ -64,11 +56,18 @@ namespace letc {namespace graphics {
 	}*/
 
 	bool Window::init() {
-
-		if (!glfwInit()){
-			std::cout << "Failed to initialize GLFW" << std::endl;
-			return false;
+		if (firstInit) {
+			if (!glfwInit()) {
+				std::cout << "Failed to initialize GLFW" << std::endl;
+				return false;
+			}
 		}
+		else {
+			glfwDestroyWindow(m_Window);
+			glfwWaitEvents();
+		}
+
+		
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
@@ -101,41 +100,43 @@ namespace letc {namespace graphics {
 		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
 		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
 		glfwSetScrollCallback(m_Window, scroll_callback);
+		//glfwSetWindowCloseCallback(m_Window, window_close_callback);
 		glfwSwapInterval(useVSync);
 
 #ifndef WATTY_EMSCRIPTEN
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		{
-			std::cout << "Failed to initialize GLAD" << std::endl;
-			return -1;
-		}
+			if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+			{
+				std::cout << "Failed to initialize GLAD" << std::endl;
+				return -1;
+			}
 #endif
-		std::cout << "Watty{} Version: " << WATTY_VERSION << std::endl;
-		std::cout << " OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
-
-#ifndef WATTY_EMSCRIPTEN
-		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
-		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT){
-			glEnable(GL_DEBUG_OUTPUT);
-			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-			glDebugMessageCallback(openglCallbackFunction, nullptr);
-			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
-
+		if (firstInit) {
+			std::cout << "Watty{} Version: " << WATTY_VERSION << std::endl;
+			std::cout << " OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 		}
+#ifndef WATTY_EMSCRIPTEN
+			GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
+			if (flags & GL_CONTEXT_FLAG_DEBUG_BIT) {
+				glEnable(GL_DEBUG_OUTPUT);
+				glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+				glDebugMessageCallback(openglCallbackFunction, nullptr);
+				glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+
+			}
 #endif // !WATTY_EMSCRIPTEN
 
-		glClearColor(0, 0, 0, 1); // Default
-		glEnable(GL_BLEND);
+			glClearColor(0, 0, 0, 1); // Default
+			glEnable(GL_BLEND);
 
-//#ifdef WATTY_EMSCRIPTEN
-		//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-//#else
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//#endif
-		
+			//#ifdef WATTY_EMSCRIPTEN
+					//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+			//#else
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			//#endif
+
+
 		initImGUI();
-
-
+		firstInit = false;
 		return true;
 	}
 
@@ -171,7 +172,7 @@ namespace letc {namespace graphics {
 		return true;
 	}
 
-	std::tuple<int, int> Window::getAspectRatio()
+	glm::i8vec2 Window::getAspectRatio()
 	{
 		int outNum = m_Width;
 		int outDen = m_Height;
@@ -182,72 +183,72 @@ namespace letc {namespace graphics {
 				outNum /= i;
 			}
 		}
-		return std::tuple<int, int>(outNum, outDen);
+		return glm::i8vec2(outNum, outDen);
 	}
 
 
 
 
-	bool Window::keyIsDown(unsigned int keycode) const {
-		// if the key is down this frame
-		if (keycode >= MAX_KEYS) {
-		// TODO: log an error
-			return false;
-		}
-		return m_keysThisFrame[keycode];
-	}
+	//bool Window::keyIsDown(unsigned int keycode) const {
+	//	// if the key is down this frame
+	//	if (keycode >= MAX_KEYS) {
+	//	// TODO: log an error
+	//		return false;
+	//	}
+	//	return m_keysThisFrame[keycode];
+	//}
 
 
-	bool Window::keyWasPressed(unsigned int keycode) const {
-		// If this is the first frame a key is down
-		if (keycode >= MAX_KEYS) {
-		// TODO: log an error
-			return false;
-		}
-		return m_keysFirstFrameDown[keycode];
-	}
+	//bool Window::keyWasPressed(unsigned int keycode) const {
+	//	// If this is the first frame a key is down
+	//	if (keycode >= MAX_KEYS) {
+	//	// TODO: log an error
+	//		return false;
+	//	}
+	//	return m_keysFirstFrameDown[keycode];
+	//}
 
 
-	bool Window::mouseButtonWasPressed(unsigned int button) const {
-		if (button >= MAX_BUTTONS) {
-		// TODO: log an error
-			return false;
-		}
-		return m_buttonsFirstFrameDown[button];
-	}
+	//bool Window::mouseButtonWasPressed(unsigned int button) const {
+	//	if (button >= MAX_BUTTONS) {
+	//	// TODO: log an error
+	//		return false;
+	//	}
+	//	return m_buttonsFirstFrameDown[button];
+	//}
 
 
-	bool Window::mouseButtonIsDown(unsigned int button) const {
-		if (button >= MAX_BUTTONS) {
-		// TODO: log an error
-			return false;
-		}
-		return m_buttonsThisFrame[button];
-	}
+	//bool Window::mouseButtonIsDown(unsigned int button) const {
+	//	if (button >= MAX_BUTTONS) {
+	//	// TODO: log an error
+	//		return false;
+	//	}
+	//	return m_buttonsThisFrame[button];
+	//}
 
 
-	bool Window::mouseButtonWasReleased(unsigned int button) const {
-		if (button >= MAX_BUTTONS) {
-			// TODO: log an error
-			return false;
-		}
-		return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
-	}	
-	
+	//bool Window::mouseButtonWasReleased(unsigned int button) const {
+	//	if (button >= MAX_BUTTONS) {
+	//		// TODO: log an error
+	//		return false;
+	//	}
+	//	return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
+	//}	
+	//
 
-	bool Window::keyWasReleased(unsigned int key) const {
-		if (key >= MAX_KEYS) {
-			// TODO: log an error
-			return false;
-		}
-		return  (m_keysLastFrame[key] && !m_keysThisFrame[key]);;
-	}
+	//bool Window::keyWasReleased(unsigned int key) const {
+	//	if (key >= MAX_KEYS) {
+	//		// TODO: log an error
+	//		return false;
+	//	}
+	//	return  (m_keysLastFrame[key] && !m_keysThisFrame[key]);;
+	//}
 
 
-	void Window::getMousePos(double& x, double& y) const {
-		x = mx;
-		y = my;
-	}
+	//void Window::getMousePos(double& x, double& y) const {
+	//	x = mx;
+	//	y = my;
+	//}
 
 
 	void Window::clear() const {
@@ -257,28 +258,28 @@ namespace letc {namespace graphics {
 
 
 	void Window::update() {
-		scrolledThisFrameY = 0;
+		//scrolledThisFrameY = 0;
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
 
-	void Window::listenForInput(){
-		
-		for (int i = 0; i < MAX_KEYS; i++) {
-			m_keysFirstFrameDown[i] = false;
-		}
-		// handle input:
-		for (size_t i = 0; i < MAX_KEYS; i++) {
-			m_keysFirstFrameDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i]; // first frame pressed
-		}
-		memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool) * MAX_KEYS);
+	//void Window::listenForInput(){
+	//	
+	//	for (int i = 0; i < MAX_KEYS; i++) {
+	//		m_keysFirstFrameDown[i] = false;
+	//	}
+	//	// handle input:
+	//	for (size_t i = 0; i < MAX_KEYS; i++) {
+	//		m_keysFirstFrameDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i]; // first frame pressed
+	//	}
+	//	memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool) * MAX_KEYS);
 
-		for (size_t i = 0; i < MAX_BUTTONS; i++) {
-			m_buttonsFirstFrameDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
-		}
-		memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool) * MAX_BUTTONS);
-	}
+	//	for (size_t i = 0; i < MAX_BUTTONS; i++) {
+	//		m_buttonsFirstFrameDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
+	//	}
+	//	memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool) * MAX_BUTTONS);
+	//}
 
 
 	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam){
@@ -315,36 +316,81 @@ namespace letc {namespace graphics {
 			win->getHeight() / (std::get<1>(aR) * 2));*/
 	}
 
+	void window_close_callback(GLFWwindow* window)
+	{
+		glfwSetWindowShouldClose(window, GLFW_FALSE);
+	}
+
+
+	//void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+	//	Window * win = (Window*) glfwGetWindowUserPointer(window);
+	//	win->m_keysThisFrame[key] = action != GLFW_RELEASE;
+	//	
+
+	//}
+
+
+	//void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
+	//	Window * win = (Window*) glfwGetWindowUserPointer(window);
+	//	win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
+
+	//}
+
+
+	//void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
+	//	Window* win = (Window*)glfwGetWindowUserPointer(window);
+	//	win->mx = xpos;
+	//	win->my = ypos;
+
+	//}
+	//
+
+	//void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+	//	Window* win = (Window*)glfwGetWindowUserPointer(window);
+	//	win->scrolledThisFrameY = yoffset;
+	//}
+
+
+
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-		Window * win = (Window*) glfwGetWindowUserPointer(window);
-		win->m_keysThisFrame[key] = action != GLFW_RELEASE;
+		Input::setKeyThisFrame(key, action != GLFW_RELEASE);
+
+		//Window* win = (Window*)glfwGetWindowUserPointer(window);
+		//win->m_keysThisFrame[key] = action != GLFW_RELEASE;
+
 
 	}
 
 
-	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
-		Window * win = (Window*) glfwGetWindowUserPointer(window);
-		win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+		Input::setButtonThisFrame(button, action != GLFW_RELEASE);
+
+		//Window* win = (Window*)glfwGetWindowUserPointer(window);
+		//win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
 
 	}
 
 
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
-		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->mx = xpos;
-		win->my = ypos;
+		Input::updateMousePos(xpos, ypos);
+
+		//Window* win = (Window*)glfwGetWindowUserPointer(window);
+		//win->mx = xpos;
+		//win->my = ypos;
 
 	}
-	
+
 
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->scrolledThisFrameY = yoffset;
+		Input::scrolledThisFrameY = yoffset;
+
+		//Window* win = (Window*)glfwGetWindowUserPointer(window);
+		//win->scrolledThisFrameY = yoffset;
 	}
 
-
-	void Window::toggleVSync(){
+	//TODO: not sure why this is static
+	void Window::toggleVSync(){ 
 		Window::useVSync = !Window::useVSync;
 		glfwSwapInterval(Window::useVSync);
 	}

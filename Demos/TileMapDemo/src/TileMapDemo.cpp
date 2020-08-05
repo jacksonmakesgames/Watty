@@ -108,8 +108,8 @@ public:
 
 		sceneCamera->setSize(
 			glm::vec2(
-				sceneCamera->getSize().x - 4.0f * m_window->getScrollAmountThisFrameY(),
-				sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
+				sceneCamera->getSize().x - 4.0f * Input::getScrollAmountThisFrameY(),
+				sceneCamera->getSize().y - 2.25f * Input::getScrollAmountThisFrameY()
 			));
 
 
@@ -145,8 +145,8 @@ public:
 
 	void getInput() {
 
-		double horizontal = -1 * (double)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-		double vertical = (double)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1 * (float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
+		double horizontal = -1 * (double)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+		double vertical = (double)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1 * (float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
 		
 		
 		if (vertical < 0 && horizontal == 0) {

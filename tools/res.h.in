@@ -1,0 +1,14 @@
+#pragma once
+//AUTO-GENERATED FILE, EDIT AT YOUR OWN RISK
+
+#include <Resource.h>
+struct @res_class_name@ {
+	//AUTO-BEGIN-RES
+	//@res_var@
+	//AUTO-END-RES
+static void Init() {
+	//AUTO-BEGIN-INIT
+	//@init_var@
+	//AUTO-END-INIT
+}
+};

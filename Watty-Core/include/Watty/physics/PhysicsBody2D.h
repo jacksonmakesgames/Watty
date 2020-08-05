@@ -4,15 +4,42 @@
 #include "../physics/PhysicsWorld2D.h"
 #include <glm.hpp>
 
-namespace letc { namespace physics {
+namespace letc { 
+	class GameObject;
+
+	namespace physics {
 	
 	enum class BodyShapes {
-		box, circle
+		box, circle, polygon, edge, chain
 	};
 
+	struct PhysicsBody2DParams {
+		PhysicsBody2DParams(BodyShapes shape, glm::vec2 startingPos, glm::vec2 size, b2BodyType type, bool isSensor = false, glm::vec2 offset = {0,0}, float bounciness=.3f, float friction=.3f) 
+			:
+			bounciness(bounciness),
+			friction(friction),
+			size(size),
+			offset(offset),
+			bodyType(type),
+			shape(shape),
+			isSensor(isSensor)
+		{};
+		float bounciness = .3f;
+		float friction = .3f;
+		glm::vec2 size = {1,1};
+		b2BodyType bodyType = b2_dynamicBody;
+		BodyShapes shape = BodyShapes::box;
+		glm::vec2 offset = {};
+		bool isSensor = false;
+
+	};
+
+	
+	
 	class PhysicsBody2D
 	{
 	public:
+		GameObject* gameObject;
 	private:
 		float m_bounciness;
 		float m_friction;
@@ -28,7 +55,7 @@ namespace letc { namespace physics {
 		glm::vec2 m_offset;
 
 	public:
-		PhysicsBody2D(BodyShapes shape, glm::vec2 startingPos, float width, float height, b2BodyType type, glm::vec2 offset = glm::vec2(0,0), float bounciness = .3f, float friction = .3f);
+		PhysicsBody2D(PhysicsBody2DParams params);
 
 		virtual void addForce(glm::vec2 direction, float amount);
 		virtual void addImpulse(glm::vec2 direction, float amount);

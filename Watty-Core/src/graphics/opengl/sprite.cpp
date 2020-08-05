@@ -13,6 +13,9 @@ namespace letc {namespace graphics {
 		m_texture = texture;
 	}
 
+	Sprite::Sprite(std::string texturePath): Sprite(new Texture(texturePath)){
+	}
+
 	Sprite::Sprite(WattyColor color)
 		: Renderable2D(glm::vec3(0,0, 0.0f), glm::vec2(0, 0), color){
 	}

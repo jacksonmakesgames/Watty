@@ -2,7 +2,7 @@
 #include "GUILayer.h"
 #include "../window.h"
 #include <gameobjects/GameObject.h>
-
+#include <utils/Stats.h>
 namespace letc { namespace graphics {
 
 	class EngineControlLayer : public GUILayer

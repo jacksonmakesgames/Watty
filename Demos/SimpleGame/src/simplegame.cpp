@@ -95,16 +95,16 @@ public:
 	}
 
 	void getInput() {
-		float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
+		float horizontal = -1*(float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+		float vertical = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1*(float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
 		
 		glm::vec2 input(horizontal, vertical);
 
-		float horizontalP1 = -1*(float)(m_window->keyIsDown(GLFW_KEY_A)) + (float)(m_window->keyIsDown(GLFW_KEY_D));
-		float verticalP1 = (float)(m_window->keyIsDown(GLFW_KEY_W))+ -1*(float)(m_window->keyIsDown(GLFW_KEY_S));
+		float horizontalP1 = -1*(float)(Input::keyIsDown(GLFW_KEY_A)) + (float)(Input::keyIsDown(GLFW_KEY_D));
+		float verticalP1 = (float)(Input::keyIsDown(GLFW_KEY_W))+ -1*(float)(Input::keyIsDown(GLFW_KEY_S));
 		
-		float horizontalP2 = -1*(float) m_window->keyIsDown(GLFW_KEY_LEFT) + m_window->keyIsDown(GLFW_KEY_RIGHT);
-		float verticalP2 = (float) m_window->keyIsDown(GLFW_KEY_UP) + -1*(float)(m_window->keyIsDown(GLFW_KEY_DOWN));
+		float horizontalP2 = -1*(float) Input::keyIsDown(GLFW_KEY_LEFT) + Input::keyIsDown(GLFW_KEY_RIGHT);
+		float verticalP2 = (float) Input::keyIsDown(GLFW_KEY_UP) + -1*(float)(Input::keyIsDown(GLFW_KEY_DOWN));
 		
 		playerGO->transform->translate({playerSpeed * horizontalP1 * gameTimer->delta, playerSpeed * verticalP1 * gameTimer->delta});
 		enemyGO->transform->translate({playerSpeed * horizontalP2 * gameTimer->delta, playerSpeed * verticalP2 * gameTimer->delta});

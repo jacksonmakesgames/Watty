@@ -11,3 +11,20 @@ For Emscripten,
     NOTE: if emcmake doesn't work, try running test.bat/test.py in dependencies/emscripten. Also check everything is on PATH
 
 Note that Box2D requires a different javascript version, so we have to link against dependencies/box2d.js
+
+Resources:
+In your CMakeLists.txt:
+include(tools/functions.cmake)
+create_resources("${CMAKE_CURRENT_SOURCE_DIR}/res" OFF)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
+
+...Where "res" is the name of your resource directory
+
+Resources are converted to C++ arrays when CMake is run. The function for converting files to C++ arrays is in tools/functions.cmake.
+The C++ arrays are compiled into an object library which is then linked with the final executable.
+Watty-Core also has it's own resources, which are linked with the Core static library.
+
+For now, you *MUST* include res.h before your init function (res.h which declares the auto-generated class containing your resources).
+Before using resources, call RawResources::Init(). This creates a std::vector that your can use to access your resources.
+
+Resources::Load("filepath-relative-to-your-resource-dir") will get you a Resource object, containing the data (as a byte array) and the size of the data (as an unsigned int)
