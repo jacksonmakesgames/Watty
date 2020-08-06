@@ -16,7 +16,7 @@ namespace letc {namespace graphics{
 		void play(std::string name);
 		void stop();
 		void update();
-		void addAnimation(Animation2D* animation);
+		Animation2D* addAnimation(Animation2D* animation);
 
 		Animation2D* findByName(std::string name);
 

@@ -9,6 +9,7 @@ namespace letc {
 	public:
 		Transform2D* transform = nullptr;
 		const char* name;
+		bool _destroyFlag = false;
 
 		//glm::vec3& position		 = glm::vec3(0.0f);
 		//glm::vec2& size			 = glm::vec2(0.0f);
@@ -105,4 +106,32 @@ namespace letc {
 	};
 
 
+
+
+	template <class type>
+	static type* Instantiate(glm::vec2 position, glm::vec2 size = { 1,1 }, std::string layerName = "Default") {
+		type* go = new type(position, size);
+		if (layerName != "") {
+			Layer* layer = Layer::getLayerByName(layerName);
+			if (layer != nullptr)
+				layer->add((GameObject*)go);
+			else {
+				//TODO log error
+				std::cout << "Cannot add object of type: <" << typeid(type).name() << "> to layer: " << layerName << ", layer does not exist. Exiting" << std::endl;
+				exit(1);
+			}
+		}
+		return go;
+	};
+
+	static void Destroy(GameObject* g) {
+		//TODO no
+		if (!g->_destroyFlag) {
+			g->_destroyFlag = true;
+		}
+		else {
+			std::cout << "Cannot delete the same GameObject twice!" << std::endl; // TODO log error
+		}
+	
+	}
 }

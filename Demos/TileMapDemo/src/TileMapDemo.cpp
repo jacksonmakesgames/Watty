@@ -37,14 +37,12 @@ private:
 public:
 	void init() override {
 		RawResources::Init();
-
 		debugPhysics = true;
-		m_window = createWindow("Sandbox", 1280, 734, false, false);
+		window->setSize({1280,734});
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 
 		Layer* mainLayer = new Layer("main");
-		layers.push_back(mainLayer);
 
 		TileMap* tilemap = new TileMap(LEVELPATH, IMAGEPATH);
 		tilemap->setPixelToMeterRatio(32);
@@ -64,13 +62,14 @@ public:
 
 		player->setTag("Player");
 
-		player->addComponent(new PhysicsBody2D(
+		player->addComponent(new PhysicsBody2D(PhysicsBody2DParams(
 			physics::BodyShapes::box,
 			playerPos,
-			playerSize.x * .5f, playerSize.y * .5f,
+			playerSize* .5f,
 			b2_dynamicBody,
+			false,
 			glm::vec2(0, -.5f),
-			0.0f, 1.0f));
+			0.0f, 1.0f)));
 
 
 		player->getPhysicsBody2D()->setFixedRotation(true);
@@ -115,7 +114,7 @@ public:
 
 	}
 
-	void OnGUI() override {
+	void OnGui() override {
 		return;
 		double velSum = 0;
 		for (size_t i = 0; i < velocities.size(); i++){
@@ -197,7 +196,7 @@ public:
 			velocities.erase(velocities.begin());
 			velocities.shrink_to_fit();
 		}
-		timeIntervals.push_back(gameTimer->delta);
+		timeIntervals.push_back(Timer::delta);
 		if (timeIntervals.size() > 30) {
 			timeIntervals.erase(timeIntervals.begin());
 			timeIntervals.shrink_to_fit();

@@ -17,12 +17,10 @@ namespace letc {
 }
 class PlatformerDemo : public LETC {
 private:
-	Window* m_window;
 	GameObject* player; //todo make player class
 
-	float playerSpeed = 400;
-	float playerAcceleration = 2.0f;
-	float playerJumpForce = 70;
+	float playerSpeed = 70;
+	float playerJumpForce = 60.0f;
 
 public:
 	PlatformerDemo() {}
@@ -31,11 +29,10 @@ public:
 	void init() override {
 		RawResources::Init();
 		glm::vec2 screenSize(1280.0f, 720.0f);
+		window->setSize(screenSize);
+		window->setVSync(true);
 
-		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, false);
-		m_window->setVSync(true);
-
-		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
+		glm::vec2 fontScale = glm::vec2(window->getWidth() / 32.0f, window->getHeight() / 18.0f);
 		letc::physics::PhysicsWorld2D::setDebugDraw();
 
 		Shader* shader0 = new Shader();
@@ -45,7 +42,6 @@ public:
 
 
 		Layer* layer0 = new Layer("Play Layer", new BatchRenderer2D(), shader0);
-		layers.push_back(layer0);
 		
 		layer0->add(
 			new GameObject(
@@ -64,22 +60,31 @@ public:
 		
 		player->setTag("Player");
 
-		player->addComponent(new PhysicsBody2D(
+		player->addComponent(new PhysicsBody2D(PhysicsBody2DParams(
 			physics::BodyShapes::box,
 			playerPos,
-			playerSize.x, playerSize.y,
+			playerSize,
 			b2_dynamicBody, 
+			false,
 			{0,0},
-			0.6f, 0.5f));
+			0.3f,
+			0.3f)));
 
 		player->addAnimator();
 
 		player->getAnimator()->addAnimation(new SpriteSheetAnimation(
 			SpriteSheetAnimInfo{
-			"Test",10.0f, 1, 6, true}
-		));
+			"Test",
+			1.0f, 
+			1,
+			6,
+			true
+			}
 
+		));
 		player->getAnimator()->play("Test");
+
+		//player->getAnimator()->play("Test");
 
 		layer0->add(player);
 
@@ -94,7 +99,9 @@ public:
 		glm::vec2 floorSize(10000000, 2);
 		GameObject* floor = new GameObject(floorPos, floorSize);
 		floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-		floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
+		floor->addComponent(new physics::PhysicsBody2D(PhysicsBody2DParams(
+			physics::BodyShapes::box, floorPos, floorSize, b2_staticBody))
+		);
 		layer0->add(floor);
 
 		for (int x = 0; x < 100; x+=10)
@@ -106,19 +113,22 @@ public:
 				floorSize = glm::vec2(5, 2);
 				GameObject* floor = new GameObject(floorPos, floorSize);
 				floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-				floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
+				floor->addComponent(new physics::PhysicsBody2D(PhysicsBody2DParams(
+					physics::BodyShapes::box, floorPos, floorSize, b2_staticBody)));
 				layer0->add(floor);
 			}
 
 		}
 
-		glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
+		glm::vec2 screenScale = glm::vec2(window->getWidth() / 32, window->getHeight() / 18);
 	}
 
 	void update() override {
-		PhysicsWorld2D::step(gameTimer->delta);
+		PhysicsWorld2D::step(Timer::delta);
 		LETC::update();
 		sceneCamera->position = { player->transform->getPosition().x, player->transform->getPosition().y+3.0f, -1.0f};
+		
+
 
 	}
 
@@ -142,8 +152,9 @@ public:
 		if (Input::keyWasPressed(GLFW_KEY_SPACE))
 			player->getPhysicsBody2D()->addImpulse(glm::vec2(0, 1), playerJumpForce);
 
-		player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
-		//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
+		player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * Timer::delta);
+
+		//player->position.x += playerSpeed * horizontal * (float)Timer::delta;
 
 		glm::vec2 playerPos = player->transform->getPosition();
 		if (playerPos.y < -10.0f) {

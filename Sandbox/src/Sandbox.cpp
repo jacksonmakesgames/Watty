@@ -49,8 +49,8 @@ public:
 		fpsLabel = new Label(labelProps);
 		labelProps.color = Color::white;
 		upsLabel = new Label(labelProps);
-		GameObject* fpsGO = Instantiate::Create<GameObject>({ -14, 7 }, {1,1},"GUI");
-		GameObject* upsGO = Instantiate::Create<GameObject>({ -14, 5 }, {.5,.4}, "GUI");
+		GameObject* fpsGO = Instantiate<GameObject>({ -14, 7 }, {1,1},"GUI");
+		GameObject* upsGO = Instantiate<GameObject>({ -14, 5 }, {.5,.4}, "GUI");
 		fpsGO->addComponent(fpsLabel);
 		upsGO->addComponent(upsLabel);
 
@@ -60,17 +60,17 @@ public:
 	Transform2D* testTransform;
 	PhysicsBody2D* testBody;
 	void setupMotionTest() {
-		GameObject* go = Instantiate::Create<GameObject>({ -10,2 }, { 2,2 });
+		GameObject* go = Instantiate<GameObject>({ -10,2 }, { 2,2 });
 		go->addComponent(new Sprite(0xffffffff));
 		testTransform = go->transform;
-		GameObject* child = Instantiate::Create<GameObject>({ 0,0 }, {.1f,.1f},"");
+		GameObject* child = Instantiate<GameObject>({ 0,0 }, {.1f,.1f},"");
 		child->addComponent(new Sprite(Color::orange));
 		go->transform->addChild(child->transform);
 		startKinematic = testTransform->getPosition();
 
-		GameObject* go2 = Instantiate::Create<GameObject>({ -10,-2 }, { 2,2 });
+		GameObject* go2 = Instantiate<GameObject>({ -10,-2 }, { 2,2 });
 		go2->addComponent(new Sprite(0xffffffff));
-		GameObject* child2 = Instantiate::Create<GameObject>({ 0,0 }, { .1f,.1f }, "");
+		GameObject* child2 = Instantiate<GameObject>({ 0,0 }, { .1f,.1f }, "");
 		child2->addComponent(new Sprite(Color::blue));
 		go2->addComponent(new PhysicsBody2D(PhysicsBody2DParams(BodyShapes::box, { -10,2 }, { 2,2 }, b2BodyType::b2_dynamicBody)));
 		testBody = go2->getPhysicsBody2D();
@@ -89,7 +89,7 @@ public:
 				//ABGR
 				WattyColor col = Color::random();
 				Sprite* sprite = new Sprite(col);
-				GameObject* tmp = Instantiate::Create<GameObject>({ x,y }, { .8,.8 });
+				GameObject* tmp = Instantiate<GameObject>({ x,y }, { .8,.8 });
 				tmp->addComponent(sprite);
 				allSprites.push_back(sprite);
 				allObjects.push_back(tmp);
@@ -102,7 +102,7 @@ public:
 				//ABGR
 				WattyColor col = Color::random();
 				Sprite* sprite = new Sprite(col);
-				GameObject* tmp = Instantiate::Create<GameObject>({ x,y }, { .8,.8 });
+				GameObject* tmp = Instantiate<GameObject>({ x,y }, { .8,.8 });
 				tmp->addComponent(sprite);
 				allSprites.push_back(sprite);
 				allObjects2.push_back(tmp);
@@ -120,7 +120,7 @@ public:
 	}
 	void update() override{
 		
-		if (Input::keyWasPressed(GLFW_KEY_SPACE)) testDir *= -1;
+		if (Input::keyWasPressed(GLFW_KEY_SPACE)) Destroy(testBody->gameObject);
 		sceneCamera->setSize( glm::vec2(	
 					sceneCamera->getSize().x - (100.0f*window->getAspectRatio().x  * Input::getScrollAmountThisFrameY())*Timer::delta,
 					sceneCamera->getSize().y - (100.0f*window->getAspectRatio().y * Input::getScrollAmountThisFrameY())*Timer::delta

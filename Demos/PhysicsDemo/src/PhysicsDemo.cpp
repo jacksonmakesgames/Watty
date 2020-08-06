@@ -27,7 +27,6 @@ namespace letc {
 }
 class PhysicsDemo : public LETC {
 	private:
-		Window* m_window;
 		Label* fpsLabel;
 		Label* upsLabel;
 		Label* mpsLabel;
@@ -63,8 +62,9 @@ class PhysicsDemo : public LETC {
 
 		void init() override {
 			RawResources::Init();
-			m_window = createWindow("This little engine could", 1280, 720, false, false);
-			glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
+			window->setTitle("This Little Engine Could");
+			window->setSize({1290, 720});
+			glm::vec2 fontScale = glm::vec2(window->getWidth() / 32.0f, window->getHeight() / 18.0f);
 
 #ifdef WATTY_EMSCRIPTEN
 			shader0 = new Shader(); // Can't use OGL4 shaders on WebGL2
@@ -77,13 +77,8 @@ class PhysicsDemo : public LETC {
 #endif
 
 			Layer* layer0 = new Layer("Ball Layer", new BatchRenderer2D(), shader0);
-			layers.push_back(layer0);
-
 			Layer* floorLayer = new Layer("Floor Layer", new BatchRenderer2D(), shader0);
-			layers.push_back(floorLayer);
-
 			Layer* uiLayer = new Layer("UI Layer");
-			//layers.push_back(uiLayer);
 			
 			//FontManager::add(new Font("Roboto", FONTPATH, 10, fontScale)); 
 
@@ -103,13 +98,14 @@ class PhysicsDemo : public LETC {
 				playerSize,
 				new Sprite(new Texture( "textures/Player.png")));
 
-			player->addComponent(new PhysicsBody2D(
+			player->addComponent(new PhysicsBody2D(PhysicsBody2DParams(
 				physics::BodyShapes::circle,
 				playerPos,
-				playerSize.x, playerSize.y,
+				playerSize,
 				b2_dynamicBody,
+				false,
 				glm::vec2(),
-				0.6f, 0.5f));
+				0.6f, 0.5f)));
 
 			player->setTag("Player");
 			layer0->add(player);
@@ -119,17 +115,21 @@ class PhysicsDemo : public LETC {
 
 			glm::vec3 floorPos(0,-9.0f,0);
 			glm::vec2 floorSize(32, 2);
+
+			PhysicsBody2DParams wallParams = PhysicsBody2DParams(physics::BodyShapes::box, floorPos, floorSize, b2_staticBody);
+
 			GameObject* floor = new GameObject(floorPos, floorSize);
 			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-			floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
+			floor->addComponent(new physics::PhysicsBody2D(wallParams));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floor);
 			
 			glm::vec3 floorPosL(-17.0f,0,0);
 			glm::vec2 floorSizeL(2, 18);
+			wallParams.size = floorSizeL;
 			GameObject* floorL = new GameObject(floorPosL, floorSizeL);
 			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
-			floorL->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosL, floorSizeL.x, floorSizeL.y, b2_staticBody));
+			floorL->addComponent(new physics::PhysicsBody2D(wallParams));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floorL);
 			
@@ -137,11 +137,11 @@ class PhysicsDemo : public LETC {
 			glm::vec2 floorSizeR(2, 18);
 			GameObject* floorR = new GameObject(floorPosR, floorSizeR);
 			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
-			floorR->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPosR, floorSizeR.x, floorSizeR.y, b2_staticBody));
+			floorR->addComponent(new physics::PhysicsBody2D(wallParams));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floorR);
 
-			glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
+			glm::vec2 screenScale = glm::vec2(window->getWidth() / 32, window->getHeight() / 18);
 			
 			//FONTS:
 			/*
@@ -197,22 +197,23 @@ class PhysicsDemo : public LETC {
 		void reset() override{
 			for (size_t i = 0; i < boxes.size(); i++)
 			{
-				getLayerByName("Ball Layer")->remove(boxes[i]);
+				Destroy(boxes[i]);
+				//Layer::getLayerByName("Ball Layer")->remove(boxes[i]);
 			}
 			boxes.clear();
 		}
 
 		void checkBoxes() {
 			boxes.clear();
-			for (size_t bI = 0; bI < getLayerByName("Ball Layer")->getGameObjects().size(); bI++){
-				if(getLayerByName("Ball Layer")->getGameObjects()[bI]->getTag() == "Box")
-					boxes.push_back(getLayerByName("Ball Layer")->getGameObjects()[bI]);
+			for (size_t bI = 0; bI < Layer::getLayerByName("Ball Layer")->getGameObjects().size(); bI++){
+				if(Layer::getLayerByName("Ball Layer")->getGameObjects()[bI]->getTag() == "Box")
+					boxes.push_back(Layer::getLayerByName("Ball Layer")->getGameObjects()[bI]);
 			}
 			
 			for (size_t i = 0; i < boxes.size(); i++)
 			{
 			if (boxes[i]->transform->getPosition().y < -10 && m_grabbedBox != boxes[i]) {
-				getLayerByName("Ball Layer")->remove(boxes[i]);
+				Layer::getLayerByName("Ball Layer")->remove(boxes[i]);
 			}
 			}
 
@@ -246,9 +247,9 @@ class PhysicsDemo : public LETC {
 			if (Input::keyWasPressed(GLFW_KEY_SPACE))
 				player->getPhysicsBody2D()->addImpulse(glm::vec2(0,1), playerJumpForce);
 
-			player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
+			player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * Timer::delta);
 
-			//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
+			//player->position.x += playerSpeed * horizontal * (float)Timer::delta;
 			glm::vec2 playerPos = player->transform->getPosition();
 			if (playerPos.y < -10.0f) {
 				player->transform->setPosition({ 0, 10 });
@@ -259,12 +260,12 @@ class PhysicsDemo : public LETC {
 			// BOXES:
 			double x, y;
 			Input::getMousePos(x, y);
-			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
-			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
+			float xScreenMousePos = x * 32.0f / window->getWidth() - 16.0f;
+			float yScreenMousePos = 9.0f - y * 18.0f / window->getHeight();
 
 			if (Input::mouseButtonWasPressed(GLFW_MOUSE_BUTTON_LEFT) && (!ImGui::GetIO().WantCaptureMouse)) {
 
-				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
+				QueryAABBCallback* callback = new QueryAABBCallback(Layer::getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
 				aabb->lowerBound = b2Vec2(xScreenMousePos - .01f, yScreenMousePos - .01f);
 				aabb->upperBound = b2Vec2(xScreenMousePos + .01f, yScreenMousePos + .01f);
@@ -310,7 +311,7 @@ class PhysicsDemo : public LETC {
 
 			else if (Input::mouseButtonWasPressed(GLFW_MOUSE_BUTTON_RIGHT) && (!ImGui::GetIO().WantCaptureMouse)) {
 
-				QueryAABBCallback* callback = new QueryAABBCallback(getLayerByName("Ball Layer"));
+				QueryAABBCallback* callback = new QueryAABBCallback(Layer::getLayerByName("Ball Layer"));
 				b2AABB* aabb = new b2AABB();
 				aabb->lowerBound = b2Vec2(xScreenMousePos - .01f, yScreenMousePos - .01f);
 				aabb->upperBound = b2Vec2(xScreenMousePos + .01f, yScreenMousePos + .01f);
@@ -318,7 +319,7 @@ class PhysicsDemo : public LETC {
 				PhysicsWorld2D::box2DWorld->QueryAABB(callback, *aabb);
 				if (callback->hit) {
 					if (callback->gameObjects[0]->getTag() == "Box") {
-						getLayerByName("Ball Layer")->remove(callback->gameObjects[0]);
+						Layer::getLayerByName("Ball Layer")->remove(callback->gameObjects[0]);
 					}
 				}
 			}
@@ -343,24 +344,23 @@ class PhysicsDemo : public LETC {
 		GameObject* addBox() {
 			double x, y;
 			Input::getMousePos(x, y);
-			float xScreenMousePos = x * 32.0f / m_window->getWidth() - 16.0f;
-			float yScreenMousePos = 9.0f - y * 18.0f / m_window->getHeight();
+			float xScreenMousePos = x * 32.0f / window->getWidth() - 16.0f;
+			float yScreenMousePos = 9.0f - y * 18.0f / window->getHeight();
 			
 			glm::vec2 boxSize(2, 2);
-			glm::vec3 boxPos(xScreenMousePos-boxSize.x/2.0f, yScreenMousePos-boxSize.y/2.0f, 0);
-			GameObject* box = new GameObject(boxPos, boxSize);
+			glm::vec3 boxPos(xScreenMousePos, yScreenMousePos, 0);
+			GameObject* box = Instantiate<GameObject>(boxPos, boxSize,"Ball Layer");
 			box->addComponent(new Sprite(boxPos.x, boxPos.y, boxSize.x, boxSize.y, boxTexture));
-			box->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, boxPos, boxSize.x, boxSize.y, b2_dynamicBody));
+			box->addComponent(new physics::PhysicsBody2D(
+				PhysicsBody2DParams(
+					physics::BodyShapes::box,
+					boxPos,
+					boxSize,
+					b2_dynamicBody))
+			);
 			box->setTag("Box");
-			for (size_t i = 0; i < layers.size(); i++)
-			{
-				if (layers[i]->name == "Ball Layer") {
-					layers[i]->add(box);
-					boxes.push_back(box);
-					return box;
-				}
-			}
-			return nullptr;
+			boxes.push_back(box);
+			return box;
 		}
 };
 

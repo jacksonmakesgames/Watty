@@ -121,10 +121,18 @@ namespace letc {
 
 	void Layer::update(){
 		if (!enabled_) return;
+		std::vector<int> toRemoveThisFrame = std::vector<int>();
 		for (size_t i = 0; i < m_gameObjects.size(); i++)
 		{
-		
-			m_gameObjects[i]->update();
+			if (m_gameObjects[i]->_destroyFlag)
+				toRemoveThisFrame.push_back(i);
+			else
+				m_gameObjects[i]->update();
+		}
+
+		for (size_t i = 0; i < toRemoveThisFrame.size(); i++) {
+			delete m_gameObjects[toRemoveThisFrame[i]];
+			m_gameObjects.erase(m_gameObjects.begin() + toRemoveThisFrame[i]);
 		}
 
 

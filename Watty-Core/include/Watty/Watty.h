@@ -24,7 +24,6 @@ bool letc::graphics::Window::useVSync = false;
 
 #include <res/res_watty.h> // From Watty-Core
 
-#include <gameobjects/Instantiate.h>
 #include <input/Input.h>
 #include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>

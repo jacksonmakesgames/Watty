@@ -19,14 +19,14 @@ namespace letc { namespace graphics {
 		if (m_info.row != -1 && m_info.col == -1) {
 			m_numberOfFrames = m_info.numberOfCols;
 			m_minFrame = m_info.row * m_info.numberOfCols;
-			m_maxFrame = m_minFrame + m_info.numberOfCols;
+			m_maxFrame = m_minFrame + m_info.numberOfCols-1;
 
 		}
 		// Just Col Override
 		else if (m_info.col != -1 && m_info.row == -1) {
 			m_numberOfFrames = m_info.numberOfRows;
 			m_minFrame = m_info.col * m_info.numberOfRows;
-			m_maxFrame = m_minFrame + m_info.numberOfCols;
+			m_maxFrame = m_minFrame + m_info.numberOfCols-1;
 		}
 		// Both Override: One Frame
 		else if (m_info.row != -1 && m_info.col != -1) {
@@ -43,12 +43,14 @@ namespace letc { namespace graphics {
 			m_maxFrame = m_numberOfFrames - 1;
 		}
 
-
-		
 	}
 
 	void SpriteSheetAnimation::play(){
+		if (done)
+			m_currentFrame = m_minFrame;
 		done = false;
+		nextUpdateTime = time.elapsed();
+
 	}
 
 	void SpriteSheetAnimation::update()
@@ -69,8 +71,7 @@ namespace letc { namespace graphics {
 				objectsRenderable->setFrameInfo(m_frameInfo);
 			
 			m_currentFrame++;
-			
-			if (m_currentFrame >= m_maxFrame && loop) { m_currentFrame = m_minFrame;  }
+			if (m_currentFrame > m_maxFrame && loop) { m_currentFrame = m_minFrame;  }
 			else if (!loop) done = true;
 		}
 	}

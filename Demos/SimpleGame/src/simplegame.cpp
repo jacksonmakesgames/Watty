@@ -39,12 +39,11 @@ public:
 
 	void init() override {
 		RawResources::Init();
-		m_window = createWindow("The First Game Made With the LETC!", 1600,900, true, false);
-
+		window->setTitle("The First Game Made With the LETC!");
+		window->setSize({1600,900});
+		
 		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D());
 		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D());
-		layers.push_back(playerLayer);
-		layers.push_back(uiLayer);
 
 		glClearColor(.976f,.972f,.972f,1);
 
@@ -106,8 +105,8 @@ public:
 		float horizontalP2 = -1*(float) Input::keyIsDown(GLFW_KEY_LEFT) + Input::keyIsDown(GLFW_KEY_RIGHT);
 		float verticalP2 = (float) Input::keyIsDown(GLFW_KEY_UP) + -1*(float)(Input::keyIsDown(GLFW_KEY_DOWN));
 		
-		playerGO->transform->translate({playerSpeed * horizontalP1 * gameTimer->delta, playerSpeed * verticalP1 * gameTimer->delta});
-		enemyGO->transform->translate({playerSpeed * horizontalP2 * gameTimer->delta, playerSpeed * verticalP2 * gameTimer->delta});
+		playerGO->transform->translate({playerSpeed * horizontalP1 * Timer::delta, playerSpeed * verticalP1 * Timer::delta});
+		enemyGO->transform->translate({playerSpeed * horizontalP2 *  Timer::delta, playerSpeed * verticalP2 * Timer::delta});
 
 	}
 

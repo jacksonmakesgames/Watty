@@ -37,7 +37,6 @@ namespace letc {namespace graphics {
 	void Animator2D::update()
 	{
 		if (m_currentAnimationName.empty()) {
-			std::cout << "Cannot update animation: none currently playing" << std::endl;
 			return;
 		}
 		Animation2D* animation = findByName(m_currentAnimationName);
@@ -50,14 +49,15 @@ namespace letc {namespace graphics {
 
 	}
 
-	void Animator2D::addAnimation(Animation2D* animation)
+	Animation2D* Animator2D::addAnimation(Animation2D* animation)
 	{
 		if (findByName(animation->getName()) != nullptr) {
 			std::cout << "Animation: <" << animation->getName() << "> already existed in animator, not adding duplicate" << std::endl;
-			return;
+			return animations[animation->getName()];
 		}
 		animation->setRenderable(m_objectsRenderable);
 		animations[animation->getName()] = animation;
+		return animations[animation->getName()];
 	}
 
 	Animation2D* Animator2D::findByName(std::string name)
