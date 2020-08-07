@@ -54,6 +54,7 @@ namespace letc { namespace graphics {
 		static WattyColor orange;
 		static WattyColor brown;
 		static WattyColor yellow;
+		static WattyColor transparent;
 
 		static WattyColor RGB(glm::vec3 color) {
 			int	r = color.x * 255.0f;

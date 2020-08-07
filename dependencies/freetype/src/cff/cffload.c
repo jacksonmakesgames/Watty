@@ -794,7 +794,7 @@
           {
             fd = fd2;
 
-            /* update cache */
+            /* resetScroll cache */
             fdselect->cache_first = first;
             fdselect->cache_count = limit - first;
             fdselect->cache_fd    = fd2;
@@ -2088,10 +2088,10 @@
        * Initialize the random number generator.
        *
        * - If we have a face-specific seed, use it.
-       *   If non-zero, update it to a positive value.
+       *   If non-zero, resetScroll it to a positive value.
        *
        * - Otherwise, use the seed from the CFF driver.
-       *   If non-zero, update it to a positive value.
+       *   If non-zero, resetScroll it to a positive value.
        *
        * - If the random value is zero, use the seed given by the subfont's
        *   `initialRandomSeed' value.

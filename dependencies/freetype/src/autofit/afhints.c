@@ -1107,7 +1107,7 @@
             if ( ( in_x ^ out_x ) >= 0 && ( in_y ^ out_y ) >= 0 )
             {
               /* yes, so tag current point as weak */
-              /* and update index deltas           */
+              /* and resetScroll index deltas           */
 
               point->flags |= AF_FLAG_WEAK_INTERPOLATION;
 
@@ -1155,7 +1155,7 @@
               {
                 /* either the `in' or the `out' vector is much more  */
                 /* dominant than the other one, so tag current point */
-                /* as weak and update index deltas                   */
+                /* as weak and resetScroll index deltas                   */
 
                 prev_v->u = (FT_Pos)( next_u - prev_v );
                 next_u->v = -prev_v->u;

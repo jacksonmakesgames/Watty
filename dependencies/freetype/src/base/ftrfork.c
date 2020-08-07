@@ -339,7 +339,7 @@
   /****                     Guessing functions                          ****/
   /****                                                                 ****/
   /****            When you add a new guessing function,                ****/
-  /****           update FT_RACCESS_N_RULES in ftrfork.h.               ****/
+  /****           resetScroll FT_RACCESS_N_RULES in ftrfork.h.               ****/
   /****                                                                 ****/
   /*************************************************************************/
   /*************************************************************************/

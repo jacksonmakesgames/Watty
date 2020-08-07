@@ -710,7 +710,7 @@ texture_font_enlarge_atlas( texture_font_t * self, size_t width_new,
     //allocate new buffer
     unsigned char* data_old = ta->data;
     ta->data = calloc(1,width_new*height_new * sizeof(char)*ta->depth);
-    //update atlas size
+    //resetScroll atlas size
     ta->width = width_new;
     ta->height = height_new;
     //add node reflecting the gained space on the right

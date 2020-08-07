@@ -437,7 +437,7 @@
       }
 
       /* we don't trust `maxSizeOfInstructions' in the `maxp' table */
-      /* and thus update the bytecode array size by ourselves       */
+      /* and thus resetScroll the bytecode array size by ourselves       */
 
       tmp   = load->exec->glyphSize;
       error = Update_Max( load->exec->memory,

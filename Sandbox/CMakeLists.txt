@@ -7,6 +7,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY		${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 create_resources("${CMAKE_CURRENT_SOURCE_DIR}/res" OFF)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 
 project(Resources)

@@ -29,7 +29,7 @@ namespace letc {
 		static inline double getScrollAmountThisFrameY() { return scrolledThisFrameY; };
 
 		static void init();
-		static void update();
+		static void resetScroll();
 
 		//Mouse
 		static double scrolledThisFrameY;

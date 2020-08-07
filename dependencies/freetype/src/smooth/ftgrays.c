@@ -557,7 +557,7 @@ typedef ptrdiff_t  FT_PtrDist;
     return;
 
   Found:
-    /* update old cell */
+    /* resetScroll old cell */
     cell->area  += ras.area;
     cell->cover += ras.cover;
   }

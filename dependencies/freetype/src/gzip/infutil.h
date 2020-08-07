@@ -62,7 +62,7 @@ struct inflate_blocks_state {
 
 
 /* defines for inflate input/output */
-/*   update pointers and return */
+/*   resetScroll pointers and return */
 #define UPDBITS {s->bitb=b;s->bitk=k;}
 #define UPDIN {z->avail_in=n;z->total_in+=p-z->next_in;z->next_in=p;}
 #define UPDOUT {s->write=q;}

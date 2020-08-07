@@ -5,6 +5,9 @@
 struct RawResources {
 	//AUTO-BEGIN-RES
 	//
+static const unsigned char textures_smoke_png[];
+static const unsigned textures_smoke_png_size;
+;
 static const unsigned char audio_drums_wav[];;
 static const unsigned audio_drums_wav_size;
 ;
@@ -63,6 +66,8 @@ static const unsigned textures_test_png_size;
 static void Init() {
 	//AUTO-BEGIN-INIT
 	//
+Resources::all.push_back(new Resource("textures/smoke.png", textures_smoke_png, textures_smoke_png_size));
+;
 Resources::all.push_back(new Resource("audio/drums.wav", audio_drums_wav, audio_drums_wav_size));
 ;
 Resources::all.push_back(new Resource("audio/sci_fi.ogg", audio_sci_fi_ogg, audio_sci_fi_ogg_size));

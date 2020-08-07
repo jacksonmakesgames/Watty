@@ -1796,7 +1796,7 @@
     glyphpath->prevElemP0   = P0;
     glyphpath->prevElemP1   = P1;
 
-    /* update current map */
+    /* resetScroll current map */
     if ( newHintMap )
       cf2_hintmap_build( &glyphpath->hintMap,
                          glyphpath->hStemHintArray,
@@ -1886,7 +1886,7 @@
     glyphpath->prevElemP2   = P2;
     glyphpath->prevElemP3   = P3;
 
-    /* update current map */
+    /* resetScroll current map */
     if ( cf2_hintmask_isNew( glyphpath->hintMask ) )
       cf2_hintmap_build( &glyphpath->hintMap,
                          glyphpath->hStemHintArray,

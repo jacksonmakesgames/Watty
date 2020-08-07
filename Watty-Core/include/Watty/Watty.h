@@ -155,7 +155,7 @@ namespace letc {
 
 		// Runs as fast as possible
 		void engineUpdate() {
-			
+
 			double newTime = Timer::elapsed();
 			double frameTime = newTime - currentTime;
 
@@ -165,18 +165,18 @@ namespace letc {
 			
 			currentTime = newTime;
 			accumulator += frameTime;
-
 			while (accumulator >= fixedTimeStep)
 			{
-				Input::update();
 				Input::listenForInput();
 
 				Timer::update();
 
 				updates++;
-				//physics::PhysicsWorld2D::step(Timer::delta);
-				physics::PhysicsWorld2D::step(fixedTimeStep);
+
+				physics::PhysicsWorld2D::step(Timer::delta); //TODO: could be fixedTimeStep instead
 				update();
+				Input::resetScroll();
+
 				t += fixedTimeStep;
 				accumulator -= fixedTimeStep;
 
@@ -257,6 +257,7 @@ private:
 #else
 		while (!window->closed()) {
 #endif 
+
 			engineUpdate();
 			if (Timer::elapsed() - updateTimer > updateTick) {
 				if (window->useVSync) render(); // With Vsync enabled, render at the refresh rate of the window
@@ -269,12 +270,13 @@ private:
 			}
 
 		
-			
+
 			// Timing/FPS
 			if ((Timer::elapsed() - timer) > 1.0f) {
 				timer += 1.0f;
 				Stats::engineUpdate(framesThisSec, updates);
 				tick();
+
 				framesThisSec = 0;
 				updates = 0;
 			}

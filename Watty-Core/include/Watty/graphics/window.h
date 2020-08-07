@@ -64,7 +64,6 @@ namespace letc {namespace graphics {
 		~Window();
 		bool closed() const;
 		void update();
-		//void listenForInput();
 		void clear() const;
 
 		inline int getWidth() const { return Window::m_Width; };

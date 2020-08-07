@@ -1625,7 +1625,7 @@
     }
 
     /* now, certain points may have been attached to a hint and */
-    /* not marked as strong; update their flags then            */
+    /* not marked as strong; resetScroll their flags then            */
     {
       FT_UInt    count = glyph->num_points;
       PSH_Point  point = glyph->points;

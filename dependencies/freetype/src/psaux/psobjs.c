@@ -2541,7 +2541,7 @@
     if ( face->internal->random_seed != -1 )
     {
       /* If we have a face-specific seed, use it.    */
-      /* If non-zero, update it to a positive value. */
+      /* If non-zero, resetScroll it to a positive value. */
       subfont->random = (FT_UInt32)face->internal->random_seed;
       if ( face->internal->random_seed )
       {

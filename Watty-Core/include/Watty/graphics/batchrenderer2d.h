@@ -19,12 +19,6 @@
 namespace letc {namespace graphics {
 	class BatchRenderer2D : public Renderer2D {
 	private:
-		GLuint m_vertexArray;
-		GLuint m_vertexBuffer;
-		IndexBuffer* m_indexBuffer;
-		GLsizei m_indexCount;
-		VertexData* m_currentBuffer;
-
 		int m_currentTextLine = 0;
 
 #ifdef WATTY_EMSCRIPTEN
@@ -32,24 +26,13 @@ namespace letc {namespace graphics {
 		VertexData* m_currentBufferBase;
 #endif // WATTY_EMSCRIPTEN
 
-		
-		std::vector<float> m_glTIDsThisFlush;
-		unsigned int m_textureArrayID;
-		std::vector<const Texture*> m_textures;
-
 	public:
 		BatchRenderer2D();
-		~BatchRenderer2D();
-		void begin() override;
 		void submit(const Renderable2D* renderable) override;
-		void end() override;
 		void flush() override;
 #ifdef WATTY_OPENGL
 		void drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor labelColor, const Bounds2D bounds) override;
 #endif
-
-	private:
-		void init();
 	};
 
 }}

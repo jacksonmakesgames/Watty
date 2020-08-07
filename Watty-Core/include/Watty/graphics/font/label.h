@@ -21,7 +21,7 @@ namespace letc { namespace graphics {
 	class Label : public Renderable2D {
 	public:
 		LabelProperties properties;
-
+	private:
 	public:
 		Label(LabelProperties properties);
 		Label(std::string text, Font* font, WattyColor color, OverflowMode overFlowMode = OverflowMode::Expand);

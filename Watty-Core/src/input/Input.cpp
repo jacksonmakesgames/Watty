@@ -55,7 +55,7 @@ namespace letc {
 		
 	}
 
-	void Input::update(){
+	void Input::resetScroll(){
 		scrolledThisFrameY = 0;
 	}
 

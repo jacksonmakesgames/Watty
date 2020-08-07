@@ -89,8 +89,8 @@ typedef struct z_stream_s {
 typedef z_stream FAR *z_streamp;
 
 /*
-   The application must update next_in and avail_in when avail_in has
-   dropped to zero. It must update next_out and avail_out when avail_out
+   The application must resetScroll next_in and avail_in when avail_in has
+   dropped to zero. It must resetScroll next_out and avail_out when avail_out
    has dropped to zero. The application must initialize zalloc, zfree and
    opaque before calling the init function. All other fields are set by the
    compression library and must not be updated by the application.
@@ -204,12 +204,12 @@ ZEXTERN(int)  deflateInit OF((z_streamp strm, int level));
     The detailed semantics are as follows. deflate performs one or both of the
   following actions:
 
-  - Compress more input starting at next_in and update next_in and avail_in
+  - Compress more input starting at next_in and resetScroll next_in and avail_in
     accordingly. If not all input can be processed (because there is not
     enough room in the output buffer), next_in and avail_in are updated and
     processing will resume at this point for the next call of deflate().
 
-  - Provide more output starting at next_out and update next_out and avail_out
+  - Provide more output starting at next_out and resetScroll next_out and avail_out
     accordingly. This action is forced if the parameter flush is non zero.
     Forcing flush frequently degrades the compression ratio, so this parameter
     should be set only when necessary (in interactive applications).
@@ -258,7 +258,7 @@ ZEXTERN(int)  deflateInit OF((z_streamp strm, int level));
     deflate() sets strm->adler to the adler32 checksum of all input read
   so far (that is, total_in bytes).
 
-    deflate() may update data_type if it can make a good guess about
+    deflate() may resetScroll data_type if it can make a good guess about
   the input data type (Z_ASCII or Z_BINARY). In doubt, the data is considered
   binary. This field is only for information purposes and does not affect
   the compression algorithm in any manner.
@@ -316,12 +316,12 @@ ZEXTERN(int) inflate OF((z_streamp strm, int flush));
   The detailed semantics are as follows. inflate performs one or both of the
   following actions:
 
-  - Decompress more input starting at next_in and update next_in and avail_in
+  - Decompress more input starting at next_in and resetScroll next_in and avail_in
     accordingly. If not all input can be processed (because there is not
     enough room in the output buffer), next_in is updated and processing
     will resume at this point for the next call of inflate().
 
-  - Provide more output starting at next_out and update next_out and avail_out
+  - Provide more output starting at next_out and resetScroll next_out and avail_out
     accordingly.  inflate() provides as much output as possible, until there
     is no more input data or no more space in the output buffer (see below
     about the flush parameter).
@@ -496,7 +496,7 @@ ZEXTERN(int)  deflateInit2 OF((z_streamp strm,
 */
 
 /*
-     Dynamically update the compression level and compression strategy.  The
+     Dynamically resetScroll the compression level and compression strategy.  The
    interpretation of level and strategy is as in deflateInit2.  This can be
    used to switch between compression and straight copy of the input data, or
    to switch to a different kind of input data requiring a different
@@ -657,7 +657,7 @@ ZEXTERN(int)  inflateReset OF((z_streamp strm));
 */
 
 /*
-     Dynamically update the compression level or strategy. See the description
+     Dynamically resetScroll the compression level or strategy. See the description
    of deflateInit2 for the meaning of these parameters.
      gzsetparams returns Z_OK if success, or Z_STREAM_ERROR if the file was not
    opened for writing.

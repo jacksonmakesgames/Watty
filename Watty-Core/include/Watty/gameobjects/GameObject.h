@@ -80,7 +80,6 @@ namespace letc {
 		virtual void submit(graphics::Renderer2D* renderer) const;
 
 		virtual void update();
-		virtual void update(glm::vec2 positionOffset);
 
 		inline const graphics::Renderable2D* getRenderable()const { return m_renderable; }
 

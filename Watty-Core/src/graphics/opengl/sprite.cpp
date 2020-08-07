@@ -1,10 +1,10 @@
 #include <graphics/sprite.h>
 namespace letc {namespace graphics {
-	Sprite::Sprite(float x, float y, float width, float height, WattyColor color)
-		: Renderable2D(glm::vec3(x, y, 0.0f), glm::vec2(width, height), color) {
+	Sprite::Sprite(glm::vec2 position, glm::vec2 size, WattyColor color)
+		: Renderable2D(glm::vec2(position.x, position.y), glm::vec2(size.x, size.y), color) {
 	}
-	Sprite::Sprite(float x, float y, float width, float height, Texture* texture)
-		: Renderable2D(glm::vec3(x, y, 0.0f), glm::vec2(width, height), 0xffffffff) {
+	Sprite::Sprite(glm::vec2 position, glm::vec2 size, Texture* texture)
+		: Renderable2D({ position.x, position.y}, size, 0xffffffff) {
 		m_texture = texture;
 	}
 
@@ -17,7 +17,7 @@ namespace letc {namespace graphics {
 	}
 
 	Sprite::Sprite(WattyColor color)
-		: Renderable2D(glm::vec3(0,0, 0.0f), glm::vec2(0, 0), color){
+		: Renderable2D(glm::vec2(0.0f,0.0f), glm::vec2(0, 0), color){
 	}
 	
 }}

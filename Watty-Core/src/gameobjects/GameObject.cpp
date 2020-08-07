@@ -130,31 +130,6 @@ namespace letc {
 			transform->children[i]->gameObject->enable();
 	}
 
-	/*void GameObject::translate(glm::vec2 translation){
-
-		m_position.x += translation.x;
-		m_position.y += translation.y;
-
-		for (size_t i = 0; i < m_children.size(); i++)
-			m_children[i]->translate(translation);
-	}*/
-
-	//void GameObject::rotate(float angleInRadians){
-	//	m_angle = angleInRadians;
-	//	glm::vec3 origin = glm::vec3(m_position.x + m_size.x/2.0f, m_position.y + m_size.y/2.0f, m_position.z);
-
-	//	//if (m_renderable) m_renderable->setTransformationMatrix(glm::mat4::rotationAroundPoint(origin, angleInRadians* RADTODEG, glm::vec3(0, 0, 1)));
-	//	//m_rotationMatrix =math::Matrix4::rotationAroundPoint(origin, angleInRadians * RADTODEG, glm::vec3(0, 0, 1));
-
-	//	//for (size_t i = 0; i < m_children.size(); i++)
-	//	//	m_children[i]->rotate(angleInRadians);
-
-	//	//TODO: QUATERNIONS
-
-	//	glm::mat4 rot = glm::rotate(glm::mat4(1), angleInRadians, glm::vec3(0, 0, -1));
-	//	rot = glm::translate(glm::mat4(1), origin) * rot * glm::translate(glm::mat4(1),-origin);
-	//	m_rotationMatrix = rot;
-	//}
 
 	void GameObject::submit(graphics::Renderer2D* renderer) const {
 		if (!enabled_) return;
@@ -196,34 +171,20 @@ namespace letc {
 			transform->setRotation(m_physicsBody2D->getBody()->GetAngle());
 		}
 
+		//Update renderable (not rendering, but for things like particles)
+		if (m_renderable)
+			m_renderable->update();
+
+
+		// Update children
 		for (size_t i = 0; i < transform->children.size(); i++) {
-			transform->children[i]->gameObject->update(transform->getPosition());
+			transform->children[i]->gameObject->update();
 		}
+
 
 	}
 
-	void GameObject::update(glm::vec2 parentPosition)
-	{
-		if (m_physicsBody2D != nullptr) {
-			glm::vec2 pos = m_physicsBody2D->getBodyPosition();
-			transform->setPosition(pos);
-			transform->rotate(-m_physicsBody2D->getBody()->GetAngle());
-		}
-		else {
-			/*transform->setPosition(
-				parentPosition
-				+ transform->getParentOffset());*/
-		}
 
-		/*if (m_renderable != nullptr) {
-			m_renderable->position = m_position;
-			m_renderable->size = m_size;
-		}*/
-
-		for (size_t i = 0; i < transform->children.size(); i++) {
-			transform->children[i]->gameObject->update(transform->getPosition());
-		}
-	}
 
 	GameObject::~GameObject(){
 		if(m_renderable)

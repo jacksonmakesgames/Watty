@@ -259,6 +259,7 @@ namespace letc {namespace graphics {
 
 	void Window::update() {
 		//scrolledThisFrameY = 0;
+		//Input::resetScroll();
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
@@ -322,71 +323,24 @@ namespace letc {namespace graphics {
 	}
 
 
-	//void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-	//	Window * win = (Window*) glfwGetWindowUserPointer(window);
-	//	win->m_keysThisFrame[key] = action != GLFW_RELEASE;
-	//	
-
-	//}
-
-
-	//void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
-	//	Window * win = (Window*) glfwGetWindowUserPointer(window);
-	//	win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
-
-	//}
-
-
-	//void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
-	//	Window* win = (Window*)glfwGetWindowUserPointer(window);
-	//	win->mx = xpos;
-	//	win->my = ypos;
-
-	//}
-	//
-
-	//void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-	//	Window* win = (Window*)glfwGetWindowUserPointer(window);
-	//	win->scrolledThisFrameY = yoffset;
-	//}
-
-
-
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 		Input::setKeyThisFrame(key, action != GLFW_RELEASE);
-
-		//Window* win = (Window*)glfwGetWindowUserPointer(window);
-		//win->m_keysThisFrame[key] = action != GLFW_RELEASE;
-
-
 	}
 
 
 	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
 		Input::setButtonThisFrame(button, action != GLFW_RELEASE);
-
-		//Window* win = (Window*)glfwGetWindowUserPointer(window);
-		//win->m_buttonsThisFrame[button] = action != GLFW_RELEASE;
-
 	}
 
 
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
 		Input::updateMousePos(xpos, ypos);
-
-		//Window* win = (Window*)glfwGetWindowUserPointer(window);
-		//win->mx = xpos;
-		//win->my = ypos;
-
 	}
 
 
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 		Input::scrolledThisFrameY = yoffset;
-
-		//Window* win = (Window*)glfwGetWindowUserPointer(window);
-		//win->scrolledThisFrameY = yoffset;
 	}
 
 	//TODO: not sure why this is static

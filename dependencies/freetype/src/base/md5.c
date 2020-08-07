@@ -94,7 +94,7 @@
 #endif
 
 /*
- * This processes one or more 64-byte data blocks, but does NOT update the bit
+ * This processes one or more 64-byte data blocks, but does NOT resetScroll the bit
  * counters.  There are no alignment requirements.
  */
 static const void *body(MD5_CTX *ctx, const void *data, unsigned long size)

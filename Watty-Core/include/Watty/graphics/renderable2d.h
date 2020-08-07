@@ -6,19 +6,9 @@
 #include "renderer2d.h"
 #include "texture.h"
 #include "shader.h"
-#include "Color.h"
 
 namespace letc { namespace graphics {
 
-	
-
-	struct VertexData
-	{
-		glm::vec3 vertex;
-		glm::vec2 uv;
-		float tid;
-		WattyColor color;
-	};
 
 	struct FrameInfo {
 		float currentFrame;
@@ -56,7 +46,7 @@ namespace letc { namespace graphics {
 
 
 	public:
-		Renderable2D(glm::vec3 position, glm::vec2 size, WattyColor color)
+		Renderable2D(glm::vec2 position, glm::vec2 size, WattyColor color)
 		: m_position(position), m_size(size), m_color(color), position(m_position){
 			m_transformationMatrix = glm::mat4(1);
 			setUVDefaults();
@@ -83,6 +73,8 @@ namespace letc { namespace graphics {
 			renderer->push(originalMat);
 		}
 
+
+		virtual void update() {};
 
 		virtual void submit(Renderer2D* renderer)const {
 			renderer->submit(this);
