@@ -31,7 +31,8 @@ namespace letc { namespace graphics {
 		// Both Override: One Frame
 		else if (m_info.row != -1 && m_info.col != -1) {
 			m_numberOfFrames = 1;
-			int frame = (m_info.row * (m_info.numberOfCols - 1)) + (m_info.col * (m_info.numberOfRows - 1));
+			//int frame = (m_info.row * (m_info.numberOfCols - 1)) + (m_info.col * (m_info.numberOfRows - 1));
+			int frame = ((m_info.row-1) * (m_info.numberOfCols) + (m_info.col));
 			m_minFrame = frame;
 			m_maxFrame = frame;
 		}

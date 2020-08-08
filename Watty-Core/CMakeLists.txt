@@ -9,6 +9,7 @@ file(GLOB_RECURSE SRC_INPUTS 		"${COREDIR}/src/input/**.cpp")
 file(GLOB_RECURSE SRC_PHYSICS 		"${COREDIR}/src/physics/**.cpp")
 file(GLOB_RECURSE SRC_SHADERS 		"${COREDIR}/src/shaders/**.cpp")
 file(GLOB_RECURSE SRC_UTILS 		"${COREDIR}/src/utils/**.cpp")
+file(GLOB_RECURSE SRC_ECS 			"${COREDIR}/src/ecs/**.cpp")
 
 file(GLOB_RECURSE SRC_SOLOUD 			"${COREDIR}/ext/soloud/src/audiosource/**.c*" "${COREDIR}/ext/soloud/src/backend/sdl/**.c*" "${COREDIR}/ext/soloud/src/filter/**.c*" "${COREDIR}/ext/soloud/src/core/**.c*")
 file(GLOB_RECURSE SRC_FREETYPEGL 		"${COREDIR}/ext/freetype-gl/*.c")
@@ -59,6 +60,10 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
      PREFIX ""
+     FILES ${SRC_ECS})
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
 	 FILES ${RES_SRC})
 	 
 
@@ -82,6 +87,7 @@ add_library(${CORENAME} STATIC
 	${SRC_PHYSICS}
 	${SRC_SHADERS}
 	${SRC_UTILS}
+	${SRC_ECS}
 	${RES_SRC}
 	)
 	
@@ -98,6 +104,7 @@ else()
 		${SRC_PHYSICS}
 		${SRC_SHADERS}
 		${SRC_UTILS}
+		${SRC_ECS}
 		${RES_SRC}
 	)
 

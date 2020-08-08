@@ -37,6 +37,8 @@ bool letc::graphics::Window::useVSync = false;
 #include <graphics/Color.h>
 #include <math/math.h>
 
+#include <ecs/ECS.h>
+
 #include <gameobjects/GameObject.h>
 #include <utils/timer.h>
 #include <utils/Random.h>

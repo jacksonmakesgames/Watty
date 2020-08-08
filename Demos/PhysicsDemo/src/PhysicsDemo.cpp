@@ -119,7 +119,7 @@ class PhysicsDemo : public LETC {
 			PhysicsBody2DParams wallParams = PhysicsBody2DParams(physics::BodyShapes::box, floorPos, floorSize, b2_staticBody);
 
 			GameObject* floor = new GameObject(floorPos, floorSize);
-			floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
+			floor->addComponent(new Sprite(floorPos, floorSize, floorTexture));
 			floor->addComponent(new physics::PhysicsBody2D(wallParams));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floor);
@@ -128,7 +128,7 @@ class PhysicsDemo : public LETC {
 			glm::vec2 floorSizeL(2, 18);
 			wallParams.size = floorSizeL;
 			GameObject* floorL = new GameObject(floorPosL, floorSizeL);
-			floorL->addComponent(new Sprite(floorPosL.x, floorPosL.y, floorSizeL.x, floorSizeL.y, floorTexture));
+			floorL->addComponent(new Sprite(floorPosL, floorSizeL, floorTexture));
 			floorL->addComponent(new physics::PhysicsBody2D(wallParams));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floorL);
@@ -136,7 +136,7 @@ class PhysicsDemo : public LETC {
 			glm::vec3 floorPosR(17.0f,0,0);
 			glm::vec2 floorSizeR(2, 18);
 			GameObject* floorR = new GameObject(floorPosR, floorSizeR);
-			floorR->addComponent(new Sprite(floorPosR.x, floorPosR.y, floorSizeR.x, floorSizeR.y, floorTexture));
+			floorR->addComponent(new Sprite(floorPosR, floorSizeR, floorTexture));
 			floorR->addComponent(new physics::PhysicsBody2D(wallParams));
 			//TODO BUG, physics bodies are still enabled even if the object is not in a layer
 			floorLayer->add(floorR);
@@ -350,7 +350,7 @@ class PhysicsDemo : public LETC {
 			glm::vec2 boxSize(2, 2);
 			glm::vec3 boxPos(xScreenMousePos, yScreenMousePos, 0);
 			GameObject* box = Instantiate<GameObject>(boxPos, boxSize,"Ball Layer");
-			box->addComponent(new Sprite(boxPos.x, boxPos.y, boxSize.x, boxSize.y, boxTexture));
+			box->addComponent(new Sprite(boxPos, boxSize, boxTexture));
 			box->addComponent(new physics::PhysicsBody2D(
 				PhysicsBody2DParams(
 					physics::BodyShapes::box,

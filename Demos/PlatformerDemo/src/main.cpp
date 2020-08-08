@@ -98,7 +98,7 @@ public:
 		glm::vec3 floorPos(-100000, -9.0f, 0);
 		glm::vec2 floorSize(10000000, 2);
 		GameObject* floor = new GameObject(floorPos, floorSize);
-		floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
+		floor->addComponent(new Sprite(floorPos, floorSize, floorTexture));
 		floor->addComponent(new physics::PhysicsBody2D(PhysicsBody2DParams(
 			physics::BodyShapes::box, floorPos, floorSize, b2_staticBody))
 		);
@@ -112,7 +112,7 @@ public:
 				floorPos = glm::vec3(x, y, 0);
 				floorSize = glm::vec2(5, 2);
 				GameObject* floor = new GameObject(floorPos, floorSize);
-				floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
+				floor->addComponent(new Sprite(floorPos, floorSize, floorTexture));
 				floor->addComponent(new physics::PhysicsBody2D(PhysicsBody2DParams(
 					physics::BodyShapes::box, floorPos, floorSize, b2_staticBody)));
 				layer0->add(floor);
