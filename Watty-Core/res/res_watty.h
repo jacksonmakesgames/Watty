@@ -5,25 +5,25 @@
 struct RawWattyResources {
 	//AUTO-BEGIN-RES
 	//
-static const unsigned char fonts_Roboto_LICENSE_txt[];
+static const unsigned char fonts_Roboto_LICENSE_txt[];;
 static const unsigned fonts_Roboto_LICENSE_txt_size;
 ;
-static const unsigned char fonts_Roboto_Roboto_Medium_ttf[];
+static const unsigned char fonts_Roboto_Roboto_Medium_ttf[];;
 static const unsigned fonts_Roboto_Roboto_Medium_ttf_size;
 ;
-static const unsigned char fonts_Roboto_Roboto_MediumItalic_ttf[];
+static const unsigned char fonts_Roboto_Roboto_MediumItalic_ttf[];;
 static const unsigned fonts_Roboto_Roboto_MediumItalic_ttf_size;
 ;
-static const unsigned char shaders_default_frag[];
+static const unsigned char shaders_default_frag[];;
 static const unsigned shaders_default_frag_size;
 ;
-static const unsigned char shaders_default_vert[];
+static const unsigned char shaders_default_vert[];;
 static const unsigned shaders_default_vert_size;
 ;
-static const unsigned char shaders_default_es3_frag[];
+static const unsigned char shaders_default_es3_frag[];;
 static const unsigned shaders_default_es3_frag_size;
 ;
-static const unsigned char shaders_default_es3_vert[];
+static const unsigned char shaders_default_es3_vert[];;
 static const unsigned shaders_default_es3_vert_size;
 
 	//AUTO-END-RES

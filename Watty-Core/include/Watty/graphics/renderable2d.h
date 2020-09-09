@@ -6,7 +6,7 @@
 #include "renderer2d.h"
 #include "texture.h"
 #include "shader.h"
-#include "ecs/ecs.h"
+#include "ecs/ECS.h"
 
 namespace letc { namespace graphics {
 

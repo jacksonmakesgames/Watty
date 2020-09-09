@@ -33,6 +33,7 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/dependencies/soloud/include
 	${CMAKE_SOURCE_DIR}/dependencies/json/include
 	${CMAKE_SOURCE_DIR}/dependencies/emscripten/system/include
+	${CMAKE_SOURCE_DIR}/dependencies/box2d/include
 	)
 add_compile_definitions(
 	WATTY_RES_DIR="${CMAKE_SOURCE_DIR}/${CORE}/res/"
@@ -48,6 +49,7 @@ add_compile_definitions(
 	
 
 include_directories(${CMAKE_SOURCE_DIR}/dependencies/box2d/Box2D_v2.3.1)
+
 
 add_subdirectory(dependencies/box2d)
 add_subdirectory(dependencies/soloud)
@@ -81,7 +83,7 @@ if(EMSCRIPTEN)
 	add_library(${LIBNAME} STATIC
 		$<TARGET_OBJECTS:soloud>
 		$<TARGET_OBJECTS:imgui>
-		$<TARGET_OBJECTS:Box2D>
+		$<TARGET_OBJECTS:box2d>
 		$<TARGET_OBJECTS:freetype>
 		$<TARGET_OBJECTS:freetype-gl>
 		$<TARGET_OBJECTS:${CORENAME}>
@@ -134,7 +136,7 @@ else()
 	add_library(${LIBNAME} STATIC
 		$<TARGET_OBJECTS:glfw>
 		$<TARGET_OBJECTS:soloud>
-		$<TARGET_OBJECTS:Box2D>
+		$<TARGET_OBJECTS:box2d>
 		$<TARGET_OBJECTS:glad>
 		$<TARGET_OBJECTS:imgui>
 		$<TARGET_OBJECTS:freetype>

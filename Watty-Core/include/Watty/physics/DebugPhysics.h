@@ -1,6 +1,8 @@
 #pragma once
-#include <Box2D/Box2D.h>
-#include <Box2D/Common/b2Draw.h>
+#include <box2d/box2d.h>
+//#include <box2d/Common/b2Draw.h>
+
+#include <box2d/b2_draw.h>
 
 #include <glm.hpp>
 #include "../graphics/DebugRenderer.h"

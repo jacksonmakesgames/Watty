@@ -1,16 +1,22 @@
 Installation:
 
 	Tools:
-		
 		Windows:
-			Install CMAKE
+		   Install CMAKE
 				https://cmake.org/download/
 			
-			
+
 		Linux (debian):
-			Install CMAKE	
+		   Install CMAKE	
 				sudo apt-get install cmake
-				sudo apt-get install libgl1-mesa-dev
+		   Install GL tools:
+				sudo apt-get install xorg-dev libglu1-mesa-dev
+		   Get submodules:
+				git submodule foreach --recursive 'git checkout watty'
+				git submodule update --init
+				git submodule update --remote
+				git submodule foreach --recursive 'git reset --hard'
+
 		
 	Watty:
 		git clone https://github.com/jacksonmakesgames/Watty.git
@@ -24,8 +30,7 @@ Installation:
 
 --Building from source--
 	Windows:
-		git submodule init
-		git submodule update --remote
+		
 		
 		Create a "build" folder
 		
@@ -60,8 +65,7 @@ Installation:
 
 		Resources::Load("filepath-relative-to-your-resource-dir") will get you a Resource object, containing the data (as a byte array) and the size of the data (as an unsigned int)
 	Linux:
-		git submodule init
-		git submodule update
-		From the Watty/ root directory:
+	  From the Watty/ root directory:
 		mkdir "build" && cd build
 		cmake ..
+		make

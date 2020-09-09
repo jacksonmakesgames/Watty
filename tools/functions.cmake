@@ -1,9 +1,7 @@
+set(_funcdir ${CMAKE_CURRENT_LIST_DIR})
+
 
 function(create_resources dir is_internal)
-
-    message(${CMAKE_CURRENT_FUNCTION_LIST_DIR})
-    
-
     string(TIMESTAMP start_time "%s" UTC)
 
     MESSAGE(STATUS "-->\tCompiling resource binaries:")
@@ -42,7 +40,7 @@ function(create_resources dir is_internal)
     file(READ ${output_header} header_in)
     if("${header_in}" STREQUAL "")
         #copy empty data to header
-        configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/res.h.in ${output_header})
+        configure_file(${_funcdir}/res.h.in ${output_header})
         MESSAGE(STATUS "header file <${output_header}> was empty, filling with template")
     else()
         string(REGEX MATCH "AUTO-BEGIN-RES(.*)AUTO-END-RES" header_in ${header_in})
@@ -55,7 +53,7 @@ function(create_resources dir is_internal)
 
     file(READ ${output_src} source_in)
     if("${source_in}" STREQUAL "")
-        configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/res.cpp.in ${output_src})
+        configure_file(${_funcdir}/res.cpp.in ${output_src})
         MESSAGE(STATUS "source file <${output_src}> was empty, filling with template")
     else()
         file(STRINGS ${output_src} source_list)
@@ -154,9 +152,9 @@ function(create_resources dir is_internal)
 
 
     #copy data to header
-    configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/res.h.in ${output_header})
+    configure_file(${_funcdir}/res.h.in ${output_header})
     #copy data to src
-    configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/res.cpp.in ${output_src})
+    configure_file(${_funcdir}/res.cpp.in ${output_src})
     #cache results
     file(WRITE ${cache_file} ${NEW_CHECKSUMS})
 
