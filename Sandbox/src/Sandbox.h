@@ -52,6 +52,8 @@ namespace letc {
 			glClearColor(.45, .23, .23, 1);
 			//basicSetup();
 		};
+		void TestECS();
+		void TestRegular();
 
 		void basicSetup() {
 
@@ -162,8 +164,9 @@ namespace letc {
 				squaresPattern1(tFact * -1, r * 2, go);
 			}
 
-			//testMotion();
 		}
+
+
 		void testMotion() {
 			int intTime = (int)Timer::elapsed();
 			if (intTime != countedTime && intTime % 10 == 0) {

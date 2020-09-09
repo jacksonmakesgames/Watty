@@ -1,6 +1,3 @@
-# CMakeLists files in this project can
-# refer to the root source directory of the project as ${HELLO_SOURCE_DIR} and
-# to the root binary directory of the project as ${HELLO_BINARY_DIR}.
 cmake_minimum_required (VERSION 3.15)
 
 
@@ -99,12 +96,11 @@ else()
 	cmake_policy(SET CMP0079 NEW)
 	endif()
 
-	set(CMAKE_SUPPRESS_REGENERATION true)
 	set(CMAKE_CXX_STANDARD 			17)
 	set(CMAKE_CXX_EXTENSIONS 		OFF)
 	set(CMAKE_CXX_STANDARD_REQUIRED ON)
-	set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-	set (USE_MSVC_RUNTIME_LIBRARY_DLL ON)
+	#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+	#set (USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 	set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR})
 
 	set_property(GLOBAL PROPERTY USE_FOLDERS ON)

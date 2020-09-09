@@ -9,13 +9,14 @@
 #endif
 
 #ifdef WATTY_OPENGL
-	#include "./graphics/window.h"
+	#include "./graphics/Window.h"
 
-	#include <graphics/font/label.h>
+	#include <graphics/font/Label.h>
 
-	#include <graphics/renderer2d.h>
-	#include <graphics/batchrenderer2d.h>
-	#include <graphics/shader.h>
+	#include <graphics/Renderer2D.h>
+	#include <graphics/BatchRenderer2D.h>
+	#include <graphics/Simple2DRenderer.h>
+	#include <graphics/Shader.h>
 	#include <graphics/Camera.h>
 	#include <graphics/textures/SpriteSheetAnimation.h>
 	#include <ft2build.h>
@@ -74,7 +75,64 @@ bool letc::graphics::Window::useVSync = false;
 		static constexpr bool value = true;
 	};
 
+
 namespace letc {
+
+
+
+
+	struct Transform2DComponent : public ECSComponent<Transform2DComponent> {
+		glm::mat4 transformMatrix = glm::mat4(1.0f);
+		glm::vec2 position = glm::vec2(0.0f, 0.0f);
+		glm::vec2 size = glm::vec2(1.0f, 1.0f);
+		float rotation = 0.0f;
+	};
+
+
+
+	class RenderableSpriteSystem : public BaseECSSystem {
+	private:
+		graphics::Simple2DRenderer renderer = graphics::Simple2DRenderer(true);
+		bool doneInit = false;
+		graphics::Shader shader = graphics::Shader(true);
+	public:
+		RenderableSpriteSystem() {
+			addComponentType(graphics::RenderableSpriteComponent::ID);
+			addComponentType(Transform2DComponent::ID);
+		}
+		void pre(glm::mat4 projection) {
+			shader.enable();
+			renderer.begin();
+			shader.setUniformMat4("pr_matrix", projection);
+		}
+		virtual void updateComponents(float deltaTime, BaseECSComponent** components) override {
+			if (!doneInit) {
+				renderer.init();
+				shader.init();
+				doneInit = true;
+			}
+
+			graphics::RenderableSpriteComponent* spriteComponent = (graphics::RenderableSpriteComponent*)components[0];
+			Transform2DComponent* transformComponent = (Transform2DComponent*)components[1];
+			renderer.push(transformComponent->transformMatrix);
+			renderer.submit(spriteComponent);
+			renderer.pop();
+
+		}
+		void post() {
+			renderer.end();
+			renderer.flush();
+			shader.disable();
+		}
+
+	};
+
+
+
+
+
+
+
 
 
 
@@ -84,6 +142,11 @@ namespace letc {
 		bool resetFlag = false;
 		graphics::Camera* sceneCamera;
 		unsigned int updates = 0;
+		ECS ecs = ECS();
+		ECSSystemList mainSystems;
+		ECSSystemList renderSystems;
+		RenderableSpriteSystem* spriteRenderer;
+
 
 	protected:
 		graphics::Window* window;
@@ -109,6 +172,7 @@ namespace letc {
 		virtual void preInit() {
 			RawWattyResources::Init();
 			Input::init();
+
 			window = createWindow("Watty Game Engine", 1280, 720, true, false);
 			new Layer("Default");
 		}
@@ -177,6 +241,8 @@ namespace letc {
 
 				physics::PhysicsWorld2D::step(Timer::delta); //TODO: could be fixedTimeStep instead
 				update();
+				ecs.updateSystems(mainSystems, Timer::delta);
+
 				Input::resetScroll();
 
 				t += fixedTimeStep;
@@ -206,14 +272,25 @@ namespace letc {
 				ImGui::NewFrame();
 
 #ifdef DEBUG 
+				// Every frame?? TODO
 				if(Layer::getLayerByName("Debug Physics Layer"))
 					debugPhysics ? 
 					Layer::getLayerByName("Debug Physics Layer")->enable() : Layer::getLayerByName("Debug Physics Layer")->disable();
 #endif
-				for (size_t i = 0; i < Layer::allLayers.size(); i++){
+			
+#ifdef ECS_RENDER
+				spriteRenderer->pre(sceneCamera->getProjection());
+				ecs.updateSystems(renderSystems, Timer::delta);
+				spriteRenderer->post();
+#else
+				for (size_t i = 0; i < Layer::allLayers.size(); i++) {
 					Layer::allLayers[i]->draw();
 				}
-				//window->listenForInput();
+
+#endif // ECS_RENDER
+
+
+
 
 				OnGui();
 				ImGui::Render();
@@ -228,13 +305,15 @@ namespace letc {
 				}
 
 			}window->update(); // End frame, swap buffers
-
 		}
 
 
 private:
 	void run() {
 		Random::init();
+		spriteRenderer = new RenderableSpriteSystem();
+		renderSystems.addSystem(*spriteRenderer);
+
 		letc::physics::PhysicsWorld2D::box2DWorld->SetContactListener(new Physics2DContactListener());
 #ifdef DEBUG 
 

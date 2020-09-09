@@ -17,7 +17,7 @@ namespace letc {namespace graphics {
 	}
 
 	Sprite::Sprite(WattyColor color)
-		: Renderable2D(glm::vec2(0.0f,0.0f), glm::vec2(0, 0), color){
+		: Renderable2D(glm::vec2(0.0f,0.0f), glm::vec2(1, 1), color){
 	}
 	
 }}

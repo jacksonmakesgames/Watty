@@ -1,6 +1,5 @@
 if(EMSCRIPTEN)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --embed-file ${CMAKE_CURRENT_SOURCE_DIR}/res/@/")
-	add_compile_definitions(RESDIR="${CMAKE_CURRENT_SOURCE_DIR}/res/")
 endif()
 project (Sandbox)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY		${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})

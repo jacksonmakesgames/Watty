@@ -10,6 +10,11 @@ namespace letc { namespace graphics {
 		init();
 	}
 
+	Renderer2D::Renderer2D(bool ECS){
+		m_TransformationStack.push_back(glm::mat4(1.0));
+		m_tranformationStackBack = &m_TransformationStack.back();
+	}
+
 	void Renderer2D::push(const glm::mat4& mat, bool override)
 	{
 		if (override) {
@@ -50,8 +55,8 @@ namespace letc { namespace graphics {
 		m_currentBuffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY); // map the buffer and get the pointer to the first vertex
 		if (m_currentBuffer == NULL) {
 			//TODO log error
-			std::cout << "ERROR mapping opengl buffer in 2D renderer: GL error "<< glGetError() << std::endl;
-
+			//std::cout << "ERROR mapping opengl buffer in 2D renderer: GL error "<< glGetError() << std::endl;
+			//exit(1);
 		}
 #endif
 
@@ -88,7 +93,7 @@ namespace letc { namespace graphics {
 
 		//TODO: log error
 		if (m_currentBuffer == NULL) {
-			std::cout << "Vertex Buffer was null while rendering texture with ID: " << glTID << " Attempting to restart renderer.." << std::endl;
+			//std::cout << "Vertex Buffer was null while rendering texture with ID: " << glTID << " Attempting to restart renderer.." << std::endl;
 
 			return;
 		}
@@ -124,6 +129,9 @@ namespace letc { namespace graphics {
 		m_indexCount += 6;
 	}
 
+
+
+
 	void Renderer2D::end()
 	{
 #ifdef WATTY_EMSCRIPTEN
@@ -141,6 +149,8 @@ namespace letc { namespace graphics {
 
 	void Renderer2D::init()
 	{
+		glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &m_maxTextureUnits);
+
 		// Generate
 		glGenVertexArrays(1, &m_vertexArray);
 		glGenBuffers(1, &m_vertexBuffer);
@@ -209,6 +219,8 @@ namespace letc { namespace graphics {
 		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
 		m_indexBuffer->unbind();
 		glBindVertexArray(NULL);
+
+	
 
 
 		// unbind all the textures 

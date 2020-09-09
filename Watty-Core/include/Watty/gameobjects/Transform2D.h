@@ -12,6 +12,7 @@ namespace letc {
 		Transform2D(GameObject* go, glm::vec2 pos, glm::vec2 scale, float rot);
 		Transform2D(GameObject* go, Transform2D* parentTransform);
 		Transform2D(GameObject* go);
+		Transform2D();
 
 		GameObject* gameObject = nullptr;
 

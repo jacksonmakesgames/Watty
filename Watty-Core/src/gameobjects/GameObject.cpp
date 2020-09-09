@@ -52,9 +52,13 @@ namespace letc {
 		: transform(new Transform2D(this, position, size, 0.0f)), name("GameObject") {
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
-	/*	transform->setPosition(position);
-		transform->setSize(size);
-		transform->setRotation(0.0f);*/
+
+	}
+	
+	GameObject::GameObject(bool ECS)
+		: name("GameObject") {
+		m_renderable = nullptr;
+		m_physicsBody2D = nullptr;
 	}
 
 	GameObject::GameObject(glm::vec3 position, graphics::Renderable2D* renderable)

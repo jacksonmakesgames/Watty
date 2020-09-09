@@ -19,6 +19,11 @@ namespace letc {namespace graphics {
 		m_TID = load(dataToLoad);
 	}
 
+	Texture::Texture()
+	{
+		m_TID = 0;
+	}
+
 	
 	// font textures
 	Texture::Texture(std::string fileName, unsigned int* atlasID, unsigned int width, unsigned int height, unsigned int depth, const void* data){

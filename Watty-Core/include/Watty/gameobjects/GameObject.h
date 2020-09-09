@@ -42,6 +42,7 @@ namespace letc {
 		GameObject(const char* name, glm::vec3 position, glm::vec2 size);
 		GameObject(glm::vec2 position, glm::vec2 size);
 		GameObject(glm::vec3 position, glm::vec2 size);
+		GameObject(bool ECS);
 		GameObject(glm::vec3 position, glm::vec2 size, graphics::Renderable2D* renderable);
 		GameObject(glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable);
 		GameObject(glm::vec3 position, graphics::Renderable2D* renderable);

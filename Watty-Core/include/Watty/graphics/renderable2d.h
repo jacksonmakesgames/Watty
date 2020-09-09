@@ -6,6 +6,7 @@
 #include "renderer2d.h"
 #include "texture.h"
 #include "shader.h"
+#include "ecs/ecs.h"
 
 namespace letc { namespace graphics {
 
@@ -19,7 +20,6 @@ namespace letc { namespace graphics {
 
 	class Renderable2D{
 	public:
-		glm::vec2& position;
 	protected:
 		glm::vec2 m_size = glm::vec2(1.0f);
 		glm::vec2 m_position = glm::vec2(0.0f);
@@ -36,62 +36,27 @@ namespace letc { namespace graphics {
 
 
 	protected:
-		Renderable2D() : position(m_position){
-			m_transformationMatrix = glm::mat4(1);
-			setUVDefaults();
-			m_texture = nullptr;
-			recalculateBounds();
-		}
 			
 
 
 	public:
-		Renderable2D(glm::vec2 position, glm::vec2 size, WattyColor color)
-		: m_position(position), m_size(size), m_color(color), position(m_position){
-			m_transformationMatrix = glm::mat4(1);
-			setUVDefaults();
-			m_texture = nullptr;
-			m_size = size;
-			m_position = position;
-			recalculateBounds();
-		}
 
-		void setTransformationMatrix(glm::mat4 matrix) {
-			m_transformationMatrix = matrix;
-		}
+		Renderable2D();
 
-		virtual ~Renderable2D() {
-		}
+		Renderable2D(glm::vec2 position, glm::vec2 size, WattyColor color);
+		
 
-		virtual void submit(Renderer2D* renderer, glm::mat4 overrideMatrix)const {
-			glm::mat4 originalMat = renderer->pop();
-			{
-				renderer->push(overrideMatrix);
-				renderer->submit(this);
-				renderer->pop();
-			}
-			renderer->push(originalMat);
-		}
-
-
+		void setTransformationMatrix(glm::mat4 matrix);
+		virtual ~Renderable2D(){}
+		virtual void submit(Renderer2D* renderer, glm::mat4 overrideMatrix)const;
 		virtual void update() {};
 
-		virtual void submit(Renderer2D* renderer)const {
-			renderer->submit(this);
-		}
+		virtual void submit(Renderer2D* renderer)const;
 
 		inline void setColor(WattyColor color) { m_color = color; }
-		inline void setColor(glm::vec4 color) {
-			int	r = color.x * 255.0f;
-			int	g = color.y * 255.0f;
-			int	b = color.z * 255.0f;
-			int	a = color.w * 255.0f;
-			m_color = a << 24 | b << 16 | g << 8 | r;
-		}
+		void setColor(glm::vec4 color);
 
-		virtual const std::vector<Renderable2D*>& getChildren() const {
-			return m_childrenRenderables;
-		}
+		inline virtual const std::vector<Renderable2D*>& getChildren() const {return m_childrenRenderables;}
 
 
 		inline const glm::vec2& getSize()const{ return m_size; }
@@ -108,33 +73,24 @@ namespace letc { namespace graphics {
 		inline const FrameInfo getFrameInfo() const { return m_frameInfo; }
 
 		inline void setFrameInfo(FrameInfo frameInfo) { m_frameInfo = frameInfo; }
-		inline void recalculateBounds() {
-			bounds.lowerLeft = { m_position.x - (.5f * m_size.x), m_position.y - (.5f * m_size.y) };
-			bounds.upperLeft = { m_position.x - (.5f * m_size.x), m_position.y + (.5f * m_size.y) };
-			bounds.upperRight = { m_position.x + (.5f * m_size.x), m_position.y + (.5f * m_size.y) };
-			bounds.lowerRight = { m_position.x + (.5f * m_size.x), m_position.y - (.5f * m_size.y) };
-		}
-		void setUvs(glm::vec2 sw, glm::vec2 nw, glm::vec2 ne, glm::vec2 se) {
-			m_UVs = std::vector<glm::vec2>();
-			m_UVs.push_back(sw);
-			m_UVs.push_back(nw);
-			m_UVs.push_back(ne);
-			m_UVs.push_back(se);
 
-			m_frameInfo.currentFrame = 0.0f;
-			m_frameInfo.totalFrames = 1.0f;
-		}
+		// public??
+		void recalculateBounds();
+
+		void setUvs(glm::vec2 sw, glm::vec2 nw, glm::vec2 ne, glm::vec2 se);
 
 	private:
-		void setUVDefaults() {
-			m_UVs = std::vector<glm::vec2>();
-			m_UVs.push_back(glm::vec2(0.0f, 0.0f));
-			m_UVs.push_back(glm::vec2(0.0f, 1.0f));
-			m_UVs.push_back(glm::vec2(1.0f, 1.0f));
-			m_UVs.push_back(glm::vec2(1.0f, 0.0f));
+		void setUVDefaults();
 
-			m_frameInfo.currentFrame = 0.0f;
-			m_frameInfo.totalFrames = 1.0f;
-		}
 	};
+
+	struct RenderableSpriteComponent : public ECSComponent<RenderableSpriteComponent> {
+		WattyColor color = Color::white;
+		std::vector<glm::vec2> UVs = std::vector<glm::vec2>();
+		Texture texture;
+		glm::mat4 transformationMatrix = glm::mat4(1.0f);
+		Bounds2D bounds;
+		FrameInfo frameInfo;
+	};
+
 }}

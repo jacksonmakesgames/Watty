@@ -2,7 +2,7 @@
 namespace letc {
 namespace graphics {
 	TileMap::TileMap(const char* pathToJsonMap, const char* pathToImage):mPathToMap(pathToJsonMap),mPathToImage(pathToImage){
-		position = glm::vec2(.5f,-.5f);
+		m_position = glm::vec2(.5f,-.5f);
 		reloadMap();
 	}
 

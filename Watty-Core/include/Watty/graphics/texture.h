@@ -28,6 +28,7 @@ namespace letc {namespace graphics {
 	public:
 		//Texture(const std::string& name);
 		Texture(const std::string& filename);
+		Texture();
 		Texture(std::string fileName, unsigned int* atlasID, unsigned int width,unsigned int height, unsigned int depth, const void* data);
 		~Texture();
 

@@ -5,6 +5,13 @@ namespace letc {namespace graphics {
 	{
 		
 	}
+
+	BatchRenderer2D::BatchRenderer2D(bool ECS) : Renderer2D(ECS)
+	{
+
+	}
+
+	
 	void BatchRenderer2D::submit(const Renderable2D* renderable){
 		const glm::vec2& pos = renderable->getPosition();
 		const glm::vec2& size = renderable->getSize();
@@ -24,6 +31,7 @@ namespace letc {namespace graphics {
 		Renderer2D::submit(glTID, color, {tx,ty}, {tw, th});
 
 	}
+
 
 	void BatchRenderer2D::drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor labelColor, const Bounds2D bounds){
 		bool found = false;

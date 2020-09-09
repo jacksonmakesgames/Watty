@@ -25,6 +25,14 @@ namespace letc {namespace graphics {
 
 	}
 
+	Shader::Shader(bool ECS)
+	{
+		m_vertPath = m_defaultVertPath;
+		m_fragPath = m_defaultFragPath;
+
+	}
+
+
 	Shader::~Shader(){
 		glDeleteProgram(m_shaderID);
 	}
@@ -157,6 +165,7 @@ namespace letc {namespace graphics {
 		return program;
 	}
 
+	// After window creation ONLY
 	void Shader::init()
 	{
 		m_shaderID = load();

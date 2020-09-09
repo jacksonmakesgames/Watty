@@ -57,6 +57,7 @@ namespace letc {namespace graphics {
 		std::vector<const Texture*> m_textures;
 
 		Renderer2D();
+		Renderer2D(bool ECS);
 		
 	public:
 		void push(const glm::mat4& mat, bool override = false);
@@ -68,7 +69,7 @@ namespace letc {namespace graphics {
 
 		virtual void begin();
 
-		virtual void submit(const Renderable2D* renderable)=0;
+		virtual void submit(const Renderable2D* renderable) = 0;
 		virtual void submit(float glTID, WattyColor color, glm::vec2 textureCoord, glm::vec2 textureSize);
 #ifdef WATTY_OPENGL
 		virtual void drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor color, const Bounds2D bounds) {};

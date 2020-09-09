@@ -20,7 +20,7 @@
 namespace letc {namespace graphics {
 	class Shader {
 	private:
-		unsigned int m_shaderID;
+		unsigned int m_shaderID = (uint32_t)-1;
 		const char* m_vertPath = "";
 		const char* m_fragPath = "";
 		static const char* m_defaultVertPath;
@@ -28,6 +28,7 @@ namespace letc {namespace graphics {
 	public:
 		Shader(const char* vertPath, const char* fragPath);
 		Shader();
+		Shader(bool ECS);
 		~Shader();
 
 
@@ -41,14 +42,14 @@ namespace letc {namespace graphics {
 		void setUniform4f(const char* name, const glm::vec4& vector);
 		
 		void setUniformMat4(const char* name, const glm::mat4& matrix);
-
+		inline int getID() { return m_shaderID; }
 
 		void enable() const;
 		void disable() const;
 		int getUniformLocation(const char* name);
+		void init();
 	private:
 		unsigned int load();
-		void init();
 
 	};
 

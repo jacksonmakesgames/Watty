@@ -28,6 +28,7 @@ namespace letc {namespace graphics {
 
 	public:
 		BatchRenderer2D();
+		BatchRenderer2D(bool ECS);
 		void submit(const Renderable2D* renderable) override;
 		void flush() override;
 #ifdef WATTY_OPENGL

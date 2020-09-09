@@ -16,6 +16,12 @@ namespace letc {
 		updateMatrix();
 	}
 
+	// For ECS
+	Transform2D::Transform2D() : parent(nullptr), position({ 0,0 }), size({1,1}), rotation(0), transformMatrix(glm::mat4(1)), gameObject(nullptr)
+	{
+		updateMatrix();
+	}
+
 	void Transform2D::rotate(float angle)
 	{
 		rotation += angle;
