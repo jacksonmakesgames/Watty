@@ -1,5 +1,9 @@
 
 function(create_resources dir is_internal)
+
+    message(${CMAKE_CURRENT_FUNCTION_LIST_DIR})
+    
+
     string(TIMESTAMP start_time "%s" UTC)
 
     MESSAGE(STATUS "-->\tCompiling resource binaries:")
@@ -149,7 +153,6 @@ function(create_resources dir is_internal)
     endforeach()
 
 
-    
     #copy data to header
     configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/res.h.in ${output_header})
     #copy data to src
