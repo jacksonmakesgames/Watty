@@ -47,10 +47,6 @@ add_compile_definitions(
 	)
 
 	
-
-include_directories(${CMAKE_SOURCE_DIR}/dependencies/box2d/Box2D_v2.3.1)
-
-
 add_subdirectory(dependencies/box2d)
 add_subdirectory(dependencies/soloud)
 

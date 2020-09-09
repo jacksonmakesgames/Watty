@@ -66,10 +66,10 @@ namespace letc {
 
 		virtual inline b2Body* getBody() { return m_body; }
 		virtual inline void disable() { 
-			m_body->SetActive(false);
+			m_body->SetEnabled(false);
 		};
 		virtual inline void enable() { 
-			m_body->SetActive(true);
+			m_body->SetEnabled(true);
 		};
 
 		virtual glm::vec2 getBodyPosition();
