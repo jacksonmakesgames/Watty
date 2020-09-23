@@ -1,7 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 namespace letc {
-	static class Stats {
+	class Stats {
 	private:
 		static int m_framesPerSecond, m_updatesPerSecond;
 		static double m_msPerFrame;

@@ -7,6 +7,9 @@ namespace letc {namespace graphics {
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
+
+	bool Window::allowMultipleSubWindows = true;
+
 	Window* Window::Instance = nullptr;
 
 	Window::Window(const char* title, int width, int height, bool resizeable, bool fullscreen) {
@@ -43,7 +46,6 @@ namespace letc {namespace graphics {
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyPlatformWindows();
 		ImGui::DestroyContext();
-
 		glfwTerminate();
 
 		//FontManager::clean(); //TODO
@@ -186,102 +188,76 @@ namespace letc {namespace graphics {
 		return glm::i8vec2(outNum, outDen);
 	}
 
-
-
-
-	//bool Window::keyIsDown(unsigned int keycode) const {
-	//	// if the key is down this frame
-	//	if (keycode >= MAX_KEYS) {
-	//	// TODO: log an error
-	//		return false;
-	//	}
-	//	return m_keysThisFrame[keycode];
-	//}
-
-
-	//bool Window::keyWasPressed(unsigned int keycode) const {
-	//	// If this is the first frame a key is down
-	//	if (keycode >= MAX_KEYS) {
-	//	// TODO: log an error
-	//		return false;
-	//	}
-	//	return m_keysFirstFrameDown[keycode];
-	//}
-
-
-	//bool Window::mouseButtonWasPressed(unsigned int button) const {
-	//	if (button >= MAX_BUTTONS) {
-	//	// TODO: log an error
-	//		return false;
-	//	}
-	//	return m_buttonsFirstFrameDown[button];
-	//}
-
-
-	//bool Window::mouseButtonIsDown(unsigned int button) const {
-	//	if (button >= MAX_BUTTONS) {
-	//	// TODO: log an error
-	//		return false;
-	//	}
-	//	return m_buttonsThisFrame[button];
-	//}
-
-
-	//bool Window::mouseButtonWasReleased(unsigned int button) const {
-	//	if (button >= MAX_BUTTONS) {
-	//		// TODO: log an error
-	//		return false;
-	//	}
-	//	return (m_buttonsLastFrame[button] && !m_buttonsThisFrame[button]);
-	//}	
-	//
-
-	//bool Window::keyWasReleased(unsigned int key) const {
-	//	if (key >= MAX_KEYS) {
-	//		// TODO: log an error
-	//		return false;
-	//	}
-	//	return  (m_keysLastFrame[key] && !m_keysThisFrame[key]);;
-	//}
-
-
-	//void Window::getMousePos(double& x, double& y) const {
-	//	x = mx;
-	//	y = my;
-	//}
-
-
 	void Window::clear() const {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	}
 
+	void Window::clear(float r, float g, float b, float a, bool enableDepth, bool clearImGui) const
+	{
+		glClearColor(r,g,b,a);
+		
+		if (clearImGui) {
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+		}
+		if (enableDepth) {
+			//enable the GL_DEPTH_TEST to be able to see 3D object correctly
+			glEnable(GL_DEPTH_TEST);
+			//clear both the color buffer bit and the depth buffer bit
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
+		else {
+			//clear just the color buffer bit
+			glClear(GL_COLOR_BUFFER_BIT);
+		}
+	}
+	void Window::clear(WattyColor clearColor, bool enableDepth, bool clearImGui) const {
+		std::cout << "Error: Not Implemented, use clear(float, float, float, float, ...) instead" << std::endl;
+		throw NotImplemented();
+		glClearColor(clearColor.rgba.r/255.0f, clearColor.rgba.g/255.0f, clearColor.rgba.b/255.0f, clearColor.rgba.a/255.0f);
+		//glClearColor(clearColor.asFloat[0], clearColor.asFloat[1], clearColor.asFloat[2], clearColor.asFloat[3]);
+		//glClearColor(clearColor.rgba.b, clearColor.rgba.g, clearColor.rgba.r, clearColor.rgba.a);
+		//glClearColor(clearColor.abgr.r, clearColor.abgr.g, clearColor.abgr.b, clearColor.abgr.a);
+
+		if (clearImGui){
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+		}
+		if (enableDepth){
+			//enable the GL_DEPTH_TEST to be able to see 3D object correctly
+			glEnable(GL_DEPTH_TEST);
+			//clear both the color buffer bit and the depth buffer bit
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
+		else{
+			//clear just the color buffer bit
+			glClear(GL_COLOR_BUFFER_BIT);
+		}
+	}
 
 	void Window::update() {
 		//scrolledThisFrameY = 0;
 		//Input::resetScroll();
+		endImGuiFrame();
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
-
-	//void Window::listenForInput(){
-	//	
-	//	for (int i = 0; i < MAX_KEYS; i++) {
-	//		m_keysFirstFrameDown[i] = false;
-	//	}
-	//	// handle input:
-	//	for (size_t i = 0; i < MAX_KEYS; i++) {
-	//		m_keysFirstFrameDown[i] = m_keysThisFrame[i] && !m_keysLastFrame[i]; // first frame pressed
-	//	}
-	//	memcpy(&m_keysLastFrame, m_keysThisFrame, sizeof(bool) * MAX_KEYS);
-
-	//	for (size_t i = 0; i < MAX_BUTTONS; i++) {
-	//		m_buttonsFirstFrameDown[i] = m_buttonsThisFrame[i] && !m_buttonsLastFrame[i];
-	//	}
-	//	memcpy(&m_buttonsLastFrame, m_buttonsThisFrame, sizeof(bool) * MAX_BUTTONS);
-	//}
-
+	void Window::endImGuiFrame() {
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		if (Window::allowMultipleSubWindows) {
+			// ImGui Multiple Viewports:
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+				GLFWwindow* backup_current_context = glfwGetCurrentContext();
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				glfwMakeContextCurrent(backup_current_context);
+			}
+		}
+	}
 
 	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam){
 		glm::vec2 pointScreenRatio = glm::vec2();
@@ -290,8 +266,10 @@ namespace letc {namespace graphics {
 
 		glm::vec2 pointWorldRatio = pointScreenRatio * cam.getSize();
 
-		pointWorldRatio.x -= (.5f * cam.getSize().x);
-		pointWorldRatio.y -= (.5f * cam.getSize().y);
+		//pointWorldRatio.x -= (.5f * cam.getSize().x);
+		//pointWorldRatio.y -= (.5f * cam.getSize().y);
+		pointWorldRatio.x -= (.5f * cam.getViewportSize().x);
+		pointWorldRatio.y -= (.5f * cam.getViewportSize().y);
 
 		glm::vec3 worldPoint = glm::vec3(pointWorldRatio.x, pointWorldRatio.y, 0) + cam.position;
 		return worldPoint;
@@ -307,9 +285,16 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		if (!win->isResizeable) { return;  }
 		glViewport(0, 0, width, height);
+		glScissor(0, 0, width,height);
+		glEnable(GL_SCISSOR_TEST);
 		win->m_Width = width;
 		win->m_Height = height;
 		
+		for (size_t i = 0; i < Camera::allCameras.size(); i++)
+		{
+			Camera::allCameras[i]->setWindowSize(glm::vec2(2 * (width / win->PIXEL_TO_METER_RATIO), 2 * (height / win->PIXEL_TO_METER_RATIO)));
+		}
+
 		// NOTE: huge performance hit when resizing.. we should rethink this
 		/*std::tuple aR = win->getAspectRatio();
 		FontManager::remakeAllFonts(

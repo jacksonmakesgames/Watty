@@ -98,14 +98,11 @@ namespace letc {namespace graphics {
 
 			}ImGui::End();
 			
-		//}
+
 		
-		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
+		Camera::sceneCamera->setClearColor(WattyColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w));
 
-		//Layer::draw();
 
-		//ImGui::Render();
-		//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	
 	}
 }}

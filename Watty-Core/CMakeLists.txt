@@ -14,8 +14,10 @@ file(GLOB_RECURSE SRC_ECS 			"${COREDIR}/src/ecs/**.cpp")
 file(GLOB_RECURSE SRC_SOLOUD 			"${COREDIR}/ext/soloud/src/audiosource/**.c*" "${COREDIR}/ext/soloud/src/backend/sdl/**.c*" "${COREDIR}/ext/soloud/src/filter/**.c*" "${COREDIR}/ext/soloud/src/core/**.c*")
 file(GLOB_RECURSE SRC_FREETYPEGL 		"${COREDIR}/ext/freetype-gl/*.c")
 
+if(${BuildResources})
+	create_resources("${CMAKE_CURRENT_SOURCE_DIR}/res" ON)
+endif()
 
-create_resources("${CMAKE_CURRENT_SOURCE_DIR}/res" ON)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
 file(GLOB RES_SRC 		"${CMAKE_CURRENT_SOURCE_DIR}/res/res_watty.cpp")
 file(GLOB RES_HEAD 		"${CMAKE_CURRENT_SOURCE_DIR}/res/res_watty.cpp")

@@ -20,7 +20,7 @@ namespace letc {namespace graphics {
 	class Texture {
 	private:
 		std::string m_filename;
-		unsigned int m_TID;
+		unsigned int m_TID = -1; // -1 = invalid id
 		int m_width;
 		int m_height;
 
@@ -29,6 +29,7 @@ namespace letc {namespace graphics {
 		//Texture(const std::string& name);
 		Texture(const std::string& filename);
 		Texture();
+		Texture(int screenWidth, int screenHeight);
 		Texture(std::string fileName, unsigned int* atlasID, unsigned int width,unsigned int height, unsigned int depth, const void* data);
 		~Texture();
 
@@ -45,9 +46,9 @@ namespace letc {namespace graphics {
 
 
 
+		unsigned int upload(uint8_t* data, bool deleteData = true);
 	private:
-		unsigned int load(uint8_t* data);
-
+		unsigned int load(uint8_t* data, bool deleteData = true);
 		bool isPowerOfTwo(int value);
 	};
 }}

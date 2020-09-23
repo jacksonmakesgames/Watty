@@ -6,7 +6,7 @@
 #define MAX_BUTTONS 32
 
 namespace letc {
-	static class Input {
+	class Input {
 	public:
 		static bool keyIsDown(unsigned int keycode);
 		static bool keyWasPressed(unsigned int keycode);

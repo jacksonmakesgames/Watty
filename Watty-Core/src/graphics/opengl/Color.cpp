@@ -3,6 +3,8 @@ namespace letc { namespace graphics {
 
 	//											   AABBGGRR
 	WattyColor Color::black			= WattyColor(0xff000000);
+	WattyColor Color::grey			= WattyColor(0xff808080);
+	WattyColor Color::gray			= WattyColor(0xff808080);
 	WattyColor Color::white			= WattyColor(0xffffffff);
 	WattyColor Color::red			= WattyColor(0xFF0000ff);
 	WattyColor Color::blue			= WattyColor(0xFFff0000);

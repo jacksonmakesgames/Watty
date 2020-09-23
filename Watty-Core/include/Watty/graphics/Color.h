@@ -19,7 +19,7 @@ namespace letc { namespace graphics {
 
 
 
-		float asFloat[4];
+		//float asFloat[4];
 
 		WattyColor(unsigned int ui) {
 			c = ui;
@@ -45,6 +45,8 @@ namespace letc { namespace graphics {
 		//float r, g, b, a = 0;
 
 		static WattyColor black;
+		static WattyColor grey;
+		static WattyColor gray;
 		static WattyColor white;
 		static WattyColor red;
 		static WattyColor blue;

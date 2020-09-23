@@ -102,7 +102,7 @@ namespace letc {
 	};
 
 
-	const unsigned int TEST_AMT = 6000;
+	const unsigned int TEST_AMT = 100;
 
 	Transform2DComponent		*transformC		;
 	MoveSystem					*moveSystem		;
@@ -116,9 +116,9 @@ namespace letc {
 
 		// ECS:
 		//TestECS();
-		//TestRegular();
+		TestRegular();
 
-		setupSquares();
+		//setupSquares();
 
 	}
 
@@ -154,7 +154,7 @@ namespace letc {
 
 	}
 	void Sandbox::tick() {
-		LETC::tick();
+		WattyEngine::tick();
 		if(fpsLabel)
 			fpsLabel->setText(std::string("FPS: ") + std::to_string(Stats::getFramesPerSecond()));
 		if(upsLabel)
@@ -164,22 +164,26 @@ namespace letc {
 	}
 	void Sandbox::update(){
 		//testMotion();	
+		glm::vec2 size = sceneCamera->getViewportSize();
 
-		sceneCamera->setSize(glm::vec2(
-			sceneCamera->getSize().x - (10.0f * window->getAspectRatio().x * Input::getScrollAmountThisFrameY()) * Timer::delta,
-			sceneCamera->getSize().y - (10.0f * window->getAspectRatio().y * Input::getScrollAmountThisFrameY()) * Timer::delta
-		));
+		/*sceneCamera->setSize(glm::vec2(
+			size.x - (10.0f * window->getAspectRatio().x * Input::getScrollAmountThisFrameY()) * Timer::delta,
+			size.y - (10.0f * window->getAspectRatio().y * Input::getScrollAmountThisFrameY()) * Timer::delta
+		));*/
+
+		sceneCamera->setSize(sceneCamera->getSize()- Input::getScrollAmountThisFrameY() * Timer::delta);
+
 
 		squaresUpdate();
 
-		//LETC::update();
+		//WattyEngine::update();
 	}
 	void Sandbox::OnGui() {
-		//ImGui::Begin("debug info");
-		//ImGui::End();
+		ImGui::Begin("debug info");
+		ImGui::End();
 	}
 	void Sandbox::render() {
-		LETC::render();
+		WattyEngine::render();
 	}
 }
 

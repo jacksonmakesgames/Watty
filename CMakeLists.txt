@@ -1,11 +1,13 @@
 cmake_minimum_required (VERSION 3.15)
 
+option(BuildResources "BuildResources" ON)
+
 
 set(ROOT 						${CMAKE_SOURCE_DIR})
 set(WATTYVERSION 				0.31.0)
 set(CORE 						Watty-Core)
 set(LIBNAME 					Watty_v${WATTYVERSION})
-set(COREDIR 					${CMAKE_SOURCE_DIR}/${CORE}/)
+set(COREDIR 					${CMAKE_SOURCE_DIR}/${CORE})
 set(CORENAME 					Core_Engine_v${WATTYVERSION})
 
 set(CMAKE_CONFIGURATION_TYPES 	Debug Release Web)
@@ -19,9 +21,9 @@ set_source_files_properties(
 include(${CMAKE_SOURCE_DIR}/tools/functions.cmake)
 
 include_directories(
-	${COREDIR}
-	${COREDIR}include
-	${COREDIR}include/Watty
+	${COREDIR}/
+	${COREDIR}/include
+	${COREDIR}/include/Watty
 	${CMAKE_SOURCE_DIR}/dependencies/imgui
 	${CMAKE_SOURCE_DIR}/dependencies/imgui/examples
 	${CMAKE_SOURCE_DIR}/dependencies/glm/include
@@ -163,7 +165,7 @@ set_target_properties(${CORENAME}
 )
 # ## Link
 target_link_directories(${CORENAME}
-	PUBLIC ${COREDIR}ext/FreeImage/lib/${CMAKE_BUILD_TYPE}	
+	PUBLIC ${COREDIR}/ext/FreeImage/lib/${CMAKE_BUILD_TYPE}	
 	)
 
 target_link_libraries(${CORENAME}

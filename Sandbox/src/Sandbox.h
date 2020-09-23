@@ -11,7 +11,7 @@ using namespace glm;
 
 
 namespace letc {
-	class Sandbox : public LETC {
+	class Sandbox : public WattyEngine {
 	public:
 	private:
 		std::vector<Sprite*> allSprites;
@@ -49,7 +49,7 @@ namespace letc {
 			window->setSize({ 1920,1080 });
 			window->setTitle("{Watty Game Engine}");
 			window->useVSync = false;
-			glClearColor(.45, .23, .23, 1);
+			sceneCamera->setClearColor(WattyColor(.45, .23, .23, 1));
 			//basicSetup();
 		};
 		void TestECS();
@@ -122,6 +122,7 @@ namespace letc {
 		}
 
 		void setupSquares() {
+			
 			for (int x = -20; x < 20; x++)
 			{
 				for (int y = -20; y < 20; y++) {

@@ -78,9 +78,6 @@ bool letc::graphics::Window::useVSync = false;
 
 namespace letc {
 
-
-
-
 	struct Transform2DComponent : public ECSComponent<Transform2DComponent> {
 		glm::mat4 transformMatrix = glm::mat4(1.0f);
 		glm::vec2 position = glm::vec2(0.0f, 0.0f);
@@ -136,7 +133,7 @@ namespace letc {
 
 
 
-	class LETC {
+	class WattyEngine {
 	public:
 		bool debugPhysics = false;
 		bool resetFlag = false;
@@ -149,16 +146,27 @@ namespace letc {
 
 
 	protected:
+		bool WATTY_EDITOR_ATTACHED = false; // TODO: make compiler define
 		graphics::Window* window;
+
+		unsigned int renderBufferObject;
+		unsigned int texColorBuffer;
+		graphics::Texture* screenTexture;
+		graphics::Texture* testTexture;
+
 	private:
 		Timer* m_time;
+		graphics::Shader* screenShader;
 
 		double t = 0.0;
 		double fixedTimeStep = 0.02; // amount of time between updates/physics steps. Default was 0.02.
 		double currentTime = Timer::elapsed();
 		double accumulator = 0.0;
 
+
+
 	public:
+		unsigned int FBO;
 		void start() {
 			preInit();
 			init();
@@ -175,20 +183,29 @@ namespace letc {
 
 			window = createWindow("Watty Game Engine", 1280, 720, true, false);
 			new Layer("Default");
+
+#if DEBUG
+			screenShader = new graphics::Shader("shaders/screen.vert", "shaders/screen.frag");
+			testTexture =  new graphics::Texture("textures/test.png");
+			graphics::Texture* nt2 = new graphics::Texture("textures/test.png");
+#endif // DEBUG
+
 		}
+
+
 		virtual void reset() {};
 
 		
 
 
 	protected:
-		LETC(){
+		WattyEngine(){
 			Timer::Timer();
 			Stats::Stats();
 		}
 		
 
-		virtual ~LETC() {
+		virtual ~WattyEngine() {
 			delete window;
 			delete m_time;
 			for (size_t i = 0; i < Layer::allLayers.size(); i++)
@@ -199,8 +216,15 @@ namespace letc {
 			window = new graphics::Window(title, width, height, resizeable, fullscreen);
 
 			float aspectRatio = width / height;
+			
+			//TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
+			sceneCamera = new graphics::Camera(
+				&Layer::allLayers, 
+				glm::vec3(0.0f, 0.0f, -10.0f),
+				1,
+				20,
+				graphics::CameraMode::orthographic);
 
-			sceneCamera = new graphics::Camera(&Layer::allLayers, glm::vec3(0.0f, 0.0f, -10.0f), glm::vec2(32, 18), 20, graphics::CameraMode::orthographic); //TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
 			return window;
 		}
 
@@ -216,8 +240,11 @@ namespace letc {
 			std::cout << "\t" << std::to_string(Stats::getFramesPerSecond()) << "fps | " << std::to_string(Stats::getMSPerFrame()) << "mspf \r" << std::flush;
 		}
 
-		virtual void OnGui() {}
+		virtual void OnGui() {};
+		virtual void onEditorGui() {};
 		virtual void update() {};
+
+		virtual void editorUpdate() {}
 
 		// Runs as fast as possible
 		void engineUpdate() {
@@ -262,49 +289,84 @@ namespace letc {
 		
 		}
 
+		//TODO move to window
+		void cleanFrameBuffer() {
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+			glDeleteFramebuffers(1, &FBO);
+		}
+
+		void setupFrameBuffer() {
+
+			// Frame buffer
+			glGenFramebuffers(1, &FBO);
+			glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+
+			// attach texture
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTexture->getID(), 0);
+
+			// check if FBO is complete
+			if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+				std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+
+			glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind framebuffer
+	
+		}
+
+		void preFrameBuffer() {
+			// Bind framebuffer
+			glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+
+			// 3D:
+			//glEnable(GL_DEPTH_TEST);
+
+		}
+
+		GLubyte* data = nullptr;
+
+		void postFrameBuffer() {
+			// now bind back to default framebuffer 
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+			// clear all relevant buffers
+			window->clear(.4, .4, .4, 1, false, false);
+		}
+
+		unsigned int getRenderTexture() {
+			return screenTexture->getID();
+		}
+
 		// runs as fast as possible (unless vsync is enabled, then it runs at refresh rate)
 		virtual void render() {
-			window->clear(); { // One frame
+			if (WATTY_EDITOR_ATTACHED) {
+				preFrameBuffer(); // bind framebuffer
+			}
+			window->clear(.5, .5, .5, 1, false, true); { // One frame, clear framebuffer
+			//window->clear(sceneCamera->getClearColor(), true, true); { // One frame
 
 
-				ImGui_ImplOpenGL3_NewFrame();
-				ImGui_ImplGlfw_NewFrame();
-				ImGui::NewFrame();
 
-#ifdef DEBUG 
-				// Every frame?? TODO
-				if(Layer::getLayerByName("Debug Physics Layer"))
-					debugPhysics ? 
-					Layer::getLayerByName("Debug Physics Layer")->enable() : Layer::getLayerByName("Debug Physics Layer")->disable();
-#endif
-			
 #ifdef ECS_RENDER
 				spriteRenderer->pre(sceneCamera->getProjection());
 				ecs.updateSystems(renderSystems, Timer::delta);
 				spriteRenderer->post();
 #else
+				// Draw
 				for (size_t i = 0; i < Layer::allLayers.size(); i++) {
 					Layer::allLayers[i]->draw();
 				}
 
 #endif // ECS_RENDER
 
-
-
-
-				OnGui();
-				ImGui::Render();
-				ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-				// ImGui Multiple Viewports:
-				if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-					GLFWwindow* backup_current_context = glfwGetCurrentContext();
-					ImGui::UpdatePlatformWindows();
-					ImGui::RenderPlatformWindowsDefault();
-					glfwMakeContextCurrent(backup_current_context);
+				if (WATTY_EDITOR_ATTACHED) {
+					postFrameBuffer(); // unbind framebuffer, clear
+					onEditorGui();
 				}
 
-			}window->update(); // End frame, swap buffers
+				OnGui();
+
+			}window->update(); // End frame, swap buffers, check events
+
 		}
 
 
@@ -317,11 +379,10 @@ private:
 		letc::physics::PhysicsWorld2D::box2DWorld->SetContactListener(new Physics2DContactListener());
 #ifdef DEBUG 
 
-		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
+		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getViewportSize()));
 		letc::physics::PhysicsWorld2D::setDebugDraw();
 		new graphics::DebugPhysicsLayer(*sceneCamera, *window);
 		new graphics::GridLayer(*sceneCamera, *window);
-		new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, Layer::allLayers);
 
 #endif
 		m_time = new Timer();
@@ -336,10 +397,12 @@ private:
 		
 		std::function<void()> mainLoop = [&]() {
 #else
+
 		while (!window->closed()) {
 #endif 
 
 			engineUpdate();
+			editorUpdate();
 			if (Timer::elapsed() - updateTimer > updateTick) {
 				if (window->useVSync) render(); // With Vsync enabled, render at the refresh rate of the window
 				updateTimer += updateTick;
@@ -374,10 +437,12 @@ private:
 	};
 
 
-
 	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
 	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
 	const glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
 	const glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
+
+
+
 
 }
