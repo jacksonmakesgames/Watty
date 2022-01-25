@@ -1,5 +1,5 @@
 #include <physics/PhysicsBody2D.h>
-namespace letc { namespace physics {
+namespace watty { namespace physics {
 	PhysicsBody2D::PhysicsBody2D(PhysicsBody2DParams params)
 		:
 		m_bounciness(params.bounciness),

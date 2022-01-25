@@ -28,7 +28,7 @@
 #include "../audio/audiomanager.h"
 #include <input/Input.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Window {
 	protected:
 		bool isResizeable;

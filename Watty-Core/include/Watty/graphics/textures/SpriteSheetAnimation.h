@@ -2,7 +2,7 @@
 #include "Animation2D.h"
 #include <algorithm>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 struct SpriteSheetAnimInfo {
 	const char* name;

@@ -1,6 +1,6 @@
 #include <graphics/font/font.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	Font::Font(unsigned int size){
 		m_size = size;

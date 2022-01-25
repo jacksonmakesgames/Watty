@@ -1,5 +1,5 @@
 #include <input/Input.h>
-namespace letc {
+namespace watty {
 
 	bool Input::m_keysThisFrame[MAX_KEYS]				;
 	bool Input::m_keysLastFrame[MAX_KEYS]				;

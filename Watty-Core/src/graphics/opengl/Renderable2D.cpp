@@ -1,6 +1,6 @@
 #include <Watty/graphics/Renderer2D.h>
 #include "..\..\..\include\Watty\graphics\Renderable2D.h"
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 Renderable2D::Renderable2D()
 {

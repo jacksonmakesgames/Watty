@@ -21,7 +21,7 @@
 #define SHADER_TID_INDEX		2
 #define SHADER_COLOR_INDEX		3
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 class DebugRenderer : public Renderer2D
 {
 private:

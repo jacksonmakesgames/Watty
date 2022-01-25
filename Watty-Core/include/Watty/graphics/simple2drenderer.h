@@ -3,7 +3,7 @@
 #include "renderable2d.h"
 #include <deque>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Simple2DRenderer : public Renderer2D {
 	public:
 		Simple2DRenderer(bool ECS) : Renderer2D(ECS) {};

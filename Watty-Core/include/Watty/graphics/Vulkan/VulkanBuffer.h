@@ -7,7 +7,7 @@
 #include"VulkanError.h"
 
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	class VulkanBuffer {
 	private:

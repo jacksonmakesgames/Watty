@@ -1,6 +1,6 @@
 
 #include <audio/audioclip.h>
-namespace letc {namespace audio {
+namespace watty {namespace audio {
 	AudioClip::AudioClip(const std::string& name, const std::string& filepath, SoLoud::Soloud* soloudPtr):
 		m_soloudPtr(soloudPtr), m_name(name), m_filepath(filepath), m_playing(false)
 	{

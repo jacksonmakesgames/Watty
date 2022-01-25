@@ -5,11 +5,11 @@
 #define PLAYERTEXTUREPATH "textures/Player.png"
 #define ENEMYTEXTUREPATH "textures/Enemy.png"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
@@ -17,7 +17,7 @@ namespace letc {
 	}
 }
 
-class SimpleGame : public LETC {
+class SimpleGame : public WattyEngine {
 private:
 	Window* m_window;
 	//Label* fpsLabel; 
@@ -39,7 +39,7 @@ public:
 
 	void init() override {
 		RawResources::Init();
-		window->setTitle("The First Game Made With the LETC!");
+		window->setTitle("The First Game Made With the WattyEngine!");
 		window->setSize({1600,900});
 		
 		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D());
@@ -77,12 +77,12 @@ public:
 	void update() override {
 
 		getInput();
-		LETC::update();
+		WattyEngine::update();
 	}
 
 	void render() override {
 
-		LETC::render();
+		WattyEngine::render();
 	}
 
 	void tick() override {
@@ -90,7 +90,7 @@ public:
 		//fpsLabel->text = std::to_string(getFramesPerSecond()) +  " frames / second";
 		//upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
 		//mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
-		LETC::tick();
+		WattyEngine::tick();
 	}
 
 	void getInput() {

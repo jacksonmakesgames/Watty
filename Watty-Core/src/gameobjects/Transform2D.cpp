@@ -1,5 +1,5 @@
 #include "../../include/Watty/gameobjects/Transform2D.h"
-namespace letc {
+namespace watty {
 	Transform2D::Transform2D(GameObject* go, glm::vec2 pos, glm::vec2 scale, float rot) : position(pos), size(scale), rotation(rot), gameObject(go)
 	{
 		updateMatrix();

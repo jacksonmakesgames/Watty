@@ -8,7 +8,7 @@
 #include "shader.h"
 #include "ecs/ECS.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 
 	struct FrameInfo {

@@ -1,6 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
-namespace letc {
+namespace watty {
 	class Stats {
 	private:
 		static int m_framesPerSecond, m_updatesPerSecond;

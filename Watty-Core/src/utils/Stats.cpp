@@ -1,5 +1,5 @@
 #include <utils/Stats.h>
-namespace letc {
+namespace watty {
 	int Stats::m_framesPerSecond =0;
 	int Stats::m_updatesPerSecond =0;
 	double Stats::m_msPerFrame =0;

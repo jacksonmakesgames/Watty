@@ -16,7 +16,7 @@
 #include <Resource.h>
 
 
-namespace letc {
+namespace watty {
 	using json = nlohmann::json;
 
 
@@ -84,6 +84,13 @@ namespace letc {
 			file.read(buffer.data(), fileSize);
 			file.close();
 			return buffer;
+	}
+
+	static bool write_string_to_file(const std::string& filename, const std::string& data) {
+		std::ofstream out(filename);
+		out << data;
+		out.close();
+		return true;
 	}
 
 

@@ -1,6 +1,6 @@
 #include <audio/audiomanager.h>
 
-namespace letc {namespace audio {
+namespace watty {namespace audio {
 	class AudioClip;
 	bool AudioManager::initialized = false;
 

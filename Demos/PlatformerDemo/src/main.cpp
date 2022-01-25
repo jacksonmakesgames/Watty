@@ -4,18 +4,18 @@
 #define FRAGLITPATH			"shaders/basic_lit.frag"
 #define FLOORTEXTUREPATH	"textures/floor.png"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 using namespace physics;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
 	}
 }
-class PlatformerDemo : public LETC {
+class PlatformerDemo : public WattyEngine {
 private:
 	GameObject* player; //todo make player class
 
@@ -33,7 +33,7 @@ public:
 		window->setVSync(true);
 
 		glm::vec2 fontScale = glm::vec2(window->getWidth() / 32.0f, window->getHeight() / 18.0f);
-		letc::physics::PhysicsWorld2D::setDebugDraw();
+		watty::physics::PhysicsWorld2D::setDebugDraw();
 
 		Shader* shader0 = new Shader();
 		shader0->setUniform3f("light_pos", glm::vec3(16.0f, 16.0f, 0.0f));
@@ -125,7 +125,7 @@ public:
 
 	void update() override {
 		PhysicsWorld2D::step(Timer::delta);
-		LETC::update();
+		WattyEngine::update();
 		sceneCamera->position = { player->transform->getPosition().x, player->transform->getPosition().y+3.0f, -1.0f};
 		
 
@@ -135,12 +135,12 @@ public:
 	void render() override {
 		getInput();
 
-		LETC::render();
+		WattyEngine::render();
 
 	}
 
 	void tick() override {
-		LETC::tick();
+		WattyEngine::tick();
 	}
 
 	void getInput() {

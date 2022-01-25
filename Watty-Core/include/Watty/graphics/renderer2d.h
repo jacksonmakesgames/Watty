@@ -28,7 +28,7 @@
 #define SHADER_COLOR_INDEX		3
 
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Renderable2D;
 	struct Bounds2D {
 		glm::vec2 lowerLeft = { -.5f, -.5f };

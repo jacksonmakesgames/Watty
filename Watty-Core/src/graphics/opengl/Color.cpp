@@ -1,5 +1,5 @@
 #include <graphics/Color.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	//											   AABBGGRR
 	WattyColor Color::black			= WattyColor(0xff000000);

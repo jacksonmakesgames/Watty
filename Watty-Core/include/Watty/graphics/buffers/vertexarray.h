@@ -11,7 +11,7 @@
 
 #include <glm.hpp>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	struct VertexData
 	{

@@ -1,8 +1,9 @@
 #pragma once
 #include <Watty.h>
 #include <res.h>
+#include <scene/scene.h>
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 using namespace audio;
@@ -10,7 +11,7 @@ using namespace physics;
 using namespace glm;
 
 
-namespace letc {
+namespace watty {
 	class Sandbox : public WattyEngine {
 	public:
 	private:

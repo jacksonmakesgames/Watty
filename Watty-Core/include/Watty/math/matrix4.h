@@ -5,7 +5,7 @@
 #include <iomanip>
 
 
-namespace letc {namespace math {
+namespace watty {namespace math {
 	struct Matrix4 {
 		union {
 			float elements[4 * 4];

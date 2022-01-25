@@ -1,6 +1,6 @@
 #include "Sandbox.h"
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, 0.0f));
@@ -26,7 +26,7 @@ namespace letc {
 		}
 
 	};
-
+#ifdef ECS_ENABLED
 	struct Move2DComponent : public ECSComponent<Move2DComponent> {
 		glm::vec2 movement = {0,0};
 	};
@@ -102,7 +102,6 @@ namespace letc {
 	};
 
 
-	const unsigned int TEST_AMT = 100;
 
 	Transform2DComponent		*transformC		;
 	MoveSystem					*moveSystem		;
@@ -110,9 +109,22 @@ namespace letc {
 	Move2DComponent				*moveC			;
 	InputHandlerComponent		*inputC			;
 	RenderableSpriteComponent	*renderableC	;
+
+#endif
+	const unsigned int TEST_AMT = 100;
 	WattyColor c = Color::white;
 	void Sandbox::init() {
 		sandboxInit();
+
+		// load scene file 
+		Scene scene = Scene("testScene.json", "Test Scene");
+		Layer* layer = new Layer("Test Layer");
+		TestGameObject* go = new TestGameObject({ 0,0 }, { 100,100 }); 
+		TestGameObject* go2 = new TestGameObject({ 0,0 }, { 100,100 }); 
+		layer->add(go);
+		layer->add(go2);
+		scene.m_layers.push_back(layer);
+		scene.save();
 
 		// ECS:
 		//TestECS();
@@ -131,7 +143,7 @@ namespace letc {
 			go->addComponent(sr);
 		}	
 	}
-
+#ifdef ECS_ENABLED
 	void Sandbox::TestECS() {
 		transformC = new Transform2DComponent();
 		moveSystem = new MoveSystem();
@@ -153,6 +165,8 @@ namespace letc {
 		mainSystems.addSystem(*moveSystem);
 
 	}
+
+#endif	
 	void Sandbox::tick() {
 		WattyEngine::tick();
 		if(fpsLabel)

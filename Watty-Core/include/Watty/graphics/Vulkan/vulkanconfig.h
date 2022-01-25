@@ -1,7 +1,7 @@
 #pragma once
 #include <vulkan.h>
 
-namespace letc { namespace graphics{
+namespace watty { namespace graphics{
 
 
 	struct VulkanConfig {

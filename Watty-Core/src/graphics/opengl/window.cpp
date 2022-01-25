@@ -1,5 +1,5 @@
 ﻿#include <graphics/window.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	void window_resize_callback(GLFWwindow* window, int width, int height);
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
@@ -292,14 +292,12 @@ namespace letc {namespace graphics {
 		
 		for (size_t i = 0; i < Camera::allCameras.size(); i++)
 		{
+			if (Camera::allCameras[i]->isEditorCamera) continue; // TODO improve perf
 			Camera::allCameras[i]->setWindowSize(glm::vec2(2 * (width / win->PIXEL_TO_METER_RATIO), 2 * (height / win->PIXEL_TO_METER_RATIO)));
 		}
 
-		// NOTE: huge performance hit when resizing.. we should rethink this
-		/*std::tuple aR = win->getAspectRatio();
-		FontManager::remakeAllFonts(
-			win->getWidth() / (std::get<0>(aR) * 2),
-			win->getHeight() / (std::get<1>(aR) * 2));*/
+
+
 	}
 
 	void window_close_callback(GLFWwindow* window)

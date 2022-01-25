@@ -3,7 +3,7 @@
 #include <random>
 #include <utils/Random.h>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	typedef union WattyColor
 	{

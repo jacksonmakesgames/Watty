@@ -1,6 +1,6 @@
 #include <graphics/texture.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	Texture::Texture(const std::string& filename) {
 		m_filename = filename;

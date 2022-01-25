@@ -4,7 +4,7 @@
 #include < stdexcept >
 
 
-namespace letc { namespace graphics{
+namespace watty { namespace graphics{
 
 	class VulkanFrameBuffer {
 	private:

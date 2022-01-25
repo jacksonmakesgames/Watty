@@ -2,7 +2,7 @@
 #include "../renderable2d.h"
 #include "../../utils/timer.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	class Animation2D
 	{
 	protected:

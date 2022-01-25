@@ -1,7 +1,7 @@
 #pragma once
 #include <Watty/ecs/ECSComponent.h>
 
-namespace letc {
+namespace watty {
 
 	/*
 	class BaseECSSystem {

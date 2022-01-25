@@ -5,11 +5,11 @@
 
 #define GRIDTEXTUREPATH  "textures/grid.png"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
@@ -17,7 +17,7 @@ namespace letc {
 	}
 }
 
-class SimpleGame : public LETC {
+class SimpleGame : public WattyEngine {
 private:
 	//Label* upsLabel;
 	//Label* fpsLabel;
@@ -114,20 +114,20 @@ public:
 			stepBack();
 		}
 
-		LETC::update();
+		WattyEngine::update();
 	
 	}
 
 	void render() override {
 		
-		LETC::render();
+		WattyEngine::render();
 
 		
 	}
 
 	void tick() override {
 		
-		LETC::tick();
+		WattyEngine::tick();
 	}
 
 	void getInput() {

@@ -3,7 +3,7 @@
 #include "../window.h"
 #include <gameobjects/GameObject.h>
 #include <utils/Stats.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	class EngineControlLayer : public GUILayer
 	{

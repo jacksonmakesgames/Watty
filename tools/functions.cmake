@@ -19,7 +19,7 @@ function(create_resources dir is_internal)
     include_directories(${dir})
     set(output_header "${dir}/${include_name}")
 
-    set(cache_file ${CMAKE_CACHEFILE_DIR}/${res_class_name}_resource_cache.txt)
+    set(cache_file ${dir}/${res_class_name}_resource_cache.txt)
 
     file(TOUCH ${cache_file})
     file(STRINGS ${cache_file} LINES_OLD_CHECKSUMS)
@@ -75,6 +75,12 @@ function(create_resources dir is_internal)
     set(uncached_bins "")
     set(cached_bins "")
     foreach(bin ${bins})
+        # message(STATUS "Processing <${bin}>")
+        # skip cache file
+        if(${cache_file} MATCHES "${bin}")
+            message(STATUS "Skipping cache file")
+            continue()
+        endif()
         file(SHA256 ${bin} CHECKSUM)
         list(APPEND NEW_CHECKSUMS "${CHECKSUM}\n")
         if (NOT ";${LINES_OLD_CHECKSUMS};" MATCHES ";${CHECKSUM};") # not cached, new addition
@@ -91,8 +97,9 @@ function(create_resources dir is_internal)
         string(REGEX REPLACE "([][+.*()^])" "\\\\\\1" regex ${dir})
         string(REGEX REPLACE "(${regex}\/)" "" relative_name ${bin})
         set(original_filename ${relative_name})
-        if(${output_src} MATCHES ${filename} OR ${output_header}  MATCHES ${filename} OR EMSCRIPTEN)
+        if(${output_src} MATCHES ${filename} OR ${output_header}  MATCHES ${filename} OR ${cache_file} MATCHES ${bin} OR EMSCRIPTEN)
             # Don't add to file
+            message(STATUS "Skipping <${bin}>")
         else()
             message(${relative_name})
             # Replace filename spaces & extension separator for C compatibility

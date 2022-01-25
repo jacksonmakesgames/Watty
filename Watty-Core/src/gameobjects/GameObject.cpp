@@ -1,8 +1,10 @@
 #include <gameobjects/GameObject.h>
-namespace letc {
+namespace watty {
+
 	GameObject::GameObject(const char* objectName, glm::vec3 position, glm::vec2 size)
 		:	transform(new Transform2D(this)),
 			name(objectName){
+		init();
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 
@@ -12,6 +14,7 @@ namespace letc {
 	}
 	GameObject::GameObject(glm::vec3 position, glm::vec2 size)
 		: transform(new Transform2D(this)), name("GameObject") {
+		init();
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 
@@ -22,6 +25,7 @@ namespace letc {
 
 	GameObject::GameObject(glm::vec2 position, glm::vec2 size)
 		: transform(new Transform2D(this)), name("GameObject") {
+		init();
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -32,6 +36,7 @@ namespace letc {
 
 	GameObject::GameObject(const char* name, glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable)
 		: transform(new Transform2D(this)), name(name) {
+		init();
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -41,6 +46,7 @@ namespace letc {
 	
 	GameObject::GameObject(glm::vec3 position, glm::vec2 size, graphics::Renderable2D* renderable)
 		: transform(new Transform2D(this)), name("GameObject") {
+		init();
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -50,6 +56,7 @@ namespace letc {
 	}
 	GameObject::GameObject(glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable)
 		: transform(new Transform2D(this, position, size, 0.0f)), name("GameObject") {
+		init();
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 
@@ -57,12 +64,14 @@ namespace letc {
 	
 	GameObject::GameObject(bool ECS)
 		: name("GameObject") {
+		init();
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 	}
 
 	GameObject::GameObject(glm::vec3 position, graphics::Renderable2D* renderable)
 		: transform(new Transform2D(this)), name("GameObject") {
+		init();
 		m_renderable = renderable;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(position);
@@ -73,6 +82,7 @@ namespace letc {
 
 	GameObject::GameObject():
 		transform(new Transform2D(this)), name("GameObject") {
+		init();
 		m_renderable = nullptr;
 		m_physicsBody2D = nullptr;
 		transform->setPosition(glm::vec2(0.0f));

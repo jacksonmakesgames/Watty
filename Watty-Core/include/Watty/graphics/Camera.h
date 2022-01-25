@@ -1,7 +1,7 @@
 #pragma once
 #include "../graphics/layers/layer.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	enum class CameraMode
 	{
 		orthographic, perspective, custom
@@ -24,6 +24,7 @@ namespace letc { namespace graphics {
 		glm::vec2 windowSize = {1,1};
 
 	public:
+		bool isEditorCamera = false;
 		glm::vec3& position;
 		Camera(std::vector<Layer*>* layers, glm::vec3 position, float size, float clippingDepth, CameraMode mode, WattyColor clearColor = Color::white);
 		inline void setSize(float newSize) { m_size = newSize;}

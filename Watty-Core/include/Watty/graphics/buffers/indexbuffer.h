@@ -8,7 +8,7 @@
 #else
 #include <glad/glad.h>
 #endif
-namespace letc {
+namespace watty {
 	namespace graphics {
 
 		class IndexBuffer {

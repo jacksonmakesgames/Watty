@@ -12,20 +12,20 @@
 #define FLOORTEXTUREPATH  "textures/floor.png"
 #define MUSICPATH  "sounds/slow_motion.ogg"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 using namespace audio;
 using namespace physics;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
 
 	}
 }
-class PhysicsDemo : public LETC {
+class PhysicsDemo : public WattyEngine {
 	private:
 		Label* fpsLabel;
 		Label* upsLabel;
@@ -179,19 +179,19 @@ class PhysicsDemo : public LETC {
 		
 			getInput();
 			checkBoxes();
-			LETC::update();
+			WattyEngine::update();
 
 		}
 
 		void render() override {
-			LETC::render();
+			WattyEngine::render();
 		}
 
 		void tick() override {
 			//fpsLabel->text = std::to_string(getFramesPerSecond()) + " frames / second";
 			//upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
 			//mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
-			LETC::tick();
+			WattyEngine::tick();
 		}
 
 		void reset() override{

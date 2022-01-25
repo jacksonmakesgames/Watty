@@ -1,6 +1,6 @@
 #include <graphics/ParticleSystem.h>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	ParticleSystem::ParticleSystem(ParticleProperties* props) :
 		properties(props)
 	{

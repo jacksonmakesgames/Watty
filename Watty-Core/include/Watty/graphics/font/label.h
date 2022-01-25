@@ -3,7 +3,7 @@
 #include "../renderable2d.h"
 #include "fontmanager.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	
 	enum OverflowMode {
 		Wrap, Expand

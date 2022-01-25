@@ -5,7 +5,7 @@
 #include <vector>
 #include "../gameobjects/GameObject.h"
 
-namespace letc { namespace physics {
+namespace watty { namespace physics {
 
 	class QueryAABBCallback : public b2QueryCallback
 	{

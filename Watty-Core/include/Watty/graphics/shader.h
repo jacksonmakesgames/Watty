@@ -17,7 +17,7 @@
 #define DEFAULT_SHADER_VERT_PATH "shaders/default.vert"
 #define DEFAULT_SHADER_FRAG_PATH "shaders/default.frag"
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Shader {
 	private:
 		unsigned int m_shaderID = (uint32_t)-1;
@@ -48,6 +48,9 @@ namespace letc {namespace graphics {
 		void disable() const;
 		int getUniformLocation(const char* name);
 		void init();
+		inline std::string getFragPath(){return m_fragPath;}
+		inline std::string getVertPath(){return m_vertPath;}
+
 	private:
 		unsigned int load();
 

@@ -4,7 +4,7 @@
 #include <imgui_internal.h>
 #include <math.h>
 
-using namespace letc;
+using namespace watty;
 
 
 namespace WattyEditor {
@@ -13,11 +13,30 @@ namespace WattyEditor {
 	class EditorApplication : public WattyEngine {
 	private:
 		bool _guiFlagResetLayout = false;
+		ImVec2 editorWindowSize = ImVec2(0,0);
+		ImGuiIO& io = ImGuiIO();
 	public:
+		EditorApplication();
 
+		// Engine Overrides
 		void init() override;
 		void editorUpdate() override;
 		void onEditorGui() override;
+
+		void setupEditorWindows();
+
+		// Windows
+		#pragma region windows
+			void drawInspector();
+			void drawHierarchy();
+			void drawScene();
+			void drawConsole();
+			void drawMenu();
+			void drawActions();
+			void drawProjectFiles();
+			void drawAppInfo();
+		#pragma endregion windows
+
 		int onExit();
 
 

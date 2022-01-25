@@ -1,5 +1,5 @@
 #include <Watty/graphics/Simple2DRenderer.h>
-namespace letc {
+namespace watty {
 	namespace graphics {
 
 		void Simple2DRenderer::submit(const Renderable2D* renderable)

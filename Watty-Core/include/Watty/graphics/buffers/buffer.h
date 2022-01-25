@@ -8,7 +8,7 @@
 #include <glad/glad.h>
 #endif
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	
 	class Buffer {
 	private:

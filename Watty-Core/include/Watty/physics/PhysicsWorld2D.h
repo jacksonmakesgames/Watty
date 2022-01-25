@@ -2,7 +2,7 @@
 #include <box2d/box2d.h>
 
 #include "DebugPhysics.h"
-namespace letc { namespace physics {
+namespace watty { namespace physics {
 	
 	class PhysicsWorld2D
 	{

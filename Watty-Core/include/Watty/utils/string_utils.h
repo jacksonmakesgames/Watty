@@ -3,7 +3,7 @@
 #include <sstream>
 #include <vector>
 
-namespace letc {
+namespace watty {
 	static std::vector<std::string> split_string(const std::string& string, char delimeter) {
 		std::vector<std::string> elems;
 		std::stringstream ss(string);

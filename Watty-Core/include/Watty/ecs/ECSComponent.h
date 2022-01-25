@@ -7,7 +7,7 @@
 	T(const T& other) {(void)other;} \
 	void operator=(const T& other) { (void)other; }
 
-namespace letc {
+namespace watty {
 	/*
 	struct BaseECSComponent;
 	typedef void* EntityHandle;

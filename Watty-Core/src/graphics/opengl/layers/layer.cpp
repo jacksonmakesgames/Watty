@@ -1,11 +1,12 @@
 #include <graphics/layers/layer.h>
-namespace letc {
+namespace watty {
 	std::vector<Layer*> Layer::allLayers = std::vector<Layer*>();
 
 	Layer* Layer::getLayerByName(std::string name) {
 		for (size_t i = 0; i < allLayers.size(); i++) {
 			if (allLayers[i]->name == name) return allLayers[i];
 		}
+		//TODO log error
 		std::cout << "Error: could not find layer: " << name << std::endl;
 		return nullptr;
 	};

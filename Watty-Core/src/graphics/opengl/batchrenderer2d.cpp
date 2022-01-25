@@ -1,6 +1,6 @@
 #include <graphics/batchrenderer2d.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	BatchRenderer2D::BatchRenderer2D() : Renderer2D()
 	{
 		

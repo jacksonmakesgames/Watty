@@ -1,7 +1,7 @@
 #pragma once
 #include <random>
 #include <float.h>
-namespace letc {
+namespace watty {
 	class Random {
 	public:
 		static void init() {

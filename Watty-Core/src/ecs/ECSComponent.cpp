@@ -1,5 +1,5 @@
 #include <Watty/ecs/ECSComponent.h>
-namespace letc {
+namespace watty {
 	/*
 	std::vector<std::tuple<ECSComponentCreateFunction, ECSComponentFreeFunction, size_t>>* BaseECSComponent::componentTypes;
 

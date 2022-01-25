@@ -21,7 +21,7 @@
 	#include <graphics/textures/SpriteSheetAnimation.h>
 	#include <ft2build.h>
 #endif
-bool letc::graphics::Window::useVSync = false;
+bool watty::graphics::Window::useVSync = false;
 
 #include <res/res_watty.h> // From Watty-Core
 
@@ -38,7 +38,9 @@ bool letc::graphics::Window::useVSync = false;
 #include <graphics/Color.h>
 #include <math/math.h>
 
-#include <ecs/ECS.h>
+#ifdef ECS_ENABLED
+	#include <ecs/ECS.h>
+#endif
 
 #include <gameobjects/GameObject.h>
 #include <utils/timer.h>
@@ -76,7 +78,8 @@ bool letc::graphics::Window::useVSync = false;
 	};
 
 
-namespace letc {
+namespace watty {
+#ifdef ECS_ENABLED
 
 	struct Transform2DComponent : public ECSComponent<Transform2DComponent> {
 		glm::mat4 transformMatrix = glm::mat4(1.0f);
@@ -123,30 +126,23 @@ namespace letc {
 		}
 
 	};
-
-
-
-
-
-
-
-
-
-
+#endif
 	class WattyEngine {
 	public:
 		bool debugPhysics = false;
 		bool resetFlag = false;
 		graphics::Camera* sceneCamera;
 		unsigned int updates = 0;
+		
+#ifdef ECS_RENDER
 		ECS ecs = ECS();
 		ECSSystemList mainSystems;
 		ECSSystemList renderSystems;
 		RenderableSpriteSystem* spriteRenderer;
-
+#endif
+		bool WATTY_EDITOR_ATTACHED = false; // TODO: make compiler define
 
 	protected:
-		bool WATTY_EDITOR_ATTACHED = false; // TODO: make compiler define
 		graphics::Window* window;
 
 		unsigned int renderBufferObject;
@@ -225,6 +221,10 @@ namespace letc {
 				20,
 				graphics::CameraMode::orthographic);
 
+			if (WATTY_EDITOR_ATTACHED){
+				sceneCamera->isEditorCamera = true;
+			}
+
 			return window;
 		}
 
@@ -268,8 +268,9 @@ namespace letc {
 
 				physics::PhysicsWorld2D::step(Timer::delta); //TODO: could be fixedTimeStep instead
 				update();
+				#ifdef ECS_ENABLED
 				ecs.updateSystems(mainSystems, Timer::delta);
-
+				#endif
 				Input::resetScroll();
 
 				t += fixedTimeStep;
@@ -373,14 +374,15 @@ namespace letc {
 private:
 	void run() {
 		Random::init();
+		#ifdef ECS_RENDER
 		spriteRenderer = new RenderableSpriteSystem();
 		renderSystems.addSystem(*spriteRenderer);
-
-		letc::physics::PhysicsWorld2D::box2DWorld->SetContactListener(new Physics2DContactListener());
+		#endif
+		watty::physics::PhysicsWorld2D::box2DWorld->SetContactListener(new Physics2DContactListener());
 #ifdef DEBUG 
 
-		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getViewportSize()));
-		letc::physics::PhysicsWorld2D::setDebugDraw();
+		watty::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getViewportSize()));
+		watty::physics::PhysicsWorld2D::setDebugDraw();
 		new graphics::DebugPhysicsLayer(*sceneCamera, *window);
 		new graphics::GridLayer(*sceneCamera, *window);
 
@@ -437,10 +439,10 @@ private:
 	};
 
 
-	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
-	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
-	const glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
-	const glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
+	watty::graphics::DebugRenderer* watty::physics::DebugPhysics::renderer = nullptr;
+	watty::graphics::Shader* watty::physics::DebugPhysics::m_shader = nullptr;
+	const glm::vec3* watty::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
+	const glm::vec2* watty::physics::DebugPhysics::m_sceneCameraScale = nullptr;
 
 
 

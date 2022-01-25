@@ -9,7 +9,7 @@
 #include <iostream>
 #include <graphics/shader.h>
 #include <Resource.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Font{
 
 	const char* characters =	" !\"#$%&'()*+,-./0123456789:;<=>?"

@@ -1,6 +1,6 @@
 #include <graphics/Camera.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	std::vector<Camera*> Camera::allCameras{};
 	Camera* Camera::sceneCamera = nullptr;
 	//TODO: right now we only support orthographic, we should add support for multiple projection modes

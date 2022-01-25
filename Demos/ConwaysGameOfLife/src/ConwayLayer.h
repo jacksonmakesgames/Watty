@@ -1,6 +1,6 @@
 #pragma once
 #include <Watty/graphics/layers/GUILayer.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 class ConwayLayer : public GUILayer
 {
 private:

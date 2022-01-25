@@ -2,7 +2,7 @@
 #pragma once
 #include "renderer2d.h"
 #include <ext/glm/include/glm.hpp>
-namespace letc {
+namespace watty {
 	namespace graphics {
 		class GridRenderer : public Renderer2D {
 		private:

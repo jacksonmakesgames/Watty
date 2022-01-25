@@ -2,7 +2,7 @@
 #include <vector>
 #include "font.h"
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	class FontManager {
 	private:

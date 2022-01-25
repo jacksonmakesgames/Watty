@@ -1,5 +1,5 @@
 #include <graphics/textures/SpriteSheetAnimation.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	SpriteSheetAnimation::SpriteSheetAnimation(SpriteSheetAnimInfo info)
 		: Animation2D(info.name, info.playbackRate, info.loop),

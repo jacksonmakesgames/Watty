@@ -6,7 +6,7 @@
 #include "../utils/string_utils.h"
 #include <Resource.h>
 
-namespace letc {namespace audio {
+namespace watty {namespace audio {
 	class AudioClip {
 	private:
 		std::string m_name;

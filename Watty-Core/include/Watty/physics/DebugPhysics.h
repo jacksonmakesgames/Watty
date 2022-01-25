@@ -16,7 +16,7 @@
 #include <math/math.h> //DEGREETORAD
 
 
-namespace letc { namespace physics { 
+namespace watty { namespace physics { 
 
 	class DebugPhysics : public b2Draw
 	{

@@ -8,7 +8,7 @@
 
 #include <graphics/Color.h>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	struct ParticleProperties
 	{
 		glm::vec2 position = {0,0};

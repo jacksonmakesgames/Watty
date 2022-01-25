@@ -4,7 +4,7 @@
 #include "initializers.h"
 #include "VulkanPhysicalDevice.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	class VulkanDevice {
 	private:
 		VkDevice m_device;

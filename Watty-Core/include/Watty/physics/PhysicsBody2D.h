@@ -4,7 +4,7 @@
 #include "../physics/PhysicsWorld2D.h"
 #include <glm.hpp>
 
-namespace letc { 
+namespace watty { 
 	class GameObject;
 
 	namespace physics {

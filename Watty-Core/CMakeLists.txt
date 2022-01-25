@@ -10,6 +10,7 @@ file(GLOB_RECURSE SRC_PHYSICS 		"${COREDIR}/src/physics/**.cpp")
 file(GLOB_RECURSE SRC_SHADERS 		"${COREDIR}/src/shaders/**.cpp")
 file(GLOB_RECURSE SRC_UTILS 		"${COREDIR}/src/utils/**.cpp")
 file(GLOB_RECURSE SRC_ECS 			"${COREDIR}/src/ecs/**.cpp")
+file(GLOB_RECURSE SRC_ECS 			"${COREDIR}/src/scene/**.cpp")
 
 file(GLOB_RECURSE SRC_SOLOUD 			"${COREDIR}/ext/soloud/src/audiosource/**.c*" "${COREDIR}/ext/soloud/src/backend/sdl/**.c*" "${COREDIR}/ext/soloud/src/filter/**.c*" "${COREDIR}/ext/soloud/src/core/**.c*")
 file(GLOB_RECURSE SRC_FREETYPEGL 		"${COREDIR}/ext/freetype-gl/*.c")
@@ -21,6 +22,21 @@ endif()
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
 file(GLOB RES_SRC 		"${CMAKE_CURRENT_SOURCE_DIR}/res/res_watty.cpp")
 file(GLOB RES_HEAD 		"${CMAKE_CURRENT_SOURCE_DIR}/res/res_watty.cpp")
+
+
+if (WIN32)
+    add_compile_definitions(GUID_WINDOWS)
+endif (WIN32)
+if (WIN64)
+    add_compile_definitions(GUID_WINDOWS)
+endif (WIN64)
+if (MSVC)
+    add_compile_definitions(GUID_WINDOWS)
+endif (MSVC)
+if (UNIX)
+    add_compile_definitions(GUID_LIBUUID)
+endif (UNIX)
+
 
 project (${CORENAME})
 
@@ -63,6 +79,9 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
      PREFIX ""
      FILES ${SRC_ECS})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
+     PREFIX ""
+     FILES ${SRC_SCENE})
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
      PREFIX ""
@@ -90,6 +109,7 @@ add_library(${CORENAME} STATIC
 	${SRC_SHADERS}
 	${SRC_UTILS}
 	${SRC_ECS}
+	${SRC_SCENE}
 	${RES_SRC}
 	)
 	
@@ -107,6 +127,7 @@ else()
 		${SRC_SHADERS}
 		${SRC_UTILS}
 		${SRC_ECS}
+		${SRC_SCENE}
 		${RES_SRC}
 	)
 

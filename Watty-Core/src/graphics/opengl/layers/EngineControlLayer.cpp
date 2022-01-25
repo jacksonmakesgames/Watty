@@ -1,5 +1,5 @@
 #include <graphics/layers/EngineControlLayer.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	EngineControlLayer::EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers) :
 		GUILayer(name, new graphics::Shader()),

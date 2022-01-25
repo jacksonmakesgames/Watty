@@ -1,7 +1,7 @@
 #pragma once
 #include "Animation2D.h"
 #include <map>
-namespace letc {namespace graphics{
+namespace watty {namespace graphics{
 	class Animator2D{
 	protected:
 		bool isPlaying = false;

@@ -1,7 +1,7 @@
 #pragma once
 #include "../../ext/Box2D/Box2D.h"
 #include <iostream>
-namespace letc { namespace physics {
+namespace watty { namespace physics {
 	class RaycastCallback : public b2RayCastCallback
 	{
 	public:

@@ -1,5 +1,5 @@
 #include <graphics/tilemap/Tile.h>
-namespace letc {
+namespace watty {
 	namespace graphics {
 
 		Tile::Tile(float pixelMeterRatio, Texture* texture, float x, float y, int width, int height, int offsetIndex) :

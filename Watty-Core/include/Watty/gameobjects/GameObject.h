@@ -2,8 +2,10 @@
 #include <graphics/textures/Animator2D.h>
 #include <physics/PhysicsBody2D.h>
 #include <gameobjects/Transform2D.h>
+#include <utils/Guid.hpp>
 
-namespace letc {
+
+namespace watty {
 	class GameObject {
 	protected:
 	public:
@@ -16,7 +18,7 @@ namespace letc {
 		//glm::vec3 m_parentOffset = glm::vec3(0.0f);
 	private:
 		bool enabled_ = true;
-
+		std::string m_uuid;
 		std::string m_tag = "";
 		//std::vector<GameObject*> m_children;
 
@@ -49,7 +51,7 @@ namespace letc {
 		GameObject(glm::vec2 position, graphics::Renderable2D* renderable);
 		GameObject(const char* name, glm::vec2 position, glm::vec2 size, graphics::Renderable2D* renderable);
 		GameObject();
-
+		inline std::string getUUID() { return m_uuid; }
 		inline void setTag(std::string tag) { m_tag = tag; }
 		inline std::string getTag() { return m_tag; }
 
@@ -97,9 +99,11 @@ namespace letc {
 		~GameObject();
 
 	private:
-
-
+		
+		inline void init(){m_uuid = xg::newGuid();}
+	
 	};
+	
 	class Physics2DContactListener : public b2ContactListener {
 		void BeginContact(b2Contact* contact);
 		void EndContact(b2Contact* contact);

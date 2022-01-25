@@ -1,5 +1,5 @@
 #include <graphics/tilemap/TileMap.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	TileMapLayer::TileMapLayer(float pixelMeterRatio, std::string name, unsigned int id, int tilesPerRow, int tilesPerColumn , float tileHeight, float tileWidth, std::vector<int> data, Texture* texture) :
 		mName(name), mId(id), mTilesPerRow(tilesPerRow), mTilesPerColumn(tilesPerColumn), 
 		mTileWidth(tileWidth),mTileHeight(tileHeight),mData(data), allTilesTexture(texture), 

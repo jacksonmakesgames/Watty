@@ -259,7 +259,7 @@ private:
 	}
 
 	void mainLoop() {
-		letc::Timer* t = new letc::Timer();
+		watty::Timer* t = new watty::Timer();
 		float time = 0;
 		float timer = 0.0f;
 		float updateTimer = 0.0f;

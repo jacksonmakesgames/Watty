@@ -23,3 +23,6 @@ Sandbox/res/res.h
 Sandbox/res/res.cpp
 Watty-Core/res/res_watty.h
 Watty-Core/res/res_watty.cpp
+**_resource_cache.txt
+Demos/res/res.h
+Demos/res/res.cpp

@@ -2,7 +2,7 @@
 #include "../batchrenderer2d.h"
 #include "../../gameobjects/GameObject.h"
 
-namespace letc {
+namespace watty {
 	class Layer {
 	public:
 		static std::vector<Layer*> allLayers;

@@ -1,5 +1,5 @@
 #include <graphics/layers/DebugPhysicsLayer.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	DebugPhysicsLayer::DebugPhysicsLayer(Camera& camera, Window& window) :
 			mCamera(camera),
 			m_debugRenderer(physics::DebugPhysics::instance->getRenderer()),

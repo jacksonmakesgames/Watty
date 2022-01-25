@@ -1,5 +1,5 @@
 #include <graphics/sprite.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	Sprite::Sprite(glm::vec2 position, glm::vec2 size, WattyColor color)
 		: Renderable2D(glm::vec2(position.x, position.y), glm::vec2(size.x, size.y), color) {
 	}

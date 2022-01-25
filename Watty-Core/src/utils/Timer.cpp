@@ -1,5 +1,5 @@
 #include <utils/timer.h>
-namespace letc {
+namespace watty {
 	double Timer::delta = 0;
 
 	double Timer::m_startTime = 0;

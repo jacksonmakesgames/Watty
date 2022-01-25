@@ -1,5 +1,5 @@
 #include <graphics/DebugRenderer.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	DebugRenderer::DebugRenderer()
 	{
 		init();

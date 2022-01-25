@@ -1,6 +1,6 @@
 #include <Watty/ecs/ECS.h>
 /*
-namespace letc {
+namespace watty {
 	ECS::~ECS(){
 		// Free Entity Memory
 		for (uint32_t i = 0; i < entities.size(); i++){
@@ -205,7 +205,7 @@ namespace letc {
 
 
 
-namespace letc {
+namespace watty {
 
 	ECS::~ECS()
 	{

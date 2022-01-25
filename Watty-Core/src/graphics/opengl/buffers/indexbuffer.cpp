@@ -1,5 +1,5 @@
 #include <graphics/buffers/indexbuffer.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	IndexBuffer::IndexBuffer(unsigned short* data, int count) {
 		m_count = count;

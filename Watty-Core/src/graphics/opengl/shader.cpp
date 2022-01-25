@@ -1,6 +1,6 @@
 #include <graphics/shader.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 #ifdef WATTY_EMSCRIPTEN
 	const char* Shader::m_defaultVertPath = "shaders/default_es3.vert";

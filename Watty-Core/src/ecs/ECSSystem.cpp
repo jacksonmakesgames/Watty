@@ -1,5 +1,5 @@
 #include <Watty/ecs/ECSSystem.h>
-namespace letc {
+namespace watty {
 	/*
 	bool BaseECSSystem::isValid()
 	{

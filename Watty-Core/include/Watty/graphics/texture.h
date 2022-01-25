@@ -16,7 +16,7 @@
 
 #include <Resource.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Texture {
 	private:
 		std::string m_filename;

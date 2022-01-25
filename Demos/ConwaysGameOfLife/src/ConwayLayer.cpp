@@ -1,5 +1,5 @@
 #include "ConwayLayer.h"
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	ConwayLayer::ConwayLayer(std::string name, float& stepRate, bool& reset, bool& running, bool& funColors, bool& stepFlag, bool& stepBackFlag) :
 		GUILayer(name, new Shader()),
 		m_stepRateConway(stepRate),

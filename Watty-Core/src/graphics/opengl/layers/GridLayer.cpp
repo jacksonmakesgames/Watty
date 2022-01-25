@@ -1,5 +1,5 @@
 #include <graphics/layers/GridLayer.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	GridLayer::GridLayer(Camera& camera, Window& window) :
 			Layer("Grid Layer",new DebugRenderer(), new Shader()),
 			mCamera(camera),

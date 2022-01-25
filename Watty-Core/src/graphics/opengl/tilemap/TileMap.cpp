@@ -1,5 +1,5 @@
 #include <graphics/tilemap/TileMap.h>
-namespace letc {
+namespace watty {
 namespace graphics {
 	TileMap::TileMap(const char* pathToJsonMap, const char* pathToImage):mPathToMap(pathToJsonMap),mPathToImage(pathToImage){
 		m_position = glm::vec2(.5f,-.5f);
@@ -35,7 +35,7 @@ namespace graphics {
 
 
 	void TileMap::buildPhysicsShapes() {
-		letc::physics::MapBodyBuilder::buildShapes(mPhysicsShapes, mapSize.x, mapSize.y, mPixelToMeterRatio, physics::PhysicsWorld2D::box2DWorld);
+		watty::physics::MapBodyBuilder::buildShapes(mPhysicsShapes, mapSize.x, mapSize.y, mPixelToMeterRatio, physics::PhysicsWorld2D::box2DWorld);
 	}
 	
 

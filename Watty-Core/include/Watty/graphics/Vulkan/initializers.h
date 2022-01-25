@@ -5,7 +5,7 @@
 #include "SwapChainSupportDetails.h"
 
 
-namespace letc { namespace initializers {
+namespace watty { namespace initializers {
 
 	VkApplicationInfo ApplicationInfo(const graphics::VulkanConfig& config);
 	VkInstanceCreateInfo InstanceCreateInfo(const VkApplicationInfo& appInfo, const std::vector<const char*>& layers, const std::vector<const char*>& extensions);

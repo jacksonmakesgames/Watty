@@ -7,7 +7,7 @@
 
 
 
-namespace letc {
+namespace watty {
 	/*
 	class ECS {
 	public:

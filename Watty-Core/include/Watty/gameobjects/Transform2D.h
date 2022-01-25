@@ -3,7 +3,7 @@
 #include <gtc/matrix_transform.hpp>
 #include<physics/PhysicsBody2D.h>
 #include <vector>
-namespace letc {
+namespace watty {
 	class GameObject;
 
 	class Transform2D

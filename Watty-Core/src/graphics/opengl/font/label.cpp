@@ -1,5 +1,5 @@
 #include <graphics/font/label.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	Label::Label(LabelProperties props):Renderable2D(), properties(props) {
 		setText(properties.text);
 	}

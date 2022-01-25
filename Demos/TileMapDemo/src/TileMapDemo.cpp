@@ -8,21 +8,21 @@
 #define LEVELPATH  "tilemaps/levelOne.json"
 #define IMAGEPATH  "tilemaps/terrain_all.png"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 using namespace audio;
 using namespace physics;
 using namespace glm;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, 0.0f));
 	}
 }
 
-class TileMapDemoApp : public LETC {
+class TileMapDemoApp : public WattyEngine {
 private:
 	Window* m_window;
 	GameObject* player;
@@ -99,10 +99,10 @@ public:
 	}
 
 	void tick() override {
-		LETC::tick();
+		WattyEngine::tick();
 	}
 	void update() override {
-		LETC::update();
+		WattyEngine::update();
 		getInput();
 
 		sceneCamera->setSize(
@@ -133,7 +133,7 @@ public:
 	}
 
 	void render() override {
-		LETC::render();
+		WattyEngine::render();
 		
 
 	}

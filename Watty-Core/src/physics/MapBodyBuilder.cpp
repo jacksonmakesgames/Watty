@@ -1,5 +1,5 @@
 #include <physics/MapBodyBuilder.h>
-namespace letc {namespace physics {
+namespace watty {namespace physics {
     MapBodyBuilder::MapBodyBuilder() {}
 
     std::vector<b2Body*> MapBodyBuilder::buildShapes(std::vector<std::vector<glm::vec2>> shapes,float width, float height, float pixelsPerTile, b2World* world)
