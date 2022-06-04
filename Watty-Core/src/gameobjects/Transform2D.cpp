@@ -1,6 +1,6 @@
 #include "../../include/Watty/gameobjects/Transform2D.h"
-namespace letc {
-	Transform2D::Transform2D(GameObject2D* go, glm::vec2 pos, glm::vec2 scale, float rot) : position(pos), size(scale), rotation(rot), gameObject(go)
+namespace watty {
+	Transform2D::Transform2D(GameObject* go, glm::vec2 pos, glm::vec2 scale, float rot) : position(pos), size(scale), rotation(rot), gameObject(go)
 	{
 		updateMatrix();
 
@@ -13,6 +13,12 @@ namespace letc {
 	}
 
 	Transform2D::Transform2D(GameObject2D* go) : Transform(), gameObject(go)
+	{
+		updateMatrix();
+	}
+
+	// For ECS
+	Transform2D::Transform2D() : parent(nullptr), position({ 0,0 }), size({1,1}), rotation(0), transformMatrix(glm::mat4(1)), gameObject(nullptr)
 	{
 		updateMatrix();
 	}
@@ -34,14 +40,19 @@ namespace letc {
 		return rotation;
 	}
 
-	void Transform2D::translate(glm::vec2 translation)
-	{
+	void Transform2D::translate(glm::vec2 translation){
+		wantsPhysicsMove = true;
 		position += translation;
+		physicsMoveTo = position;
 		updateMatrix();
 	}
 
-	void Transform2D::setPosition(glm::vec2 newPos)
+	void Transform2D::setPosition(glm::vec2 newPos, bool movePhysicsBody)
 	{
+		if (movePhysicsBody) {
+			wantsPhysicsMove = true;
+			physicsMoveTo = newPos;
+		}
 		position = newPos;
 		updateMatrix();
 	}

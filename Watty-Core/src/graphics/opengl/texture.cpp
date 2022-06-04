@@ -1,12 +1,34 @@
 #include <graphics/texture.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	Texture::Texture(const std::string& filename) {
 		m_filename = filename;
-		uint8_t* dataToLoad = load_image(m_filename.c_str(), &m_width, &m_height);
-		m_TID = load(dataToLoad);
+#ifdef WATTY_EMSCRIPTEN
+		uint8_t* dataToLoad = load_image_from_disk(m_filename.c_str(), &m_width, &m_height);
+#else
 
+		Resource* res = Resources::Load(filename.c_str());
+		if (res == nullptr) {
+			std::cout << "Could not find file: " << filename << std::endl;
+			exit(0);
+		}
+
+		uint8_t* dataToLoad = load_image(res->data, res->size, &m_width, &m_height);
+#endif
+		m_TID = load(dataToLoad);
+	}
+
+	Texture::Texture(){
+		//m_TID = load(nullptr);
+		m_TID = -1;
+	}
+
+	Texture::Texture(int screenWidth, int screenHeight): m_width(screenWidth), m_height(screenHeight) {
+		m_filename = "{SCREEN TEXTURE}";
+
+		glGenTextures(1, &m_TID);
+		upload(NULL);
 	}
 
 	// font textures
@@ -88,13 +110,42 @@ namespace letc {namespace graphics {
 	}
 
 	void Texture::unbind(unsigned int glActiveTID) const {
-
-
 		glBindTexture(GL_TEXTURE_2D, NULL);
 
 	}
 
-	GLuint Texture::load(uint8_t* data){
+	unsigned int Texture::upload(uint8_t* data, bool deleteData)
+	{
+		if (m_TID == -1) {
+			load(data, deleteData);
+		}
+
+		bind();
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+		//TODO this should be a setting
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+
+		if (isPowerOfTwo(m_width) && isPowerOfTwo(m_height)) {
+			// Generate mips.
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+		else {
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		}
+
+		if (deleteData)
+			delete[] data;
+
+		unbind();
+		return m_TID;
+	}
+
+	GLuint Texture::load(uint8_t* data, bool deleteData){
 
 		if (data == nullptr) {
 			std::cout << "Error loading texture: " << m_filename <<" (no data)" << std::endl;
@@ -104,27 +155,9 @@ namespace letc {namespace graphics {
 		GLuint output;
 
 		glGenTextures(1, &output); // generate unique glTID
-		glBindTexture(GL_TEXTURE_2D, output);
+		this->m_TID = output;
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		
-		//TODO this should be a setting
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		
-		
-		if (isPowerOfTwo(m_width) && isPowerOfTwo(m_height)) {
-			// Yes, it's a power of 2. Generate mips.
-			glGenerateMipmap(GL_TEXTURE_2D);
-		}
-		else {
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		}
-
-
-		delete[] data;
-		return output;
+		return upload(data, deleteData);
 	}
 
 	bool Texture::isPowerOfTwo(int value)

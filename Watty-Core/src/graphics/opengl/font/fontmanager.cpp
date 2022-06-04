@@ -1,6 +1,6 @@
 #include <graphics/font/fontmanager.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	
 	
 

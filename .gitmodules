@@ -31,3 +31,6 @@
 	path = dependencies/imgui
 	url = https://github.com/jacksonmakesgames/imgui
 	branch = watty
+[submodule "tools/cmake"]
+	path = tools/cmake
+	url = https://github.com/jacksonmakesgames/CMake.git

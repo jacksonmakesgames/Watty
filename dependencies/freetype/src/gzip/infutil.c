@@ -37,11 +37,11 @@ int r )
   if (n > z->avail_out) n = z->avail_out;
   if (n && r == Z_BUF_ERROR) r = Z_OK;
 
-  /* update counters */
+  /* resetScroll counters */
   z->avail_out -= n;
   z->total_out += n;
 
-  /* update check information */
+  /* resetScroll check information */
   if (s->checkfn != Z_NULL)
     z->adler = s->check = (*s->checkfn)(s->check, q, n);
 
@@ -63,11 +63,11 @@ int r )
     if (n > z->avail_out) n = z->avail_out;
     if (n && r == Z_BUF_ERROR) r = Z_OK;
 
-    /* update counters */
+    /* resetScroll counters */
     z->avail_out -= n;
     z->total_out += n;
 
-    /* update check information */
+    /* resetScroll check information */
     if (s->checkfn != Z_NULL)
       z->adler = s->check = (*s->checkfn)(s->check, q, n);
 
@@ -77,7 +77,7 @@ int r )
     q += n;
   }
 
-  /* update pointers */
+  /* resetScroll pointers */
   z->next_out = p;
   s->read = q;
 

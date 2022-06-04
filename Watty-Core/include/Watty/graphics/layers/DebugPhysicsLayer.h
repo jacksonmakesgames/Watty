@@ -3,7 +3,7 @@
 #include "../shader.h"
 #include"../DebugRenderer.h"
 #include "../window.h"
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	class DebugPhysicsLayer : public Layer {
 	private:

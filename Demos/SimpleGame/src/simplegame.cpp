@@ -1,14 +1,15 @@
-#include <Watty/Watty.h>
+#include <Watty.h>
+#include <res.h>
 // TODO: relative 
 
-#define PLAYERTEXTUREPATH RESDIR "textures/Player.png"
-#define ENEMYTEXTUREPATH RESDIR "textures/Enemy.png"
+#define PLAYERTEXTUREPATH "textures/Player.png"
+#define ENEMYTEXTUREPATH "textures/Enemy.png"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
@@ -16,7 +17,7 @@ namespace letc {
 	}
 }
 
-class SimpleGame : public LETC {
+class SimpleGame : public WattyEngine {
 private:
 	Window* m_window;
 	//Label* fpsLabel; 
@@ -37,16 +38,17 @@ public:
 	}
 
 	void init() override {
-		m_window = createWindow("The First Game Made With the LETC!", 1600,900, true, false);
-
+		RawResources::Init();
+		window->setTitle("The First Game Made With the WattyEngine!");
+		window->setSize({1600,900});
+		
 		Layer* playerLayer= new Layer("Player Layer", new BatchRenderer2D());
 		Layer* uiLayer= new Layer("UI Layer", new BatchRenderer2D());
-		layers.push_back(playerLayer);
-		layers.push_back(uiLayer);
 
 		glClearColor(.976f,.972f,.972f,1);
 
 		Texture* playerTexture = new Texture(PLAYERTEXTUREPATH);
+	
 		playerGO = new GameObject(glm::vec3(0,0,0), glm::vec2(4,4), new Sprite(playerTexture));
 		playerLayer->add(playerGO);
 		
@@ -75,12 +77,12 @@ public:
 	void update() override {
 
 		getInput();
-		LETC::update();
+		WattyEngine::update();
 	}
 
 	void render() override {
 
-		LETC::render();
+		WattyEngine::render();
 	}
 
 	void tick() override {
@@ -88,23 +90,23 @@ public:
 		//fpsLabel->text = std::to_string(getFramesPerSecond()) +  " frames / second";
 		//upsLabel->text = std::to_string(getUpdatesPerSecond()) + " updates / second";
 		//mpsLabel->text = std::to_string(getMSPerFrame()).substr(0, 5) + "ms / frame";
-		LETC::tick();
+		WattyEngine::tick();
 	}
 
 	void getInput() {
-		float horizontal = -1*(float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
+		float horizontal = -1*(float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+		float vertical = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1*(float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
 		
 		glm::vec2 input(horizontal, vertical);
 
-		float horizontalP1 = -1*(float)(m_window->keyIsDown(GLFW_KEY_A)) + (float)(m_window->keyIsDown(GLFW_KEY_D));
-		float verticalP1 = (float)(m_window->keyIsDown(GLFW_KEY_W))+ -1*(float)(m_window->keyIsDown(GLFW_KEY_S));
+		float horizontalP1 = -1*(float)(Input::keyIsDown(GLFW_KEY_A)) + (float)(Input::keyIsDown(GLFW_KEY_D));
+		float verticalP1 = (float)(Input::keyIsDown(GLFW_KEY_W))+ -1*(float)(Input::keyIsDown(GLFW_KEY_S));
 		
-		float horizontalP2 = -1*(float) m_window->keyIsDown(GLFW_KEY_LEFT) + m_window->keyIsDown(GLFW_KEY_RIGHT);
-		float verticalP2 = (float) m_window->keyIsDown(GLFW_KEY_UP) + -1*(float)(m_window->keyIsDown(GLFW_KEY_DOWN));
+		float horizontalP2 = -1*(float) Input::keyIsDown(GLFW_KEY_LEFT) + Input::keyIsDown(GLFW_KEY_RIGHT);
+		float verticalP2 = (float) Input::keyIsDown(GLFW_KEY_UP) + -1*(float)(Input::keyIsDown(GLFW_KEY_DOWN));
 		
-		playerGO->transform->translate({playerSpeed * horizontalP1 * gameTimer->delta, playerSpeed * verticalP1 * gameTimer->delta});
-		enemyGO->transform->translate({playerSpeed * horizontalP2 * gameTimer->delta, playerSpeed * verticalP2 * gameTimer->delta});
+		playerGO->transform->translate({playerSpeed * horizontalP1 * Timer::delta, playerSpeed * verticalP1 * Timer::delta});
+		enemyGO->transform->translate({playerSpeed * horizontalP2 *  Timer::delta, playerSpeed * verticalP2 * Timer::delta});
 
 	}
 

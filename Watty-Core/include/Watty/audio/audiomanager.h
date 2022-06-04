@@ -8,7 +8,7 @@
 #include <soloud_wav.h>
 
 
-namespace letc{ namespace audio{
+namespace watty{ namespace audio{
 	class AudioManager{
 
 

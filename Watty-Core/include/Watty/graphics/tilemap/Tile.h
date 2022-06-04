@@ -1,7 +1,7 @@
 #pragma once
 #include "../sprite.h"
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class Tile : public Sprite {
 	private:
 	public:

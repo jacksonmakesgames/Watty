@@ -3,7 +3,7 @@
 #include < stdexcept >
 #include <vector>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	class VulkanRenderPass {
 	private:

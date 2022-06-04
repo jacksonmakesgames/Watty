@@ -1,82 +1,17 @@
 #include <graphics/batchrenderer2d.h>
 
-namespace letc {namespace graphics {
-	
-	BatchRenderer2D::BatchRenderer2D() {
-		init();
-	}
-
-	BatchRenderer2D::~BatchRenderer2D() {
-		delete m_indexBuffer;
-		glDeleteBuffers(1, &m_vertexBuffer);
-	}
-
-	void BatchRenderer2D::init(){
-		// Generate
-		glGenVertexArrays(1, &m_vertexArray);
-		glGenBuffers(1, &m_vertexBuffer);
-		//Bind
-		glBindVertexArray(m_vertexArray);
-		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-		glBufferData(GL_ARRAY_BUFFER, RENDERER_BUFFER_SIZE, NULL, GL_DYNAMIC_DRAW);
-		//Enable attribs
-		glEnableVertexAttribArray(SHADER_VERTEX_INDEX);
-		glEnableVertexAttribArray(SHADER_UV_INDEX);
-		glEnableVertexAttribArray(SHADER_TID_INDEX);
-		glEnableVertexAttribArray(SHADER_COLOR_INDEX);
-		//Assign
-		glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*) 0);
-		glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, uv)));
-		glVertexAttribPointer(SHADER_TID_INDEX, 1, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, tid)));
-		glVertexAttribPointer(SHADER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const GLvoid*)(offsetof(VertexData, color)));
-		//Unbind
-		glBindBuffer(GL_ARRAY_BUFFER, NULL);
-
-		// Texture Arrays:
-
-
-		//Indices
-		int indexOffset = 0;
-		GLushort indices[RENDERER_INDICES_SIZE];
-
-		for (int i = 0; i < RENDERER_INDICES_SIZE; i += 6) {
-			indices[i+0] = indexOffset + 0;
-			indices[i+1] = indexOffset + 1;
-			indices[i+2] = indexOffset + 2;
-			
-			indices[i+3] = indexOffset + 2;
-			indices[i+4] = indexOffset + 3;
-			indices[i+5] = indexOffset + 0;
-
-			indexOffset += 4;
-		}
+namespace watty {namespace graphics {
+	BatchRenderer2D::BatchRenderer2D() : Renderer2D()
+	{
 		
-		m_indexBuffer = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
+	}
 
-		m_indexCount = 0;
-
-		//Unbind array
-		glBindVertexArray(NULL);
-
-#ifdef WATTY_EMSCRIPTEN
-		m_currentBufferBase = new VertexData[RENDERER_MAX_SPRITES*4]; // 4 verts
-#endif
-
-
+	BatchRenderer2D::BatchRenderer2D(bool ECS) : Renderer2D(ECS)
+	{
 
 	}
 
-	void BatchRenderer2D::begin(){
-		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer); // bind vertex buffer
-#ifdef WATTY_EMSCRIPTEN
-		m_currentBuffer = m_currentBufferBase;
-#else
-		m_currentBuffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY); // map the buffer and get the pointer to the first vertex
-#endif // WATTY_EMSCRIPTEN
-
-
-	}
-
+	
 	void BatchRenderer2D::submit(const Renderable2D* renderable){
 		const glm::vec2& pos = renderable->getPosition();
 		const glm::vec2& size = renderable->getSize();
@@ -84,79 +19,19 @@ namespace letc {namespace graphics {
 		const std::vector<glm::vec2>& uvs = renderable->getUVs();
 		const GLuint tid = renderable->getTID();
 		float glTID = (float)tid;
-
 		FrameInfo frameInfo = renderable->getFrameInfo();
 
-		float idForShader = 0.0f;
-		if (glTID > 0) {
-			bool found = false;
-			for (size_t i = 0; i < m_glTIDsThisFlush.size(); i++)
-			{
-				if (m_glTIDsThisFlush[i] == glTID) {
-					found = true;
-				}
-				
-			}
-			if (!found) {
-
-				m_glTIDsThisFlush.push_back(glTID);
-			}
-			idForShader = (float)(m_glTIDsThisFlush.size() % m_maxTextureUnits);
-			if (idForShader == 0.0f) idForShader = 1.0f;
-		}
-
-		if (m_glTIDsThisFlush.size() >= m_maxTextureUnits) {
-			end();
-			flush();
-			begin();
-			m_glTIDsThisFlush.push_back(glTID);
-
-		}
+		//TODO we can move this into the struct to save on divides in the render loop
 		const float tw = 1.0f / frameInfo.cols;
 		const float th = 1.0f / frameInfo.rows;
-		
-		const float tx = ((int)frameInfo.currentFrame % frameInfo.rows) * tw;
-		const float ty = 1- ((int)frameInfo.currentFrame / frameInfo.cols+1) * th;
 
+		const float tx = ((int)frameInfo.currentFrame % (int)frameInfo.cols) * tw;
+		const float ty = 1 - (floor(frameInfo.currentFrame / frameInfo.cols + 1)) * th;
 
-		//TODO: log error
-		if (m_currentBuffer == nullptr) {
-			std::cout << "Vertex Buffer was null while rendering texture with ID: " << tid << " Attempting to restart renderer.." <<std::endl;
-		
-			return;
-		}
-
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 0, 0, 1);
-		m_currentBuffer->uv.x = tx;
-		m_currentBuffer->uv.y = ty;
-		m_currentBuffer->tid = idForShader;
-		m_currentBuffer->color = color;
-		m_currentBuffer++;
-
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(0, 1, 0, 1);
-		m_currentBuffer->uv.x = tx;
-		m_currentBuffer->uv.y = ty+th;
-		m_currentBuffer->tid = idForShader;
-		m_currentBuffer->color = color;
-		m_currentBuffer++;
-
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(1, 1, 0, 1);
-		m_currentBuffer->uv.x = tx + tw,
-		m_currentBuffer->uv.y = ty+th;
-		m_currentBuffer->tid = idForShader;
-		m_currentBuffer->color = color;
-		m_currentBuffer++;
-
-		m_currentBuffer->vertex = *m_tranformationStackBack * glm::vec4(1, 0, 0, 1);
-		m_currentBuffer->uv.x = tx + tw,
-		m_currentBuffer->uv.y = ty;
-		m_currentBuffer->tid = idForShader;
-		m_currentBuffer->color = color;
-		m_currentBuffer++;
-
-		m_indexCount += 6;
+		Renderer2D::submit(glTID, color, {tx,ty}, {tw, th});
 
 	}
+
 
 	void BatchRenderer2D::drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor labelColor, const Bounds2D bounds){
 		bool found = false;
@@ -262,51 +137,9 @@ namespace letc {namespace graphics {
 	
 	}
 
-	void BatchRenderer2D::end(){
-#ifdef WATTY_EMSCRIPTEN
-		glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-		if((m_currentBuffer - m_currentBufferBase) * RENDERER_VERTEX_SIZE > 0)
-			glBufferSubData(GL_ARRAY_BUFFER, 0, (m_currentBuffer - m_currentBufferBase) * RENDERER_VERTEX_SIZE, m_currentBufferBase);
-		m_currentBuffer = m_currentBufferBase;
-#else
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-#endif // WATTY_EMSCRIPTEN
-		
-	glBindBuffer(GL_ARRAY_BUFFER, NULL);
-
-	}
-
 	void BatchRenderer2D::flush(){
 		m_currentTextLine = 0; // TODO: rethink, maybe move to label
-		//bind all the textures
-		for (size_t glIndex = 0; glIndex < m_glTIDsThisFlush.size(); glIndex++) {
-			float thisGlTID = m_glTIDsThisFlush[glIndex];
-			if (thisGlTID == 0) 
-				continue;
-			
-			glActiveTexture(GL_TEXTURE0 + glIndex);
-			glBindTexture(GL_TEXTURE_2D, thisGlTID);
-
-		}
-
-		// draw
-		glBindVertexArray(m_vertexArray);
-		m_indexBuffer->bind();
-		glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, NULL);
-		m_indexBuffer->unbind();
-		glBindVertexArray(NULL);
-		
-		
-		// unbind all the textures 
-		for (size_t glIndex = 0; glIndex < m_maxTextureUnits; glIndex++) {
-			glActiveTexture(GL_TEXTURE0 + glIndex);
-			glBindTexture(GL_TEXTURE_2D, NULL);
-		}
-
-		m_indexCount = 0;
-		m_glTIDsThisFlush.clear();
-		Renderer2D::globalFlushesThisFrame++;
-
+		Renderer2D::flush();
 	}
 
 

@@ -1,43 +1,40 @@
-#include <Watty/Watty.h>
+#include <Watty.h>
+#include <res.h>
 
+#define FRAGLITPATH			"shaders/basic_lit.frag"
+#define FLOORTEXTUREPATH	"textures/floor.png"
 
-#define FRAGLITPATH RESDIR "shaders/basic_lit.frag"
-#define FLOORTEXTUREPATH RESDIR "textures/floor.png"
-
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 using namespace physics;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
 	}
 }
-class PlatformerDemo : public LETC {
+class PlatformerDemo : public WattyEngine {
 private:
-	Window* m_window;
 	GameObject* player; //todo make player class
 
-	float playerSpeed = 400;
-	float playerAcceleration = 2.0f;
-	float playerJumpForce = 70;
+	float playerSpeed = 70;
+	float playerJumpForce = 60.0f;
 
 public:
 	PlatformerDemo() {}
 	~PlatformerDemo() {}
 
 	void init() override {
+		RawResources::Init();
 		glm::vec2 screenSize(1280.0f, 720.0f);
+		window->setSize(screenSize);
+		window->setVSync(true);
 
-		m_window = createWindow("This little engine could", screenSize.x, screenSize.y, false, false);
-		m_window->setVSync(false);
+		glm::vec2 fontScale = glm::vec2(window->getWidth() / 32.0f, window->getHeight() / 18.0f);
+		watty::physics::PhysicsWorld2D::setDebugDraw();
 
-		glm::vec2 fontScale = glm::vec2(m_window->getWidth() / 32.0f, m_window->getHeight() / 18.0f);
-		letc::physics::PhysicsWorld2D::setDebugDraw();
-
-		//Shader* shader0 = new Shader(VERTPATH, FRAGLITPATH);
 		Shader* shader0 = new Shader();
 		shader0->setUniform3f("light_pos", glm::vec3(16.0f, 16.0f, 0.0f));
 		shader0->setUniform1f("light_radius", 250.0f);
@@ -45,7 +42,6 @@ public:
 
 
 		Layer* layer0 = new Layer("Play Layer", new BatchRenderer2D(), shader0);
-		layers.push_back(layer0);
 		
 		layer0->add(
 			new GameObject(
@@ -60,27 +56,35 @@ public:
 		player = new GameObject(
 			playerPos,
 			playerSize,
-			//new Sprite(new Texture(RESDIR "res/textures/Player.png")));
-			new Sprite(new Texture(RESDIR "textures/AnimationTest.png")));
+			new Sprite(new Texture( "textures/AnimationTest.png")));
 		
 		player->setTag("Player");
 
-		player->addComponent(new PhysicsBody2D(
+		player->addComponent(new PhysicsBody2D(PhysicsBody2DParams(
 			physics::BodyShapes::box,
 			playerPos,
-			playerSize.x, playerSize.y,
+			playerSize,
 			b2_dynamicBody, 
+			false,
 			{0,0},
-			0.6f, 0.5f));
+			0.3f,
+			0.3f)));
 
 		player->addAnimator();
 
 		player->getAnimator()->addAnimation(new SpriteSheetAnimation(
 			SpriteSheetAnimInfo{
-			"Test",10.0f, 1, 6, true}
-		));
+			"Test",
+			1.0f, 
+			1,
+			6,
+			true
+			}
 
+		));
 		player->getAnimator()->play("Test");
+
+		//player->getAnimator()->play("Test");
 
 		layer0->add(player);
 
@@ -91,13 +95,13 @@ public:
 
 		Texture* floorTexture = new Texture(FLOORTEXTUREPATH);
 
-		/*glm::vec3 floorPos(-16.0f, -9.0f, 0);
-		glm::vec2 floorSize(32, 2);*/
 		glm::vec3 floorPos(-100000, -9.0f, 0);
 		glm::vec2 floorSize(10000000, 2);
 		GameObject* floor = new GameObject(floorPos, floorSize);
-		floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-		floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
+		floor->addComponent(new Sprite(floorPos, floorSize, floorTexture));
+		floor->addComponent(new physics::PhysicsBody2D(PhysicsBody2DParams(
+			physics::BodyShapes::box, floorPos, floorSize, b2_staticBody))
+		);
 		layer0->add(floor);
 
 		for (int x = 0; x < 100; x+=10)
@@ -108,53 +112,58 @@ public:
 				floorPos = glm::vec3(x, y, 0);
 				floorSize = glm::vec2(5, 2);
 				GameObject* floor = new GameObject(floorPos, floorSize);
-				floor->addComponent(new Sprite(floorPos.x, floorPos.y, floorSize.x, floorSize.y, floorTexture));
-				floor->addComponent(new physics::PhysicsBody2D(physics::BodyShapes::box, floorPos, floorSize.x, floorSize.y, b2_staticBody));
+				floor->addComponent(new Sprite(floorPos, floorSize, floorTexture));
+				floor->addComponent(new physics::PhysicsBody2D(PhysicsBody2DParams(
+					physics::BodyShapes::box, floorPos, floorSize, b2_staticBody)));
 				layer0->add(floor);
 			}
 
 		}
-		
 
-		glm::vec2 screenScale = glm::vec2(m_window->getWidth() / 32, m_window->getHeight() / 18);
-
-
+		glm::vec2 screenScale = glm::vec2(window->getWidth() / 32, window->getHeight() / 18);
 	}
 
 	void update() override {
-		PhysicsWorld2D::step(gameTimer->delta);
-		LETC::update();
+		PhysicsWorld2D::step(Timer::delta);
+		WattyEngine::update();
 		sceneCamera->position = { player->transform->getPosition().x, player->transform->getPosition().y+3.0f, -1.0f};
+		
+
 
 	}
 
 	void render() override {
 		getInput();
 
-		LETC::render();
+		WattyEngine::render();
 
 	}
 
 	void tick() override {
-		LETC::tick();
+		WattyEngine::tick();
 	}
 
 	void getInput() {
+		if (Input::keyWasPressed(GLFW_KEY_V))
+			Window::toggleVSync();
 		// PLAYER
-		float horizontal = -1 * (float)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-		float vertical = (float)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1*(float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
-		if (m_window->keyWasPressed(GLFW_KEY_SPACE))
+		float horizontal = -1 * (float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+		float vertical = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1*(float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
+		if (Input::keyWasPressed(GLFW_KEY_SPACE))
 			player->getPhysicsBody2D()->addImpulse(glm::vec2(0, 1), playerJumpForce);
 
-		player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * gameTimer->delta);
-		//player->position.x += playerSpeed * horizontal * (float)gameTimer->delta;
+		player->getPhysicsBody2D()->addImpulse(glm::vec2(1, 0), horizontal * playerSpeed * Timer::delta);
+
+		//player->position.x += playerSpeed * horizontal * (float)Timer::delta;
 
 		glm::vec2 playerPos = player->transform->getPosition();
 		if (playerPos.y < -10.0f) {
 			player->transform->setPosition({ playerPos.x, 10 });
 			player->getPhysicsBody2D()->getBody()->SetTransform(b2Vec2(0, 0), 0.0f);
 			player->getPhysicsBody2D()->zeroVelocity();
+
 		}
+			
 	}
 
 };

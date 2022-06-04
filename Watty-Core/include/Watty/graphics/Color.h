@@ -1,8 +1,9 @@
 #pragma once
 #include <glm.hpp>
 #include <random>
+#include <utils/Random.h>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	typedef union WattyColor
 	{
@@ -18,7 +19,7 @@ namespace letc { namespace graphics {
 
 
 
-		float asFloat[4];
+		//float asFloat[4];
 
 		WattyColor(unsigned int ui) {
 			c = ui;
@@ -44,6 +45,8 @@ namespace letc { namespace graphics {
 		//float r, g, b, a = 0;
 
 		static WattyColor black;
+		static WattyColor grey;
+		static WattyColor gray;
 		static WattyColor white;
 		static WattyColor red;
 		static WattyColor blue;
@@ -53,6 +56,7 @@ namespace letc { namespace graphics {
 		static WattyColor orange;
 		static WattyColor brown;
 		static WattyColor yellow;
+		static WattyColor transparent;
 
 		static WattyColor RGB(glm::vec3 color) {
 			int	r = color.x * 255.0f;
@@ -91,10 +95,11 @@ namespace letc { namespace graphics {
 	}
 	
 	static WattyColor random() {
-		int	r = rand() * 255.0f;
-		int	g = rand() * 255.0f;
-		int	b = rand() * 255.0f;
-		int	a = rand() * 255.0f;
+		
+		int	r = Random::range(0, 1) * 255.0f;
+		int	g = Random::range(0, 1) * 255.0f;
+		int	b = Random::range(0, 1) * 255.0f;
+		int	a = Random::range(0, 1) * 255.0f;
 		WattyColor out = WattyColor(a << 24 | b << 16 | g << 8 | r);
 		return out;
 	}

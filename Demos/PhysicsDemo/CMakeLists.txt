@@ -1,7 +1,6 @@
 
 project (PhysicsDemo)
-
-add_executable(PhysicsDemo 		src/main.cpp)
+add_executable(PhysicsDemo src/PhysicsDemo.cpp)
 
 
 

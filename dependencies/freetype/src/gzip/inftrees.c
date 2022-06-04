@@ -283,7 +283,7 @@ uIntf *v                /* working area: values in order of bit length */
       mask = (1 << w) - 1;      /* needed on HP, cc -O bug */
       while ((i & mask) != x[h])
       {
-        h--;                    /* don't need to update q */
+        h--;                    /* don't need to resetScroll q */
         w -= l;
         mask = (1 << w) - 1;
       }

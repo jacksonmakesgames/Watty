@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-namespace letc { namespace math{
+namespace watty { namespace math{
 	struct Vector4 {
 		float x, y, z, w;
 

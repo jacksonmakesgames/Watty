@@ -1,6 +1,6 @@
 #include <graphics/font/font.h>
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	Font::Font(unsigned int size){
 		m_size = size;
@@ -48,14 +48,27 @@ namespace letc {namespace graphics {
 
 		m_FTAtlas = ftgl::texture_atlas_new(m_textureSize, m_textureSize, m_depth);
 
+
+#ifdef WATTY_EMSCRIPTEN
 		m_FTFont = texture_font_new_from_file(m_FTAtlas, m_size, m_fileName.c_str());
-		m_FTFont->rendermode = RENDER_OUTLINE_NEGATIVE; // No clue why this works/ is necessary, needs research
+#else
+
+		Resource* res = Resources::Load(m_fileName.c_str());
+		if (res == nullptr) {
+			//TODO log error
+			std::cout << "Could not find font resource: " << m_fileName << std::endl;
+			return;
+		}
+		m_FTFont = texture_font_new_from_memory(m_FTAtlas, m_size, res->data, res->size);
+#endif // WATTY_EMSCRIPTEN	
 
 		if (m_FTFont == NULL) {
 			// TODO log error
 			std::cout << "Error loading font file at " << m_fileName << std::endl;
 			exit(1);
 		}
+
+		m_FTFont->rendermode = RENDER_OUTLINE_NEGATIVE; // No clue why this works/ is necessary, needs research
 		if (strlen(characters) > m_maxChars) {
 		// TODO LOG ERROR
 			std::cout << "Error, tried to add too many characters to the font atlas" << std::endl;

@@ -5,7 +5,7 @@
 #include "vulkandevice.h"
 #include "initializers.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	class VulkanSwapChain {
 	private:
 		VkSwapchainKHR m_swapChain;

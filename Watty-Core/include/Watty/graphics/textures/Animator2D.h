@@ -2,8 +2,8 @@
 #include "Animation2D.h"
 #include <graphics/textures/Animator.h>
 #include <map>
-namespace letc {namespace graphics{
-	class Animator2D : public Animator{
+namespace watty {namespace graphics{
+	class Animator2D{
 	protected:
 		bool isPlaying = false;
 	public:
@@ -14,7 +14,10 @@ namespace letc {namespace graphics{
 		
 	public:
 		Animator2D(Renderable2D* renderable);
-		void addAnimation(Animation2D* animation);
+		void play(std::string name);
+		void stop();
+		void update();
+		Animation2D* addAnimation(Animation2D* animation);
 
 	private:
 

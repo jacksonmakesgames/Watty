@@ -1,5 +1,5 @@
 #include <graphics/layers/GridLayer.h>
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	GridLayer::GridLayer(Camera& camera, Window& window) :
 			Layer("Grid Layer",new DebugRenderer(), new Shader()),
 			mCamera(camera),
@@ -25,11 +25,11 @@ namespace letc { namespace graphics {
 		m_debugRenderer->begin();
 		
 
-		float xMin = mCamera.position.x - .5f * mCamera.getSize().x;
-		float xMax = xMin + mCamera.getSize().x;
+		float xMin = mCamera.position.x - .5f * mCamera.getViewportSize().x;
+		float xMax = xMin + mCamera.getViewportSize().x;
 
-		float yMin = mCamera.position.y - .5f * mCamera.getSize().y;
-		float yMax = yMin + mCamera.getSize().y;
+		float yMin = mCamera.position.y - .5f * mCamera.getViewportSize().y;
+		float yMax = yMin + mCamera.getViewportSize().y;
 
 		m_vertexCount = (4 * 2 * (yMax - yMin));
 		m_vertexCount += (4 * 2 * (xMax - xMin));

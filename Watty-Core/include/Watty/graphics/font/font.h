@@ -8,8 +8,8 @@
 #include <glm.hpp>
 #include <iostream>
 #include <graphics/shader.h>
-
-namespace letc {namespace graphics {
+#include <Resource.h>
+namespace watty {namespace graphics {
 	class Font{
 
 	const char* characters =	" !\"#$%&'()*+,-./0123456789:;<=>?"

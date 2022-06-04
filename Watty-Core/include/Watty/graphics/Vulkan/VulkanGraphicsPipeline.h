@@ -4,7 +4,7 @@
 #include "VulkanDevice.h"
 #include <vector>
 
-namespace letc { namespace graphics{
+namespace watty { namespace graphics{
 	class VulkanGraphicsPipeline {
 	private:
 		VkPipeline m_graphicsPipeline;

@@ -1,6 +1,6 @@
 #include <audio/audiomanager.h>
 
-namespace letc {namespace audio {
+namespace watty {namespace audio {
 	class AudioClip;
 	bool AudioManager::initialized = false;
 
@@ -17,7 +17,6 @@ namespace letc {namespace audio {
 			return;
 		}
 		else {
-			std::cout << "Audiomanager initialized: " << soloud->getErrorString(result) << std::endl;
 			initialized = true; // No error
 		}
 	}

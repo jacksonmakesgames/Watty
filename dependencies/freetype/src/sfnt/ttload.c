@@ -993,7 +993,7 @@
 
     FT_FRAME_EXIT();
 
-    /* everything went well, update face->num_names */
+    /* everything went well, resetScroll face->num_names */
     face->num_names = (FT_UShort)table->numNameRecords;
 
   Exit:

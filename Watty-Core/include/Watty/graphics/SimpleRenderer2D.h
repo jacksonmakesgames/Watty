@@ -1,6 +1,6 @@
 #pragma once
 #include "renderer2d.h"
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	class SimpleRenderer2D : public Renderer2D {
 	private:
 	public:

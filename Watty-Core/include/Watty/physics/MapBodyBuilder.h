@@ -2,7 +2,7 @@
 #include <Box2D/Box2D.h>
 
 #include <physics/PhysicsWorld2D.h>
-namespace letc { namespace physics {
+namespace watty { namespace physics {
 	
 	class MapBodyBuilder
 	{

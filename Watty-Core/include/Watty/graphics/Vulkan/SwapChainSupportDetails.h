@@ -2,7 +2,7 @@
 #include <ext/vulkan/include/vulkan.h>
 #include <vector>
 
-namespace letc { namespace graphics{
+namespace watty { namespace graphics{
 
 	struct SwapChainSupportDetails {
 		VkSurfaceCapabilitiesKHR capabilities;

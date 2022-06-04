@@ -9,23 +9,23 @@
 #endif
 
 #ifdef WATTY_OPENGL
-	#include "./graphics/window.h"
+	#include "./graphics/Window.h"
 
-	#include <graphics/font/label.h>
+	#include <graphics/font/Label.h>
 
-	#include <graphics/renderer2d.h>
-	#include <graphics/batchrenderer2d.h>
-	#include <graphics/shader.h>
+	#include <graphics/Renderer2D.h>
+	#include <graphics/BatchRenderer2D.h>
+	#include <graphics/Simple2DRenderer.h>
+	#include <graphics/Shader.h>
 	#include <graphics/Camera.h>
 	#include <graphics/textures/SpriteSheetAnimation.h>
 	#include <ft2build.h>
 #endif
-bool letc::graphics::Window::useVSync = false;
+bool watty::graphics::Window::useVSync = false;
 
+#include <res/res_watty.h> // From Watty-Core
 
-#include <levels/Level2D.h>
-#include <levels/Level3D.h>
-
+#include <input/Input.h>
 #include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>
 #include <graphics/sprite.h>
@@ -38,10 +38,15 @@ bool letc::graphics::Window::useVSync = false;
 #include <graphics/Color.h>
 #include <math/math.h>
 
-#include "gameobjects/GameObject2D.h"
-//#include "gameobjects/GameObject3D.h"
+#ifdef ECS_ENABLED
+	#include <ecs/ECS.h>
+#endif
+
+#include <gameobjects/GameObject.h>
 #include <utils/timer.h>
 #include <utils/Random.h>
+#include <utils/Stats.h>
+
 #include <physics/QueryAABBCallback.h>
 #include <imgui.h>
 
@@ -53,7 +58,6 @@ bool letc::graphics::Window::useVSync = false;
 #define STBTT_STATIC
 #include <stb_truetype.h>
 
-
 #ifdef WATTY_EMSCRIPTEN
 	static void start_main(void* funcPtr) {
 		std::function<void()>* func = (std::function<void()>*)funcPtr;
@@ -61,29 +65,109 @@ bool letc::graphics::Window::useVSync = false;
 	}
 #endif // WATTY_EMSCRIPTEN
 
+	template <class T, class Enable = void>
+	struct is_defined
+	{
+		static constexpr bool value = false;
+	};
 
-namespace letc {
+	template <class T>
+	struct is_defined<T, std::enable_if_t<(sizeof(T) > 0)>>
+	{
+		static constexpr bool value = true;
+	};
 
-	class LETC {
+
+namespace watty {
+#ifdef ECS_ENABLED
+
+	struct Transform2DComponent : public ECSComponent<Transform2DComponent> {
+		glm::mat4 transformMatrix = glm::mat4(1.0f);
+		glm::vec2 position = glm::vec2(0.0f, 0.0f);
+		glm::vec2 size = glm::vec2(1.0f, 1.0f);
+		float rotation = 0.0f;
+	};
+
+
+
+	class RenderableSpriteSystem : public BaseECSSystem {
+	private:
+		graphics::Simple2DRenderer renderer = graphics::Simple2DRenderer(true);
+		bool doneInit = false;
+		graphics::Shader shader = graphics::Shader(true);
 	public:
-		Timer* gameTimer;
-		std::vector<Layer*> layers;
+		RenderableSpriteSystem() {
+			addComponentType(graphics::RenderableSpriteComponent::ID);
+			addComponentType(Transform2DComponent::ID);
+		}
+		void pre(glm::mat4 projection) {
+			shader.enable();
+			renderer.begin();
+			shader.setUniformMat4("pr_matrix", projection);
+		}
+		virtual void updateComponents(float deltaTime, BaseECSComponent** components) override {
+			if (!doneInit) {
+				renderer.init();
+				shader.init();
+				doneInit = true;
+			}
+
+			graphics::RenderableSpriteComponent* spriteComponent = (graphics::RenderableSpriteComponent*)components[0];
+			Transform2DComponent* transformComponent = (Transform2DComponent*)components[1];
+			renderer.push(transformComponent->transformMatrix);
+			renderer.submit(spriteComponent);
+			renderer.pop();
+
+		}
+		void post() {
+			renderer.end();
+			renderer.flush();
+			shader.disable();
+		}
+
+	};
+#endif
+	class WattyEngine {
+	public:
 		bool debugPhysics = false;
 		bool resetFlag = false;
 		graphics::Camera* sceneCamera;
+		unsigned int updates = 0;
+		
+#ifdef ECS_RENDER
+		ECS ecs = ECS();
+		ECSSystemList mainSystems;
+		ECSSystemList renderSystems;
+		RenderableSpriteSystem* spriteRenderer;
+#endif
+		bool WATTY_EDITOR_ATTACHED = false; // TODO: make compiler define
+
+	protected:
+		graphics::Window* window;
+
+		unsigned int renderBufferObject;
+		unsigned int texColorBuffer;
+		graphics::Texture* screenTexture;
+		graphics::Texture* testTexture;
 
 	private:
-		graphics::Window* m_window;
 		Timer* m_time;
-		int m_framesPerSecond, m_updatesPerSecond;
-		double m_msPerFrame;
-		unsigned int updates = 0;
+		graphics::Shader* screenShader;
+
+		double t = 0.0;
+		double fixedTimeStep = 0.02; // amount of time between updates/physics steps. Default was 0.02.
+		double currentTime = Timer::elapsed();
+		double accumulator = 0.0;
+
+
 
 		std::vector<const Level*> mLevels;
 
 
 	public:
+		unsigned int FBO;
 		void start() {
+			preInit();
 			init();
 			run();
 		}
@@ -92,46 +176,65 @@ namespace letc {
 		void initPhysics() {
 		}
 
+		virtual void preInit() {
+			RawWattyResources::Init();
+			Input::init();
 
-		virtual void reset() {};
+			window = createWindow("Watty Game Engine", 1280, 720, true, false);
+			new Layer("Default");
 
-		Layer* getLayerByName(std::string name) {
+#if DEBUG
+			screenShader = new graphics::Shader("shaders/screen.vert", "shaders/screen.frag");
+			testTexture =  new graphics::Texture("textures/test.png");
+			graphics::Texture* nt2 = new graphics::Texture("textures/test.png");
+#endif // DEBUG
 
-			for (Layer* layer : layers) {
-				if (layer->name == name) return layer;
-			}
-			std::cout << "Error: could not find layer: " << name << std::endl;
-			return nullptr;
 		}
 
 		std::vector<const Level*> getLevels();
 		const Level2D* newLevel2D(Level2DProperties levelProps);
 		//const Level3D* newLevel3D(Level3DProperties levelProps);
 
+		virtual void reset() {};
+
+		
+
+
 	protected:
-		LETC(){
-			gameTimer = new Timer();
-			m_framesPerSecond  =	0;
-			m_updatesPerSecond =	0;
-			m_msPerFrame =	0;
+		WattyEngine(){
+			Timer::Timer();
+			Stats::Stats();
 		}
 		
 
-		virtual ~LETC() {
-			delete m_window;
+		virtual ~WattyEngine() {
+			delete window;
 			delete m_time;
-			for (size_t i = 0; i < layers.size(); i++)
-				delete layers[i];
+			for (size_t i = 0; i < Layer::allLayers.size(); i++)
+				delete Layer::allLayers[i];
 		}
 
 		graphics::Window* createWindow(const char* title, int width, int height, bool resizeable = true, bool fullscreen=false) {
-			m_window = new graphics::Window(title, width, height, resizeable, fullscreen);
+			window = new graphics::Window(title, width, height, resizeable, fullscreen);
 
 			float aspectRatio = width / height;
+			
+			//TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
+			sceneCamera = new graphics::Camera(
+				&Layer::allLayers, 
+				glm::vec3(0.0f, 0.0f, -10.0f),
+				1,
+				20,
+				graphics::CameraMode::orthographic);
 
-			sceneCamera = new graphics::Camera(&layers, glm::vec3(0.0f, 0.0f, -10.0f), glm::vec2(32, 18), 20, graphics::CameraMode::orthographic); //TODO we should calculate width and height in meters and allow the user to change camera modes once we support 3D
-			return m_window;
+			if (WATTY_EDITOR_ATTACHED){
+				sceneCamera->isEditorCamera = true;
+			}
+
+			return window;
 		}
+
+		
 
 		
 		// Runs on initialization
@@ -140,119 +243,193 @@ namespace letc {
 
 		// Runs once per second
 		virtual void tick() {
-			std::cout << "\t" << std::to_string(getFramesPerSecond()) << "fps | " << std::to_string(getMSPerFrame()) << "mspf \r" << std::flush;
+			std::cout << "\t" << std::to_string(Stats::getFramesPerSecond()) << "fps | " << std::to_string(Stats::getMSPerFrame()) << "mspf \r" << std::flush;
 		}
 
+		virtual void OnGui() {};
+		virtual void onEditorGui() {};
+		virtual void update() {};
+
+		virtual void editorUpdate() {}
 
 		// Runs as fast as possible
-		virtual void update() {
-			updates++;
-			gameTimer->update();
+		void engineUpdate() {
 
-			physics::PhysicsWorld2D::step(gameTimer->delta);
+			double newTime = Timer::elapsed();
+			double frameTime = newTime - currentTime;
 
 
-			for (size_t i = 0; i < layers.size(); i++)
-			{
-				layers[i]->update();
-			}
-			if (resetFlag) { // not sure this is worth having in the main update load
-				reset();
-				resetFlag = false;
-			}
-
-			// For now, if there is more than one camera, ignore the default "Scene Camera"
-			size_t i = graphics::Camera::allCameras.size() > 1 ? 1 : 0;
+			if (frameTime > 0.25)
+				frameTime = 0.25;
 			
-			for (i = i; i < graphics::Camera::allCameras.size(); i++)
+			currentTime = newTime;
+			accumulator += frameTime;
+			while (accumulator >= fixedTimeStep)
 			{
-				graphics::Camera::allCameras[i]->update();
+				Input::listenForInput();
+
+				Timer::update();
+
+				updates++;
+
+				physics::PhysicsWorld2D::step(Timer::delta); //TODO: could be fixedTimeStep instead
+				update();
+				#ifdef ECS_ENABLED
+				ecs.updateSystems(mainSystems, Timer::delta);
+				#endif
+				Input::resetScroll();
+
+				t += fixedTimeStep;
+				accumulator -= fixedTimeStep;
+
+				for (size_t i = 0; i < Layer::allLayers.size(); i++){
+					Layer::allLayers[i]->update();
+				}
+
+				// For now, if there is more than one camera, ignore the default "Scene Camera"
+				size_t i = graphics::Camera::allCameras.size() > 1 ? 1 : 0;
+			
+				for (i = i; i < graphics::Camera::allCameras.size(); i++){
+					graphics::Camera::allCameras[i]->update();
+				}
 			}
+		
+		}
+
+		//TODO move to window
+		void cleanFrameBuffer() {
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+			glDeleteFramebuffers(1, &FBO);
+		}
+
+		void setupFrameBuffer() {
+
+			// Frame buffer
+			glGenFramebuffers(1, &FBO);
+			glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+
+			// attach texture
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTexture->getID(), 0);
+
+			// check if FBO is complete
+			if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+				std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+
+			glBindFramebuffer(GL_FRAMEBUFFER, 0); // Unbind framebuffer
+	
+		}
+
+		void preFrameBuffer() {
+			// Bind framebuffer
+			glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+
+			// 3D:
+			//glEnable(GL_DEPTH_TEST);
+
+		}
+
+		GLubyte* data = nullptr;
+
+		void postFrameBuffer() {
+			// now bind back to default framebuffer 
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+			// clear all relevant buffers
+			window->clear(.4, .4, .4, 1, false, false);
+		}
+
+		unsigned int getRenderTexture() {
+			return screenTexture->getID();
 		}
 
 		// runs as fast as possible (unless vsync is enabled, then it runs at refresh rate)
 		virtual void render() {
-			m_window->clear(); { // One frame
+			if (WATTY_EDITOR_ATTACHED) {
+				preFrameBuffer(); // bind framebuffer
+			}
+			window->clear(.5, .5, .5, 1, false, true); { // One frame, clear framebuffer
+			//window->clear(sceneCamera->getClearColor(), true, true); { // One frame
 
-				ImGui_ImplOpenGL3_NewFrame();
-				ImGui_ImplGlfw_NewFrame();
-				ImGui::NewFrame();
 
-#ifdef DEBUG 
-				if(getLayerByName("Debug Physics Layer"))
-					debugPhysics ? 
-					getLayerByName("Debug Physics Layer")->enable() : getLayerByName("Debug Physics Layer")->disable();
-#endif
 
-				for (size_t i = 0; i < layers.size(); i++){
-					layers[i]->draw();
-				}
-				m_window->listenForInput();
-
-				ImGui::Render();
-				ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-				// ImGui Multiple Viewports:
-				if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-					GLFWwindow* backup_current_context = glfwGetCurrentContext();
-					ImGui::UpdatePlatformWindows();
-					ImGui::RenderPlatformWindowsDefault();
-					glfwMakeContextCurrent(backup_current_context);
+#ifdef ECS_RENDER
+				spriteRenderer->pre(sceneCamera->getProjection());
+				ecs.updateSystems(renderSystems, Timer::delta);
+				spriteRenderer->post();
+#else
+				// Draw
+				for (size_t i = 0; i < Layer::allLayers.size(); i++) {
+					Layer::allLayers[i]->draw();
 				}
 
-			}m_window->update(); // End frame, swap buffers
+#endif // ECS_RENDER
+
+				if (WATTY_EDITOR_ATTACHED) {
+					postFrameBuffer(); // unbind framebuffer, clear
+					onEditorGui();
+				}
+
+				OnGui();
+
+			}window->update(); // End frame, swap buffers, check events
 
 		}
 
-		const unsigned int getFramesPerSecond()  const  { return m_framesPerSecond;  }
-		const unsigned int getUpdatesPerSecond() const  { return m_updatesPerSecond; }
-		const double getMSPerFrame() const  { return m_msPerFrame; }
 
 private:
 	void run() {
 		Random::init();
-
+		#ifdef ECS_RENDER
+		spriteRenderer = new RenderableSpriteSystem();
+		renderSystems.addSystem(*spriteRenderer);
+		#endif
+		watty::physics::PhysicsWorld2D::box2DWorld->SetContactListener(new Physics2DContactListener());
 #ifdef DEBUG 
-		letc::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getSize()));
-		letc::physics::PhysicsWorld2D::setDebugDraw();
-		layers.push_back(new graphics::DebugPhysicsLayer(*sceneCamera, *m_window));
-		layers.push_back(new graphics::GridLayer(*sceneCamera, *m_window));
-		layers.push_back(new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, layers));
+
+		watty::physics::DebugPhysics::init(&(sceneCamera->position), &(sceneCamera->getViewportSize()));
+		watty::physics::PhysicsWorld2D::setDebugDraw();
+		new graphics::DebugPhysicsLayer(*sceneCamera, *window);
+		new graphics::GridLayer(*sceneCamera, *window);
 
 #endif
 		m_time = new Timer();
 		float timer = 0.0f;
 		float updateTimer = 0.0f;
-		float updateTick = 1.0 / m_window->getRefreshRate();
-		unsigned int frames = 0;
+		float updateTick = 1.0 / window->getRefreshRate();
+		unsigned int framesThisSec = 0;
 
 #ifdef WATTY_EMSCRIPTEN
-		if (m_window->getRefreshRate() < 1) 
+		if (window->getRefreshRate() < 1) 
 			updateTick = 1 / 60.0f; // in WebGL, refresh rate can be 0
 		
 		std::function<void()> mainLoop = [&]() {
 #else
-		while (!m_window->closed()) {
+
+		while (!window->closed()) {
 #endif 
-			update(); // Physics frame (run as fast as possible)
 
-			if (m_time->elapsed() - updateTimer > updateTick) {
-				if (m_window->useVSync) render(); // With Vsync enabled, render at the refresh rate of the window
+			engineUpdate();
+			editorUpdate();
+			if (Timer::elapsed() - updateTimer > updateTick) {
+				if (window->useVSync) render(); // With Vsync enabled, render at the refresh rate of the window
 				updateTimer += updateTick;
+				framesThisSec++;
 			}
-			if (!m_window->useVSync)
+			if (!window->useVSync) {
 				render(); // as fast as possible
+				framesThisSec++;
+			}
 
-			frames++;
-			
+		
+
 			// Timing/FPS
-			if ((m_time->elapsed() - timer) > 1.0f) {
+			if ((Timer::elapsed() - timer) > 1.0f) {
 				timer += 1.0f;
-				m_framesPerSecond = frames;
-				m_updatesPerSecond = updates;
-				m_msPerFrame = 1000.0 / (double)frames;
+				Stats::engineUpdate(framesThisSec, updates);
 				tick();
-				frames = 0;
+
+				framesThisSec = 0;
 				updates = 0;
 			}
 
@@ -267,10 +444,14 @@ private:
 	}
 	};
 
-	letc::graphics::DebugRenderer* letc::physics::DebugPhysics::renderer = nullptr;
-	letc::graphics::Shader* letc::physics::DebugPhysics::m_shader = nullptr;
-	const glm::vec3* letc::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
-	const glm::vec2* letc::physics::DebugPhysics::m_sceneCameraScale = nullptr;
+
+	watty::graphics::DebugRenderer* watty::physics::DebugPhysics::renderer = nullptr;
+	watty::graphics::Shader* watty::physics::DebugPhysics::m_shader = nullptr;
+	const glm::vec3* watty::physics::DebugPhysics::m_sceneCameraPosition = nullptr;
+	const glm::vec2* watty::physics::DebugPhysics::m_sceneCameraScale = nullptr;
+
+
+
 
 
 

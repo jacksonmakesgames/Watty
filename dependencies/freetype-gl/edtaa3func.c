@@ -1,7 +1,7 @@
 /*
  * edtaa3()
  *
- * Sweep-and-update Euclidean distance transform of an
+ * Sweep-and-resetScroll Euclidean distance transform of an
  * image. Positive pixels are treated as object pixels,
  * zero or negative pixels are treated as background.
  * An attempt is made to treat antialiased edges correctly.
@@ -250,7 +250,7 @@ void edtaa3(double *img, double *gx, double *gy, int w, int h, short *distx, sho
           for(x=1; x<w-1; x++, i++)
             {
               olddist = dist[i];
-              if(olddist <= 0) continue; // No need to update further
+              if(olddist <= 0) continue; // No need to resetScroll further
 
 	      c = i+offset_l;
 	      cdistx = distx[c];

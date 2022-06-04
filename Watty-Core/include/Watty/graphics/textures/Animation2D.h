@@ -3,8 +3,8 @@
 #include <utils/timer.h>
 #include <graphics/textures/Animation.h>
 
-namespace letc { namespace graphics {
-	class Animation2D : public Animation
+namespace watty { namespace graphics {
+	class Animation2D
 	{
 	protected:
 		Renderable2D* objectsRenderable;

@@ -1,8 +1,8 @@
 #pragma once
-#include <Box2D/Box2D.h>
+#include <box2d/box2d.h>
 
 #include "DebugPhysics.h"
-namespace letc { namespace physics {
+namespace watty { namespace physics {
 	
 	class PhysicsWorld2D
 	{
@@ -12,13 +12,12 @@ namespace letc { namespace physics {
 	private:
 	public:
 		static void setDebugDraw() {
-
 			box2DWorld->SetDebugDraw(debugDraw);
 			debugDraw->SetFlags(b2Draw::e_shapeBit);
 		}
 		
 		static void step(float stepTime) {
-			PhysicsWorld2D::box2DWorld->Step(stepTime,8,3); // default, change later/make configurable
+			PhysicsWorld2D::box2DWorld->Step(stepTime,8,3); // TODO default, change later/make configurable
 		}
 
 	private:

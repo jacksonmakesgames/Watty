@@ -2,9 +2,12 @@
 #include "../batchrenderer2d.h"
 #include "../../gameobjects/GameObject.h"
 
-namespace letc {
+namespace watty {
 	class Layer {
 	public:
+		static std::vector<Layer*> allLayers;
+		static Layer* getLayerByName(std::string name);
+
 		bool hidden = false;
 		std::string name;
 
@@ -32,12 +35,16 @@ namespace letc {
 		virtual void draw();
 		virtual void update();
 		virtual void setProjection(glm::mat4 projection);
+
+
 		inline virtual glm::mat4 getProjection() {
 			return mProjection; 
 		};
 
 		inline const std::vector<GameObject*>& getGameObjects() const { return m_gameObjects; }
 
+		inline virtual graphics::Renderer2D* getRenderer() { return m_renderer; }
+		inline virtual graphics::Shader* getShader() { return m_shader; }
 	};
 
 }

@@ -1,5 +1,5 @@
 #include <graphics/buffers/vertexarray.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	VertexArray::VertexArray() {
 		glGenVertexArrays(1, &m_arrayID);
 	}

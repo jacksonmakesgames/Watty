@@ -1,31 +1,20 @@
 #pragma once
 #include <GLFW/glfw3.h>
-namespace letc {
+namespace watty {
 	class Timer {
 	public:
-		double delta;
+		static double delta;
 	private:
-		double m_startTime;
-		double m_last = 0;
+		static double m_startTime;
+		static double m_last;
+		static double _lastFrameTime;
+		static double currentFrameTime;
 	public:
-		Timer() {
-			m_startTime = glfwGetTime();
-		}
+		Timer();
 
-		void reset() {
-			m_startTime = glfwGetTime();
-		}
-
-		float elapsed() {
-		// return elapsed time in seconds
-			double currentTime = glfwGetTime();
-			return (currentTime - m_startTime);
-		}
-
-		void update() {
-			delta = elapsed() - m_last;
-			m_last = elapsed();
-		}
+		static void reset();
+		static float elapsed(); 
+		static void update();
 		
 	};
 }

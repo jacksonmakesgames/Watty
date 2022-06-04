@@ -69,7 +69,7 @@
    * @Description:
    *   This function is used as a `move_to' emitter during
    *   FT_Outline_Decompose().  It simply records the destination point
-   *   in `user->last'. We also update bbox in case contour starts with
+   *   in `user->last'. We also resetScroll bbox in case contour starts with
    *   an implicit `on' point.
    *
    * @Input:
@@ -133,7 +133,7 @@
    *   BBox_Conic_Check
    *
    * @Description:
-   *   Find the extrema of a 1-dimensional conic Bezier curve and update
+   *   Find the extrema of a 1-dimensional conic Bezier curve and resetScroll
    *   a bounding range.  This version uses direct computation, as it
    *   doesn't need square roots.
    *
@@ -186,7 +186,7 @@
    *   This function is used as a `conic_to' emitter during
    *   FT_Outline_Decompose().  It checks a conic Bezier curve with the
    *   current bounding box, and computes its extrema if necessary to
-   *   update it.
+   *   resetScroll it.
    *
    * @Input:
    *   control ::
@@ -241,7 +241,7 @@
    *
    * @Description:
    *   Find the extrema of a 1-dimensional cubic Bezier curve and
-   *   update a bounding range.  This version uses iterative splitting
+   *   resetScroll a bounding range.  This version uses iterative splitting
    *   because it is faster than the exact solution with square roots.
    *
    * @Input:
@@ -373,7 +373,7 @@
     if ( p2 > *max || p3 > *max )
       *max += cubic_peak( p1 - *max, p2 - *max, p3 - *max, p4 - *max );
 
-    /* now flip the signs to update the minimum */
+    /* now flip the signs to resetScroll the minimum */
     if ( p2 < *min || p3 < *min )
       *min -= cubic_peak( *min - p1, *min - p2, *min - p3, *min - p4 );
   }
@@ -388,7 +388,7 @@
    *   This function is used as a `cubic_to' emitter during
    *   FT_Outline_Decompose().  It checks a cubic Bezier curve with the
    *   current bounding box, and computes its extrema if necessary to
-   *   update it.
+   *   resetScroll it.
    *
    * @Input:
    *   control1 ::

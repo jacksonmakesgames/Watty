@@ -1,44 +1,48 @@
 #include <Watty.h>
+#include <res.h>
 
-#define PLAYERTEXTURE RESDIR  "textures/sprites/lpc/soldier.png"
-#define PLAYERCLOTHESTEXTURE RESDIR  "textures/sprites/lpc/female_chainmail.png"
-#define TESTTEXTURE RESDIR  "textures/test.png"
+#define PLAYERTEXTURE   "textures/sprites/lpc/soldier.png"
+#define PLAYERCLOTHESTEXTURE   "textures/sprites/lpc/female_chainmail.png"
+#define TESTTEXTURE   "textures/test.png"
 
-#define LEVELPATH RESDIR "tilemaps/levelOne.json"
-#define IMAGEPATH RESDIR "tilemaps/terrain_all.png"
+#define LEVELPATH  "tilemaps/levelOne.json"
+#define IMAGEPATH  "tilemaps/terrain_all.png"
 
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 using namespace audio;
 using namespace physics;
 using namespace glm;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, 0.0f));
 	}
 }
 
-class TileMapDemoApp : public LETC {
+class TileMapDemoApp : public WattyEngine {
 private:
 	Window* m_window;
 	GameObject* player;
 
-	double playerSpeed = 150;
+	double playerSpeed = 7;
 	int lastPlayerDir = 0;
-	float playerAcceleration = 2.0f;
+	double playerAcceleration = 2.0f;
+	std::vector<double> velocities = std::vector<double>();
+	std::vector<double> timeIntervals = std::vector<double>();
+	double lastMeasureTime = 0;
 
 public:
 	void init() override {
+		RawResources::Init();
 		debugPhysics = true;
-		m_window = createWindow("Sandbox", 1280, 734, false, false);
+		window->setSize({1280,734});
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 
 		Layer* mainLayer = new Layer("main");
-		layers.push_back(mainLayer);
 
 		TileMap* tilemap = new TileMap(LEVELPATH, IMAGEPATH);
 		tilemap->setPixelToMeterRatio(32);
@@ -58,13 +62,14 @@ public:
 
 		player->setTag("Player");
 
-		player->addComponent(new PhysicsBody2D(
+		player->addComponent(new PhysicsBody2D(PhysicsBody2DParams(
 			physics::BodyShapes::box,
 			playerPos,
-			playerSize.x * .5f, playerSize.y * .5f,
+			playerSize* .5f,
 			b2_dynamicBody,
+			false,
 			glm::vec2(0, -.5f),
-			0.0f, 1.0f));
+			0.0f, 1.0f)));
 
 
 		player->getPhysicsBody2D()->setFixedRotation(true);
@@ -94,22 +99,42 @@ public:
 	}
 
 	void tick() override {
-		LETC::tick();
+		WattyEngine::tick();
 	}
 	void update() override {
+		WattyEngine::update();
+		getInput();
+
 		sceneCamera->setSize(
 			glm::vec2(
-				sceneCamera->getSize().x - 4.0f * m_window->getScrollAmountThisFrameY(),
-				sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
+				sceneCamera->getSize().x - 4.0f * Input::getScrollAmountThisFrameY(),
+				sceneCamera->getSize().y - 2.25f * Input::getScrollAmountThisFrameY()
 			));
 
 
-		getInput();
-		LETC::update();
+	}
+
+	void OnGui() override {
+		return;
+		double velSum = 0;
+		for (size_t i = 0; i < velocities.size(); i++){
+			velSum += (velocities[i]);
+		}
+		
+		double timeSum = 0;
+		for (size_t i = 0; i < timeIntervals.size(); i++){
+			timeSum += (timeIntervals[i]);
+		}
+
+		double avgDist = (velSum * timeSum)/30;
+		ImGui::Begin("Average Distance:");
+		ImGui::LabelText("", std::to_string(avgDist).c_str());
+		ImGui::End();
 	}
 
 	void render() override {
-		LETC::render();
+		WattyEngine::render();
+		
 
 	}
 
@@ -119,8 +144,8 @@ public:
 
 	void getInput() {
 
-		double horizontal = -1 * (double)(m_window->keyIsDown(GLFW_KEY_A) || m_window->keyIsDown(GLFW_KEY_LEFT)) + (float)(m_window->keyIsDown(GLFW_KEY_D) || m_window->keyIsDown(GLFW_KEY_RIGHT));
-		double vertical = (double)(m_window->keyIsDown(GLFW_KEY_W) || m_window->keyIsDown(GLFW_KEY_UP)) + -1 * (float)(m_window->keyIsDown(GLFW_KEY_S) || m_window->keyIsDown(GLFW_KEY_DOWN));
+		double horizontal = -1 * (double)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+		double vertical = (double)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1 * (float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
 		
 		
 		if (vertical < 0 && horizontal == 0) {
@@ -160,10 +185,22 @@ public:
 		}
 
 		player->getPhysicsBody2D()->setLinearVelocity(glm::vec2(
-			horizontal * playerSpeed * gameTimer->delta,
-			vertical * playerSpeed * gameTimer->delta
+			horizontal * playerSpeed,
+			vertical * playerSpeed
 		));
 
+		
+
+		velocities.push_back(playerSpeed);
+		if (velocities.size() > 30) {
+			velocities.erase(velocities.begin());
+			velocities.shrink_to_fit();
+		}
+		timeIntervals.push_back(Timer::delta);
+		if (timeIntervals.size() > 30) {
+			timeIntervals.erase(timeIntervals.begin());
+			timeIntervals.shrink_to_fit();
+		}
 
 	}
 };

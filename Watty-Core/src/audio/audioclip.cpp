@@ -1,6 +1,6 @@
 
 #include <audio/audioclip.h>
-namespace letc {namespace audio {
+namespace watty {namespace audio {
 	AudioClip::AudioClip(const std::string& name, const std::string& filepath, SoLoud::Soloud* soloudPtr):
 		m_soloudPtr(soloudPtr), m_name(name), m_filepath(filepath), m_playing(false)
 	{
@@ -44,16 +44,24 @@ namespace letc {namespace audio {
 		m_soloudPtr->fadeVolume(m_handle, m_gain, 0);
 	}
 
-	void AudioClip::init()
-	{
-
+	void AudioClip::init(){
 		std::vector<std::string> split = split_string(m_filepath, '.');
+#ifdef WATTY_EMSCRIPTEN
 		int returnCode = wavFile.load(m_filepath.c_str());
-		if (returnCode == SoLoud::FILE_NOT_FOUND) {
+#else
+		Resource* res = Resources::Load(m_filepath.c_str());
+		if (res == nullptr) {
+			//TODO log error
+			std::cout << "Could not find audio file: " << m_filepath << std::endl;
+			return;
+		}
+		int returnCode = wavFile.loadMem(res->data, res->size/8,false, false);
+		if (returnCode != SoLoud::SO_NO_ERROR) {
 			//TODO: log error
-			std::cout << "Couldn't find audio file: " << m_filepath << std::endl;
+			std::cout << "Error loading audio resource: " << m_soloudPtr->getErrorString(returnCode) << std::endl;
 
 		}
+#endif
 	}
 
 

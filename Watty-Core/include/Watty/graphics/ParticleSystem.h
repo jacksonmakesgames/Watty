@@ -1,23 +1,34 @@
 #pragma once
 #include <glm.hpp>
 #include <vector>
-#include <graphics/renderable2d.h>
-#include <graphics/ParticleRenderer.h>
+#include <graphics/Sprite.h>
+//#include <graphics/ParticleRenderer.h>
 #include <utils/Random.h>
+#include <utils/Timer.h>
 
 #include <graphics/Color.h>
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	struct ParticleProperties
 	{
-		glm::vec2 position;
-		glm::vec2 velocity, velocityVariation;
-		float sizeVariation;
-		WattyColor colorBegin, colorEnd;
-		float sizeBegin, sizeEnd;
-		float lifeTime;
-		float rotationSpeed;
+		glm::vec2 position = {0,0};
+		glm::vec2 velocity = {1,1};
+		glm::vec2 velocityVariation = {1,1};
+		float sizeVariation = .5f;
+		WattyColor colorBegin = Color::white;
+		WattyColor colorEnd = Color::transparent;
+		float sizeBegin = 1;
+		float sizeEnd = 0;
+		float lifeTime = 2;
+		float rotationSpeed = .2f;
+		float rotationSpeedVariation = .2f;
+		float rate = 1; // TODO less than one?
+		unsigned int maxParticles = 2000;
+		Texture* texture;
 
+		~ParticleProperties() {
+			delete texture;
+		}
 	};
 
 
@@ -45,17 +56,17 @@ namespace letc { namespace graphics {
 		uint32_t mMaxParticles = 1200;
 		uint32_t mPoolIndex = mMaxParticles-1;
 
-		
+	public:		
+		ParticleProperties* properties;
 	private:
 		void submit(Renderer2D* renderer) const override;
-		ParticleRenderer* m_renderer;
-		
+
 	public:
-		void update(double deltaTime);
-		void emitOne(const ParticleProperties& properties);
-		inline void changeMaxParticles(unsigned int max) { mParticles = std::vector<Particle>(); mParticles.grow(max); mPoolIndex = max - 1; mMaxParticles = max; }
+		void update() override;
+		void emitOne();
+		void changeMaxParticles(unsigned int max);
 		
-		ParticleSystem(uint32_t maxParticles);
+		ParticleSystem(ParticleProperties* properties);
 
 
 

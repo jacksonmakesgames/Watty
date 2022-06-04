@@ -1,5 +1,5 @@
 #pragma once
-namespace letc { namespace physics{
+namespace watty { namespace physics{
 
 	class PhysicsConstants {
 	public:

@@ -1,17 +1,15 @@
-#include <Watty/Watty.h>
+#include <Watty.h>
+#include <res.h>
 #include "ConwayLayer.h"
 #include <deque>
 
-#define GRIDTEXTUREPATH RESDIR "textures/grid.png"
+#define GRIDTEXTUREPATH  "textures/grid.png"
 
-//#define WINDOWWIDTH 1600
-//#define WINDOWHEIGHT 900
-
-using namespace letc;
+using namespace watty;
 using namespace graphics;
 using namespace math;
 
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, -20.0f));
@@ -19,9 +17,8 @@ namespace letc {
 	}
 }
 
-class SimpleGame : public LETC {
+class SimpleGame : public WattyEngine {
 private:
-	Window* m_window;
 	//Label* upsLabel;
 	//Label* fpsLabel;
 	//Label* mpsLabel;
@@ -59,12 +56,14 @@ public:
 	}
 
 	void init() override {
-		m_window = createWindow("Conway's Game of Life {Watty}", 1600, 900, false);
-		m_window->setVSync(true);
+		RawResources::Init();
+		window->setVSync(true);
+		window->setTitle("Conway's Game of Life {Watty}");
+		window->setSize({1600,900});
 		glClearColor(1, 1, 1, 1);
 
-		m_width = m_window->getWidth();
-		m_height = m_window->getHeight();
+		m_width  =  window->getWidth();
+		m_height =  window->getHeight();
 
 		//sceneCamera->setProjection(glm::ortho(0, m_width, 0, m_height, -10, 10));
 		//sceneCamera->setProjection(glm::ortho(0, m_width, 0, m_height));
@@ -73,14 +72,10 @@ public:
 
 		Layer* gridLayer = new Layer("Grid Layer");
 
-		layers.push_back(gridLayer);
 		gridLayer->add(new GameObject(glm::vec3(.5f*m_width,.5f*m_height,0) + .5f*cellSize, glm::vec2(m_width, m_height), new Sprite(new Texture(GRIDTEXTUREPATH))));
 
 		Layer* cellLayer = new Layer("Cell Layer");
 		Layer* uiLayer = new Layer("UI Layer");
-		layers.push_back(cellLayer);
-		layers.push_back(uiLayer);
-
 
 		/*Resize the 2D std::vector to the specified width and height*/
 		grid.resize(m_width/20); //We need HEIGHT/20 sub-vectors
@@ -95,7 +90,7 @@ public:
 			}
 		}
 
-		layers.push_back(new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, stepFlag, stepBackFlag));
+		new ConwayLayer("Conway Control Layer", stepRate, reset, run, funColors, stepFlag, stepBackFlag);
 
 		lastGrids.push_back(grid);
 	
@@ -104,8 +99,8 @@ public:
 	void update() override {
 		getInput();
 		if (reset) resetGrid();
-		if (run && gameTimer->elapsed() > nextStepTime) {
-			nextStepTime = gameTimer->elapsed() + (1.0 / stepRate);
+		if (run && Timer::elapsed() > nextStepTime) {
+			nextStepTime = Timer::elapsed() + (1.0 / stepRate);
 			step();
 		}
 		if (stepFlag) {
@@ -119,82 +114,82 @@ public:
 			stepBack();
 		}
 
-		LETC::update();
+		WattyEngine::update();
 	
 	}
 
 	void render() override {
 		
-		LETC::render();
+		WattyEngine::render();
 
 		
 	}
 
 	void tick() override {
 		
-		LETC::tick();
+		WattyEngine::tick();
 	}
 
 	void getInput() {
 			sceneCamera->setSize(
 				glm::vec2(	
-					sceneCamera->getSize().x - 4.0f  * m_window->getScrollAmountThisFrameY(),
-					sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
+					sceneCamera->getSize().x - 4.0f  * Input::getScrollAmountThisFrameY(),
+					sceneCamera->getSize().y - 2.25f * Input::getScrollAmountThisFrameY()
 				));
 
-		if (m_window->keyWasPressed(GLFW_KEY_SPACE)) {
+		if (Input::keyWasPressed(GLFW_KEY_SPACE)) {
 			step();
- 			spaceDownTime = gameTimer->elapsed();
+ 			spaceDownTime = Timer::elapsed();
 		}
-		else if (m_window->keyIsDown(GLFW_KEY_SPACE)) {
+		else if (Input::keyIsDown(GLFW_KEY_SPACE)) {
 			// test if held
 			if (framesHeld > 2) {
-				if (gameTimer->elapsed() > spaceDownTime + 1.0f/stepRate) {
+				if (Timer::elapsed() > spaceDownTime + 1.0f/stepRate) {
 					run = true;
 				}
 			}
 			framesHeld++;
 		}
-		if (m_window->keyWasReleased(GLFW_KEY_SPACE)) { 
+		if (Input::keyWasReleased(GLFW_KEY_SPACE)) { 
 			run = false;
-			spaceDownTime = gameTimer->elapsed();
+			spaceDownTime = Timer::elapsed();
 			framesHeld = 0;
 
 		}
 		
-		if (m_window->keyWasPressed(GLFW_KEY_R)) {
+		if (Input::keyWasPressed(GLFW_KEY_R)) {
 			run = !run;
 		}
 
-		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
+		if (Input::mouseButtonIsDown(GLFW_MOUSE_BUTTON_LEFT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
-			m_window->getMousePos(x, y);
-			glm::vec2 pos = m_window->viewportToWorld({ x,y });
+			Input::getMousePos(x, y);
+			glm::vec2 pos = window->viewportToWorld({ x,y });
 			
 			placeCell(pos);
 			lastGrids.back() = grid;
 
 		}
 		
-		if (m_window->mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
+		if (Input::mouseButtonIsDown(GLFW_MOUSE_BUTTON_RIGHT) && !ImGui::GetIO().WantCaptureMouse) {
 			double x, y;
-			m_window->getMousePos(x, y);
+			Input::getMousePos(x, y);
 
-			glm::vec2 pos = m_window->viewportToWorld({ x,y });
+			glm::vec2 pos = window->viewportToWorld({ x,y });
 			deleteCell(pos);
 			lastGrids.back() = grid;
 
 		}
 
-		if (m_window->keyWasPressed(GLFW_KEY_LEFT))
+		if (Input::keyWasPressed(GLFW_KEY_LEFT))
 		{
 			stepBack();
 		}
 
-		if (m_window->keyWasPressed(GLFW_KEY_RIGHT))
+		if (Input::keyWasPressed(GLFW_KEY_RIGHT))
 		{
 			step();
-			spaceDownTime = gameTimer->elapsed();
+			spaceDownTime = Timer::elapsed();
 
 		}
 	}
@@ -236,11 +231,11 @@ public:
 			if (r > 0.8f) r = 0.8f;
 			if (g > 0.8f) g = 0.8f;
 			if (b > 0.9f) b = 0.9f;
-			getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(r, g, b, 1.0f))));
+			Layer::getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(r, g, b, 1.0f))));
 
 		}
 		else
-			getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(0.2, .6f, .8f, 1.0f))));
+			Layer::getLayerByName("Cell Layer")->add(new GameObject(pos, glm::vec2(cellSize, cellSize), new Sprite(Color::RGBA(0.2, .6f, .8f, 1.0f))));
 
 		grid[xIndex][yIndex] = true;
 
@@ -379,11 +374,11 @@ public:
 	}
 
 	void clearGridObjects() {
-		std::vector<GameObject*> allObjects = getLayerByName("Cell Layer")->getGameObjects();
+		std::vector<GameObject*> allObjects = Layer::getLayerByName("Cell Layer")->getGameObjects();
 
 		for (size_t i = 0; i < allObjects.size(); i++)
 		{
-			getLayerByName("Cell Layer")->remove(allObjects[i]);
+			Layer::getLayerByName("Cell Layer")->remove(allObjects[i]);
 		}
 	}
 	void resetGrid() {

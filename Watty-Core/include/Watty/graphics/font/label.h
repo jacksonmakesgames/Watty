@@ -3,7 +3,7 @@
 #include "../renderable2d.h"
 #include "fontmanager.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	
 	enum OverflowMode {
 		Wrap, Expand
@@ -21,7 +21,7 @@ namespace letc { namespace graphics {
 	class Label : public Renderable2D {
 	public:
 		LabelProperties properties;
-
+	private:
 	public:
 		Label(LabelProperties properties);
 		Label(std::string text, Font* font, WattyColor color, OverflowMode overFlowMode = OverflowMode::Expand);

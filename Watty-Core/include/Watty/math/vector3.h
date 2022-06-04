@@ -3,7 +3,7 @@
 #include "vector2.h"
 //#include "matrix4.h";
 
-namespace letc { namespace math{
+namespace watty { namespace math{
 	
 	struct Vector3 {
 		float x, y, z;

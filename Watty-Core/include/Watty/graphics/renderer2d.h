@@ -10,14 +10,25 @@
 #else
 #include <glad/glad.h>
 #endif
-
-
-#include "font/font.h"
-
-#include "renderer.h"
+#include <graphics/font/font.h>
+#include <graphics/buffers/indexbuffer.h>
+#include <graphics/buffers/vertexarray.h>
 #include <glm.hpp>
 
-namespace letc {namespace graphics {
+
+#define RENDERER_MAX_SPRITES		60000
+#define RENDERER_VERTEX_SIZE		sizeof(VertexData)
+#define RENDERER_SPRITE_SIZE		RENDERER_VERTEX_SIZE * 4
+#define RENDERER_BUFFER_SIZE		RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
+#define RENDERER_INDICES_SIZE		RENDERER_MAX_SPRITES * 6
+
+#define SHADER_VERTEX_INDEX		0
+#define SHADER_UV_INDEX			1
+#define SHADER_TID_INDEX		2
+#define SHADER_COLOR_INDEX		3
+
+
+namespace watty {namespace graphics {
 	class Renderable2D;
 	struct VertexData;
 	struct Bounds2D {
@@ -30,15 +41,39 @@ namespace letc {namespace graphics {
 	class Renderer2D : public Renderer{
 	public:
 	protected:
+
+		std::vector<glm::mat4> m_TransformationStack;
+		const glm::mat4* m_tranformationStackBack;
+		unsigned short m_flushesPerFrame = 1;
+		unsigned short m_flushesThisFrame = 0;
+		int m_maxTextureUnits = 0;
+		unsigned int m_vertexArray;
+		unsigned int m_vertexBuffer;
+		IndexBuffer* m_indexBuffer;
+		int m_indexCount;
+		VertexData* m_currentBuffer;
+		std::vector<float> m_glTIDsThisFlush;
+		unsigned int m_textureArrayID;
+		std::vector<const Texture*> m_textures;
+
 		Renderer2D();
+		Renderer2D(bool ECS);
 		
 	public:
 
-		virtual ~Renderer2D() {}
+		virtual ~Renderer2D();
+
+
+		virtual void begin();
 
 		virtual void submit(const Renderable2D* renderable) = 0;
+		virtual void submit(float glTID, WattyColor color, glm::vec2 textureCoord, glm::vec2 textureSize);
+#ifdef WATTY_OPENGL
 		virtual void drawString(const std::string& text, const glm::vec2& position, const Font* font, WattyColor color, const Bounds2D bounds) {};
 
+		virtual void end();
+		virtual void init();
+		virtual void flush();
 
 	public:
 

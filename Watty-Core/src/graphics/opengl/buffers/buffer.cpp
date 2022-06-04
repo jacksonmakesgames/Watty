@@ -1,5 +1,5 @@
 #include <graphics/buffers/buffer.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	Buffer::Buffer(float* data, int count, unsigned int componentCount){
 		m_componentCount = componentCount;

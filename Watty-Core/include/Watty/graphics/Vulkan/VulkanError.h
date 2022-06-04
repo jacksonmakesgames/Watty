@@ -2,7 +2,7 @@
 #include <iostream>
 #include <ext/vulkan/include/vulkan.h>
 
-namespace letc { namespace graphics{
+namespace watty { namespace graphics{
 
 	static bool CheckForVulkanError(VkResult result){
 		if (result != VK_SUCCESS) {

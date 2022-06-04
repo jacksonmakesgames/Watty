@@ -23,7 +23,7 @@
 #include "VulkanRenderPass.h"
 #include "VulkanFrameBuffer.h"
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	class VulkanInstance {
 	private:

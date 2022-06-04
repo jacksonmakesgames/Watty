@@ -1,115 +1,211 @@
-#include <Watty.h>
+#include "Sandbox.h"
 
-#define RESDIR "J:/OneDrive/Projects/Game_Development/Watty/Sandbox/res/"
-#define PLAYERTEXTURE RESDIR  "textures/sprites/lpc/soldier.png"
-#define PLAYERCLOTHESTEXTURE RESDIR  "textures/sprites/lpc/female_chainmail.png"
-#define TESTTEXTURE RESDIR  "textures/test.png"
-
-#define LEVELPATH RESDIR "tilemaps/levelOne.json"
-#define IMAGEPATH RESDIR "tilemaps/terrain_all.png"
-
-using namespace letc;
-using namespace graphics;
-using namespace math;
-using namespace audio;
-using namespace physics;
-using namespace glm;
-
-namespace letc {
+namespace watty {
 	namespace physics {
 		DebugPhysics* PhysicsWorld2D::debugDraw = new DebugPhysics();
 		b2World* PhysicsWorld2D::box2DWorld = new b2World(b2Vec2(0.0f, 0.0f));
 	}
+
+	Sandbox* sandbox = new Sandbox();
+
+	Sprite s = Sprite(Color::blue);
+
+
+	class TestGameObject :public GameObject {
+	public:
+		TestGameObject(glm::vec2 position, glm::vec2 size):GameObject(position, size) {
+		}
+
+		void update() override {
+			float horizontalAxis = -1 * (float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+			float verticalAxis = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1 * (float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
+			transform->translate({ horizontalAxis * 10.f * Timer::delta, verticalAxis * 10.f * Timer::delta });
+			
+			transform->rotate(Timer::delta);
+			GameObject::update();
+		}
+
+	};
+#ifdef ECS_ENABLED
+	struct Move2DComponent : public ECSComponent<Move2DComponent> {
+		glm::vec2 movement = {0,0};
+	};
+
+
+	struct InputHandlerComponent : public ECSComponent<InputHandlerComponent> {
+		double horizontalAxis =0;
+		double verticalAxis = 0;
+	};
+
+	class InputHandlerSystem : public BaseECSSystem {
+	public:
+		InputHandlerSystem() {
+			addComponentType(InputHandlerComponent::ID);
+			addComponentType(Move2DComponent::ID);
+
+		}
+		virtual void updateComponents(float deltaTime, BaseECSComponent** components) override{
+			InputHandlerComponent* input = (InputHandlerComponent*)components[0];
+			input->horizontalAxis = -1 * (float)(Input::keyIsDown(GLFW_KEY_A) || Input::keyIsDown(GLFW_KEY_LEFT)) + (float)(Input::keyIsDown(GLFW_KEY_D) || Input::keyIsDown(GLFW_KEY_RIGHT));
+			input->verticalAxis = (float)(Input::keyIsDown(GLFW_KEY_W) || Input::keyIsDown(GLFW_KEY_UP)) + -1 * (float)(Input::keyIsDown(GLFW_KEY_S) || Input::keyIsDown(GLFW_KEY_DOWN));
+
+			Move2DComponent* move = (Move2DComponent*)components[1];
+			move->movement = { input->horizontalAxis, input->verticalAxis };
+		}
+	};
+	class MoveSystem : public BaseECSSystem {
+	public:
+		MoveSystem() {
+			addComponentType(Transform2DComponent::ID);
+			addComponentType(Move2DComponent::ID);
+		}
+
+		virtual void updateComponents(float deltaTime, BaseECSComponent** components) override {
+			Transform2DComponent* transform = (Transform2DComponent*)components[0];
+			Move2DComponent* move = (Move2DComponent*)components[1];
+			glm::vec2 newPos = transform->position + move->movement * 10.0f * deltaTime;
+			if (newPos != transform->position) {
+				transform->position = newPos;
+			}
+			transform->rotation += deltaTime;
+				transform->transformMatrix = calculateMatrix(transform->position, transform->size, transform->rotation);
+		}
+
+		glm::mat4 calculateMatrix(glm::vec2 position, glm::vec2 size, float rotation) {
+			glm::mat4 transformMatrix = glm::mat4(1.0f);
+			glm::vec3 drawPosition = {
+				position.x,
+				position.y,
+				0.0f
+			};
+
+			//if (parent != nullptr)
+			//	transformMatrix = glm::translate(transformMatrix, glm::vec3(0.25f * parent->getSize().x, 0.25f * parent->getSize().y, 0.0f));
+
+			drawPosition.x -= .5f * size.x;
+			drawPosition.y -= .5f * size.y;
+
+
+			//Position
+			transformMatrix = glm::translate(transformMatrix, drawPosition);										// Move to drawing position
+
+			//Rotation
+			transformMatrix = glm::translate(transformMatrix, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));	    // Offset for rotate
+			transformMatrix = glm::rotate(transformMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));					// Rotate on Z
+			transformMatrix = glm::translate(transformMatrix, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));     // Move back to draw position
+
+			//Scale
+			transformMatrix = glm::scale(transformMatrix, glm::vec3(size, 1.0f));									// Scale
+			
+			return transformMatrix;
+		}
+	};
+
+
+
+	Transform2DComponent		*transformC		;
+	MoveSystem					*moveSystem		;
+	InputHandlerSystem			*inputSystem	;
+	Move2DComponent				*moveC			;
+	InputHandlerComponent		*inputC			;
+	RenderableSpriteComponent	*renderableC	;
+
+#endif
+	const unsigned int TEST_AMT = 100;
+	WattyColor c = Color::white;
+	void Sandbox::init() {
+		sandboxInit();
+
+		// load scene file 
+		Scene scene = Scene("testScene.json", "Test Scene");
+		Layer* layer = new Layer("Test Layer");
+		TestGameObject* go = new TestGameObject({ 0,0 }, { 100,100 }); 
+		TestGameObject* go2 = new TestGameObject({ 0,0 }, { 100,100 }); 
+		layer->add(go);
+		layer->add(go2);
+		scene.m_layers.push_back(layer);
+		scene.save();
+
+		// ECS:
+		//TestECS();
+		TestRegular();
+
+		//setupSquares();
+
+	}
+
+	void Sandbox::TestRegular() {
+		new graphics::GridLayer(*sceneCamera, *window);
+
+		Sprite* sr = new Sprite("textures/asterisk.png");
+		for (size_t i = 0; i < TEST_AMT; i++) {
+			TestGameObject* go = Instantiate<TestGameObject>({ Random::range(-16, 16), Random::range(-9, 9) }, {1,1});
+			go->addComponent(sr);
+		}	
+	}
+#ifdef ECS_ENABLED
+	void Sandbox::TestECS() {
+		transformC = new Transform2DComponent();
+		moveSystem = new MoveSystem();
+		inputSystem = new InputHandlerSystem();
+		moveC = new Move2DComponent();
+		inputC = new InputHandlerComponent();
+		renderableC = new RenderableSpriteComponent();
+
+		renderableC->texture = Texture("textures/asterisk.png");
+
+		for (size_t i = 0; i < TEST_AMT; i++){
+			transformC->position = { Random::range(-16,16), Random::range(-9,9) };
+			ecs.makeEntity(*transformC, *moveC, *inputC, *renderableC);
+		}
+
+
+		//Systems:
+		mainSystems.addSystem(*inputSystem);
+		mainSystems.addSystem(*moveSystem);
+
+	}
+
+#endif	
+	void Sandbox::tick() {
+		WattyEngine::tick();
+		if(fpsLabel)
+			fpsLabel->setText(std::string("FPS: ") + std::to_string(Stats::getFramesPerSecond()));
+		if(upsLabel)
+			upsLabel->setText(std::string("UPS: ") + std::to_string(Stats::getUpdatesPerSecond()));
+
+
+	}
+	void Sandbox::update(){
+		//testMotion();	
+		glm::vec2 size = sceneCamera->getViewportSize();
+
+		/*sceneCamera->setSize(glm::vec2(
+			size.x - (10.0f * window->getAspectRatio().x * Input::getScrollAmountThisFrameY()) * Timer::delta,
+			size.y - (10.0f * window->getAspectRatio().y * Input::getScrollAmountThisFrameY()) * Timer::delta
+		));*/
+
+		sceneCamera->setSize(sceneCamera->getSize()- Input::getScrollAmountThisFrameY() * Timer::delta);
+
+
+		squaresUpdate();
+
+		//WattyEngine::update();
+	}
+	void Sandbox::OnGui() {
+		ImGui::Begin("debug info");
+		ImGui::End();
+	}
+	void Sandbox::render() {
+		WattyEngine::render();
+	}
 }
 
-class Sandbox : public LETC {
-private:
-	Window* m_window;
-	Label* fpsLabel;
-	std::vector<Sprite*> allSprites;
-	std::vector<GameObject2D*> allObjects;
-	std::vector<glm::vec2> allObjectPos;
-public:
-	void init() override {
-		m_window = createWindow("Sandbox", 1280, 720, true, false);
-		glClearColor(.45, .23, .23, 1);
-		Layer* mainLayer = new Layer("Layer 1");
-		//mainLayer->add(new GameObject2D("Test", { 0,0 }, { 1,1 }, new Sprite(Color::white)));
-		layers.push_back(mainLayer);
-
-		for (int x = -20; x < 20; x++)
-		{
-			for (int y = -20; y < 20; y++) {
-				Sprite* sprite = new Sprite(Color::random());
-				GameObject2D* tmp = new GameObject2D({ x,y }, {.8,.8},sprite);
-				allSprites.push_back(sprite);
-				allObjects.push_back(tmp);
-				allObjectPos.push_back({x,y});
-				mainLayer->add(tmp);
-			}
-
-		}
-
-		AudioManager::addClip("drums", RESDIR "audio/drums.wav");
-		AudioManager::getClip("drums")->play(true);
-		AudioManager::getClip("drums")->setGain(.5f);
-		
-
-		FontManager::add("test", RESDIR "fonts/Lobster.ttf", 100);
-		LabelProperties labelProps;
-		labelProps.charsPerLine = 30;
-		labelProps.text =	"";
-		labelProps.font = FontManager::get("test");
-		labelProps.color = Color::orange;
-		labelProps.overflowMode = OverflowMode::Expand;
-		fpsLabel = new Label(labelProps);
-		GameObject2D* fpsGO = new GameObject2D({-14,7}, {1,1}, fpsLabel);
-		mainLayer->add(fpsGO);
-
-	}
-
-	void tick() override {
-		LETC::tick();
-		fpsLabel->setText(std::string("FPS: ") + std::to_string(getFramesPerSecond()));
-	}
-	void update() override{
-		sceneCamera->setSize( glm::vec2(	
-					sceneCamera->getSize().x - 4.0f  * m_window->getScrollAmountThisFrameY(),
-					sceneCamera->getSize().y - 2.25f * m_window->getScrollAmountThisFrameY()
-				));
-
-		float r = Random::range(-1,1);
-		for (GameObject2D* go : allObjects)
-		{
-			float x = abs(go->transform->getPosition().x);
-			float y = abs(go->transform->getPosition().y);
-
-			go->transform->translate({ sin(x * gameTimer->elapsed()) / 10, cos(y * gameTimer->elapsed()) / x });
-
-			go->transform->rotate(tan(.25+x*tan(gameTimer->elapsed()/100)));
-
-		}
-
-		LETC::update();
-	}
-
-	void render() override {
-
-		LETC::render();
-	}
-
-	
-	~Sandbox() {
-	}
-};
-
-
 int main() {
-	Sandbox* sandbox = new Sandbox();
+
 	sandbox->start();
 	return 0;
 }
-
 
 
 

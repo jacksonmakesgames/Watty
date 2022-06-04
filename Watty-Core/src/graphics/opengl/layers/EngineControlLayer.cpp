@@ -1,5 +1,5 @@
 #include <graphics/layers/EngineControlLayer.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 
 	EngineControlLayer::EngineControlLayer(std::string name, bool& debugPhysics, bool& appReset, bool* windowVSync, std::vector<Layer*>& appLayers) :
 		GUILayer(name, new graphics::Shader()),
@@ -19,7 +19,7 @@ namespace letc {namespace graphics {
 		if (!enabled_) return;
 
 			ImGui::Begin("Application Info"); {
-				ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+				ImGui::Text("%.3f ms/frame (%.1f FPS) | %d updates/s", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate, Stats::getUpdatesPerSecond());
 				ImGui::ColorEdit3("Clear Color", (float*)&m_clearColor);
 				ImGui::Text("%4d draws/frame", Renderer2D::globalFlushesThisFrame); // TODO: note that global flushes this frame will only be accurate if this layer is last layer in stack
 			}ImGui::End();
@@ -96,19 +96,13 @@ namespace letc {namespace graphics {
 					Window::toggleVSync();
 				}
 
-				if (ImGui::Button("Reset")) {
-					m_appReset = true;
-				};
 			}ImGui::End();
 			
-		//}
+
 		
-		glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
+		Camera::sceneCamera->setClearColor(WattyColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w));
 
-		//Layer::draw();
 
-		//ImGui::Render();
-		//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	
 	}
 }}

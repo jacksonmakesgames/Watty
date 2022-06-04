@@ -2,11 +2,10 @@
 #include "Tile.h"
 #include "TileMapLayer.h"
 #include <utils/file_utils.h>
-#include <graphics/tilemap/TileMap.h>
 #include <physics/MapBodyBuilder.h>
 
 
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	class TileMap : public Renderable2D {
 	public:
 		glm::vec2 mapSize = glm::vec2();

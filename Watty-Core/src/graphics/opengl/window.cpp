@@ -1,11 +1,14 @@
 ﻿#include <graphics/window.h>
-namespace letc {namespace graphics {
+namespace watty {namespace graphics {
 	void window_resize_callback(GLFWwindow* window, int width, int height);
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+
+
+	bool Window::allowMultipleSubWindows = true;
 
 	Window* Window::Instance = nullptr;
 
@@ -26,23 +29,15 @@ namespace letc {namespace graphics {
 		isFullScreen = fullscreen;
 		if (!init()) {
 			glfwTerminate();
-			std::cout << "GLFW failed to initialize, terminating." << std::endl;
+			std::cout << "GLFW failed to initialize, terminating. Check your video drivers." << std::endl;
 			return;
 		}
 
-		for (int i = 0; i < MAX_KEYS; i++) {
-			mKeysThisFrame[i]		=	false;
-			mKeysLastFrame[i]	=	false;
-			mKeysFirstFrameDown[i]	=	false;
-		}
-		for (int i = 0; i < MAX_BUTTONS; i++) {
-			mButtonsThisFrame[i]		=	 false;
-			mButtonsLastFrame[i]		=	 false;
-			mButtonsFirstFrameDown[i]			=	 false;
-		}
+		
+		
 
-		FontManager::init(mWidth / (std::get<0>(getAspectRatio()) * 2),
-			mHeight / (std::get<1>(getAspectRatio()) * 2));
+		FontManager::init(m_Width / (getAspectRatio().x * 2),
+			m_Height / (getAspectRatio().y * 2));
 
 	}	
 
@@ -51,7 +46,6 @@ namespace letc {namespace graphics {
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyPlatformWindows();
 		ImGui::DestroyContext();
-
 		glfwTerminate();
 
 		//FontManager::clean(); //TODO
@@ -64,11 +58,18 @@ namespace letc {namespace graphics {
 	}*/
 
 	bool Window::init() {
-
-		if (!glfwInit()){
-			std::cout << "Failed to initialize GLFW" << std::endl;
-			return false;
+		if (firstInit) {
+			if (!glfwInit()) {
+				std::cout << "Failed to initialize GLFW" << std::endl;
+				return false;
+			}
 		}
+		else {
+			glfwDestroyWindow(m_Window);
+			glfwWaitEvents();
+		}
+
+		
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
@@ -94,44 +95,50 @@ namespace letc {namespace graphics {
 			return false;
 		}
 
-		glfwMakeContextCurrent(mGLFWWindow);
-		glfwSetWindowUserPointer(mGLFWWindow, this);
-		if(isResizeable) glfwSetFramebufferSizeCallback(mGLFWWindow, window_resize_callback);
-		glfwSetKeyCallback(mGLFWWindow, key_callback);
-		glfwSetMouseButtonCallback(mGLFWWindow, mouse_button_callback);
-		glfwSetCursorPosCallback(mGLFWWindow, cursor_position_callback);
-		glfwSetScrollCallback(mGLFWWindow, scroll_callback);
+		glfwMakeContextCurrent(m_Window);
+		glfwSetWindowUserPointer(m_Window, this);
+		if(isResizeable) glfwSetFramebufferSizeCallback(m_Window, window_resize_callback);
+		glfwSetKeyCallback(m_Window, key_callback);
+		glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
+		glfwSetCursorPosCallback(m_Window, cursor_position_callback);
+		glfwSetScrollCallback(m_Window, scroll_callback);
+		//glfwSetWindowCloseCallback(m_Window, window_close_callback);
 		glfwSwapInterval(useVSync);
 
 #ifndef WATTY_EMSCRIPTEN
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		{
-			std::cout << "Failed to initialize GLAD" << std::endl;
-			return -1;
-		}
+			if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+			{
+				std::cout << "Failed to initialize GLAD" << std::endl;
+				return -1;
+			}
 #endif
-		std::cout << "Watty{} Version: " << WATTY_VERSION << std::endl;
-		std::cout << " OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
-
-#ifndef WATTY_EMSCRIPTEN
-		GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
-		if (flags & GL_CONTEXT_FLAG_DEBUG_BIT){
-			glEnable(GL_DEBUG_OUTPUT);
-			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-			glDebugMessageCallback(openglCallbackFunction, nullptr);
-			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
-
+		if (firstInit) {
+			std::cout << "Watty{} Version: " << WATTY_VERSION << std::endl;
+			std::cout << " OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 		}
+#ifndef WATTY_EMSCRIPTEN
+			GLint flags; glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
+			if (flags & GL_CONTEXT_FLAG_DEBUG_BIT) {
+				glEnable(GL_DEBUG_OUTPUT);
+				glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+				glDebugMessageCallback(openglCallbackFunction, nullptr);
+				glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+
+			}
 #endif // !WATTY_EMSCRIPTEN
 
-		glClearColor(0, 0, 0, 1); // Default
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glClearColor(0, 0, 0, 1); // Default
+			glEnable(GL_BLEND);
 
-		
+			//#ifdef WATTY_EMSCRIPTEN
+					//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+			//#else
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			//#endif
+
+
 		initImGUI();
-
-
+		firstInit = false;
 		return true;
 	}
 
@@ -167,7 +174,7 @@ namespace letc {namespace graphics {
 		return true;
 	}
 
-	std::tuple<int, int> Window::getAspectRatio()
+	glm::i8vec2 Window::getAspectRatio()
 	{
 		int outNum = mWidth;
 		int outDen = mHeight;
@@ -178,105 +185,79 @@ namespace letc {namespace graphics {
 				outNum /= i;
 			}
 		}
-		return std::tuple<int, int>(outNum, outDen);
+		return glm::i8vec2(outNum, outDen);
 	}
-
-
-
-
-	bool Window::keyIsDown(unsigned int keycode) const {
-		// if the key is down this frame
-		if (keycode >= MAX_KEYS) {
-		// TODO: log an error
-			return false;
-		}
-		return mKeysThisFrame[keycode];
-	}
-
-
-
-	bool Window::keyWasPressed(unsigned int keycode) const {
-		// If this is the first frame a key is down
-		if (keycode >= MAX_KEYS) {
-		// TODO: log an error
-			return false;
-		}
-		return mKeysFirstFrameDown[keycode];
-	}
-
-
-	bool Window::mouseButtonWasPressed(unsigned int button) const {
-		if (button >= MAX_BUTTONS) {
-		// TODO: log an error
-			return false;
-		}
-		return mButtonsFirstFrameDown[button];
-	}
-
-
-	bool Window::mouseButtonIsDown(unsigned int button) const {
-		if (button >= MAX_BUTTONS) {
-		// TODO: log an error
-			return false;
-		}
-		return mButtonsThisFrame[button];
-	}
-
-
-	bool Window::mouseButtonWasReleased(unsigned int button) const {
-		if (button >= MAX_BUTTONS) {
-			// TODO: log an error
-			return false;
-		}
-		return (mButtonsLastFrame[button] && !mButtonsThisFrame[button]);
-	}	
-	
-
-	bool Window::keyWasReleased(unsigned int key) const {
-		if (key >= MAX_KEYS) {
-			// TODO: log an error
-			return false;
-		}
-		return  (mKeysLastFrame[key] && !mKeysThisFrame[key]);;
-	}
-
-
-	void Window::getMousePos(double& x, double& y) const {
-		x = mMouseX;
-		y = mMouseY;
-	}
-
 
 	void Window::clear() const {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	}
 
+	void Window::clear(float r, float g, float b, float a, bool enableDepth, bool clearImGui) const
+	{
+		glClearColor(r,g,b,a);
+		
+		if (clearImGui) {
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+		}
+		if (enableDepth) {
+			//enable the GL_DEPTH_TEST to be able to see 3D object correctly
+			glEnable(GL_DEPTH_TEST);
+			//clear both the color buffer bit and the depth buffer bit
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
+		else {
+			//clear just the color buffer bit
+			glClear(GL_COLOR_BUFFER_BIT);
+		}
+	}
+	void Window::clear(WattyColor clearColor, bool enableDepth, bool clearImGui) const {
+		std::cout << "Error: Not Implemented, use clear(float, float, float, float, ...) instead" << std::endl;
+		throw NotImplemented();
+		glClearColor(clearColor.rgba.r/255.0f, clearColor.rgba.g/255.0f, clearColor.rgba.b/255.0f, clearColor.rgba.a/255.0f);
+		//glClearColor(clearColor.asFloat[0], clearColor.asFloat[1], clearColor.asFloat[2], clearColor.asFloat[3]);
+		//glClearColor(clearColor.rgba.b, clearColor.rgba.g, clearColor.rgba.r, clearColor.rgba.a);
+		//glClearColor(clearColor.abgr.r, clearColor.abgr.g, clearColor.abgr.b, clearColor.abgr.a);
+
+		if (clearImGui){
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+		}
+		if (enableDepth){
+			//enable the GL_DEPTH_TEST to be able to see 3D object correctly
+			glEnable(GL_DEPTH_TEST);
+			//clear both the color buffer bit and the depth buffer bit
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
+		else{
+			//clear just the color buffer bit
+			glClear(GL_COLOR_BUFFER_BIT);
+		}
+	}
 
 	void Window::update() {
-		mScrolledThisFrameY = 0;
+		//scrolledThisFrameY = 0;
+		//Input::resetScroll();
+		endImGuiFrame();
 		glfwPollEvents();
 		glfwSwapBuffers(mGLFWWindow);
 	}
 
-
-	void Window::listenForInput(){
-		
-		for (int i = 0; i < MAX_KEYS; i++) {
-			mKeysFirstFrameDown[i] = false;
+	void Window::endImGuiFrame() {
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		if (Window::allowMultipleSubWindows) {
+			// ImGui Multiple Viewports:
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+				GLFWwindow* backup_current_context = glfwGetCurrentContext();
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				glfwMakeContextCurrent(backup_current_context);
+			}
 		}
-		// handle input:
-		for (size_t i = 0; i < MAX_KEYS; i++) {
-			mKeysFirstFrameDown[i] = mKeysThisFrame[i] && !mKeysLastFrame[i]; // first frame pressed
-		}
-		memcpy(&mKeysLastFrame, mKeysThisFrame, sizeof(bool) * MAX_KEYS);
-
-		for (size_t i = 0; i < MAX_BUTTONS; i++) {
-			mButtonsFirstFrameDown[i] = mButtonsThisFrame[i] && !mButtonsLastFrame[i];
-		}
-		memcpy(&mButtonsLastFrame, mButtonsThisFrame, sizeof(bool) * MAX_BUTTONS);
 	}
-
 
 	glm::vec3 Window::viewportToWorld(glm::vec2 position, const Camera& cam){
 		glm::vec2 pointScreenRatio = glm::vec2();
@@ -285,8 +266,10 @@ namespace letc {namespace graphics {
 
 		glm::vec2 pointWorldRatio = pointScreenRatio * cam.getSize();
 
-		pointWorldRatio.x -= (.5f * cam.getSize().x);
-		pointWorldRatio.y -= (.5f * cam.getSize().y);
+		//pointWorldRatio.x -= (.5f * cam.getSize().x);
+		//pointWorldRatio.y -= (.5f * cam.getSize().y);
+		pointWorldRatio.x -= (.5f * cam.getViewportSize().x);
+		pointWorldRatio.y -= (.5f * cam.getViewportSize().y);
 
 		glm::vec3 worldPoint = glm::vec3(pointWorldRatio.x, pointWorldRatio.y, 0) + cam.position;
 		return worldPoint;
@@ -302,46 +285,49 @@ namespace letc {namespace graphics {
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 		if (!win->isResizeable) { return;  }
 		glViewport(0, 0, width, height);
-		win->mWidth = width;
-		win->mHeight = height;
+		glScissor(0, 0, width,height);
+		glEnable(GL_SCISSOR_TEST);
+		win->m_Width = width;
+		win->m_Height = height;
 		
-		// NOTE: huge performance hit when resizing.. we should rethink this
-		/*std::tuple aR = win->getAspectRatio();
-		FontManager::remakeAllFonts(
-			win->getWidth() / (std::get<0>(aR) * 2),
-			win->getHeight() / (std::get<1>(aR) * 2));*/
+		for (size_t i = 0; i < Camera::allCameras.size(); i++)
+		{
+			if (Camera::allCameras[i]->isEditorCamera) continue; // TODO improve perf
+			Camera::allCameras[i]->setWindowSize(glm::vec2(2 * (width / win->PIXEL_TO_METER_RATIO), 2 * (height / win->PIXEL_TO_METER_RATIO)));
+		}
+
+
+
 	}
+
+	void window_close_callback(GLFWwindow* window)
+	{
+		glfwSetWindowShouldClose(window, GLFW_FALSE);
+	}
+
 
 
 	void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-		Window * win = (Window*) glfwGetWindowUserPointer(window);
-		win->mKeysThisFrame[key] = action != GLFW_RELEASE;
-
+		Input::setKeyThisFrame(key, action != GLFW_RELEASE);
 	}
 
 
-	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
-		Window * win = (Window*) glfwGetWindowUserPointer(window);
-		win->mButtonsThisFrame[button] = action != GLFW_RELEASE;
-
+	void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+		Input::setButtonThisFrame(button, action != GLFW_RELEASE);
 	}
 
 
 	void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
-		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->mMouseX = xpos;
-		win->mMouseY = ypos;
-
+		Input::updateMousePos(xpos, ypos);
 	}
-	
+
 
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->mScrolledThisFrameY = yoffset;
+		Input::scrolledThisFrameY = yoffset;
 	}
 
-
-	void Window::toggleVSync(){
+	//TODO: not sure why this is static
+	void Window::toggleVSync(){ 
 		Window::useVSync = !Window::useVSync;
 		glfwSwapInterval(Window::useVSync);
 	}

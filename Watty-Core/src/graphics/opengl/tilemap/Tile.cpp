@@ -1,7 +1,9 @@
 #include <graphics/tilemap/Tile.h>
-namespace letc {namespace graphics {
+namespace watty {
+	namespace graphics {
 
-	Tile::Tile(float pixelMeterRatio, Texture* texture,float x, float y, int width, int height, int offsetIndex):Sprite(x,y,1,1,texture){
+		Tile::Tile(float pixelMeterRatio, Texture* texture, float x, float y, int width, int height, int offsetIndex) :
+			Sprite({x, y}, { 1, 1 }, texture) {
 		offsetIndex--;
 		setPosition(glm::vec3(x,y,0));
 		int totalWidth = texture->getNumColumns();

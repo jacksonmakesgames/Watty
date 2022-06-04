@@ -2,8 +2,8 @@
 #include "GUILayer.h"
 #include "../window.h"
 #include <gameobjects/GameObject.h>
-
-namespace letc { namespace graphics {
+#include <utils/Stats.h>
+namespace watty { namespace graphics {
 
 	class EngineControlLayer : public GUILayer
 	{

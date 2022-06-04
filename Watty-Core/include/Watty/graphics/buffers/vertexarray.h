@@ -6,9 +6,21 @@
 #else
 #include <glad/glad.h>
 #endif
-#include "buffer.h"
+#include <Watty/graphics/buffers/buffer.h>
+#include <Watty/graphics/Color.h>
 
-namespace letc {namespace graphics {
+#include <glm.hpp>
+
+namespace watty {namespace graphics {
+
+	struct VertexData
+	{
+		glm::vec3 vertex;
+		glm::vec2 uv;
+		float tid;
+		WattyColor color;
+	};
+
 	class VertexArray {
 	private:
 		unsigned int m_arrayID;

@@ -7,7 +7,7 @@
 #include "SwapChainSupportDetails.h"
 
 
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 	
 	const static std::vector<const char*> desiredDeviceExtensions = {
 		VK_KHR_SWAPCHAIN_EXTENSION_NAME

@@ -776,7 +776,7 @@
                   if ( l2r == left2right     &&
                        d >= length_threshold )
                   {
-                    /* all constraints are met; update segment after */
+                    /* all constraints are met; resetScroll segment after */
                     /* finding its end                               */
                     do
                     {
@@ -1727,7 +1727,7 @@
                 /* axis, and where the segments have just been merged):    */
                 /* unify segments                                          */
 
-                /* update constraints */
+                /* resetScroll constraints */
 
                 if ( prev_min_pos < min_pos )
                   min_pos = prev_min_pos;

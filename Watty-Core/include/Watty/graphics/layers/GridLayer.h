@@ -3,7 +3,7 @@
 #include"../DebugRenderer.h"
 #include "../Camera.h"
 #include "../window.h"
-namespace letc { namespace graphics {
+namespace watty { namespace graphics {
 
 	class GridLayer : public Layer {
 	private:
