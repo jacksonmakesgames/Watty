@@ -1,0 +1,9 @@
+{
+    "layers": [
+        {
+            "name_one": {
+                "objects": ["object_one", "object_two"]
+            }
+        }
+    ]
+}

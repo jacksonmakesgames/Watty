@@ -1,0 +1,35 @@
+{
+  "layers": [
+    {
+      "enabled": true,
+      "gameobjects": {
+        "8d72e46f-9980-499b-a061-31d2bcacf87c": {
+          "enabled": true,
+          "name": "GameObject",
+          "tag": "",
+          "transform": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        },
+        "9ec5b6ba-f506-4cc0-9cff-f68d528f98c0": {
+          "enabled": true,
+          "name": "GameObject",
+          "tag": "",
+          "transform": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        }
+      },
+      "hidden": false,
+      "name": "Test Layer",
+      "shader_frag": "shaders/default.frag",
+      "shader_vert": "shaders/default.vert"
+    }
+  ]
+}
