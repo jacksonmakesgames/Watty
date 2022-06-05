@@ -1,6 +1,5 @@
 #include <ProjectManager.h>
-
-using namespace watty;
+namespace fs = std::filesystem;
 namespace WattyEditor {
     ProjectManager::ProjectManager() {
         isProjectOpen = false;
@@ -12,6 +11,13 @@ namespace WattyEditor {
     Project::Project() {
         path = "";
         name = "";
+    }
+    
+    void Project::discoverScenes(){
+        for (const auto & entry : fs::directory_iterator(path+"/scenes")) {
+            std::cout << entry.path() << std::endl;
+            Scene scene(entry.path().string(), entry.path().filename().string().substr(0, entry.path().filename().string().size()-5));
+        }
     }
 
     Project::~Project() {}
@@ -36,6 +42,7 @@ namespace WattyEditor {
         project.settings = ProjectSettings(path+"/project_settings.json");
         project.name = project.settings.name;
         isProjectOpen = true;
+        project.discoverScenes();   
         return project;
     }
 
@@ -47,6 +54,7 @@ namespace WattyEditor {
         std::filesystem::create_directory(path+"/res");
         std::filesystem::create_directory(path+"/src");
         std::filesystem::create_directory(path+"/include");
+        std::filesystem::create_directory(path+"/scenes");
         saveProject(path, project);
         
         // TODO abstract

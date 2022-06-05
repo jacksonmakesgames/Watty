@@ -18,16 +18,17 @@ namespace WattyEditor
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		Window::allowMultipleSubWindows = true;
 
-		GameObject *g0 = Instantiate<GameObject>({0, 0}, {1, 1});
-		g0->addComponent(new graphics::Sprite(graphics::Color::white));
+		// GameObject *g0 = Instantiate<GameObject>({0, 0}, {1, 1});
+		// g0->addComponent(new graphics::Sprite(graphics::Color::white));
 
-		GameObject *g1 = Instantiate<GameObject>({-5, -4}, {5, 5});
-		g1->addComponent(new graphics::Sprite(graphics::Color::blue));
+		// GameObject *g1 = Instantiate<GameObject>({-5, -4}, {5, 5});
+		// g1->addComponent(new graphics::Sprite(graphics::Color::blue));
 
-		GameObject *g2 = Instantiate<GameObject>({5, 4}, {5, 5});
-		g2->addComponent(new graphics::Sprite(graphics::Color::pink));
+		// GameObject *g2 = Instantiate<GameObject>({5, 4}, {5, 5});
+		// g2->addComponent(new graphics::Sprite(graphics::Color::pink));
 
-		testTexture = new graphics::Texture("textures/test.png");
+		// testTexture = new graphics::Texture("textures/test.png");
+
 		screenTexture = new graphics::Texture(window->getWidth(), window->getHeight());
 		setupFrameBuffer();
 		// new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, Layer::allLayers);
@@ -293,9 +294,6 @@ namespace WattyEditor
 				{
 					openProject();
 				}
-				if (ImGui::BeginMenu("Open Recent"))
-				{
-				}
 				if (ImGui::MenuItem("Save", "Ctrl+S"))
 				{
 					saveProject();
@@ -335,6 +333,7 @@ namespace WattyEditor
 		ImGui::End();
 	}
 
+
 	void EditorApplication::openProject()
 	{
 		char const *pathC = tinyfd_selectFolderDialog("Open Project", "./");
@@ -367,7 +366,7 @@ namespace WattyEditor
 
 	void EditorApplication::drawProjectSaveAsDialog(OnNameCallback callback)
 	{
-		static char name[128] = "" ;
+		static char name[128] = "";
 
 		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiCond_FirstUseEver);
 		if (ImGui::Begin("Save Project As", &_waitingForSaveNameSaveAs, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
@@ -380,31 +379,10 @@ namespace WattyEditor
 			ImGui::SameLine();
 			if (ImGui::Button("Cancel"))
 			{
-				_waitingForSaveNameSaveAs = false;
+				callback("");
 			}
 			ImGui::End();
 		}
-		// if (ImGui::BeginPopupModal("Name project", NULL, ImGuiWindowFlags_AlwaysAutoResize))
-		// {
-		// 	ImGui::Text("Project name:");
-		// 	ImGui::Separator();
-		// 	ImGui::InputText("", name, ImGuiInputTextFlags_AutoSelectAll);
-
-		// 	if (ImGui::Button("OK", ImVec2(120, 0)))
-		// 	{
-		// 		ImGui::CloseCurrentPopup();
-		// 		callback(std::string(name));
-		// 	}
-		// 	ImGui::SetItemDefaultFocus();
-		// 	ImGui::SameLine();
-		// 	if (ImGui::Button("Cancel", ImVec2(120, 0)))
-		// 	{
-		// 		ImGui::CloseCurrentPopup();
-		// 		callback("");
-		// 	}
-
-		// 	ImGui::EndPopup();
-		// }
 	}
 
 	void EditorApplication::newProject(std::string name)
@@ -466,12 +444,10 @@ namespace WattyEditor
 		{
 			ImGui::BeginChild("Watty Render");
 
-			// glm::vec2 windowViewport = .5f * sceneCamera->getViewportSize() * window->PIXEL_TO_METER_RATIO;
-
 			auto initialCursorPos = ImGui::GetCursorPos();
 			ImVec2 winSize = ImGui::GetWindowSize();
-			auto centralizedCursorpos = ImVec2((winSize.x - editorWindowSize.x) * 0.5f, (winSize.y - editorWindowSize.y) * 0.5f);
-			ImGui::SetCursorPos(centralizedCursorpos);
+			auto centralizedCursorPos = ImVec2((winSize.x - editorWindowSize.x) * 0.5f, (winSize.y - editorWindowSize.y) * 0.5f);
+			ImGui::SetCursorPos(centralizedCursorPos);
 
 			ImGui::GetWindowDrawList()->AddImage(
 				(void *)getRenderTexture(),
@@ -482,25 +458,18 @@ namespace WattyEditor
 
 			sceneCamera->setWindowSize(glm::vec2(2 * (ImGui::GetWindowSize().x / window->PIXEL_TO_METER_RATIO), 2 * (ImGui::GetWindowSize().y / window->PIXEL_TO_METER_RATIO)));
 
-			// ImGui::GetWindowDrawList()->AddImage(
-			//	(void*)getRenderTexture(),
-			//	ImVec2(ImGui::GetCursorScreenPos()),
-			//	ImVec2(ImGui::GetCursorScreenPos().x + editorWindowSize.x,
-			//		ImGui::GetCursorScreenPos().y + editorWindowSize.y), ImVec2(0, 1), ImVec2(1, 0));
-
-			/*		ImGui::GetWindowDrawList()->AddImage(
-						(void*)getRenderTexture(),
-						ImVec2(ImGui::GetCursorScreenPos()),
-						ImVec2(ImGui::GetCursorScreenPos().x + 1600.0f,
-							ImGui::GetCursorScreenPos().y + 900.0f), ImVec2(0, 1), ImVec2(1, 0));*/
-
-			/*ImVec2(ImGui::GetCursorScreenPos().x + .5f*sceneCamera->getViewportSize().x * window->PIXEL_TO_METER_RATIO,
-				ImGui::GetCursorScreenPos().y + .5f*sceneCamera->getViewportSize().y * window->PIXEL_TO_METER_RATIO), ImVec2(0, 1), ImVec2(1, 0));*/
-
 			ImGui::SetCursorPos(initialCursorPos);
 
 			if (ImGui::IsWindowHovered())
 			{
+				// scroll
+				if (ImGui::IsMouseDragging(3))
+				{
+					float mouseDeltaX = ImGui::GetMouseDragDelta(3).x;
+					float mouseDeltaY = ImGui::GetMouseDragDelta(3).y;
+					sceneCamera->position.x = sceneCamera->position.x + mouseDeltaX * Timer::delta * window->PIXEL_TO_METER_RATIO;
+					sceneCamera->position.y = sceneCamera->position.y + mouseDeltaY * Timer::delta * window->PIXEL_TO_METER_RATIO;
+				}
 				sceneCamera->setSize(sceneCamera->getSize() - Input::getScrollAmountThisFrameY() * Timer::delta);
 			}
 

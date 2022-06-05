@@ -34,7 +34,17 @@ namespace WattyEditor {
 
 		void setupEditorWindows();
 
+		
+		/**
+		* @brief 
+		* Opens a project folder. Asks the user to select a folder.
+		*/
 		void openProject();
+		
+		/**
+		 * @brief 
+		 * Saves the current project to a folder. Asks the user to select a folder.
+		 */
 		void saveProject();
 		void saveProjectAs(std::string name);
 		void newProject(std::string name);

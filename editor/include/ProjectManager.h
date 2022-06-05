@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <filesystem>
 #include <utils/file_utils.h>
-
+#include <scene/Scene.h>
+#include <vector>
+using namespace watty;
 namespace WattyEditor {
     struct ProjectSettings{
         ProjectSettings();
@@ -18,9 +20,13 @@ namespace WattyEditor {
             std::string name;
             ProjectSettings settings;
 
+            std::vector<Scene*> scenes;
+
         public:
             Project();
             ~Project();
+            void discoverScenes();
+        private:
            
     };
 
