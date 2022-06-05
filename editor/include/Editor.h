@@ -10,8 +10,9 @@ using namespace watty;
 
 namespace WattyEditor {
 
-
+	
 	class EditorApplication : public WattyEngine {
+		typedef std::function<void (std::string name)> OnNameCallback;
 	private:
 		bool _guiFlagResetLayout = false;
 		ImVec2 editorWindowSize = ImVec2(0,0);
@@ -19,6 +20,9 @@ namespace WattyEditor {
 		
 		Project project;
 		ProjectManager projectManager;
+		
+		bool _waitingForSaveNameNew = false;
+		bool _waitingForSaveNameSaveAs = false;
 
 	public:
 		EditorApplication();
@@ -32,8 +36,8 @@ namespace WattyEditor {
 
 		void openProject();
 		void saveProject();
-		void saveProjectAs();
-		void newProject();
+		void saveProjectAs(std::string name);
+		void newProject(std::string name);
 
 		// Editor windows
 		#pragma region windows
@@ -45,7 +49,9 @@ namespace WattyEditor {
 			void drawActions();
 			void drawProjectFiles();
 			void drawAppInfo();
+			void drawProjectSaveAsDialog(OnNameCallback callback);
 		#pragma endregion windows
+
 
 		int onExit();
 
@@ -66,5 +72,7 @@ namespace WattyEditor {
 		std::string text = "";
 		bool IsSelected = false;
 	};
+
+
 
 }

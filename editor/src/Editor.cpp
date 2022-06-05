@@ -2,49 +2,50 @@
 
 #define WATTY_EDITOR 1
 
-namespace WattyEditor {
+namespace WattyEditor
+{
 	using namespace graphics;
+
 	EditorApplication::EditorApplication() {}
 
 	void EditorApplication::init()
 	{
 		WATTY_EDITOR_ATTACHED = true;
-		window->setSize({ 1600,900 });
+		window->setSize({1600, 900});
 		window->setTitle("Editor - Watty Game Engine");
 		window->useVSync = false;
 
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		Window::allowMultipleSubWindows = true;
 
-		GameObject* g0 = Instantiate<GameObject>({ 0,0 }, { 1,1 });
+		GameObject *g0 = Instantiate<GameObject>({0, 0}, {1, 1});
 		g0->addComponent(new graphics::Sprite(graphics::Color::white));
 
-		GameObject* g1 = Instantiate<GameObject>({ -5,-4 }, { 5,5 });
+		GameObject *g1 = Instantiate<GameObject>({-5, -4}, {5, 5});
 		g1->addComponent(new graphics::Sprite(graphics::Color::blue));
 
-		GameObject* g2 = Instantiate<GameObject>({ 5,4 }, { 5,5 });
+		GameObject *g2 = Instantiate<GameObject>({5, 4}, {5, 5});
 		g2->addComponent(new graphics::Sprite(graphics::Color::pink));
-
 
 		testTexture = new graphics::Texture("textures/test.png");
 		screenTexture = new graphics::Texture(window->getWidth(), window->getHeight());
 		setupFrameBuffer();
-		//new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, Layer::allLayers);
+		// new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, Layer::allLayers);
 
 		ImGui::StyleColorsDark(); // TODO option
 
 		projectManager = ProjectManager();
-
 	}
-	void EditorApplication::editorUpdate() {
+	void EditorApplication::editorUpdate()
+	{
 		/*sceneCamera->setSize(glm::vec2(
 			sceneCamera->getSize().x - (10.0f * window->getAspectRatio().x * Input::getScrollAmountThisFrameY()) * Timer::delta,
 			sceneCamera->getSize().y - (10.0f * window->getAspectRatio().y * Input::getScrollAmountThisFrameY()) * Timer::delta
 		));*/
 	}
 
-
-	void EditorApplication::onEditorGui() {
+	void EditorApplication::onEditorGui()
+	{
 		editorWindowSize = ImVec2(window->getWidth(), window->getHeight());
 
 #ifdef WATTY_EDITOR
@@ -52,27 +53,38 @@ namespace WattyEditor {
 #ifdef DEBUG
 		// Every frame?? TODO
 		if (Layer::getLayerByName("Debug Physics Layer"))
-			debugPhysics ?
-			Layer::getLayerByName("Debug Physics Layer")->enable() : Layer::getLayerByName("Debug Physics Layer")->disable();
+			debugPhysics ? Layer::getLayerByName("Debug Physics Layer")->enable() : Layer::getLayerByName("Debug Physics Layer")->disable();
 #endif
 		setupEditorWindows();
 
 		drawMenu();
-		if (projectManager.isProjectOpen) {
+		if (projectManager.isProjectOpen)
+		{
 			drawScene();
 			drawHierarchy();
 			drawProjectFiles();
 		}
-	
+
 		drawConsole();
 		drawActions();
 
-
-		if (false) {
+		if (false)
+		{
 			drawAppInfo();
 		}
-		graphics::Renderer2D::globalFlushesThisFrame = 0;
 
+		if (_waitingForSaveNameNew)
+		{
+			OnNameCallback callback = std::bind(&EditorApplication::newProject, this, std::placeholders::_1);
+			drawProjectSaveAsDialog(callback);
+		}
+		if (_waitingForSaveNameSaveAs)
+		{
+			OnNameCallback callback = std::bind(&EditorApplication::saveProjectAs, this, std::placeholders::_1);
+			drawProjectSaveAsDialog(callback);
+		}
+
+		graphics::Renderer2D::globalFlushesThisFrame = 0;
 
 		ImGui::Begin("Debug Size");
 		{
@@ -81,15 +93,15 @@ namespace WattyEditor {
 		}
 		ImGui::End(); // debug
 
-
 #endif // WATTY_EDITOR
 	}
 
-	void EditorApplication::setupEditorWindows() {
+	void EditorApplication::setupEditorWindows()
+	{
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 		if (true)
 		{
-			ImGuiViewport* viewport = ImGui::GetMainViewport();
+			ImGuiViewport *viewport = ImGui::GetMainViewport();
 			ImGui::SetNextWindowPos(viewport->GetWorkPos());
 			ImGui::SetNextWindowSize(viewport->GetWorkSize());
 			ImGui::SetNextWindowViewport(viewport->ID);
@@ -101,7 +113,6 @@ namespace WattyEditor {
 
 		static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
-
 		// Main
 		if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
 			window_flags |= ImGuiWindowFlags_NoBackground;
@@ -111,17 +122,17 @@ namespace WattyEditor {
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 		ImGui::Begin("MainWindow", NULL,
-			ImGuiWindowFlags_NoResize |
-			ImGuiWindowFlags_NoMove |
-			ImGuiWindowFlags_NoCollapse |
-			ImGuiWindowFlags_NoSavedSettings |
-			ImGuiWindowFlags_NoTitleBar |
-			ImGuiWindowFlags_NoScrollbar |
-			ImGuiWindowFlags_NoScrollWithMouse |
-			ImGuiWindowFlags_MenuBar |
-			ImGuiWindowFlags_NoBringToFrontOnFocus |
-			ImGuiWindowFlags_NoNavFocus				/*|
-			ImGuiWindowFlags_NoBackground*/
+					 ImGuiWindowFlags_NoResize |
+						 ImGuiWindowFlags_NoMove |
+						 ImGuiWindowFlags_NoCollapse |
+						 ImGuiWindowFlags_NoSavedSettings |
+						 ImGuiWindowFlags_NoTitleBar |
+						 ImGuiWindowFlags_NoScrollbar |
+						 ImGuiWindowFlags_NoScrollWithMouse |
+						 ImGuiWindowFlags_MenuBar |
+						 ImGuiWindowFlags_NoBringToFrontOnFocus |
+						 ImGuiWindowFlags_NoNavFocus /*|
+			 ImGuiWindowFlags_NoBackground*/
 		);
 		ImGui::PopStyleVar();
 		if (true)
@@ -134,13 +145,15 @@ namespace WattyEditor {
 			ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
 
 			// Reset layout if flag is tripped
-			if (_guiFlagResetLayout) {
+			if (_guiFlagResetLayout)
+			{
 				ImGui::DockBuilderRemoveNode(dockspace_id); // Clear out existing layout
 				_guiFlagResetLayout = false;
 			}
 
 			// Setup docking
-			if (ImGui::DockBuilderGetNode(dockspace_id) == nullptr) {
+			if (ImGui::DockBuilderGetNode(dockspace_id) == nullptr)
+			{
 				// First time or reset was tripped, create layout
 				ImGui::DockBuilderRemoveNode(dockspace_id);
 				ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_None);
@@ -162,38 +175,38 @@ namespace WattyEditor {
 				ImGui::DockBuilderDockWindow("Application Info", dock_up_right_id);
 
 				// Disable tab bar for custom toolbar
-				ImGuiDockNode* node = ImGui::DockBuilderGetNode(dock_up_id);
+				ImGuiDockNode *node = ImGui::DockBuilderGetNode(dock_up_id);
 				node->LocalFlags |= ImGuiDockNodeFlags_NoTabBar;
 
 				ImGui::DockBuilderFinish(dock_main_id);
 			}
 			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
-
-
 		}
 		else
 		{
 		}
 	}
 
-
-	//Windows
+	// Windows
 #pragma windows
 
-	void EditorApplication::drawInspector() {
+	void EditorApplication::drawInspector()
+	{
 		ImGui::Begin("Inspector");
 		{
-
-
-		}ImGui::End(); // Inspector
+		}
+		ImGui::End(); // Inspector
 	}
 
-	void EditorApplication::drawHierarchy() {
+	void EditorApplication::drawHierarchy()
+	{
 		ImGui::Begin("Hierarchy");
 		{
 			std::vector<SelectableLayer> layerNames;
-			for (size_t i = 0; i < Layer::allLayers.size(); i++) {
-				if (!Layer::allLayers[i]->hidden) {
+			for (size_t i = 0; i < Layer::allLayers.size(); i++)
+			{
+				if (!Layer::allLayers[i]->hidden)
+				{
 					layerNames.push_back(SelectableLayer(Layer::allLayers[i]));
 				}
 			}
@@ -201,7 +214,8 @@ namespace WattyEditor {
 			ImGui::PushItemWidth(-1); // "##empty"
 			bool header = ImGui::ListBoxHeader("", ImVec2(0, -100));
 			// Layers
-			for (size_t layerIndex = 0; layerIndex < layerNames.size(); layerIndex++) {
+			for (size_t layerIndex = 0; layerIndex < layerNames.size(); layerIndex++)
+			{
 				SelectableLayer item = layerNames[layerIndex];
 				bool layerEnabled = item.layer->isEnabled();
 
@@ -216,14 +230,17 @@ namespace WattyEditor {
 
 				ImGui::PopStyleColor();
 
-				std::vector<GameObject*> layerObjs = item.layer->getGameObjects();
+				std::vector<GameObject *> layerObjs = item.layer->getGameObjects();
 				ImGuiTreeNodeFlags layerFlags = ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_CollapsingHeader;
-				if (layerObjs.size() == 0) layerFlags |= ImGuiTreeNodeFlags_Bullet;
+				if (layerObjs.size() == 0)
+					layerFlags |= ImGuiTreeNodeFlags_Bullet;
 
 				ImGui::SameLine();
-				if (ImGui::CollapsingHeader((item_name + "##layer_tree" + std::to_string(layerIndex)).c_str(), layerFlags)) {
+				if (ImGui::CollapsingHeader((item_name + "##layer_tree" + std::to_string(layerIndex)).c_str(), layerFlags))
+				{
 					// Objects
-					for (size_t objIndex = 0; objIndex < layerObjs.size(); objIndex++) {
+					for (size_t objIndex = 0; objIndex < layerObjs.size(); objIndex++)
+					{
 						ImGui::Indent();
 						SelectableObject selectable = SelectableObject(layerObjs[objIndex]);
 						bool enabled = selectable.object->isEnabled();
@@ -240,9 +257,7 @@ namespace WattyEditor {
 						ImGui::PopStyleColor();
 						ImGui::Unindent();
 					}
-
 				}
-
 			}
 
 			if (header)
@@ -254,58 +269,65 @@ namespace WattyEditor {
 #endif // DEBUG
 			ImGui::PopItemWidth();
 
-			if (ImGui::Checkbox("VSync", &window->useVSync)) {
+			if (ImGui::Checkbox("VSync", &window->useVSync))
+			{
 				/**m_windowVSync = !*m_windowVSync;
 				Window::toggleVSync();*/
 			}
 		}
 		ImGui::End(); // Hierarchy
-
-
 	}
 
-	void EditorApplication::drawMenu() {
+	void EditorApplication::drawMenu()
+	{
 
 		if (ImGui::BeginMenuBar())
 		{
-			if (ImGui::BeginMenu("File")) {
-				if (ImGui::MenuItem("New")) {
-					newProject();
+			if (ImGui::BeginMenu("File"))
+			{
+				if (ImGui::MenuItem("New"))
+				{
+					_waitingForSaveNameNew = true;
 				}
-				if (ImGui::MenuItem("Open", "Ctrl+O")) {
+				if (ImGui::MenuItem("Open", "Ctrl+O"))
+				{
 					openProject();
 				}
 				if (ImGui::BeginMenu("Open Recent"))
 				{
-					
 				}
-				if (ImGui::MenuItem("Save", "Ctrl+S")) {
+				if (ImGui::MenuItem("Save", "Ctrl+S"))
+				{
 					saveProject();
 				}
-				if (ImGui::MenuItem("Save As..")) {
-					saveProjectAs();
+				if (ImGui::MenuItem("Save As.."))
+				{
+					_waitingForSaveNameSaveAs = true;
 				}
 				ImGui::EndMenu(); // File
 			}
 
-			if (ImGui::BeginMenu("View")) {
-				if (ImGui::MenuItem("Reset Layout")) { _guiFlagResetLayout = true; }
+			if (ImGui::BeginMenu("View"))
+			{
+				if (ImGui::MenuItem("Reset Layout"))
+				{
+					_guiFlagResetLayout = true;
+				}
 				ImGui::EndMenu(); // View
 			}
-			//App info:
+			// App info:
 			ImGui::NextColumn();
 			ImGui::SameLine(ImGui::GetWindowWidth() - 600);
 
 			char text[200];
 			std::sprintf(text,
-				"%.3f ms/frame (%.1f FPS) |  %3d updates/s | %4d draws/frame",
-				1000.0f / io.Framerate,
-				io.Framerate,
-				Stats::getUpdatesPerSecond(),
-				Renderer2D::globalFlushesThisFrame);
+						 "%.3f ms/frame (%.1f FPS) |  %3d updates/s | %4d draws/frame",
+						 1000.0f / io.Framerate,
+						 io.Framerate,
+						 Stats::getUpdatesPerSecond(),
+						 Renderer2D::globalFlushesThisFrame);
 
-			ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetColumnWidth() - ImGui::CalcTextSize(text).x
-				- ImGui::GetScrollX() - 2 * ImGui::GetStyle().ItemSpacing.x);
+			ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetColumnWidth() - ImGui::CalcTextSize(text).x - ImGui::GetScrollX() - 2 * ImGui::GetStyle().ItemSpacing.x);
 			ImGui::Text("%s", text);
 			ImGui::EndMenuBar();
 		}
@@ -313,64 +335,107 @@ namespace WattyEditor {
 		ImGui::End();
 	}
 
-	void EditorApplication::openProject(){
-		char const * pathC = tinyfd_selectFolderDialog("Open Project", "./");
+	void EditorApplication::openProject()
+	{
+		char const *pathC = tinyfd_selectFolderDialog("Open Project", "./");
 		std::string path = pathC;
-		
-		if (path.length() > 0) {
+
+		if (path.length() > 0)
+		{
 			project = projectManager.loadProject(path);
 		}
 	}
 
-	void EditorApplication::saveProjectAs(){
-		ImGui::OpenPopup("name picker");
-        if (ImGui::BeginPopup("namepicker")){
-            ImGui::Text("NAME");
-            ImGui::EndPopup();
-        }
-		
-		char const * pathC = tinyfd_selectFolderDialog("Select folder for project", "./");
-		std::string path = pathC;
-		if (path.length() > 0) {
-			projectManager.saveProject(path, project);
+	void EditorApplication::saveProjectAs(std::string name)
+	{
+		if (name.length() > 0)
+		{
+			char const *pathC = tinyfd_selectFolderDialog("Select folder for project", "./");
+			std::string path = pathC;
+			if (path.length() > 0)
+			{
+				projectManager.saveProject(name, project);
+			}
 		}
+		_waitingForSaveNameSaveAs = false;
 	}
 
-	void EditorApplication::saveProject(){
+	void EditorApplication::saveProject()
+	{
 		projectManager.saveProject(project.path, project);
-
 	}
 
-	void EditorApplication::newProject(){
+	void EditorApplication::drawProjectSaveAsDialog(OnNameCallback callback)
+	{
+		static char name[128] = "" ;
 
-		ImGui::OpenPopup("name picker");
-        if (ImGui::BeginPopup("namepicker")){
-            ImGui::Text("NAME");
-			char* name = new char[100];
-			ImGui::InputText("", name);
-            ImGui::EndPopup();
-        }
-		
-		char const * pathC = tinyfd_selectFolderDialog("Select folder for new project", "./");
-		std::string path = pathC;
-
-		if (path.length() > 0) {
-			project = projectManager.newProject(path, "TEST");
+		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiCond_FirstUseEver);
+		if (ImGui::Begin("Save Project As", &_waitingForSaveNameSaveAs, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
+		{
+			ImGui::InputText("Name", name, ImGuiInputTextFlags_EnterReturnsTrue);
+			if (ImGui::Button("Save"))
+			{
+				callback(name);
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Cancel"))
+			{
+				_waitingForSaveNameSaveAs = false;
+			}
+			ImGui::End();
 		}
+		// if (ImGui::BeginPopupModal("Name project", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+		// {
+		// 	ImGui::Text("Project name:");
+		// 	ImGui::Separator();
+		// 	ImGui::InputText("", name, ImGuiInputTextFlags_AutoSelectAll);
+
+		// 	if (ImGui::Button("OK", ImVec2(120, 0)))
+		// 	{
+		// 		ImGui::CloseCurrentPopup();
+		// 		callback(std::string(name));
+		// 	}
+		// 	ImGui::SetItemDefaultFocus();
+		// 	ImGui::SameLine();
+		// 	if (ImGui::Button("Cancel", ImVec2(120, 0)))
+		// 	{
+		// 		ImGui::CloseCurrentPopup();
+		// 		callback("");
+		// 	}
+
+		// 	ImGui::EndPopup();
+		// }
 	}
 
-	void EditorApplication::drawConsole() {
+	void EditorApplication::newProject(std::string name)
+	{
+		if (name.length() > 0)
+		{
+			char const *pathC = tinyfd_selectFolderDialog("Select folder for new project", "./");
+			std::string path = pathC;
+
+			if (path.length() > 0)
+			{
+				project = projectManager.newProject(path, name);
+			}
+		}
+		_waitingForSaveNameNew = false;
+	}
+
+	void EditorApplication::drawConsole()
+	{
 		ImGui::Begin("Console");
 		{
-
 		}
 		ImGui::End(); // Console
 	}
 
-	void EditorApplication::drawActions() {
+	void EditorApplication::drawActions()
+	{
+
 		ImGui::Begin("Actions", NULL,
-			ImGuiWindowFlags_NoScrollbar |
-			ImGuiWindowFlags_NoScrollWithMouse);
+					 ImGuiWindowFlags_NoScrollbar |
+						 ImGuiWindowFlags_NoScrollWithMouse);
 		{
 			static float buttonSize = 100;
 			static float indent = 10;
@@ -378,46 +443,46 @@ namespace WattyEditor {
 			float startx = (winSize.x - ((buttonSize * 3) + (indent * 2))) / 2;
 			ImGui::SetCursorPosX(startx);
 			ImGui::PushItemWidth(buttonSize);
-			if (ImGui::Button("Play")) {}
+			if (ImGui::Button("Play"))
+			{
+			}
 			ImGui::SameLine();
-			if (ImGui::Button("Pause")) {}
+			if (ImGui::Button("Pause"))
+			{
+			}
 			ImGui::SameLine();
-			if (ImGui::Button("More")) {}
+			if (ImGui::Button("More"))
+			{
+			}
 			ImGui::PopItemWidth();
 		}
 		ImGui::End(); // Actions
 	}
 
-	void EditorApplication::drawScene() {
-		//ImGui::SetNextWindowSize(ImVec2(window->getWidth()/1.5f - 10, window->getHeight() - 10));
+	void EditorApplication::drawScene()
+	{
+		// ImGui::SetNextWindowSize(ImVec2(window->getWidth()/1.5f - 10, window->getHeight() - 10));
 		ImGui::Begin("Scene");
 		{
 			ImGui::BeginChild("Watty Render");
 
-			//glm::vec2 windowViewport = .5f * sceneCamera->getViewportSize() * window->PIXEL_TO_METER_RATIO;
-
+			// glm::vec2 windowViewport = .5f * sceneCamera->getViewportSize() * window->PIXEL_TO_METER_RATIO;
 
 			auto initialCursorPos = ImGui::GetCursorPos();
 			ImVec2 winSize = ImGui::GetWindowSize();
 			auto centralizedCursorpos = ImVec2((winSize.x - editorWindowSize.x) * 0.5f, (winSize.y - editorWindowSize.y) * 0.5f);
 			ImGui::SetCursorPos(centralizedCursorpos);
 
-
-
-
 			ImGui::GetWindowDrawList()->AddImage(
-				(void*)getRenderTexture(),
+				(void *)getRenderTexture(),
 				ImVec2(ImGui::GetCursorScreenPos()),
 				ImVec2(ImGui::GetCursorScreenPos().x + editorWindowSize.x,
-					ImGui::GetCursorScreenPos().y + editorWindowSize.y), ImVec2(0, .5), ImVec2(.5, 0));
+					   ImGui::GetCursorScreenPos().y + editorWindowSize.y),
+				ImVec2(0, .5), ImVec2(.5, 0));
 
-		
-
-			
 			sceneCamera->setWindowSize(glm::vec2(2 * (ImGui::GetWindowSize().x / window->PIXEL_TO_METER_RATIO), 2 * (ImGui::GetWindowSize().y / window->PIXEL_TO_METER_RATIO)));
-			
-			
-			//ImGui::GetWindowDrawList()->AddImage(
+
+			// ImGui::GetWindowDrawList()->AddImage(
 			//	(void*)getRenderTexture(),
 			//	ImVec2(ImGui::GetCursorScreenPos()),
 			//	ImVec2(ImGui::GetCursorScreenPos().x + editorWindowSize.x,
@@ -429,13 +494,13 @@ namespace WattyEditor {
 						ImVec2(ImGui::GetCursorScreenPos().x + 1600.0f,
 							ImGui::GetCursorScreenPos().y + 900.0f), ImVec2(0, 1), ImVec2(1, 0));*/
 
-
-							/*ImVec2(ImGui::GetCursorScreenPos().x + .5f*sceneCamera->getViewportSize().x * window->PIXEL_TO_METER_RATIO,
-								ImGui::GetCursorScreenPos().y + .5f*sceneCamera->getViewportSize().y * window->PIXEL_TO_METER_RATIO), ImVec2(0, 1), ImVec2(1, 0));*/
+			/*ImVec2(ImGui::GetCursorScreenPos().x + .5f*sceneCamera->getViewportSize().x * window->PIXEL_TO_METER_RATIO,
+				ImGui::GetCursorScreenPos().y + .5f*sceneCamera->getViewportSize().y * window->PIXEL_TO_METER_RATIO), ImVec2(0, 1), ImVec2(1, 0));*/
 
 			ImGui::SetCursorPos(initialCursorPos);
 
-			if (ImGui::IsWindowHovered()) {
+			if (ImGui::IsWindowHovered())
+			{
 				sceneCamera->setSize(sceneCamera->getSize() - Input::getScrollAmountThisFrameY() * Timer::delta);
 			}
 
@@ -443,41 +508,43 @@ namespace WattyEditor {
 		}
 		ImGui::End(); // Scene
 	}
-	void EditorApplication::drawProjectFiles() {
+	void EditorApplication::drawProjectFiles()
+	{
 		ImGui::Begin("Project files");
 		{
-			if (ImGui::BeginMenuBar()) {
+			if (ImGui::BeginMenuBar())
+			{
 
 				ImGui::EndMenuBar();
 			}
-
 		}
 		ImGui::End(); // Project files
 	}
-	void EditorApplication::drawAppInfo() {
-		ImGui::Begin("Application Info", NULL, ImGuiWindowFlags_NoTitleBar); {
+	void EditorApplication::drawAppInfo()
+	{
+		ImGui::Begin("Application Info", NULL, ImGuiWindowFlags_NoTitleBar);
+		{
 			ImGui::Text("%.3f ms/frame (%.1f FPS) | %d updates/s", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate, Stats::getUpdatesPerSecond());
 			ImGui::SameLine();
 			ImGui::Text(" | %4d draws/frame", Renderer2D::globalFlushesThisFrame); // TODO: note that global flushes this frame will only be accurate if this layer is last layer in stack
-			ImGui::ColorEdit3("Clear Color", (float*)&sceneCamera->getClearColor());
-		}ImGui::End(); //Application info
+			ImGui::ColorEdit3("Clear Color", (float *)&sceneCamera->getClearColor());
+		}
+		ImGui::End(); // Application info
 	}
 
-	int EditorApplication::onExit() {
+	int EditorApplication::onExit()
+	{
 		cleanFrameBuffer();
 		return 0;
 	}
 
-
-	#pragma windows
+#pragma windows
 }
 
 using namespace WattyEditor;
-int main(int ac, char** av) {
+int main(int ac, char **av)
+{
 	EditorApplication app = EditorApplication();
 	app.start();
 	return app.onExit();
 }
-
-
-
