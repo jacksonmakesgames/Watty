@@ -269,7 +269,6 @@ namespace WattyEditor {
 		if (ImGui::BeginMenuBar())
 		{
 			if (ImGui::BeginMenu("File")) {
-				if (ImGui::MenuItem("Import")) {}
 				if (ImGui::MenuItem("New")) {
 					newProject();
 				}
@@ -278,16 +277,7 @@ namespace WattyEditor {
 				}
 				if (ImGui::BeginMenu("Open Recent"))
 				{
-					ImGui::MenuItem("fish_hat.c");
-					ImGui::MenuItem("fish_hat.inl");
-					ImGui::MenuItem("fish_hat.h");
-					if (ImGui::BeginMenu("More.."))
-					{
-						ImGui::MenuItem("Hello");
-						ImGui::MenuItem("Sailor");
-						ImGui::EndMenu();
-					}
-					ImGui::EndMenu();
+					
 				}
 				if (ImGui::MenuItem("Save", "Ctrl+S")) {
 					saveProject();
@@ -324,8 +314,9 @@ namespace WattyEditor {
 	}
 
 	void EditorApplication::openProject(){
-		// std::string path = FileDialog::openFileDialog();
-		std::string path = "";
+		char const * pathC = tinyfd_selectFolderDialog("Open Project", "./");
+		std::string path = pathC;
+		
 		if (path.length() > 0) {
 			project = projectManager.loadProject(path);
 		}
@@ -337,9 +328,9 @@ namespace WattyEditor {
             ImGui::Text("NAME");
             ImGui::EndPopup();
         }
-
-		// std::string path = FileDialog::saveFileDialog();
-		std::string path = "";
+		
+		char const * pathC = tinyfd_selectFolderDialog("Select folder for project", "./");
+		std::string path = pathC;
 		if (path.length() > 0) {
 			projectManager.saveProject(path, project);
 		}
@@ -351,8 +342,16 @@ namespace WattyEditor {
 	}
 
 	void EditorApplication::newProject(){
-		char const * pathC = tinyfd_selectFolderDialog("Select folder", NULL);
 
+		ImGui::OpenPopup("name picker");
+        if (ImGui::BeginPopup("namepicker")){
+            ImGui::Text("NAME");
+			char* name = new char[100];
+			ImGui::InputText("", name);
+            ImGui::EndPopup();
+        }
+		
+		char const * pathC = tinyfd_selectFolderDialog("Select folder for new project", "./");
 		std::string path = pathC;
 
 		if (path.length() > 0) {
@@ -472,8 +471,6 @@ namespace WattyEditor {
 
 	#pragma windows
 }
-	
-	
 
 using namespace WattyEditor;
 int main(int ac, char** av) {

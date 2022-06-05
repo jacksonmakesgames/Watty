@@ -1,13 +1,12 @@
 #pragma once
 #include <Watty.h>
-#include <ProjectManager.h>
 #include <imgui_internal.h>
-#include <tinyfiledialogs.h>
 #include <stdio.h>
 #include <math.h>
+#include <tinyfiledialogs.h>
+#include <ProjectManager.h>
 
 using namespace watty;
-
 
 namespace WattyEditor {
 
@@ -52,7 +51,6 @@ namespace WattyEditor {
 
 
 	};
-
 
 	struct SelectableLayer {
 		SelectableLayer(Layer* layer) :text(layer->name), layer(layer) {}

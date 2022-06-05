@@ -68,7 +68,24 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "thread": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "bitset": "cpp",
+        "charconv": "cpp",
+        "compare": "cpp",
+        "condition_variable": "cpp",
+        "csignal": "cpp",
+        "format": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "queue": "cpp",
+        "shared_mutex": "cpp",
+        "stack": "cpp",
+        "stop_token": "cpp",
+        "unordered_set": "cpp",
+        "*.in": "cpp",
+        "string_view": "cpp"
     },
     "cmake.configureOnOpen": true
 }

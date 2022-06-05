@@ -1,7 +1,23 @@
 #include <ProjectManager.h>
-using namespace watty;
 
+using namespace watty;
 namespace WattyEditor {
+    ProjectManager::ProjectManager() {
+        isProjectOpen = false;
+    }
+    ProjectManager::~ProjectManager() {
+        isProjectOpen = false;
+    }
+
+    Project::Project() {
+        path = "";
+        name = "";
+    }
+
+    Project::~Project() {}
+
+    ProjectSettings::ProjectSettings(){}
+
     ProjectSettings::ProjectSettings(std::string settingsPath) {
 		std::vector<char> charsVec = read_file_from_disk(settingsPath); 
         if (charsVec.size() <= 0)
@@ -17,7 +33,7 @@ namespace WattyEditor {
     Project ProjectManager::loadProject(std::string path) {
         Project project;
         project.path = path;
-        project.settings = ProjectSettings(path+"/settings.json");
+        project.settings = ProjectSettings(path+"/project_settings.json");
         project.name = project.settings.name;
         isProjectOpen = true;
         return project;
@@ -32,7 +48,13 @@ namespace WattyEditor {
         std::filesystem::create_directory(path+"/src");
         std::filesystem::create_directory(path+"/include");
         saveProject(path, project);
-        project.settings = ProjectSettings(path+"/settings.json");
+        
+        // TODO abstract
+        json settingsJson;
+        settingsJson["name"] = project.name;
+        std::string serializedStr = settingsJson.dump(2);
+        write_string_to_file(path+"/project_settings.json", serializedStr);
+        project.settings = ProjectSettings(path+"/project_settings.json");
         isProjectOpen = true;
         return project;
     }

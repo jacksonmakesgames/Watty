@@ -24,9 +24,6 @@ set(CMAKE_CONFIGURATION_TYPES 		Debug Release)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
 
-
-
-
 # Dependencies
 include_directories(
 	${WATTYDIR}/dependencies/imgui
@@ -50,7 +47,6 @@ include_directories(
 
 add_compile_definitions(GL_WITH_GLAD) # for freetype
 
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 link_directories(${ROOT}/bin/${CMAKE_BUILD_TYPE}/)
@@ -58,6 +54,9 @@ link_libraries(${LIBNAME})
 
 file(GLOB_RECURSE SRC 		"${CMAKE_CURRENT_SOURCE_DIR}/src/**.cpp")
 file(GLOB_RECURSE SRC_DEPS 		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/**.cpp")
+
+message("SRC: ${SRC}")
+message("SRC_DEPS: ${SRC_DEPS}")
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")

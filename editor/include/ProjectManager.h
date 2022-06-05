@@ -1,12 +1,11 @@
 #pragma once
 #include <stdio.h>
-#include <Watty.h>
-#include <imgui_internal.h>
 #include <filesystem>
 #include <utils/file_utils.h>
 
 namespace WattyEditor {
     struct ProjectSettings{
+        ProjectSettings();
         ProjectSettings(std::string settingsPath);
         std::string name;
         void load(std::string path);
