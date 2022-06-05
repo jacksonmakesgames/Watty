@@ -32,6 +32,9 @@ namespace WattyEditor {
 		//new graphics::EngineControlLayer("Engine Control", debugPhysics, resetFlag, &graphics::Window::useVSync, Layer::allLayers);
 
 		ImGui::StyleColorsDark(); // TODO option
+
+		projectManager = ProjectManager();
+
 	}
 	void EditorApplication::editorUpdate() {
 		/*sceneCamera->setSize(glm::vec2(
@@ -55,10 +58,13 @@ namespace WattyEditor {
 		setupEditorWindows();
 
 		drawMenu();
-		drawScene();
-		drawHierarchy();
+		if (projectManager.isProjectOpen) {
+			drawScene();
+			drawHierarchy();
+			drawProjectFiles();
+		}
+	
 		drawConsole();
-		drawProjectFiles();
 		drawActions();
 
 
@@ -264,8 +270,12 @@ namespace WattyEditor {
 		{
 			if (ImGui::BeginMenu("File")) {
 				if (ImGui::MenuItem("Import")) {}
-				if (ImGui::MenuItem("New")) {}
-				if (ImGui::MenuItem("Open", "Ctrl+O")) {}
+				if (ImGui::MenuItem("New")) {
+					newProject();
+				}
+				if (ImGui::MenuItem("Open", "Ctrl+O")) {
+					openProject();
+				}
 				if (ImGui::BeginMenu("Open Recent"))
 				{
 					ImGui::MenuItem("fish_hat.c");
@@ -279,8 +289,12 @@ namespace WattyEditor {
 					}
 					ImGui::EndMenu();
 				}
-				if (ImGui::MenuItem("Save", "Ctrl+S")) {}
-				if (ImGui::MenuItem("Save As..")) {}
+				if (ImGui::MenuItem("Save", "Ctrl+S")) {
+					saveProject();
+				}
+				if (ImGui::MenuItem("Save As..")) {
+					saveProjectAs();
+				}
 				ImGui::EndMenu(); // File
 			}
 
@@ -307,6 +321,43 @@ namespace WattyEditor {
 		}
 
 		ImGui::End();
+	}
+
+	void EditorApplication::openProject(){
+		// std::string path = FileDialog::openFileDialog();
+		std::string path = "";
+		if (path.length() > 0) {
+			project = projectManager.loadProject(path);
+		}
+	}
+
+	void EditorApplication::saveProjectAs(){
+		ImGui::OpenPopup("name picker");
+        if (ImGui::BeginPopup("namepicker")){
+            ImGui::Text("NAME");
+            ImGui::EndPopup();
+        }
+
+		// std::string path = FileDialog::saveFileDialog();
+		std::string path = "";
+		if (path.length() > 0) {
+			projectManager.saveProject(path, project);
+		}
+	}
+
+	void EditorApplication::saveProject(){
+		projectManager.saveProject(project.path, project);
+
+	}
+
+	void EditorApplication::newProject(){
+		char const * pathC = tinyfd_selectFolderDialog("Select folder", NULL);
+
+		std::string path = pathC;
+
+		if (path.length() > 0) {
+			project = projectManager.newProject(path, "TEST");
+		}
 	}
 
 	void EditorApplication::drawConsole() {

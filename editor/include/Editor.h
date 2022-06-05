@@ -1,7 +1,9 @@
 #pragma once
-#include <stdio.h>
 #include <Watty.h>
+#include <ProjectManager.h>
 #include <imgui_internal.h>
+#include <tinyfiledialogs.h>
+#include <stdio.h>
 #include <math.h>
 
 using namespace watty;
@@ -15,6 +17,10 @@ namespace WattyEditor {
 		bool _guiFlagResetLayout = false;
 		ImVec2 editorWindowSize = ImVec2(0,0);
 		ImGuiIO& io = ImGuiIO();
+		
+		Project project;
+		ProjectManager projectManager;
+
 	public:
 		EditorApplication();
 
@@ -25,7 +31,12 @@ namespace WattyEditor {
 
 		void setupEditorWindows();
 
-		// Windows
+		void openProject();
+		void saveProject();
+		void saveProjectAs();
+		void newProject();
+
+		// Editor windows
 		#pragma region windows
 			void drawInspector();
 			void drawHierarchy();

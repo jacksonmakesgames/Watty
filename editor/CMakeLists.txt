@@ -43,6 +43,10 @@ include_directories(
 	${WATTYDIR}/dependencies/box2d/include
 	${WATTYDIR}/dependencies/glad/include
 	)
+	
+include_directories(
+	${CMAKE_SOURCE_DIR}/dependencies/tinyfiledialogs/include
+)
 
 add_compile_definitions(GL_WITH_GLAD) # for freetype
 
@@ -53,6 +57,8 @@ link_directories(${ROOT}/bin/${CMAKE_BUILD_TYPE}/)
 link_libraries(${LIBNAME})
 
 file(GLOB_RECURSE SRC 		"${CMAKE_CURRENT_SOURCE_DIR}/src/**.cpp")
+file(GLOB_RECURSE SRC_DEPS 		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/**.cpp")
+
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/res")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
@@ -64,6 +70,6 @@ include_directories(
 
 
 project (Editor)
-add_executable(Editor ${SRC})
+add_executable(Editor ${SRC} ${SRC_DEPS})
 add_compile_definitions(WATTY_OPENGL)
 
