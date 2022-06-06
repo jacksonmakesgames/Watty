@@ -41,6 +41,19 @@
             "environment": [],
             "console": "externalTerminal"
 
+        },
+        {
+            "name": "(Windows) Launch Editor Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/editor/bin/Release/Editor.exe",
+            "args": [],
+            "preLaunchTask": "(Windows) Build Editor Release",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "externalTerminal"
+
         }
     ]
 }

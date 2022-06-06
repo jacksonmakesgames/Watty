@@ -1,6 +1,3 @@
-# CMakeLists files in this project can
-# refer to the root source directory of the project as ${HELLO_SOURCE_DIR} and
-# to the root binary directory of the project as ${HELLO_BINARY_DIR}.
 cmake_minimum_required (VERSION 3.15)
 
 
@@ -20,9 +17,9 @@ set(COREDIR 			${WATTYDIR}/${CORE})
 
 set(CMAKE_CONFIGURATION_TYPES 		Debug Release)
 
-
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
 # Dependencies
 include_directories(
@@ -45,10 +42,28 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/dependencies/tinyfiledialogs/include
 )
 
-add_compile_definitions(GL_WITH_GLAD) # for freetype
+# Python
+set(ORIG_TYPE ${CMAKE_BUILD_TYPE})
+set(CMAKE_BUILD_TYPE Release)
+link_directories(
+	${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug
+	${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Release
+)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
+add_subdirectory(
+	${CMAKE_SOURCE_DIR}/dependencies/python-cmake
+)
+set(CMAKE_BUILD_TYPE ${ORIG_TYPE})
+link_libraries(python39.lib)
 
+
+include_directories(
+	${CMAKE_BINARY_DIR}/dependencies/python-cmake/include
+	${CMAKE_BINARY_DIR}/dependencies/Python-3.9.10/PC
+)
+	
+add_compile_definitions(GL_WITH_GLAD) # for freetype # TODO check if needed
+	
 link_directories(${ROOT}/bin/${CMAKE_BUILD_TYPE}/)
 link_libraries(${LIBNAME})
 
@@ -65,8 +80,9 @@ include_directories(
 	${COREDIR}/
 	${COREDIR}/include/
 	${COREDIR}/include/Watty
-) 
-
+	) 
+	
+configure_file(${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39.lib ${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39_d.lib COPYONLY)
 
 project (Editor)
 add_executable(Editor ${SRC} ${SRC_DEPS})

@@ -66,6 +66,23 @@
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
+        },
+
+        {
+            "label": "(Windows) Build Editor Release",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/build_editor_windows_release.bat",
+            "args": [
+            ],
+            "options": {"cwd": "${workspaceFolder}/tools"},
+            "group": "build",
+            "dependsOn":"(Windows) Build Engine Release",
+            "presentation": {
+                // Reveal the output only if unrecognized errors occur.
+                "reveal": "silent"
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": "$msCompile"
         }
     ]
 }

@@ -5,6 +5,7 @@
 #include <math.h>
 #include <tinyfiledialogs.h>
 #include <ProjectManager.h>
+#include <Python.h>
 
 using namespace watty;
 
@@ -63,11 +64,19 @@ namespace WattyEditor {
 		#pragma endregion windows
 
 
+		/**
+		 * @brief 
+		 * Called before the editor exits. Cleans the frame buffer.
+		*/
 		int onExit();
 
 
 	};
 
+	/**
+	 * @brief 
+	 * A selectable layer to be shown in the inspector hierarchy.
+	*/
 	struct SelectableLayer {
 		SelectableLayer(Layer* layer) :text(layer->name), layer(layer) {}
 		Layer* layer;
@@ -76,6 +85,11 @@ namespace WattyEditor {
 	};
 
 
+
+	/**
+	 * @brief 
+	 * A selectable GameObject to be shown in the inspector hierarchy.
+	*/
 	struct SelectableObject {
 		SelectableObject(GameObject* obj) :text(object->name), object(obj) {}
 		GameObject* object;

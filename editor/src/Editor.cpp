@@ -36,6 +36,14 @@ namespace WattyEditor
 		ImGui::StyleColorsDark(); // TODO option
 
 		projectManager = ProjectManager();
+
+		
+		
+		PyObject* pInt;
+		Py_Initialize();
+		PyRun_SimpleString("print('Hello World from Embedded Python!!!')");
+		Py_Finalize();
+
 	}
 	void EditorApplication::editorUpdate()
 	{
@@ -337,6 +345,8 @@ namespace WattyEditor
 	void EditorApplication::openProject()
 	{
 		char const *pathC = tinyfd_selectFolderDialog("Open Project", "./");
+		if (pathC == NULL)
+			return;
 		std::string path = pathC;
 
 		if (path.length() > 0)
@@ -350,6 +360,8 @@ namespace WattyEditor
 		if (name.length() > 0)
 		{
 			char const *pathC = tinyfd_selectFolderDialog("Select folder for project", "./");
+			if (pathC == NULL)
+				return;
 			std::string path = pathC;
 			if (path.length() > 0)
 			{

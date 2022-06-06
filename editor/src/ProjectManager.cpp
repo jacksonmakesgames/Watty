@@ -14,7 +14,7 @@ namespace WattyEditor {
     }
     
     void Project::discoverScenes(){
-        for (const auto & entry : fs::directory_iterator(path+"/scenes")) {
+        for (const auto & entry : fs::directory_iterator(path+"/"+SCENE_FOLDER_NAME)) {
             std::cout << entry.path() << std::endl;
             Scene scene(entry.path().string(), entry.path().filename().string().substr(0, entry.path().filename().string().size()-5));
         }
@@ -39,11 +39,18 @@ namespace WattyEditor {
     Project ProjectManager::loadProject(std::string path) {
         Project project;
         project.path = path;
-        project.settings = ProjectSettings(path+"/project_settings.json");
+        project.settings = ProjectSettings(path+"/"+PROJECT_SETTINGS_FILE_NAME);
         project.name = project.settings.name;
         isProjectOpen = true;
         project.discoverScenes();   
         return project;
+    }
+
+    void Project::saveSettingsToDisk() {
+        json settingsJson;
+        settingsJson["name"] = name;
+        std::string serializedStr = settingsJson.dump(2);
+        write_string_to_file(path+"/"+PROJECT_SETTINGS_FILE_NAME, serializedStr);
     }
 
     Project ProjectManager::newProject(std::string path, std::string name) {
@@ -51,26 +58,21 @@ namespace WattyEditor {
         project.path = path;
         project.name = name;
         std::filesystem::create_directory(path);
-        std::filesystem::create_directory(path+"/res");
-        std::filesystem::create_directory(path+"/src");
-        std::filesystem::create_directory(path+"/include");
-        std::filesystem::create_directory(path+"/scenes");
+        std::filesystem::create_directory(path+"/"+ASSET_FOLDER_NAME);
+        std::filesystem::create_directory(path+"/"+SRC_FOLDER_NAME);
+        std::filesystem::create_directory(path+"/"+INCLUDE_FOLDER_NAME);
+        std::filesystem::create_directory(path+"/"+BUILD_FOLDER_NAME);
+        std::filesystem::create_directory(path+"/"+SCENE_FOLDER_NAME);
+
         saveProject(path, project);
-        
-        // TODO abstract
-        json settingsJson;
-        settingsJson["name"] = project.name;
-        std::string serializedStr = settingsJson.dump(2);
-        write_string_to_file(path+"/project_settings.json", serializedStr);
-        project.settings = ProjectSettings(path+"/project_settings.json");
+        project.settings = ProjectSettings(path+"/"+PROJECT_SETTINGS_FILE_NAME);
+
         isProjectOpen = true;
         return project;
     }
 
     void ProjectManager::saveProject(std::string path, Project project) {
-        json settingsJson;
-        settingsJson["name"] = project.name;
-        std::string serializedStr = settingsJson.dump(2);
-        write_string_to_file(path, serializedStr);
+        project.saveSettingsToDisk();        
+
     }
 }
