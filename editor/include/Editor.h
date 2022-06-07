@@ -1,11 +1,14 @@
 #pragma once
+#define PY_SSIZE_T_CLEAN
+#include <Python.h>
+
 #include <Watty.h>
 #include <imgui_internal.h>
 #include <stdio.h>
 #include <math.h>
 #include <tinyfiledialogs.h>
 #include <ProjectManager.h>
-#include <Python.h>
+
 
 using namespace watty;
 

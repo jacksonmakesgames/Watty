@@ -43,6 +43,8 @@ option(DOWNLOAD_SOURCES "Automatically download the Python sources" ON)
 set(_build_libpython_shared_default  0)
 set(_build_libpython_shared_desc "Build libpython as a shared library")
 
+set(BUILD_STATIC "Build static libraries" ON) # ADDED JACKSON
+
 if(DEFINED BUILD_SHARED OR DEFINED BUILD_STATIC)
   message(AUTHOR_WARNING "Deprecated options `BUILD_SHARED` or `BUILD_STATIC` are set, "
                          "please change configure options to use `BUILD_LIBPYTHON_SHARED` instead.")

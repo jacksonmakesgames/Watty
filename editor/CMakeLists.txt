@@ -48,13 +48,14 @@ set(CMAKE_BUILD_TYPE Release)
 link_directories(
 	${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug
 	${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Release
+	${CMAKE_BINARY_DIR}/dependencies/python-cmake/CMakeBuild/python/Debug
 )
 
 add_subdirectory(
 	${CMAKE_SOURCE_DIR}/dependencies/python-cmake
 )
 set(CMAKE_BUILD_TYPE ${ORIG_TYPE})
-link_libraries(python39.lib)
+link_libraries(python39.lib python.lib)
 
 
 include_directories(
@@ -81,10 +82,13 @@ include_directories(
 	${COREDIR}/include/
 	${COREDIR}/include/Watty
 	) 
-	
-configure_file(${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39.lib ${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39_d.lib COPYONLY)
+
+if(EXISTS "${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39.lib")
+	configure_file(${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39.lib ${CMAKE_BINARY_DIR}/dependencies/python-cmake/static-libs/Debug/python39_d.lib COPYONLY)
+endif()
 
 project (Editor)
+
 add_executable(Editor ${SRC} ${SRC_DEPS})
 add_compile_definitions(WATTY_OPENGL)
 
