@@ -1,6 +1,5 @@
 #pragma once
-#define PY_SSIZE_T_CLEAN
-#include <Python.h>
+#include <PythonManager.h> // goes first because it includes Python.h
 
 #include <Watty.h>
 #include <imgui_internal.h>
@@ -8,7 +7,6 @@
 #include <math.h>
 #include <tinyfiledialogs.h>
 #include <ProjectManager.h>
-
 
 using namespace watty;
 
@@ -28,8 +26,10 @@ namespace WattyEditor {
 		bool _waitingForSaveNameNew = false;
 		bool _waitingForSaveNameSaveAs = false;
 
+		PythonManager pythonManager;
+
 	public:
-		EditorApplication();
+		EditorApplication(char** av);
 
 		// Engine Overrides
 		void init() override;

@@ -6,7 +6,9 @@ namespace WattyEditor
 {
 	using namespace graphics;
 
-	EditorApplication::EditorApplication() {}
+	EditorApplication::EditorApplication(char **av) {
+		pythonManager.init(av);
+	}
 
 	void EditorApplication::init()
 	{
@@ -36,12 +38,7 @@ namespace WattyEditor
 		ImGui::StyleColorsDark(); // TODO option
 
 		projectManager = ProjectManager();
-
-		
-		
-		Py_Initialize();
-		PyRun_SimpleString("print('Hello World from Embedded Python!!!')");
-		Py_Finalize();
+		std::cout << "ProjectManager created" << std::endl;
 
 	}
 	void EditorApplication::editorUpdate()
@@ -514,7 +511,10 @@ namespace WattyEditor
 
 	int EditorApplication::onExit()
 	{
+		std::cout<<"Exiting..."<<std::endl;
 		cleanFrameBuffer();
+		pythonManager.shutdown();
+
 		return 0;
 	}
 
@@ -524,7 +524,7 @@ namespace WattyEditor
 using namespace WattyEditor;
 int main(int ac, char **av)
 {
-	EditorApplication app = EditorApplication();
+	EditorApplication app = EditorApplication(av);
 	app.start();
 	return app.onExit();
 }

@@ -8,6 +8,9 @@ list(GET VERSION_LIST 1 PY_VERSION_MINOR)
 list(GET VERSION_LIST 2 PY_VERSION_PATCH)
 set(PY_VERSION "${PY_VERSION_MAJOR}.${PY_VERSION_MINOR}.${PY_VERSION_PATCH}")
 
+
+set (Py_DEBUG OFF) #ADDED JACKSON
+
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_CONFIGURATION_TYPES Release CACHE STRING "Release configuration" FORCE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
@@ -43,7 +46,8 @@ option(DOWNLOAD_SOURCES "Automatically download the Python sources" ON)
 set(_build_libpython_shared_default  0)
 set(_build_libpython_shared_desc "Build libpython as a shared library")
 
-set(BUILD_STATIC "Build static libraries" ON) # ADDED JACKSON
+# set(BUILD_LIBPYTHON_STATIC "Build static libraries" ON) # ADDED JACKSON
+# set(BUILD_LIBPYTHON_SHARED "Build SHARED libraries" OFF) # ADDED JACKSON
 
 if(DEFINED BUILD_SHARED OR DEFINED BUILD_STATIC)
   message(AUTHOR_WARNING "Deprecated options `BUILD_SHARED` or `BUILD_STATIC` are set, "

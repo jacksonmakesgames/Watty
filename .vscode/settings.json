@@ -86,7 +86,8 @@
         "unordered_set": "cpp",
         "*.in": "cpp",
         "string_view": "cpp",
-        "pymacconfig.h": "c"
+        "pymacconfig.h": "c",
+        "cinttypes": "cpp"
     },
     "cmake.configureOnOpen": true
 }
