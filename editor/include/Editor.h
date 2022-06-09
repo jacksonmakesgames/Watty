@@ -54,17 +54,15 @@ namespace WattyEditor {
 		void newProject(std::string name);
 
 		// Editor windows
-		#pragma region windows
-			void drawInspector();
-			void drawHierarchy();
-			void drawScene();
-			void drawConsole();
-			void drawMenu();
-			void drawActions();
-			void drawProjectFiles();
-			void drawAppInfo();
-			void drawProjectSaveAsDialog(OnNameCallback callback);
-		#pragma endregion windows
+		void drawInspector();
+		void drawHierarchy();
+		void drawScene();
+		void drawConsole();
+		void drawMenu();
+		void drawActions();
+		void drawProjectFiles();
+		void drawAppInfo();
+		void drawProjectSaveAsDialog(OnNameCallback callback);
 
 
 		/**

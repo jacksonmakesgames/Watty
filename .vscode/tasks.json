@@ -93,6 +93,23 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "(Windows) Build Editor Debug with Watty Deps",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/copy_watty_dependencies_to_editor.bat",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tools"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "(Windows) Build Editor Release",
             "type": "shell",
             "command": "${workspaceFolder}/tools/build_editor_windows_release.bat",

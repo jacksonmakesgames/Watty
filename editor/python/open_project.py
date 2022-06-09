@@ -90,8 +90,42 @@ add_executable(__project_name__ ${SOURCES} ${HEADERS} )
 
 """
 
-cmake_template = cmake_template.replace("__watty_version__", __watty_version__)
-cmake_template = cmake_template.replace("__project_name__", __project_name__)
 
+import sys
+import json
 if __name__ == "__main__":
-    print(cmake_template)
+	if len(sys.argv) < 1:
+		print("Usage: open_project.py <project_path>")
+		sys.exit(1)
+	path = os.path.join("", sys.argv[0])
+	# os.environ["WATTYDIR"] = os.path.join("..", "watty")
+	print("WATTYDIR:", os.environ["WATTYDIR"])
+
+	if not os.path.exists(path):
+		print("Project does not exist")
+		sys.exit(1)
+	
+	
+	cmake_template = cmake_template.replace("__watty_version__", __watty_version__)
+	
+	settings_json = os.path.join(path, "project.settings")
+	with  open(settings_json, "r") as f:
+		settings = json.load(f)
+		cmake_template = cmake_template.replace("__project_name__", settings["name"])
+		f.close()
+
+	os.remove(os.path.join(path, "CMakeLists.txt"))
+	
+	if not os.path.exists(os.path.join(path, "CMakeLists.txt")):
+		print("Project does not have a CMakeLists.txt file")
+		with open(path + "/CMakeLists.txt", "w+") as f:
+			f.write(cmake_template)
+		print("added cmake file")
+
+	# cd to project directory
+	os.chdir(path)
+	if not os.path.exists(os.path.join(path, "build")):
+		os.mkdir(os.path.join(path, "build"))
+	
+	os.chdir(os.path.join(path, "build"))
+	os.system("cmake ..")

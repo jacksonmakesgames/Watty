@@ -1,8 +1,14 @@
 #include <ProjectManager.h>
 namespace fs = std::filesystem;
 namespace WattyEditor {
+    ProjectManager::ProjectManager(PythonManager* pythonManager) {
+        isProjectOpen = false;
+        pythonManager = pythonManager;
+    }
     ProjectManager::ProjectManager() {
         isProjectOpen = false;
+        pythonManager = nullptr;
+
     }
     ProjectManager::~ProjectManager() {
         isProjectOpen = false;
@@ -41,8 +47,12 @@ namespace WattyEditor {
         project.path = path;
         project.settings = ProjectSettings(path+"/"+PROJECT_SETTINGS_FILE_NAME);
         project.name = project.settings.name;
+        
+        char const *c = path.data();
+
+        pythonManager->runPyFile("open_project.py", &c, 1);
+        project.discoverScenes();  
         isProjectOpen = true;
-        project.discoverScenes();   
         return project;
     }
 

@@ -18,7 +18,6 @@ add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY 	${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
-
 # Dependencies
 include_directories(
 	${WATTYDIR}/dependencies/imgui
@@ -55,27 +54,11 @@ include_directories(
 		include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 		
 # Python
-# set(Python_FIND_REGISTRY LAST)
-# set(CMAKE_FIND_REGISTRY LAST)
 set(Python3_FIND_VIRTUALENV FIRST)
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
 if(NOT ${Python3_FOUND})
-message("Python3 not found, please install it")
+	message("Python3 not found, please install it")
 	exit(1)
-
-endif()
-
-# TODO ONLY IF DEBUG
-list(GET Python3_LIBRARIES -1 PY_LAST_LIB)
-if(NOT EXISTS "${PY_LAST_LIB}")
-string(FIND ${PY_LAST_LIB} "_d" _index)
-if (NOT ${_index} GREATER 0)
-	string(REPLACE ".lib" "_d.lib" PY_LIB_D ${PY_LAST_LIB})
-	else()
-		set(PY_LIB_D ${PY_LAST_LIB})
-	endif()
-	message("Adding debug version of ${PY_LIB_D}")
-	configure_file("${PY_LAST_LIB}" "${PY_LIB_D}" COPYONLY)
 endif()
 
 message("Python3_INCLUDE_DIRS: ${Python3_INCLUDE_DIRS}")
@@ -86,14 +69,126 @@ include_directories(${Python3_INCLUDE_DIRS})
 link_directories(${Python3_LIBRARY_DIRS})
 link_libraries(${Python3_LIBRARIES})
 
+add_compile_definitions(WATTYDIR ${WATTYDIR})
+
+# resources 
+include(${WATTYDIR}/tools/functions.cmake)
+create_resources("${CMAKE_CURRENT_SOURCE_DIR}/python" OFF)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+project(Resources)
+	file(GLOB_RECURSE RES_INPUTS 		"*/res.cpp")
+	file(GLOB_RECURSE RES_HEADER 		"*/res.h")
+	add_library(Resources OBJECT
+		${RES_HEADER}
+		${RES_INPUTS}
+	)
+
+link_libraries($<TARGET_OBJECTS:Resources>)
+
+
 include_directories(
 	${COREDIR}/
 	${COREDIR}/include/
 	${COREDIR}/include/Watty
 	) 
-	
-project (Editor)
 
+
+project (Editor)
 add_executable(Editor ${SRC} ${SRC_DEPS})
 add_compile_definitions(WATTY_OPENGL)
 
+
+
+# copy watty dependencies to editor for building projects later
+# TODO: come on
+if (${COPY_WATTY_DEPENDENCIES})
+add_custom_command(
+        TARGET Editor 
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${ROOT}/bin/
+		${CMAKE_SOURCE_DIR}/bin/watty/bin/)
+		
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/imgui
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/imgui)
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/glm/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/glm/include)
+
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/tiny_obj_loader/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/tiny_obj_loader/include)
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/glfw/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/glfw/include)
+
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/stb
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/stb)
+		
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/freetype-gl
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/freetype-gl)
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/freetype/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/freetype/include)
+				
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/soloud/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/soloud/include)
+				
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/json/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/json/include)
+				
+				
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/emscripten
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/emscripten)
+				
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/box2d/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/box2d/include)
+
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/dependencies/glad/include
+			${CMAKE_SOURCE_DIR}/bin/watty/dependencies/glad/include)
+
+add_custom_command(
+		TARGET Editor
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+			${WATTYDIR}/tools/
+			${CMAKE_SOURCE_DIR}/bin/watty/tools)
+
+
+endif()

@@ -7,6 +7,7 @@ namespace WattyEditor
 	using namespace graphics;
 
 	EditorApplication::EditorApplication(char **av) {
+		RawResources::Init();
 		pythonManager.init(av);
 	}
 
@@ -16,6 +17,7 @@ namespace WattyEditor
 		window->setSize({1600, 900});
 		window->setTitle("Editor - Watty Game Engine");
 		window->useVSync = false;
+
 
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		Window::allowMultipleSubWindows = true;
@@ -37,7 +39,7 @@ namespace WattyEditor
 
 		ImGui::StyleColorsDark(); // TODO option
 
-		projectManager = ProjectManager();
+		projectManager = ProjectManager(&pythonManager);
 		std::cout << "ProjectManager created" << std::endl;
 
 	}

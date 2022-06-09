@@ -1,9 +1,12 @@
 #pragma once
+#include <PythonManager.h>
+
 #include <stdio.h>
 #include <filesystem>
 #include <utils/file_utils.h>
 #include <scene/Scene.h>
 #include <vector>
+
 using namespace watty;
 namespace WattyEditor {
     const std::string PROJECT_SETTINGS_FILE_NAME = "project.settings";
@@ -41,10 +44,13 @@ namespace WattyEditor {
     };
 
 	class ProjectManager{
+        private:
+            PythonManager* pythonManager;
         public:
             bool isProjectOpen = false;
         public:
             ProjectManager();
+            ProjectManager(PythonManager* pythonManager);
             ~ProjectManager();
             Project loadProject(std::string path);
             Project newProject(std::string path, std::string name);
